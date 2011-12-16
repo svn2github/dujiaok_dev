@@ -1,0 +1,64 @@
+SVN
+http://www.dujiaok.com/svn/project/trunk
+http://www.dujiaok.com/svn/project/ht_trunk
+
+zb  zb
+
+
+=========================================================
+数据库
+jdbc.password         = trek
+jdbc.url              = jdbc:mysql://110.76.47.90:3306/trek?useUnicode=true&characterEncoding=utf-8&autoReconnect=true
+jdbc.user             = trek
+
+=========================================================
+
+表结构
+Order
+`USER_ID`	订单USer
+`STATUS`         订单状态
+`TOUR_ID`         （没用）
+`PAY_STATUS`      付款状态
+`TYPE_ID`         （没用）
+`SINGLE_NUMBER`  （无用）
+`SINGLE_PRICE`   单人价格
+`DOUBLE_NUMBER`  双人数量
+`COMBO_NUMBER`   套餐数量
+
+`INSURE`         保险
+`ALIPAY_ID`      支付宝交易号
+`ALIPAY_STATUS`  支付宝状态
+`ADULT_NUMBER`   承认数量
+`HOTEL_DAY`      订单中酒店订了几天
+
+Page （二期前台页面，对应后台的页面对应K\V）
+
+Product
+`TYPE_ID`  产品类型
+`MARKET_PRICE`  市场价
+`TOUR_DAYS`     产品天数
+`LOCATION_CODE`  地域
+`DEST`   	目的地
+`POST`		地理位置
+`PAY_TYPE`	产品详情时支持的支付类型
+
+`TOURIST`（废弃表）
+
+`TOUR`
+
+`USER`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
