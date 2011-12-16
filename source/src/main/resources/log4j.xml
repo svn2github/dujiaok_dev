@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <!-- ===================================================================== -->
+    <!--  以下是appender的定义                                                 -->
+    <!-- ===================================================================== -->  
+     <appender name="PROJECT" class="org.apache.log4j.ConsoleAppender">
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"  value="%d [%F:%L] %-5p %c :: %m%n"/>
+        </layout>
+    </appender>
+
+	
+    <!-- ===================================================================== -->
+    <!--  以下是logger的定义                                                   -->
+    <!-- ===================================================================== -->
+
+    <logger name="org.apache.commons.beanutils">
+        <level value="ERROR"/>
+    </logger>
+	<logger name="org.apache.velocity">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="org.apache.commons.digester">
+        <level value="ERROR"/>
+    </logger> 
+  
+    <logger name="java.sql">
+        <level value="DEBUG"/>       
+    </logger>
+    <logger name="com.opensymphony.xwork2" >
+    	<level value="ERROR"/>
+    </logger>
+	<logger name="org.apache.struts2">
+		<level value="ERROR"/>
+	</logger>
+	<logger name="org.springframework">
+		<level value="ERROR"/>
+	</logger>
+    <!-- ===================================================================== -->
+    <!--  Root logger                                                          -->
+    <!-- ===================================================================== -->
+    <root>
+        <level value="DEBUG"/> 
+        <appender-ref ref="PROJECT"/>
+    </root>
+</log4j:configuration>
