@@ -1,0 +1,302 @@
+body {
+    margin: 0px;
+}
+
+div {
+    background-repeat: no-repeat;
+}
+
+.raw_image {
+    width: 100%;
+    height: 100%;
+}
+
+.preload {
+    display: none;
+}
+div.main_container {
+}
+
+.form_sketch {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.u0_original {
+    background-image: url('../登录_files/u0_original.png');
+}
+
+.u0_container {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:960px;
+    height:410px;
+}
+
+#u0_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:966px;
+    height:416px;
+}
+
+.u1 {
+    position:absolute;
+    left:2px;
+    top:197px;
+    width:956px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u0 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:960px;
+    height:410px
+}
+
+.u2_original {
+    background-image: url('../登录_files/u2_original.png');
+}
+
+.u2_container {
+    position:absolute;
+    left:20px;
+    top:90px;
+    width:480px;
+    height:310px;
+}
+
+#u2_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:486px;
+    height:316px;
+}
+
+.u3 {
+    position:absolute;
+    left:2px;
+    top:147px;
+    width:476px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u2 {
+    position:absolute;
+    left:20px;
+    top:90px;
+    width:480px;
+    height:310px
+}
+
+.u4 {
+    position:absolute;
+    left:546px;
+    top:170px;
+    width:60px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u5 {
+    position:absolute;
+    left:560px;
+    top:220px;
+    width:60px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u6 {
+    position:absolute;
+    left:560px;
+    top:101px;
+    width:150px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u7 {
+    position:absolute;
+    left:620px;
+    top:165px;
+    width:270px;
+    height:25px;
+    ;
+    ;
+    text-align: left;;
+    font-family:'Segoe UI';
+    font-size: 12px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u8 {
+    position:absolute;
+    left:620px;
+    top:215px;
+    width:270px;
+    height:25px;
+    ;
+    ;
+    text-align: left;;
+    font-family:'Segoe UI';
+    font-size: 12px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u9 {
+    position:absolute;
+    left:620px;
+    top:270px;
+    width:100px;
+    height:25px;
+    ;
+    ;
+    text-align: center;;
+    font-family:'Arial';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u10_line {
+    background-image: url('../登录_files/u10_line.png');
+}
+
+.u10_line {
+    position:absolute;
+    left:550px;
+    top:334px;
+    width:390px;
+    height:3px;
+}
+
+.u10 {
+    position:absolute;
+    left:550px;
+    top:334px;
+    width:390px;
+    height:3px
+}
+
+.u11_text {
+    position:absolute;
+    left:840px;
+    top:375px;
+    width:150px;
+    height:15px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u11 {
+    position:absolute;
+    left:840px;
+    top:375px;
+    width:150px;
+    height:15px
+}
+
+.u12_original {
+    background-image: url('../logo_files/u12_original.png');
+}
+
+.u12_container {
+    position:absolute;
+    left:20px;
+    top:20px;
+    width:180px;
+    height:60px;
+}
+
+#u12_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:186px;
+    height:66px;
+}
+
+.u13 {
+    position:absolute;
+    left:2px;
+    top:22px;
+    width:176px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u12 {
+    position:absolute;
+    left:20px;
+    top:20px;
+    width:180px;
+    height:60px
+}
+
+.u14 {
+    position:absolute;
+    left:56px;
+    top:16px;
+    width:150px;
+    height:57px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
