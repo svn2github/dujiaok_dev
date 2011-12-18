@@ -6,11 +6,7 @@
 	<package name="home" namespace="/home" extends="struts-default">
 		<action name="index" class="com.ssnn.dujiaok.action.home.IndexAction">
 			<interceptor-ref name="basicStack" />
-			<result name="success"  type="velocity">/index.vm</result>
-		</action>
-		<action name="index1" class="com.ssnn.dujiaok.action.home.IndexAction">
-			<interceptor-ref name="basicStack" />
-			<result name="success" >/index.jsp</result>
+			<result name="success"  type="velocity">/home/index.vm</result>
 		</action>
 	</package>
 </struts>
