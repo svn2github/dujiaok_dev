@@ -1,0 +1,73 @@
+<!doctype html public "-//w3c//dtd xhtml 1.0 transitional//en" "http://www.w3.org/tr/xhtml1/dtd/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=gb2312" />
+<link href="../../../resource/css/common/reset.css" rel="stylesheet" type="text/css" />
+<link href="../../../resource/css/default/tip/tip.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="../../core/xui-core-min.js" ></script>
+<script type="text/javascript" src="../../util/util-min.js" ></script>
+<script type="text/javascript" src="../xui-tip.js"></script>
+
+<script>
+function test(){
+	xui.widgets.Tip.show('d1','请输入aaa','',{autoClose:5000});
+	
+	//setTimeout(function(){
+	//	$('d1').value='12121';
+	//},3000)
+	
+//	xui.widgets.Tip.show('d5','请输入字母或数字');
+//	
+//	xui.widgets.Tip.show('s1','请输入xxxxx');
+}
+
+function see(){
+	if($('see').style.display=='none'){
+		$('see').style.display='';
+		xui.widgets.Tip.show('d5','请输入字母请输入字母或数字请输入字母或数字请输入');
+	}else{
+		$('see').style.display='none';
+		xui.widgets.Tip.clear();
+	}
+	
+}
+</script>
+</head>
+<body onLoad="test()">
+<br/><br/><br/>
+
+<input id="d1" value="" style="visibility:">
+<input id="d2" value="">
+<input id="d3" value="">
+<br/>
+<input id="d4" value="">
+<br/>
+<div id="see" style="display:none;">看不见：<input id="d5" value="" ></div>
+<br/><br/><input value="看见/看不见" type=button onClick="see()">
+<br/>
+<input id="d6" value="">
+<br/><br/>
+1111111111111
+<select id=s1>
+<option value=1>11111</option>
+<option value=1>11111</option>
+<option value=1>11111</option>
+</select>
+<br/><br/>
+<br/>
+<input id="d41" value="">
+<input id="d51" value="">
+<input id="d61" value="">
+<br/><br/>
+<input value="保存" type=button onClick="test()">
+<br/><br/><br/><br/><br/>
+<!-- 设置 querytip 属性将启用 QueryTip 功能来创建tip-->
+<div querytip="sdsdsdsdsdsdsdsdsdsdsdsdsdsdsds<a href='#'>dsdsdsdsdsdsdsdsdsds</a>dsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsd">querytip就在这里</div>
+<div querytip="sds2d">querytip就在这里</div>
+<div querytip="sds3">querytip就在这里</div>
+<div querytip="4asfasfasfasfasfsdgdfghdfhdfhdfhafas<a href='#'>fas4asfasfasfasfasfsdgdfghdfh</a>dfhdfhafasfas" style="float:right">querytip就在这里</div>
+<div style=height:500px;"></div>
+</body>
+</html>
+

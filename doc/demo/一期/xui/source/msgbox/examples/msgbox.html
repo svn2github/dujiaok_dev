@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link  href="../../../resource/css/common/reset.css" rel="stylesheet" type="text/css" />
+<link  href="../../../resource/css/earth/msgbox/msgbox.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../core/xui-core.js"></script>
+<script type="text/javascript" src="../xui-msgbox.js"></script>
+<style>
+
+
+</style>
+<title>msgbox</title>
+</head>
+
+<body>
+<input type="button" id="d2" value="success" onclick="test1();">
+<input type="button" id="d2" value="confirm" onclick="test2();">
+<select><optgroup>1111</optgroup></select>
+<script>
+	xui.widgets.MsgBox.alpha = 8;
+function test1(){
+	xui.widgets.MsgBox.positionTop = 100;
+	xui.widgets.MsgBox.alpha = 0;
+	xui.widgets.MsgBox.show({type:'success',msg:'执行OK了'},{'success':function(){alert('用户点击了确定！');}}	);
+	xui.widgets.MsgBox.alpha = 8;
+}
+function test2(){
+	xui.widgets.MsgBox.show({type:'confirm',msg:'你真的要删除这条提醒记录'},
+							{'yes':function(){alert('用户2点击了确定！');},'no':function(){alert('用户2点击了取消！');}},
+							{'yes':'我的确定','no':'我的取消'}
+							);	
+}
+
+</script>
+<!--<DIV class=xui-msgbox>
+    <DIV class=xui-msgbox-in>
+        <P class=xui-msg>你真的要删除这条提醒记录</P>
+        <DIV class=xui-msgbox-submit>
+            <button class="xui-msgbox-btn "  ><span class="xui-msgbox-icon-confirm">确定</span></button>
+            <button class="xui-msgbox-btn "  ><span class="xui-msgbox-icon-cancel">取消</span></button>
+        </DIV>
+    </DIV>
+</DIV>-->
+</body>
+</html>
