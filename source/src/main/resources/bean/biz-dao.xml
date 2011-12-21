@@ -11,14 +11,6 @@
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
 
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="${dujiaok.database.driver.url}" />
-		<property name="username" value="${dujiaok.database.driver.username}" />
-		<property name="password" value="${dujiaok.database.driver.password}" />
-	</bean>
-
 	<!-- SqlMap setup for iBATIS Database Layer -->
 	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
 		<!-- 特别注意此处，如果做单元测试的话，请把“WEB-INF/classes/”去掉，否则会报找不到sqlMapConfig.xml文件 -->
