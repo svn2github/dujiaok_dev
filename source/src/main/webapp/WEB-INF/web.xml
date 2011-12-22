@@ -29,22 +29,22 @@
 		<filter-name>struts2</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
+<!-- 
 	<servlet>
 		<servlet-name>velocity</servlet-name>
-		<servlet-class>org.apache.velocity.tools.view.servlet.VelocityLayoutServlet</servlet-class>
+		<servlet-class>org.apache.velocity.tools.view.VelocityLayoutServlet</servlet-class>
 		<init-param>
 			<param-name>org.apache.velocity.properties</param-name>
-			<param-value> /WEB-INF/velocity.properties </param-value>
+			<param-value>/WEB-INF/velocity.properties</param-value>
 		</init-param>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 
-	<!-- Map *.vm files to Velocity -->
 	<servlet-mapping>
 		<servlet-name>velocity</servlet-name>
 		<url-pattern>*.htm</url-pattern>
 	</servlet-mapping>
-
+ -->
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>

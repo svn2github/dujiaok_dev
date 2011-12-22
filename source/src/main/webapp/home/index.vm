@@ -1,1 +1,4 @@
-hello
+
+#set($layout="/front/default.vm")
+
+xswd的我的家

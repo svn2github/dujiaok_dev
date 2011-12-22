@@ -20,7 +20,7 @@
         <level value="ERROR"/>
     </logger>
 	<logger name="org.apache.velocity">
-        <level value="ERROR"/>
+        <level value="debug"/>
     </logger>
     <logger name="org.apache.commons.digester">
         <level value="ERROR"/>

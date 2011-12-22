@@ -3,25 +3,29 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	
+
 	<!-- Constant -->
 	<constant name="struts.action.extension" value="htm" />
 	<constant name="struts.devMode" value="true" />
-	
-	
-	
+	<constant name="struts.velocity.toolboxlocation" value="WEB-INF/toolbox.xml" />
+	<constant name="struts.velocity.configfile" value="WEB-INF/velocity.properties" />
+
 	<include file="struts-default.xml" />
-	
-	
+
+
+
 	<package name="default" extends="struts-default">
+		<result-types>
+			<result-type name="velocity" class="com.ssnn.dujiaok.velocity.layout.VelocityLayoutResult" />
+		</result-types>
 		<global-results>
-            <result name="error">/common/error.htm</result>
+			<result name="error">/common/error.htm</result>
 		</global-results>
-		
+
 		<global-exception-mappings>
 			<exception-mapping result="exception" exception="java.lang.Exception" />
 		</global-exception-mappings>
 	</package>
-	
-	<include file="struts-home.xml"></include>
+
+	<include file="struts-home.xml" ></include>
 </struts>
