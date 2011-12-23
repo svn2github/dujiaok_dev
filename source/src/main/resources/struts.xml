@@ -7,7 +7,7 @@
 	<!-- Constant -->
 	<constant name="struts.action.extension" value="htm" />
 	<constant name="struts.devMode" value="true" />
-	<constant name="struts.velocity.toolboxlocation" value="WEB-INF/toolbox.xml" />
+	<constant name="struts.velocity.toolboxlocation" value="WEB-INF/velocity-toolbox.xml" />
 	<constant name="struts.velocity.configfile" value="WEB-INF/velocity.properties" />
 
 	<include file="struts-default.xml" />

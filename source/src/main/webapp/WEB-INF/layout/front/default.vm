@@ -1,3 +1,4 @@
+#####前台页面默认的Layout
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -7,6 +8,8 @@
 	</head>
 	
 	<body>
+		#parse("/common/top.vm")
 		$screen_content
+		#parse("/common/bottom.vm")
 	</body>
 </html>

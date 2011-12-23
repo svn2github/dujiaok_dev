@@ -24,6 +24,11 @@ import com.opensymphony.xwork2.util.ValueStack;
 import com.opensymphony.xwork2.util.logging.Logger;
 import com.opensymphony.xwork2.util.logging.LoggerFactory;
 
+/**
+ * 由于struts2中VelocityResult 不支持layout，这里参照VelocityLayoutServlet重写该Result
+ * @author shenjia.caosj 2011-12-23
+ *
+ */
 public class VelocityLayoutResult extends VelocityResult {
 
 	private static final long serialVersionUID = 6020934292083047099L;

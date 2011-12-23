@@ -1,0 +1,52 @@
+<!-- js 引入 -->
+<!--#macro(JS $libs)
+   #foreach ($key in $libs)
+   <script type="text/javascript" src="$mobiletradeStaticURL/js/$!staticVersionUtil.getPath($!key)"></script>
+   #end
+#end -->
+#macro(JS $libs)
+   #set($version = "20110602")
+   #foreach ($key in $libs)
+   <script type="text/javascript" src="${env.staticroot}/js/$!key?v=$version"></script>
+   #end
+#end
+
+<!-- css 引入 -->
+<!--#macro(CSS $libs)
+   #foreach ($key in $libs)
+   <link  rel="stylesheet" type="text/css" href="$mobiletradeStaticURL/css/$!staticVersionUtil.getPath($!key)" />
+   #end
+#end-->
+#macro(CSS $libs)
+   #set($version = "20110518")
+   #foreach ($key in $libs)
+   <link  rel="stylesheet" type="text/css" href="${env.staticroot}/css/$!key?v=$version" />
+   #end
+#end
+
+<!-- XUI组件 js 引入 -->
+#macro(XUI_JS $libs)
+   #set($version = "20110518")
+   #set($compress = false)
+   #foreach ($key in $libs)
+       #if($compress == true)
+		  #set($length = $key.length() - 3)
+       <script type="text/javascript" src="${env.staticroot}/xui/source/$key.substring(0, $length)-min.js?v=$version"></script>
+       #else
+       <script type="text/javascript" src="${env.staticroot}/xui/source/$!key?v=$version"></script>
+       #end
+   #end
+#end
+
+<!-- XUI组件  css 引入 -->
+<!--#macro(XUI_CSS $libs)
+   #foreach ($key in $libs)
+   <link  rel="stylesheet" type="text/css" href="$mobiletradeStaticURL/xui/resource/css/$!staticVersionUtil.getPath($!key)" />
+   #end
+#end-->
+#macro(XUI_CSS $libs)
+   #set($version = "20110518")
+   #foreach ($key in $libs)
+   <link  rel="stylesheet" type="text/css" href="${env.staticroot}/xui/resource/css/$!key?v=$version" />
+   #end
+#end

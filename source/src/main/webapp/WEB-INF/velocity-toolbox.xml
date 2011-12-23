@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolbox>
+	<tool>
+		<key>dateUtil</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.DateTool</class>
+		<parameter name="format" value="yyyy-M-d" />
+	</tool>
+	<tool>
+		<key>env</key>
+		<scope>application</scope>
+		<class>com.ssnn.dujiaok.velocity.toolbox.EnvPropertiesToolbox</class>
+	</tool>
+	
+</toolbox> 

@@ -2,3 +2,13 @@
 #set($layout="/front/default.vm")
 
 xswd的我的家
+
+
+${env.root}/helloword.htm
+<br/>
+${env.staticroot}/helloword.js
+
+#CSS(["g.base.css","a.base.css"])
+#JS(["g.base.css","a.base.css"])
+#XUI_JS(["a.js","b.js"])
+#XUI_CSS(["a.css","b.css"])
