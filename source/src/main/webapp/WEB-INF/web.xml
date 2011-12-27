@@ -19,7 +19,7 @@
 	</filter>
 	<filter>
 		<filter-name>characterEncoding</filter-name>
-		<filter-class>com.ssnn.dujiaok.filter.SetCharacterEncodingFilter</filter-class>
+		<filter-class>com.ssnn.dujiaok.web.filter.SetCharacterEncodingFilter</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>
