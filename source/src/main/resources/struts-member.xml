@@ -1,0 +1,19 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="member" namespace="/member" extends="default">
+		<action name="login" class="com.ssnn.dujiaok.web.action.member.LoginAction">
+			<interceptor-ref name="basicStack" />
+			<result name="success"  type="velocity">/member/login.vm</result>
+		</action>
+		
+		<action name="register" class="com.ssnn.dujiaok.web.action.member.RegisterAction">
+			<interceptor-ref name="basicStack" />
+			<result name="success"  type="velocity">/member/register.vm</result>
+		</action>
+	</package>
+	
+	
+</struts>

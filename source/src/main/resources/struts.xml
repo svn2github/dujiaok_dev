@@ -16,7 +16,7 @@
 
 	<package name="default" extends="struts-default">
 		<result-types>
-			<result-type name="velocity" class="com.ssnn.dujiaok.velocity.layout.VelocityLayoutResult" />
+			<result-type name="velocity" class="com.ssnn.dujiaok.web.velocity.layout.VelocityLayoutResult" />
 		</result-types>
 		<global-results>
 			<result name="error">/common/error.htm</result>
@@ -28,4 +28,5 @@
 	</package>
 
 	<include file="struts-home.xml" ></include>
+	<include file="struts-member.xml" ></include>
 </struts>

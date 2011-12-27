@@ -4,7 +4,7 @@
 
 <struts>
 	<package name="home" namespace="/home" extends="default">
-		<action name="index" class="com.ssnn.dujiaok.action.home.IndexAction">
+		<action name="index" class="com.ssnn.dujiaok.web.action.home.IndexAction">
 			<interceptor-ref name="basicStack" />
 			<result name="success"  type="velocity">/home/index.vm</result>
 		</action>

@@ -1,0 +1,136 @@
+#####前台页面默认的Layout
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+        <title>会员管理</title>
+        #CSS(["base.css","General.css","main.css"])
+		
+		<style>
+        <!--
+        html, body, ul, ol, li, dl, dt, dd, p, h1, h2, h3, h4, h5, h6, a,img, th,td,form, fieldset, iframe, object, pre, code, legend, blockquote,table,button{margin:0; padding:0; border:0; outline:0}
+        ol, ul{list-style:none}
+        :focus{outline:0}
+        strong{font-weight:bold}
+        address, caption, cite, code, dfn, em, th, var {font-style:normal;font-weight:normal;}
+        h1, h2, h3, h4, h5, h6{font-weight:normal; font-size:100%}
+        .clearFix{zoom:1}
+        .clearFix:after{content:"\0020"; display:block; height:0; clear:both}
+        
+        
+        body{ margin:0; padding:0;}
+        #wrap{ width:950px; margin:0 auto; padding:0;}
+        #wrap img{ margin:0; padding:0;}
+        #content{background:url($env.getStaticURL('/trek/images/reg_06.png')) repeat-x; width:100%; height:420px; }
+        #content .reg_nav{ background:url($env.getStaticURL('/trek/images/reg_04.png')) left no-repeat; height:32px; width:100%;}
+        #content .reg_nav h2{ float:left; margin-left:18px; font-weight:bold; height:32px; line-height:32px; font-size:14px; color:#fff;}
+        #content .reg_nav .reg_nav_right{ float:right; padding-right:16px; font-size:12px; color:#FFF; height:32px; line-height:32px;background:url($env.getStaticURL('/trek/reg_08/reg_06.png')) right no-repeat;}
+        #content .reg_nav .reg_nav_right a{ color:#FFF; text-decoration:none;}
+        #content .reg_nav .reg_nav_right a:hover{ color:#FFF; text-decoration:underline;}
+        #content .reg_content{border:2px #639b01 solid; border-top:none; height:400px;}
+        #content .reg_content ul{width:380px; margin:0 auto; display:block;padding:15px 0; color:#666;}
+        #content .reg_content ul li{ margin-top:35px;zoom:1}
+        #content .reg_content ul li:after{content:"\0020"; display:block; height:0; clear:both}
+        #content .reg_content ul li span,#content .reg_content ul li input{ float:left; font-size:14px; height:22px ; line-height:24px;}
+        #content .reg_content ul li input{width:210px; border:2px #dcdcdc solid; margin-left:15px; }
+        #content .reg_content ul li button{ padding:0 15px; height:40px; background:url($env.getStaticURL('/trek/images/reg_03.png')) #ffa024 left repeat-x; color:#FFF; *margin:0; *padding:0;}
+        #content .reg_content ul li button span{ float:none; font-size:14px; font-weight:bold;margin:0; padding:0; }
+        #content .reg_content ul li button span.reg_agree{ font-size:12px; padding-right:10px;font-weight:normal;}
+        #content .reg_content ul li.reg_xy{ margin:0; margin-top:5px;}
+        .reg_xy a{ font-size:12px; text-decoration:none; color:#0066cc; font-weight:normal;}
+        -->
+        </style>
+    </head>
+    <body>
+        <div id="wrap">
+            <div id="header"></div>
+            <div id="content">
+                ## replace with content
+                $screen_content 
+            </div>
+            <div id="footer" class="clearFix">
+                <div class="foot_left">
+                    <ul>
+                        <li class="foot_telnav">订购热线（免长途费)</li>
+                        <li class="foot_tel">400 800 3456</li>
+                    </ul>
+                </div>
+                <div class="foot_right">
+                    <ul class="foot_rightcontent">
+                        <li>
+                            <ul>
+                                <h2>新手上路</h2>
+                                <li>正品保证</li>
+                                <li>会员注册</li>
+                                <li>常见问题</li>
+                                <li>防骗提示</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="foot_rightcontent">
+                                <h2>购物流程</h2>
+                                <li>正品保证</li>
+                                <li>会员注册</li>
+                                <li>常见问题</li>
+                                <li>防骗提示</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="foot_rightcontent">
+                                <h2>如何付款</h2>
+                                <li>正品保证</li>
+                                <li>会员注册</li>
+                                <li>常见问题</li>
+                                <li>防骗提示</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="foot_rightcontent">
+                                <h2>配送说明</h2>
+                                <li>正品保证</li>
+                                <li>会员注册</li>
+                                <li>常见问题</li>
+                                <li>防骗提示</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="foot_rightcontent">
+                                <h2>售后服务</h2>
+                                <li>正品保证</li>
+                                <li>会员注册</li>
+                                <li>常见问题</li>
+                                <li>防骗提示</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="foot_rightcontent">
+                                <h2>会员服务</h2>
+                                <li>正品保证</li>
+                                <li>会员注册</li>
+                                <li>常见问题</li>
+                                <li>防骗提示</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copy">
+                <p>
+                    <a href="#" target="_blank">了解度假OK</a>
+                    |  <a href="#" target="_blank">联系度假OK</a>
+                    |  <a href="#" target="_blank">媒体报道</a>
+                    |  <a href="#" target="_blank">版权声明</a>
+                    |  <a href="#" target="_blank">友情链接</a>
+                    |  <a href="#" target="_blank">加入度假OK</a>
+                    |  <a href="#" target="_blank">网站联盟</a>
+                    |  <a href="#" target="_blank">商务合作</a>
+                    |  <a href="#" target="_blank">分类大全</a>
+                    |  <a href="#" target="_blank">问题大全</a>
+                </p>
+                <p>Copyright © 2011 - 2012 度假OK Inc.度假OK 版权所有 浙ICP证080194号</p>
+            </div>
+        </div>
+        #XUI_JS(["core/xui-core.js","util/util.js","slide/slide.js"])
+    </body>
+</html>

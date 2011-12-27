@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="product">
+	
+
+	<!-- add product -->
+	<insert id="addProduct">
+		insert into PRODUCT (TYPE_ID, NAME, MARKET_PRICE, TOUR_DAYS,
+		GMT_CREATE, GMT_MODIFY, DEST, POST, PAY_TYPE)
+		values (#typeId#, #name#,
+		#marketPrice#, #tourDays#, now(), now(), #dest#, #post#, #payType#)
+		<selectKey resultClass="java.lang.Integer" keyProperty="id">
+    		<![CDATA[
+				SELECT LAST_INSERT_ID() AS ID
+			]]>
+		</selectKey>
+	</insert>
+
+</sqlMap>
