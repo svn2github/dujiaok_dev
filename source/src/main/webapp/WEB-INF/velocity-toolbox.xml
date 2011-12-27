@@ -9,7 +9,7 @@
 	<tool>
 		<key>env</key>
 		<scope>application</scope>
-		<class>com.ssnn.dujiaok.velocity.toolbox.EnvPropertiesToolbox</class>
+		<class>com.ssnn.dujiaok.web.velocity.toolbox.EnvPropertiesToolbox</class>
 	</tool>
 	
 </toolbox> 
