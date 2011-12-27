@@ -8,7 +8,8 @@ ${env.root}/helloword.htm
 <br/>
 ${env.staticroot}/helloword.js
 
-#CSS(["g.base.css","a.base.css"])
+#CSS(["base.css","General.css","main.css"])
 #JS(["g.base.css","a.base.css"])
-#XUI_JS(["a.js","b.js"])
+#XUI_JS(["core/xui-core.js","util/util.js","slide/slide.js"])
 #XUI_CSS(["a.css","b.css"])
+
