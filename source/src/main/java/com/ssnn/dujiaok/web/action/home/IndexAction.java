@@ -1,6 +1,6 @@
 package com.ssnn.dujiaok.web.action.home;
 
-import com.opensymphony.xwork2.ActionSupport;
+import com.ssnn.dujiaok.web.action.BasicAction;
 
 public class IndexAction extends BasicAction {
 

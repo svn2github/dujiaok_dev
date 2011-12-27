@@ -1,6 +1,6 @@
 package com.ssnn.dujiaok.web.action.member;
 
-import com.ssnn.dujiaok.web.action.home.BasicAction;
+import com.ssnn.dujiaok.web.action.BasicAction;
 
 public class RegisterAction extends BasicAction{
 	@Override

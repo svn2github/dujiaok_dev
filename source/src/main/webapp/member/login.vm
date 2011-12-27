@@ -8,12 +8,12 @@
 </div>
 <div class="reg_content clearFix">
 	<div class="reg_content_left">
-        <form id="loginForm" name="loginForm" method="post" action="${env.root}/member/login.htm" onSubmit="return Validator.validate(this,'member');">
+        <form id="loginForm" name="loginForm" method="post" action="${env.root}/member/dologin.htm" onSubmit="return Validator.validate(this,'member');">
             <ul>
 				<li><span>用户名</span><input type="text" id='memberId' name='memberId'/></li>
                 <li><span>密　码</span><input type="password" id='password' name='password'/></li>
                 <!--<li style="padding-left:40px;"><input type="checkbox" class="reg_cheak"/><span>记住用户名</span><input type="checkbox" class="reg_cheak"/><span>自动登录</span></li>-->
-                <input type="hidden" id='toUrl' name='toUrl' value="$!toUrl"/>
+                <input type="hidden" id='Done' name='Done' value="$!Done"/>
 				<li style="padding-left:60px; margin-top:20px; "><button onclick="login()">　登录　</button><span style="width:100px; color:#f60; padding-left:8px; height:40px; line-height:40px; font-size:12px;">#if($errorMsg!="")$!errorMsg #end</span></li>
 				
             </ul>

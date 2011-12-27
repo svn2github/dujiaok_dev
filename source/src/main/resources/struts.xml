@@ -15,18 +15,29 @@
 
 
 	<package name="default" extends="struts-default">
+		
 		<result-types>
 			<result-type name="velocity" class="com.ssnn.dujiaok.web.velocity.layout.VelocityLayoutResult" />
 		</result-types>
+		
+		<interceptors>
+			<interceptor name="memberAuthInterceptor" class="com.ssnn.dujiaok.web.interceptor.MemberAuthInterceptor"></interceptor>
+		</interceptors>
 		<global-results>
 			<result name="error">/common/error.htm</result>
+			<result name="memberLogin" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+				
 		</global-results>
 
 		<global-exception-mappings>
 			<exception-mapping result="exception" exception="java.lang.Exception" />
 		</global-exception-mappings>
+
+
 	</package>
 
-	<include file="struts-home.xml" ></include>
-	<include file="struts-member.xml" ></include>
+	<include file="struts-home.xml"></include>
+	<include file="struts-member.xml"></include>
 </struts>
