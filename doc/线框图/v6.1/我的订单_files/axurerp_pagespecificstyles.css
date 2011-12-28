@@ -1,0 +1,602 @@
+body {
+    margin: 0px;
+}
+
+div {
+    background-repeat: no-repeat;
+}
+
+.raw_image {
+    width: 100%;
+    height: 100%;
+}
+
+.preload {
+    display: none;
+}
+div.main_container {
+}
+
+.form_sketch {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.u0_original {
+    background-image: url('../我的订单_files/u0_original.png');
+}
+
+.u0_container {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:960px;
+    height:510px;
+}
+
+#u0_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:966px;
+    height:516px;
+}
+
+.u1 {
+    position:absolute;
+    left:2px;
+    top:247px;
+    width:956px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u0 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:960px;
+    height:510px
+}
+
+.u2_original {
+    background-image: url('../我的订单_files/u2_original.png');
+}
+
+.u2_container {
+    position:absolute;
+    left:260px;
+    top:100px;
+    width:130px;
+    height:30px;
+}
+
+#u2_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:136px;
+    height:36px;
+}
+
+.u3 {
+    position:absolute;
+    left:2px;
+    top:6px;
+    width:126px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u2 {
+    position:absolute;
+    left:260px;
+    top:100px;
+    width:130px;
+    height:30px
+}
+
+.u4_original {
+    background-image: url('../我的订单_files/u2_original.png');
+}
+
+.u4_container {
+    position:absolute;
+    left:10px;
+    top:100px;
+    width:130px;
+    height:30px;
+}
+
+#u4_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:136px;
+    height:36px;
+}
+
+.u5 {
+    position:absolute;
+    left:2px;
+    top:6px;
+    width:126px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u4 {
+    position:absolute;
+    left:10px;
+    top:100px;
+    width:130px;
+    height:30px
+}
+
+.u6_original {
+    background-image: url('../logo_files/u12_original.png');
+}
+
+.u6_container {
+    position:absolute;
+    left:20px;
+    top:20px;
+    width:180px;
+    height:60px;
+}
+
+#u6_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:186px;
+    height:66px;
+}
+
+.u7 {
+    position:absolute;
+    left:2px;
+    top:22px;
+    width:176px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u6 {
+    position:absolute;
+    left:20px;
+    top:20px;
+    width:180px;
+    height:60px
+}
+
+.u8 {
+    position:absolute;
+    left:56px;
+    top:16px;
+    width:150px;
+    height:57px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u10_line {
+    background-image: url('../我的订单_files/u10_line.png');
+}
+
+.u10_line {
+    position:absolute;
+    left:10px;
+    top:129px;
+    width:960px;
+    height:3px;
+}
+
+.u10 {
+    position:absolute;
+    left:10px;
+    top:129px;
+    width:960px;
+    height:3px
+}
+
+.u11_original {
+    background-image: url('../我的订单_files/u11_original.png');
+}
+
+.u11_container {
+    position:absolute;
+    left:145px;
+    top:100px;
+    width:105px;
+    height:30px;
+}
+
+#u11_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:111px;
+    height:36px;
+}
+
+.u12 {
+    position:absolute;
+    left:2px;
+    top:6px;
+    width:101px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u11 {
+    position:absolute;
+    left:145px;
+    top:100px;
+    width:105px;
+    height:30px
+}
+
+.u13 {
+    position:absolute;
+    left:20px;
+    top:170px;
+    width:820px;
+    height:20px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u14_line {
+    background-image: url('../我的订单_files/u14_line.png');
+}
+
+.u14_line {
+    position:absolute;
+    left:20px;
+    top:234px;
+    width:930px;
+    height:3px;
+}
+
+.u14 {
+    position:absolute;
+    left:20px;
+    top:234px;
+    width:930px;
+    height:3px
+}
+
+.u15 {
+    position:absolute;
+    left:770px;
+    top:214px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u16 {
+    position:absolute;
+    left:20px;
+    top:210px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u17 {
+    position:absolute;
+    left:66px;
+    top:210px;
+    width:264px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u18 {
+    position:absolute;
+    left:20px;
+    top:257px;
+    width:820px;
+    height:20px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u19_line {
+    background-image: url('../我的订单_files/u19_line.png');
+}
+
+.u19_line {
+    position:absolute;
+    left:20px;
+    top:321px;
+    width:930px;
+    height:3px;
+}
+
+.u19 {
+    position:absolute;
+    left:20px;
+    top:321px;
+    width:930px;
+    height:3px
+}
+
+.u20 {
+    position:absolute;
+    left:770px;
+    top:301px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u21 {
+    position:absolute;
+    left:20px;
+    top:297px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u22 {
+    position:absolute;
+    left:66px;
+    top:297px;
+    width:150px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u23 {
+    position:absolute;
+    left:20px;
+    top:341px;
+    width:820px;
+    height:20px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u24 {
+    position:absolute;
+    left:715px;
+    top:385px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u25 {
+    position:absolute;
+    left:915px;
+    top:384px;
+    width:80px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u26 {
+    position:absolute;
+    left:20px;
+    top:381px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u27 {
+    position:absolute;
+    left:66px;
+    top:381px;
+    width:150px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u28 {
+    position:absolute;
+    left:863px;
+    top:384px;
+    width:80px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u29_line {
+    background-image: url('../我的订单_files/u29_line.png');
+}
+
+.u29_line {
+    position:absolute;
+    left:20px;
+    top:420px;
+    width:930px;
+    height:3px;
+}
+
+.u29 {
+    position:absolute;
+    left:20px;
+    top:420px;
+    width:930px;
+    height:3px
+}
+
+.u30 {
+    position:absolute;
+    left:20px;
+    top:442px;
+    width:820px;
+    height:20px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u31 {
+    position:absolute;
+    left:715px;
+    top:486px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u32 {
+    position:absolute;
+    left:20px;
+    top:482px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u33 {
+    position:absolute;
+    left:66px;
+    top:482px;
+    width:224px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u34_text {
+    position:absolute;
+    left:863px;
+    top:484px;
+    width:97px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u34 {
+    position:absolute;
+    left:863px;
+    top:484px;
+    width:97px;
+    height:16px
+}
+
