@@ -14,5 +14,6 @@
     <settings useStatementNamespaces="true" />
     
   	<sqlMap resource="sqlmap/sqlmap-product.xml" />
+  	<sqlMap resource="sqlmap/sqlmap-member.xml" />
 	
 </sqlMapConfig>

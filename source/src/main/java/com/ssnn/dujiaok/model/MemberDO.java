@@ -1,5 +1,7 @@
 package com.ssnn.dujiaok.model;
 
+import java.util.Date;
+
 /**
  * 
  * @author shenjia.caosj 2011-12-27
@@ -7,6 +9,7 @@ package com.ssnn.dujiaok.model;
  */
 public class MemberDO {
 
+	private int id ;
 	
 	/**
 	 * 登陆id
@@ -14,9 +17,14 @@ public class MemberDO {
 	private String memberId ;
 	
 	/**
+	 * password
+	 */
+	private String password ;
+	
+	/**
 	 * 昵称
 	 */
-	private String nickName ;
+	private String nickname ;
 	
 	/**
 	 * 手机
@@ -28,7 +36,33 @@ public class MemberDO {
 	 */
 	private String email ;
 
+	private Date gmtCreate ;
 	
+	private Date gmtModified ;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Date getGmtCreate() {
+		return gmtCreate;
+	}
+
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
+
+	public Date getGmtModified() {
+		return gmtModified;
+	}
+
+	public void setGmtModified(Date gmtModified) {
+		this.gmtModified = gmtModified;
+	}
+
 	public String getMemberId() {
 		return memberId;
 	}
@@ -37,12 +71,12 @@ public class MemberDO {
 		this.memberId = memberId;
 	}
 
-	public String getNickName() {
-		return nickName;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public String getMobileNo() {
@@ -59,6 +93,14 @@ public class MemberDO {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	

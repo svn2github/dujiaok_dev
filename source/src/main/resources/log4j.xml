@@ -38,6 +38,10 @@
 	<logger name="org.springframework">
 		<level value="ERROR"/>
 	</logger>
+	<logger name="com.ibatis">
+		<level value="DEBUG"/>
+	</logger>
+	
     <!-- ===================================================================== -->
     <!--  Root logger                                                          -->
     <!-- ===================================================================== -->

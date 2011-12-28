@@ -1,19 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
-<sqlMap namespace="product">
+<sqlMap namespace="member">
 	
+	<typeAlias alias="TA-Member" type="com.ssnn.dujiaok.model.MemberDO"/>
 
-	<!-- add product -->
-	<insert id="addProduct">
-		insert into PRODUCT (TYPE_ID, NAME, MARKET_PRICE, TOUR_DAYS,
-		GMT_CREATE, GMT_MODIFY, DEST, POST, PAY_TYPE)
-		values (#typeId#, #name#,
-		#marketPrice#, #tourDays#, now(), now(), #dest#, #post#, #payType#)
+	<resultMap id="RM-Member" class="TA-Member" >
+		<result property="id" column="ID"/>
+		<result property="memberId" column="MEMBER_ID" jdbcType="VARCHAR"/>
+		<result property="password" column="PASSWORD" jdbcType="VARCHAR"/>
+		<result property="nickname" column="NICKNAME" jdbcType="VARCHAR"/>
+		<result property="mobileNo" column="MOBILE_NO" jdbcType="VARCHAR"/>
+		<result property="email" column="EMAIL" jdbcType="VARCHAR"/>
+		<result property="gmtCreate" column="GMT_CREATE" jdbcType="TIMESTAMP"/>
+		<result property="gmtModified" column="GMT_MODIFIED" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="queryMember" resultMap="RM-Member">
+		select * from MEMBER where member_id = #memberId#
+	</select>
+	
+	<select id="queryMemberByMemberidAndPassword" resultMap="RM-Member">
+		select * from MEMBER where password = #password# and member_id = #memberId#
+	</select>
+	
+	<insert id="createMember">
+		insert into 
+			MEMBER(ID,MEMBER_ID,PASSWORD,NICKNAME,MOBILE_NO,EMAIL,GMT_CREATE,GMT_MODIFIED)
+		values 
+			(#id#,#memberId#,#password#,#nickname#,#mobileNo#,#email#,now(),now())
 		<selectKey resultClass="java.lang.Integer" keyProperty="id">
-    		<![CDATA[
+			<![CDATA[
 				SELECT LAST_INSERT_ID() AS ID
 			]]>
 		</selectKey>
 	</insert>
-
+	
+	<update id="updateMemberInfo" parameterClass="TA-Member">
+	<![CDATA[
+		update MEMBER set 
+			NICKNAME = #nickname# ,
+			MOBILE_NO = #mobileNo# ,
+			EMAIL = #email# ,
+			GMT_MODIFIED = now() 
+		where
+			MEMBER_ID = #memberId#
+			]]>
+	</update>
+	
+	<update id="updatePassword">
+		update MEMBER set 
+			PASSWORD = #password# ,
+			GMT_MODIFIED = now() 
+		where
+			MEMBER_ID = #memberId#
+	</update>
+	
 </sqlMap>

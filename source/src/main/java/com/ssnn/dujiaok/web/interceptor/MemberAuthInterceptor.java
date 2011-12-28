@@ -26,6 +26,7 @@ public class MemberAuthInterceptor extends AbstractInterceptor {
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
 		ActionContext ctx = ActionContext.getContext();
+		//非集群，时间够的情况下改成Cookie
 		Object o = ctx.getSession().get(SessionConstant.SESSION_MEMBER) ;
 		if(o == null){
 			RequestContext reqContext = new RequestContext() ;
@@ -40,7 +41,7 @@ public class MemberAuthInterceptor extends AbstractInterceptor {
 		//设置Context
 		String result = invocation.invoke();
 		ContextHolder.setMemberContext(null) ;
-		
+		ContextHolder.setRequestContext(null) ;
 		return result ;
 	}
 

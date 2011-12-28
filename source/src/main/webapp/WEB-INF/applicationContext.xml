@@ -10,16 +10,8 @@
 			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
-	<bean id="placeholderConfig"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" lazy-init="false">
-		<property name="ignoreResourceNotFound" value="true" />
-		<property name="locations">
-			<list>
-				<value>classpath:bean/commonConfig.properties</value>
-			</list>
-		</property>
-	</bean>
-
+	
+	<import resource="classpath:bean/biz-common.xml" />
 	<import resource="classpath:bean/biz-dao.xml" />
 	<import resource="classpath:bean/biz-service.xml" />
 	<import resource="classpath:bean/biz-datasource.xml" />

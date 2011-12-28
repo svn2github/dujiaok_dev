@@ -11,22 +11,14 @@
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
 			default-autowire="byName">
 
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-      destroy-method="close">
-      <property name="driverClass">
-         <value>com.mysql.jdbc.Driver</value>
-      </property>
-      <property name="jdbcUrl">
-         <value><![CDATA[${dujiaok.database.driver.url}]]></value>
-      </property>
-      <property name="properties">
-         <props>
-            <prop key="user">${dujiaok.database.driver.username}</prop>
-            <prop key="password">${dujiaok.database.driver.password}</prop>
-            <prop key="clientEncoding">UTF-8</prop>
-            <prop key="serverEncoding">UTF-8</prop>
-         </props>
-      </property>
-   </bean>
+	<bean id="placeholderConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" lazy-init="false">
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:bean/commonConfig.properties</value>
+			</list>
+		</property>
+	</bean>
 
 </beans>
