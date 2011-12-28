@@ -5,12 +5,15 @@ Class-Path: antlr-2.7.2.jar aopalliance-1.0.jar asm-3.1.jar asm-common
  .4.jar commons-digester-1.8.jar commons-fileupload-1.2.2.jar commons-
  io-2.0.1.jar commons-lang-2.5.jar commons-logging-1.1.1.jar commons-p
  ool-1.5.4.jar commons-validator-1.3.1.jar dom4j-1.1.jar el-api-6.0.35
- .jar freemarker-2.3.16.jar ibatis-sqlmap-2.3.0.jar javassist-3.11.0.G
- A.jar jsp-api-6.0.35.jar log4j-1.2.16.jar mysql-connector-java-5.1.18
- .jar ognl-3.0.1.jar oro-2.0.8.jar servlet-api-6.0.35.jar spring-2.5.6
- .jar spring-beans-2.0.8.jar spring-context-2.0.8.jar spring-core-2.0.
- 8.jar spring-dao-2.0.8.jar spring-ibatis-2.0.8.jar spring-jdbc-2.0.8.
- jar sslext-1.2-0.jar struts-core-1.3.8.jar struts-taglib-1.3.8.jar st
- ruts-tiles-1.3.8.jar struts2-core-2.2.3.jar velocity-1.7.jar velocity
- -tools-2.0.jar xwork-core-2.2.3.jar
+ .jar freemarker-2.3.16.jar hamcrest-core-1.1.jar ibatis-sqlmap-2.3.0.
+ jar javassist-3.11.0.GA.jar jsp-api-6.0.35.jar junit-4.10.jar log4j-1
+ .2.16.jar mysql-connector-java-5.1.18.jar ognl-3.0.1.jar oro-2.0.8.ja
+ r servlet-api-6.0.35.jar spring-aop-3.0.0.RELEASE.jar spring-asm-3.0.
+ 0.RELEASE.jar spring-beans-3.0.0.RELEASE.jar spring-context-3.0.0.REL
+ EASE.jar spring-core-3.0.0.RELEASE.jar spring-expression-3.0.0.RELEAS
+ E.jar spring-jdbc-3.0.0.RELEASE.jar spring-orm-3.0.0.RELEASE.jar spri
+ ng-test-3.0.0.RELEASE.jar spring-tx-3.0.0.RELEASE.jar sslext-1.2-0.ja
+ r struts-core-1.3.8.jar struts-taglib-1.3.8.jar struts-tiles-1.3.8.ja
+ r struts2-core-2.2.3.jar velocity-1.7.jar velocity-tools-2.0.jar xwor
+ k-core-2.2.3.jar
 
