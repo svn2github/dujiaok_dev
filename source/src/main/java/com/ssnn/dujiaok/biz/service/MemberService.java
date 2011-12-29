@@ -11,11 +11,32 @@ import com.ssnn.dujiaok.model.MemberDO;
  */
 public interface MemberService {
 
+	/**
+	 * 注册
+	 * @param member
+	 * @throws MemberExistsException
+	 */
 	void register(MemberDO member) throws MemberExistsException;
 	
+	/**
+	 * 登陆
+	 * @param memberId
+	 * @param password
+	 * @return
+	 * @throws MemberOrPasswordIncorrectException
+	 */
 	void login(String memberId , String password) throws MemberOrPasswordIncorrectException  ;
 	
+	/**
+	 * 更新密码
+	 * @param memberId
+	 * @param password
+	 */
 	void updatePassword(String memberId , String password) ;
 	
+	/**
+	 * 更新会员信息
+	 * @param member
+	 */
 	void updateMemberInfo(MemberDO member) ;
 }
