@@ -1,5 +1,6 @@
 #set($layout="/front/default.vm")
 #set($title="度假OK - 首页")
+#set($navigation="shouye")
 #################################################
 <div id="content">
     <div class="Ifirst clearFix">
@@ -20,7 +21,7 @@
                     </li>
                     <li>
                         <a href="http://www.dujiaok.com/diablo/trek/product/product/detail.htm?id=2" target="_blank">
-                            <img src="${env.croot}/images/index/index_19.png" width="210" height="120" />
+                            <img src="${env.staticroot}/images/index/index_19.png" width="210" height="120" />
                         </a>
                         <p class="clearFix">
                             <span>苏州双人两日游</span>

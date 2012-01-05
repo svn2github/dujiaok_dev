@@ -45,16 +45,16 @@
                 </div>
                 <div class="header_tab section">
                     <ul class="FS14 B">
-                        <li class="$!i_s1_on">
+                        <li #if($navigation=="shouye")class="cur"#end>
                             <a href="${env.root}/user/default.htm">首页</a>
                         </li>
-                        <li class="$!i_s2_on">
+                        <li #if($navigation=="ticket")class="cur"#end>
                             <a href="${env.root}/trek/user/user/dazhe.htm">打折门票</a>
                         </li>
-                        <li class="$!i_s3_on">
+                        <li #if($navigation=="selfdrive")class="cur"#end>
                             <a href="${env.root}/trek/user/user/zijia.htm">周边自驾</a>
                         </li>
-                        <li class="$!i_s4_on">
+                        <li #if($navigation=="hotel")class="cur"#end>
                             <a href="${env.root}/trek/user/user/dujia.htm">度假酒店</a>
                         </li>
                     </ul>
