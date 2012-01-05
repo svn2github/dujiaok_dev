@@ -1,5 +1,6 @@
 package com.ssnn.dujiaok.biz.dal.ibatis;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -33,11 +34,11 @@ public class IBatisMemberDAOTest extends AbstractBaseJUnit4Test {
 		int a = 5 ;
 	}
 	
-	
+	@Test
 	public void test_createMember(){
 		MemberDO member = new MemberDO() ;
 		member.setEmail("ssnn@173.com") ;
-		member.setMemberId("hello123") ;
+		member.setMemberId("hello1235") ;
 		member.setMobileNo("13545454545") ;
 		member.setNickname("刘强东");
 		member.setPassword("1243434");

@@ -31,8 +31,7 @@
 		</action>
 		
 		<action name="doregister" class="com.ssnn.dujiaok.web.action.member.RegisterAction" method="doRegister">
-			<interceptor-ref name="basicStack" />
-			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="memberInterceptor" />
 			<result name="success"  type="redirect">/home/index.htm</result>
 			<result name="input" type="velocity">/member/register.vm</result>

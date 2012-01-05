@@ -21,17 +21,19 @@
                 </li>
                 <li>
                     <span>密&nbsp;码</span>
-                    <input type="password" id='password' name='password'/>
+                    <input type="password" id='password' name='password' value=""/>
                 </li>
                 <li>
                     <span>再次输入</span>
-                    <input type="password" id='password2' name='password2'/>
+                    <input type="password" id='password2' name='password2' value=""/>
                 </li>
 				<li>
                     <span>E-mail </span>
                     <input type="text" id='email' name='email' value="$!email"/>
                 </li>
+                
                 <li style="padding-left:40px">
+					<div class="errorMsg">$!actionError</div>
                     <button>
                         <span class="reg_agree">同意以下协议并</span><span>注册</span>
                     </button>
