@@ -1,6 +1,8 @@
 package com.ssnn.dujiaok.web.velocity.toolbox;
 
+import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.util.EnvPropertiesUtil;
+import com.ssnn.dujiaok.web.context.ContextHolder;
 
 
 /**
@@ -53,5 +55,10 @@ public class EnvPropertiesToolbox {
 		return path ;
 	}
 	
-	
+	public MemberDO getMember(){
+		if( ContextHolder.getMemberContext() == null ){
+			return null ;
+		}
+		return ContextHolder.getMemberContext().getMember() ;
+	}
 }

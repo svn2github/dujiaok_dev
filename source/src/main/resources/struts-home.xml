@@ -6,6 +6,7 @@
 	<package name="home" namespace="/home" extends="default">
 		<action name="index" class="com.ssnn.dujiaok.web.action.home.IndexAction">
 			<interceptor-ref name="basicStack" />
+			<interceptor-ref name="memberInterceptor" />
 			<result name="success"  type="velocity">/home/index.vm</result>
 		</action>
 	</package>

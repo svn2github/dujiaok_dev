@@ -21,6 +21,7 @@
 		</result-types>
 		
 		<interceptors>
+			<interceptor name="memberInterceptor" class="com.ssnn.dujiaok.web.interceptor.MemberInterceptor"></interceptor>
 			<interceptor name="memberAuthInterceptor" class="com.ssnn.dujiaok.web.interceptor.MemberAuthInterceptor"></interceptor>
 		</interceptors>
 		<global-results>

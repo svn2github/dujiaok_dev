@@ -62,6 +62,7 @@ public class LoginAction extends BasicAction{
 	public String doLogin() throws Exception{
 		MemberDO m = new MemberDO() ;
 		m.setMemberId(this.memberId);
+		m.setNickname("马德福") ;
 		//FIXME FROM DB
 		
 		//登陆成功
