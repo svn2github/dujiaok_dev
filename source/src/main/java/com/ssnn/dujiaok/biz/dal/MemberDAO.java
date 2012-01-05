@@ -29,9 +29,9 @@ public interface MemberDAO {
 	 * @param member
 	 */
 	void createMember(MemberDO member) ;
-	
+
 	/**
-	 * 更新会员信息（不包括密码）
+	 * 更新会员
 	 * @param member
 	 */
 	void updateMemberInfo(MemberDO member) ;
