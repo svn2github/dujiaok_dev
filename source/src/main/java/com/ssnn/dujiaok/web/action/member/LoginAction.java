@@ -2,22 +2,39 @@ package com.ssnn.dujiaok.web.action.member;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.opensymphony.xwork2.ValidationAware;
+import com.ssnn.dujiaok.biz.exception.MemberOrPasswordIncorrectException;
+import com.ssnn.dujiaok.biz.service.MemberService;
 import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.web.action.BasicAction;
 import com.ssnn.dujiaok.web.constant.SessionConstant;
 import com.ssnn.dujiaok.web.context.ContextHolder;
 import com.ssnn.dujiaok.web.context.RequestContext;
 
-public class LoginAction extends BasicAction{
-	
+public class LoginAction extends BasicAction implements ValidationAware{
+		
 	private String Done  ;
 	
 	private String memberId ;
 	
 	private String password ;
-		
+	
+	private MemberService memberService ;
+	
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
+	}
+
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public String getPassword() {
+		return password;
 	}
 
 	public void setPassword(String password) {
@@ -44,15 +61,6 @@ public class LoginAction extends BasicAction{
 		}	
 		
 		this.Done = Done ;
-		//
-		//do login
-//		
-//		if(StringUtils.isBlank(Done) || !isSafeUrl(Done)){
-//			return "home";
-//		}else{
-//			ServletActionContext.getResponse().sendRedirect(Done) ;
-//			return null ;
-//		}
 		
 		return SUCCESS ;
 		
@@ -60,20 +68,27 @@ public class LoginAction extends BasicAction{
 	}
 	
 	public String doLogin() throws Exception{
-		MemberDO m = new MemberDO() ;
-		m.setMemberId(this.memberId);
-		m.setNickname("马德福") ;
-		//FIXME FROM DB
-		
-		//登陆成功
-		getSession().put(SessionConstant.SESSION_MEMBER, m) ;
-		getHttpSession().setAttribute(SessionConstant.SESSION_MEMBER, m) ;
-		if(StringUtils.isBlank(Done) || !isSafeUrl(Done)){
-			return SUCCESS;
-		}else{
-			getResponse().sendRedirect(Done) ;
-			return null ;
+		try{
+			MemberDO m = memberService.login(memberId, password) ;
+			//登陆成功
+			getSession().put(SessionConstant.SESSION_MEMBER, m) ;
+			if(StringUtils.isBlank(Done) || !isSafeUrl(Done)){
+				return SUCCESS;
+			}else{
+				getResponse().sendRedirect(Done) ;
+				return null ;
+			}
+		}catch(MemberOrPasswordIncorrectException e){
+			//用户名密码错误
+			addActionError("用户名或密码错误") ;
+			
+			return INPUT ;
 		}
+	}
+	
+	public String logout() throws Exception {
+		getSession().clear() ;
+		return SUCCESS ;
 	}
 	
 	private boolean isSafeUrl(String url){
@@ -83,4 +98,6 @@ public class LoginAction extends BasicAction{
 		//white list 
 		return true ;
 	}
+	
+	
 }

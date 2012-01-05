@@ -15,14 +15,29 @@
 			<interceptor-ref name="basicStack" />
 			<interceptor-ref name="memberInterceptor" />
 			<result name="success"  type="redirect">/home/index.htm</result>
+			<result name="input" type="velocity">/member/login.vm</result>
+		</action>
+		
+		<action name="logout" class="com.ssnn.dujiaok.web.action.member.LoginAction" method="logout">
+			<interceptor-ref name="basicStack" />
+			<interceptor-ref name="memberInterceptor" />
+			<result name="success"  type="redirect">/member/login.htm</result>
 		</action>
 		
 		<action name="register" class="com.ssnn.dujiaok.web.action.member.RegisterAction">
 			<interceptor-ref name="basicStack" />
 			<interceptor-ref name="memberInterceptor" />
-			<interceptor-ref name="memberAuthInterceptor" />
 			<result name="success"  type="velocity">/member/register.vm</result>
 		</action>
+		
+		<action name="doregister" class="com.ssnn.dujiaok.web.action.member.RegisterAction" method="doRegister">
+			<interceptor-ref name="basicStack" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="memberInterceptor" />
+			<result name="success"  type="redirect">/home/index.htm</result>
+			<result name="input" type="velocity">/member/register.vm</result>
+		</action>
+		
 	</package>
 	
 	

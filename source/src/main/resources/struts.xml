@@ -9,6 +9,7 @@
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.velocity.toolboxlocation" value="WEB-INF/velocity-toolbox.xml" />
 	<constant name="struts.velocity.configfile" value="WEB-INF/velocity.properties" />
+	<constant name="struts.objectFactory" value="spring"></constant>
 
 	<include file="struts-default.xml" />
 

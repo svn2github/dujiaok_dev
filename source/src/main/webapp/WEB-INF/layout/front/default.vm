@@ -27,7 +27,7 @@
     <div class="navbar">
         <div class="navbar_com FS12">
 		#if(${env.member})
-			欢迎您：$!env.member.nickname &nbsp;&nbsp;&nbsp;&nbsp;<a href="${env.root}/trek/user/user/orderHome.htm">我的订单</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${env.root}/trek/user/user/modifyUserInfo.htm">修改个人资料</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${env.root}/trek/user/user/loginout.htm">退出</a>&nbsp;&nbsp;
+			欢迎您：$!env.member.nickname &nbsp;&nbsp;&nbsp;&nbsp;<a href="${env.root}/trek/user/user/orderHome.htm">我的订单</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${env.root}/trek/user/user/modifyUserInfo.htm">修改个人资料</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${env.root}/member/logout.htm">退出</a>&nbsp;&nbsp;
         #else
         	<a href="${env.root}/member/login.htm">登录</a>  &nbsp;&nbsp;&nbsp;&nbsp; <a href="${env.root}/member/register.htm">注册</a>
         #end

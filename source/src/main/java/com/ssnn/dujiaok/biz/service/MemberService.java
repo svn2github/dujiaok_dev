@@ -25,7 +25,7 @@ public interface MemberService {
 	 * @return
 	 * @throws MemberOrPasswordIncorrectException
 	 */
-	void login(String memberId , String password) throws MemberOrPasswordIncorrectException  ;
+	MemberDO login(String memberId , String password) throws MemberOrPasswordIncorrectException  ;
 	
 	/**
 	 * 更新密码
