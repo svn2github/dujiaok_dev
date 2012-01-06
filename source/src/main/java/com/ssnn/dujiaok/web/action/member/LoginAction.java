@@ -54,13 +54,7 @@ public class LoginAction extends BasicAction implements ValidationAware{
 	public String execute() throws Exception {
 		
 		String Done = getRequest().getParameter("Done") ;
-		if(StringUtils.isBlank(Done)){
-			RequestContext c  = ContextHolder.getRequestContext();
-			if(c != null){
-				Done = (String)c.get(RequestContext.KEY_DONE_URL) ;
-			}
-		}	
-		
+				
 		this.Done = Done ;
 		
 		return SUCCESS ;

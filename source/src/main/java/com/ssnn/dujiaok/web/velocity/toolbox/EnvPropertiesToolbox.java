@@ -32,13 +32,19 @@ public class EnvPropertiesToolbox {
 			return rootPath ;
 		}
 		String port = getProperty(KEY_DUJIAOK_PORT) ;
-		if("80".equals(port)){
-			rootPath = "http://" + getProperty(KEY_DUJIAOK_DOMAIN_NAME) ;
-		}else{
-			rootPath = "http://" + getProperty(KEY_DUJIAOK_DOMAIN_NAME) + ":" + getProperty(KEY_DUJIAOK_PORT) ;
-		}
+		rootPath = makeUrl("http" , getProperty(KEY_DUJIAOK_DOMAIN_NAME) , port) ;
 		rootPath = rootPath + "/dujiaok" ;
 		return rootPath ;
+	}
+	
+	public static String makeUrl(String protocol , String domain , String port){
+		String url = null ;
+		if("80".equals(port)){
+			url = protocol + "://" + domain ;
+		}else{
+			url = protocol + "://" + domain + ":" + port ;
+		}
+		return url ;
 	}
 	
 	public String getPath(String relativePath){

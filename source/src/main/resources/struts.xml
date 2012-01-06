@@ -27,9 +27,7 @@
 		</interceptors>
 		<global-results>
 			<result name="error">/common/error.htm</result>
-			<result name="memberLogin" type="redirectAction">
-				<param name="actionName">login</param>
-			</result>
+			<result name="memberLogin" type="redirect">/member/login.htm?Done=${Done}</result>
 				
 		</global-results>
 
