@@ -43,4 +43,14 @@ public class MemberServiceImpl implements MemberService {
 		memberDAO.updateMemberInfo(member) ;
 	}
 
+	@Override
+	public MemberDO queryMember(String memberId) {
+		return memberDAO.queryMember(memberId) ;
+	}
+
+	@Override
+	public MemberDO queryMember(String memberId, String password) {
+		return memberDAO.queryMember(memberId, password) ;
+	}
+
 }

@@ -1,5 +1,5 @@
 #set($layout="/member/default.vm")
-
+#set($title="度假OK - 注册")
 ##############################################
 
 <div id="content">

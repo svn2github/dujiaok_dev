@@ -37,6 +37,42 @@
 			<result name="input" type="velocity">/member/register.vm</result>
 		</action>
 		
+		<action name="index" class="com.ssnn.dujiaok.web.action.member.ModifyAction">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="memberInterceptor" />
+			<interceptor-ref name="memberAuthInterceptor" />
+			<result name="success"  type="velocity">/member/index.vm</result>
+		</action>
+		
+		<action name="modify" class="com.ssnn.dujiaok.web.action.member.ModifyAction">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="memberInterceptor" />
+			<interceptor-ref name="memberAuthInterceptor" />
+			<result name="success"  type="velocity">/member/modify.vm</result>
+		</action>
+		
+		<action name="domodify" class="com.ssnn.dujiaok.web.action.member.ModifyAction" method="doModify">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="memberInterceptor" />
+			<interceptor-ref name="memberAuthInterceptor" />
+			<result name="success"  type="velocity">/member/modify.vm</result>
+			<result name="input"  type="velocity">/member/modify.vm</result>
+		</action>
+		
+		<action name="modifyPassword" class="com.ssnn.dujiaok.web.action.member.ModifyAction">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="memberInterceptor" />
+			<interceptor-ref name="memberAuthInterceptor" />
+			<result name="success"  type="velocity">/member/modifyPassword.vm</result>
+		</action>
+		
+		<action name="domodifyPassword" class="com.ssnn.dujiaok.web.action.member.ModifyAction" method="doModifyPassword">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="memberInterceptor" />
+			<interceptor-ref name="memberAuthInterceptor" />
+			<result name="input"  type="velocity">/member/modifyPassword.vm</result>
+			<result name="success"  type="velocity">/member/modifyPassword.vm</result>
+		</action>
 	</package>
 	
 	

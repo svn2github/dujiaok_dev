@@ -10,6 +10,21 @@ import com.ssnn.dujiaok.model.MemberDO;
  *
  */
 public interface MemberService {
+	
+	/**
+	 * 查询会员
+	 * @param memberId
+	 * @return
+	 */
+	MemberDO queryMember(String memberId) ;
+	
+	/**
+	 * 根据会员ID和password查询Member
+	 * @param memberId
+	 * @param password
+	 * @return
+	 */
+	MemberDO queryMember(String memberId , String password) ;
 
 	/**
 	 * 注册

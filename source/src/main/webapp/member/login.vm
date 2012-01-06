@@ -1,5 +1,5 @@
 #set($layout="/member/default.vm")
-
+#set($title="度假OK - 登陆")
 ###############################################################
 
 <div class="login_nav">

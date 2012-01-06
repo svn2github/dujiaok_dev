@@ -17,7 +17,7 @@ public interface MemberDAO {
 	MemberDO queryMember(String memberId) ;
 	
 	/**
-	 * 根据会员ID和password
+	 * 根据会员ID和password查询Member
 	 * @param memberId
 	 * @param password
 	 * @return

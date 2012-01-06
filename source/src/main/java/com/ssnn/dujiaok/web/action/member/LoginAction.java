@@ -10,6 +10,7 @@ import com.ssnn.dujiaok.web.action.BasicAction;
 import com.ssnn.dujiaok.web.constant.SessionConstant;
 import com.ssnn.dujiaok.web.context.ContextHolder;
 import com.ssnn.dujiaok.web.context.RequestContext;
+import com.ssnn.dujiaok.web.session.SessionManager;
 
 public class LoginAction extends BasicAction implements ValidationAware{
 		
@@ -71,7 +72,8 @@ public class LoginAction extends BasicAction implements ValidationAware{
 		try{
 			MemberDO m = memberService.login(memberId, password) ;
 			//登陆成功
-			getSession().put(SessionConstant.SESSION_MEMBER, m) ;
+			SessionManager.setSession(getHttpSession()	, SessionConstant.SESSION_MEMBER	, m) ;
+			
 			if(StringUtils.isBlank(Done) || !isSafeUrl(Done)){
 				return SUCCESS;
 			}else{
