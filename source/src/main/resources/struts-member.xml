@@ -73,6 +73,14 @@
 			<result name="input"  type="velocity">/member/modifyPassword.vm</result>
 			<result name="success"  type="velocity">/member/modifyPassword.vm</result>
 		</action>
+		
+		<action name="orderlist" class="com.ssnn.dujiaok.web.action.member.OrderAction">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="memberInterceptor" />
+			<interceptor-ref name="memberAuthInterceptor" />
+			<result name="success"  type="velocity">/member/orderlist.vm</result>
+		</action>
+		
 	</package>
 	
 	
