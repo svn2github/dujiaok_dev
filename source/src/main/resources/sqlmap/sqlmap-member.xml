@@ -16,16 +16,16 @@
 	</resultMap>
 
 	<select id="queryMember" resultMap="RM-Member">
-		select * from MEMBER where member_id = #memberId#
+		select * from DJ_MEMBER where member_id = #memberId#
 	</select>
 	
 	<select id="queryMemberByMemberidAndPassword" resultMap="RM-Member">
-		select * from MEMBER where password = #password# and member_id = #memberId#
+		select * from DJ_MEMBER where password = #password# and member_id = #memberId#
 	</select>
 	
 	<insert id="createMember">
 		insert into 
-			MEMBER(ID,MEMBER_ID,PASSWORD,NICKNAME,MOBILE_NO,EMAIL,GMT_CREATE,GMT_MODIFIED)
+			DJ_MEMBER(ID,MEMBER_ID,PASSWORD,NICKNAME,MOBILE_NO,EMAIL,GMT_CREATE,GMT_MODIFIED)
 		values 
 			(#id#,#memberId#,#password#,#nickname#,#mobileNo#,#email#,now(),now())
 		<selectKey resultClass="java.lang.Integer" keyProperty="id">
@@ -37,7 +37,7 @@
 	
 	<update id="updateMemberInfo" parameterClass="TA-Member">
 	<![CDATA[
-		update MEMBER set 
+		update DJ_MEMBER set 
 			NICKNAME = #nickname# ,
 			MOBILE_NO = #mobileNo# ,
 			EMAIL = #email# ,
@@ -48,7 +48,7 @@
 	</update>
 	
 	<update id="updatePassword">
-		update MEMBER set 
+		update DJ_MEMBER set 
 			PASSWORD = #password# ,
 			GMT_MODIFIED = now() 
 		where
