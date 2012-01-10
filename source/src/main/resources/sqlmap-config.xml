@@ -17,5 +17,6 @@
   	<sqlMap resource="sqlmap/sqlmap-member.xml" />
   	<sqlMap resource="sqlmap/sqlmap-ticket.xml" />
   	<sqlMap resource="sqlmap/sqlmap-ticketDetail.xml" />
+  	<sqlMap resource="sqlmap/sqlmap-admin.xml" />
 	
 </sqlMapConfig>

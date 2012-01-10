@@ -22,5 +22,6 @@
 	<bean id="memberDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisMemberDAO"></bean>
 	<bean id="ticketDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisTicketDAO"></bean>
 	<bean id="ticketDetailDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisTicketDetailDAO"></bean>
+	<bean id="adminDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisAdminDAO"></bean>
 	
 </beans>
