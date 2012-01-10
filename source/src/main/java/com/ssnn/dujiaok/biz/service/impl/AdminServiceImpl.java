@@ -13,8 +13,9 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public AdminDO getAdmin(String username, String password) {
-		return adminDAO.queryAdmin(username, password) ;
+	public AdminDO login(String username, String password) {
+		AdminDO admin = adminDAO.queryAdmin(username, password) ;
+		return admin ;
 	}
 
 }

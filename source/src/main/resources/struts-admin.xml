@@ -3,8 +3,19 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<package name="admin" namespace="admin">
+	<package name="admin" namespace="/admin" extends="default">
 	
+		<action name="login" class="com.ssnn.dujiaok.web.action.admin.LoginAction">
+			<interceptor-ref name="basicStack" />
+			<result name="input" type="velocity">/admin/login.vm</result>
+			<result name="success"  type="velocity">/admin/login.vm</result>
+		</action>
 		
+		<action name="dologin" class="com.ssnn.dujiaok.web.action.admin.LoginAction" method="doLogin">
+			<interceptor-ref name="basicStack" />
+			<result name="success"  type="redirect">/admin/index.htm</result>
+			<result name="input" type="velocity">/admin/login.vm</result>
+		</action>
+				
 	</package>
 </struts>

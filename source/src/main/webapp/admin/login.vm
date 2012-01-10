@@ -1,0 +1,24 @@
+#set($layout="/admin/default.vm")
+#set($title="度假OK后台管理 - 登陆")
+###############################################################
+
+<div class="login_nav">
+	<h2>管理员登录</h2>
+	<span class="login_nav_right"></span>
+</div>
+<div class="login_content clearFix">
+	<div class="login_content_left">
+        <form id="adminLoginForm" name="adminLoginForm" method="post" action="${env.root}/admin/dologin.htm" onSubmit="return Validator.validate(this,'admin');">
+            <ul>
+				<li><span>用户名</span><input type="text" id='username' name='username' value="$!username"/></li>
+                <li><span>密　码</span><input type="password" id='password' name='password'/></li>
+                <!--<li style="padding-left:40px;"><input type="checkbox" class="reg_cheak"/><span>记住用户名</span><input type="checkbox" class="reg_cheak"/><span>自动登录</span></li>-->
+                <input type="hidden" id='Done' name='Done' value="$!Done"/>
+				<li style="padding-left:60px; margin-top:20px; "><button>　登录　</button><span class="errorMsg">$!actionError</span></li>
+				
+            </ul>
+        </form>
+    </div>
+</div>
+	
+#JS(["validator.js"])

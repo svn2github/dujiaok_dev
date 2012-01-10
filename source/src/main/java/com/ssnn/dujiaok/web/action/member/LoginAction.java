@@ -6,12 +6,18 @@ import com.opensymphony.xwork2.ValidationAware;
 import com.ssnn.dujiaok.biz.exception.MemberOrPasswordIncorrectException;
 import com.ssnn.dujiaok.biz.service.MemberService;
 import com.ssnn.dujiaok.model.MemberDO;
+import com.ssnn.dujiaok.util.WhitelistUtils;
 import com.ssnn.dujiaok.web.action.BasicAction;
 import com.ssnn.dujiaok.web.constant.SessionConstant;
 import com.ssnn.dujiaok.web.context.ContextHolder;
 import com.ssnn.dujiaok.web.context.RequestContext;
 import com.ssnn.dujiaok.web.session.SessionManager;
 
+/**
+ * 会员登录
+ * @author shenjia.caosj 2012-1-10
+ *
+ */
 public class LoginAction extends BasicAction implements ValidationAware{
 		
 	private String Done  ;
@@ -68,7 +74,7 @@ public class LoginAction extends BasicAction implements ValidationAware{
 			//登陆成功
 			SessionManager.setSession(getHttpSession()	, SessionConstant.SESSION_MEMBER	, m) ;
 			
-			if(StringUtils.isBlank(Done) || !isSafeUrl(Done)){
+			if(StringUtils.isBlank(Done) || !WhitelistUtils.isWhitelistUrl(Done)){
 				return SUCCESS;
 			}else{
 				getResponse().sendRedirect(Done) ;

@@ -1,5 +1,6 @@
 package com.ssnn.dujiaok.biz.service;
 
+import com.ssnn.dujiaok.biz.exception.MemberOrPasswordIncorrectException;
 import com.ssnn.dujiaok.model.AdminDO;
 
 /**
@@ -15,5 +16,5 @@ public interface AdminService {
 	 * @param password
 	 * @return
 	 */
-	AdminDO getAdmin(String username , String password) ;
+	AdminDO login(String username , String password) ;
 }

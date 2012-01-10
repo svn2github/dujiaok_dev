@@ -1,7 +1,9 @@
 package com.ssnn.dujiaok.web.velocity.toolbox;
 
+import com.ssnn.dujiaok.model.AdminDO;
 import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.util.EnvPropertiesUtil;
+import com.ssnn.dujiaok.web.context.AdminContextHolder;
 import com.ssnn.dujiaok.web.context.ContextHolder;
 
 
@@ -66,5 +68,12 @@ public class EnvPropertiesToolbox {
 			return null ;
 		}
 		return ContextHolder.getMemberContext().getMember() ;
+	}
+	
+	public AdminDO getAdmin(){
+		if( AdminContextHolder.getContext()== null ){
+			return null ;
+		}
+		return AdminContextHolder.getContext().getAdmin() ;
 	}
 }

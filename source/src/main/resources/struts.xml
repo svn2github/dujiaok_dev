@@ -24,11 +24,13 @@
 		<interceptors>
 			<interceptor name="memberInterceptor" class="com.ssnn.dujiaok.web.interceptor.MemberInterceptor"></interceptor>
 			<interceptor name="memberAuthInterceptor" class="com.ssnn.dujiaok.web.interceptor.MemberAuthInterceptor"></interceptor>
+			<interceptor name="adminAuthInterceptor" class="com.ssnn.dujiaok.web.interceptor.AdminAuthInterceptor"></interceptor>
 		</interceptors>
 		<global-results>
 			<result name="error">/common/error.htm</result>
 			<result name="memberLogin" type="redirect">/member/login.htm?Done=${Done}</result>
-				
+			<result name="adminLogin" type="redirect">/admin/login.htm?Done=${Done}</result>
+			
 		</global-results>
 
 		<global-exception-mappings>
@@ -40,4 +42,5 @@
 
 	<include file="struts-home.xml"></include>
 	<include file="struts-member.xml"></include>
+	<include file="struts-admin.xml"></include>
 </struts>

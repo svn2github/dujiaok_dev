@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms>
+
+	<form id="adminLoginForm">
+		<item name="username" dataType="Require" msg="用户名不为空" /> 
+		<item name="username" dataType="Limit" min="2" max="32" msg="用户名长度2~32个字符" />
+		<item name="password" dataType="Require" msg="密码不为空" />
+		<item name="password" dataType="Limit" min="6" max="32" msg="密码长度6~32个字符" />
+	</form>
+
+	
+	
+</forms>

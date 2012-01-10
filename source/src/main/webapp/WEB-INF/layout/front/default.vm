@@ -39,7 +39,7 @@
                 <div id="header" class="section">
                     <div class="header_1">
                         <div class="logo">
-                            <a href="${env.root}/trek/user/user/default.htm"></a>
+                            <a href="${env.root}/home/index.htm"></a>
                         </div>
                     </div>
                 </div>

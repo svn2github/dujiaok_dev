@@ -1,0 +1,50 @@
+#####后台页面默认的Layout
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+        <title>#if ($title)$!title #else 度假OK #end</title>
+                #CSS(["base.css","General.css","main.css"])
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="navbar_com FS12">
+                #if(${env.admin})
+                    欢迎您：$!env.admin.username
+                #end
+            </div>
+        </div>
+        <div class="page_bg">
+            <div id="wrap" class="FS12 F2">
+                <div class="header_bg">
+                    <div id="header" class="section">
+                        <div class="header_1">
+                            <div class="logo">
+                                <a href="${env.root}/home/index.htm"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                $screen_content
+            </div>
+        </div>
+        <div id="footer" class="clearFix">
+        </div>
+        <div class="copy">
+            <p>
+                <a href="#" target="_blank">了解度假OK</a>
+                |  <a href="#" target="_blank">联系度假OK</a>
+                |  <a href="#" target="_blank">媒体报道</a>
+                |  <a href="#" target="_blank">版权声明</a>
+                |  <a href="#" target="_blank">友情链接</a>
+                |  <a href="#" target="_blank">加入度假OK</a>
+                |  <a href="#" target="_blank">网站联盟</a>
+                |  <a href="#" target="_blank">商务合作</a>
+                |  <a href="#" target="_blank">分类大全</a>
+                |  <a href="#" target="_blank">问题大全</a>
+            </p>
+            <p>Copyright © 2011 - 2012 度假OK Inc.度假OK 版权所有 浙ICP证080194号</p>
+        </div>
+    </body>
+</html>
