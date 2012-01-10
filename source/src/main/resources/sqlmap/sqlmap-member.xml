@@ -19,7 +19,7 @@
 		select * from DJ_MEMBER where member_id = #memberId#
 	</select>
 	
-	<select id="queryMemberByMemberidAndPassword" resultMap="RM-Member">
+	<select id="queryMemberByMemberidAndPassword" resultMap="RM-Member">		
 		select * from DJ_MEMBER where password = #password# and member_id = #memberId#
 	</select>
 	

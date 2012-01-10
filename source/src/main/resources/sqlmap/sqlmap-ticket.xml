@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ticket">
+	<typeAlias alias="TA-Ticket" type="com.ssnn.dujiaok.model.TicketDO"/>
+
+	<resultMap id="RM-Ticket" class="TA-Ticket" >
+		<result property="id" column="ID"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="marketPrice" column="MARKET_PRICE" jdbcType="DECIMAL"/>
+		<result property="destAddr" column="DEST_ADDR" jdbcType="VARCHAR"/>
+		<result property="destProvince" column="DEST_PROVINCE" jdbcType="VARCHAR"/>
+		<result property="destCity" column="DEST_CITY" jdbcType="VARCHAR"/>
+		<result property="destArea" column="DEST_AREA" jdbcType="VARCHAR"/>
+		<result property="locationCode" column="LOCATION_CODE" jdbcType="VARCHAR"/>
+		<result property="images" column="IMAGES" jdbcType="VARCHAR"/>
+		<result property="payTypes" column="PAY_TYPES" jdbcType="VARCHAR"/>
+		<result property="productTypes" column="PRODUCT_TYPES" jdbcType="VARCHAR"/>
+		<result property="introduction" column="INTRODUCTION" jdbcType="VARCHAR"/>
+		<result property="notice" column="NOTICE" jdbcType="VARCHAR"/>
+		<result property="feeDesc" column="FEE_DESC" jdbcType="VARCHAR"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+		<result property="gmtCreate" column="GMT_CREATE" jdbcType="TIMESTAMP"/>
+		<result property="gmtModified" column="GMT_MODIFIED" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+
+	<insert id="insertTicket">
+		INSERT INTO 
+			DJ_TICKET (ID,NAME,MARKET_PRICE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,PAY_TYPES,PRODUCT_TYPES,INTRODUCTION,NOTICE,FEE_DESC,MEMO,GMT_CREATE,GMT_MODIFIED)
+		VALUES 
+			(#id#,#name#,#marketPrice#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#payTypes#,#productTypes#,#introduction#,#notice#,#feeDesc#,#memo#,now(),now())
+		<selectKey resultClass="java.lang.Integer" keyProperty="id">
+    		<![CDATA[
+				SELECT LAST_INSERT_ID() AS ID
+			]]>
+		</selectKey>
+	</insert>
+	
+	<select id="queryTicket" resultMap="RM-Ticket">
+		select * from DJ_TICKET where ID = #id#
+	</select>
+
+</sqlMap>

@@ -14,5 +14,6 @@
 	
 
 	<bean id="memberService" class="com.ssnn.dujiaok.biz.service.impl.MemberServiceImpl"></bean>
-
+	<bean id="ticketService" class="com.ssnn.dujiaok.biz.service.impl.TicketServiceImpl"></bean>
+	
 </beans>
