@@ -1,3 +1,44 @@
+#set($static_version="20120101")
+
+##编辑器CSS
+#macro(KISSY_EDITOR_CSS)
+	<link href="${env.staticroot}/kissy/1.1.7/editor/base-min.css" rel="stylesheet"/>
+    <!--[if lt IE 8]>
+    <link href="${env.staticroot}/kissy/1.1.7/editor/editor-pkg-sprite-min.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if gte IE 8]><!-->
+    <link href="${env.staticroot}/kissy/1.1.7/editor/editor-pkg-min-datauri.css" rel="stylesheet"/>
+    <!--<![endif]-->
+#end
+
+##编辑器JS
+#macro(KISSY_EDITOR_JS)
+	<script src="${env.staticroot}/kissy/kissy-min.js"></script>
+    <script src="${env.staticroot}/kissy/dd-pkg.js"></script>
+    <script src="${env.staticroot}/kissy/overlay-pkg.js"></script>
+    <script src="${env.staticroot}/kissy/editor-all-pkg.js"></script>
+    <script src="${env.staticroot}/kissy/uibase-pkg.js"></script>
+    <script src="${env.staticroot}/kissy/ed.js"></script>
+    <script src="${env.staticroot}/kissy/editor-plugin-pkg.js"></script>
+#end
+
+
+
+
+<!--静态文件引入-->
+#macro(STATIC $type $libs)
+   #set($version = $static_version)
+   #if("CSS" == $type)
+	    #foreach ($key in $libs)
+		<link href="${env.staticroot}//$!key?v=$version" rel="stylesheet"/>
+		#end
+   #else
+	   #foreach ($key in $libs)
+       <script type="text/javascript" src="${env.staticroot}/$!key?v=$version"></script>
+	   #end
+   #end
+#end
+
 <!-- js 引入 -->
 <!--#macro(JS $libs)
    #foreach ($key in $libs)
@@ -5,7 +46,7 @@
    #end
 #end -->
 #macro(JS $libs)
-   #set($version = "20110602")
+   #set($version = $static_version)
    #foreach ($key in $libs)
    <script type="text/javascript" src="${env.staticroot}/js/$!key?v=$version"></script>
    #end
@@ -18,7 +59,7 @@
    #end
 #end-->
 #macro(CSS $libs)
-   #set($version = "20110518")
+   #set($version = $static_version)
    #foreach ($key in $libs)
    <link  rel="stylesheet" type="text/css" href="${env.staticroot}/css/$!key?v=$version" />
    #end
@@ -26,14 +67,14 @@
 
 <!-- XUI组件 js 引入 -->
 #macro(XUI_JS $libs)
-   #set($version = "20110518")
+   #set($version = $static_version)
    #set($compress = false)
    #foreach ($key in $libs)
        #if($compress == true)
 		  #set($length = $key.length() - 3)
-       <script type="text/javascript" src="${env.staticroot}/xui/source/$key.substring(0, $length)-min.js?v=$version"></script>
+       <script type="text/javascript" src="${env.staticroot}/xui/source/$key.substring(0, $length)-min.js?v=$version" charset="GBK"></script>
        #else
-       <script type="text/javascript" src="${env.staticroot}/xui/source/$!key?v=$version"></script>
+       <script type="text/javascript" src="${env.staticroot}/xui/source/$!key?v=$version" charset="GBK"></script>
        #end
    #end
 #end
@@ -45,8 +86,11 @@
    #end
 #end-->
 #macro(XUI_CSS $libs)
-   #set($version = "20110518")
+   #set($version = $static_version)
    #foreach ($key in $libs)
-   <link  rel="stylesheet" type="text/css" href="${env.staticroot}/xui/resource/css/$!key?v=$version" />
+   <link  rel="stylesheet" type="text/css" href="${env.staticroot}/xui/resource/css/$!key?v=$version"/>
    #end
 #end
+
+
+

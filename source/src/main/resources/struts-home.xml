@@ -9,5 +9,9 @@
 			<interceptor-ref name="memberInterceptor" />
 			<result name="success"  type="velocity">/home/index.vm</result>
 		</action>
+		<action name="test" class="com.ssnn.dujiaok.web.action.home.IndexAction">
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="velocity">/home/test.vm</result>
+		</action>
 	</package>
 </struts>
