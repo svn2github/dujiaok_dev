@@ -80,6 +80,8 @@ public class TicketDO {
 	
 	private Date gmtModified ;
 	
+	private Date gmtExpire ;
+	
 	private List<TicketDetailDO> ticketDetails  ;
 
 	public List<TicketDetailDO> getTicketDetails() {
@@ -224,6 +226,14 @@ public class TicketDO {
 
 	public void setGmtModified(Date gmtModified) {
 		this.gmtModified = gmtModified;
+	}
+
+	public Date getGmtExpire() {
+		return gmtExpire;
+	}
+
+	public void setGmtExpire(Date gmtExpire) {
+		this.gmtExpire = gmtExpire;
 	}
 	
 	

@@ -1,9 +1,11 @@
 package com.ssnn.dujiaok.biz.dal.ibatis;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +80,14 @@ public class IBatisTicketDAOTest extends AbstractBaseJUnit4Test {
 	
 	@Test
 	public void test_getTickets(){
-		List<TicketDO> tickets = ticketDAO.queryTickets(new HashMap<String,Object>(), new Pagination(20));
+		Map<String,Object> condition = new HashMap<String,Object>() ;
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.DATE, -1) ;
+		condition.put("gmtExpire", c.getTime()) ;
+		condition.put("destProvince", "浙江省") ;
+		condition.put("destCity", "杭州市") ;
+		condition.put("name", "三日") ;
+		List<TicketDO> tickets = ticketDAO.queryTickets(condition , new Pagination(20));
 		int a = 5 ;
 	}
 

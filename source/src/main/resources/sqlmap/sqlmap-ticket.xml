@@ -21,14 +21,15 @@
 		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
 		<result property="gmtCreate" column="GMT_CREATE" jdbcType="TIMESTAMP"/>
 		<result property="gmtModified" column="GMT_MODIFIED" jdbcType="TIMESTAMP"/>
+		<result property="gmtExpire" column="GMT_EXPIRE" jdbcType="TIMESTAMP"/>
 	</resultMap>
 	
 
 	<insert id="insertTicket">
 		INSERT INTO 
-			DJ_TICKET (ID,NAME,MARKET_PRICE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,PAY_TYPES,PRODUCT_TYPES,INTRODUCTION,NOTICE,FEE_DESC,MEMO,GMT_CREATE,GMT_MODIFIED)
+			DJ_TICKET (ID,NAME,MARKET_PRICE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,PAY_TYPES,PRODUCT_TYPES,INTRODUCTION,NOTICE,FEE_DESC,MEMO,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
 		VALUES 
-			(#id#,#name#,#marketPrice#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#payTypes#,#productTypes#,#introduction#,#notice#,#feeDesc#,#memo#,now(),now())
+			(#id#,#name#,#marketPrice#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#payTypes#,#productTypes#,#introduction#,#notice#,#feeDesc#,#memo#,now(),now(),#gmtExpire#)
 		<selectKey resultClass="java.lang.Integer" keyProperty="id">
     		<![CDATA[
 				SELECT LAST_INSERT_ID() AS ID
@@ -41,7 +42,25 @@
 	</select>
 	
 	<select id="queryTickets" resultMap="RM-Ticket">
-		SELECT * FROM DJ_TICKET ORDER BY GMT_MODIFIED LIMIT #start# , #size# 
+		SELECT * FROM DJ_TICKET WHERE 1=1 
+		<isNotEmpty property="id" prepend="AND">
+			ID = #id#
+		</isNotEmpty>
+		<isNotEmpty property="name" prepend="AND">
+			NAME LIKE CONCAT('%', #name#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="destProvince" prepend="AND">
+			DEST_PROVINCE = #destProvince#
+		</isNotEmpty>
+		<isNotEmpty property="destCity" prepend="AND">
+			DEST_CITY = #destCity#
+		</isNotEmpty>
+		<isNotEmpty property="gmtExpire" prepend="AND">
+			<![CDATA[
+			GMT_EXPIRE > #gmtExpire#
+			]]>
+		</isNotEmpty>
+		ORDER BY GMT_MODIFIED LIMIT #start# , #size# 
 	</select>
 
 </sqlMap>
