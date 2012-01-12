@@ -11,5 +11,11 @@
 		<scope>application</scope>
 		<class>com.ssnn.dujiaok.web.velocity.toolbox.EnvPropertiesToolbox</class>
 	</tool>
+	<tool>
+		<key>collectionUtils</key>
+		<scope>application</scope>
+		<class>com.ssnn.dujiaok.web.velocity.toolbox.CollectionUtilsToolbox</class>
+	</tool>
+	
 	
 </toolbox> 

@@ -2,6 +2,9 @@ package com.ssnn.dujiaok.model;
 
 import java.util.Date;
 
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 /**
  * 
  * @author shenjia.caosj 2011-12-27
@@ -103,5 +106,9 @@ public class MemberDO {
 		this.password = password;
 	}
 	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this,ToStringStyle.SHORT_PREFIX_STYLE) ;
+	}
 	
 }

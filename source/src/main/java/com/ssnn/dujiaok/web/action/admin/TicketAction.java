@@ -1,8 +1,12 @@
 package com.ssnn.dujiaok.web.action.admin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
+import com.mchange.v1.util.ArrayUtils;
 import com.opensymphony.xwork2.ModelDriven;
 import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.model.TicketDO;
@@ -13,22 +17,39 @@ public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
 
 	private TicketDO ticket = new TicketDO() ;
 	
-	private List<TicketDetailDO> ticketDetails = new ArrayList<TicketDetailDO>() ;
-	
-	private List<String> payTypes = new ArrayList<String>() ;
-	private List<String> images = new ArrayList<String>() ;
-	private List<String> productTypes = new ArrayList<String>() ;
-	
 	private TicketService ticketService;
 	
-	public List<TicketDetailDO> getTicketDetails() {
-		return ticketDetails;
+	//private List<TicketDetailDO> ticketDetails = new ArrayList<TicketDetailDO>() ;
+	
+	private List<String> payTypesList ;
+	private List<String> imagesList ;
+	private List<String> productTypesList ;
+	
+	
+	public List<String> getPayTypesList() {
+		return payTypesList;
 	}
 
-	public void setTicketDetails(List<TicketDetailDO> ticketDetails) {
-		this.ticketDetails = ticketDetails;
+	public void setPayTypesList(List<String> payTypesList) {
+		this.payTypesList = payTypesList;
 	}
 
+	public List<String> getImagesList() {
+		return imagesList;
+	}
+
+	public void setImagesList(List<String> imagesList) {
+		this.imagesList = imagesList;
+	}
+
+	public List<String> getProductTypesList() {
+		return productTypesList;
+	}
+
+	public void setProductTypesList(List<String> productTypesList) {
+		this.productTypesList = productTypesList;
+	}
+	
 	public void setTicketService(TicketService ticketService) {
 		this.ticketService = ticketService;
 	}
@@ -43,7 +64,14 @@ public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
 
 	@Override
 	public String execute() throws Exception {
-		//ticket = ticketService.getTicketWithDetails(ticket.getId()) ;
+		if(ticket!=null && ticket.getId()>0){
+			ticket = ticketService.getTicketWithDetails(ticket.getId()) ;
+			if(ticket != null){
+				payTypesList = Arrays.asList(StringUtils.split(ticket.getPayTypes(),",")) ;
+				productTypesList = Arrays.asList(StringUtils.split(ticket.getProductTypes(),",")) ;
+				imagesList = Arrays.asList(StringUtils.split(ticket.getImages(),",")) ;
+			}
+		}
 		return SUCCESS ;
 	}
 	
@@ -52,13 +80,11 @@ public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
 	 * @return
 	 * @throws Exception
 	 */
-	public String docreate() throws Exception {
-		if(ticketDetails.isEmpty()){
-			addActionError("门票信息不完整") ;
-			return INPUT ;
-		}
-		ticket.setTicketDetails(ticketDetails) ;
-		ticketService.createTicketAndDetails(ticket) ;
+	public String create() throws Exception {
+		
+		//ticket.setTicketDetails(ticketDetails) ;
+		//ticketService.createTicketAndDetails(ticket) ;
+		
 		return SUCCESS ;
 	}
 	

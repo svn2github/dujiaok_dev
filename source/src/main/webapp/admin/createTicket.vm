@@ -4,7 +4,7 @@
 <div class="ucenter_right">
     <h2 class="B FS14">产品录入</h2>
 	
-	<form id="updateTicketForm" name="updateTicketForm" method="POST" action="">
+	<form id="createTicketForm" name="createTicketForm" method="POST" action="${env.root}/admin/docreateTicket.htm">
     
 	<div class="us01">
 		<div>
@@ -18,11 +18,10 @@
 		</div>
 		<div>
 			<span>支付方式：</span>
-			<span></span>
-			<select name="payType" id="payType">
-                    		      <option value="在线支付、银行转账">在线支付、银行转账</option>
-                        	      <option value="前台支付">前台支付</option>
-                      	        </select>
+			<span>
+    			<input type="checkbox" name="payTypesList" value="网上支付" #if( $collectionUtils.contains($!payTypesList,"网上支付"))checked#end>网上支付
+    			<input type="checkbox" name="payTypesList" value="前台现付" #if( $collectionUtils.contains($!payTypesList,"前台现付"))checked#end/>前台现付
+			</span>
 		</div>
 		<div>
 			<span>所在地：</span>
@@ -30,18 +29,25 @@
 		</div>
 		<div>
 			<span>详细地址：</span>
-            <span><input type="text" id='destAddr'  name='destAddr' value="$destAddr"/></span>
+            <span><input type="text" id='destAddr'  name='destAddr' value="$!destAddr"/></span>
 		</div>
 		<div>
 			<span>产品类别：</span>
-			<span><input type="text" id='productTypes' name='productTypes' /></span>
+				<input type="checkbox" name="productTypesList" value="人气" #if( $collectionUtils.contains($!productTypesList,"人气"))checked#end />人气
+    			<input type="checkbox" name="productTypesList" value="山水" #if( $collectionUtils.contains($!productTypesList,"山水"))checked#end/>山水
+				<input type="checkbox" name="productTypesList" value="自然环境" #if( $collectionUtils.contains($!productTypesList,"自然环境"))checked#end/>自然环境
+				<br/>
+				<input type="checkbox" name="productTypesList" value="亲子游" #if( $collectionUtils.contains($!productTypesList,"亲子游"))checked#end/>亲子游
+				<input type="checkbox" name="productTypesList" value="情侣游" #if( $collectionUtils.contains($!productTypesList,"情侣游"))checked#end />情侣游
+				<input type="checkbox" name="productTypesList" value="家庭游" #if( $collectionUtils.contains($!productTypesList,"家庭游"))checked#end/>家庭游
+			</span>
 		</div>
 		<div>
 			<span>上传图片：</span>
-			<div><input type="text" id='uploadImages' name='uploadImages' value="$!uploadImages[0]" /></div>
-			<div><input type="text" id='uploadImages' name='uploadImages' value="$!uploadImages[1]"/></div>
-			<div><input type="text" id='uploadImages' name='uploadImages' value="$!uploadImages[2]"/></div>
-			<div><input type="text" id='uploadImages' name='uploadImages' value="$!uploadImages[3]"/></div>
+			<div><input type="text"  name='imagesList'/></div>
+			<div><input type="text" name='imagesList' /></div>
+			<div><input type="text" name='imagesList' /></div>
+			<div><input type="text" name='imagesList' /></div>
 		</div>
 		
 		<div>

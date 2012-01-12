@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 /**
  * Ticket 门票主表
  * @author shenjia.caosj 2012-1-9
@@ -236,5 +239,9 @@ public class TicketDO {
 		this.gmtExpire = gmtExpire;
 	}
 	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this,ToStringStyle.SHORT_PREFIX_STYLE) ;
+	}
 	
 }

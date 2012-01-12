@@ -3,6 +3,9 @@ package com.ssnn.dujiaok.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 /**
  * 门票详细从表
  * @author shenjia.caosj 2012-1-10
@@ -83,5 +86,9 @@ public class TicketDetailDO {
 		this.gmtCreate = gmtCreate;
 	}
 	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this,ToStringStyle.SHORT_PREFIX_STYLE) ;
+	}
 	
 }

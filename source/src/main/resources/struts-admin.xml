@@ -17,5 +17,16 @@
 			<result name="input" type="velocity">/admin/login.vm</result>
 		</action>
 				
+				
+		<action name="createTicket" class="com.ssnn.dujiaok.web.action.admin.TicketAction" >
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="velocity">/admin/createTicket.vm</result>
+		</action>
+		<action name="docreateTicket" class="com.ssnn.dujiaok.web.action.admin.TicketAction" method="create">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="velocity">/admin/createTicket.vm</result>
+		</action>
 	</package>
 </struts>
