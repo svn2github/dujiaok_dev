@@ -1,0 +1,68 @@
+#set($layout="/admin/default.vm")
+#set($title="度假OK后台管理 - 创建门票")
+###################################################
+<div class="ucenter_right">
+    <h2 class="B FS14">产品录入</h2>
+	
+	<form id="updateTicketForm" name="updateTicketForm" method="POST" action="">
+    
+	<div class="us01">
+		<div>
+			<span>产品编号：</span><span>MP$!{id}</span>
+		</div>
+        <div>
+			<span>产品名称：</span><span><input type="text" id='name' name='name' value="$!name" /></span>
+		</div>
+		<div>
+			<span>市场价：</span><span><input type="text" id='marketPrice' name='marketPrice' value="$!marketPrice"/></span>
+		</div>
+		<div>
+			<span>支付方式：</span>
+			<span></span>
+			<select name="payType" id="payType">
+                    		      <option value="在线支付、银行转账">在线支付、银行转账</option>
+                        	      <option value="前台支付">前台支付</option>
+                      	        </select>
+		</div>
+		<div>
+			<span>所在地：</span>
+			<span><input type="text" id='destProvince'  name='destProvince' value="$!destProvince"/>省  <input id='destCity' name='destCity' value="$!destCity"/>市  <input id='destArea' name='destArea' value="$!destArea"/>区</span>
+		</div>
+		<div>
+			<span>详细地址：</span>
+            <span><input type="text" id='destAddr'  name='destAddr' value="$destAddr"/></span>
+		</div>
+		<div>
+			<span>产品类别：</span>
+			<span><input type="text" id='productTypes' name='productTypes' /></span>
+		</div>
+		<div>
+			<span>上传图片：</span>
+			<div><input type="text" id='uploadImages' name='uploadImages' value="$!uploadImages[0]" /></div>
+			<div><input type="text" id='uploadImages' name='uploadImages' value="$!uploadImages[1]"/></div>
+			<div><input type="text" id='uploadImages' name='uploadImages' value="$!uploadImages[2]"/></div>
+			<div><input type="text" id='uploadImages' name='uploadImages' value="$!uploadImages[3]"/></div>
+		</div>
+		
+		<div>
+			<span>产品简介：</span>
+            <span><textarea id='introduction' name='introduction' cols="10" rows="8" value="$!introduction"></textarea></span>
+		</div>
+		<div>
+			<span>注意事项：</span>
+            <span><textarea id='notice' name='notice' cols="10" rows="8" value="$!notice"></textarea></span>
+		</div>
+		<div>
+			<span>费用说明：</span>
+            <span><textarea id='feeDesc' name='feeDesc' cols="10" rows="8" value="$!feeDesc"></textarea></span>
+		</div>
+		<div>
+			<span>备注：</span>
+            <span><textarea id='memo' name='memo' cols="10" rows="8" value="$!memo"></textarea></span>
+		</div>
+	</div>
+	
+	<button onclick="modify()">保存</button>
+	
+	</form>
+</div>

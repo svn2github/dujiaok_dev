@@ -39,5 +39,9 @@
 	<select id="queryTicket" resultMap="RM-Ticket">
 		select * from DJ_TICKET where ID = #id#
 	</select>
+	
+	<select id="queryTickets" resultMap="RM-Ticket">
+		SELECT * FROM DJ_TICKET ORDER BY GMT_MODIFIED LIMIT #start# , #size# 
+	</select>
 
 </sqlMap>
