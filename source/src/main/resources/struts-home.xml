@@ -38,5 +38,9 @@
 			<interceptor-ref name="defaultStack" />
 			<result name="success"  type="velocity">/order/alipayorder.vm</result>
 		</action>
+		<action name="paysuccess" class="com.ssnn.dujiaok.web.action.order.AlipayCallBackAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/paysuccess.vm</result>
+		</action>
 	</package>
 </struts>

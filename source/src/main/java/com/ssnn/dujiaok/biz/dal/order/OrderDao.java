@@ -15,4 +15,12 @@ public interface OrderDao {
 	 * @return
 	 */
 	public Order getOrderById(Integer orderId);
+	/**
+	 * 
+	 * @param orderId
+	 * @param alipayId
+	 * @param alipayStatus
+	 * @return
+	 */
+	public int updateAlipayIdAndStatus(int orderId, String alipayId, String alipayStatus);
 }

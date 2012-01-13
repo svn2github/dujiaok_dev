@@ -79,15 +79,8 @@ public class OrderDetailAction extends BasicAction {
 //            }
 //            order.setHotelDay(DateUtil.compareDays(endDate, startDate));
         }
-        int result =  0;
-        Product product = null;
-        try {
-        result =  this.orderService.addOrder(order);
-        product = this.productService.getProductById(order.getProductId());
-        } catch(Exception e) {
-        	e.printStackTrace();
-        	throw new RuntimeException(e);
-        }
+        int result =  this.orderService.addOrder(order);
+        Product product = this.productService.getProductById(order.getProductId());
         this.getHttpSession().setAttribute("orderId", result);
         this.getHttpSession().setAttribute("order", order);
         this.getHttpSession().setAttribute("product", product);

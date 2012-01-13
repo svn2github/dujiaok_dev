@@ -17,6 +17,11 @@ public class OrderServiceImpl implements OrderService {
 		return this.orderDao.getOrderById(orderId);
 	}
 	
+	@Override
+	public int updateAlipayIdAndStatus(Integer orderId, String alipayId, String alipayStatus) {
+        return orderDao.updateAlipayIdAndStatus(orderId, alipayId, alipayStatus);
+    }
+	
 	public void setOrderDao(OrderDao orderDao) {
 		this.orderDao = orderDao;
 	}
