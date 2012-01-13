@@ -6,12 +6,37 @@
 	<package name="home" namespace="/home" extends="default">
 		<action name="index" class="com.ssnn.dujiaok.web.action.home.IndexAction">
 			<interceptor-ref name="basicStack" />
-			<interceptor-ref name="memberInterceptor" />
 			<result name="success"  type="velocity">/home/index.vm</result>
 		</action>
 		<action name="test" class="com.ssnn.dujiaok.web.action.home.IndexAction">
 			<interceptor-ref name="basicStack" />
 			<result name="success" type="velocity">/home/test.vm</result>
+		</action>
+	</package>
+	
+	<package name="product" namespace="/product" extends="default">
+		<action name="productdetail" class="com.ssnn.dujiaok.web.action.product.ProductAction">
+			<interceptor-ref name="basicStack" />
+			<result name="success"  type="velocity">/product/productdetail.vm</result>
+		</action>
+	</package>
+	
+	<package name="order" namespace="/order" extends="default">
+		<action name="makeorder" class="com.ssnn.dujiaok.web.action.order.MakeOrderAction">
+			<interceptor-ref name="basicStack" />
+			<result name="success"  type="velocity">/order/makeorder.vm</result>
+		</action>
+		<action name="orderdetail" class="com.ssnn.dujiaok.web.action.order.OrderDetailAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/orderdetail.vm</result>
+		</action>
+		<action name="paydetail" class="com.ssnn.dujiaok.web.action.order.PayDetailAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/paydetail.vm</result>
+		</action>
+		<action name="alipayorder" class="com.ssnn.dujiaok.web.action.order.AlipayOrderAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/alipayorder.vm</result>
 		</action>
 	</package>
 </struts>

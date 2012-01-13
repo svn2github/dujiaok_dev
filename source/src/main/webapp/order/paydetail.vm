@@ -1,0 +1,106 @@
+#set($layout="/order/default.vm")
+#if($product.payType=="在线支付、银行转账")
+	
+	<form id="orderForm" method="post" action='${env.root}/order/alipayorder.htm'>
+		
+	<input type="hidden" id="orderId" name="orderId" value="$!orderId"/>
+
+            
+<!-- 内容开始 -->
+        <div id="wrap">
+			<div class="step-box"><div class="step-2"></div></div>
+            <div class="section urhere">
+                <!--span class="F3">分享到： 新浪微博 </span-->
+            </div>
+            
+            <div id="pay" class="section">
+            		<h2 class="d_title yuding02">$!amount元</h2>
+                    <div class="bank section">
+                    	<span>支付平台：</span>
+                        <ul>
+                        	<li><input name="" type="radio" value="" checked /><img src="$env.getStaticURL('/trek/images/temp02.gif')"></li>
+                        </ul>
+                    </div>
+                    <!--div class="bank section">
+                    	<span>网上银行：</span>
+                        <ul>
+                        	<li><input name="" type="radio" value="" /><img src="../images/temp03.gif"></li>
+                            <li><input name="" type="radio" value="" /><img src="../images/temp03.gif"></li>
+                            <li><input name="" type="radio" value="" /><img src="../images/temp03.gif"></li>
+                            <li><input name="" type="radio" value="" /><img src="../images/temp03.gif"></li>
+                        </ul>
+                    </div-->
+                    <div class="d_qrxd">
+                    	<button type="submit" id="paydetail">&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    </div>
+                    <div class="transfer">
+                    	<p class="B">您还可以通过线下银行转账的形式支付：</p>
+                    	<p>招行银行&nbsp;&nbsp;&nbsp;&nbsp;张波&nbsp;&nbsp;&nbsp;&nbsp;浙江分行杭州高新支行&nbsp;&nbsp;&nbsp;&nbsp;6225885714741257</p>
+                    	<p>农业银行&nbsp;&nbsp;&nbsp;&nbsp;张波&nbsp;&nbsp;&nbsp;&nbsp;浙江分行杭州高新支行&nbsp;&nbsp;&nbsp;&nbsp;6225885714741257</p>
+                    	<p>工商银行&nbsp;&nbsp;&nbsp;&nbsp;张波&nbsp;&nbsp;&nbsp;&nbsp;浙江分行杭州高新支行&nbsp;&nbsp;&nbsp;&nbsp;6225885714741257</p>
+                        
+                    </div>
+              </div>
+       </div>    
+            <!-- 内容结束 -->
+	
+	    </form>
+
+<script>
+function pay(){
+	
+	var orderForm = document.getElementById("orderForm");
+	orderForm.action = $("webUrl").value + "trek/order/order/alipayOrder.htm";
+	//alert($("webUrl").value + "trek/order/order/alipayOrder.htm?orderId="+$("orderId").value)
+	orderForm.submit();
+	//location.href = $("webUrl").value + "trek/order/order/alipayOrder.htm?orderId="+$("orderId").value;
+}
+
+
+</script>
+
+#end
+
+#if($product.payType=="前台支付")
+		<form id="orderForm" method="post">
+		
+	<input type="hidden" id="orderId" name="orderId" value="$!orderId"/>
+	
+	<input type="hidden" id="webUrl" name="webUrl" value="$uribroker.rootContext.setTarget('/')" />
+
+            
+<!-- 内容开始 -->
+        <div id="wrap">
+            <div class="section urhere">
+            	<p class="F3">您当前的位置：$!post</p>
+                <!--span class="F3">分享到： 新浪微博 </span-->
+            </div>
+            
+            <div id="pay" class="section">
+            		<h2 class="d_title yuding02">$!amount元</h2>
+                    <div class="bank section">
+                    	<span>支付方式：</span>
+                        <ul>
+                        	<li>请到酒店前台支付</li>
+                        </ul>
+                    </div>
+                    <div class="d_qrxd">
+                    	<button onclick="pay()">&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    </div>
+              </div>
+       </div>    
+            <!-- 内容结束 -->
+	
+	    </form>
+
+<script>
+function pay(){
+	
+	var orderForm = document.getElementById("orderForm");
+	orderForm.action = $("webUrl").value + "trek/order/order/hotelPay.htm";
+	orderForm.submit();
+}
+
+
+</script>
+#end

@@ -13,8 +13,6 @@
 
 	<include file="struts-default.xml" />
 
-
-
 	<package name="default" extends="struts-default">
 		
 		<result-types>
@@ -22,7 +20,6 @@
 		</result-types>
 		
 		<interceptors>
-			<interceptor name="memberInterceptor" class="com.ssnn.dujiaok.web.interceptor.MemberInterceptor"></interceptor>
 			<interceptor name="memberAuthInterceptor" class="com.ssnn.dujiaok.web.interceptor.MemberAuthInterceptor"></interceptor>
 			<interceptor name="adminAuthInterceptor" class="com.ssnn.dujiaok.web.interceptor.AdminAuthInterceptor"></interceptor>
 		</interceptors>

@@ -1,40 +1,29 @@
 #set($layout="/front/default.vm")
-#set($title="度假OK - 首页")
-#set($navigation="shouye")
 #################################################
-<div id="content">
-    <div class="Ifirst clearFix">
-        <div class="leftSpecials">
-            <div class="TodaySpecials">
-                <h2>今日特价</h2>
-                <ul>
-                    <li>
-                        <a href="http://www.dujiaok.com/diablo/trek/product/product/detail.htm?id=1" target="_blank">
-                            <img src="${env.staticroot}/images/index/index_13.png" width="210" height="120" />
-                        </a>
-                        <p class="clearFix">
-                            <span>
-                                <a href="#">苏州双人两日游</a>
-                            </span>
-                            <span class="Todayprice">¥698</span>
-                        </p>
-                    </li>
-                    <li>
-                        <a href="http://www.dujiaok.com/diablo/trek/product/product/detail.htm?id=2" target="_blank">
-                            <img src="${env.staticroot}/images/index/index_19.png" width="210" height="120" />
-                        </a>
-                        <p class="clearFix">
-                            <span>苏州双人两日游</span>
-                            <span class="Todayprice">¥698</span>
-                        </p>
-                    </li>
-                </ul>
-            </div>
-            <div class="SpecialsAdd">
-                <a href="http://www.dujiaok.com/diablo/trek/product/product/detail.htm?id=3" target="_blank">
-                    <img src="${env.staticroot}/images/index/index_03-10.png" width="222" height="72" />
-                </a>
-            </div>
+<div class="Ifirst clearFix">
+    <div class="leftSpecials">
+        <div class="TodaySpecials">
+            <h2>今日特价</h2>
+            <ul>
+                <li>
+                	<!--
+                    <img src="${env.staticroot}/images/index_13.png" width="210" height="120" />  -->
+                    <a href="http://localhost:8080/dujiaok/product/productdetail.htm?productId=1" target="_blank">
+                    	<img src="${env.staticroot}/images/index_13.png" width="210" height="120" />
+                    </a>
+                    <p class="clearFix">
+                        <span>苏州双人两日游</span>
+                        <span class="Todayprice">¥698</span>
+                    </p>
+                </li>
+                <li>
+                    <img src="${env.staticroot}/images/index_19.png" width="210" height="120" />
+                    <p class="clearFix">
+                        <span>苏州双人两日游</span>
+                        <span class="Todayprice">¥698</span>
+                    </p>
+                </li>
+            </ul>
         </div>
         <div class="Hotspot clearFix">
             <div id="Focus" class="clearFix">

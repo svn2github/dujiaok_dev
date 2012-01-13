@@ -5,22 +5,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
         <title>#if ($title)$!title #else 度假OK #end</title>
-        #CSS(["base.css","General.css","main.css", "dialog.css", "msgbox.css", "tip.css"])
-       
-		
-		<style>
-        <!--
-		#header{height:120px;}
-        #footer { width:900px; border:1px #dcdcdc solid; padding:24px; margin:5px auto;}
-        #footer .foot_left{float:left; padding:33px 10px 0 36px;}
-        #footer .foot_right{ float:left;}
-        #footer .foot_right .foot_rightcontent li{ float:left;  margin-left:45px; display:inline;}
-        #footer .foot_right .foot_rightcontent li ul h2{font-size:14px; font-weight:bold; color:#006b27; padding-bottom:10px; padding-left:4px;}
-        .foot_left .foot_tel{font-size:22px; color:#006b27; padding-left:2px;}
-        .copy{ text-align:center; padding:20px 0 40px 0; font-size:12px;}
-        .copy p{ padding:4px 0;}
-        .copy p a{ color:#666666;}
-        -->
+        #CSS(["base.css","General.css","dialog.css","msgbox.css", "tip.css"])
+        #XUI_JS(["core/xui-core-min.js","dialog/xui-dialog-min.js","msgbox/xui-msgbox-min.js","tip/xui-tip.js","util/util-min.js","slide/slide.js"])
+        <style type="text/css">
+        .xui-msgbox{
+			_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='http://ht.dujiaok.com/saas/xui/resource//images/efax/msgbox/bg.png');
+		}
+		.xui-dialog-bg{
+		    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='http://ht.dujiaok.com/saas/xui/resource//images/efax/dialog/bg.png');
+		}
         </style>
 </head>
 <body>
@@ -149,6 +142,5 @@
         </p>
         <p>Copyright © 2011 - 2012 度假OK Inc.度假OK 版权所有 浙ICP证080194号</p>
     </div>
-    
 </body>
 </html>

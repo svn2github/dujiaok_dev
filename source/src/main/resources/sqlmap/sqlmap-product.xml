@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="product">
-	
+    <typeAlias alias="TA_Product" type="com.ssnn.dujiaok.model.product.Product" />
+
+	<resultMap id="RM_Product" class="TA_Product">
+		<result column="ID" property="id" />
+		<result column="TYPE_ID" property="typeId" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="MARKET_PRICE" property="marketPrice" jdbcType="DECIMAL" />
+		<result column="TOUR_DAYS" property="tourDays" />
+		<result column="LOCATION_CODE" property="locationCode" />
+		<result column="GMT_CREATE" property="gmtCreate" jdbcType="TIMESTAMP" />
+		<result column="GMT_MODIFY" property="gmtModify" jdbcType="TIMESTAMP" />
+		<result column="DEST" property="dest" jdbcType="VARCHAR" />
+		<result column="POST" property="post" jdbcType="VARCHAR" />
+		<result column="PAY_TYPE" property="payType" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 根据id查询产品信息 -->
+	<select id="getProductById" resultMap="RM_Product">
+		select ID, TYPE_ID,
+		  NAME, MARKET_PRICE, TOUR_DAYS, LOCATION_CODE, GMT_CREATE,
+		  GMT_MODIFY, DEST, POST, PAY_TYPE
+		from PRODUCT
+		where ID = #id#
+	</select>
 
 	<!-- add product -->
 	<insert id="addProduct">
@@ -16,4 +39,11 @@
 		</selectKey>
 	</insert>
 
+	<!-- ==================根据用户名密码获取用户========================================= -->
+	<select id="listAllProduct" resultMap="RM_Product">
+		select ID, TYPE_ID, NAME,
+		MARKET_PRICE, TOUR_DAYS, LOCATION_CODE, GMT_CREATE, GMT_MODIFY, DEST,
+		POST, PAY_TYPE
+		from PRODUCT
+	</select>
 </sqlMap>
