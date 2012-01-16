@@ -1,70 +1,95 @@
 #set($layout="/admin/default.vm")
 #set($title="度假OK后台管理 - 创建门票")
+#XUI_CSS(["common/reset.css","eshop/simple-date/xui-simple-datepicker.css"])
 ###################################################
 <div class="ucenter_right">
     <h2 class="B FS14">产品录入</h2>
 	
-	<form id="createTicketForm" name="createTicketForm" method="POST" action="${env.root}/admin/docreateTicket.htm">
+	<form id="createTicketForm" name="createTicketForm" method="POST" action="${env.root}/admin/docreateTicket.htm" onsubmit="return Validator.validate(this,'admin');">
     
 	<div class="us01">
 		<div>
-			<span>产品编号：</span><span>MP$!{id}</span>
+			<span>产品编号：</span><span>MP$!ticket.id</span>
 		</div>
         <div>
-			<span>产品名称：</span><span><input type="text" id='name' name='name' value="$!name" /></span>
+			<span>产品名称：</span><span><input type="text" id='name' name='name' value="$!ticket.name" /></span>
 		</div>
+		<div>出行日期</div>
+		<div id="trips">
+    		#foreach($!ticketDetail in $!ticket.ticketDetails)
+    			#set($count = $velocityCount)
+    			#set($count = $count - 1)
+        		<div id="trip$!count">
+					<input type="hidden" value="$!ticketDetail.id" name="ticketDetails[$count].id"/>
+					<input type="hidden" value="$!id" name="ticketDetails[$count].ticketId"/>
+        			<input type="text" value="$dateUtils.format($!ticketDetail.gmtStart,'yyyy-MM-dd')"  id="gmtStart[$!count]" name="ticketDetails[$count].gmtStart"/> 
+					至  
+					<input type="text" value="$dateUtils.format($!ticketDetail.gmtEnd,'yyyy-MM-dd')"  id="gmtEnd[$!count]" name="ticketDetails[$count].gmtEnd"/>
+        			价格： <input type="text" value="$!ticketDetail.price" name="ticketDetails[$count].price" />
+					#if($count > 0)
+					<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />
+					#end
+        		</div>
+			#end
+		</div>
+		<input type="button" value="增加出行日期" onclick="appendTrip() ;"/>
 		<div>
-			<span>市场价：</span><span><input type="text" id='marketPrice' name='marketPrice' value="$!marketPrice"/></span>
+			<span>市场价：</span><span><input type="text" id='marketPrice' name='marketPrice' value="$!ticket.marketPrice"/></span>
 		</div>
 		<div>
 			<span>支付方式：</span>
 			<span>
-    			<input type="checkbox" name="payTypesList" value="网上支付" #if( $collectionUtils.contains($!payTypesList,"网上支付"))checked#end>网上支付
-    			<input type="checkbox" name="payTypesList" value="前台现付" #if( $collectionUtils.contains($!payTypesList,"前台现付"))checked#end/>前台现付
+    			<input type="checkbox" name="payTypesList" value="ONLINE" #if( $collectionUtils.contains($!payTypesList,"ONLINE"))checked#end />网上支付
+    			<input type="checkbox" name="payTypesList" value="CASH" #if( $collectionUtils.contains($!payTypesList,"CASH"))checked#end/>前台现付
 			</span>
 		</div>
 		<div>
 			<span>所在地：</span>
-			<span><input type="text" id='destProvince'  name='destProvince' value="$!destProvince"/>省  <input id='destCity' name='destCity' value="$!destCity"/>市  <input id='destArea' name='destArea' value="$!destArea"/>区</span>
+			<span><input type="text" id='destProvince'  name='destProvince' value="$!ticket.destProvince"/>省  <input id='destCity' name='destCity' value="$!ticket.destCity"/>市  <input id='destArea' name='destArea' value="$!ticket.destArea"/>区</span>
 		</div>
 		<div>
 			<span>详细地址：</span>
-            <span><input type="text" id='destAddr'  name='destAddr' value="$!destAddr"/></span>
+            <span><input type="text" id='destAddr'  name='destAddr' value="$!ticket.destAddr"/></span>
 		</div>
 		<div>
 			<span>产品类别：</span>
 				<input type="checkbox" name="productTypesList" value="人气" #if( $collectionUtils.contains($!productTypesList,"人气"))checked#end />人气
     			<input type="checkbox" name="productTypesList" value="山水" #if( $collectionUtils.contains($!productTypesList,"山水"))checked#end/>山水
 				<input type="checkbox" name="productTypesList" value="自然环境" #if( $collectionUtils.contains($!productTypesList,"自然环境"))checked#end/>自然环境
-				<br/>
 				<input type="checkbox" name="productTypesList" value="亲子游" #if( $collectionUtils.contains($!productTypesList,"亲子游"))checked#end/>亲子游
 				<input type="checkbox" name="productTypesList" value="情侣游" #if( $collectionUtils.contains($!productTypesList,"情侣游"))checked#end />情侣游
 				<input type="checkbox" name="productTypesList" value="家庭游" #if( $collectionUtils.contains($!productTypesList,"家庭游"))checked#end/>家庭游
 			</span>
 		</div>
-		<div>
+		<div id="images">
 			<span>上传图片：</span>
-			<div><input type="text"  name='imagesList'/></div>
-			<div><input type="text" name='imagesList' /></div>
-			<div><input type="text" name='imagesList' /></div>
-			<div><input type="text" name='imagesList' /></div>
+			#foreach($image in $imagesList)
+				#set($count = $velocityCount)
+    			#set($count = $count - 1)
+				<div id="image$count">
+					<input type="text"  name='imagesList' value="$!image"/>
+					#if($count > 0)
+					<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />
+					#end
+				</div>
+			#end
 		</div>
-		
+		<input type="button" value="增加图片" onclick="appendImage() ;"/>
 		<div>
 			<span>产品简介：</span>
-            <span><textarea id='introduction' name='introduction' cols="10" rows="8" value="$!introduction"></textarea></span>
+            <span><textarea id='introduction' name='introduction' cols="10" rows="8">$!ticket.introduction</textarea></span>
 		</div>
 		<div>
 			<span>注意事项：</span>
-            <span><textarea id='notice' name='notice' cols="10" rows="8" value="$!notice"></textarea></span>
+            <span><textarea id='notice' name='notice' cols="10" rows="8">$!ticket.notice</textarea></span>
 		</div>
 		<div>
 			<span>费用说明：</span>
-            <span><textarea id='feeDesc' name='feeDesc' cols="10" rows="8" value="$!feeDesc"></textarea></span>
+            <span><textarea id='feeDesc' name='feeDesc' cols="10" rows="8">$!ticket.feeDesc</textarea></span>
 		</div>
 		<div>
 			<span>备注：</span>
-            <span><textarea id='memo' name='memo' cols="10" rows="8" value="$!memo"></textarea></span>
+            <span><textarea id='memo' name='memo' cols="10" rows="8" >$!ticket.memo</textarea></span>
 		</div>
 	</div>
 	
@@ -72,3 +97,85 @@
 	
 	</form>
 </div>
+
+#XUI_JS(["core/xui-core.js","util/util-min.js","simple-date/xui-simple-datepicker.js"])
+#JS(["validator.js"])
+<script type="text/javascript">
+
+	    var lastTicketDetailsIndex = $collectionUtils.size($!ticket.ticketDetails) ; //行程个数
+		var lastImagesIndex = $collectionUtils.size($imagesList) ; //上传照片个数
+				
+		var attachDatePicker = function(id){
+			var dateVal = $(id).value ;
+			var date ;
+			if(dateVal==null||dateVal==''){
+				date = new Date() ;
+			}else{
+			 	date = new Date(dateVal) ;
+			}
+			
+			var picker = new xui.widgets.simpleDatePicker(id,'YYYY-MM-DD',date);
+			picker.setModel({inconver:true,'selectBefore':function(dates){
+            	$(id).value = dates ;
+            }});
+		}		
+		
+		var appendTrip = function(){
+			var i = lastTicketDetailsIndex  ;
+			
+			var divElement = document.createElement('div') ;
+			divElement.id = 'trip' + i ;
+			$('trips').appendChild(divElement) ;
+						
+			var innerHTML = '<input type="hidden" name="ticketDetails['+i+'].id"/>' +
+			'<input type="text" id="gmtStart['+i+']" name="ticketDetails['+i+'].gmtStart"/>' + 
+			' 至 ' + 
+			'<input type="text"  id="gmtEnd['+i+']" name="ticketDetails['+i+'].gmtEnd"/>' +
+			'价格： <input type="text" name="ticketDetails['+i+'].price" /> '  ;
+			if(i > 0){
+				innerHTML += '<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />' ;
+			}
+			$('trip'+i).innerHTML = innerHTML ;
+			attachDatePicker('gmtStart['+i+']') ;
+			attachDatePicker('gmtEnd['+i+']') ;
+			lastTicketDetailsIndex++ ;
+			
+		}
+				
+		for(var i=0 ;i<lastTicketDetailsIndex;i++){
+			///////datepicker
+			attachDatePicker('gmtStart['+i+']') ;
+			attachDatePicker('gmtEnd['+i+']') ;
+		}
+
+		var removeElement = function(ele){
+			ele.parentNode.removeChild(ele) ;
+		}
+		
+		
+		
+		var appendImage = function(){
+			var i = lastImagesIndex  ;
+			if(i > 3){
+				return ;
+			}
+			var divElement = document.createElement('div') ;
+			divElement.id = 'image' + i ;
+			$('images').appendChild(divElement) ;
+			var innerHTML = '<input type="text"  name="imagesList" />' ;
+			if(i > 0){
+				innerHTML += '<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />' ;
+			}
+			$('image'+i).innerHTML = innerHTML ;
+			lastImagesIndex ++ ;
+		}
+		
+		///初始化
+		if(lastTicketDetailsIndex <= 0){
+			appendTrip() ;	
+		}
+		if(lastImagesIndex <= 0){
+			appendImage() ;
+		}
+		
+</script>

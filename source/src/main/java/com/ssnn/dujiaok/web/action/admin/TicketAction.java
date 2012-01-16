@@ -11,6 +11,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.model.TicketDO;
 import com.ssnn.dujiaok.model.TicketDetailDO;
+import com.ssnn.dujiaok.util.StringListConventUtil;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
@@ -19,12 +20,9 @@ public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
 	
 	private TicketService ticketService;
 	
-	//private List<TicketDetailDO> ticketDetails = new ArrayList<TicketDetailDO>() ;
-	
 	private List<String> payTypesList ;
 	private List<String> imagesList ;
 	private List<String> productTypesList ;
-	
 	
 	public List<String> getPayTypesList() {
 		return payTypesList;
@@ -67,9 +65,10 @@ public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
 		if(ticket!=null && ticket.getId()>0){
 			ticket = ticketService.getTicketWithDetails(ticket.getId()) ;
 			if(ticket != null){
-				payTypesList = Arrays.asList(StringUtils.split(ticket.getPayTypes(),",")) ;
-				productTypesList = Arrays.asList(StringUtils.split(ticket.getProductTypes(),",")) ;
-				imagesList = Arrays.asList(StringUtils.split(ticket.getImages(),",")) ;
+				payTypesList = StringListConventUtil.toList(ticket.getPayTypes()) ;
+				productTypesList = StringListConventUtil.toList(ticket.getProductTypes()) ;
+				imagesList = StringListConventUtil.toList(ticket.getImages()) ;
+				
 			}
 		}
 		return SUCCESS ;
@@ -82,7 +81,9 @@ public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
 	 */
 	public String create() throws Exception {
 		
-		//ticket.setTicketDetails(ticketDetails) ;
+		ticket.setImages(StringListConventUtil.toString(imagesList)) ;
+		ticket.setPayTypes(StringListConventUtil.toString(payTypesList)) ;
+		ticket.setProductTypes(StringListConventUtil.toString(productTypesList)) ;
 		//ticketService.createTicketAndDetails(ticket) ;
 		
 		return SUCCESS ;

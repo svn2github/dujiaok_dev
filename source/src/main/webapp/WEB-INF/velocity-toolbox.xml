@@ -16,6 +16,11 @@
 		<scope>application</scope>
 		<class>com.ssnn.dujiaok.web.velocity.toolbox.CollectionUtilsToolbox</class>
 	</tool>
+	<tool>
+		<key>dateUtils</key>
+		<scope>application</scope>
+		<class>com.ssnn.dujiaok.web.velocity.toolbox.DateUtilToolbox</class>
+	</tool>
 	
 	
 </toolbox> 

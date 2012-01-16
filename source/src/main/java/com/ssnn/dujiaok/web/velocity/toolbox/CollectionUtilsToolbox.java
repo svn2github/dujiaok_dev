@@ -20,5 +20,18 @@ public class CollectionUtilsToolbox {
 			return false ;
 		return c.contains(element) ;
 	}
+	
+	public boolean isEmpty(Collection c){
+		if(c == null)
+			return true ;
+		return c.isEmpty() ;
+	}
+	
+	public int size(Collection c){
+		if(c == null){
+			return 0 ;
+		}
+		return c.size() ;
+	}
 	 
 }
