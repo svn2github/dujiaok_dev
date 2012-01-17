@@ -6,10 +6,11 @@
     <h2 class="B FS14">产品录入</h2>
 	
 	<form id="createTicketForm" name="createTicketForm" method="POST" action="${env.root}/admin/docreateTicket.htm" onsubmit="return Validator.validate(this,'admin');">
-    
+    <input name="id"  type="hidden" value="$!id" />
+	<input name="ticketId"  type="hidden" value="$!ticketId" />
 	<div class="us01">
 		<div>
-			<span>产品编号：</span><span>MP$!ticket.id</span>
+			<span>产品编号：</span><span>$!ticket.ticketId</span>
 		</div>
         <div>
 			<span>产品名称：</span><span><input type="text" id='name' name='name' value="$!ticket.name" /></span>
@@ -53,12 +54,12 @@
 		</div>
 		<div>
 			<span>产品类别：</span>
-				<input type="checkbox" name="productTypesList" value="人气" #if( $collectionUtils.contains($!productTypesList,"人气"))checked#end />人气
-    			<input type="checkbox" name="productTypesList" value="山水" #if( $collectionUtils.contains($!productTypesList,"山水"))checked#end/>山水
-				<input type="checkbox" name="productTypesList" value="自然环境" #if( $collectionUtils.contains($!productTypesList,"自然环境"))checked#end/>自然环境
-				<input type="checkbox" name="productTypesList" value="亲子游" #if( $collectionUtils.contains($!productTypesList,"亲子游"))checked#end/>亲子游
-				<input type="checkbox" name="productTypesList" value="情侣游" #if( $collectionUtils.contains($!productTypesList,"情侣游"))checked#end />情侣游
-				<input type="checkbox" name="productTypesList" value="家庭游" #if( $collectionUtils.contains($!productTypesList,"家庭游"))checked#end/>家庭游
+				<input type="checkbox" name="productTypesList" value="人气" #if( $collectionUtils.contains($!productTypesList,"人气")) checked #end />人气
+    			<input type="checkbox" name="productTypesList" value="山水" #if( $collectionUtils.contains($!productTypesList,"山水")) checked #end/>山水
+				<input type="checkbox" name="productTypesList" value="自然环境" #if( $collectionUtils.contains($!productTypesList,"自然环境")) checked #end/>自然环境
+				<input type="checkbox" name="productTypesList" value="亲子游" #if( $collectionUtils.contains($!productTypesList,"亲子游")) checked #end/>亲子游
+				<input type="checkbox" name="productTypesList" value="情侣游" #if( $collectionUtils.contains($!productTypesList,"情侣游")) checked #end />情侣游
+				<input type="checkbox" name="productTypesList" value="家庭游" #if( $collectionUtils.contains($!productTypesList,"家庭游")) checked #end/>家庭游
 			</span>
 		</div>
 		<div id="images">

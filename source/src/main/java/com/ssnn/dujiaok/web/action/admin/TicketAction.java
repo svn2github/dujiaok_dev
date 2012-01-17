@@ -1,16 +1,12 @@
 package com.ssnn.dujiaok.web.action.admin;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.mchange.v1.util.ArrayUtils;
 import com.opensymphony.xwork2.ModelDriven;
 import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.model.TicketDO;
-import com.ssnn.dujiaok.model.TicketDetailDO;
 import com.ssnn.dujiaok.util.StringListConventUtil;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
@@ -62,8 +58,8 @@ public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
 
 	@Override
 	public String execute() throws Exception {
-		if(ticket!=null && ticket.getId()>0){
-			ticket = ticketService.getTicketWithDetails(ticket.getId()) ;
+		if(ticket!=null && StringUtils.isNotBlank(ticket.getTicketId())){
+			ticket = ticketService.getTicketWithDetails(ticket.getTicketId()) ;
 			if(ticket != null){
 				payTypesList = StringListConventUtil.toList(ticket.getPayTypes()) ;
 				productTypesList = StringListConventUtil.toList(ticket.getProductTypes()) ;
@@ -84,8 +80,21 @@ public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
 		ticket.setImages(StringListConventUtil.toString(imagesList)) ;
 		ticket.setPayTypes(StringListConventUtil.toString(payTypesList)) ;
 		ticket.setProductTypes(StringListConventUtil.toString(productTypesList)) ;
-		//ticketService.createTicketAndDetails(ticket) ;
+		if(StringUtils.isBlank(ticket.getTicketId())){
+			ticketService.createTicketAndDetails(ticket) ;
+		}else{
+			ticketService.updateTicketAndDetails(ticket) ;
+		}
 		
+		return SUCCESS ;
+	}
+	
+	/**
+	 * 创建成功
+	 * @return
+	 * @throws Exception
+	 */
+	public String success() throws Exception {
 		return SUCCESS ;
 	}
 	

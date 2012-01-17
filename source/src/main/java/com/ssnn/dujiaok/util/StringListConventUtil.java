@@ -26,6 +26,7 @@ public class StringListConventUtil {
 		StringBuilder sb = new StringBuilder();
 		for (;;) {
 			String e = i.next();
+			e = StringUtils.trim(e) ;
 			sb.append(e);
 			if (!i.hasNext()){
 				return sb.toString();
@@ -40,6 +41,13 @@ public class StringListConventUtil {
 	 * @return
 	 */
 	public static List<String> toList(String listString){
-		return Arrays.asList(StringUtils.split(listString,",")) ;
+		String[] arr = StringUtils.split(listString,",") ;
+		if(arr == null){
+			return null ;
+		}
+		for(int i=0 ;i<arr.length;i++){
+			arr[i] = StringUtils.trim(arr[i]) ;
+		}
+		return Arrays.asList(arr) ;
 	}
 }

@@ -19,9 +19,9 @@ public class TicketDetailDO {
 	private int id ;
 	
 	/**
-	 * 门票主表ID
+	 * 门票主表TICKET_ID
 	 */
-	private int ticketId ;
+	private String ticketId ;
 	/**
 	 * 价格
 	 */
@@ -45,12 +45,12 @@ public class TicketDetailDO {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public int getTicketId() {
+	
+	public String getTicketId() {
 		return ticketId;
 	}
 
-	public void setTicketId(int ticketId) {
+	public void setTicketId(String ticketId) {
 		this.ticketId = ticketId;
 	}
 

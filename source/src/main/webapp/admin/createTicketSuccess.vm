@@ -1,0 +1,12 @@
+#set($layout="/admin/default.vm")
+#set($title="度假OK后台管理 - 发布门票成功")
+
+###################################################
+<h2>发布打折门票成功</h2>
+<input type="hidden" value="$!ticketId" name="ticketId" />
+<ul>
+    <li><a href="${env.root}/admin/createTicket.htm?ticketId=${ticketId}">后台首页</a></li>
+    <li><a href="${env.root}/admin/createTicket.htm">继续发布</a></li>
+    <li><a href="${env.root}/admin/createTicket.htm?ticketId=${ticketId}">查看发布信息</a></li>
+    <li><a href="${env.root}/admin/createTicket.htm?ticketId=${ticketId}">编辑发布信息</a></li>
+</ul>

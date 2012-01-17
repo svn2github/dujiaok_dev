@@ -16,7 +16,7 @@ public interface TicketDetailDAO {
 	 * @param ticketId
 	 * @return
 	 */
-	List<TicketDetailDO> queryTicketDetail(int ticketId) ;
+	List<TicketDetailDO> queryTicketDetail(String ticketId) ;
 	
 	/**
 	 * 
@@ -28,5 +28,5 @@ public interface TicketDetailDAO {
 	 * 
 	 * @param ticketId
 	 */
-	void deleteTicketDetails(int ticketId) ;
+	void deleteTicketDetails(String ticketId) ;
 }

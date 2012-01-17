@@ -17,14 +17,14 @@ public interface TicketService {
 	 * @param ticketId
 	 * @return
 	 */
-	TicketDO getTicket(int ticketId) ;
+	TicketDO getTicket(String ticketId) ;
 	
 	/**
 	 * 获取Ticket,包含detail
 	 * @param ticketId
 	 * @return
 	 */
-	TicketDO getTicketWithDetails(int ticketId) ;
+	TicketDO getTicketWithDetails(String ticketId) ;
 	
 	/**
 	 * 创建Ticket,不包含detail
@@ -39,10 +39,22 @@ public interface TicketService {
 	void createTicketAndDetails(TicketDO ticket) ;
 	
 	/**
+	 * 更新Ticket,不包含detail
+	 * @param ticket
+	 */
+	void updateTicket(TicketDO ticket) ;
+	
+	/**
+	 * 创建Ticket,包含Detail
+	 * @param ticket
+	 */
+	void updateTicketAndDetails(TicketDO ticket) ;
+	
+	/**
 	 * 删除detail
 	 * @param ticketId
 	 */
-	void removeTicketDetails(int ticketId) ;
+	void removeTicketDetails(String ticketId) ;
 	
 	/**
 	 * 创建detail

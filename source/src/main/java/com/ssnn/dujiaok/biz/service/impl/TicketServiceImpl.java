@@ -1,5 +1,6 @@
 package com.ssnn.dujiaok.biz.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import com.ssnn.dujiaok.biz.dal.TicketDAO;
@@ -7,6 +8,8 @@ import com.ssnn.dujiaok.biz.dal.TicketDetailDAO;
 import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.model.TicketDO;
 import com.ssnn.dujiaok.model.TicketDetailDO;
+import com.ssnn.dujiaok.util.UniqueIDUtil;
+import com.ssnn.dujiaok.util.enums.ProductEnums;
 
 public class TicketServiceImpl implements TicketService{
 
@@ -23,12 +26,12 @@ public class TicketServiceImpl implements TicketService{
 	}
 
 	@Override
-	public TicketDO getTicket(int ticketId) {
+	public TicketDO getTicket(String ticketId) {
 		return ticketDAO.queryTicket(ticketId) ;
 	}
 
 	@Override
-	public TicketDO getTicketWithDetails(int ticketId) {
+	public TicketDO getTicketWithDetails(String ticketId) {
 		TicketDO ticket = ticketDAO.queryTicket(ticketId) ;
 		if(ticket != null){
 			List<TicketDetailDO> ticketDetails = ticketDetailDAO.queryTicketDetail(ticketId) ;
@@ -44,17 +47,21 @@ public class TicketServiceImpl implements TicketService{
 
 	@Override
 	public void createTicketAndDetails(TicketDO ticket) {
-		ticketDAO.insertTicket(ticket) ;
 		List<TicketDetailDO> details = ticket.getTicketDetails();
 		if(details!=null){
+			Date gmtExpire = getTicketExpireDate(details) ;
+			ticket.setGmtExpire(gmtExpire) ;
+			ticket.setTicketId(UniqueIDUtil.getUniqueID(ProductEnums.TICKET)) ;
+			ticketDAO.insertTicket(ticket) ;
 			for(TicketDetailDO ticketDetail : details){
+				ticketDetail.setTicketId(ticket.getTicketId()) ;
 				ticketDetailDAO.insertTicketDetail(ticketDetail) ;
 			}
 		}
 	}
 
 	@Override
-	public void removeTicketDetails(int ticketId) {
+	public void removeTicketDetails(String ticketId) {
 		ticketDetailDAO.deleteTicketDetails(ticketId) ;
 	}
 
@@ -65,7 +72,41 @@ public class TicketServiceImpl implements TicketService{
 		}
 	}
 
+	@Override
+	public void updateTicket(TicketDO ticket) {
+		ticketDAO.updateTicket(ticket) ;
+	}
+
+	@Override
+	public void updateTicketAndDetails(TicketDO ticket) {
+		List<TicketDetailDO> details = ticket.getTicketDetails();
+		
+		if(details!=null){
+			ticketDetailDAO.deleteTicketDetails(ticket.getTicketId()) ;
+			Date gmtExpire = getTicketExpireDate(details) ;
+			ticket.setGmtExpire(gmtExpire) ;
+			ticketDAO.updateTicket(ticket) ;
+			for(TicketDetailDO ticketDetail : details){
+				ticketDetail.setTicketId(ticket.getTicketId()) ;
+				ticketDetailDAO.insertTicketDetail(ticketDetail) ;
+			}
+		}
+	}
+
 	
-	
+	private Date getTicketExpireDate(List<TicketDetailDO> details){
+		Date gmtExpire = null ;
+		for(TicketDetailDO detail : details){
+			Date gmtEnd = detail.getGmtEnd() ;
+			if(gmtExpire == null){
+				gmtExpire = gmtEnd ;
+			}else{
+				if(gmtExpire.before(gmtEnd)){
+					gmtExpire = gmtEnd ;
+				}
+			}
+		}
+		return gmtExpire ;
+	}
 	
 }

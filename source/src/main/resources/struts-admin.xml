@@ -23,10 +23,17 @@
 			<interceptor-ref name="adminAuthInterceptor" />
 			<result name="success"  type="velocity">/admin/createTicket.vm</result>
 		</action>
+		
 		<action name="docreateTicket" class="com.ssnn.dujiaok.web.action.admin.TicketAction" method="create">
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="adminAuthInterceptor" />
-			<result name="success"  type="velocity">/admin/createTicket.vm</result>
+			<result name="success"  type="redirect">/admin/createTicketSuccess.htm?ticketId=${ticketId}</result>
+		</action>
+		
+		<action name="createTicketSuccess" class="com.ssnn.dujiaok.web.action.admin.TicketAction" method="success" >
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="velocity">/admin/createTicketSuccess.vm</result>
 		</action>
 	</package>
 </struts>

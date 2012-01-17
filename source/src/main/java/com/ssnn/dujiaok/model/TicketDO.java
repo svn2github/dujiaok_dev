@@ -20,6 +20,11 @@ public class TicketDO {
 	private int id ;
 	
 	/**
+	 * 根据规则产生的唯一ID
+	 */
+	private String ticketId ;
+	
+	/**
 	 * 名称
 	 */
 	private String name ;
@@ -243,5 +248,14 @@ public class TicketDO {
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this,ToStringStyle.SHORT_PREFIX_STYLE) ;
 	}
+
+	public String getTicketId() {
+		return ticketId;
+	}
+
+	public void setTicketId(String ticketId) {
+		this.ticketId = ticketId;
+	}
+	
 	
 }

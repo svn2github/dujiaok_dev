@@ -17,6 +17,8 @@ import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.model.TicketDO;
 import com.ssnn.dujiaok.model.TicketDetailDO;
 import com.ssnn.dujiaok.test.AbstractBaseJUnit4Test;
+import com.ssnn.dujiaok.util.UniqueIDUtil;
+import com.ssnn.dujiaok.util.enums.ProductEnums;
 
 @ContextConfiguration(locations = { "classpath:bean/biz-common.xml",
 		"classpath:bean/biz-dao.xml", "classpath:bean/biz-datasource.xml", })
@@ -31,6 +33,7 @@ public class IBatisTicketDAOTest extends AbstractBaseJUnit4Test {
 	@Test
 	public void test_createTicket() {
 		TicketDO ticket = new TicketDO();
+		ticket.setTicketId(UniqueIDUtil.getUniqueID(ProductEnums.TICKET)) ;
 		ticket.setDestAddr("网商路699号");
 		ticket.setDestArea("滨江区");
 		ticket.setDestProvince("浙江省");
@@ -52,7 +55,7 @@ public class IBatisTicketDAOTest extends AbstractBaseJUnit4Test {
 
 	@Test
 	public void test_getTicket() {
-		TicketDO ticket = ticketDAO.queryTicket(2);
+		TicketDO ticket = ticketDAO.queryTicket("2");
 		String notice = ticket.getNotice();
 	}
 
@@ -62,20 +65,20 @@ public class IBatisTicketDAOTest extends AbstractBaseJUnit4Test {
 		ticketDetail.setGmtEnd(new Date());
 		ticketDetail.setGmtStart(new Date());
 		ticketDetail.setPrice(new BigDecimal("22.33"));
-		ticketDetail.setTicketId(234656);
+		ticketDetail.setTicketId("234656");
 		ticketDetailDAO.insertTicketDetail(ticketDetail);
 	}
 
 	@Test
 	public void test_getTicketDetails() {
 		List<TicketDetailDO> ticketDetails = ticketDetailDAO
-				.queryTicketDetail(2);
+				.queryTicketDetail("2");
 		int size = ticketDetails.size();
 	}
 
 	@Test
 	public void test_deleteTicketDetails() {
-		ticketDetailDAO.deleteTicketDetails(2);
+		ticketDetailDAO.deleteTicketDetails("2");
 	}
 	
 	@Test

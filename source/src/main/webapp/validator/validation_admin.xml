@@ -26,6 +26,12 @@
 		<item name="destAddr" dataType="Limit"  mix="2" max="100"  msg="详细地址长度2-100个字符"/>
 		<item name="imagesList" dataType="Require"  batch="true"  msg="上传图片第$行必须填写"/>
 		<item name="imagesList" dataType="Limit"  batch="true" min="2" max="200" msg="上传图片第$行长度2~200字符"/>
+		<item name="introduction" dataType="Require"  msg="产品简介必须填写"/>
+		<item name="introduction" dataType="Limit" max="4000" msg="产品简介长度不大于4000字符"/>
+		<item name="notice" dataType="Require"  msg="注意事项必须填写"/>
+		<item name="notice" dataType="Limit" max="4000" msg="注意事项不大于4000字符"/>
+		<item name="feeDesc" dataType="Limit" max="4000" msg="费用说明不大于4000字符"/>
+		<item name="memo" dataType="Limit" max="4000" msg="备注不大于4000字符"/>
 	</form>
 	
 </forms>

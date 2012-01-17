@@ -11,7 +11,7 @@ public class IBatisTicketDetailDAO extends SqlMapClientDaoSupport implements Tic
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<TicketDetailDO> queryTicketDetail(int ticketId) {
+	public List<TicketDetailDO> queryTicketDetail(String ticketId) {
 		return (List<TicketDetailDO>)getSqlMapClientTemplate().queryForList("ticket.queryTicketDetails" , ticketId) ;
 	}
 
@@ -21,7 +21,7 @@ public class IBatisTicketDetailDAO extends SqlMapClientDaoSupport implements Tic
 	}
 
 	@Override
-	public void deleteTicketDetails(int ticketId) {
+	public void deleteTicketDetails(String ticketId) {
 		getSqlMapClientTemplate().delete("ticket.deleteTicketDetails" , ticketId) ;
 	}
 

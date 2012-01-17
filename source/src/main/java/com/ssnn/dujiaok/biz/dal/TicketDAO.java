@@ -18,13 +18,19 @@ public interface TicketDAO {
 	 * @param ticketId
 	 * @return
 	 */
-	TicketDO queryTicket(int ticketId) ;
+	TicketDO queryTicket(String ticketId) ;
 
 	/**
 	 * 
 	 * @param ticket
 	 */
 	void insertTicket(TicketDO ticket) ;
+	
+	/**
+	 * 
+	 * @param ticket
+	 */
+	void updateTicket(TicketDO ticket) ;
 	
 	/**
 	 * 查询Ticket

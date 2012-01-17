@@ -18,7 +18,7 @@
 		<java_source_version>1.6</java_source_version>
 		<java_target_version>1.6</java_target_version>
 		<file_encoding>UTF-8</file_encoding>
-		<apache.httpclient.version>3.1</apache.httpclient.version>
+
 	</properties>
 
 	<dependencyManagement>
@@ -80,11 +80,11 @@
 				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>apache-httpclient</groupId>
+				<groupId>commons-httpclient</groupId>
 				<artifactId>commons-httpclient</artifactId>
-				<version>${apache.httpclient.version}</version>
+				<version>3.1</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>c3p0</groupId>
 				<artifactId>c3p0</artifactId>
@@ -251,17 +251,11 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 		</dependency>
-		
+
 		<dependency>
-			<groupId>apache-httpclient</groupId>
+			<groupId>commons-httpclient</groupId>
 			<artifactId>commons-httpclient</artifactId>
 		</dependency>
-	  <!--
-	  <dependency>
-		  <groupId>commons-codec</groupId>
-		  <artifactId>commons-codec</artifactId>
-		  <version>1.6</version>
-	   </dependency>-->
 	</dependencies>
 	<build>
 		<plugins>

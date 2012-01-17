@@ -5,6 +5,7 @@
 
 	<resultMap id="RM-Ticket" class="TA-Ticket" >
 		<result property="id" column="ID"/>
+		<result property="ticketId" column="TICKET_ID" jdbcType="VARCHAR" />
 		<result property="name" column="NAME" jdbcType="VARCHAR"/>
 		<result property="marketPrice" column="MARKET_PRICE" jdbcType="DECIMAL"/>
 		<result property="destAddr" column="DEST_ADDR" jdbcType="VARCHAR"/>
@@ -27,9 +28,9 @@
 
 	<insert id="insertTicket">
 		INSERT INTO 
-			DJ_TICKET (ID,NAME,MARKET_PRICE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,PAY_TYPES,PRODUCT_TYPES,INTRODUCTION,NOTICE,FEE_DESC,MEMO,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
+			DJ_TICKET (ID,TICKET_ID,NAME,MARKET_PRICE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,PAY_TYPES,PRODUCT_TYPES,INTRODUCTION,NOTICE,FEE_DESC,MEMO,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
 		VALUES 
-			(#id#,#name#,#marketPrice#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#payTypes#,#productTypes#,#introduction#,#notice#,#feeDesc#,#memo#,now(),now(),#gmtExpire#)
+			(#id#,#ticketId#,#name#,#marketPrice#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#payTypes#,#productTypes#,#introduction#,#notice#,#feeDesc#,#memo#,now(),now(),#gmtExpire#)
 		<selectKey resultClass="java.lang.Integer" keyProperty="id">
     		<![CDATA[
 				SELECT LAST_INSERT_ID() AS ID
@@ -37,14 +38,34 @@
 		</selectKey>
 	</insert>
 	
+	<update id="updateTicket">
+		UPDATE DJ_TICKET SET 
+			NAME = #name# , 
+			MARKET_PRICE = #marketPrice# ,
+			DEST_ADDR = #destAddr# ,
+			DEST_PROVINCE = #destProvince# ,
+			DEST_CITY = #destCity# ,
+			DEST_AREA = #destArea# ,
+			LOCATION_CODE = #locationCode# ,
+			IMAGES = #images# ,
+			PAY_TYPES = #payTypes# ,
+			PRODUCT_TYPES = #productTypes# , 
+			INTRODUCTION = #introduction# , 
+			NOTICE = #notice# ,
+			FEE_DESC = #feeDesc# ,
+			MEMO = #memo# ,
+			GMT_MODIFIED = now() ,
+			GMT_EXPIRE = #gmtExpire#
+	</update>
+	
 	<select id="queryTicket" resultMap="RM-Ticket">
-		select * from DJ_TICKET where ID = #id#
+		select * from DJ_TICKET where TICKET_ID = #ticketId#
 	</select>
 	
 	<select id="queryTickets" resultMap="RM-Ticket">
 		SELECT * FROM DJ_TICKET WHERE 1=1 
 		<isNotEmpty property="id" prepend="AND">
-			ID = #id#
+			TICKET_ID = #ticketId#
 		</isNotEmpty>
 		<isNotEmpty property="name" prepend="AND">
 			NAME LIKE CONCAT('%', #name#, '%')
