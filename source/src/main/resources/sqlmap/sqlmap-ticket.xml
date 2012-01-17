@@ -56,6 +56,8 @@
 			MEMO = #memo# ,
 			GMT_MODIFIED = now() ,
 			GMT_EXPIRE = #gmtExpire#
+		WHERE 
+			TICKET_ID = #ticketId#
 	</update>
 	
 	<select id="queryTicket" resultMap="RM-Ticket">
@@ -64,7 +66,7 @@
 	
 	<select id="queryTickets" resultMap="RM-Ticket">
 		SELECT * FROM DJ_TICKET WHERE 1=1 
-		<isNotEmpty property="id" prepend="AND">
+		<isNotEmpty property="ticketId" prepend="AND">
 			TICKET_ID = #ticketId#
 		</isNotEmpty>
 		<isNotEmpty property="name" prepend="AND">

@@ -23,7 +23,7 @@ public class IBatisTicketDAO extends SqlMapClientDaoSupport implements TicketDAO
 	
 	@Override
 	public void updateTicket(TicketDO ticket) {
-		getSqlMapClientTemplate().insert("ticket.updateTicket", ticket) ;
+		getSqlMapClientTemplate().update("ticket.updateTicket", ticket) ;
 	}
 
 	@Override

@@ -12,49 +12,21 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * @author shenjia.caosj 2012-1-9
  *
  */
-public class TicketDO {
+public class TicketDO extends AbstractProduct {
 
-	/**
-	 * pk
-	 */
-	private int id ;
 	
 	/**
 	 * 根据规则产生的唯一ID
 	 */
 	private String ticketId ;
 	
-	/**
-	 * 名称
-	 */
-	private String name ;
 	
 	/**
 	 * 市场价
 	 */
 	private BigDecimal marketPrice ;
 	
-	/**
-	 * 目的地(详细地址)
-	 */
-	private String destAddr ;
 	
-	/**
-	 * 目的地(省)
-	 */
-	private String destProvince ;
-	/**
-	 * 目的地(市)
-	 */
-	private String destCity ;
-	/**
-	 * 目的地(地区)
-	 */
-	private String destArea ;
-	/**
-	 * 定位坐标
-	 */
-	private String locationCode ;
 	/**
 	 * 图片
 	 */
@@ -100,68 +72,13 @@ public class TicketDO {
 		this.ticketDetails = ticketDetails;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	
 	public BigDecimal getMarketPrice() {
 		return marketPrice;
 	}
 
 	public void setMarketPrice(BigDecimal marketPrice) {
 		this.marketPrice = marketPrice;
-	}
-
-	public String getDestAddr() {
-		return destAddr;
-	}
-
-	public void setDestAddr(String destAddr) {
-		this.destAddr = destAddr;
-	}
-
-	public String getDestProvince() {
-		return destProvince;
-	}
-
-	public void setDestProvince(String destProvince) {
-		this.destProvince = destProvince;
-	}
-
-	public String getDestCity() {
-		return destCity;
-	}
-
-	public void setDestCity(String destCity) {
-		this.destCity = destCity;
-	}
-
-	public String getDestArea() {
-		return destArea;
-	}
-
-	public void setDestArea(String destArea) {
-		this.destArea = destArea;
-	}
-
-	public String getLocationCode() {
-		return locationCode;
-	}
-
-	public void setLocationCode(String locationCode) {
-		this.locationCode = locationCode;
 	}
 
 	public String getImages() {

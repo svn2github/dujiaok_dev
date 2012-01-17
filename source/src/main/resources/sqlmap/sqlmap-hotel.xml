@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="hotel">
+	<typeAlias alias="TA-Hotel" type="com.ssnn.dujiaok.model.HotelDO"/>
+
+	<resultMap id="RM-Hotel" class="TA-Hotel" >
+		<result property="id" column="ID"/>
+		<result property="hotelId" column="HOTEL_ID" jdbcType="VARCHAR" />
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="starRate" column="STAR_RATE"  />
+		<result property="destAddr" column="DEST_ADDR" jdbcType="VARCHAR"/>
+		<result property="destProvince" column="DEST_PROVINCE" jdbcType="VARCHAR"/>
+		<result property="destCity" column="DEST_CITY" jdbcType="VARCHAR"/>
+		<result property="destArea" column="DEST_AREA" jdbcType="VARCHAR"/>
+		<result property="locationCode" column="LOCATION_CODE" jdbcType="VARCHAR"/>
+		<result property="images" column="IMAGES" jdbcType="VARCHAR"/>
+		<result property="roomAmount" column="ROOM_AMOUNT"  />
+		<result property="introduction" column="INTRODUCTION" jdbcType="VARCHAR"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+		<result property="gmtCreate" column="GMT_CREATE" jdbcType="TIMESTAMP"/>
+		<result property="gmtModified" column="GMT_MODIFIED" jdbcType="TIMESTAMP"/>		
+	</resultMap>
+	
+
+	<insert id="insertHotel">
+		INSERT INTO 
+			DJ_HOTEL (ID,HOTEL_ID,NAME,STAR_RATE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,ROOM_AMOUNT,INTRODUCTION,MEMO,GMT_CREATE,GMT_MODIFIED)
+		VALUES 
+			(#id#,#hotelId#,#name#,#starRate#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#roomAmount#,#introduction#,#memo#,now(),now())
+		<selectKey resultClass="java.lang.Integer" keyProperty="id">
+    		<![CDATA[
+				SELECT LAST_INSERT_ID() AS ID
+			]]>
+		</selectKey>
+	</insert>
+	
+	<update id="updateHotel">
+		UPDATE HOTEL_ID SET 
+			NAME = #name# , 
+			STAR_RATE = #starRate# ,
+			DEST_ADDR = #destAddr# ,
+			DEST_PROVINCE = #destProvince# ,
+			DEST_CITY = #destCity# ,
+			DEST_AREA = #destArea# ,
+			LOCATION_CODE = #locationCode# ,
+			IMAGES = #images# ,
+			ROOM_AMOUNT = #roomAmount# ,
+			INTRODUCTION = #introduction# , 
+			MEMO = #memo# ,
+			GMT_MODIFIED = now() 
+		WHERE 
+		 	HOTEL_ID = #hotelId#
+	</update>
+	
+	<select id="queryHotel" resultMap="RM-Hotel">
+		select * from DJ_HOTEL where HOTEL_ID = #hotelId#
+	</select>
+	
+	<select id="queryHotels" resultMap="RM-Hotel">
+		SELECT * FROM DJ_HOTEL WHERE 1=1 
+		<isNotEmpty property="hotelId" prepend="AND">
+			HOTEL_ID = #hotelId#
+		</isNotEmpty>
+		<isNotEmpty property="name" prepend="AND">
+			NAME LIKE CONCAT('%', #name#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="destProvince" prepend="AND">
+			DEST_PROVINCE = #destProvince#
+		</isNotEmpty>
+		<isNotEmpty property="destCity" prepend="AND">
+			DEST_CITY = #destCity#
+		</isNotEmpty>
+		ORDER BY GMT_MODIFIED LIMIT #start# , #size# 
+	</select>
+
+</sqlMap>

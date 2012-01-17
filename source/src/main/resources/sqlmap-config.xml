@@ -18,6 +18,7 @@
 	<sqlMap resource="sqlmap/sqlmap-tour.xml" />
   	<sqlMap resource="sqlmap/sqlmap-ticket.xml" />
   	<sqlMap resource="sqlmap/sqlmap-ticketDetail.xml" />
+  	<sqlMap resource="sqlmap/sqlmap-hotel.xml" />
   	<sqlMap resource="sqlmap/sqlmap-admin.xml" />
   	<sqlMap resource="sqlmap/sqlmap-order.xml" />
 </sqlMapConfig>
