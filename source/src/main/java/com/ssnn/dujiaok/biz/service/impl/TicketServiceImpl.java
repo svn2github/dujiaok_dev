@@ -41,12 +41,14 @@ public class TicketServiceImpl implements TicketService{
 	}
 	
 	@Override
-	public void createTicket(TicketDO ticket) {
+	public TicketDO createTicket(TicketDO ticket) {
+		ticket.setTicketId(UniqueIDUtil.getUniqueID(ProductEnums.TICKET)) ;
 		ticketDAO.insertTicket(ticket) ;
+		return ticket ;
 	}
 
 	@Override
-	public void createTicketAndDetails(TicketDO ticket) {
+	public TicketDO createTicketAndDetails(TicketDO ticket) {
 		List<TicketDetailDO> details = ticket.getTicketDetails();
 		if(details!=null){
 			Date gmtExpire = getTicketExpireDate(details) ;
@@ -58,6 +60,7 @@ public class TicketServiceImpl implements TicketService{
 				ticketDetailDAO.insertTicketDetail(ticketDetail) ;
 			}
 		}
+		return ticket ;
 	}
 
 	@Override
@@ -73,12 +76,13 @@ public class TicketServiceImpl implements TicketService{
 	}
 
 	@Override
-	public void updateTicket(TicketDO ticket) {
+	public TicketDO updateTicket(TicketDO ticket) {
 		ticketDAO.updateTicket(ticket) ;
+		return ticket ;
 	}
 
 	@Override
-	public void updateTicketAndDetails(TicketDO ticket) {
+	public TicketDO updateTicketAndDetails(TicketDO ticket) {
 		List<TicketDetailDO> details = ticket.getTicketDetails();
 		
 		if(details!=null){
@@ -91,6 +95,7 @@ public class TicketServiceImpl implements TicketService{
 				ticketDetailDAO.insertTicketDetail(ticketDetail) ;
 			}
 		}
+		return ticket ;
 	}
 
 	

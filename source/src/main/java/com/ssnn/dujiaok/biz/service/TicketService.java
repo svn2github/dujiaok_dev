@@ -30,25 +30,25 @@ public interface TicketService {
 	 * 创建Ticket,不包含detail
 	 * @param ticket
 	 */
-	void createTicket(TicketDO ticket) ;
+	TicketDO createTicket(TicketDO ticket) ;
 	
 	/**
 	 * 创建Ticket,包含detail
 	 * @param ticket
 	 */
-	void createTicketAndDetails(TicketDO ticket) ;
+	TicketDO createTicketAndDetails(TicketDO ticket) ;
 	
 	/**
 	 * 更新Ticket,不包含detail
 	 * @param ticket
 	 */
-	void updateTicket(TicketDO ticket) ;
+	TicketDO updateTicket(TicketDO ticket) ;
 	
 	/**
 	 * 创建Ticket,包含Detail
 	 * @param ticket
 	 */
-	void updateTicketAndDetails(TicketDO ticket) ;
+	TicketDO updateTicketAndDetails(TicketDO ticket) ;
 	
 	/**
 	 * 删除detail

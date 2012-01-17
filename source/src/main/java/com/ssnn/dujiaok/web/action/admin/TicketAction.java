@@ -71,7 +71,7 @@ public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
 	}
 	
 	/**
-	 * 创建门票
+	 * 发布门票
 	 * @return
 	 * @throws Exception
 	 */
@@ -81,16 +81,16 @@ public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
 		ticket.setPayTypes(StringListConventUtil.toString(payTypesList)) ;
 		ticket.setProductTypes(StringListConventUtil.toString(productTypesList)) ;
 		if(StringUtils.isBlank(ticket.getTicketId())){
-			ticketService.createTicketAndDetails(ticket) ;
+			ticket = ticketService.createTicketAndDetails(ticket) ;
 		}else{
-			ticketService.updateTicketAndDetails(ticket) ;
+			ticket = ticketService.updateTicketAndDetails(ticket) ;
 		}
 		
 		return SUCCESS ;
 	}
 	
 	/**
-	 * 创建成功
+	 * 发布成功
 	 * @return
 	 * @throws Exception
 	 */

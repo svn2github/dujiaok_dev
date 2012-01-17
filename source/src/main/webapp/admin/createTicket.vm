@@ -1,5 +1,5 @@
 #set($layout="/admin/default.vm")
-#set($title="度假OK后台管理 - 创建门票")
+#set($title="度假OK后台管理 - 发布门票")
 #XUI_CSS(["common/reset.css","eshop/simple-date/xui-simple-datepicker.css"])
 ###################################################
 <div class="ucenter_right">
@@ -94,7 +94,7 @@
 		</div>
 	</div>
 	
-	<button onclick="modify()">保存</button>
+	<button>保存</button>
 	
 	</form>
 </div>

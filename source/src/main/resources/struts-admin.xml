@@ -35,5 +35,23 @@
 			<interceptor-ref name="adminAuthInterceptor" />
 			<result name="success"  type="velocity">/admin/createTicketSuccess.vm</result>
 		</action>
+		
+		<action name="createHotel" class="com.ssnn.dujiaok.web.action.admin.HotelAction" >
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="velocity">/admin/createHotel.vm</result>
+		</action>
+		
+		<action name="docreateHotel" class="com.ssnn.dujiaok.web.action.admin.HotelAction" method="create">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="redirect">/admin/createHotelSuccess.htm?hotelId=${hotelId}</result>
+		</action>
+		
+		<action name="createHotelSuccess" class="com.ssnn.dujiaok.web.action.admin.HotelAction" method="success" >
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="velocity">/admin/createHotelSuccess.vm</result>
+		</action>
 	</package>
 </struts>

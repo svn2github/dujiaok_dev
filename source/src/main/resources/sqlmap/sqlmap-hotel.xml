@@ -35,7 +35,7 @@
 	</insert>
 	
 	<update id="updateHotel">
-		UPDATE HOTEL_ID SET 
+		UPDATE DJ_HOTEL SET 
 			NAME = #name# , 
 			STAR_RATE = #starRate# ,
 			DEST_ADDR = #destAddr# ,

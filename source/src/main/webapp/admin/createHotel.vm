@@ -1,0 +1,71 @@
+#set($layout="/admin/default.vm")
+#set($title="度假OK后台管理 - 发布酒店")
+###################################################
+<div class="ucenter_right">
+    <h2 class="B FS14">产品录入</h2>
+	
+	<form id="createHotelForm" name="createHotelForm" method="POST" action="${env.root}/admin/docreateHotel.htm" onsubmit="return Validator.validate(this,'admin');">
+    <input name="id"  type="hidden" value="$!id" />
+	<input name="hotelId"  type="hidden" value="$!hotelId" />
+	<div class="us01">
+		<div>
+			<span>酒店编号：</span><span>$!hotelId</span>
+		</div>
+        <div>
+			<span>酒店名称：</span><span><input type="text" id='name' name='name' value="$!hotel.name" /></span>
+		</div>
+		<div>
+			<span>所在地：</span>
+			<span><input type="text" id='destProvince'  name='destProvince' value="$!hotel.destProvince"/>省  <input id='destCity' name='destCity' value="$!hotel.destCity"/>市  <input id='destArea' name='destArea' value="$!hotel.destArea"/>区</span>
+		</div>
+		<div>
+			<span>详细地址：</span>
+            <span><input type="text" id='destAddr'  name='destAddr' value="$!hotel.destAddr"/></span>
+		</div>
+		<div>
+			<span>星级：</span>
+            <span>
+				<select name="starRate" id="starRate">
+					<option value="1">连锁商务酒店</option>
+					<option value="2">经济商务</option>
+					<option value="3">三星级</option>
+					<option value="4">准三星级</option>
+					<option value="5">四星级</option>
+					<option value="6">准四星级</option>
+					<option value="7">五星级</option>
+					<option value="8">准五星级</option>
+                </select>
+			</span>
+		</div>
+		<div>
+			<span>房间数量：</span>
+            <span><input type="text" name="roomAmount" value="$!hotel.roomAmount"/></span>
+		</div>
+		<div>
+			<span>产品简介：</span>
+            <span><textarea id='introduction' name='introduction' cols="10" rows="8">$!hotel.introduction</textarea></span>
+		</div>
+		<div>
+			<span>备注：</span>
+            <span><textarea id='memo' name='memo' cols="10" rows="8" >$!hotel.memo</textarea></span>
+		</div>
+	</div>
+	
+	<button>保存</button>
+	
+	</form>
+</div>
+#XUI_JS(["core/xui-core.js"])
+#JS(["validator.js"])
+<script type="text/javascript">
+	var starRate = '$!hotel.starRate' ;
+	var select = $('starRate') ;
+	var options = select.options ;
+	for(var i=0 ;i<options.length;i++){
+		if(options[i].value == starRate){
+			options[i].selected = true ;
+			break ;
+		}
+		
+	}
+</script>
