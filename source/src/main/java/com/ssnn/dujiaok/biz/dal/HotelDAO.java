@@ -7,7 +7,7 @@ import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.model.HotelDO;
 
 /**
- * 
+ * 酒店DAO
  * @author shenjia.caosj 2012-1-17
  *
  */

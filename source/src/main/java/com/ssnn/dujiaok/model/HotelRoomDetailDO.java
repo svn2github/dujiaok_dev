@@ -4,30 +4,30 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * 门票详细从表
- * @author shenjia.caosj 2012-1-10
+ * 
+ * @author shenjia.caosj 2012-1-18
  *
  */
-public class TicketDetailDO extends AbstractProductDetail{
+public class HotelRoomDetailDO extends AbstractProductDetail {
 
-	
 	/**
-	 * 门票主表TICKET_ID
+	 * roomID
 	 */
-	private String ticketId ;
+	private String roomId ;
+	
 	/**
 	 * 价格
 	 */
 	private BigDecimal price ;
 	
 	private Date gmtCreate ;
-	
-	public String getTicketId() {
-		return ticketId;
+
+	public String getRoomId() {
+		return roomId;
 	}
 
-	public void setTicketId(String ticketId) {
-		this.ticketId = ticketId;
+	public void setRoomId(String roomId) {
+		this.roomId = roomId;
 	}
 
 	public BigDecimal getPrice() {
