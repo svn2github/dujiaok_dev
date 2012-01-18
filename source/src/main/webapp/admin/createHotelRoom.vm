@@ -50,8 +50,15 @@
 		<div>
 			<span>房型信息：</span>
 			<span>面积 <input type="text" id='roomArea' name='roomArea' value="$!room.roomArea"/></span>
-			<span>床型
-				<input type="text" id='bed' name='bed' value="$!room.bed"/>
+			<span>床型</span>
+			<span>
+				<select name="bed" id="bed">
+					<option value="1.5米大床">1.5米大床</option>
+					<option value="1.8米大床">1.8米大床</option>
+					<option value="1.2米双床">1.2米双床</option>
+					<option value="1.5米双床">1.5米双床</option>
+					<option value="其他">其他</option>
+                </select>
 			</span>
 		</div>	
 		<div>
@@ -97,6 +104,19 @@
 #XUI_JS(["core/xui-core.js","util/util-min.js","simple-date/xui-simple-datepicker.js"])
 #JS(["validator.js"])
 <script type="text/javascript">
+	
+	var bed = '$!room.bed' ;
+	var select = $('bed') ;
+	var options = select.options ;
+	for(var i=0 ;i<options.length;i++){
+		if(options[i].value == bed){
+			options[i].selected = true ;
+			break ;
+		}
+		
+	}
+
+////////////////////////////
 
 	    var lastDetailsIndex = $collectionUtils.size($!room.roomDetails) ; //时间个数
 		var lastImagesIndex = $collectionUtils.size($imagesList) ; //上传照片个数

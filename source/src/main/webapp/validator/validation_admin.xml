@@ -45,11 +45,12 @@
 		<item name="destArea" dataType="Limit" mix="2" max="32"  msg="地区长度2-32个字符"/>
 		<item name="destAddr" dataType="Require"   msg="详细地址不能为空"/>
 		<item name="destAddr" dataType="Limit"  mix="2" max="100"  msg="详细地址长度2-100个字符"/>
+		<item name="roomAmount" dataType="Require"  msg="房间数量必须填写"/>
+		<item name="roomAmount" dataType="Limit" mix="2" max="32"  msg="房间数量长度2~32个字符"/>
 		<item name="imagesList" dataType="Require"  batch="true"  msg="上传图片第$行必须填写"/>
 		<item name="imagesList" dataType="Limit"  batch="true" min="2" max="200" msg="上传图片第$行长度2~200字符"/>
 		<item name="introduction" dataType="Require"  msg="产品简介必须填写"/>
 		<item name="introduction" dataType="Limit" max="4000" msg="产品简介长度不大于4000字符"/>
-		<item name="feeDesc" dataType="Limit" max="4000" msg="费用说明不大于4000字符"/>
 		<item name="memo" dataType="Limit" max="4000" msg="备注不大于4000字符"/>
 	</form>
 	

@@ -41,6 +41,20 @@
 			<span>房间数量：</span>
             <span><input type="text" name="roomAmount" value="$!hotel.roomAmount"/></span>
 		</div>
+		<div id="images">
+			<span>上传图片：</span>
+			#foreach($image in $imagesList)
+				#set($count = $velocityCount)
+    			#set($count = $count - 1)
+				<div id="image$count">
+					<input type="text"  name='imagesList' value="$!image"/>
+					#if($count > 0)
+					<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />
+					#end
+				</div>
+			#end
+		</div>
+		<input type="button" value="增加图片" onclick="addImage() ;"/>
 		<div>
 			<span>产品简介：</span>
             <span><textarea id='introduction' name='introduction' cols="10" rows="8">$!hotel.introduction</textarea></span>
@@ -67,5 +81,33 @@
 			break ;
 		}
 		
+	}
+	
+	var lastImagesIndex = $collectionUtils.size($imagesList) ; //上传照片个数
+	
+	var removeElement = function(ele){
+		ele.parentNode.removeChild(ele) ;
+	}
+	
+	var addImage = function(){
+		var i = lastImagesIndex  ;
+		if(i > 3){
+			return ;
+		}
+		var divElement = document.createElement('div') ;
+		divElement.id = 'image' + i ;
+		$('images').appendChild(divElement) ;
+		var innerHTML = '<input type="text"  name="imagesList" />' ;
+		if(i > 0){
+			innerHTML += '<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />' ;
+		}
+		$('image'+i).innerHTML = innerHTML ;
+		lastImagesIndex ++ ;
+	}
+	
+	///初始化
+	
+	if(lastImagesIndex <= 0){
+		addImage() ;
 	}
 </script>
