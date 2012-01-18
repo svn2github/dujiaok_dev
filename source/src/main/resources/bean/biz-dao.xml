@@ -11,10 +11,7 @@
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
 		default-autowire="byName">
 
-
-	<!-- SqlMap setup for iBATIS Database Layer -->
 	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
-		<!-- 特别注意此处，如果做单元测试的话，请把“WEB-INF/classes/”去掉，否则会报找不到sqlMapConfig.xml文件 -->
 		<property name="configLocation" value="classpath:sqlmap-config.xml" />
 		<property name="dataSource" ref="dataSource" />
 	</bean>
@@ -26,7 +23,8 @@
 	<bean id="hotelDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisHotelDAO"></bean>
 	<bean id="hotelRoomDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisHotelRoomDAO"></bean>
 	<bean id="hotelRoomDetailDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisHotelRoomDetailDAO"></bean>
-	
+	<bean id="selfDriveDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisSelfDriveDAO"></bean>
+	<bean id="selfDriveDetailDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisSelfDriveDetailDAO"></bean>
 	
 	<bean id="productDao" class="com.ssnn.dujiaok.biz.dal.product.impl.ProductDaoImpl"></bean>
 	

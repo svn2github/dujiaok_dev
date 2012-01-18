@@ -21,6 +21,8 @@
   	<sqlMap resource="sqlmap/sqlmap-hotel.xml" />
   	<sqlMap resource="sqlmap/sqlmap-hotelRoom.xml" />
   	<sqlMap resource="sqlmap/sqlmap-hotelRoomDetail.xml" />
+  	<sqlMap resource="sqlmap/sqlmap-selfDrive.xml" />
+  	<sqlMap resource="sqlmap/sqlmap-selfDriveDetail.xml" />
   	<sqlMap resource="sqlmap/sqlmap-admin.xml" />
   	<sqlMap resource="sqlmap/sqlmap-order.xml" />
 </sqlMapConfig>
