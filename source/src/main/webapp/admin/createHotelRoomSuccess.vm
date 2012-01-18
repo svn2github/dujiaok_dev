@@ -1,0 +1,12 @@
+#set($layout="/admin/default.vm")
+#set($title="度假OK后台管理 - 发布房间成功")
+
+###################################################
+<h2>发布房间成功</h2>
+<input type="hidden" value="$!roomId" name="roomId" />
+<ul>
+    <li><a href="${env.root}/admin/createHotelRoom.htm?roomId=${roomId}">后台首页</a></li>
+    <li><a href="${env.root}/admin/createHotelRoom.htm">继续发布</a></li>
+    <li><a href="${env.root}/admin/createHotelRoom.htm?roomId=${roomId}">查看发布信息</a></li>
+    <li><a href="${env.root}/admin/createHotelRoom.htm?roomId=${roomId}">编辑发布信息</a></li>
+</ul>

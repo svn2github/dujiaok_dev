@@ -22,7 +22,7 @@
     			#set($count = $count - 1)
         		<div id="trip$!count">
 					<input type="hidden" value="$!ticketDetail.id" name="ticketDetails[$count].id"/>
-					<input type="hidden" value="$!id" name="ticketDetails[$count].ticketId"/>
+					<input type="hidden" value="$!ticketId" name="ticketDetails[$count].ticketId"/>
         			<input type="text" value="$dateUtils.format($!ticketDetail.gmtStart,'yyyy-MM-dd')"  id="gmtStart[$!count]" name="ticketDetails[$count].gmtStart"/> 
 					至  
 					<input type="text" value="$dateUtils.format($!ticketDetail.gmtEnd,'yyyy-MM-dd')"  id="gmtEnd[$!count]" name="ticketDetails[$count].gmtEnd"/>

@@ -10,6 +10,7 @@ import com.ssnn.dujiaok.model.TicketDO;
 import com.ssnn.dujiaok.util.StringListConventUtil;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
+@SuppressWarnings("serial")
 public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
 
 	private TicketDO ticket = new TicketDO() ;
@@ -20,42 +21,6 @@ public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
 	private List<String> imagesList ;
 	private List<String> productTypesList ;
 	
-	public List<String> getPayTypesList() {
-		return payTypesList;
-	}
-
-	public void setPayTypesList(List<String> payTypesList) {
-		this.payTypesList = payTypesList;
-	}
-
-	public List<String> getImagesList() {
-		return imagesList;
-	}
-
-	public void setImagesList(List<String> imagesList) {
-		this.imagesList = imagesList;
-	}
-
-	public List<String> getProductTypesList() {
-		return productTypesList;
-	}
-
-	public void setProductTypesList(List<String> productTypesList) {
-		this.productTypesList = productTypesList;
-	}
-	
-	public void setTicketService(TicketService ticketService) {
-		this.ticketService = ticketService;
-	}
-
-	public TicketDO getTicket() {
-		return ticket;
-	}
-
-	public void setTicket(TicketDO ticket) {
-		this.ticket = ticket;
-	}
-
 	@Override
 	public String execute() throws Exception {
 		if(ticket!=null && StringUtils.isNotBlank(ticket.getTicketId())){
@@ -103,4 +68,40 @@ public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
 		return ticket ;
 	}
 
+	/**-----------------------------------------------------------------**/
+	public List<String> getPayTypesList() {
+		return payTypesList;
+	}
+
+	public void setPayTypesList(List<String> payTypesList) {
+		this.payTypesList = payTypesList;
+	}
+
+	public List<String> getImagesList() {
+		return imagesList;
+	}
+
+	public void setImagesList(List<String> imagesList) {
+		this.imagesList = imagesList;
+	}
+
+	public List<String> getProductTypesList() {
+		return productTypesList;
+	}
+
+	public void setProductTypesList(List<String> productTypesList) {
+		this.productTypesList = productTypesList;
+	}
+	
+	public void setTicketService(TicketService ticketService) {
+		this.ticketService = ticketService;
+	}
+
+	public TicketDO getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(TicketDO ticket) {
+		this.ticket = ticket;
+	}
 }

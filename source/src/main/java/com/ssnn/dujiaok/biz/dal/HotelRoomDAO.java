@@ -30,7 +30,7 @@ public interface HotelRoomDAO {
 	 * 更新room
 	 * @param HotelRoom
 	 */
-	void updateRoom(HotelRoomDO hotelRoom) ;
+	void updateRoom(HotelRoomDO room) ;
 	
 	/**
 	 * 查询HotelRoom

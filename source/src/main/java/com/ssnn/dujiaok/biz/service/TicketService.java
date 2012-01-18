@@ -1,9 +1,6 @@
 package com.ssnn.dujiaok.biz.service;
 
-import java.util.List;
-
 import com.ssnn.dujiaok.model.TicketDO;
-import com.ssnn.dujiaok.model.TicketDetailDO;
 
 /**
  * TicketService
@@ -26,11 +23,6 @@ public interface TicketService {
 	 */
 	TicketDO getTicketWithDetails(String ticketId) ;
 	
-	/**
-	 * 创建Ticket,不包含detail
-	 * @param ticket
-	 */
-	TicketDO createTicket(TicketDO ticket) ;
 	
 	/**
 	 * 创建Ticket,包含detail
@@ -38,11 +30,6 @@ public interface TicketService {
 	 */
 	TicketDO createTicketAndDetails(TicketDO ticket) ;
 	
-	/**
-	 * 更新Ticket,不包含detail
-	 * @param ticket
-	 */
-	TicketDO updateTicket(TicketDO ticket) ;
 	
 	/**
 	 * 创建Ticket,包含Detail
@@ -50,15 +37,4 @@ public interface TicketService {
 	 */
 	TicketDO updateTicketAndDetails(TicketDO ticket) ;
 	
-	/**
-	 * 删除detail
-	 * @param ticketId
-	 */
-	void removeTicketDetails(String ticketId) ;
-	
-	/**
-	 * 创建detail
-	 * @param details
-	 */
-	void createTicketDetails(List<TicketDetailDO> details) ;
 }

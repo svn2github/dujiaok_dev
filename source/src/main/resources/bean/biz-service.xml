@@ -19,5 +19,6 @@
 	<bean id="orderService" class="com.ssnn.dujiaok.biz.service.order.impl.OrderServiceImpl"></bean>
 	<bean id="ticketService" class="com.ssnn.dujiaok.biz.service.impl.TicketServiceImpl"></bean>
 	<bean id="hotelService" class="com.ssnn.dujiaok.biz.service.impl.HotelServiceImpl"></bean>
+	<bean id="hotelRoomService" class="com.ssnn.dujiaok.biz.service.impl.HotelRoomServiceImpl"></bean>
 	<bean id="adminService" class="com.ssnn.dujiaok.biz.service.impl.AdminServiceImpl"></bean>
 </beans>
