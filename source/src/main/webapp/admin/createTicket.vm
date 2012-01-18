@@ -16,11 +16,11 @@
 			<span>产品名称：</span><span><input type="text" id='name' name='name' value="$!ticket.name" /></span>
 		</div>
 		<div>出行日期</div>
-		<div id="trips">
+		<div id="times">
     		#foreach($!ticketDetail in $!ticket.ticketDetails)
     			#set($count = $velocityCount)
     			#set($count = $count - 1)
-        		<div id="trip$!count">
+        		<div id="time$!count">
 					<input type="hidden" value="$!ticketDetail.id" name="ticketDetails[$count].id"/>
 					<input type="hidden" value="$!ticketId" name="ticketDetails[$count].ticketId"/>
         			<input type="text" value="$dateUtils.format($!ticketDetail.gmtStart,'yyyy-MM-dd')"  id="gmtStart[$!count]" name="ticketDetails[$count].gmtStart"/> 
@@ -33,7 +33,7 @@
         		</div>
 			#end
 		</div>
-		<input type="button" value="增加出行日期" onclick="appendTrip() ;"/>
+		<input type="button" value="增加出行日期" onclick="addTime() ;"/>
 		<div>
 			<span>市场价：</span><span><input type="text" id='marketPrice' name='marketPrice' value="$!ticket.marketPrice"/></span>
 		</div>
@@ -75,7 +75,7 @@
 				</div>
 			#end
 		</div>
-		<input type="button" value="增加图片" onclick="appendImage() ;"/>
+		<input type="button" value="增加图片" onclick="addImage() ;"/>
 		<div>
 			<span>产品简介：</span>
             <span><textarea id='introduction' name='introduction' cols="10" rows="8">$!ticket.introduction</textarea></span>
@@ -103,7 +103,7 @@
 #JS(["validator.js"])
 <script type="text/javascript">
 
-	    var lastTicketDetailsIndex = $collectionUtils.size($!ticket.ticketDetails) ; //行程个数
+	    var lastDetailsIndex = $collectionUtils.size($!ticket.ticketDetails) ; //行程个数
 		var lastImagesIndex = $collectionUtils.size($imagesList) ; //上传照片个数
 				
 		var attachDatePicker = function(id){
@@ -121,12 +121,12 @@
             }});
 		}		
 		
-		var appendTrip = function(){
-			var i = lastTicketDetailsIndex  ;
+		var addTime = function(){
+			var i = lastDetailsIndex  ;
 			
 			var divElement = document.createElement('div') ;
-			divElement.id = 'trip' + i ;
-			$('trips').appendChild(divElement) ;
+			divElement.id = 'time' + i ;
+			$('times').appendChild(divElement) ;
 						
 			var innerHTML = '<input type="hidden" name="ticketDetails['+i+'].id"/>' +
 			'<input type="text" id="gmtStart['+i+']" name="ticketDetails['+i+'].gmtStart"/>' + 
@@ -136,14 +136,14 @@
 			if(i > 0){
 				innerHTML += '<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />' ;
 			}
-			$('trip'+i).innerHTML = innerHTML ;
+			$('time'+i).innerHTML = innerHTML ;
 			attachDatePicker('gmtStart['+i+']') ;
 			attachDatePicker('gmtEnd['+i+']') ;
-			lastTicketDetailsIndex++ ;
+			lastDetailsIndex ++ ;
 			
 		}
 				
-		for(var i=0 ;i<lastTicketDetailsIndex;i++){
+		for(var i=0 ;i<lastDetailsIndex;i++){
 			///////datepicker
 			attachDatePicker('gmtStart['+i+']') ;
 			attachDatePicker('gmtEnd['+i+']') ;
@@ -155,7 +155,7 @@
 		
 		
 		
-		var appendImage = function(){
+		var addImage = function(){
 			var i = lastImagesIndex  ;
 			if(i > 3){
 				return ;
@@ -172,11 +172,11 @@
 		}
 		
 		///初始化
-		if(lastTicketDetailsIndex <= 0){
-			appendTrip() ;	
+		if(lastDetailsIndex <= 0){
+			addTime() ;	
 		}
 		if(lastImagesIndex <= 0){
-			appendImage() ;
+			addImage() ;
 		}
 		
 </script>

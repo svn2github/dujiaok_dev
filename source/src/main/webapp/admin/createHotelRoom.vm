@@ -23,7 +23,7 @@
     		#foreach($!roomDetail in $!room.roomDetails)
     			#set($count = $velocityCount)
     			#set($count = $count - 1)
-        		<div id="trip$!count">
+        		<div id="time$!count">
 					<input type="hidden" value="$!roomDetail.id" name="roomDetails[$count].id"/>
 					<input type="hidden" value="$!roomId" name="roomDetails[$count].roomId"/>
         			<input type="text" value="$dateUtils.format($!roomDetail.gmtStart,'yyyy-MM-dd')"  id="gmtStart[$!count]" name="roomDetails[$count].gmtStart"/> 
