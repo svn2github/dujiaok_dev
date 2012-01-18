@@ -1,6 +1,7 @@
 package com.ssnn.dujiaok.model;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -51,6 +52,30 @@ public class HotelRoomDO {
 	private String roomArea ;
 	
 	/**
+	 * 房间图片
+	 */
+	private String images ;
+	
+	/**
+	 * 配套
+	 */
+	private String roomFacilities ;
+	
+	/**
+	 * 介绍
+	 */
+	private String introduction ;
+	
+	/**
+	 * 备注
+	 */
+	private String memo ;
+	
+	private Date gmtCreate ;
+	
+	private Date gmtModified ;
+	
+	/**
 	 * 
 	 */
 	private List<HotelRoomDetailDO> roomDetails ;
@@ -62,6 +87,22 @@ public class HotelRoomDO {
 
 	public void setRoomDetails(List<HotelRoomDetailDO> roomDetails) {
 		this.roomDetails = roomDetails;
+	}
+
+	public Date getGmtCreate() {
+		return gmtCreate;
+	}
+
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
+
+	public Date getGmtModified() {
+		return gmtModified;
+	}
+
+	public void setGmtModified(Date gmtModified) {
+		this.gmtModified = gmtModified;
 	}
 
 	public int getId() {
@@ -126,6 +167,38 @@ public class HotelRoomDO {
 
 	public void setRoomArea(String roomArea) {
 		this.roomArea = roomArea;
+	}
+
+	public String getImages() {
+		return images;
+	}
+
+	public void setImages(String images) {
+		this.images = images;
+	}
+
+	public String getRoomFacilities() {
+		return roomFacilities;
+	}
+
+	public void setRoomFacilities(String roomFacilities) {
+		this.roomFacilities = roomFacilities;
+	}
+
+	public String getIntroduction() {
+		return introduction;
+	}
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 	
 }

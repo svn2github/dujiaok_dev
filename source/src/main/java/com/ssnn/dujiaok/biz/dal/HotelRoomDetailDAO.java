@@ -12,20 +12,20 @@ import com.ssnn.dujiaok.model.HotelRoomDetailDO;
 public interface HotelRoomDetailDAO {
 
 	/**
-	 * 
+	 * 查询 RoomDetail
 	 * @param roomId
 	 * @return
 	 */
-	List<HotelRoomDetailDO> queryRoomDetail(String roomId) ;
+	List<HotelRoomDetailDO> queryRoomDetails(String roomId) ;
 	
 	/**
-	 * 
+	 * 插入 RoomDetail
 	 * @param roomDetail
 	 */
 	void insertRoomDetail(HotelRoomDetailDO roomDetail) ;
 	
 	/**
-	 * 
+	 * 删除 RoomDetail
 	 * @param roomId
 	 */
 	void deleteRoomDetails(String roomId) ;

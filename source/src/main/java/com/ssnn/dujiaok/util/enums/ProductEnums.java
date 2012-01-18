@@ -16,6 +16,10 @@ public enum ProductEnums {
 	 */
 	HOTEL("JD") ,
 	/**
+	 * 酒店房间
+	 */
+	HOTEL_ROOM("FJ") ,
+	/**
 	 * 自驾
 	 */
 	SELFDRIVE("ZJ") ,

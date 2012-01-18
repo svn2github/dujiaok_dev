@@ -12,6 +12,7 @@ public class Pagination {
 	 */
 	private static final int DEFAULT_SIZE = 20 ;
 	
+	@SuppressWarnings("unused")
 	private Pagination(){
 		
 	}
@@ -30,8 +31,14 @@ public class Pagination {
 		this(start,DEFAULT_SIZE) ;
 	}
 
+	/**
+	 * 开始记录数,start from 1
+	 */
 	private int start ;
 	
+	/**
+	 * 一次取出记录条数
+	 */
 	private int size ;
 
 	public int getStart() {

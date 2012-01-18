@@ -29,7 +29,7 @@ public class IBatisTicketDAO extends SqlMapClientDaoSupport implements TicketDAO
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<TicketDO> queryTickets(Map<String, Object> condition,Pagination pagination) {
-		condition.put("start", pagination.getStart()) ;
+		condition.put("start", pagination.getStart()-1) ;
 		condition.put("size", pagination.getSize()) ;
 		return getSqlMapClientTemplate().queryForList("ticket.queryTickets", condition);
 	}

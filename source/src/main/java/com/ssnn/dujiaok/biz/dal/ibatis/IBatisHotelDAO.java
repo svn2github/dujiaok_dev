@@ -34,7 +34,7 @@ public class IBatisHotelDAO extends SqlMapClientDaoSupport implements HotelDAO {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<HotelDO> queryHotel(Map<String, Object> condition,Pagination pagination) {
-		condition.put("start", pagination.getStart()) ;
+		condition.put("start", pagination.getStart()-1) ;
 		condition.put("size", pagination.getSize()) ;
 		return getSqlMapClientTemplate().queryForList("hotel.queryHotels", condition);
 	}
