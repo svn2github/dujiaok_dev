@@ -97,6 +97,11 @@
 			</dependency>
 			<dependency>
 				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-json-plugin</artifactId>
+				<version>2.2.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.struts</groupId>
 				<artifactId>struts2-spring-plugin</artifactId>
 				<version>2.2.3</version>
 			</dependency>
@@ -143,13 +148,16 @@
 				<artifactId>velocity-tools</artifactId>
 				<version>2.0</version>
 			</dependency>
-
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>4.10</version>
 			</dependency>
-
+			<dependency>
+				<groupId>net.sf.ezmorph</groupId>
+				<artifactId>ezmorph</artifactId>
+				<version>1.0.6</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -166,7 +174,6 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>c3p0</groupId>
 			<artifactId>c3p0</artifactId>
@@ -174,6 +181,10 @@
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-json-plugin</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.struts</groupId>
@@ -251,11 +262,20 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>commons-httpclient</groupId>
 			<artifactId>commons-httpclient</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>net.sf.ezmorph</groupId>
+			<artifactId>ezmorph</artifactId>
+		</dependency>
+		<dependency>
+				<groupId>net.sf.json-lib</groupId> 
+  				<artifactId>json-lib</artifactId> 
+				<version>2.3</version>
+			        <classifier>jdk15</classifier>	
+			</dependency>
 	</dependencies>
 	<build>
 		<plugins>

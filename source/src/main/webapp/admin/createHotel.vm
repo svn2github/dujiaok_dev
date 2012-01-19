@@ -16,7 +16,7 @@
 		</div>
 		<div>
 			<span>所在地：</span>
-			<span><input type="text" id='destProvince'  name='destProvince' value="$!hotel.destProvince"/>省  <input id='destCity' name='destCity' value="$!hotel.destCity"/>市  <input id='destArea' name='destArea' value="$!hotel.destArea"/>区</span>
+            <span><select id='destProvince'  name='destProvince' onchange="selectProvince();"></select>省  <select id='destCity' name='destCity' onchange="selectCity();"></select>市  <select id='destArea' name='destArea' ></select>区</span>
 		</div>
 		<div>
 			<span>详细地址：</span>
@@ -69,20 +69,11 @@
 	
 	</form>
 </div>
-#XUI_JS(["core/xui-core.js"])
-#JS(["validator.js"])
+#XUI_JS(["core/xui-core.js","util/util-min.js"])
+#JS(["validator.js","dujiaok.js"])
 <script type="text/javascript">
 	var starRate = '$!hotel.starRate' ;
-	var select = $('starRate') ;
-	var options = select.options ;
-	for(var i=0 ;i<options.length;i++){
-		if(options[i].value == starRate){
-			options[i].selected = true ;
-			break ;
-		}
 		
-	}
-	
 	var lastImagesIndex = $collectionUtils.size($imagesList) ; //上传照片个数
 	
 	var removeElement = function(ele){
@@ -107,7 +98,31 @@
 	
 	///初始化
 	
+	var selectProvince = function (){
+		var select = $('destProvince') ;
+		var name = select.options[select.selectedIndex].value ;
+		initAddressSelect(url,'destCity','city','',name) ;
+		$('destArea').options.length = 0 ;
+	}
+	
+	var selectCity = function(){
+		var select = $('destCity') ;
+		var name = select.options[select.selectedIndex].value ;
+		initAddressSelect(url,'destArea','area','',name) ;
+	}
+	
+	//省市地区
+	var province = '$!hotel.destProvince' ;
+	var city = '$!hotel.destCity' ;
+	var area = '$!hotel.destArea' ;
+	var url = '${env.root}/ajax/address.htm' ;	
+
 	if(lastImagesIndex <= 0){
 		addImage() ;
 	}
+	
+	setupSelect('starRate',starRate) ;
+	initAddressSelect(url,'destProvince','province',province) ;
+	initAddressSelect(url,'destCity','city',city,province) ;
+	initAddressSelect(url,'destArea','area',area,city) ;
 </script>

@@ -21,4 +21,5 @@
 	<bean id="hotelService" class="com.ssnn.dujiaok.biz.service.impl.HotelServiceImpl"></bean>
 	<bean id="hotelRoomService" class="com.ssnn.dujiaok.biz.service.impl.HotelRoomServiceImpl"></bean>
 	<bean id="adminService" class="com.ssnn.dujiaok.biz.service.impl.AdminServiceImpl"></bean>
+	<bean id="selfDriveService" class="com.ssnn.dujiaok.biz.service.impl.SelfDriveServiceImpl"></bean>
 </beans>

@@ -102,19 +102,11 @@
 </div>
 
 #XUI_JS(["core/xui-core.js","util/util-min.js","simple-date/xui-simple-datepicker.js"])
-#JS(["validator.js"])
+#JS(["validator.js","dujiaok.js"])
 <script type="text/javascript">
 	
 	var bed = '$!room.bed' ;
-	var select = $('bed') ;
-	var options = select.options ;
-	for(var i=0 ;i<options.length;i++){
-		if(options[i].value == bed){
-			options[i].selected = true ;
-			break ;
-		}
-		
-	}
+	
 
 ////////////////////////////
 
@@ -194,4 +186,6 @@
 			addImage() ;
 		}
 		
+		
+		setupSelect('bed',bed) ;
 </script>

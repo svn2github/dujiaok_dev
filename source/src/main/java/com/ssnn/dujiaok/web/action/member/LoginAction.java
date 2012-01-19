@@ -9,8 +9,6 @@ import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.util.WhitelistUtils;
 import com.ssnn.dujiaok.web.action.BasicAction;
 import com.ssnn.dujiaok.web.constant.SessionConstant;
-import com.ssnn.dujiaok.web.context.ContextHolder;
-import com.ssnn.dujiaok.web.context.RequestContext;
 import com.ssnn.dujiaok.web.session.SessionManager;
 
 /**
@@ -92,14 +90,5 @@ public class LoginAction extends BasicAction implements ValidationAware{
 		getSession().clear() ;
 		return SUCCESS ;
 	}
-	
-	private boolean isSafeUrl(String url){
-		if(!StringUtils.startsWith(url, "http")){
-			return false ;
-		}
-		//white list 
-		return true ;
-	}
-	
-	
+		
 }

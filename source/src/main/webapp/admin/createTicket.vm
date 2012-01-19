@@ -46,7 +46,7 @@
 		</div>
 		<div>
 			<span>所在地：</span>
-			<span><input type="text" id='destProvince'  name='destProvince' value="$!ticket.destProvince"/>省  <input id='destCity' name='destCity' value="$!ticket.destCity"/>市  <input id='destArea' name='destArea' value="$!ticket.destArea"/>区</span>
+            <span><select id='destProvince'  name='destProvince' onchange="selectProvince();"></select>省  <select id='destCity' name='destCity' onchange="selectCity();"></select>市  <select id='destArea' name='destArea' ></select>区</span>
 		</div>
 		<div>
 			<span>详细地址：</span>
@@ -100,7 +100,7 @@
 </div>
 
 #XUI_JS(["core/xui-core.js","util/util-min.js","simple-date/xui-simple-datepicker.js"])
-#JS(["validator.js"])
+#JS(["validator.js","dujiaok.js"])
 <script type="text/javascript">
 
 	    var lastDetailsIndex = $collectionUtils.size($!ticket.ticketDetails) ; //行程个数
@@ -171,6 +171,25 @@
 			lastImagesIndex ++ ;
 		}
 		
+		var selectProvince = function (){
+			var select = $('destProvince') ;
+			var name = select.options[select.selectedIndex].value ;
+			initAddressSelect(url,'destCity','city','',name) ;
+			$('destArea').options.length = 0 ;
+		}
+		
+		var selectCity = function(){
+			var select = $('destCity') ;
+			var name = select.options[select.selectedIndex].value ;
+			initAddressSelect(url,'destArea','area','',name) ;
+		}
+		
+		//省市地区
+		var province = '$!ticket.destProvince' ;
+		var city = '$!ticket.destCity' ;
+		var area = '$!ticket.destArea' ;
+		var url = '${env.root}/ajax/address.htm' ;	
+		
 		///初始化
 		if(lastDetailsIndex <= 0){
 			addTime() ;	
@@ -179,4 +198,8 @@
 			addImage() ;
 		}
 		
+		initAddressSelect(url,'destProvince','province',province) ;
+		initAddressSelect(url,'destCity','city',city,province) ;
+		initAddressSelect(url,'destArea','area',area,city) ;
+				
 </script>

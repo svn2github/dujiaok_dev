@@ -25,7 +25,8 @@
 	<bean id="hotelRoomDetailDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisHotelRoomDetailDAO"></bean>
 	<bean id="selfDriveDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisSelfDriveDAO"></bean>
 	<bean id="selfDriveDetailDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisSelfDriveDetailDAO"></bean>
-	
+	<bean id="addressDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisAddressDAO"></bean>
+		
 	<bean id="productDao" class="com.ssnn.dujiaok.biz.dal.product.impl.ProductDaoImpl"></bean>
 	
 	<bean id="tourDao" class="com.ssnn.dujiaok.biz.dal.tour.impl.TourDaoImpl"></bean>
