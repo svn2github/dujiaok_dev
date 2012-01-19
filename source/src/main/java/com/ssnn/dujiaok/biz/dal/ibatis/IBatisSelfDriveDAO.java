@@ -27,7 +27,7 @@ public class IBatisSelfDriveDAO extends SqlMapClientDaoSupport implements SelfDr
 	}
 
 	@Override
-	public void updateSelfDriveDO(SelfDriveDO selfDrive) {
+	public void updateSelfDrive(SelfDriveDO selfDrive) {
 		getSqlMapClientTemplate().update("selfDrive.updateSelfDrive" , selfDrive) ;
 	}
 

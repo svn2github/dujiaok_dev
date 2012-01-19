@@ -1,10 +1,15 @@
 package com.ssnn.dujiaok.biz.service.impl;
 
+import java.util.Date;
+import java.util.List;
+
 import com.ssnn.dujiaok.biz.dal.SelfDriveDAO;
 import com.ssnn.dujiaok.biz.dal.SelfDriveDetailDAO;
 import com.ssnn.dujiaok.biz.service.SelfDriveService;
 import com.ssnn.dujiaok.model.SelfDriveDO;
-import com.ssnn.dujiaok.model.TicketDO;
+import com.ssnn.dujiaok.model.SelfDriveDetailDO;
+import com.ssnn.dujiaok.util.UniqueIDUtil;
+import com.ssnn.dujiaok.util.enums.ProductEnums;
 
 /**
  * 
@@ -26,27 +31,67 @@ public class SelfDriveServiceImpl implements SelfDriveService{
 	}
 
 	@Override
-	public TicketDO getSelfDrive(String selfDriveId) {
-		// TODO Auto-generated method stub
-		return null;
+	public SelfDriveDO getSelfDrive(String selfDriveId) {
+		return selfDriveDAO.querySelfDrive(selfDriveId) ;
 	}
 
 	@Override
-	public TicketDO getSelfDriveWithDetails(String selfDriveId) {
-		// TODO Auto-generated method stub
-		return null;
+	public SelfDriveDO getSelfDriveWithDetails(String selfDriveId) {
+		SelfDriveDO selfDrive = selfDriveDAO.querySelfDrive(selfDriveId) ;
+		if(selfDrive != null){
+			List<SelfDriveDetailDO> details = selfDriveDetailDAO.querySelfDriveDetails(selfDriveId) ;
+			selfDrive.setDetails(details) ;
+		}
+		return selfDrive ;
 	}
 
 	@Override
-	public TicketDO createSelfDriveAndDetails(SelfDriveDO selfDrive) {
-		// TODO Auto-generated method stub
-		return null;
+	public SelfDriveDO createSelfDriveAndDetails(SelfDriveDO selfDrive) {
+		List<SelfDriveDetailDO> details = selfDrive.getDetails() ;
+		if(details!=null){
+			Date gmtExpire = getExpireDate(details) ;
+			selfDrive.setGmtExpire(gmtExpire) ;
+			selfDrive.setSelfDriveId(UniqueIDUtil.getUniqueID(ProductEnums.SELFDRIVE)) ;
+			selfDriveDAO.insertSelfDrive(selfDrive) ;
+			for(SelfDriveDetailDO detail : details){
+				detail.setSelfDriveId(selfDrive.getSelfDriveId()) ;
+				selfDriveDetailDAO.insertSelfDriveDetail(detail) ;
+			}
+		}
+		return selfDrive ;
 	}
 
 	@Override
-	public TicketDO updateSelfDriveAndDetails(SelfDriveDO selfDrive) {
-		// TODO Auto-generated method stub
-		return null;
+	public SelfDriveDO updateSelfDriveAndDetails(SelfDriveDO selfDrive) {
+		List<SelfDriveDetailDO> details = selfDrive.getDetails() ;
+		if(details!=null){
+			//删除之前的detail 重新插入
+			selfDriveDetailDAO.deleteSelfDriveDetails(selfDrive.getSelfDriveId()) ;
+			Date gmtExpire = getExpireDate(details) ;
+			selfDrive.setGmtExpire(gmtExpire) ;
+			selfDriveDAO.updateSelfDrive(selfDrive) ;
+			for(SelfDriveDetailDO detail : details){
+				detail.setSelfDriveId(selfDrive.getSelfDriveId()) ;
+				selfDriveDetailDAO.insertSelfDriveDetail(detail) ;
+			}
+		}
+		return selfDrive ;
+	}
+	
+	
+	private Date getExpireDate(List<SelfDriveDetailDO> details){
+		Date gmtExpire = null ;
+		for(SelfDriveDetailDO detail : details){
+			Date gmtEnd = detail.getGmtEnd() ;
+			if(gmtExpire == null){
+				gmtExpire = gmtEnd ;
+			}else{
+				if(gmtExpire.before(gmtEnd)){
+					gmtExpire = gmtEnd ;
+				}
+			}
+		}
+		return gmtExpire ;
 	}
 
 }

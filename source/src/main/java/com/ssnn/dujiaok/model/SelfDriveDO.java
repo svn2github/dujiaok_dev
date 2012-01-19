@@ -2,6 +2,7 @@ package com.ssnn.dujiaok.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 自驾
@@ -65,6 +66,16 @@ public class SelfDriveDO extends AbstractProduct {
 	 * 过期时间
 	 */
 	private Date gmtExpire ;
+	
+	private List<SelfDriveDetailDO> details ;
+	
+	public List<SelfDriveDetailDO> getDetails() {
+		return details;
+	}
+
+	public void setDetails(List<SelfDriveDetailDO> details) {
+		this.details = details;
+	}
 
 	public Date getGmtExpire() {
 		return gmtExpire;

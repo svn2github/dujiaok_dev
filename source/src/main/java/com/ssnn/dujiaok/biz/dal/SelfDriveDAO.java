@@ -30,7 +30,7 @@ public interface SelfDriveDAO {
 	 * 
 	 * @param selfDrive
 	 */
-	void updateSelfDriveDO(SelfDriveDO selfDrive) ;
+	void updateSelfDrive(SelfDriveDO selfDrive) ;
 	
 	/**
 	 * 查询SelfDrive

@@ -1,7 +1,6 @@
 package com.ssnn.dujiaok.biz.service;
 
 import com.ssnn.dujiaok.model.SelfDriveDO;
-import com.ssnn.dujiaok.model.TicketDO;
 
 /**
  * 自驾
@@ -15,26 +14,26 @@ public interface SelfDriveService {
 	 * @param selfDriveId
 	 * @return
 	 */
-	TicketDO getSelfDrive(String selfDriveId) ;
+	SelfDriveDO getSelfDrive(String selfDriveId) ;
 	
 	/**
 	 * 获取SelfDrive,包含detail
 	 * @param selfDriveId
 	 * @return
 	 */
-	TicketDO getSelfDriveWithDetails(String selfDriveId) ;
+	SelfDriveDO getSelfDriveWithDetails(String selfDriveId) ;
 	
 	
 	/**
 	 * 创建SelfDrive,包含detail
 	 * @param selfDriveId
 	 */
-	TicketDO createSelfDriveAndDetails(SelfDriveDO selfDrive) ;
+	SelfDriveDO createSelfDriveAndDetails(SelfDriveDO selfDrive) ;
 	
 	
 	/**
 	 * 创建SelfDrive,包含Detail
 	 * @param selfDriveId
 	 */
-	TicketDO updateSelfDriveAndDetails(SelfDriveDO selfDrive) ;
+	SelfDriveDO updateSelfDriveAndDetails(SelfDriveDO selfDrive) ;
 }
