@@ -15,6 +15,7 @@ import com.ssnn.dujiaok.web.action.BasicAction;
  * @author shenjia.caosj 2012-1-17
  *
  */
+@SuppressWarnings("serial")
 public class HotelAction extends BasicAction implements ModelDriven<HotelDO>{
 
 	private HotelDO hotel = new HotelDO() ;

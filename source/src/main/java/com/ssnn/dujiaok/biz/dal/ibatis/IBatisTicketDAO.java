@@ -8,6 +8,7 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import com.ssnn.dujiaok.biz.dal.TicketDAO;
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.model.TicketDO;
+import com.ssnn.dujiaok.util.IntegerUtils;
 
 public class IBatisTicketDAO extends SqlMapClientDaoSupport implements TicketDAO {
 
@@ -34,6 +35,9 @@ public class IBatisTicketDAO extends SqlMapClientDaoSupport implements TicketDAO
 		return getSqlMapClientTemplate().queryForList("ticket.queryTickets", condition);
 	}
 
-	
+	@Override
+	public int countTickets(Map<String, Object> condition) {
+		return IntegerUtils.objectToInt(getSqlMapClientTemplate().queryForObject("ticket.countTickets", condition));
+	}
 
 }

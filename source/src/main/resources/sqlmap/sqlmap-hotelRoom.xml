@@ -55,8 +55,8 @@
 	
 	<select id="queryRooms" resultMap="RM-HotelRoom">
 		SELECT * FROM DJ_HOTEL_ROOM WHERE 1=1 
-		<isNotEmpty property="roomId" prepend="AND">
-			ROOM_ID = #roomId#
+		<isNotEmpty property="productId" prepend="AND">
+			ROOM_ID = #productId#
 		</isNotEmpty>
 		<isNotEmpty property="hotelId" prepend="AND">
 			HOTEL_ID = #hotelId#
@@ -67,4 +67,16 @@
 		ORDER BY GMT_MODIFIED LIMIT #start# , #size# 
 	</select>
 
+	<select id="countRooms" resultClass="Integer">
+		SELECT count(*) FROM DJ_HOTEL_ROOM WHERE 1=1 
+		<isNotEmpty property="productId" prepend="AND">
+			ROOM_ID = #productId#
+		</isNotEmpty>
+		<isNotEmpty property="hotelId" prepend="AND">
+			HOTEL_ID = #hotelId#
+		</isNotEmpty>
+		<isNotEmpty property="name" prepend="AND">
+			NAME LIKE CONCAT('%',#name#,'%')
+		</isNotEmpty>
+	</select>
 </sqlMap>

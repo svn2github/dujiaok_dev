@@ -1,9 +1,12 @@
 package com.ssnn.dujiaok.biz.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ssnn.dujiaok.biz.dal.HotelRoomDAO;
 import com.ssnn.dujiaok.biz.dal.HotelRoomDetailDAO;
+import com.ssnn.dujiaok.biz.page.Pagination;
+import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.service.HotelRoomService;
 import com.ssnn.dujiaok.model.HotelRoomDO;
 import com.ssnn.dujiaok.model.HotelRoomDetailDO;
@@ -68,6 +71,15 @@ public class HotelRoomServiceImpl implements HotelRoomService{
 			}
 		}
 		return room ;
+	}
+
+	@Override
+	public QueryResult<HotelRoomDO> getRooms(Map<String, Object> condition,Pagination pagination) {
+		
+		pagination.setTotalCount(hotelRoomDAO.countRooms(condition)) ;
+		List<HotelRoomDO> items = hotelRoomDAO.queryRooms(condition, pagination) ;
+		QueryResult<HotelRoomDO> result = new QueryResult<HotelRoomDO>(items,pagination) ;
+		return result ;
 	}
 
 }

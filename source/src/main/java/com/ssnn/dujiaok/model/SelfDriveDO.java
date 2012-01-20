@@ -17,6 +17,11 @@ public class SelfDriveDO extends AbstractProduct {
 	private String selfDriveId ;
 	
 	/**
+	 * 附加产品
+	 */
+	private String addProducts ;
+	
+	/**
 	 * 市场价
 	 */
 	private BigDecimal marketPrice ;
@@ -179,6 +184,14 @@ public class SelfDriveDO extends AbstractProduct {
 
 	public void setProductTypes(String productTypes) {
 		this.productTypes = productTypes;
+	}
+
+	public String getAddProducts() {
+		return addProducts;
+	}
+
+	public void setAddProducts(String addProducts) {
+		this.addProducts = addProducts;
 	}
 	
 	

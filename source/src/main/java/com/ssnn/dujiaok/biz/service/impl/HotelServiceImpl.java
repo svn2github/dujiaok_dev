@@ -1,6 +1,11 @@
 package com.ssnn.dujiaok.biz.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import com.ssnn.dujiaok.biz.dal.HotelDAO;
+import com.ssnn.dujiaok.biz.page.Pagination;
+import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.service.HotelService;
 import com.ssnn.dujiaok.model.HotelDO;
 import com.ssnn.dujiaok.util.UniqueIDUtil;
@@ -30,6 +35,16 @@ public class HotelServiceImpl implements HotelService{
 	public HotelDO updateHotel(HotelDO hotel) {
 		hotelDAO.updateHotel(hotel) ;
 		return hotel ;
+	}
+	
+	@Override
+	public QueryResult<HotelDO> getHotels(Map<String,Object> condition , Pagination pagination) {
+		int count = hotelDAO.countHotels(condition) ;
+		pagination.setTotalCount(count) ;
+		
+		List<HotelDO> items = hotelDAO.queryHotel(condition, pagination) ;
+		
+		return new QueryResult<HotelDO>(items, pagination) ;
 	}
 
 }

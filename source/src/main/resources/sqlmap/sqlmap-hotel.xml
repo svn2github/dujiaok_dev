@@ -58,8 +58,8 @@
 	
 	<select id="queryHotels" resultMap="RM-Hotel">
 		SELECT * FROM DJ_HOTEL WHERE 1=1 
-		<isNotEmpty property="hotelId" prepend="AND">
-			HOTEL_ID = #hotelId#
+		<isNotEmpty property="productId" prepend="AND">
+			HOTEL_ID = #productId#
 		</isNotEmpty>
 		<isNotEmpty property="name" prepend="AND">
 			NAME LIKE CONCAT('%', #name#, '%')
@@ -71,6 +71,22 @@
 			DEST_CITY = #destCity#
 		</isNotEmpty>
 		ORDER BY GMT_MODIFIED LIMIT #start# , #size# 
+	</select>
+	
+	<select id="countHotels" resultClass="Integer">
+		SELECT count(*) FROM DJ_HOTEL WHERE 1=1 
+		<isNotEmpty property="productId" prepend="AND">
+			HOTEL_ID = #productId#
+		</isNotEmpty>
+		<isNotEmpty property="name" prepend="AND">
+			NAME LIKE CONCAT('%', #name#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="destProvince" prepend="AND">
+			DEST_PROVINCE = #destProvince#
+		</isNotEmpty>
+		<isNotEmpty property="destCity" prepend="AND">
+			DEST_CITY = #destCity#
+		</isNotEmpty>
 	</select>
 
 </sqlMap>

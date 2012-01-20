@@ -21,6 +21,10 @@
 		<scope>application</scope>
 		<class>com.ssnn.dujiaok.web.velocity.toolbox.DateUtilToolbox</class>
 	</tool>
-	
+	<tool>
+		<key>stringUtils</key>
+		<scope>application</scope>
+		<class>com.ssnn.dujiaok.web.velocity.toolbox.StringUtilsToolbox</class>
+	</tool>
 	
 </toolbox> 

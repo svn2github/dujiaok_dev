@@ -1,32 +1,35 @@
 #set($layout="/admin/default.vm")
-#set($title="度假OK - 后台 - 发布门票")
+#set($title="度假OK - 后台 - 发布自驾")
 #XUI_CSS(["common/reset.css","eshop/simple-date/xui-simple-datepicker.css"])
 ###################################################
 <div class="ucenter_right">
     <h2 class="B FS14">产品录入</h2>
 	
-	<form id="createTicketForm" name="createTicketForm" method="POST" action="${env.root}/admin/docreateTicket.htm" onsubmit="return Validator.validate(this,'admin');">
+	<form id="createSelfDriveForm" name="createSelfDriveForm" method="POST" action="${env.root}/admin/docreateSelfDrive.htm" onsubmit="return Validator.validate(this,'admin');">
     <input name="id"  type="hidden" value="$!id" />
-	<input name="ticketId"  type="hidden" value="$!ticketId" />
+	<input name="selfDriveId"  type="hidden" value="$!selfDriveId" />
 	<div class="us01">
 		<div>
-			<span>产品编号：</span><span>$!ticket.ticketId</span>
+			<span>编号：</span><span>$!selfDrive.selfDriveId</span>
 		</div>
         <div>
-			<span>产品名称：</span><span><input type="text" id='name' name='name' value="$!ticket.name" /></span>
+			<span>名称：</span><span><input type="text" id='name' name='name' value="$!selfDrive.name" /></span>
 		</div>
 		<div>出行日期</div>
 		<div id="times">
-    		#foreach($!ticketDetail in $!ticket.ticketDetails)
+    		#foreach($!detail in $!selfDrive.details)
     			#set($count = $velocityCount)
     			#set($count = $count - 1)
         		<div id="time$!count">
-					<input type="hidden" value="$!ticketDetail.id" name="ticketDetails[$count].id"/>
-					<input type="hidden" value="$!ticketId" name="ticketDetails[$count].ticketId"/>
-        			<input type="text" value="$dateUtils.format($!ticketDetail.gmtStart,'yyyy-MM-dd')"  id="gmtStart[$!count]" name="ticketDetails[$count].gmtStart"/> 
+					<input type="hidden" value="$!detail.id" name="details[$count].id"/>
+					<input type="hidden" value="$!detail.selfDriveId" name="details[$count].selfDriveId"/>
+        			<input type="text" value="$dateUtils.format($!detail.gmtStart,'yyyy-MM-dd')"  id="gmtStart[$!count]" name="details[$count].gmtStart"/> 
 					至  
-					<input type="text" value="$dateUtils.format($!ticketDetail.gmtEnd,'yyyy-MM-dd')"  id="gmtEnd[$!count]" name="ticketDetails[$count].gmtEnd"/>
-        			价格： <input type="text" value="$!ticketDetail.price" name="ticketDetails[$count].price" />
+					<input type="text" value="$dateUtils.format($!detail.gmtEnd,'yyyy-MM-dd')"  id="gmtEnd[$!count]" name="details[$count].gmtEnd"/>
+					<br/>
+        			单人价： <input type="text" value="$!detail.singlePrice" name="details[$count].singlePrice" />
+					双人价： <input type="text" value="$!detail.doublePrice" name="details[$count].doublePrice" />
+					儿童价： <input type="text" value="$!detail.childPrice" name="details[$count].childPrice" />
 					#if($count > 0)
 					<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />
 					#end
@@ -35,7 +38,13 @@
 		</div>
 		<input type="button" value="增加出行日期" onclick="addTime() ;"/>
 		<div>
-			<span>市场价：</span><span><input type="text" id='marketPrice' name='marketPrice' value="$!ticket.marketPrice"/></span>
+			<span>附加产品：</span>
+			<span>
+				<input type="checkbox" name="addProductsList" value="INSURANCE" #if( $collectionUtils.contains($!addProductsList,"INSURANCE"))checked#end />保险
+			</span>
+		</div>
+		<div>
+			<span>市场价：</span><span><input type="text" id='marketPrice' name='marketPrice' value="$!selfDrive.marketPrice"/></span>
 		</div>
 		<div>
 			<span>支付方式：</span>
@@ -45,12 +54,15 @@
 			</span>
 		</div>
 		<div>
+			<span>出游天数：</span><span><input type="text" id='days' name='days' value="$!selfDrive.days" /></span>
+		</div>
+		<div>
 			<span>所在地：</span>
             <span><select id='destProvince'  name='destProvince' onchange="selectProvince();"></select>省  <select id='destCity' name='destCity' onchange="selectCity();"></select>市  <select id='destArea' name='destArea' ></select>区</span>
 		</div>
 		<div>
 			<span>详细地址：</span>
-            <span><input type="text" id='destAddr'  name='destAddr' value="$!ticket.destAddr"/></span>
+            <span><input type="text" id='destAddr'  name='destAddr' value="$!selfDrive.destAddr"/></span>
 		</div>
 		<div>
 			<span>产品类别：</span>
@@ -78,19 +90,19 @@
 		<input type="button" value="增加图片" onclick="addImage() ;"/>
 		<div>
 			<span>产品简介：</span>
-            <span><textarea id='introduction' name='introduction' cols="10" rows="8">$!ticket.introduction</textarea></span>
+            <span><textarea id='introduction' name='introduction' cols="10" rows="8">$!selfDrive.introduction</textarea></span>
 		</div>
 		<div>
-			<span>注意事项：</span>
-            <span><textarea id='notice' name='notice' cols="10" rows="8">$!ticket.notice</textarea></span>
+			<span>行程：</span>
+            <span><textarea id='schedule' name='schedule' cols="10" rows="8">$!selfDrive.schedule</textarea></span>
 		</div>
 		<div>
 			<span>费用说明：</span>
-            <span><textarea id='feeDesc' name='feeDesc' cols="10" rows="8">$!ticket.feeDesc</textarea></span>
+            <span><textarea id='feeDesc' name='feeDesc' cols="10" rows="8">$!selfDrive.feeDesc</textarea></span>
 		</div>
 		<div>
 			<span>备注：</span>
-            <span><textarea id='memo' name='memo' cols="10" rows="8" >$!ticket.memo</textarea></span>
+            <span><textarea id='memo' name='memo' cols="10" rows="8" >$!selfDrive.memo</textarea></span>
 		</div>
 	</div>
 	
@@ -103,7 +115,7 @@
 #JS(["validator.js","dujiaok.js"])
 <script type="text/javascript">
 
-	    var lastDetailsIndex = $collectionUtils.size($!ticket.ticketDetails) ; //行程个数
+	    var lastDetailsIndex = $collectionUtils.size($!selfDrive.details) ; //行程个数
 		var lastImagesIndex = $collectionUtils.size($imagesList) ; //上传照片个数
 				
 		var attachDatePicker = function(id){
@@ -128,11 +140,13 @@
 			divElement.id = 'time' + i ;
 			$('times').appendChild(divElement) ;
 						
-			var innerHTML = '<input type="hidden" name="ticketDetails['+i+'].id"/>' +
-			'<input type="text" id="gmtStart['+i+']" name="ticketDetails['+i+'].gmtStart"/>' + 
+			var innerHTML = '<input type="hidden" name="details['+i+'].id"/>' +
+			'<input type="text" id="gmtStart['+i+']" name="details['+i+'].gmtStart"/>' + 
 			' 至 ' + 
-			'<input type="text"  id="gmtEnd['+i+']" name="ticketDetails['+i+'].gmtEnd"/>' +
-			'价格： <input type="text" name="ticketDetails['+i+'].price" /> '  ;
+			'<input type="text"  id="gmtEnd['+i+']" name="details['+i+'].gmtEnd"/> <br/>' +
+			'单人价： <input type="text" name="details['+i+'].singlePrice" /> '  +
+			'双人价： <input type="text" name="details['+i+'].doublePrice" /> '  + 
+			'儿童价： <input type="text" name="details['+i+'].childPrice" /> '  ;
 			if(i > 0){
 				innerHTML += '<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />' ;
 			}
@@ -185,9 +199,9 @@
 		}
 		
 		//省市地区
-		var province = '$!ticket.destProvince' ;
-		var city = '$!ticket.destCity' ;
-		var area = '$!ticket.destArea' ;
+		var province = '$!selfDrive.destProvince' ;
+		var city = '$!selfDrive.destCity' ;
+		var area = '$!selfDrive.destArea' ;
 		var url = '${env.root}/ajax/address.htm' ;	
 		
 		///初始化

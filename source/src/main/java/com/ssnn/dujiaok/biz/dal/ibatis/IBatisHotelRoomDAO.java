@@ -8,6 +8,7 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import com.ssnn.dujiaok.biz.dal.HotelRoomDAO;
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.model.HotelRoomDO;
+import com.ssnn.dujiaok.util.IntegerUtils;
 
 public class IBatisHotelRoomDAO extends SqlMapClientDaoSupport implements HotelRoomDAO{
 
@@ -32,6 +33,11 @@ public class IBatisHotelRoomDAO extends SqlMapClientDaoSupport implements HotelR
 		condition.put("start", pagination.getStart()-1) ;
 		condition.put("size", pagination.getSize()) ;
 		return getSqlMapClientTemplate().queryForList("hotel.queryRooms" , condition) ;
+	}
+
+	@Override
+	public int countRooms(Map<String, Object> condition) {
+		return IntegerUtils.objectToInt(getSqlMapClientTemplate().queryForObject("hotel.countRooms",condition)) ;
 	}
 
 }

@@ -1,0 +1,74 @@
+#set($layout="/admin/default.vm")
+#set($title="度假OK - 后台 - 门票")
+###################################################
+<div class="ucenter_right">
+	<form id="ticketlistForm" name="ticketlistForm" method="GET" action="${env.root}/admin/ticketlist.htm" onsubmit="return Validator.validate(this,'admin');">
+		
+    <div>
+		<input type="hidden" name="type" value="ticket"/>
+		<input type="hidden" name="start" id="start" value="1"/>
+		<input type="hidden" name="size" id="size" value="$size"/>
+		编号：<input type="text" name="productId" value="$!productId"/>
+		名称：<input type="text" name="name" value="$!name"/>
+		省：<input type="text" name="province" value="$!province"/>
+		市：<input type="text" name="city" value="$!city"/>
+		过期：
+		<select name="gmtExpire" id="gmtExpire">
+			<option value=''>全部</option>
+			<option value='$dateUtils.addDays($dateUtils.now(),0,"yyyy-MM-dd")'>已过期</option>
+			<option value='$dateUtils.addDays($dateUtils.now(),7,"yyyy-MM-dd")'>一周内过期</option>
+			<option value='$dateUtils.addDays($dateUtils.now(),30,"yyyy-MM-dd")'>一月内过期</option>
+        </select>
+		
+	</div>
+	
+	<div>
+		#parse('common/back_pagination.vm')
+		<table>
+			<thead>
+                <tr><td>编号</td><td>名称</td><td>所在地</td><td>到期时间</td><td>操作</td></tr>
+            </thead>
+			<tbody>
+				#foreach($ticket in $result.items)
+        			<tr>
+						<td>$!ticket.ticketId</td>
+						<td>$!ticket.name #if(!$stringUtils.isBlank($ticket.memo))[有备注]#end</td>
+						<td>$!ticket.destProvince $!ticket.destCity</td>
+						<td>$dateUtils.format($!ticket.gmtExpire,'yyyy-MM-dd')</td>
+                        <td>
+							<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createTicket.htm?ticketId=$ticket.ticketId');">复制链接</a>
+                            <a href="${env.root}/admin/createTicket.htm?ticketId=$ticket.ticketId">修改</a>
+							<a href="${env.root}/admin/delTicket.htm?ticketId=$ticket.ticketId">删除</a>
+						</td>
+					</tr>
+        		#end
+				
+            </tbody>
+        </table>
+		#parse('common/back_pagination.vm')
+	</div>
+	<button>查询</button>
+	
+	
+    </form>
+</div>
+
+#XUI_JS(["core/xui-core.js"])
+#JS(["validator.js","dujiaok.js"])
+<script type="text/javascript">
+	
+	var gmtExpire = '$dateUtils.format($!gmtExpire,"yyyy-MM-dd")' ;
+	setupSelect('gmtExpire',gmtExpire) ;
+	
+	var copy2clipboard = function(data){
+		setClipboard(data);
+		return false ;
+	}
+	
+	var toPage = function(page , size){
+		var start = (page-1) * size + 1;
+		$('start').value = start ;
+		$('size').value = size ;
+		document.forms[0].submit() ;
+	}
+</script>

@@ -72,5 +72,29 @@
 			<result name="success"  type="velocity">/admin/createHotelRoomSuccess.vm</result>
 		</action>
 		
+		
+		<action name="createSelfDrive" class="com.ssnn.dujiaok.web.action.admin.SelfDriveAction" >
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="velocity">/admin/createSelfDrive.vm</result>
+		</action>
+		
+		<action name="docreateSelfDrive" class="com.ssnn.dujiaok.web.action.admin.SelfDriveAction" method="create">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="redirect">/admin/createSelfDriveSuccess.htm?selfDriveId=${selfDriveId}</result>
+		</action>
+		
+		<action name="createSelfDriveSuccess" class="com.ssnn.dujiaok.web.action.admin.SelfDriveAction" method="success" >
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="velocity">/admin/createSelfDriveSuccess.vm</result>
+		</action>
+		
+		<action name="ticketlist" class="com.ssnn.dujiaok.web.action.admin.ProductListAction"  >
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="velocity">/admin/ticketlist.vm</result>
+		</action>
 	</package>
 </struts>

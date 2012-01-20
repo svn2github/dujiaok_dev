@@ -1,5 +1,10 @@
 package com.ssnn.dujiaok.biz.service;
 
+import java.util.List;
+import java.util.Map;
+
+import com.ssnn.dujiaok.biz.page.Pagination;
+import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.model.HotelRoomDO;
 
 /**
@@ -36,5 +41,13 @@ public interface HotelRoomService {
 	 * @return
 	 */
 	HotelRoomDO updateRoomAndDetails(HotelRoomDO room) ;
+	
+	/**
+	 * 查询
+	 * @param condition
+	 * @param pagination
+	 * @return
+	 */
+	QueryResult<HotelRoomDO> getRooms(Map<String,Object> condition , Pagination pagination) ;
 	
 }

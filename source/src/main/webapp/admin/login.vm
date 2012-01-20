@@ -1,5 +1,5 @@
 #set($layout="/admin/default.vm")
-#set($title="度假OK后台管理 - 登陆")
+#set($title="度假OK - 后台 - 登陆")
 ###############################################################
 
 <div class="login_nav">

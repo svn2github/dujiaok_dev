@@ -2,9 +2,12 @@ package com.ssnn.dujiaok.biz.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.ssnn.dujiaok.biz.dal.SelfDriveDAO;
 import com.ssnn.dujiaok.biz.dal.SelfDriveDetailDAO;
+import com.ssnn.dujiaok.biz.page.Pagination;
+import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.service.SelfDriveService;
 import com.ssnn.dujiaok.model.SelfDriveDO;
 import com.ssnn.dujiaok.model.SelfDriveDetailDO;
@@ -92,6 +95,14 @@ public class SelfDriveServiceImpl implements SelfDriveService{
 			}
 		}
 		return gmtExpire ;
+	}
+
+	@Override
+	public QueryResult<SelfDriveDO> getSelfDrives(Map<String, Object> condition,Pagination pagination) {
+		pagination.setTotalCount(selfDriveDAO.countSelfDrives(condition)) ;
+		List<SelfDriveDO> items = selfDriveDAO.querySelfDrives(condition, pagination) ;
+		QueryResult<SelfDriveDO> result = new QueryResult<SelfDriveDO>(items,pagination) ;
+		return result ;
 	}
 
 }

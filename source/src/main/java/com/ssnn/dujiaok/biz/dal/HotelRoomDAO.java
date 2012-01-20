@@ -39,4 +39,12 @@ public interface HotelRoomDAO {
 	 * @return
 	 */
 	List<HotelRoomDO> queryRooms(Map<String,Object> condition , Pagination pagination) ;
+	
+	/**
+	 * 
+	 * @param condition
+	 * @param pagination
+	 * @return
+	 */
+	int countRooms(Map<String,Object> condition) ;
 }

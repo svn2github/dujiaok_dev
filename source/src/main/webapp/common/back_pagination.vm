@@ -1,0 +1,47 @@
+
+
+#set($start = $start)
+#set($size = $size)
+#set($totalCount = $totalCount)
+#set($totalPages = $totalPages)
+#set($curPage = (($start+$size-1)/$size))
+#if($curPage<1)
+	#set($curPage = 1) 
+#elseif($curPage>$totalPages)
+	#set($curPage = $totalPages)
+#end
+
+#set($rangeStart = 1)
+#set($rangeEnd = $totalPages)
+
+<div>
+    #if($curPage == 1)
+    [首页]
+    #else
+    [<a href="javascript:void(0);" onclick="toPage(1,$size);">首页</a>]
+    #end
+    	
+    #foreach($count in [-5..5])
+    	#set($toPage = $curPage + $count)
+    	#if($toPage>=$rangeStart && $toPage<=$rangeEnd) 
+        	#if($toPage == $curPage)
+        		$toPage
+        	#else
+                <a href="javascript:void(0);" onclick="toPage($toPage,$size);">$toPage</a>
+    		#end
+    	#end
+    #end
+    
+    #if($curPage == $totalPages)
+    [末页]
+    #else
+    [<a href="javascript:void(0);" onclick="toPage($totalPages,$size);">末页</a>]
+    #end
+    
+    #if($__index)
+    	#set($__index = $__index + 1)
+    #else
+    	#set($__index = 1)
+    #end
+    &nbsp;  共 $totalPages 页   到第 <input type="text" size="2" value="$curPage" id="toPages$__index"></input> 页  <input type="button" onclick="toPage($('toPages$__index').value,$size);" value="确定"/>
+</div>

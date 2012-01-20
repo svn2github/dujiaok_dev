@@ -2,7 +2,6 @@ package com.ssnn.dujiaok.web.action.admin;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.ssnn.dujiaok.biz.exception.MemberOrPasswordIncorrectException;
 import com.ssnn.dujiaok.biz.service.AdminService;
 import com.ssnn.dujiaok.model.AdminDO;
 import com.ssnn.dujiaok.util.WhitelistUtils;
@@ -10,6 +9,7 @@ import com.ssnn.dujiaok.web.action.BasicAction;
 import com.ssnn.dujiaok.web.constant.SessionConstant;
 import com.ssnn.dujiaok.web.session.SessionManager;
 
+@SuppressWarnings("serial")
 public class LoginAction extends BasicAction {
 
 	private String Done  ;

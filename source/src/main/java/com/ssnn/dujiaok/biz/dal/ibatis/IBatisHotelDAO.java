@@ -8,6 +8,7 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import com.ssnn.dujiaok.biz.dal.HotelDAO;
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.model.HotelDO;
+import com.ssnn.dujiaok.util.IntegerUtils;
 
 /**
  * 
@@ -37,6 +38,11 @@ public class IBatisHotelDAO extends SqlMapClientDaoSupport implements HotelDAO {
 		condition.put("start", pagination.getStart()-1) ;
 		condition.put("size", pagination.getSize()) ;
 		return getSqlMapClientTemplate().queryForList("hotel.queryHotels", condition);
+	}
+
+	@Override
+	public int countHotels(Map<String, Object> condition) {
+		return IntegerUtils.objectToInt(getSqlMapClientTemplate().queryForObject("hotel.countHotels")) ;
 	}
 
 }

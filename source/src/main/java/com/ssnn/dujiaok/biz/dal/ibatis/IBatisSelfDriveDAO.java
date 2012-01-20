@@ -8,6 +8,7 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import com.ssnn.dujiaok.biz.dal.SelfDriveDAO;
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.model.SelfDriveDO;
+import com.ssnn.dujiaok.util.IntegerUtils;
 
 /**
  * SelfDriveDAO
@@ -37,6 +38,11 @@ public class IBatisSelfDriveDAO extends SqlMapClientDaoSupport implements SelfDr
 		condition.put("start", pagination.getStart()-1) ;
 		condition.put("size", pagination.getSize()) ;
 		return getSqlMapClientTemplate().queryForList("selfDrive.querySelfDrives" , condition) ;
+	}
+
+	@Override
+	public int countSelfDrives(Map<String, Object> condition) {
+		return IntegerUtils.objectToInt(getSqlMapClientTemplate().queryForObject("selfDrive.countSelfDrives" , condition)) ;
 	}
 
 }

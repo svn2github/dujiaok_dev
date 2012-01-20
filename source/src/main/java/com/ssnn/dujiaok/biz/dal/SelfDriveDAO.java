@@ -39,4 +39,11 @@ public interface SelfDriveDAO {
 	 * @return
 	 */
 	List<SelfDriveDO> querySelfDrives(Map<String,Object> condition , Pagination pagination) ;
+	
+	/**
+	 * 
+	 * @param condition
+	 * @return
+	 */
+	int countSelfDrives(Map<String,Object> condition) ;
 }

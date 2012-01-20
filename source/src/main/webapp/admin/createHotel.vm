@@ -1,5 +1,5 @@
 #set($layout="/admin/default.vm")
-#set($title="度假OK后台管理 - 发布酒店")
+#set($title="度假OK - 后台 - 发布酒店")
 ###################################################
 <div class="ucenter_right">
     <h2 class="B FS14">产品录入</h2>

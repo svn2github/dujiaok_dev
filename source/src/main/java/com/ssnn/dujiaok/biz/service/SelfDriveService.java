@@ -1,5 +1,9 @@
 package com.ssnn.dujiaok.biz.service;
 
+import java.util.Map;
+
+import com.ssnn.dujiaok.biz.page.Pagination;
+import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.model.SelfDriveDO;
 
 /**
@@ -36,4 +40,12 @@ public interface SelfDriveService {
 	 * @param selfDriveId
 	 */
 	SelfDriveDO updateSelfDriveAndDetails(SelfDriveDO selfDrive) ;
+	
+	/**
+	 * 查询
+	 * @param condition
+	 * @param pagination
+	 * @return
+	 */
+	QueryResult<SelfDriveDO> getSelfDrives(Map<String,Object> condition , Pagination pagination) ;
 }

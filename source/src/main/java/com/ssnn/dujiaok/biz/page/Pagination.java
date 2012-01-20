@@ -1,5 +1,8 @@
 package com.ssnn.dujiaok.biz.page;
 
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 /**
  * 分页Bean
  * @author shenjia.caosj 2012-1-12
@@ -40,6 +43,20 @@ public class Pagination {
 	 * 一次取出记录条数
 	 */
 	private int size ;
+	
+	private int totalCount ;
+	
+	public int getTotalPages(){
+		return (totalCount+size-1) / size ;
+	}
+
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
 
 	public int getStart() {
 		return start;
@@ -57,5 +74,8 @@ public class Pagination {
 		this.size = size;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this,ToStringStyle.SHORT_PREFIX_STYLE) ;
+	}
 }

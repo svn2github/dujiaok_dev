@@ -2,9 +2,12 @@ package com.ssnn.dujiaok.biz.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.ssnn.dujiaok.biz.dal.TicketDAO;
 import com.ssnn.dujiaok.biz.dal.TicketDetailDAO;
+import com.ssnn.dujiaok.biz.page.Pagination;
+import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.model.TicketDO;
 import com.ssnn.dujiaok.model.TicketDetailDO;
@@ -87,6 +90,15 @@ public class TicketServiceImpl implements TicketService{
 			}
 		}
 		return gmtExpire ;
+	}
+
+	@Override
+	public QueryResult<TicketDO> getTickets(Map<String, Object> condition,Pagination pagination) {
+		pagination.setTotalCount(ticketDAO.countTickets(condition)) ;
+		List<TicketDO> items = ticketDAO.queryTickets(condition, pagination) ;
+		QueryResult<TicketDO> result = new QueryResult<TicketDO>(items,pagination) ;
+		return result ;
+		
 	}
 	
 }

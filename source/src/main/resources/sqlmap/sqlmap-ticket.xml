@@ -66,8 +66,8 @@
 	
 	<select id="queryTickets" resultMap="RM-Ticket">
 		SELECT * FROM DJ_TICKET WHERE 1=1 
-		<isNotEmpty property="ticketId" prepend="AND">
-			TICKET_ID = #ticketId#
+		<isNotEmpty property="productId" prepend="AND">
+			TICKET_ID = #productId#
 		</isNotEmpty>
 		<isNotEmpty property="name" prepend="AND">
 			NAME LIKE CONCAT('%', #name#, '%')
@@ -80,10 +80,31 @@
 		</isNotEmpty>
 		<isNotEmpty property="gmtExpire" prepend="AND">
 			<![CDATA[
-			GMT_EXPIRE > #gmtExpire#
+			GMT_EXPIRE <= #gmtExpire#
 			]]>
 		</isNotEmpty>
 		ORDER BY GMT_MODIFIED LIMIT #start# , #size# 
 	</select>
 
+
+	<select id="countTickets" resultClass="Integer">
+		SELECT count(*) FROM DJ_TICKET WHERE 1=1 
+		<isNotEmpty property="productId" prepend="AND">
+			TICKET_ID = #productId#
+		</isNotEmpty>
+		<isNotEmpty property="name" prepend="AND">
+			NAME LIKE CONCAT('%', #name#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="destProvince" prepend="AND">
+			DEST_PROVINCE = #destProvince#
+		</isNotEmpty>
+		<isNotEmpty property="destCity" prepend="AND">
+			DEST_CITY = #destCity#
+		</isNotEmpty>
+		<isNotEmpty property="gmtExpire" prepend="AND">
+			<![CDATA[
+			GMT_EXPIRE <= #gmtExpire#
+			]]>
+		</isNotEmpty>
+	</select>
 </sqlMap>

@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class QueryResult<T> {
 	
+	@SuppressWarnings("unused")
 	private QueryResult(){}
 	
 	public QueryResult(List<T> items, Pagination pagination) {

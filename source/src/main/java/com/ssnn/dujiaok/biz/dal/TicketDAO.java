@@ -40,4 +40,10 @@ public interface TicketDAO {
 	 */
 	List<TicketDO> queryTickets(Map<String,Object> condition , Pagination pagination) ;
 	
+	/**
+	 * 
+	 * @param condition
+	 * @return
+	 */
+	int countTickets(Map<String,Object> condition) ;
 }

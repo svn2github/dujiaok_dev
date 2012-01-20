@@ -1,5 +1,5 @@
 #set($layout="/admin/default.vm")
-#set($title="度假OK后台管理 - 发布房间")
+#set($title="度假OK - 后台 - 发布房间")
 #XUI_CSS(["common/reset.css","eshop/simple-date/xui-simple-datepicker.css"])
 ###################################################
 <div class="ucenter_right">

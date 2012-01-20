@@ -1,5 +1,9 @@
 package com.ssnn.dujiaok.biz.service;
 
+import java.util.Map;
+
+import com.ssnn.dujiaok.biz.page.Pagination;
+import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.model.TicketDO;
 
 /**
@@ -36,5 +40,13 @@ public interface TicketService {
 	 * @param ticket
 	 */
 	TicketDO updateTicketAndDetails(TicketDO ticket) ;
+	
+	/**
+	 * 查询
+	 * @param condition
+	 * @param pagination
+	 * @return
+	 */
+	QueryResult<TicketDO> getTickets(Map<String,Object> condition , Pagination pagination) ;
 	
 }

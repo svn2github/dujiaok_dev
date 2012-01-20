@@ -7,6 +7,7 @@
 		<result property="id" column="ID"/>
 		<result property="selfDriveId" column="SELF_DRIVE_ID" jdbcType="VARCHAR" />
 		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="addProducts" column="ADD_PRODUCTS" jdbcType="VARCHAR"/>
 		<result property="days" column="DAYS" />
 		<result property="marketPrice" column="MARKET_PRICE" jdbcType="DECIMAL"/>
 		<result property="destAddr" column="DEST_ADDR" jdbcType="VARCHAR"/>
@@ -29,9 +30,9 @@
 
 	<insert id="insertSelfDrive">
 		INSERT INTO 
-			DJ_SELF_DRIVE (ID,SELF_DRIVE_ID,NAME,DAYS,MARKET_PRICE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,PAY_TYPES,PRODUCT_TYPES,INTRODUCTION,SCHEDULE,FEE_DESC,MEMO,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
+			DJ_SELF_DRIVE (ID,SELF_DRIVE_ID,NAME,ADD_PRODUCTS,DAYS,MARKET_PRICE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,PAY_TYPES,PRODUCT_TYPES,INTRODUCTION,SCHEDULE,FEE_DESC,MEMO,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
 		VALUES 
-			(#id#,#selfDriveId#,#name#,#days#,#marketPrice#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#payTypes#,#productTypes#,#introduction#,#schedule#,#feeDesc#,#memo#,now(),now(),#gmtExpire#)
+			(#id#,#selfDriveId#,#name#,#addProducts#,#days#,#marketPrice#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#payTypes#,#productTypes#,#introduction#,#schedule#,#feeDesc#,#memo#,now(),now(),#gmtExpire#)
 		<selectKey resultClass="java.lang.Integer" keyProperty="id">
     		<![CDATA[
 				SELECT LAST_INSERT_ID() AS ID
@@ -42,6 +43,7 @@
 	<update id="updateSelfDrive">
 		UPDATE DJ_SELF_DRIVE SET 
 			NAME = #name# ,
+			ADD_PRODUCTS = #addProducts# ,
 			DAYS = #days# , 
 			MARKET_PRICE = #marketPrice# ,
 			DEST_ADDR = #destAddr# ,
@@ -68,8 +70,8 @@
 	
 	<select id="querySelfDrives" resultMap="RM-SelfDrive">
 		SELECT * FROM DJ_SELF_DRIVE WHERE 1=1 
-		<isNotEmpty property="ticketId" prepend="AND">
-			SELF_DRIVE_ID = #selfDriveId#
+		<isNotEmpty property="productId" prepend="AND">
+			SELF_DRIVE_ID = #productId#
 		</isNotEmpty>
 		<isNotEmpty property="name" prepend="AND">
 			NAME LIKE CONCAT('%', #name#, '%')
@@ -86,6 +88,27 @@
 			]]>
 		</isNotEmpty>
 		ORDER BY GMT_MODIFIED LIMIT #start# , #size# 
+	</select>
+
+	<select id="countSelfDrives" resultClass="Integer">
+		SELECT count(*) FROM DJ_SELF_DRIVE WHERE 1=1 
+		<isNotEmpty property="productId" prepend="AND">
+			SELF_DRIVE_ID = #productId#
+		</isNotEmpty>
+		<isNotEmpty property="name" prepend="AND">
+			NAME LIKE CONCAT('%', #name#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="destProvince" prepend="AND">
+			DEST_PROVINCE = #destProvince#
+		</isNotEmpty>
+		<isNotEmpty property="destCity" prepend="AND">
+			DEST_CITY = #destCity#
+		</isNotEmpty>
+		<isNotEmpty property="gmtExpire" prepend="AND">
+			<![CDATA[
+			GMT_EXPIRE > #gmtExpire#
+			]]>
+		</isNotEmpty>
 	</select>
 
 </sqlMap>
