@@ -21,6 +21,13 @@ public interface HotelRoomDAO {
 	HotelRoomDO queryRoom(String roomId) ;
 
 	/**
+	 * 
+	 * @param hotelId
+	 * @return
+	 */
+	List<HotelRoomDO> queryRooms(String hotelId) ;
+	
+	/**
 	 * 插入room
 	 * @param HotelRoom
 	 */

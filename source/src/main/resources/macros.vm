@@ -92,5 +92,18 @@
    #end
 #end
 
+#macro(AUTOCHECK_TIME $time $format)
+	#if($time)
+	#if($dateUtils.beforeNow($time))
+		<span style="color:red;">$dateUtils.format($time,$format)</span>
+	#else
+		<span >$dateUtils.format($time,$format)</span>
+	#end
+	#end
+#end
 
-
+#macro(ESCAPE_HTML $txt)
+	#if($txt)
+	$stringUtils.escapeHtml($txt)
+	#end
+#end

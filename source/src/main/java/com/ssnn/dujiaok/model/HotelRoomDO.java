@@ -80,12 +80,24 @@ public class HotelRoomDO {
 	
 	private Date gmtModified ;
 	
+	private Date gmtExpire ;
+	
+	
+	
 	/**
 	 * 
 	 */
 	private List<HotelRoomDetailDO> roomDetails ;
 
 	
+	public Date getGmtExpire() {
+		return gmtExpire;
+	}
+
+	public void setGmtExpire(Date gmtExpire) {
+		this.gmtExpire = gmtExpire;
+	}
+
 	public List<HotelRoomDetailDO> getRoomDetails() {
 		return roomDetails;
 	}

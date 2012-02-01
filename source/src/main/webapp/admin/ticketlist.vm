@@ -16,7 +16,10 @@
             <td class="search_sx">
     			编号：<input type="text" name="productId" value="$!productId"/>&nbsp;&nbsp;
     			名称：<input type="text" name="name" value="$!name"/>&nbsp;&nbsp;
-    			目的地：<input type="text" name="province" value="$!province"/>省 <input type="text" name="city" value="$!city"/>市&nbsp;&nbsp;
+    			目的地：
+				<select id='destProvince'  name='destProvince' onchange="selectProvince();"></select>
+                <select id='destCity' name='destCity' ></select>
+				&nbsp;&nbsp;
     			状态：
                 <select name="gmtExpire" id="gmtExpire">
         			<option value=''>全部</option>
@@ -66,7 +69,7 @@
                     <a href="#">$!ticket.name</a> #if(!$stringUtils.isBlank($ticket.memo))<img height="14" width="14" title="$ticket.memo" src="${env.staticroot}/images/bz_icon.png">#end
                 </td>
                 <td>$!ticket.destProvince $!ticket.destCity</td>
-                <td class="F9">$dateUtils.format($!ticket.gmtExpire,'yyyy-MM-dd')</td>
+                <td class="F9">#AUTOCHECK_TIME($!ticket.gmtExpire,'yyyy-MM-dd')</td>
                 <td>
         			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createTicket.htm?ticketId=$ticket.ticketId');">复制链接</a>&nbsp;&nbsp;
                     <a href="${env.root}/admin/createTicket.htm?ticketId=$ticket.ticketId">修改</a>&nbsp;&nbsp;
@@ -85,19 +88,33 @@
 #parse('common/back_pagination.vm')
  </form>
  
-#XUI_JS(["core/xui-core.js"])
+#XUI_JS(["core/xui-core.js","util/util-min.js"])
 #JS(["validator.js","dujiaok.js"])
 <script type="text/javascript">
     var gmtExpire = '$dateUtils.format($!gmtExpire,"yyyy-MM-dd")' ;
     setupSelect('gmtExpire',gmtExpire) ;
     var copy2clipboard = function(data){
-    setClipboard(data);
-    return false ;
+        setClipboard(data);
+        return false ;
     }
     var toPage = function(page , size){
-    var start = (page-1) * size + 1;
-    $('start').value = start ;
-    $('size').value = size ;
-    document.forms[0].submit() ;
+        var start = (page-1) * size + 1;
+        $('start').value = start ;
+        $('size').value = size ;
+        document.forms[0].submit() ;
     }
+	
+	var url = '${env.root}/ajax/address.htm' ;	
+	var province = '$!destProvince' ;
+	var city = '$!destCity' ;
+	
+	var selectProvince = function (){
+		var select = $('destProvince') ;
+		var name = select.options[select.selectedIndex].value ;
+		initAddressSelect(url,'destCity','city','',name) ;
+		$('destArea').options.length = 0 ;
+	}
+	
+	initAddressSelect(url,'destProvince','province',province) ;
+	initAddressSelect(url,'destCity','city',city,province) ;
 </script>

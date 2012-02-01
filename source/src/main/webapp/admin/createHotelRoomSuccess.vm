@@ -1,7 +1,7 @@
 #set($layout="/admin/default.vm")
 #set($title="度假OK - 后台 - 发布房间成功")
 ###################################################
-<h2>发布房间成功</h2>
+
 <input type="hidden" value="$!roomId" name="roomId" />
 <table width="960" border="0" cellspacing="0" cellpadding="0">
     <tr>
@@ -12,7 +12,7 @@
         <td width="397">
             <div class="success_one"></div>
         </td>
-        <td width="563" class="FS24 B F7">发布产品成功</td>
+        <td width="563" class="FS24 B F7">发布房间成功</td>
     </tr>
     <tr>
         <td>&nbsp;</td>

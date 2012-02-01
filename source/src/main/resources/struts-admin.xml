@@ -95,14 +95,22 @@
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="adminAuthInterceptor" />
 			<result name="success"  type="velocity">/admin/ticketlist.vm</result>
+			<param name="type">ticket</param>
 		</action>
 		
 		<action name="selfDrivelist" class="com.ssnn.dujiaok.web.action.admin.ProductListAction" >
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="adminAuthInterceptor" />
 			<result name="success"  type="velocity">/admin/selfDrivelist.vm</result>
+			<param name="type">selfDrive</param>
 		</action>
 		
-		
+		<action name="hotellist" class="com.ssnn.dujiaok.web.action.admin.ProductListAction" method="hotel">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<param name="type">hotel</param>
+			<param name="size">5</param>
+			<result name="success"  type="velocity">/admin/hotellist.vm</result>
+		</action>
 	</package>
 </struts>

@@ -19,14 +19,15 @@
 		<result property="memo" column="MEMO" jdbcType="VARCHAR" />
 		<result property="gmtCreate" column="GMT_CREATE" jdbcType="TIMESTAMP"/>
 		<result property="gmtModified" column="GMT_MODIFIED" jdbcType="TIMESTAMP"/>		
+		<result property="gmtExpire" column="GMT_EXPIRE" jdbcType="TIMESTAMP"/>
 	</resultMap>
 	
 
 	<insert id="insertRoom">
 		INSERT INTO 
-			DJ_HOTEL_ROOM (ID,HOTEL_ID,NAME,ROOM_ID,ROOM_AREA,PAY_TYPES,MARKET_PRICE,BED,IMAGES,ROOM_FACILITIES,INTRODUCTION,CATEGORY_IMAGE,MEMO,GMT_CREATE,GMT_MODIFIED)
+			DJ_HOTEL_ROOM (ID,HOTEL_ID,NAME,ROOM_ID,ROOM_AREA,PAY_TYPES,MARKET_PRICE,BED,IMAGES,ROOM_FACILITIES,INTRODUCTION,CATEGORY_IMAGE,MEMO,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
 		VALUES 
-			(#id#,#hotelId#,#name#,#roomId#,#roomArea#, #payTypes#, #marketPrice#,#bed#,#images#,#roomFacilities#,#introduction#,#categoryImage#,#memo#,now(),now())
+			(#id#,#hotelId#,#name#,#roomId#,#roomArea#, #payTypes#, #marketPrice#,#bed#,#images#,#roomFacilities#,#introduction#,#categoryImage#,#memo#,now(),now(),#gmtExpire#)
 		<selectKey resultClass="java.lang.Integer" keyProperty="id">
     		<![CDATA[
 				SELECT LAST_INSERT_ID() AS ID
@@ -46,7 +47,8 @@
 			INTRODUCTION = #introduction# ,
 			CATEGORY_IMAGE = #categoryImage# ,
 			MEMO = #memo# ,
-			GMT_MODIFIED = now() 
+			GMT_MODIFIED = now() ,
+			GMT_EXPIRE = #gmtExpire#
 		WHERE 
 		 	ROOM_ID = #roomId#
 	</update>
@@ -66,9 +68,18 @@
 		<isNotEmpty property="name" prepend="AND">
 			NAME LIKE CONCAT('%',#name#,'%')
 		</isNotEmpty>
+		<isNotEmpty property="gmtExpire" prepend="AND">
+			<![CDATA[
+			GMT_EXPIRE <= #gmtExpire#
+			]]>
+		</isNotEmpty>
 		ORDER BY GMT_MODIFIED LIMIT #start# , #size# 
 	</select>
 
+	<select id="queryRoomsByHotel" resultMap="RM-HotelRoom">
+		select * from DJ_HOTEL_ROOM where HOTEL_ID = #hotelId#
+	</select>
+	
 	<select id="countRooms" resultClass="Integer">
 		SELECT count(*) FROM DJ_HOTEL_ROOM WHERE 1=1 
 		<isNotEmpty property="productId" prepend="AND">
@@ -79,6 +90,11 @@
 		</isNotEmpty>
 		<isNotEmpty property="name" prepend="AND">
 			NAME LIKE CONCAT('%',#name#,'%')
+		</isNotEmpty>
+		<isNotEmpty property="gmtExpire" prepend="AND">
+			<![CDATA[
+			GMT_EXPIRE <= #gmtExpire#
+			]]>
 		</isNotEmpty>
 	</select>
 </sqlMap>

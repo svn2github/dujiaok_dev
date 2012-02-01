@@ -2,16 +2,20 @@ package com.ssnn.dujiaok.web.action.admin;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.opensymphony.xwork2.ModelDriven;
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.biz.page.QueryResult;
+import com.ssnn.dujiaok.biz.service.HotelRoomService;
 import com.ssnn.dujiaok.biz.service.HotelService;
 import com.ssnn.dujiaok.biz.service.SelfDriveService;
 import com.ssnn.dujiaok.biz.service.TicketService;
+import com.ssnn.dujiaok.model.HotelDO;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 /**
@@ -24,9 +28,9 @@ public class ProductListAction extends BasicAction implements ModelDriven<Pagina
 
 	private String name ;
 	
-	private String province ;
+	private String destProvince ;
 	
-	private String city ;
+	private String destCity ;
 	
 	private Date gmtExpire ;
 	
@@ -45,6 +49,8 @@ public class ProductListAction extends BasicAction implements ModelDriven<Pagina
 	
 	private HotelService hotelService ;
 	
+	private HotelRoomService hotelRoomService ;
+	
 	public String selfDrive() throws Exception {
 		type = "selfDrive" ;
 		return SUCCESS ;
@@ -55,17 +61,45 @@ public class ProductListAction extends BasicAction implements ModelDriven<Pagina
 		return SUCCESS ;
 	}
 	
+	public String hotel() throws Exception {
+		Map<String,Object> condition = new HashMap<String,Object>() ;
+		if(StringUtils.isNotBlank(name)){
+			condition.put("name", name) ;
+		}
+		if(StringUtils.isNotBlank(destProvince)){
+			condition.put("destProvince", destProvince) ;
+		}
+		if(StringUtils.isNotBlank(destCity)){
+			condition.put("destCity", destCity) ;
+		}
+		if(StringUtils.isNotBlank(productId)){
+			condition.put("productId", productId) ;
+		}
+		if(gmtExpire != null){
+			condition.put("gmtExpire", gmtExpire) ;
+		}
+		
+		QueryResult<HotelDO> list = hotelService.getHotels(condition, pagination) ;
+		if(!CollectionUtils.isEmpty(list.getItems())){
+			for(HotelDO hotel : list.getItems()){
+				hotel.setRooms(hotelRoomService.getRooms(hotel.getHotelId())) ;
+			}
+		}
+		result = list ;
+		return SUCCESS ;
+	}
+	
 	@Override
 	public String execute() throws Exception {
 		Map<String,Object> condition = new HashMap<String,Object>() ;
 		if(StringUtils.isNotBlank(name)){
 			condition.put("name", name) ;
 		}
-		if(StringUtils.isNotBlank(province)){
-			condition.put("destProvince", province) ;
+		if(StringUtils.isNotBlank(destProvince)){
+			condition.put("destProvince", destProvince) ;
 		}
-		if(StringUtils.isNotBlank(city)){
-			condition.put("destCity", city) ;
+		if(StringUtils.isNotBlank(destCity)){
+			condition.put("destCity", destCity) ;
 		}
 		if(StringUtils.isNotBlank(productId)){
 			condition.put("productId", productId) ;
@@ -101,6 +135,10 @@ public class ProductListAction extends BasicAction implements ModelDriven<Pagina
 	}
 
 
+	public void setHotelRoomService(HotelRoomService hotelRoomService) {
+		this.hotelRoomService = hotelRoomService;
+	}
+
 	public QueryResult getResult() {
 		return result;
 	}
@@ -122,25 +160,21 @@ public class ProductListAction extends BasicAction implements ModelDriven<Pagina
 	}
 
 
-	public String getProvince() {
-		return province;
+	public String getDestProvince() {
+		return destProvince;
 	}
 
-
-	public void setProvince(String province) {
-		this.province = province;
+	public void setDestProvince(String destProvince) {
+		this.destProvince = destProvince;
 	}
 
-
-	public String getCity() {
-		return city;
+	public String getDestCity() {
+		return destCity;
 	}
 
-
-	public void setCity(String city) {
-		this.city = city;
+	public void setDestCity(String destCity) {
+		this.destCity = destCity;
 	}
-
 
 	public Date getGmtExpire() {
 		return gmtExpire;

@@ -40,4 +40,10 @@ public class IBatisHotelRoomDAO extends SqlMapClientDaoSupport implements HotelR
 		return IntegerUtils.objectToInt(getSqlMapClientTemplate().queryForObject("hotel.countRooms",condition)) ;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<HotelRoomDO> queryRooms(String hotelId) {
+		return getSqlMapClientTemplate().queryForList("hotel.queryRoomsByHotel" , hotelId) ;
+	}
+
 }

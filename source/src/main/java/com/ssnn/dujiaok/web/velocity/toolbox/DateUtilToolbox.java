@@ -44,4 +44,28 @@ public class DateUtilToolbox {
 	public Date now(){
 		return new Date() ;
 	}
+	
+	public boolean before(Date t1 , Date base){
+		if(t1 == null)
+			return false ;
+		return t1.before(base) ;
+	}
+	
+	public boolean after(Date t1 , Date base){
+		if(t1 == null)
+			return false ;
+		return t1.after(base) ;
+	}
+	
+	public boolean beforeNow(Date t){
+		if(t == null)
+			return false ;
+		return t.before(new Date()) ;
+	}
+	
+	public boolean afterNow(Date t){
+		if(t == null)
+			return false ;
+		return t.after(new Date()) ;
+	}
 }

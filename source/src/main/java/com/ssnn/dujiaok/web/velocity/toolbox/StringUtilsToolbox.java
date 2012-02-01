@@ -1,5 +1,6 @@
 package com.ssnn.dujiaok.web.velocity.toolbox;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -15,5 +16,9 @@ public class StringUtilsToolbox {
 	
 	public String trim(String str){
 		return StringUtils.trim(str) ;
+	}
+	
+	public String escapeHtml(String str){
+		return StringEscapeUtils.escapeHtml(str) ;
 	}
 }

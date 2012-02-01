@@ -19,11 +19,11 @@
 		<item name="ticketType" dataType="Require"  msg="门票类型必须选择"/>
 		<item name="destProvince" dataType="Require" msg="省不能为空"/>
 		<item name="destProvince" dataType="Limit" mix="2" max="32" msg="省长度2-32个字符"/>
-		<item name="destCity" dataType="Require" msg="市不能为空"/>
+		
 		<item name="destCity" dataType="Limit" mix="2" max="32"  msg="市长度2-32个字符"/>
-		<item name="destArea" dataType="Require"   msg="地区不能为空"/>
+		
 		<item name="destArea" dataType="Limit" mix="2" max="32"  msg="地区长度2-32个字符"/>
-		<item name="destAddr" dataType="Require"   msg="详细地址不能为空"/>
+		
 		<item name="destAddr" dataType="Limit"  mix="2" max="100"  msg="详细地址长度2-100个字符"/>
 		<item name="imagesList" dataType="Require"  batch="true"  msg="上传图片第$行必须填写"/>
 		<item name="imagesList" dataType="Limit"  batch="true" min="2" max="200" msg="上传图片第$行长度2~200字符"/>
@@ -38,11 +38,11 @@
 	<form id="createHotelForm">
 		<item name="name" dataType="Require" msg="酒店名称不为空" />
 		<item name="name" dataType="Limit" min="2" max="80" msg="酒店名称长度2~80个字符" />
-		<item name="destProvince" dataType="Require" msg="省不能为空"/>
+		
 		<item name="destProvince" dataType="Limit" mix="2" max="32" msg="省长度2-32个字符"/>
-		<item name="destCity" dataType="Require" msg="市不能为空"/>
+		
 		<item name="destCity" dataType="Limit" mix="2" max="32"  msg="市长度2-32个字符"/>
-		<item name="destArea" dataType="Require"   msg="地区不能为空"/>
+		
 		<item name="destArea" dataType="Limit" mix="2" max="32"  msg="地区长度2-32个字符"/>
 		<item name="destAddr" dataType="Require"   msg="详细地址不能为空"/>
 		<item name="destAddr" dataType="Limit"  mix="2" max="100"  msg="详细地址长度2-100个字符"/>
@@ -88,13 +88,13 @@
 		<item name="details[$].gmtStart" dataType="Date"  batch="true" format="ymd"  msg="第$行开始时间格式不正确"/>
 		<item name="details[$].gmtEnd" dataType="Date"  batch="true" format="ymd"  msg="第$行结束时间格式不正确"/>
 		<item name="marketPrice" dataType="Double"   msg="市场价格式不正确"/>
-		<item name="destProvince" dataType="Require" msg="省不能为空"/>
+		
 		<item name="destProvince" dataType="Limit" mix="2" max="32" msg="省长度2-32个字符"/>
-		<item name="destCity" dataType="Require" msg="市不能为空"/>
+		
 		<item name="destCity" dataType="Limit" mix="2" max="32"  msg="市长度2-32个字符"/>
-		<item name="destArea" dataType="Require"   msg="地区不能为空"/>
+		
 		<item name="destArea" dataType="Limit" mix="2" max="32"  msg="地区长度2-32个字符"/>
-		<item name="destAddr" dataType="Require"   msg="详细地址不能为空"/>
+		
 		<item name="destAddr" dataType="Limit"  mix="2" max="100"  msg="详细地址长度2-100个字符"/>
 		<item name="days" dataType="Require"   msg="游玩天数必须填写"/>
 		<item name="days" dataType="Integer"   msg="游玩天数必须为数字"/>

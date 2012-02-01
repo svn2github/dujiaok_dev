@@ -1,6 +1,7 @@
 package com.ssnn.dujiaok.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 酒店HOTEL主表
@@ -42,6 +43,17 @@ public class HotelDO extends AbstractProduct {
 	private Date gmtModified ;
 	
 	private Date gmtCreate ;
+	
+	private List<HotelRoomDO> rooms ;
+	
+	
+	public List<HotelRoomDO> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(List<HotelRoomDO> rooms) {
+		this.rooms = rooms;
+	}
 
 	public String getHotelId() {
 		return hotelId;

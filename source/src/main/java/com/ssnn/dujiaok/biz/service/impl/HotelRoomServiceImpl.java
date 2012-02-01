@@ -1,5 +1,6 @@
 package com.ssnn.dujiaok.biz.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.service.HotelRoomService;
 import com.ssnn.dujiaok.model.HotelRoomDO;
 import com.ssnn.dujiaok.model.HotelRoomDetailDO;
+import com.ssnn.dujiaok.model.SelfDriveDetailDO;
 import com.ssnn.dujiaok.util.UniqueIDUtil;
 import com.ssnn.dujiaok.util.enums.ProductEnums;
 
@@ -46,6 +48,8 @@ public class HotelRoomServiceImpl implements HotelRoomService{
 	public HotelRoomDO createRoomAndDetails(HotelRoomDO room) {
 		List<HotelRoomDetailDO> details = room.getRoomDetails() ;
 		if(details != null){
+			Date gmtExpire = getExpireDate(details) ;
+			room.setGmtExpire(gmtExpire) ;
 			room.setRoomId(UniqueIDUtil.getUniqueID(ProductEnums.HOTEL_ROOM)) ;
 			hotelRoomDAO.insertRoom(room) ;
 			for(HotelRoomDetailDO roomDetail : details){
@@ -64,6 +68,8 @@ public class HotelRoomServiceImpl implements HotelRoomService{
 		if(details != null){
 			//删除之前的detail，重新插入
 			hotelRoomDetailDAO.deleteRoomDetails(roomId) ;
+			Date gmtExpire = getExpireDate(details) ;
+			room.setGmtExpire(gmtExpire) ;
 			hotelRoomDAO.updateRoom(room) ;
 			for(HotelRoomDetailDO roomDetail : details){
 				roomDetail.setRoomId(roomId) ;
@@ -82,4 +88,23 @@ public class HotelRoomServiceImpl implements HotelRoomService{
 		return result ;
 	}
 
+	@Override
+	public List<HotelRoomDO> getRooms(String hotelId) {
+		return hotelRoomDAO.queryRooms(hotelId) ;
+	}
+
+	private Date getExpireDate(List<HotelRoomDetailDO> details){
+		Date gmtExpire = null ;
+		for(HotelRoomDetailDO detail : details){
+			Date gmtEnd = detail.getGmtEnd() ;
+			if(gmtExpire == null){
+				gmtExpire = gmtEnd ;
+			}else{
+				if(gmtExpire.before(gmtEnd)){
+					gmtExpire = gmtEnd ;
+				}
+			}
+		}
+		return gmtExpire ;
+	}
 }

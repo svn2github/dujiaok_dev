@@ -1,6 +1,7 @@
 #set($layout="/admin/default.vm")
 #set($title="度假OK - 后台 - 发布酒店")
 #set($menu_name = "发布酒店")
+#KISSY_EDITOR_CSS()
 ###################################################
 <form name="createHotelForm" id="createHotelForm" action="${env.root}/admin/docreateHotel.htm" onsubmit="return Validator.validate(this,'admin');">
 <input name="id"  type="hidden" value="$!id" />
@@ -74,13 +75,13 @@
         <tr>
             <td align="right">产品简介：</td>
             <td>
-				<textarea id='introduction' name='introduction' cols="45" rows="8">$!hotel.introduction</textarea>
+				<textarea id='introduction' name='introduction' cols="45" rows="8">#ESCAPE_HTML($!hotel.introduction)</textarea>
             </td>
         </tr>
         <tr>
             <td align="right">备注：</td>
             <td>
-                <textarea id='memo' name='memo' cols="45" rows="8" >$!hotel.memo</textarea>
+                <textarea id='memo' name='memo' cols="45" rows="8" >#ESCAPE_HTML($!hotel.memo)</textarea>
             </td>
         </tr>
         <tr>
@@ -95,6 +96,7 @@
 
 #XUI_JS(["core/xui-core.js","util/util-min.js"])
 #JS(["validator.js","dujiaok.js"])
+#KISSY_EDITOR_JS()
 <script type="text/javascript">
     var starRate = '$!hotel.starRate' ;
     var lastImagesIndex = $collectionUtils.size($imagesList) ; // 上传照片个数
@@ -142,4 +144,12 @@
     initAddressSelect(url,'destProvince','province',province) ;
     initAddressSelect(url,'destCity','city',city,province) ;
     initAddressSelect(url,'destArea','area',area,city) ;
+	
+	//load edtor
+	KISSY.ready(function(S) {
+        S.use('editor', function(S) {
+			window.editor = loadediter("#introduction") ;
+			window.editor = loadediter("#memo") ;
+        });
+    });
 </script>

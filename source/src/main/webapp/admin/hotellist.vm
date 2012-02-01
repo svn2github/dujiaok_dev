@@ -1,16 +1,16 @@
-#set($__productType = "selfDrive")
+#set($__productType = "hotel")
 #set($layout = "/admin/default.vm")
-#set($title = "度假OK - 后台 - 自驾")
+#set($title = "度假OK - 后台 - 酒店")
 #set($tab = $__productType)
 ###################################################
 
 
 #parse('common/back_tab.vm')
 
-<form id="selfDriveForm" name="selfDriveForm" method="GET" action="${env.root}/admin/selfDrivelist.htm" onsubmit="return Validator.validate(this,'admin');">
-	<input type="hidden" name="type" value="selfDrive"/>
+<form id="hotellistForm" name="hotellistForm" method="GET" action="${env.root}/admin/hotellist.htm" onsubmit="return Validator.validate(this,'admin');">
+	<input type="hidden" name="type" value="ticket"/>
 	<input type="hidden" name="start" id="start" value="1"/>
-	<input type="hidden" name="size" id="size" value="$size"/>
+	<input type="hidden" name="size" id="size" value="$!size"/>
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
             <td class="search_sx">
@@ -39,21 +39,24 @@
         </tr>
     </table>
     #parse('common/back_pagination.vm')
-    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="list_sy">
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="list_jd list_jd_top">
         <tr>
             <td width="129" align="center">
-                <strong>编号</strong>
+                <strong>酒店编号</strong>
             </td>
-            <td width="447" align="center">
+			<td width="129" align="center">
+                <strong>房间编号</strong>
+            </td>
+            <td width="400" align="center">
                 <strong>名称</strong>
             </td>
-            <td width="133" align="center">
+            <td width="120" align="center">
                 <strong>所在地</strong>
             </td>
             <td width="100" align="center">
                 <strong>到期时间</strong>
             </td>
-            <td width="151" align="center">
+            <td width="200" align="center">
                 <strong>操作</strong>
             </td>
         </tr>
@@ -62,20 +65,37 @@
                 <td colspan="5" ><span style="color:red;margin:0 auto;">没有查询到符合条件的记录</span></td>
             </tr>
 		#else
-        	#foreach($selfDrive in $result.items)
-            <tr>
-                <td>$!selfDrive.selfDriveId</td>
-                <td>
-                    <a href="#">$!selfDrive.name</a> #if(!$stringUtils.isBlank($selfDrive.memo))<img height="14" width="14" title="$selfDrive.memo" src="${env.staticroot}/images/bz_icon.png">#end
+        	#foreach($hotel in $result.items)
+            <tr  >
+                <td class="border_top_line">$!hotel.hotelId</td>
+				<td class="border_top_line"></td>
+                <td class="border_top_line">
+                    <a href="#"><b>$!hotel.name</b></a> #if(!$stringUtils.isBlank($hotel.memo))<img height="14" width="14" title="$hotel.memo" src="${env.staticroot}/images/bz_icon.png">#end
                 </td>
-                <td>$!selfDrive.destProvince $!selfDrive.destCity</td>
-                <td class="F9">#AUTOCHECK_TIME($!selfDrive.gmtExpire,'yyyy-MM-dd')</td>
-                <td>
+                <td class="border_top_line">$!hotel.destProvince $!hotel.destCity</td>
+                <td class="border_top_line"></td>
+                <td class="border_top_line">
         			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createTicket.htm?ticketId=$ticket.ticketId');">复制链接</a>&nbsp;&nbsp;
-                    <a href="${env.root}/admin/createSelfDrive.htm?selfDriveId=$selfDrive.selfDriveId">修改</a>&nbsp;&nbsp;
-        			<a href="${env.root}/admin/delSelfDrive.htm?selfDriveId=$selfDrive.selfDriveId">删除</a>
+                    <a href="${env.root}/admin/createHotel.htm?hotelId=$hotel.hotelId">修改</a>&nbsp;&nbsp;
+        			<a href="${env.root}/admin/delHotel.htm?hotelId=$hotel.hotelId">删除</a>
                 </td>
             </tr>
+				#foreach($room in $hotel.rooms)
+					<tr>
+                        <td></td>
+        				<td>$!room.roomId</td>
+                        <td>
+                            &nbsp;&nbsp;<a href="#">$!room.name</a> 
+                        </td>
+                        <td></td>
+                        <td class="F9">#AUTOCHECK_TIME($!room.gmtExpire,'yyyy-MM-dd')</td>
+                        <td>
+                			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createHotelRoom.htm?roomId=$room.roomId');">复制链接</a>&nbsp;&nbsp;
+                            <a href="${env.root}/admin/createHotelRoom.htm?roomId=$room.roomId">修改</a>&nbsp;&nbsp;
+                			<a href="${env.root}/admin/delHotelRoom.htm?roomId=$room.roomId">删除</a>
+                        </td>
+                    </tr>
+				#end
     		#end
 		#end
     </table>

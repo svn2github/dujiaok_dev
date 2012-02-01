@@ -2,6 +2,7 @@
 #set($title="度假OK - 后台 - 发布房间")
 #set($menu_name = "发布房间")
 #XUI_CSS(["common/reset.css","eshop/simple-date/xui-simple-datepicker.css"])
+#KISSY_EDITOR_CSS()
 ###################################################
 <form id="createHotelRoomForm" name="createHotelRoomForm" method="POST" action="${env.root}/admin/docreateHotelRoom.htm" onsubmit="return Validator.validate(this,'admin');">
     <input name="id"  type="hidden" value="$!id" />
@@ -123,19 +124,19 @@
         <tr>
             <td align="right">产品简介：</td>
             <td>
-                <textarea id='introduction' name='introduction' cols="45" rows="8">$!room.introduction</textarea>
+                <textarea id='introduction' name='introduction' cols="45" rows="8">#ESCAPE_HTML($!room.introduction)</textarea>
             </td>
         </tr>
         <tr>
             <td align="right">房型图片：</td>
             <td>
-                <textarea name="categoryImage" id="roomCategory" cols="45" rows="5"></textarea>
+                <textarea name="categoryImage" id="categoryImage" cols="45" rows="8">#ESCAPE_HTML($!room.roomCategory)</textarea>
             </td>
         </tr>
         <tr>
             <td align="right">备注：</td>
             <td>
-                <textarea id='memo' name='memo' cols="45" rows="8" >$!room.memo</textarea>
+                <textarea id='memo' name='memo' cols="45" rows="8" >#ESCAPE_HTML($!room.memo)</textarea>
             </td>
         </tr>
         <tr>
@@ -148,6 +149,7 @@
 </form>
 #XUI_JS(["core/xui-core.js","util/util-min.js","simple-date/xui-simple-datepicker.js"])
 #JS(["validator.js","dujiaok.js"])
+#KISSY_EDITOR_JS()
 <script type="text/javascript">
     var bed = '$!room.bed' ;
 	
@@ -253,4 +255,13 @@
 	}
 		
 	setupSelect('bed',bed) ;
+	
+	//load edtor
+	KISSY.ready(function(S) {
+        S.use('editor', function(S) {
+			window.editor = loadediter("#introduction") ;			
+			window.editor = loadediter("#memo") ;
+			window.editor = loadediter("#categoryImage") ;
+        });
+    });
 </script>

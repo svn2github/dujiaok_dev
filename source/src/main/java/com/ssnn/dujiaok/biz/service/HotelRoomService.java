@@ -29,6 +29,13 @@ public interface HotelRoomService {
 	HotelRoomDO getRoomWithDetails(String roomId) ;
 	
 	/**
+	 * 根据酒店获取房间
+	 * @param hotelId
+	 * @return
+	 */
+	List<HotelRoomDO> getRooms(String hotelId) ;
+	
+	/**
 	 * 发布房间，包含detail
 	 * @param room
 	 * @return

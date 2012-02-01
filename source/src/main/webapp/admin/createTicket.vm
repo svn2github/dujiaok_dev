@@ -2,6 +2,7 @@
 #set($title="度假OK - 后台 - 发布门票")
 #set($menu_name="发布门票")
 #XUI_CSS(["common/reset.css","eshop/simple-date/xui-simple-datepicker.css"])
+#KISSY_EDITOR_CSS()
 ###################################################
 <form id="createTicketForm" name="createTicketForm" method="POST" action="${env.root}/admin/docreateTicket.htm" onsubmit="return Validator.validate(this,'admin');">
     <input name="id"  type="hidden" value="$!id" />
@@ -171,6 +172,7 @@
 </form>
 #XUI_JS(["core/xui-core.js","util/util-min.js","simple-date/xui-simple-datepicker.js"])
 #JS(["validator.js","dujiaok.js"])
+#KISSY_EDITOR_JS()
 <script type="text/javascript">
     var lastDetailsIndex = $collectionUtils.size($!ticket.ticketDetails)  ; //行程个数
 	var lastImagesIndex = $collectionUtils.size($imagesList) ; //上传照片个数
@@ -273,4 +275,14 @@
 	initAddressSelect(url,'destArea','area',area,city) ;
 	var recommend = '$!ticket.recommend';
 	setupSelect('recommend',recommend) ;
+	
+	//load edtor
+	KISSY.ready(function(S) {
+        S.use('editor', function(S) {
+			window.editor = loadediter("#introduction") ;
+            window.editor = loadediter("#notice") ;
+			window.editor = loadediter("#feeDesc") ;
+			window.editor = loadediter("#memo") ;
+        });
+    });
 </script>
