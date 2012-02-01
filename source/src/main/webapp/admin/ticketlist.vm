@@ -63,7 +63,7 @@
             <tr>
                 <td>$!ticket.ticketId</td>
                 <td>
-                    <a href="#">$!ticket.name</a> #if(!$stringUtils.isBlank($ticket.memo))<img height="14" width="14" title="有备注" src="${env.staticroot}/images/bz_icon.png">#end
+                    <a href="#">$!ticket.name</a> #if(!$stringUtils.isBlank($ticket.memo))<img height="14" width="14" title="$ticket.memo" src="${env.staticroot}/images/bz_icon.png">#end
                 </td>
                 <td>$!ticket.destProvince $!ticket.destCity</td>
                 <td class="F9">$dateUtils.format($!ticket.gmtExpire,'yyyy-MM-dd')</td>

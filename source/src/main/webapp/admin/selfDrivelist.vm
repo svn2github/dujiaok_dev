@@ -63,7 +63,7 @@
             <tr>
                 <td>$!selfDrive.selfDriveId</td>
                 <td>
-                    <a href="#">$!selfDrive.name</a> #if(!$stringUtils.isBlank($selfDrive.memo))<img height="14" width="14" title="有备注" src="${env.staticroot}/images/bz_icon.png">#end
+                    <a href="#">$!selfDrive.name</a> #if(!$stringUtils.isBlank($selfDrive.memo))<img height="14" width="14" title="$selfDrive.memo" src="${env.staticroot}/images/bz_icon.png">#end
                 </td>
                 <td>$!ticket.destProvince $!selfDrive.destCity</td>
                 <td class="F9">$dateUtils.format($!selfDrive.gmtExpire,'yyyy-MM-dd')</td>
