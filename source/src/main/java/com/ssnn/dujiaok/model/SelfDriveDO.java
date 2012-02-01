@@ -32,6 +32,11 @@ public class SelfDriveDO extends AbstractProduct {
 	private int days ;
 	
 	/**
+	 * 推荐指数
+	 */
+	private String recommend ;
+	
+	/**
 	 * 付款方式
 	 */
 	private String payTypes ;
@@ -120,6 +125,14 @@ public class SelfDriveDO extends AbstractProduct {
 
 	public void setPayTypes(String payTypes) {
 		this.payTypes = payTypes;
+	}
+
+	public String getRecommend() {
+		return recommend;
+	}
+
+	public void setRecommend(String recommend) {
+		this.recommend = recommend;
 	}
 
 	public String getFeeDesc() {

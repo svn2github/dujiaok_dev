@@ -16,6 +16,7 @@
 		<item name="ticketDetails[$].gmtStart" dataType="Date"  batch="true" format="ymd"  msg="第$行开始时间格式不正确"/>
 		<item name="ticketDetails[$].gmtEnd" dataType="Date"  batch="true" format="ymd"  msg="第$行结束时间格式不正确"/>
 		<item name="marketPrice" dataType="Double"   msg="市场价格式不正确"/>
+		<item name="ticketType" dataType="Require"  msg="门票类型必须选择"/>
 		<item name="destProvince" dataType="Require" msg="省不能为空"/>
 		<item name="destProvince" dataType="Limit" mix="2" max="32" msg="省长度2-32个字符"/>
 		<item name="destCity" dataType="Require" msg="市不能为空"/>
@@ -57,6 +58,7 @@
 	<form id="createHotelRoomForm">
 		<item name="name" dataType="Require" msg="酒店名称不为空" />
 		<item name="name" dataType="Limit" min="2" max="80" msg="酒店名称长度2~80个字符" />
+		<item name="hotelName" dataType="Require" msg="请检查酒店编号是否正确" />
 		<item name="hotelId" dataType="Require" msg="不存在酒店编号" />
 		<item name="roomDetails[$].price" dataType="Require"  batch="true" msg="第$行价格不能为空"/>
 		<item name="roomDetails[$].price" dataType="Double"  batch="true" msg="第$行价格格式不正确"/>

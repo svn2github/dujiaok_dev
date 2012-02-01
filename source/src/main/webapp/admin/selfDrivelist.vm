@@ -1,14 +1,14 @@
-#set($__productType = "ticket")
+#set($__productType = "selfDrive")
 #set($layout = "/admin/default.vm")
-#set($title = "度假OK - 后台 - 门票")
+#set($title = "度假OK - 后台 - 自驾")
 #set($tab = $__productType)
 ###################################################
 
 
 #parse('common/back_tab.vm')
 
-<form id="ticketlistForm" name="ticketlistForm" method="GET" action="${env.root}/admin/ticketlist.htm" onsubmit="return Validator.validate(this,'admin');">
-	<input type="hidden" name="type" value="ticket"/>
+<form id="selfDriveForm" name="selfDriveForm" method="GET" action="${env.root}/admin/selfDrivelist.htm" onsubmit="return Validator.validate(this,'admin');">
+	<input type="hidden" name="type" value="selfDrive"/>
 	<input type="hidden" name="start" id="start" value="1"/>
 	<input type="hidden" name="size" id="size" value="$size"/>
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -59,18 +59,18 @@
                 <td colspan="5" ><span style="color:red;margin:0 auto;">没有查询到符合条件的记录</span></td>
             </tr>
 		#else
-        	#foreach($ticket in $result.items)
+        	#foreach($selfDrive in $result.items)
             <tr>
-                <td>$!ticket.ticketId</td>
+                <td>$!selfDrive.selfDriveId</td>
                 <td>
-                    <a href="#">$!ticket.name</a> #if(!$stringUtils.isBlank($ticket.memo))<img height="14" width="14" title="有备注" src="${env.staticroot}/images/bz_icon.png">#end
+                    <a href="#">$!selfDrive.name</a> #if(!$stringUtils.isBlank($selfDrive.memo))<img height="14" width="14" title="有备注" src="${env.staticroot}/images/bz_icon.png">#end
                 </td>
-                <td>$!ticket.destProvince $!ticket.destCity</td>
-                <td class="F9">$dateUtils.format($!ticket.gmtExpire,'yyyy-MM-dd')</td>
+                <td>$!ticket.destProvince $!selfDrive.destCity</td>
+                <td class="F9">$dateUtils.format($!selfDrive.gmtExpire,'yyyy-MM-dd')</td>
                 <td>
         			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createTicket.htm?ticketId=$ticket.ticketId');">复制链接</a>&nbsp;&nbsp;
-                    <a href="${env.root}/admin/createTicket.htm?ticketId=$ticket.ticketId">修改</a>&nbsp;&nbsp;
-        			<a href="${env.root}/admin/delTicket.htm?ticketId=$ticket.ticketId">删除</a>
+                    <a href="${env.root}/admin/createSelfDrive.htm?selfDriveId=$selfDrive.selfDriveId">修改</a>&nbsp;&nbsp;
+        			<a href="${env.root}/admin/delSelfDrive.htm?selfDriveId=$selfDrive.selfDriveId">删除</a>
                 </td>
             </tr>
     		#end

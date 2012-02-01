@@ -1,14 +1,20 @@
-#set($__productType = "ticket")
+#set($__productType = $!type )
 #set($layout = "/admin/default.vm")
-#set($title = "度假OK - 后台 - 门票")
+#if($__productType == "ticket")
+	#set($title = "度假OK - 后台 - 门票")
+#elseif($__productType == "hotel")
+	#set($title = "度假OK - 后台 - 酒店")
+#elseif($__productType == "selfDrive")
+	#set($title = "度假OK - 后台 - 自驾")
+#end
 #set($tab = $__productType)
 ###################################################
 
 
 #parse('common/back_tab.vm')
 
-<form id="ticketlistForm" name="ticketlistForm" method="GET" action="${env.root}/admin/ticketlist.htm" onsubmit="return Validator.validate(this,'admin');">
-	<input type="hidden" name="type" value="ticket"/>
+<form id="ticketlistForm" name="ticketlistForm" method="GET" action="${env.root}/admin/dolist.htm" onsubmit="return Validator.validate(this,'admin');">
+	<input type="hidden" name="type" value="$!type"/>
 	<input type="hidden" name="start" id="start" value="1"/>
 	<input type="hidden" name="size" id="size" value="$size"/>
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -59,13 +65,13 @@
                 <td colspan="5" ><span style="color:red;margin:0 auto;">没有查询到符合条件的记录</span></td>
             </tr>
 		#else
-        	#foreach($ticket in $result.items)
+        	#foreach($item in $result.items)
             <tr>
                 <td>$!ticket.ticketId</td>
                 <td>
                     <a href="#">$!ticket.name</a> #if(!$stringUtils.isBlank($ticket.memo))<img height="14" width="14" title="有备注" src="${env.staticroot}/images/bz_icon.png">#end
                 </td>
-                <td>$!ticket.destProvince $!ticket.destCity</td>
+                <td>$!ticket.destProvince $!item.destCity</td>
                 <td class="F9">$dateUtils.format($!ticket.gmtExpire,'yyyy-MM-dd')</td>
                 <td>
         			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createTicket.htm?ticketId=$ticket.ticketId');">复制链接</a>&nbsp;&nbsp;

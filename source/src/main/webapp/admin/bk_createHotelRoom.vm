@@ -1,0 +1,191 @@
+#set($layout="/admin/default.vm")
+#set($title="度假OK - 后台 - 发布房间")
+#XUI_CSS(["common/reset.css","eshop/simple-date/xui-simple-datepicker.css"])
+###################################################
+<div class="ucenter_right">
+    <h2 class="B FS14">产品录入</h2>
+	
+	<form id="createHotelRoomForm" name="createHotelRoomForm" method="POST" action="${env.root}/admin/docreateHotelRoom.htm" onsubmit="return Validator.validate(this,'admin');">
+    <input name="id"  type="hidden" value="$!id" />
+	<input name="roomId"  type="hidden" value="$!roomId" />
+	<div class="us01">
+		<div>
+			<span>房间编号：</span><span>$!room.roomId</span>
+		</div>
+		<div>
+			<span>酒店编号：</span><span><input type="text" id='hotelId' name='hotelId' value="$!room.hotelId" /></span>
+		</div>
+        <div>
+			<span>房间名称：</span><span><input type="text" id='name' name='name' value="$!room.name" /></span>
+		</div>
+		<div>时间</div>
+		<div id="times">
+    		#foreach($!roomDetail in $!room.roomDetails)
+    			#set($count = $velocityCount)
+    			#set($count = $count - 1)
+        		<div id="time$!count">
+					<input type="hidden" value="$!roomDetail.id" name="roomDetails[$count].id"/>
+					<input type="hidden" value="$!roomId" name="roomDetails[$count].roomId"/>
+        			<input type="text" value="$dateUtils.format($!roomDetail.gmtStart,'yyyy-MM-dd')"  id="gmtStart[$!count]" name="roomDetails[$count].gmtStart"/> 
+					至  
+					<input type="text" value="$dateUtils.format($!roomDetail.gmtEnd,'yyyy-MM-dd')"  id="gmtEnd[$!count]" name="roomDetails[$count].gmtEnd"/>
+        			价格： <input type="text" value="$!roomDetail.price" name="roomDetails[$count].price" />
+					#if($count > 0)
+					<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />
+					#end
+        		</div>
+			#end
+		</div>
+		<input type="button" value="增加时间" onclick="addTime() ;"/>
+		<div>
+			<span>市场价：</span><span><input type="text" id='marketPrice' name='marketPrice' value="$!room.marketPrice"/></span>
+		</div>
+		<div>
+			<span>支付方式：</span>
+			<span>
+    			<input type="checkbox" name="payTypesList" value="ONLINE" #if( $collectionUtils.contains($!payTypesList,"ONLINE"))checked#end />网上支付
+    			<input type="checkbox" name="payTypesList" value="CASH" #if( $collectionUtils.contains($!payTypesList,"CASH"))checked#end/>前台现付
+			</span>
+		</div>
+		<div>
+			<span>房型信息：</span>
+			<span>面积 <input type="text" id='roomArea' name='roomArea' value="$!room.roomArea"/></span>
+			<span>床型</span>
+			<span>
+				<select name="bed" id="bed">
+					<option value="1.5米大床">1.5米大床</option>
+					<option value="1.8米大床">1.8米大床</option>
+					<option value="1.2米双床">1.2米双床</option>
+					<option value="1.5米双床">1.5米双床</option>
+					<option value="其他">其他</option>
+                </select>
+			</span>
+		</div>	
+		<div>
+			<span>配套：</span>
+				<input type="checkbox" name="roomFacilitiesList" value="大阳台" #if( $collectionUtils.contains($!roomFacilitiesList,"大阳台")) checked #end />大阳台
+    			<input type="checkbox" name="roomFacilitiesList" value="24小时热水" #if( $collectionUtils.contains($!roomFacilitiesList,"24小时热水")) checked #end/>24小时热水
+				<input type="checkbox" name="roomFacilitiesList" value="免费宽带" #if( $collectionUtils.contains($!roomFacilitiesList,"免费宽带")) checked #end/>免费宽带
+				<input type="checkbox" name="roomFacilitiesList" value="付费宽带" #if( $collectionUtils.contains($!roomFacilitiesList,"付费宽带")) checked #end/>付费宽带
+				<input type="checkbox" name="roomFacilitiesList" value="无线网络" #if( $collectionUtils.contains($!roomFacilitiesList,"无线网络")) checked #end />无线网络
+				<input type="checkbox" name="roomFacilitiesList" value="吹风机" #if( $collectionUtils.contains($!roomFacilitiesList,"吹风机")) checked #end/>吹风机
+				<input type="checkbox" name="roomFacilitiesList" value="可加床" #if( $collectionUtils.contains($!roomFacilitiesList,"可加床")) checked #end/>可加床
+			</span>
+		</div>
+		<div id="images">
+			<span>上传图片：</span>
+			#foreach($image in $imagesList)
+				#set($count = $velocityCount)
+    			#set($count = $count - 1)
+				<div id="image$count">
+					<input type="text"  name='imagesList' value="$!image"/>
+					#if($count > 0)
+					<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />
+					#end
+				</div>
+			#end
+		</div>
+		<input type="button" value="增加图片" onclick="addImage() ;"/>
+		<div>
+			<span>产品简介：</span>
+            <span><textarea id='introduction' name='introduction' cols="10" rows="8">$!room.introduction</textarea></span>
+		</div>
+		<div>
+			<span>备注：</span>
+            <span><textarea id='memo' name='memo' cols="10" rows="8" >$!room.memo</textarea></span>
+		</div>
+	</div>
+	
+	<button>保存</button>
+	
+	</form>
+</div>
+
+#XUI_JS(["core/xui-core.js","util/util-min.js","simple-date/xui-simple-datepicker.js"])
+#JS(["validator.js","dujiaok.js"])
+<script type="text/javascript">
+	
+	var bed = '$!room.bed' ;
+	
+
+////////////////////////////
+
+	    var lastDetailsIndex = $collectionUtils.size($!room.roomDetails) ; //时间个数
+		var lastImagesIndex = $collectionUtils.size($imagesList) ; //上传照片个数
+				
+		var attachDatePicker = function(id){
+			var dateVal = $(id).value ;
+			var date ;
+			if(dateVal==null||dateVal==''){
+				date = new Date() ;
+			}else{
+			 	date = new Date(dateVal) ;
+			}
+			
+			var picker = new xui.widgets.simpleDatePicker(id,'YYYY-MM-DD',date);
+			picker.setModel({inconver:true,'selectBefore':function(dates){
+            	$(id).value = dates ;
+            }});
+		}		
+		
+		var addTime = function(){
+			var i = lastDetailsIndex  ;
+			
+			var divElement = document.createElement('div') ;
+			divElement.id = 'time' + i ;
+			$('times').appendChild(divElement) ;
+						
+			var innerHTML = '<input type="hidden" name="ticketDetails['+i+'].id"/>' +
+			'<input type="text" id="gmtStart['+i+']" name="ticketDetails['+i+'].gmtStart"/>' + 
+			' 至 ' + 
+			'<input type="text"  id="gmtEnd['+i+']" name="ticketDetails['+i+'].gmtEnd"/>' +
+			'价格： <input type="text" name="ticketDetails['+i+'].price" /> '  ;
+			if(i > 0){
+				innerHTML += '<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />' ;
+			}
+			$('time'+i).innerHTML = innerHTML ;
+			attachDatePicker('gmtStart['+i+']') ;
+			attachDatePicker('gmtEnd['+i+']') ;
+			lastDetailsIndex++ ;
+			
+		}
+				
+		for(var i=0 ;i<lastDetailsIndex;i++){
+			///////datepicker
+			attachDatePicker('gmtStart['+i+']') ;
+			attachDatePicker('gmtEnd['+i+']') ;
+		}
+
+		var removeElement = function(ele){
+			ele.parentNode.removeChild(ele) ;
+		}
+		
+		
+		
+		var addImage = function(){
+			var i = lastImagesIndex  ;
+			if(i > 3){
+				return ;
+			}
+			var divElement = document.createElement('div') ;
+			divElement.id = 'image' + i ;
+			$('images').appendChild(divElement) ;
+			var innerHTML = '<input type="text"  name="imagesList" />' ;
+			if(i > 0){
+				innerHTML += '<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />' ;
+			}
+			$('image'+i).innerHTML = innerHTML ;
+			lastImagesIndex ++ ;
+		}
+		
+		///初始化
+		if(lastDetailsIndex <= 0){
+			addTime() ;	
+		}
+		if(lastImagesIndex <= 0){
+			addImage() ;
+		}
+		
+		
+		setupSelect('bed',bed) ;
+</script>

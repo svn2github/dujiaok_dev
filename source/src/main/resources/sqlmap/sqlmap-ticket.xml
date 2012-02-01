@@ -9,6 +9,8 @@
 		<result property="name" column="NAME" jdbcType="VARCHAR"/>
 		<result property="marketPrice" column="MARKET_PRICE" jdbcType="DECIMAL"/>
 		<result property="destAddr" column="DEST_ADDR" jdbcType="VARCHAR"/>
+		<result property="recommend" column="RECOMMEND" jdbcType="VARCHAR"/>
+		<result property="ticketType" column="TICKET_TYPE" jdbcType="VARCHAR"/>
 		<result property="destProvince" column="DEST_PROVINCE" jdbcType="VARCHAR"/>
 		<result property="destCity" column="DEST_CITY" jdbcType="VARCHAR"/>
 		<result property="destArea" column="DEST_AREA" jdbcType="VARCHAR"/>
@@ -20,6 +22,7 @@
 		<result property="notice" column="NOTICE" jdbcType="VARCHAR"/>
 		<result property="feeDesc" column="FEE_DESC" jdbcType="VARCHAR"/>
 		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+		<result property="notDiscout" column="NOT_DISCOUT" jdbcType="VARCHAR"/>
 		<result property="gmtCreate" column="GMT_CREATE" jdbcType="TIMESTAMP"/>
 		<result property="gmtModified" column="GMT_MODIFIED" jdbcType="TIMESTAMP"/>
 		<result property="gmtExpire" column="GMT_EXPIRE" jdbcType="TIMESTAMP"/>
@@ -28,9 +31,9 @@
 
 	<insert id="insertTicket">
 		INSERT INTO 
-			DJ_TICKET (ID,TICKET_ID,NAME,MARKET_PRICE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,PAY_TYPES,PRODUCT_TYPES,INTRODUCTION,NOTICE,FEE_DESC,MEMO,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
+			DJ_TICKET (ID,TICKET_ID,NAME,MARKET_PRICE,RECOMMEND,TICKET_TYPE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,PAY_TYPES,PRODUCT_TYPES,INTRODUCTION,NOTICE,FEE_DESC,MEMO,NOT_DISCOUT,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
 		VALUES 
-			(#id#,#ticketId#,#name#,#marketPrice#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#payTypes#,#productTypes#,#introduction#,#notice#,#feeDesc#,#memo#,now(),now(),#gmtExpire#)
+			(#id#,#ticketId#,#name#,#marketPrice#,#recommend#,#ticketType#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#payTypes#,#productTypes#,#introduction#,#notice#,#feeDesc#,#memo#,#notDiscout#,now(),now(),#gmtExpire#)
 		<selectKey resultClass="java.lang.Integer" keyProperty="id">
     		<![CDATA[
 				SELECT LAST_INSERT_ID() AS ID
@@ -42,6 +45,8 @@
 		UPDATE DJ_TICKET SET 
 			NAME = #name# , 
 			MARKET_PRICE = #marketPrice# ,
+			RECOMMEND = #recommend# ,
+			TICKET_TYPE = #ticketType# ,
 			DEST_ADDR = #destAddr# ,
 			DEST_PROVINCE = #destProvince# ,
 			DEST_CITY = #destCity# ,
@@ -54,6 +59,7 @@
 			NOTICE = #notice# ,
 			FEE_DESC = #feeDesc# ,
 			MEMO = #memo# ,
+			NOT_DISCOUT = #notDiscout# ,
 			GMT_MODIFIED = now() ,
 			GMT_EXPIRE = #gmtExpire#
 		WHERE 

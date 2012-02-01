@@ -67,6 +67,11 @@ public class HotelRoomDO {
 	private String introduction ;
 	
 	/**
+	 * 房型图片
+	 */
+	private String categoryImage ;
+	
+	/**
 	 * 备注
 	 */
 	private String memo ;
@@ -119,6 +124,14 @@ public class HotelRoomDO {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getCategoryImage() {
+		return categoryImage;
+	}
+
+	public void setCategoryImage(String categoryImage) {
+		this.categoryImage = categoryImage;
 	}
 
 	public String getRoomId() {

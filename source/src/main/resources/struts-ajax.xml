@@ -8,6 +8,10 @@
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success"  type="json"></result>
 		</action>
+		<action name="queryHotel" class="com.ssnn.dujiaok.web.action.ajax.QueryHotelAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success"  type="json"></result>
+		</action>
 		<action name="test" class="com.ssnn.dujiaok.web.action.home.IndexAction">
 			<interceptor-ref name="basicStack" />
 			<result name="success" type="velocity">/home/test.vm</result>

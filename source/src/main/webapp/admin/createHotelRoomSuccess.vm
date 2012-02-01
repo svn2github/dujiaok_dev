@@ -1,12 +1,34 @@
 #set($layout="/admin/default.vm")
 #set($title="度假OK - 后台 - 发布房间成功")
-
 ###################################################
 <h2>发布房间成功</h2>
 <input type="hidden" value="$!roomId" name="roomId" />
-<ul>
-    <li><a href="${env.root}/admin/createHotelRoom.htm?roomId=${roomId}">后台首页</a></li>
-    <li><a href="${env.root}/admin/createHotelRoom.htm">继续发布</a></li>
-    <li><a href="${env.root}/admin/createHotelRoom.htm?roomId=${roomId}">查看发布信息</a></li>
-    <li><a href="${env.root}/admin/createHotelRoom.htm?roomId=${roomId}">编辑发布信息</a></li>
-</ul>
+<table width="960" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td height="70">&nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td width="397">
+            <div class="success_one"></div>
+        </td>
+        <td width="563" class="FS24 B F7">发布产品成功</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>您还可以<br />
+            <div>
+                <a href="${env.root}/admin/createHotelRoom.htm?roomId=${roomId}">后台首页</a>
+            </div>
+            <div>
+                <a href="${env.root}/admin/createHotelRoom.htm">继续发布</a>
+            </div>
+            <div>
+                <a href="${env.root}/admin/createHotelRoom.htm?roomId=${roomId}">查看发布信息</a>
+            </div>
+            <div>
+                <a href="${env.root}/admin/createHotelRoom.htm?roomId=${roomId}">编辑发布信息</a>
+            </div>
+        </td>
+    </tr>
+</table>

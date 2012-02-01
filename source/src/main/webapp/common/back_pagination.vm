@@ -14,18 +14,30 @@
 #set($rangeStart = 1)
 #set($rangeEnd = $totalPages)
 
-<div>
+<style>
+	
+
+</style>
+
+<table class="pagination" cellspacing="0" cellpadding="0" border="0" align="center" width="960">
+	<tbody>
+		<tr>
+			<td align="right">
+	<div class="page-button">			
+			
+
+
     #if($curPage == 1)
-    [首页]
+    <a href="javascript:void(0);" class="page-skip">首页</a>
     #else
     [<a href="javascript:void(0);" onclick="toPage(1,$size);">首页</a>]
     #end
-    	
-    #foreach($count in [-5..5])
+    
+    #foreach($count in [-3..3])
     	#set($toPage = $curPage + $count)
     	#if($toPage>=$rangeStart && $toPage<=$rangeEnd) 
         	#if($toPage == $curPage)
-        		$toPage
+        		<span class="page-cur">$toPage</span>
         	#else
                 <a href="javascript:void(0);" onclick="toPage($toPage,$size);">$toPage</a>
     		#end
@@ -33,15 +45,23 @@
     #end
     
     #if($curPage == $totalPages)
-    [末页]
+    <a href="javascript:void(0);" class="page-skip">末页</a>
     #else
-    [<a href="javascript:void(0);" onclick="toPage($totalPages,$size);">末页</a>]
+    <a href="javascript:void(0);" onclick="toPage($totalPages,$size);">末页</a>
     #end
     
     #if($__index)
     	#set($__index = $__index + 1)
     #else
     	#set($__index = 1)
-    #end
-    &nbsp;  共 $totalPages 页   到第 <input type="text" size="2" value="$curPage" id="toPages$__index"></input> 页  <input type="button" onclick="toPage($('toPages$__index').value,$size);" value="确定"/>
+	#end
+	
+	<span class="page-skip">
+		共 $totalPages 页   到第 <input type="text" size="2" value="$curPage" id="toPages$__index"></input> 页  <input type="button" onclick="toPage($('toPages$__index').value,$size);" value="确定"/>
+    </span>
+	
 </div>
+			</td>
+		</tr>
+	</tbody>
+</table>

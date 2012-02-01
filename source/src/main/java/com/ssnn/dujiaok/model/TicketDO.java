@@ -26,7 +26,15 @@ public class TicketDO extends AbstractProduct {
 	 */
 	private BigDecimal marketPrice ;
 	
+	/**
+	 * 推荐指数
+	 */
+	private String recommend ;
 	
+	/**
+	 * 门票类型（电子、短信等）
+	 */
+	private String ticketType ;
 	/**
 	 * 图片
 	 */
@@ -56,6 +64,11 @@ public class TicketDO extends AbstractProduct {
 	 */
 	private String memo ;
 	
+	/**
+	 * 不打折为‘T’
+	 */
+	private String notDiscout ;
+	
 	private Date gmtCreate ;
 	
 	private Date gmtModified ;
@@ -66,6 +79,14 @@ public class TicketDO extends AbstractProduct {
 
 	public List<TicketDetailDO> getTicketDetails() {
 		return ticketDetails;
+	}
+
+	public String getNotDiscout() {
+		return notDiscout;
+	}
+
+	public void setNotDiscout(String notDiscout) {
+		this.notDiscout = notDiscout;
 	}
 
 	public void setTicketDetails(List<TicketDetailDO> ticketDetails) {
@@ -79,6 +100,22 @@ public class TicketDO extends AbstractProduct {
 
 	public void setMarketPrice(BigDecimal marketPrice) {
 		this.marketPrice = marketPrice;
+	}
+
+	public String getRecommend() {
+		return recommend;
+	}
+
+	public void setRecommend(String recommend) {
+		this.recommend = recommend;
+	}
+
+	public String getTicketType() {
+		return ticketType;
+	}
+
+	public void setTicketType(String ticketType) {
+		this.ticketType = ticketType;
 	}
 
 	public String getImages() {

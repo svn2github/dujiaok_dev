@@ -9,6 +9,7 @@
 		<result property="name" column="NAME" jdbcType="VARCHAR"/>
 		<result property="addProducts" column="ADD_PRODUCTS" jdbcType="VARCHAR"/>
 		<result property="days" column="DAYS" />
+		<result property="recommend" column="RECOMMEND" jdbcType="VARCHAR"/>
 		<result property="marketPrice" column="MARKET_PRICE" jdbcType="DECIMAL"/>
 		<result property="destAddr" column="DEST_ADDR" jdbcType="VARCHAR"/>
 		<result property="destProvince" column="DEST_PROVINCE" jdbcType="VARCHAR"/>
@@ -30,9 +31,9 @@
 
 	<insert id="insertSelfDrive">
 		INSERT INTO 
-			DJ_SELF_DRIVE (ID,SELF_DRIVE_ID,NAME,ADD_PRODUCTS,DAYS,MARKET_PRICE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,PAY_TYPES,PRODUCT_TYPES,INTRODUCTION,SCHEDULE,FEE_DESC,MEMO,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
+			DJ_SELF_DRIVE (ID,SELF_DRIVE_ID,NAME,ADD_PRODUCTS,DAYS,RECOMMEND,MARKET_PRICE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,PAY_TYPES,PRODUCT_TYPES,INTRODUCTION,SCHEDULE,FEE_DESC,MEMO,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
 		VALUES 
-			(#id#,#selfDriveId#,#name#,#addProducts#,#days#,#marketPrice#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#payTypes#,#productTypes#,#introduction#,#schedule#,#feeDesc#,#memo#,now(),now(),#gmtExpire#)
+			(#id#,#selfDriveId#,#name#,#addProducts#,#days#,#recommend#,#marketPrice#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#payTypes#,#productTypes#,#introduction#,#schedule#,#feeDesc#,#memo#,now(),now(),#gmtExpire#)
 		<selectKey resultClass="java.lang.Integer" keyProperty="id">
     		<![CDATA[
 				SELECT LAST_INSERT_ID() AS ID
@@ -45,6 +46,7 @@
 			NAME = #name# ,
 			ADD_PRODUCTS = #addProducts# ,
 			DAYS = #days# , 
+			RECOMMEND = #recommend# ,
 			MARKET_PRICE = #marketPrice# ,
 			DEST_ADDR = #destAddr# ,
 			DEST_PROVINCE = #destProvince# ,

@@ -45,6 +45,16 @@ public class ProductListAction extends BasicAction implements ModelDriven<Pagina
 	
 	private HotelService hotelService ;
 	
+	public String selfDrive() throws Exception {
+		type = "selfDrive" ;
+		return SUCCESS ;
+	}
+	
+	public String ticket() throws Exception {
+		type = "ticket" ;
+		return SUCCESS ;
+	}
+	
 	@Override
 	public String execute() throws Exception {
 		Map<String,Object> condition = new HashMap<String,Object>() ;
@@ -52,10 +62,10 @@ public class ProductListAction extends BasicAction implements ModelDriven<Pagina
 			condition.put("name", name) ;
 		}
 		if(StringUtils.isNotBlank(province)){
-			condition.put("province", province) ;
+			condition.put("destProvince", province) ;
 		}
 		if(StringUtils.isNotBlank(city)){
-			condition.put("city", city) ;
+			condition.put("destCity", city) ;
 		}
 		if(StringUtils.isNotBlank(productId)){
 			condition.put("productId", productId) ;
@@ -66,9 +76,9 @@ public class ProductListAction extends BasicAction implements ModelDriven<Pagina
 		
 		if(StringUtils.equals(type,"ticket")){
 			result = ticketService.getTickets(condition, pagination) ;
-		}else if(StringUtils.equals(type, "selfDrive")){
-			result = hotelService.getHotels(condition, pagination) ;
 		}else if(StringUtils.equals(type, "hotel")){
+			result = hotelService.getHotels(condition, pagination) ;
+		}else if(StringUtils.equals(type, "selfDrive")){
 			result = selfDriveService.getSelfDrives(condition, pagination) ;
 		}
 		return SUCCESS ;

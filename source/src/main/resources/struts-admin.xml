@@ -91,10 +91,18 @@
 			<result name="success"  type="velocity">/admin/createSelfDriveSuccess.vm</result>
 		</action>
 		
-		<action name="ticketlist" class="com.ssnn.dujiaok.web.action.admin.ProductListAction"  >
+		<action name="ticketlist" class="com.ssnn.dujiaok.web.action.admin.ProductListAction">
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="adminAuthInterceptor" />
 			<result name="success"  type="velocity">/admin/ticketlist.vm</result>
 		</action>
+		
+		<action name="selfDrivelist" class="com.ssnn.dujiaok.web.action.admin.ProductListAction" >
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="velocity">/admin/selfDrivelist.vm</result>
+		</action>
+		
+		
 	</package>
 </struts>

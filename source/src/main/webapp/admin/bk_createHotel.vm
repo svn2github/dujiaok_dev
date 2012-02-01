@@ -1,0 +1,128 @@
+#set($layout="/admin/default.vm")
+#set($title="度假OK - 后台 - 发布酒店")
+###################################################
+<div class="ucenter_right">
+    <h2 class="B FS14">产品录入</h2>
+	
+	<form id="createHotelForm" name="createHotelForm" method="POST" action="${env.root}/admin/docreateHotel.htm" onsubmit="return Validator.validate(this,'admin');">
+    <input name="id"  type="hidden" value="$!id" />
+	<input name="hotelId"  type="hidden" value="$!hotelId" />
+	<div class="us01">
+		<div>
+			<span>酒店编号：</span><span>$!hotelId</span>
+		</div>
+        <div>
+			<span>酒店名称：</span><span><input type="text" id='name' name='name' value="$!hotel.name" /></span>
+		</div>
+		<div>
+			<span>所在地：</span>
+            <span><select id='destProvince'  name='destProvince' onchange="selectProvince();"></select>省  <select id='destCity' name='destCity' onchange="selectCity();"></select>市  <select id='destArea' name='destArea' ></select>区</span>
+		</div>
+		<div>
+			<span>详细地址：</span>
+            <span><input type="text" id='destAddr'  name='destAddr' value="$!hotel.destAddr"/></span>
+		</div>
+		<div>
+			<span>星级：</span>
+            <span>
+				<select name="starRate" id="starRate">
+					<option value="1">连锁商务酒店</option>
+					<option value="2">经济商务</option>
+					<option value="3">三星级</option>
+					<option value="4">准三星级</option>
+					<option value="5">四星级</option>
+					<option value="6">准四星级</option>
+					<option value="7">五星级</option>
+					<option value="8">准五星级</option>
+                </select>
+			</span>
+		</div>
+		<div>
+			<span>房间数量：</span>
+            <span><input type="text" name="roomAmount" value="$!hotel.roomAmount"/></span>
+		</div>
+		<div id="images">
+			<span>上传图片：</span>
+			#foreach($image in $imagesList)
+				#set($count = $velocityCount)
+    			#set($count = $count - 1)
+				<div id="image$count">
+					<input type="text"  name='imagesList' value="$!image"/>
+					#if($count > 0)
+					<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />
+					#end
+				</div>
+			#end
+		</div>
+		<input type="button" value="增加图片" onclick="addImage() ;"/>
+		<div>
+			<span>产品简介：</span>
+            <span><textarea id='introduction' name='introduction' cols="10" rows="8">$!hotel.introduction</textarea></span>
+		</div>
+		<div>
+			<span>备注：</span>
+            <span><textarea id='memo' name='memo' cols="10" rows="8" >$!hotel.memo</textarea></span>
+		</div>
+	</div>
+	
+	<button>保存</button>
+	
+	</form>
+</div>
+#XUI_JS(["core/xui-core.js","util/util-min.js"])
+#JS(["validator.js","dujiaok.js"])
+<script type="text/javascript">
+	var starRate = '$!hotel.starRate' ;
+		
+	var lastImagesIndex = $collectionUtils.size($imagesList) ; //上传照片个数
+	
+	var removeElement = function(ele){
+		ele.parentNode.removeChild(ele) ;
+	}
+	
+	var addImage = function(){
+		var i = lastImagesIndex  ;
+		if(i > 3){
+			return ;
+		}
+		var divElement = document.createElement('div') ;
+		divElement.id = 'image' + i ;
+		$('images').appendChild(divElement) ;
+		var innerHTML = '<input type="text"  name="imagesList" />' ;
+		if(i > 0){
+			innerHTML += '<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />' ;
+		}
+		$('image'+i).innerHTML = innerHTML ;
+		lastImagesIndex ++ ;
+	}
+	
+	///初始化
+	
+	var selectProvince = function (){
+		var select = $('destProvince') ;
+		var name = select.options[select.selectedIndex].value ;
+		initAddressSelect(url,'destCity','city','',name) ;
+		$('destArea').options.length = 0 ;
+	}
+	
+	var selectCity = function(){
+		var select = $('destCity') ;
+		var name = select.options[select.selectedIndex].value ;
+		initAddressSelect(url,'destArea','area','',name) ;
+	}
+	
+	//省市地区
+	var province = '$!hotel.destProvince' ;
+	var city = '$!hotel.destCity' ;
+	var area = '$!hotel.destArea' ;
+	var url = '${env.root}/ajax/address.htm' ;	
+
+	if(lastImagesIndex <= 0){
+		addImage() ;
+	}
+	
+	setupSelect('starRate',starRate) ;
+	initAddressSelect(url,'destProvince','province',province) ;
+	initAddressSelect(url,'destCity','city',city,province) ;
+	initAddressSelect(url,'destArea','area',area,city) ;
+</script>
