@@ -21,7 +21,7 @@
             <td>
                 <input type="text" id='hotelId' name='hotelId' value="$!room.hotelId"  class="input_m" onblur="queryHotel(this.value,'hotelName');"/>
                 &nbsp;<i  class="F3 FS14" id="hotelName"></i>
-				<input type="hidden" name="hotelName" id="hotelNameHidden"/>
+				<input type="hidden" name="hotelName" id="hotelNameValid" value="$!room.hotelId"/>
             </td>
         </tr>
         <tr>
@@ -214,11 +214,11 @@
     					var result = eval('('+data+')') ;
     					var hotelName = result.hotel.name ;
 						$(id).innerHTML = hotelName ;
-						$(id+'Hidden').value = hotelName ;
+						$(id+'Valid').value = hotelName ;
     				}catch(e){
     					//alert('exception :' + e.message) ;
 						$(id).innerHTML = '<span style="color:red;">查询不到酒店</span>' ;
-						$(id+'Hidden').value = '' ;
+						$(id+'Valid').value = '' ;
     				}
     			} , 
     			function(data){
