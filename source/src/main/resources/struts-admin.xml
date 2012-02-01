@@ -5,6 +5,11 @@
 <struts>
 	<package name="admin" namespace="/admin" extends="default">
 	
+		<action name="index" class="com.ssnn.dujiaok.web.action.admin.IndexAction">
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="redirect">/admin/ticketlist.htm</result>			
+		</action>
+	
 		<action name="login" class="com.ssnn.dujiaok.web.action.admin.LoginAction">
 			<interceptor-ref name="basicStack" />
 			<result name="input" type="velocity">/admin/login.vm</result>

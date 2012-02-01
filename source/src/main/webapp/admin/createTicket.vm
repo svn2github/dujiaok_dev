@@ -206,7 +206,7 @@
 		'<input type="text"  id="gmtEnd['+i+']" name="ticketDetails['+i+'].gmtEnd"/>' +
 		'价格： <input type="text" name="ticketDetails['+i+'].price" /> '  ;
 		if(i > 0){
-			innerHTML += '<input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;" class="input_b" />' ;
+			innerHTML += '<input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;"  />' ;
 		}
 		$('time'+i).innerHTML = innerHTML ;
 		attachDatePicker('gmtStart['+i+']') ;
