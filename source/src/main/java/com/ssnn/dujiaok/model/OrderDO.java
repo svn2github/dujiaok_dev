@@ -72,7 +72,29 @@ public class OrderDO {
 	
 	private Date gmtCreate ;
 	
+	private Date gmtOrderStart ;
+	
+	private Date gmtOrderEnd ;
+	
 	private Date gmtModified ;
+
+	
+	
+	public Date getGmtOrderStart() {
+		return gmtOrderStart;
+	}
+
+	public void setGmtOrderStart(Date gmtOrderStart) {
+		this.gmtOrderStart = gmtOrderStart;
+	}
+
+	public Date getGmtOrderEnd() {
+		return gmtOrderEnd;
+	}
+
+	public void setGmtOrderEnd(Date gmtOrderEnd) {
+		this.gmtOrderEnd = gmtOrderEnd;
+	}
 
 	public int getId() {
 		return id;
