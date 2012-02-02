@@ -17,13 +17,12 @@
                 <td width="360">
                      #if(${env.admin})
 						<span>
-						欢迎您：$!env.admin.username | <a href="javascript:;">退出</a> | &nbsp;&nbsp;
+						欢迎您：$!env.admin.username | <a href="javascript:;">退出</a> |  
 						</span>
 					 #end
-                    <input type="submit" name="1" id="1" value="&nbsp;&nbsp;前台展示页后台&nbsp;&nbsp;" />
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="submit" name="2" id="2" value="&nbsp;&nbsp;订单后台&nbsp;&nbsp;" />
-                
+                    <a href="#">进入前台首页</a>
+                     |  
+					<a href="#">订单后台</a>                
                 </td>
             </tr>
         </table>
