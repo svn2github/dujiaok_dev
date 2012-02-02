@@ -16,16 +16,24 @@ public class UniqueIDUtil {
 	private static final String format = "yyMMddHHmmssS" ;
 	
 	public static String getUniqueID(ProductEnums product){
-		
 		String time = getTimestamp() ;
-		
 		String random = String.valueOf(new Random().nextInt(10)) ;
-		
 		return product.getValue() + time + random ; 
+	}
+	
+	public static String getOrderID(String memberId){
+		String time = getTimestamp() ;
+		String random = String.valueOf(new Random().nextInt(100)) ;
+		String m = conventE2N(memberId) ;
+		return time + random + m ;
 	}
 	
 	private static String getTimestamp(){
 		Date d = new Date() ;
 		return new SimpleDateFormat(format).format(d) ;
+	}
+	
+	private static String conventE2N(String memberId){
+		return String.valueOf(memberId.hashCode()) ;
 	}
 }
