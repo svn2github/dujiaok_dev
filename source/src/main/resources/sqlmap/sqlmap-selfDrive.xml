@@ -5,7 +5,7 @@
 
 	<resultMap id="RM-SelfDrive" class="TA-SelfDrive" >
 		<result property="id" column="ID"/>
-		<result property="selfDriveId" column="SELF_DRIVE_ID" jdbcType="VARCHAR" />
+		<result property="productId" column="PRODUCT_ID" jdbcType="VARCHAR" />
 		<result property="name" column="NAME" jdbcType="VARCHAR"/>
 		<result property="addProducts" column="ADD_PRODUCTS" jdbcType="VARCHAR"/>
 		<result property="days" column="DAYS" />
@@ -31,9 +31,9 @@
 
 	<insert id="insertSelfDrive">
 		INSERT INTO 
-			DJ_SELF_DRIVE (ID,SELF_DRIVE_ID,NAME,ADD_PRODUCTS,DAYS,RECOMMEND,MARKET_PRICE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,PAY_TYPES,PRODUCT_TYPES,INTRODUCTION,SCHEDULE,FEE_DESC,MEMO,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
+			DJ_SELF_DRIVE (ID,PRODUCT_ID,NAME,ADD_PRODUCTS,DAYS,RECOMMEND,MARKET_PRICE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,PAY_TYPES,PRODUCT_TYPES,INTRODUCTION,SCHEDULE,FEE_DESC,MEMO,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
 		VALUES 
-			(#id#,#selfDriveId#,#name#,#addProducts#,#days#,#recommend#,#marketPrice#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#payTypes#,#productTypes#,#introduction#,#schedule#,#feeDesc#,#memo#,now(),now(),#gmtExpire#)
+			(#id#,#productId#,#name#,#addProducts#,#days#,#recommend#,#marketPrice#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#payTypes#,#productTypes#,#introduction#,#schedule#,#feeDesc#,#memo#,now(),now(),#gmtExpire#)
 		<selectKey resultClass="java.lang.Integer" keyProperty="id">
     		<![CDATA[
 				SELECT LAST_INSERT_ID() AS ID
@@ -63,17 +63,17 @@
 			GMT_MODIFIED = now() ,
 			GMT_EXPIRE = #gmtExpire#
 		WHERE 
-			SELF_DRIVE_ID = #selfDriveId#
+			PRODUCT_ID = #productId#
 	</update>
 	
 	<select id="querySelfDrive" resultMap="RM-SelfDrive">
-		select * from DJ_SELF_DRIVE where SELF_DRIVE_ID = #selfDriveId#
+		select * from DJ_SELF_DRIVE where PRODUCT_ID = #productId#
 	</select>
 	
 	<select id="querySelfDrives" resultMap="RM-SelfDrive">
 		SELECT * FROM DJ_SELF_DRIVE WHERE 1=1 
 		<isNotEmpty property="productId" prepend="AND">
-			SELF_DRIVE_ID = #productId#
+			PRODUCT_ID = #productId#
 		</isNotEmpty>
 		<isNotEmpty property="name" prepend="AND">
 			NAME LIKE CONCAT('%', #name#, '%')
@@ -95,7 +95,7 @@
 	<select id="countSelfDrives" resultClass="Integer">
 		SELECT count(*) FROM DJ_SELF_DRIVE WHERE 1=1 
 		<isNotEmpty property="productId" prepend="AND">
-			SELF_DRIVE_ID = #productId#
+			PRODUCT_ID = #productId#
 		</isNotEmpty>
 		<isNotEmpty property="name" prepend="AND">
 			NAME LIKE CONCAT('%', #name#, '%')

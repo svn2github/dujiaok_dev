@@ -6,7 +6,7 @@
 ###################################################
 <form id="createSelfDriveForm" name="createSelfDriveForm" method="POST" action="${env.root}/admin/docreateSelfDrive.htm" onsubmit="return Validator.validate(this,'admin');">
     <input name="id"  type="hidden" value="$!id" />
-    <input name="selfDriveId"  type="hidden" value="$!selfDriveId" />
+    <input name="productId"  type="hidden" value="$!productId" />
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
             <td height="10"></td>
@@ -15,7 +15,7 @@
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="fabu_mb">
         <tr>
             <td width="103" align="right">编号：</td>
-            <td width="857">$!selfDrive.selfDriveId</td>
+            <td width="857">$!selfDrive.productId</td>
         </tr>
         <tr>
             <td align="right">名称：</td>
@@ -33,7 +33,7 @@
                         #set($count = $count - 1)
                         <div id="time$!count" class="line_sep">
                             <input type="hidden" value="$!detail.id" name="details[$count].id"/>
-                            <input type="hidden" value="$!detail.selfDriveId" name="details[$count].selfDriveId"/>
+                            <input type="hidden" value="$!detail.productId" name="details[$count].productId"/>
                             <input type="text" value="$dateUtils.format($!detail.gmtStart,'yyyy-MM-dd')"  id="gmtStart[$!count]" name="details[$count].gmtStart"/>
                             至  
                             <input type="text" value="$dateUtils.format($!detail.gmtEnd,'yyyy-MM-dd')"  id="gmtEnd[$!count]" name="details[$count].gmtEnd"/>

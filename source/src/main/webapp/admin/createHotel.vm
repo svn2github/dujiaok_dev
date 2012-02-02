@@ -5,7 +5,7 @@
 ###################################################
 <form name="createHotelForm" id="createHotelForm" action="${env.root}/admin/docreateHotel.htm" onsubmit="return Validator.validate(this,'admin');">
 <input name="id"  type="hidden" value="$!id" />
-<input name="hotelId"  type="hidden" value="$!hotelId" />
+<input name="productId"  type="hidden" value="$!productId" />
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
             <td height="10"></td>
@@ -14,7 +14,7 @@
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="fabu_mb">
         <tr>
             <td width="103" align="right">酒店编号：</td>
-            <td width="857">$!hotelId</td>
+            <td width="857">$!productId</td>
         </tr>
         <tr>
             <td align="right">名称：</td>

@@ -2,7 +2,7 @@
 #set($title="度假OK - 后台 - 发布房间成功")
 ###################################################
 
-<input type="hidden" value="$!roomId" name="roomId" />
+<input type="hidden" value="$!productId" name="productId" />
 <table width="960" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td height="70">&nbsp;</td>
@@ -18,16 +18,16 @@
         <td>&nbsp;</td>
         <td>您还可以<br />
             <div>
-                <a href="${env.root}/admin/createHotelRoom.htm?roomId=${roomId}">后台首页</a>
+                <a href="${env.root}/admin/createHotelRoom.htm?productId=${productId}">后台首页</a>
             </div>
             <div>
                 <a href="${env.root}/admin/createHotelRoom.htm">继续发布</a>
             </div>
             <div>
-                <a href="${env.root}/admin/createHotelRoom.htm?roomId=${roomId}">查看发布信息</a>
+                <a href="${env.root}/admin/createHotelRoom.htm?productId=${productId}">查看发布信息</a>
             </div>
             <div>
-                <a href="${env.root}/admin/createHotelRoom.htm?roomId=${roomId}">编辑发布信息</a>
+                <a href="${env.root}/admin/createHotelRoom.htm?productId=${productId}">编辑发布信息</a>
             </div>
         </td>
     </tr>

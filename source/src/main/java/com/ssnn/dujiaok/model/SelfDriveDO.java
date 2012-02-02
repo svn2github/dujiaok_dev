@@ -10,11 +10,6 @@ import java.util.List;
  *
  */
 public class SelfDriveDO extends AbstractProduct {
-
-	/**
-	 * 根据规则生存的唯一ID
-	 */
-	private String selfDriveId ;
 	
 	/**
 	 * 附加产品
@@ -93,14 +88,6 @@ public class SelfDriveDO extends AbstractProduct {
 
 	public void setGmtExpire(Date gmtExpire) {
 		this.gmtExpire = gmtExpire;
-	}
-
-	public String getSelfDriveId() {
-		return selfDriveId;
-	}
-
-	public void setSelfDriveId(String selfDriveId) {
-		this.selfDriveId = selfDriveId;
 	}
 
 	public BigDecimal getMarketPrice() {

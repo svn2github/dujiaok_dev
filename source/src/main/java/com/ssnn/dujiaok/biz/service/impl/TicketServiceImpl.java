@@ -38,20 +38,20 @@ public class TicketServiceImpl implements TicketService{
 		TicketDO ticket = ticketDAO.queryTicket(ticketId) ;
 		if(ticket != null){
 			List<TicketDetailDO> ticketDetails = ticketDetailDAO.queryTicketDetail(ticketId) ;
-			ticket.setTicketDetails(ticketDetails) ;
+			ticket.setDetails(ticketDetails) ;
 		}
 		return ticket ;
 	}
 	@Override
 	public TicketDO createTicketAndDetails(TicketDO ticket) {
-		List<TicketDetailDO> details = ticket.getTicketDetails();
+		List<TicketDetailDO> details = ticket.getDetails();
 		if(details!=null){
 			Date gmtExpire = getTicketExpireDate(details) ;
 			ticket.setGmtExpire(gmtExpire) ;
-			ticket.setTicketId(UniqueIDUtil.getUniqueID(ProductEnums.TICKET)) ;
+			ticket.setProductId(UniqueIDUtil.getUniqueID(ProductEnums.TICKET)) ;
 			ticketDAO.insertTicket(ticket) ;
 			for(TicketDetailDO ticketDetail : details){
-				ticketDetail.setTicketId(ticket.getTicketId()) ;
+				ticketDetail.setTicketId(ticket.getProductId()) ;
 				ticketDetailDAO.insertTicketDetail(ticketDetail) ;
 			}
 		}
@@ -60,16 +60,16 @@ public class TicketServiceImpl implements TicketService{
 
 	@Override
 	public TicketDO updateTicketAndDetails(TicketDO ticket) {
-		List<TicketDetailDO> details = ticket.getTicketDetails();
+		List<TicketDetailDO> details = ticket.getDetails();
 		
 		if(details!=null){
 			//删除之前的detail，重新插入
-			ticketDetailDAO.deleteTicketDetails(ticket.getTicketId()) ;
+			ticketDetailDAO.deleteTicketDetails(ticket.getProductId()) ;
 			Date gmtExpire = getTicketExpireDate(details) ;
 			ticket.setGmtExpire(gmtExpire) ;
 			ticketDAO.updateTicket(ticket) ;
 			for(TicketDetailDO ticketDetail : details){
-				ticketDetail.setTicketId(ticket.getTicketId()) ;
+				ticketDetail.setTicketId(ticket.getProductId()) ;
 				ticketDetailDAO.insertTicketDetail(ticketDetail) ;
 			}
 		}

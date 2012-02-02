@@ -54,10 +54,10 @@ public class SelfDriveServiceImpl implements SelfDriveService{
 		if(details!=null){
 			Date gmtExpire = getExpireDate(details) ;
 			selfDrive.setGmtExpire(gmtExpire) ;
-			selfDrive.setSelfDriveId(UniqueIDUtil.getUniqueID(ProductEnums.SELFDRIVE)) ;
+			selfDrive.setProductId(UniqueIDUtil.getUniqueID(ProductEnums.SELFDRIVE)) ;
 			selfDriveDAO.insertSelfDrive(selfDrive) ;
 			for(SelfDriveDetailDO detail : details){
-				detail.setSelfDriveId(selfDrive.getSelfDriveId()) ;
+				detail.setSelfDriveId(selfDrive.getProductId()) ;
 				selfDriveDetailDAO.insertSelfDriveDetail(detail) ;
 			}
 		}
@@ -69,12 +69,12 @@ public class SelfDriveServiceImpl implements SelfDriveService{
 		List<SelfDriveDetailDO> details = selfDrive.getDetails() ;
 		if(details!=null){
 			//删除之前的detail 重新插入
-			selfDriveDetailDAO.deleteSelfDriveDetails(selfDrive.getSelfDriveId()) ;
+			selfDriveDetailDAO.deleteSelfDriveDetails(selfDrive.getProductId()) ;
 			Date gmtExpire = getExpireDate(details) ;
 			selfDrive.setGmtExpire(gmtExpire) ;
 			selfDriveDAO.updateSelfDrive(selfDrive) ;
 			for(SelfDriveDetailDO detail : details){
-				detail.setSelfDriveId(selfDrive.getSelfDriveId()) ;
+				detail.setSelfDriveId(selfDrive.getProductId()) ;
 				selfDriveDetailDAO.insertSelfDriveDetail(detail) ;
 			}
 		}

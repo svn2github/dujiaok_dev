@@ -6,7 +6,7 @@
 ###################################################
 <form id="createHotelRoomForm" name="createHotelRoomForm" method="POST" action="${env.root}/admin/docreateHotelRoom.htm" onsubmit="return Validator.validate(this,'admin');">
     <input name="id"  type="hidden" value="$!id" />
-    <input name="roomId"  type="hidden" value="$!roomId" />
+    <input name="productId"  type="hidden" value="$!productId" />
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
             <td height="10"></td>
@@ -15,7 +15,7 @@
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="fabu_mb">
         <tr>
             <td width="103" align="right">房间编号：</td>
-            <td width="857">$!room.roomId</td>
+            <td width="857">$!room.productId</td>
         </tr>
         <tr>
             <td align="right">酒店编号：</td>
@@ -36,16 +36,17 @@
             <td align="right">出行时间：</td>
             <td>
                 <div id="times">
-                    #foreach($!roomDetail in $!room.roomDetails)
+                    #foreach($!detail in $!room.details)
                         #set($count = $velocityCount)
                         #set($count = $count - 1)
                         <div id="time$!count" class="line_sep">
-                            <input type="hidden" value="$!roomDetail.id" name="roomDetails[$count].id"/>
-                            <input type="hidden" value="$!roomId" name="roomDetails[$count].roomId"/>
-                            <input type="text" value="$dateUtils.format($!roomDetail.gmtStart,'yyyy-MM-dd')"  id="gmtStart[$!count]" name="roomDetails[$count].gmtStart"/>
+                            <input type="hidden" value="$!detail.id" name="details[$count].id"/>
+                            <input type="hidden" value="$!detail.hotelId" name="details[$count].hotelId"/>
+							<input type="hidden" value="$!detail.productId" name="details[$count].productId"/>
+                            <input type="text" value="$dateUtils.format($!detail.gmtStart,'yyyy-MM-dd')"  id="gmtStart[$!count]" name="details[$count].gmtStart"/>
                             至  
-                            <input type="text" value="$dateUtils.format($!roomDetail.gmtEnd,'yyyy-MM-dd')"  id="gmtEnd[$!count]" name="roomDetails[$count].gmtEnd"/>
-                            价格： <input type="text" value="$!roomDetail.price" name="roomDetails[$count].price" />
+                            <input type="text" value="$dateUtils.format($!detail.gmtEnd,'yyyy-MM-dd')"  id="gmtEnd[$!count]" name="details[$count].gmtEnd"/>
+                            价格： <input type="text" value="$!detail.price" name="details[$count].price" />
                             #if($count > 0)
                                 <input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;" />
                             #end
@@ -130,7 +131,7 @@
         <tr>
             <td align="right">房型图片：</td>
             <td>
-                <textarea name="categoryImage" id="categoryImage" cols="45" rows="8">#ESCAPE_HTML($!room.roomCategory)</textarea>
+                <textarea name="categoryImage" id="categoryImage" cols="45" rows="8">#ESCAPE_HTML($!room.categoryImage)</textarea>
             </td>
         </tr>
         <tr>
@@ -156,7 +157,7 @@
 
 ////////////////////////////
 
-    var lastDetailsIndex = $collectionUtils.size($!room.roomDetails) ; //时间个数
+    var lastDetailsIndex = $collectionUtils.size($!room.details) ; //时间个数
 	var lastImagesIndex = $collectionUtils.size($imagesList) ; //上传照片个数
 			
 	var attachDatePicker = function(id){
@@ -182,11 +183,11 @@
 		divElement.className = 'line_sep' ;
 		$('times').appendChild(divElement) ;
 					
-		var innerHTML = '<input type="hidden" name="roomDetails['+i+'].id"/>' +
-		'<input type="text" id="gmtStart['+i+']" name="roomDetails['+i+'].gmtStart"/>' + 
+		var innerHTML = '<input type="hidden" name="details['+i+'].id"/>' +
+		'<input type="text" id="gmtStart['+i+']" name="details['+i+'].gmtStart"/>' + 
 		' 至 ' + 
-		'<input type="text"  id="gmtEnd['+i+']" name="roomDetails['+i+'].gmtEnd"/>' +
-		'价格： <input type="text" name="roomDetails['+i+'].price" /> '  ;
+		'<input type="text"  id="gmtEnd['+i+']" name="details['+i+'].gmtEnd"/>' +
+		'价格： <input type="text" name="details['+i+'].price" /> '  ;
 		if(i > 0){
 			innerHTML += '<input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;" />' ;
 		}

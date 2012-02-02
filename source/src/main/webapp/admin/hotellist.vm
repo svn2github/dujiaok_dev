@@ -67,7 +67,7 @@
 		#else
         	#foreach($hotel in $result.items)
             <tr  >
-                <td class="border_top_line">$!hotel.hotelId</td>
+                <td class="border_top_line">$!hotel.productId</td>
 				<td class="border_top_line"></td>
                 <td class="border_top_line">
                     <a href="#"><b>$!hotel.name</b></a> #if(!$stringUtils.isBlank($hotel.memo))<img height="14" width="14" title="#ESCAPE_HTML($hotel.memo)" src="${env.staticroot}/images/bz_icon.png">#end
@@ -75,24 +75,24 @@
                 <td class="border_top_line">$!hotel.destProvince $!hotel.destCity</td>
                 <td class="border_top_line"></td>
                 <td class="border_top_line">
-        			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createTicket.htm?ticketId=$ticket.ticketId');">复制链接</a>&nbsp;&nbsp;
-                    <a href="${env.root}/admin/createHotel.htm?hotelId=$hotel.hotelId">修改</a>&nbsp;&nbsp;
-        			<a href="${env.root}/admin/delHotel.htm?hotelId=$hotel.hotelId">删除</a>
+        			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createTicket.htm?productId=$hotel.productId');">复制链接</a>&nbsp;&nbsp;
+                    <a href="${env.root}/admin/createHotel.htm?productId=$hotel.productId">修改</a>&nbsp;&nbsp;
+        			<a href="${env.root}/admin/delHotel.htm?productId=$hotel.productId">删除</a>
                 </td>
             </tr>
 				#foreach($room in $hotel.rooms)
 					<tr>
                         <td></td>
-        				<td>$!room.roomId</td>
+        				<td>$!room.productId</td>
                         <td>
                             &nbsp;&nbsp;<a href="#">$!room.name</a> 
                         </td>
                         <td></td>
                         <td class="F9">#AUTOCHECK_TIME($!room.gmtExpire,'yyyy-MM-dd')</td>
                         <td>
-                			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createHotelRoom.htm?roomId=$room.roomId');">复制链接</a>&nbsp;&nbsp;
-                            <a href="${env.root}/admin/createHotelRoom.htm?roomId=$room.roomId">修改</a>&nbsp;&nbsp;
-                			<a href="${env.root}/admin/delHotelRoom.htm?roomId=$room.roomId">删除</a>
+                			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createHotelRoom.htm?productId=$room.productId');">复制链接</a>&nbsp;&nbsp;
+                            <a href="${env.root}/admin/createHotelRoom.htm?productId=$room.productId">修改</a>&nbsp;&nbsp;
+                			<a href="${env.root}/admin/delHotelRoom.htm?productId=$room.productId">删除</a>
                         </td>
                     </tr>
 				#end

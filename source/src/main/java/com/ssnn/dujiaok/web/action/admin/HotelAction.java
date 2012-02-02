@@ -26,8 +26,8 @@ public class HotelAction extends BasicAction implements ModelDriven<HotelDO>{
 	
 	@Override
 	public String execute() throws Exception {
-		if(hotel!=null && StringUtils.isNotBlank(hotel.getHotelId())){
-			hotel = hotelService.getHotel(hotel.getHotelId()) ;
+		if(hotel!=null && StringUtils.isNotBlank(hotel.getProductId())){
+			hotel = hotelService.getHotel(hotel.getProductId()) ;
 			if(hotel != null){
 				imagesList = StringListConventUtil.toList(hotel.getImages()) ;
 			}
@@ -42,7 +42,7 @@ public class HotelAction extends BasicAction implements ModelDriven<HotelDO>{
 	 */
 	public String create() throws Exception {
 		hotel.setImages(StringListConventUtil.toString(imagesList)) ;
-		if(StringUtils.isBlank(hotel.getHotelId())){
+		if(StringUtils.isBlank(hotel.getProductId())){
 			hotel = hotelService.createHotel(hotel) ;
 		}else{
 			hotel = hotelService.updateHotel(hotel) ;

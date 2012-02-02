@@ -13,13 +13,6 @@ import org.apache.commons.lang.builder.ToStringStyle;
  *
  */
 public class TicketDO extends AbstractProduct {
-
-	
-	/**
-	 * 根据规则产生的唯一ID
-	 */
-	private String ticketId ;
-	
 	
 	/**
 	 * 市场价
@@ -75,12 +68,9 @@ public class TicketDO extends AbstractProduct {
 	
 	private Date gmtExpire ;
 	
-	private List<TicketDetailDO> ticketDetails  ;
+	private List<TicketDetailDO> details  ;
 
-	public List<TicketDetailDO> getTicketDetails() {
-		return ticketDetails;
-	}
-
+	
 	public String getNotDiscout() {
 		return notDiscout;
 	}
@@ -88,12 +78,15 @@ public class TicketDO extends AbstractProduct {
 	public void setNotDiscout(String notDiscout) {
 		this.notDiscout = notDiscout;
 	}
-
-	public void setTicketDetails(List<TicketDetailDO> ticketDetails) {
-		this.ticketDetails = ticketDetails;
+	
+	public List<TicketDetailDO> getDetails() {
+		return details;
 	}
 
-	
+	public void setDetails(List<TicketDetailDO> details) {
+		this.details = details;
+	}
+
 	public BigDecimal getMarketPrice() {
 		return marketPrice;
 	}
@@ -202,14 +195,5 @@ public class TicketDO extends AbstractProduct {
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this,ToStringStyle.SHORT_PREFIX_STYLE) ;
 	}
-
-	public String getTicketId() {
-		return ticketId;
-	}
-
-	public void setTicketId(String ticketId) {
-		this.ticketId = ticketId;
-	}
-	
 	
 }

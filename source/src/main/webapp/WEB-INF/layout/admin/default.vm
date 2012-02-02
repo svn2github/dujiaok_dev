@@ -10,12 +10,16 @@
             <tr>
                 <td width="233">
 					<a href="${env.root}/admin/index.htm">
-                    <img src="${env.staticroot}/images/logo.jpg" width="226" height="73" />
+						<img src="${env.staticroot}/images/logo.jpg"  />
 					</a>
-					<td class="FS24 B">#if ($menu_name)$!menu_name #else 后台系统  #end</td>
+					<span class="FS24 B">#if($menu_name) $!menu_name #else 后台系统  #end</span>
                 </td>
-                <td width="343">
-                    
+                <td width="360">
+                     #if(${env.admin})
+						<span>
+						欢迎您：$!env.admin.username | <a href="javascript:;">退出</a> | &nbsp;&nbsp;
+						</span>
+					 #end
                     <input type="submit" name="1" id="1" value="&nbsp;&nbsp;前台展示页后台&nbsp;&nbsp;" />
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="submit" name="2" id="2" value="&nbsp;&nbsp;订单后台&nbsp;&nbsp;" />

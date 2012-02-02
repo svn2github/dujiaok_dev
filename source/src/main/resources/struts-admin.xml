@@ -32,7 +32,7 @@
 		<action name="docreateTicket" class="com.ssnn.dujiaok.web.action.admin.TicketAction" method="create">
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="adminAuthInterceptor" />
-			<result name="success"  type="redirect">/admin/createTicketSuccess.htm?ticketId=${ticketId}</result>
+			<result name="success"  type="redirect">/admin/createTicketSuccess.htm?productId=${productId}</result>
 		</action>
 		
 		<action name="createTicketSuccess" class="com.ssnn.dujiaok.web.action.admin.TicketAction" method="success" >
@@ -50,7 +50,7 @@
 		<action name="docreateHotel" class="com.ssnn.dujiaok.web.action.admin.HotelAction" method="create">
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="adminAuthInterceptor" />
-			<result name="success"  type="redirect">/admin/createHotelSuccess.htm?hotelId=${hotelId}</result>
+			<result name="success"  type="redirect">/admin/createHotelSuccess.htm?productId=${productId}</result>
 		</action>
 		
 		<action name="createHotelSuccess" class="com.ssnn.dujiaok.web.action.admin.HotelAction" method="success" >
@@ -68,7 +68,7 @@
 		<action name="docreateHotelRoom" class="com.ssnn.dujiaok.web.action.admin.HotelRoomAction" method="create">
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="adminAuthInterceptor" />
-			<result name="success"  type="redirect">/admin/createHotelRoomSuccess.htm?roomId=${roomId}</result>
+			<result name="success"  type="redirect">/admin/createHotelRoomSuccess.htm?productId=${productId}</result>
 		</action>
 		
 		<action name="createHotelRoomSuccess" class="com.ssnn.dujiaok.web.action.admin.HotelRoomAction" method="success" >
@@ -87,7 +87,7 @@
 		<action name="docreateSelfDrive" class="com.ssnn.dujiaok.web.action.admin.SelfDriveAction" method="create">
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="adminAuthInterceptor" />
-			<result name="success"  type="redirect">/admin/createSelfDriveSuccess.htm?selfDriveId=${selfDriveId}</result>
+			<result name="success"  type="redirect">/admin/createSelfDriveSuccess.htm?productId=${productId}</result>
 		</action>
 		
 		<action name="createSelfDriveSuccess" class="com.ssnn.dujiaok.web.action.admin.SelfDriveAction" method="success" >

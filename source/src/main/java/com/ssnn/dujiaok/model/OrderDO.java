@@ -58,7 +58,12 @@ public class OrderDO {
 	/**
 	 * 订单状态  等待付款，付款成功，关闭，退款
 	 */
-	private String orderStatus ;
+	private String status ;
+	
+	/**
+	 * 状态详细说明（如订单关闭原因）
+	 */
+	private String statusDetail ;
 	
 	/**
 	 * 付款状态：已经付款，未付款
@@ -141,12 +146,20 @@ public class OrderDO {
 		this.secondaryCount = secondaryCount;
 	}
 
-	public String getOrderStatus() {
-		return orderStatus;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getStatusDetail() {
+		return statusDetail;
+	}
+
+	public void setStatusDetail(String statusDetail) {
+		this.statusDetail = statusDetail;
 	}
 
 	public String getPayStatus() {

@@ -29,7 +29,7 @@ public class IBatisHotelDAOTest extends AbstractBaseJUnit4Test {
 	@Test
 	public void test_create() {
 		HotelDO hotel = new HotelDO () ;
-		hotel.setHotelId(UniqueIDUtil.getUniqueID(ProductEnums.HOTEL)) ;
+		hotel.setProductId(UniqueIDUtil.getUniqueID(ProductEnums.HOTEL)) ;
 		hotel.setDestAddr("网上路200很骄傲") ;
 		hotel.setDestArea("滨江");
 		hotel.setDestCity("杭州");

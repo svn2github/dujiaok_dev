@@ -11,7 +11,6 @@ import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.service.HotelRoomService;
 import com.ssnn.dujiaok.model.HotelRoomDO;
 import com.ssnn.dujiaok.model.HotelRoomDetailDO;
-import com.ssnn.dujiaok.model.SelfDriveDetailDO;
 import com.ssnn.dujiaok.util.UniqueIDUtil;
 import com.ssnn.dujiaok.util.enums.ProductEnums;
 
@@ -39,21 +38,21 @@ public class HotelRoomServiceImpl implements HotelRoomService{
 		HotelRoomDO room = hotelRoomDAO.queryRoom(roomId) ;
 		if(room != null){
 			List<HotelRoomDetailDO> roomDetails = hotelRoomDetailDAO.queryRoomDetails(roomId) ;
-			room.setRoomDetails(roomDetails) ;
+			room.setDetails(roomDetails) ;
 		}
 		return room ;
 	}
 
 	@Override
 	public HotelRoomDO createRoomAndDetails(HotelRoomDO room) {
-		List<HotelRoomDetailDO> details = room.getRoomDetails() ;
+		List<HotelRoomDetailDO> details = room.getDetails() ;
 		if(details != null){
 			Date gmtExpire = getExpireDate(details) ;
 			room.setGmtExpire(gmtExpire) ;
-			room.setRoomId(UniqueIDUtil.getUniqueID(ProductEnums.HOTEL_ROOM)) ;
+			room.setProductId(UniqueIDUtil.getUniqueID(ProductEnums.HOTEL_ROOM)) ;
 			hotelRoomDAO.insertRoom(room) ;
 			for(HotelRoomDetailDO roomDetail : details){
-				roomDetail.setRoomId(room.getRoomId()) ;
+				roomDetail.setRoomId(room.getProductId()) ;
 				hotelRoomDetailDAO.insertRoomDetail(roomDetail) ;
 			}
 		}
@@ -63,8 +62,8 @@ public class HotelRoomServiceImpl implements HotelRoomService{
 
 	@Override
 	public HotelRoomDO updateRoomAndDetails(HotelRoomDO room) {
-		List<HotelRoomDetailDO> details = room.getRoomDetails() ;
-		String roomId = room.getRoomId() ; 
+		List<HotelRoomDetailDO> details = room.getDetails() ;
+		String roomId = room.getProductId() ; 
 		if(details != null){
 			//删除之前的detail，重新插入
 			hotelRoomDetailDAO.deleteRoomDetails(roomId) ;

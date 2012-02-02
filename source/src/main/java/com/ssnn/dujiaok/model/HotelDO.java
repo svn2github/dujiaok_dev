@@ -10,10 +10,6 @@ import java.util.List;
  */
 public class HotelDO extends AbstractProduct {
 	
-	/**
-	 * 根据规则产生的唯一ID
-	 */
-	private String hotelId ;
 	
 	/**
 	 * 酒店星级
@@ -53,14 +49,6 @@ public class HotelDO extends AbstractProduct {
 
 	public void setRooms(List<HotelRoomDO> rooms) {
 		this.rooms = rooms;
-	}
-
-	public String getHotelId() {
-		return hotelId;
-	}
-
-	public void setHotelId(String hotelId) {
-		this.hotelId = hotelId;
 	}
 
 	public int getStarRate() {

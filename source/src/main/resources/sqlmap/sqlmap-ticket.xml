@@ -5,7 +5,7 @@
 
 	<resultMap id="RM-Ticket" class="TA-Ticket" >
 		<result property="id" column="ID"/>
-		<result property="ticketId" column="TICKET_ID" jdbcType="VARCHAR" />
+		<result property="productId" column="PRODUCT_ID" jdbcType="VARCHAR" />
 		<result property="name" column="NAME" jdbcType="VARCHAR"/>
 		<result property="marketPrice" column="MARKET_PRICE" jdbcType="DECIMAL"/>
 		<result property="destAddr" column="DEST_ADDR" jdbcType="VARCHAR"/>
@@ -31,9 +31,9 @@
 
 	<insert id="insertTicket">
 		INSERT INTO 
-			DJ_TICKET (ID,TICKET_ID,NAME,MARKET_PRICE,RECOMMEND,TICKET_TYPE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,PAY_TYPES,PRODUCT_TYPES,INTRODUCTION,NOTICE,FEE_DESC,MEMO,NOT_DISCOUT,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
+			DJ_TICKET (ID,PRODUCT_ID,NAME,MARKET_PRICE,RECOMMEND,TICKET_TYPE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,PAY_TYPES,PRODUCT_TYPES,INTRODUCTION,NOTICE,FEE_DESC,MEMO,NOT_DISCOUT,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
 		VALUES 
-			(#id#,#ticketId#,#name#,#marketPrice#,#recommend#,#ticketType#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#payTypes#,#productTypes#,#introduction#,#notice#,#feeDesc#,#memo#,#notDiscout#,now(),now(),#gmtExpire#)
+			(#id#,#productId#,#name#,#marketPrice#,#recommend#,#ticketType#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#payTypes#,#productTypes#,#introduction#,#notice#,#feeDesc#,#memo#,#notDiscout#,now(),now(),#gmtExpire#)
 		<selectKey resultClass="java.lang.Integer" keyProperty="id">
     		<![CDATA[
 				SELECT LAST_INSERT_ID() AS ID
@@ -63,17 +63,17 @@
 			GMT_MODIFIED = now() ,
 			GMT_EXPIRE = #gmtExpire#
 		WHERE 
-			TICKET_ID = #ticketId#
+			PRODUCT_ID = #productId#
 	</update>
 	
 	<select id="queryTicket" resultMap="RM-Ticket">
-		select * from DJ_TICKET where TICKET_ID = #ticketId#
+		select * from DJ_TICKET where PRODUCT_ID = #productId#
 	</select>
 	
 	<select id="queryTickets" resultMap="RM-Ticket">
 		SELECT * FROM DJ_TICKET WHERE 1=1 
 		<isNotEmpty property="productId" prepend="AND">
-			TICKET_ID = #productId#
+			PRODUCT_ID = #productId#
 		</isNotEmpty>
 		<isNotEmpty property="name" prepend="AND">
 			NAME LIKE CONCAT('%', #name#, '%')
@@ -96,7 +96,7 @@
 	<select id="countTickets" resultClass="Integer">
 		SELECT count(*) FROM DJ_TICKET WHERE 1=1 
 		<isNotEmpty property="productId" prepend="AND">
-			TICKET_ID = #productId#
+			PRODUCT_ID = #productId#
 		</isNotEmpty>
 		<isNotEmpty property="name" prepend="AND">
 			NAME LIKE CONCAT('%', #name#, '%')

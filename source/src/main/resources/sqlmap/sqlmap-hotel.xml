@@ -5,7 +5,7 @@
 
 	<resultMap id="RM-Hotel" class="TA-Hotel" >
 		<result property="id" column="ID"/>
-		<result property="hotelId" column="HOTEL_ID" jdbcType="VARCHAR" />
+		<result property="productId" column="PRODUCT_ID" jdbcType="VARCHAR" />
 		<result property="name" column="NAME" jdbcType="VARCHAR"/>
 		<result property="starRate" column="STAR_RATE"  />
 		<result property="destAddr" column="DEST_ADDR" jdbcType="VARCHAR"/>
@@ -24,9 +24,9 @@
 
 	<insert id="insertHotel">
 		INSERT INTO 
-			DJ_HOTEL (ID,HOTEL_ID,NAME,STAR_RATE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,ROOM_AMOUNT,INTRODUCTION,MEMO,GMT_CREATE,GMT_MODIFIED)
+			DJ_HOTEL (ID,PRODUCT_ID,NAME,STAR_RATE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,ROOM_AMOUNT,INTRODUCTION,MEMO,GMT_CREATE,GMT_MODIFIED)
 		VALUES 
-			(#id#,#hotelId#,#name#,#starRate#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#roomAmount#,#introduction#,#memo#,now(),now())
+			(#id#,#productId#,#name#,#starRate#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#roomAmount#,#introduction#,#memo#,now(),now())
 		<selectKey resultClass="java.lang.Integer" keyProperty="id">
     		<![CDATA[
 				SELECT LAST_INSERT_ID() AS ID
@@ -49,17 +49,17 @@
 			MEMO = #memo# ,
 			GMT_MODIFIED = now() 
 		WHERE 
-		 	HOTEL_ID = #hotelId#
+		 	PRODUCT_ID = #productId#
 	</update>
 	
 	<select id="queryHotel" resultMap="RM-Hotel">
-		select * from DJ_HOTEL where HOTEL_ID = #hotelId#
+		select * from DJ_HOTEL where PRODUCT_ID = #productId#
 	</select>
 	
 	<select id="queryHotels" resultMap="RM-Hotel">
 		SELECT * FROM DJ_HOTEL WHERE 1=1 
 		<isNotEmpty property="productId" prepend="AND">
-			HOTEL_ID = #productId#
+			PRODUCT_ID = #productId#
 		</isNotEmpty>
 		<isNotEmpty property="name" prepend="AND">
 			NAME LIKE CONCAT('%', #name#, '%')
@@ -76,7 +76,7 @@
 	<select id="countHotels" resultClass="Integer">
 		SELECT count(*) FROM DJ_HOTEL WHERE 1=1 
 		<isNotEmpty property="productId" prepend="AND">
-			HOTEL_ID = #productId#
+			PRODUCT_ID = #productId#
 		</isNotEmpty>
 		<isNotEmpty property="name" prepend="AND">
 			NAME LIKE CONCAT('%', #name#, '%')

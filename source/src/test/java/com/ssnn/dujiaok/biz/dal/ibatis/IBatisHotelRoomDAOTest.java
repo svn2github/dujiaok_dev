@@ -36,7 +36,7 @@ public class IBatisHotelRoomDAOTest extends AbstractBaseJUnit4Test {
 		room.setIntroduction("intro") ;
 		room.setMemo("memo") ;
 		room.setRoomFacilities("配套");
-		room.setRoomId(UniqueIDUtil.getUniqueID(ProductEnums.HOTEL_ROOM)) ;
+		room.setProductId(UniqueIDUtil.getUniqueID(ProductEnums.HOTEL_ROOM)) ;
 		hotelRoomDAO.insertRoom(room) ;
 	}
 	

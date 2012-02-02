@@ -23,8 +23,8 @@ public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
 	
 	@Override
 	public String execute() throws Exception {
-		if(ticket!=null && StringUtils.isNotBlank(ticket.getTicketId())){
-			ticket = ticketService.getTicketWithDetails(ticket.getTicketId()) ;
+		if(ticket!=null && StringUtils.isNotBlank(ticket.getProductId())){
+			ticket = ticketService.getTicketWithDetails(ticket.getProductId()) ;
 			if(ticket != null){
 				payTypesList = StringListConventUtil.toList(ticket.getPayTypes()) ;
 				productTypesList = StringListConventUtil.toList(ticket.getProductTypes()) ;
@@ -45,7 +45,7 @@ public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
 		ticket.setImages(StringListConventUtil.toString(imagesList)) ;
 		ticket.setPayTypes(StringListConventUtil.toString(payTypesList)) ;
 		ticket.setProductTypes(StringListConventUtil.toString(productTypesList)) ;
-		if(StringUtils.isBlank(ticket.getTicketId())){
+		if(StringUtils.isBlank(ticket.getProductId())){
 			ticket = ticketService.createTicketAndDetails(ticket) ;
 		}else{
 			ticket = ticketService.updateTicketAndDetails(ticket) ;

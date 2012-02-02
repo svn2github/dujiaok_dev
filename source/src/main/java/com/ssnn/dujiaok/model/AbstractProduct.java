@@ -1,5 +1,7 @@
 package com.ssnn.dujiaok.model;
 
+import java.util.Date;
+
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
@@ -14,6 +16,11 @@ public abstract class AbstractProduct {
 	 * PK
 	 */
 	private int id ;
+	
+	/**
+	 * 规则生成ID
+	 */
+	private String productId ;
 	
 	/**
 	 * 名称
@@ -42,7 +49,23 @@ public abstract class AbstractProduct {
 	 */
 	private String locationCode ;
 	
+	private Date gmtExpire ;
 	
+	private String memo ;
+	
+	
+	public Date getGmtExpire() {
+		return gmtExpire;
+	}
+	public void setGmtExpire(Date gmtExpire) {
+		this.gmtExpire = gmtExpire;
+	}
+	public String getMemo() {
+		return memo;
+	}
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
 	public int getId() {
 		return id;
 	}
@@ -86,6 +109,12 @@ public abstract class AbstractProduct {
 		this.locationCode = locationCode;
 	}
 	
+	public String getProductId() {
+		return productId;
+	}
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this , ToStringStyle.SHORT_PREFIX_STYLE) ;

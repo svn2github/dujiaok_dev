@@ -33,7 +33,7 @@ public class IBatisTicketDAOTest extends AbstractBaseJUnit4Test {
 	@Test
 	public void test_createTicket() {
 		TicketDO ticket = new TicketDO();
-		ticket.setTicketId(UniqueIDUtil.getUniqueID(ProductEnums.TICKET)) ;
+		ticket.setProductId(UniqueIDUtil.getUniqueID(ProductEnums.TICKET)) ;
 		ticket.setDestAddr("网商路699号");
 		ticket.setDestArea("滨江区");
 		ticket.setDestProvince("浙江省");

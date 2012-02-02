@@ -6,7 +6,7 @@
 	<resultMap id="RM-HotelRoom" class="TA-HotelRoom" >
 		<result property="id" column="ID"/>
 		<result property="hotelId" column="HOTEL_ID" jdbcType="VARCHAR" />
-		<result property="roomId" column="ROOM_ID" jdbcType="VARCHAR" />
+		<result property="productId" column="PRODUCT_ID" jdbcType="VARCHAR" />
 		<result property="name" column="NAME" jdbcType="VARCHAR"/>
 		<result property="roomArea" column="ROOM_AREA" jdbcType="VARCHAR"/>
 		<result property="payTypes" column="PAY_TYPES" jdbcType="VARCHAR"/>
@@ -25,9 +25,9 @@
 
 	<insert id="insertRoom">
 		INSERT INTO 
-			DJ_HOTEL_ROOM (ID,HOTEL_ID,NAME,ROOM_ID,ROOM_AREA,PAY_TYPES,MARKET_PRICE,BED,IMAGES,ROOM_FACILITIES,INTRODUCTION,CATEGORY_IMAGE,MEMO,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
+			DJ_HOTEL_ROOM (ID,HOTEL_ID,NAME,PRODUCT_ID,ROOM_AREA,PAY_TYPES,MARKET_PRICE,BED,IMAGES,ROOM_FACILITIES,INTRODUCTION,CATEGORY_IMAGE,MEMO,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
 		VALUES 
-			(#id#,#hotelId#,#name#,#roomId#,#roomArea#, #payTypes#, #marketPrice#,#bed#,#images#,#roomFacilities#,#introduction#,#categoryImage#,#memo#,now(),now(),#gmtExpire#)
+			(#id#,#hotelId#,#name#,#productId#,#roomArea#, #payTypes#, #marketPrice#,#bed#,#images#,#roomFacilities#,#introduction#,#categoryImage#,#memo#,now(),now(),#gmtExpire#)
 		<selectKey resultClass="java.lang.Integer" keyProperty="id">
     		<![CDATA[
 				SELECT LAST_INSERT_ID() AS ID
@@ -50,17 +50,17 @@
 			GMT_MODIFIED = now() ,
 			GMT_EXPIRE = #gmtExpire#
 		WHERE 
-		 	ROOM_ID = #roomId#
+		 	PRODUCT_ID = #productId#
 	</update>
 	
 	<select id="queryRoom" resultMap="RM-HotelRoom">
-		select * from DJ_HOTEL_ROOM where ROOM_ID = #roomId#
+		select * from DJ_HOTEL_ROOM where PRODUCT_ID = #productId#
 	</select>
 	
 	<select id="queryRooms" resultMap="RM-HotelRoom">
 		SELECT * FROM DJ_HOTEL_ROOM WHERE 1=1 
 		<isNotEmpty property="productId" prepend="AND">
-			ROOM_ID = #productId#
+			PRODUCT_ID = #productId#
 		</isNotEmpty>
 		<isNotEmpty property="hotelId" prepend="AND">
 			HOTEL_ID = #hotelId#
@@ -83,7 +83,7 @@
 	<select id="countRooms" resultClass="Integer">
 		SELECT count(*) FROM DJ_HOTEL_ROOM WHERE 1=1 
 		<isNotEmpty property="productId" prepend="AND">
-			ROOM_ID = #productId#
+			PRODUCT_ID = #productId#
 		</isNotEmpty>
 		<isNotEmpty property="hotelId" prepend="AND">
 			HOTEL_ID = #hotelId#

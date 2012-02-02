@@ -2,7 +2,6 @@ package com.ssnn.dujiaok.web.action.admin;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -82,7 +81,7 @@ public class ProductListAction extends BasicAction implements ModelDriven<Pagina
 		QueryResult<HotelDO> list = hotelService.getHotels(condition, pagination) ;
 		if(!CollectionUtils.isEmpty(list.getItems())){
 			for(HotelDO hotel : list.getItems()){
-				hotel.setRooms(hotelRoomService.getRooms(hotel.getHotelId())) ;
+				hotel.setRooms(hotelRoomService.getRooms(hotel.getProductId())) ;
 			}
 		}
 		result = list ;

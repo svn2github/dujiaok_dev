@@ -9,7 +9,7 @@ import java.util.List;
  * @author shenjia.caosj 2012-1-18
  *
  */
-public class HotelRoomDO {
+public class HotelRoomDO extends AbstractProduct{
 
 	/**
 	 * PK
@@ -20,11 +20,6 @@ public class HotelRoomDO {
 	 * 房间名
 	 */
 	private String name ;
-	
-	/**
-	 * 根据规则生成的唯一房间编号
-	 */
-	private String roomId ;
 	
 	/**
 	 * 酒店ID
@@ -80,30 +75,20 @@ public class HotelRoomDO {
 	
 	private Date gmtModified ;
 	
-	private Date gmtExpire ;
-	
 	
 	
 	/**
 	 * 
 	 */
-	private List<HotelRoomDetailDO> roomDetails ;
+	private List<HotelRoomDetailDO> details ;
 
 	
-	public Date getGmtExpire() {
-		return gmtExpire;
+	public List<HotelRoomDetailDO> getDetails() {
+		return details;
 	}
 
-	public void setGmtExpire(Date gmtExpire) {
-		this.gmtExpire = gmtExpire;
-	}
-
-	public List<HotelRoomDetailDO> getRoomDetails() {
-		return roomDetails;
-	}
-
-	public void setRoomDetails(List<HotelRoomDetailDO> roomDetails) {
-		this.roomDetails = roomDetails;
+	public void setDetails(List<HotelRoomDetailDO> details) {
+		this.details = details;
 	}
 
 	public Date getGmtCreate() {
@@ -144,14 +129,6 @@ public class HotelRoomDO {
 
 	public void setCategoryImage(String categoryImage) {
 		this.categoryImage = categoryImage;
-	}
-
-	public String getRoomId() {
-		return roomId;
-	}
-
-	public void setRoomId(String roomId) {
-		this.roomId = roomId;
 	}
 
 	public String getHotelId() {

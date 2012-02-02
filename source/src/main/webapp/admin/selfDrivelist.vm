@@ -64,16 +64,16 @@
 		#else
         	#foreach($selfDrive in $result.items)
             <tr>
-                <td>$!selfDrive.selfDriveId</td>
+                <td>$!selfDrive.productId</td>
                 <td>
                     <a href="#">$!selfDrive.name</a> #if(!$stringUtils.isBlank($selfDrive.memo))<img height="14" width="14" title="#ESCAPE_HTML($selfDrive.memo)" src="${env.staticroot}/images/bz_icon.png">#end
                 </td>
                 <td>$!selfDrive.destProvince $!selfDrive.destCity</td>
                 <td class="F9">#AUTOCHECK_TIME($!selfDrive.gmtExpire,'yyyy-MM-dd')</td>
                 <td>
-        			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createTicket.htm?ticketId=$ticket.ticketId');">复制链接</a>&nbsp;&nbsp;
-                    <a href="${env.root}/admin/createSelfDrive.htm?selfDriveId=$selfDrive.selfDriveId">修改</a>&nbsp;&nbsp;
-        			<a href="${env.root}/admin/delSelfDrive.htm?selfDriveId=$selfDrive.selfDriveId">删除</a>
+        			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createTicket.htm?productId=$ticket.productId');">复制链接</a>&nbsp;&nbsp;
+                    <a href="${env.root}/admin/createSelfDrive.htm?productId=$selfDrive.productId">修改</a>&nbsp;&nbsp;
+        			<a href="${env.root}/admin/delSelfDrive.htm?productId=$selfDrive.productId">删除</a>
                 </td>
             </tr>
     		#end

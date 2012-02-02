@@ -31,8 +31,8 @@ public class SelfDriveAction extends BasicAction implements ModelDriven<SelfDriv
 	
 	@Override
 	public String execute() throws Exception {
-		if(selfDrive!=null && StringUtils.isNotBlank(selfDrive.getSelfDriveId())){
-			selfDrive = selfDriveService.getSelfDriveWithDetails(selfDrive.getSelfDriveId()) ;
+		if(selfDrive!=null && StringUtils.isNotBlank(selfDrive.getProductId())){
+			selfDrive = selfDriveService.getSelfDriveWithDetails(selfDrive.getProductId()) ;
 			if(selfDrive != null){
 				payTypesList = StringListConventUtil.toList(selfDrive.getPayTypes()) ;
 				productTypesList = StringListConventUtil.toList(selfDrive.getProductTypes()) ;
@@ -54,7 +54,7 @@ public class SelfDriveAction extends BasicAction implements ModelDriven<SelfDriv
 		selfDrive.setPayTypes(StringListConventUtil.toString(payTypesList)) ;
 		selfDrive.setProductTypes(StringListConventUtil.toString(productTypesList)) ;
 		selfDrive.setAddProducts(StringListConventUtil.toString(addProductsList)) ;
-		if(StringUtils.isBlank(selfDrive.getSelfDriveId())){
+		if(StringUtils.isBlank(selfDrive.getProductId())){
 			selfDrive = selfDriveService.createSelfDriveAndDetails(selfDrive) ;
 		}else{
 			selfDrive = selfDriveService.updateSelfDriveAndDetails(selfDrive) ;

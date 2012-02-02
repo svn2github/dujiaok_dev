@@ -1,24 +1,29 @@
 #set($layout="/admin/default.vm")
 #set($title="度假OK - 后台 - 登陆")
 ###############################################################
+<style>
+	.login_margin{
+		margin:5px  20px;
+	}
+</style>
 
-<div class="login_nav">
-	<h2>管理员登录</h2>
-	<span class="login_nav_right"></span>
-</div>
-<div class="login_content clearFix">
-	<div class="login_content_left">
-        <form id="adminLoginForm" name="adminLoginForm" method="post" action="${env.root}/admin/dologin.htm" onSubmit="return Validator.validate(this,'admin');">
-            <ul>
-				<li><span>用户名</span><input type="text" id='username' name='username' value="$!username"/></li>
-                <li><span>密　码</span><input type="password" id='password' name='password'/></li>
-                <!--<li style="padding-left:40px;"><input type="checkbox" class="reg_cheak"/><span>记住用户名</span><input type="checkbox" class="reg_cheak"/><span>自动登录</span></li>-->
-                <input type="hidden" id='Done' name='Done' value="$!Done"/>
-				<li style="padding-left:60px; margin-top:20px; "><button>　登录　</button><span class="errorMsg">$!actionError</span></li>
-				
-            </ul>
-        </form>
-    </div>
-</div>
+<h2 class="login_margin">管理员登录</h2>
+
+<form id="adminLoginForm" name="adminLoginForm" method="post" action="${env.root}/admin/dologin.htm" onSubmit="return Validator.validate(this,'admin');">
+	<input type="hidden" id='Done' name='Done' value="$!Done"/>
+	<div class="login_margin">
+		<span>用户名</span><input type="text" id='username' name='username' value="$!username" class="input_m"/>
+	</div>
+	
+	<div class="login_margin">
+		<span>密　码</span><input type="password" id='password' name='password' class="input_m"/>
+	</div>
+	
+		
+	<div class="login_margin">
+		<button>　登录　</button><span class="errorMsg">$!actionError</span>
+	</div>
+</form>
+
 	
 #JS(["validator.js"])

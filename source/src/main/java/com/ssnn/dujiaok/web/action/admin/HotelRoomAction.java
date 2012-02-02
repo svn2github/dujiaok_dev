@@ -28,8 +28,8 @@ public class HotelRoomAction extends BasicAction implements ModelDriven<HotelRoo
 	
 	@Override
 	public String execute() throws Exception {
-		if(room!=null && StringUtils.isNotBlank(room.getRoomId())){
-			room = hotelRoomService.getRoomWithDetails(room.getRoomId()) ;
+		if(room!=null && StringUtils.isNotBlank(room.getProductId())){
+			room = hotelRoomService.getRoomWithDetails(room.getProductId()) ;
 			if(room != null){
 				payTypesList = StringListConventUtil.toList(room.getPayTypes()) ;
 				imagesList = StringListConventUtil.toList(room.getImages()) ;
@@ -50,7 +50,7 @@ public class HotelRoomAction extends BasicAction implements ModelDriven<HotelRoo
 		room.setRoomFacilities(StringListConventUtil.toString(roomFacilitiesList)) ;
 		room.setPayTypes(StringListConventUtil.toString(payTypesList)) ;
 		
-		if(StringUtils.isBlank(room.getRoomId())){
+		if(StringUtils.isBlank(room.getProductId())){
 			room = hotelRoomService.createRoomAndDetails(room) ;
 		}else{
 			room = hotelRoomService.updateRoomAndDetails(room) ;
