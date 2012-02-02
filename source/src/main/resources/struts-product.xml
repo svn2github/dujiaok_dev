@@ -1,0 +1,30 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="product" namespace="/product" extends="default">
+		
+		<action name="selfDrive" class="com.ssnn.dujiaok.web.action.admin.IndexAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="success" type="redirect">/admin/ticketlist.htm</result>			
+		</action>
+		
+		<action name="ticket" class="com.ssnn.dujiaok.web.action.admin.IndexAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="success" type="redirect">/admin/ticketlist.htm</result>			
+		</action>
+		
+		<action name="hotel" class="com.ssnn.dujiaok.web.action.admin.IndexAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="success" type="redirect">/admin/ticketlist.htm</result>			
+		</action>
+	
+		<action name="detail" class="com.ssnn.dujiaok.web.action.product.DetailAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="success" type="velocity">/product/detail.vm</result>			
+			<result name="none" type="velocity">/product/notfound.vm</result>
+		</action>
+	
+	</package>
+</struts>

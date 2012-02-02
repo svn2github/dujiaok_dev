@@ -14,6 +14,12 @@ public class Constant {
 	
 	public static final String REDIRECT_KEY = "Done" ;
 	
+	
+	public static final String PREFIX_HOTEL = "JD" ;
+	public static final String PREFIX_SELFDRIVE = "ZJ" ;
+	public static final String PREFIX_HOTELROOM = "FJ" ;
+	public static final String PREFIX_TICKET = "MP" ;
+	
 	/**
      * 已付款
      */

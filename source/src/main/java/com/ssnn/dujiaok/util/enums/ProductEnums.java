@@ -1,5 +1,7 @@
 package com.ssnn.dujiaok.util.enums;
 
+import com.ssnn.dujiaok.constant.Constant;
+
 /**
  * 产品Enum
  * @author shenjia.caosj 2012-1-17
@@ -10,19 +12,19 @@ public enum ProductEnums {
 	/**
 	 * 门票
 	 */
-	TICKET("MP") ,
+	TICKET(Constant.PREFIX_TICKET) ,
 	/**
 	 * 酒店
 	 */
-	HOTEL("JD") ,
+	HOTEL(Constant.PREFIX_HOTEL) ,
 	/**
 	 * 酒店房间
 	 */
-	HOTEL_ROOM("FJ") ,
+	HOTEL_ROOM(Constant.PREFIX_HOTELROOM) ,
 	/**
 	 * 自驾
 	 */
-	SELFDRIVE("ZJ") ,
+	SELFDRIVE(Constant.PREFIX_SELFDRIVE) ,
 	
 	UNKNOWN("UNKNOWN")
 	

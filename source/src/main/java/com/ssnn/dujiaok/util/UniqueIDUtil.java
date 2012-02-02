@@ -21,10 +21,6 @@ public class UniqueIDUtil {
 		return product.getValue() + time + random ; 
 	}
 	
-	public static void main(String[] args) {
-		System.out.println(getOrderID("TESTFIRR")) ;
-	}
-	
 	public static String getOrderID(String memberId){
 		String time = getTimestamp() ;
 		String random = String.valueOf(new Random().nextInt(100)) ;
