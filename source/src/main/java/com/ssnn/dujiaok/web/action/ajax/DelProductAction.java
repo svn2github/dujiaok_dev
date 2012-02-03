@@ -1,8 +1,9 @@
 package com.ssnn.dujiaok.web.action.ajax;
 
-import org.apache.commons.lang.StringUtils;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.util.StringUtils;
 
 import com.ssnn.dujiaok.biz.service.HotelRoomService;
 import com.ssnn.dujiaok.biz.service.HotelService;
@@ -36,25 +37,25 @@ public class DelProductAction  extends BasicAction{
 	@Override
 	public String execute() throws Exception {
 		result = ERROR ;
-		if(StringUtils.isNotBlank(productId)){
-			try{
-				if(productId.startsWith(Constant.PREFIX_TICKET)){
-					ticketService.deleteTicket(productId) ;
-					result = SUCCESS ;
-				}else if(productId.startsWith(Constant.PREFIX_HOTEL)){
-					hotelService.deleteHotel(productId) ;
-					result = SUCCESS ;
-				}else if(productId.startsWith(Constant.PREFIX_HOTELROOM)){
-					hotelRoomService.deleteHotelRoom(productId) ;
-					result = SUCCESS ;
-				}else if(productId.startsWith(Constant.PREFIX_SELFDRIVE)){
-					selfDriveService.deleteSelfDrive(productId) ;
-					result = SUCCESS ;
-				}
-			}catch(Exception e){
-				logger.error("delete product error [" + productId + "] | " + e.getMessage() , e) ;
+		
+		try{
+			if(StringUtils.startsWithIgnoreCase(productId , Constant.PREFIX_TICKET)){
+				ticketService.deleteTicket(productId) ;
+				result = SUCCESS ;
+			}else if(StringUtils.startsWithIgnoreCase(productId,Constant.PREFIX_HOTEL)){
+				hotelService.deleteHotel(productId) ;
+				result = SUCCESS ;
+			}else if(StringUtils.startsWithIgnoreCase(productId,Constant.PREFIX_HOTELROOM)){
+				hotelRoomService.deleteHotelRoom(productId) ;
+				result = SUCCESS ;
+			}else if(StringUtils.startsWithIgnoreCase(productId,Constant.PREFIX_SELFDRIVE)){
+				selfDriveService.deleteSelfDrive(productId) ;
+				result = SUCCESS ;
 			}
+		}catch(Exception e){
+			logger.error("delete product error [" + productId + "] | " + e.getMessage() , e) ;
 		}
+	
 		return SUCCESS ;
 	}
 	
