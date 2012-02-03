@@ -5,6 +5,8 @@ import java.util.Map;
 
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.model.SelfDriveDO;
+import com.ssnn.dujiaok.model.product.Product2;
+import com.ssnn.dujiaok.model.product.detail.SelfDriveDetail;
 
 /**
  * 自驾DAO
@@ -19,7 +21,12 @@ public interface SelfDriveDAO {
 	 * @return
 	 */
 	SelfDriveDO querySelfDrive(String selfDriveId) ;
-
+	/**
+	 * 获取产品下的的自驾游数据.
+	 * @param product .
+	 * @return .
+	 */
+	List<SelfDriveDetail> getSelfDriveWithProducts(Product2 product);
 	/**
 	 * 
 	 * @param selfDrive

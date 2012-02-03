@@ -2,12 +2,12 @@ package com.ssnn.dujiaok.web.action.product;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import com.ssnn.dujiaok.biz.service.product.ProductService;
 import com.ssnn.dujiaok.biz.service.tour.TourService;
+import com.ssnn.dujiaok.model.PriceCalendar;
 import com.ssnn.dujiaok.model.Tour;
 import com.ssnn.dujiaok.model.product.Product;
+import com.ssnn.dujiaok.model.product.Product2;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 public class ProductAction extends BasicAction {
@@ -57,6 +57,64 @@ public class ProductAction extends BasicAction {
 		}
 	}
 
+	public String getSelfDriveProductDetail() {
+		try {
+			Product2 param = new Product2();
+			//param.setId(this.productId.toString());
+			param.setId("ZJ1201182354069713");
+			Product2 product = this.productService.getSelfDriveProductDetail(param);
+			this.getHttpSession().setAttribute("product", product);
+			return SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return SUCCESS;
+		}
+	}
+	
+	public String getHotelProductDetail() {
+		try {
+			Product2 param = new Product2();
+//			param.setId(this.productId.toString());
+			param.setId("JD1201171609535427");
+			Product2 product = this.productService.getHotelProductDetail(param);
+			this.getHttpSession().setAttribute("product", product);
+			return SUCCESS;
+		} catch (Exception e) {
+			return SUCCESS;
+		}
+	}
+	
+	public String getHotelRoomProductDetail() {
+		try {
+			Product2 param = new Product2();
+			//param.setId(this.productId.toString());
+			param.setId("FJ1201181530466890");
+			Product2 product = this.productService.getHotelRoomProductDetail(param);
+			this.getHttpSession().setAttribute("product", product);
+			return SUCCESS;
+		} catch (Exception e) {
+			return SUCCESS;
+		}
+	}
+	
+	public String getTicketProductDetail() {
+		try {
+			Product2 param = new Product2();
+			//param.setId(this.productId.toString());
+			param.setId("MP1201171339498931");
+			Product2 product = this.productService.getTicketProductDetail(param);
+			this.getHttpSession().setAttribute("product", product);
+			return SUCCESS;
+		} catch (Exception e) {
+			return SUCCESS;
+		}
+	}
+	
+	public static List<PriceCalendar> getProductPriceCalendar(Product2 product) {
+		
+		return null;
+	}
+	
 	public ProductService getProductService() {
 		return productService;
 	}

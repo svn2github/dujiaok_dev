@@ -2,7 +2,9 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="hotel">
 	<typeAlias alias="TA-Hotel" type="com.ssnn.dujiaok.model.HotelDO"/>
-
+	<typeAlias alias="TA-HotelDetail" type="com.ssnn.dujiaok.model.product.detail.HotelDetail"/>
+	<typeAlias alias="TA_Product" type="com.ssnn.dujiaok.model.product.Product2"/>
+	
 	<resultMap id="RM-Hotel" class="TA-Hotel" >
 		<result property="id" column="ID"/>
 		<result property="productId" column="PRODUCT_ID" jdbcType="VARCHAR" />
@@ -21,6 +23,16 @@
 		<result property="gmtModified" column="GMT_MODIFIED" jdbcType="TIMESTAMP"/>		
 	</resultMap>
 	
+	<resultMap id="RM-HotelDetail" class="TA-HotelDetail" >
+        <result property="id" column="ID"/>
+        <result property="name" column="NAME"/>
+        <result property="province" column="DEST_PROVINCE"/>
+        <result property="city" column="DEST_CITY"/>
+        <result property="zone" column="DEST_AREA"/>
+        <result property="location" column="DEST_ADDR"/>
+        <result property="starLevel" column="STAR_RATE"/>
+        <result property="roomNum" column="ROOM_AMOUNT"/>
+	</resultMap>
 
 	<insert id="insertHotel">
 		INSERT INTO 
@@ -55,6 +67,25 @@
 	<select id="queryHotel" resultMap="RM-Hotel">
 		select * from DJ_HOTEL where PRODUCT_ID = #productId#
 	</select>
+	
+	<select id="getHotelByProducts" resultMap="RM-HotelDetail" parameterClass="TA_Product">
+        select ID, NAME,'' DEST_PROVINCE, '' DEST_CITY, '' DEST_AREA,
+		    '' DEST_ADDR, STAR_RATE, ROOM_AMOUNT
+		  from DJ_HOTEL
+		  where 1=1
+		    <isNotNull property="id" prepend="AND">
+		      PRODUCT_ID=#id#
+		    </isNotNull>
+		    <isNotNull property="name" prepend="AND">
+              NAME LIKE '%'||#name#||'%'
+            </isNotNull>
+            <isNotNull property="desc" prepend="AND">
+              INTRODUCTION LIKE '%'||#desc#||'%'
+            </isNotNull>
+            <isNotNull property="remark" prepend="AND">
+              MEMO LIKE '%'||#remark#||'%'
+            </isNotNull>
+    </select>
 	
 	<select id="queryHotels" resultMap="RM-Hotel">
 		SELECT * FROM DJ_HOTEL WHERE 1=1 
