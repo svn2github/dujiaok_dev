@@ -39,4 +39,10 @@ public interface HotelService {
 	 * @return
 	 */
 	QueryResult<HotelDO> getHotels(Map<String,Object> condition , Pagination pagination) ;
+	
+	/**
+	 * 
+	 * @param hotelId
+	 */
+	void deleteHotel(String hotelId) ;
 }

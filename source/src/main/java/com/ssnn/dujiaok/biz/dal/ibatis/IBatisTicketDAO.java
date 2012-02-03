@@ -40,4 +40,9 @@ public class IBatisTicketDAO extends SqlMapClientDaoSupport implements TicketDAO
 		return IntegerUtils.objectToInt(getSqlMapClientTemplate().queryForObject("ticket.countTickets", condition));
 	}
 
+	@Override
+	public void deleteTicket(String ticketId) {
+		getSqlMapClientTemplate().delete("ticket.deleteTicket",ticketId) ;
+	}
+
 }

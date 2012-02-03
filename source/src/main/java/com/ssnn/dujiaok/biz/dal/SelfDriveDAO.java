@@ -46,4 +46,10 @@ public interface SelfDriveDAO {
 	 * @return
 	 */
 	int countSelfDrives(Map<String,Object> condition) ;
+	
+	/**
+	 * 
+	 * @param selfDriveId
+	 */
+	void deleteSelfDrive(String selfDriveId) ;
 }

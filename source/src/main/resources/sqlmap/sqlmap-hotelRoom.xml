@@ -97,4 +97,12 @@
 			]]>
 		</isNotEmpty>
 	</select>
+	
+	<delete id="deleteHotelRoom">
+		DELETE FROM DJ_HOTEL_ROOM WHERE PRODUCT_ID = #productId#
+	</delete>
+	
+	<delete id="deleteHotelRoomsByHotel">
+		DELETE FROM DJ_HOTEL_ROOM WHERE HOTEL_ID = #hotelId#
+	</delete>
 </sqlMap>

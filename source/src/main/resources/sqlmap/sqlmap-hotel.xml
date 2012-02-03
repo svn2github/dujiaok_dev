@@ -89,4 +89,7 @@
 		</isNotEmpty>
 	</select>
 
+	<delete id="deleteHotel">
+		DELETE FROM DJ_HOTEL WHERE PRODUCT_ID = #productId#
+	</delete>
 </sqlMap>

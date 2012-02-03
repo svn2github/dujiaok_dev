@@ -16,6 +16,13 @@
 			<interceptor-ref name="basicStack" />
 			<result name="success" type="velocity">/home/test.vm</result>
 		</action>
+		<!-- 删除 -->
+		<action name="delProduct" class="com.ssnn.dujiaok.web.action.ajax.DelProductAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success"  type="json"></result>
+		</action>
 	</package>
+	
+	
 	
 </struts>

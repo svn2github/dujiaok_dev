@@ -100,5 +100,11 @@ public class TicketServiceImpl implements TicketService{
 		return result ;
 		
 	}
+
+	@Override
+	public void deleteTicket(String ticketId) {
+		ticketDAO.deleteTicket(ticketId) ;
+		ticketDetailDAO.deleteTicketDetails(ticketId) ;
+	}
 	
 }

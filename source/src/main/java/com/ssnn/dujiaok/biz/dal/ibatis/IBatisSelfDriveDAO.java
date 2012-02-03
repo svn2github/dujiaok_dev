@@ -45,4 +45,9 @@ public class IBatisSelfDriveDAO extends SqlMapClientDaoSupport implements SelfDr
 		return IntegerUtils.objectToInt(getSqlMapClientTemplate().queryForObject("selfDrive.countSelfDrives" , condition)) ;
 	}
 
+	@Override
+	public void deleteSelfDrive(String selfDriveId) {
+		getSqlMapClientTemplate().delete("selfDrive.deleteSelfDrive" , selfDriveId) ;
+	}
+
 }

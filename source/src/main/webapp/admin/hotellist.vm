@@ -77,7 +77,7 @@
                 <td class="border_top_line">
         			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createTicket.htm?productId=$hotel.productId');">复制链接</a>&nbsp;&nbsp;
                     <a href="${env.root}/admin/createHotel.htm?productId=$hotel.productId">修改</a>&nbsp;&nbsp;
-        			<a href="${env.root}/admin/delHotel.htm?productId=$hotel.productId">删除</a>
+        			<a href="javascript:void(0);" onclick="confirmAndDelHotel('$!hotel.productId')">删除</a>
                 </td>
             </tr>
 				#foreach($room in $hotel.rooms)
@@ -92,7 +92,7 @@
                         <td>
                 			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createHotelRoom.htm?productId=$room.productId');">复制链接</a>&nbsp;&nbsp;
                             <a href="${env.root}/admin/createHotelRoom.htm?productId=$room.productId">修改</a>&nbsp;&nbsp;
-                			<a href="${env.root}/admin/delHotelRoom.htm?productId=$room.productId">删除</a>
+                			<a href="javascript:void(0);" onclick="confirmAndDelProduct('$!room.productId')">删除</a>
                         </td>
                     </tr>
 				#end
@@ -133,6 +133,20 @@
 		var name = select.options[select.selectedIndex].value ;
 		initAddressSelect(url,'destCity','city','',name) ;
 		$('destArea').options.length = 0 ;
+	}
+	
+	var confirmAndDelProduct = function(val){
+		if(!confirm('确定删除编号为[' + val + ']的房间记录？')){
+			return ;
+		}
+		delProduct(val , '${env.root}') ;
+	}
+	
+	var confirmAndDelHotel = function(val){
+		if(!confirm('确定删除酒店记录，删除酒店会删除酒店下的所有房间？')){
+			return ;
+		}
+		delProduct(val , '${env.root}') ;
 	}
 	
 	initAddressSelect(url,'destProvince','province',province) ;

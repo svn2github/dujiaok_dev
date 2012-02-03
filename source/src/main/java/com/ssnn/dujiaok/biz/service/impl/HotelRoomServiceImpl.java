@@ -106,4 +106,19 @@ public class HotelRoomServiceImpl implements HotelRoomService{
 		}
 		return gmtExpire ;
 	}
+
+	@Override
+	public void deleteHotelRoom(String roomId) {
+		hotelRoomDAO.deleteHotelRoom(roomId) ;
+		hotelRoomDetailDAO.deleteRoomDetails(roomId) ;
+	}
+
+	@Override
+	public void deleteHotelRooms(String hotelId) {
+		List<HotelRoomDO> list = hotelRoomDAO.queryRooms(hotelId) ;
+		for(HotelRoomDO room : list){
+			deleteHotelRoom(room.getProductId()) ;
+		}
+		
+	}
 }

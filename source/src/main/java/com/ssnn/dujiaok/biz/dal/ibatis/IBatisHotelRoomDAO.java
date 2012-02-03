@@ -46,4 +46,14 @@ public class IBatisHotelRoomDAO extends SqlMapClientDaoSupport implements HotelR
 		return getSqlMapClientTemplate().queryForList("hotel.queryRoomsByHotel" , hotelId) ;
 	}
 
+	@Override
+	public void deleteHotelRoom(String roomId) {
+		getSqlMapClientTemplate().delete("hotel.deleteHotelRoom" , roomId) ;
+	}
+
+	@Override
+	public void deleteHotelRooms(String hotelId) {
+		getSqlMapClientTemplate().delete("hotel.deleteHotelRoomsByHotel", hotelId ) ;
+	}
+
 }

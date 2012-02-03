@@ -21,8 +21,9 @@
 			<result name="success"  type="redirect">/admin/index.htm</result>
 			<result name="input" type="velocity">/admin/login.vm</result>
 		</action>
-				
-				
+		
+		<!-- create -->		
+		
 		<action name="createTicket" class="com.ssnn.dujiaok.web.action.admin.TicketAction" >
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="adminAuthInterceptor" />
@@ -96,6 +97,8 @@
 			<result name="success"  type="velocity">/admin/createSelfDriveSuccess.vm</result>
 		</action>
 		
+		<!-- list -->
+		
 		<action name="ticketlist" class="com.ssnn.dujiaok.web.action.admin.ProductListAction">
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="adminAuthInterceptor" />
@@ -117,5 +120,15 @@
 			<param name="size">5</param>
 			<result name="success"  type="velocity">/admin/hotellist.vm</result>
 		</action>
+		
+		<action name="orderlist" class="com.ssnn.dujiaok.web.action.admin.OrderAction" >
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="velocity">/admin/selfDrivelist.vm</result>
+			<param name="type">selfDrive</param>
+		</action>
+		
+		
+		
 	</package>
 </struts>

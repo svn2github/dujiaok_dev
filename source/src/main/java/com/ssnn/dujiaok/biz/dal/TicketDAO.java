@@ -46,4 +46,9 @@ public interface TicketDAO {
 	 * @return
 	 */
 	int countTickets(Map<String,Object> condition) ;
+	/**
+	 * 
+	 * @param ticketId
+	 */
+	void deleteTicket(String ticketId) ;
 }

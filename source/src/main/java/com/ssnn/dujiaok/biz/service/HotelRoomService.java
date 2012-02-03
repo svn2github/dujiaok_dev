@@ -57,4 +57,15 @@ public interface HotelRoomService {
 	 */
 	QueryResult<HotelRoomDO> getRooms(Map<String,Object> condition , Pagination pagination) ;
 	
+	/**
+	 * 
+	 * @param roomId
+	 */
+	void deleteHotelRoom(String roomId) ;
+	
+	/**
+	 * 
+	 * @param hotelId
+	 */
+	void deleteHotelRooms(String hotelId) ;
 }

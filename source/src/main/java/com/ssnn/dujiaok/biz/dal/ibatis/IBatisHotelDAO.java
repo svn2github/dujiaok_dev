@@ -45,4 +45,9 @@ public class IBatisHotelDAO extends SqlMapClientDaoSupport implements HotelDAO {
 		return IntegerUtils.objectToInt(getSqlMapClientTemplate().queryForObject("hotel.countHotels")) ;
 	}
 
+	@Override
+	public void deleteHotel(String hotelId) {
+		getSqlMapClientTemplate().delete("hotel.deleteHotel",hotelId) ;
+	}
+
 }

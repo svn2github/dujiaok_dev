@@ -113,4 +113,8 @@
 			]]>
 		</isNotEmpty>
 	</select>
+	
+	<delete id="deleteTicket">
+		DELETE FROM DJ_TICKET WHERE PRODUCT_ID = #productId#
+	</delete>
 </sqlMap>

@@ -54,4 +54,16 @@ public interface HotelRoomDAO {
 	 * @return
 	 */
 	int countRooms(Map<String,Object> condition) ;
+	
+	/**
+	 * 
+	 * @param roomId
+	 */
+	void deleteHotelRoom(String roomId) ;
+	
+	/**
+	 * 
+	 * @param hotelId
+	 */
+	void deleteHotelRooms(String hotelId) ;
 }

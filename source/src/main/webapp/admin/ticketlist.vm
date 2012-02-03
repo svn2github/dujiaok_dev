@@ -73,7 +73,7 @@
                 <td>
         			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createTicket.htm?productId=$ticket.productId');">复制链接</a>&nbsp;&nbsp;
                     <a href="${env.root}/admin/createTicket.htm?productId=$ticket.productId">修改</a>&nbsp;&nbsp;
-        			<a href="${env.root}/admin/delTicket.htm?productId=$ticket.productId">删除</a>
+        			<a href="javascript:void(0);" onclick="confirmAndDelProduct('$!ticket.productId')">删除</a>
                 </td>
             </tr>
     		#end
@@ -113,6 +113,13 @@
 		var name = select.options[select.selectedIndex].value ;
 		initAddressSelect(url,'destCity','city','',name) ;
 		$('destArea').options.length = 0 ;
+	}
+	
+	var confirmAndDelProduct = function(val){
+		if(!confirm('确定删除编号为[' + val + ']的门票记录？')){
+			return ;
+		}
+		delProduct(val , '${env.root}') ;
 	}
 	
 	initAddressSelect(url,'destProvince','province',province) ;

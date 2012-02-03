@@ -48,4 +48,10 @@ public interface SelfDriveService {
 	 * @return
 	 */
 	QueryResult<SelfDriveDO> getSelfDrives(Map<String,Object> condition , Pagination pagination) ;
+	
+	/**
+	 * 
+	 * @param selfDriveId
+	 */
+	void deleteSelfDrive(String selfDriveId) ;
 }

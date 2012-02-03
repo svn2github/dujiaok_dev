@@ -49,4 +49,6 @@ public interface TicketService {
 	 */
 	QueryResult<TicketDO> getTickets(Map<String,Object> condition , Pagination pagination) ;
 	
+	void deleteTicket(String ticketId) ;
+	
 }

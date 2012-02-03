@@ -105,4 +105,10 @@ public class SelfDriveServiceImpl implements SelfDriveService{
 		return result ;
 	}
 
+	@Override
+	public void deleteSelfDrive(String selfDriveId) {
+		selfDriveDAO.deleteSelfDrive(selfDriveId) ;
+		selfDriveDetailDAO.deleteSelfDriveDetails(selfDriveId) ;
+	}
+
 }
