@@ -7,6 +7,7 @@
 	
 		<action name="index" class="com.ssnn.dujiaok.web.action.admin.IndexAction">
 			<interceptor-ref name="basicStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
 			<result name="success" type="redirect">/admin/ticketlist.htm</result>			
 		</action>
 	

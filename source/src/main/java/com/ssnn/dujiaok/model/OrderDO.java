@@ -48,25 +48,28 @@ public class OrderDO {
 	 * 酒店为x晚，门票为x张，自驾为x成人
 	 */
 	private int count ;
-	
-	
+		
 	/**
 	 * 门票为儿童x张
 	 */
 	private int secondaryCount;
 	
 	/**
-	 * 订单状态  等待付款，付款成功，关闭，退款
+	 * 订单状态  等待付款，付款成功，关闭，退款 OrderStatusEnums
 	 */
 	private String status ;
 	
 	/**
-	 * 状态详细说明（如订单关闭原因）
+	 * 状态详细说明（如订单关闭原因） 
 	 */
 	private String statusDetail ;
 	
 	/**
-	 * 付款状态：已经付款，未付款
+	 * 付款方式
+	 */
+	private String payType;
+	/**
+	 * 付款状态：已经付款，未付款 PayStatusEnums
 	 */
 	private String payStatus ;
 	
@@ -77,9 +80,30 @@ public class OrderDO {
 	private Date gmtOrderEnd ;
 	
 	private Date gmtModified ;
+	
+	/**
+	 * 付款时间
+	 */
+	private Date gmtPaid ;
 
 	
 	
+	public String getPayType() {
+		return payType;
+	}
+
+	public void setPayType(String payType) {
+		this.payType = payType;
+	}
+
+	public Date getGmtPaid() {
+		return gmtPaid;
+	}
+
+	public void setGmtPaid(Date gmtPaid) {
+		this.gmtPaid = gmtPaid;
+	}
+
 	public Date getGmtOrderStart() {
 		return gmtOrderStart;
 	}

@@ -101,7 +101,7 @@
 		<isNotEmpty property="destCity" prepend="AND">
 			DEST_CITY = #destCity#
 		</isNotEmpty>
-		ORDER BY GMT_MODIFIED LIMIT #start# , #size# 
+		ORDER BY GMT_MODIFIED DESC LIMIT #start# , #size# 
 	</select>
 	
 	<select id="countHotels" resultClass="Integer">

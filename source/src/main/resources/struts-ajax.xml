@@ -3,7 +3,17 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<package name="ajax" namespace="/ajax" extends="json-default">
+    
+    <package name="struts-json" extends="default">
+        <result-types>
+            <result-type name="json" class="org.apache.struts2.json.JSONResult"/>
+        </result-types>
+        <interceptors>
+            <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
+        </interceptors>
+    </package>
+	
+	<package name="ajax" namespace="/ajax" extends="struts-json">
 		<action name="address" class="com.ssnn.dujiaok.web.action.ajax.AddressAction">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success"  type="json"></result>
@@ -19,6 +29,7 @@
 		<!-- 删除 -->
 		<action name="delProduct" class="com.ssnn.dujiaok.web.action.ajax.DelProductAction">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminAuthInterceptor" />
 			<result name="success"  type="json"></result>
 		</action>
 	</package>
