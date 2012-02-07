@@ -31,6 +31,16 @@ public class OrderDO {
 	private String name ;
 	
 	/**
+	 * 酒店为x晚，门票为x张，自驾为x成人
+	 */
+	private int count ;
+		
+	/**
+	 * 门票为儿童x张
+	 */
+	private int secondaryCount ;
+	
+	/**
 	 * 订购产品类型
 	 */
 	private String productType ;
@@ -43,16 +53,6 @@ public class OrderDO {
 	 * 订单总价
 	 */
 	private BigDecimal price ;
-	
-	/**
-	 * 酒店为x晚，门票为x张，自驾为x成人
-	 */
-	private int count ;
-		
-	/**
-	 * 门票为儿童x张
-	 */
-	private int secondaryCount;
 	
 	/**
 	 * 订单状态  等待付款，付款成功，关闭，退款 OrderStatusEnums
@@ -73,6 +73,8 @@ public class OrderDO {
 	 */
 	private String payStatus ;
 	
+	private String memo ;
+	
 	private Date gmtCreate ;
 	
 	private Date gmtOrderStart ;
@@ -88,8 +90,32 @@ public class OrderDO {
 
 	
 	
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
 	public String getPayType() {
 		return payType;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public int getSecondaryCount() {
+		return secondaryCount;
+	}
+
+	public void setSecondaryCount(int secondaryCount) {
+		this.secondaryCount = secondaryCount;
 	}
 
 	public void setPayType(String payType) {
@@ -175,23 +201,7 @@ public class OrderDO {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
-
-	public int getSecondaryCount() {
-		return secondaryCount;
-	}
-
-	public void setSecondaryCount(int secondaryCount) {
-		this.secondaryCount = secondaryCount;
-	}
-
+ 
 	public String getStatus() {
 		return status;
 	}

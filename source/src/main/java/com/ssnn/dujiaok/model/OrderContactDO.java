@@ -1,5 +1,7 @@
 package com.ssnn.dujiaok.model;
 
+import java.util.Date;
+
 /**
  * 订单联系人信息
  * @author shenjia.caosj 2012-2-4
@@ -8,6 +10,8 @@ package com.ssnn.dujiaok.model;
 public class OrderContactDO {
 
 	private int id ;
+	
+	private String orderId ;
 	
 	private String name ;
 	
@@ -29,6 +33,26 @@ public class OrderContactDO {
 	 * 证件号码
 	 */
 	private String certificateNumber ;
+	
+	private Date gmtCreate ;
+
+	
+	
+	public Date getGmtCreate() {
+		return gmtCreate;
+	}
+
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
 
 	public int getId() {
 		return id;

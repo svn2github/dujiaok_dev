@@ -1,306 +1,160 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="order">
-	<typeAlias alias="TA_Order" type="com.ssnn.dujiaok.model.order.Order" />
+	<typeAlias alias="TA-Order" type="com.ssnn.dujiaok.model.OrderDO" />
+	<typeAlias alias="TA-OrderDetail" type="com.ssnn.dujiaok.model.OrderDetailDO" />
+	<typeAlias alias="TA-OrderContact" type="com.ssnn.dujiaok.model.OrderContactDO" />
 
-	<resultMap id="RM_Order" class="TA_Order">
+	<resultMap id="RM-Order" class="TA-Order">
 		<result column="ID" property="id" />
-		<result column="USER_ID" property="userId" />
-		<result column="PRODUCT_ID" property="productId" />
-		<result column="TOUR_ID" property="tourId" />
-		<result column="STATUS" property="status" jdbcType="DECIMAL" />
-		<result column="PAY_STATUS" property="payStatus" jdbcType="DECIMAL" />
-		<result column="TYPE_ID" property="typeId" />
-		<result column="SINGLE_NUMBER" property="singleNumber" />
-		<result column="SINGLE_PRICE" property="singlePrice" jdbcType="DECIMAL" />
-		<result column="DOUBLE_NUMBER" property="doubleNumber" />
-		<result column="DOUBLE_PRICE" property="doublePrice" jdbcType="DECIMAL" />
-		<result column="CHILD_NUMBER" property="childNumber" />
-		<result column="CHILD_PRICE" property="childPrice" jdbcType="DECIMAL" />
-		<result column="COMBO_NUMBER" property="comboNumber" />
-		<result column="COMBO_PRICE" property="comboPrice" jdbcType="DECIMAL" />
-		<result column="TOTAL_PRICE" property="totalPrice" jdbcType="DECIMAL" />
-		<result column="COMMENT" property="comment" jdbcType="VARCHAR" />
-		<result column="INSURE" property="insure" />
-		<result column="PERSON_INFO" property="personInfo" jdbcType="VARCHAR" />
+		<result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+		<result column="MEMBER_ID" property="memberId" jdbcType="VARCHAR" />
+		<result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="COUNT" property="count"  />
+		<result column="SECONDARY_COUNT" property="secondaryCount" />
+		<result column="PRODUCT_TYPE" property="productType" jdbcType="VARCHAR" />
+		<result column="PRICE" property="price" jdbcType="DECIMAL" />		
+		<result column="STATUS" property="status" jdbcType="VARCHAR" />
+		<result column="STATUS_DETAIL" property="statusDetail" jdbcType="VARCHAR" />
+		<result column="PAY_TYPE" property="payType" jdbcType="VARCHAR" />
+		<result column="PAY_STATUS" property="payStatus" jdbcType="VARCHAR" />
+		<result column="ALIPAY_ID" property="alipayId" jdbcType="VARCHAR"/>
+		<result column="MEMO" property="memo" jdbcType="VARCHAR" />
 		<result column="GMT_CREATE" property="gmtCreate" jdbcType="TIMESTAMP" />
-		<result column="GMT_MODIFY" property="gmtModify" jdbcType="TIMESTAMP" />
-		<result column="ALIPAY_ID" property="alipayId" jdbcType="VARCHAR" />
-		<result column="ALIPAY_STATUS" property="alipayStatus"
-			jdbcType="VARCHAR" />
-		<result column="START_DATE" property="startDate" jdbcType="VARCHAR" />
-		<result column="END_DATE" property="endDate" jdbcType="VARCHAR" />
-		<result column="ADULT_NUMBER" property="adultNumber" />
-		<result column="HOTEL_NUMBER" property="hotelNumber" />
-		<result column="HOTEL_PRICE" property="hotelPrice" jdbcType="DECIMAL" />
-		<result column="HOTEL_DAY" property="hotelDay" />
+		<result column="GMT_MODIFIED" property="gmtModified" jdbcType="TIMESTAMP" />
+		<result column="GMT_ORDER_START" property="gmtOrderStart" jdbcType="TIMESTAMP" />
+		<result column="GMT_ORDER_END" property="gmtOrderEnd" jdbcType="TIMESTAMP" />
+		<result column="GMT_PAID" property="gmtPaid" jdbcType="TIMESTAMP" />
 	</resultMap>
-
-	<!-- ==================根据用户ID查找订单列表========================================= -->
-	<select id="listOrderByUserId" resultMap="RM_Order">
-		select ID, USER_ID,
-		PRODUCT_ID, TOUR_ID, STATUS, PAY_STATUS, TYPE_ID, SINGLE_NUMBER,
-		SINGLE_PRICE,
-		DOUBLE_NUMBER, DOUBLE_PRICE, CHILD_NUMBER, CHILD_PRICE,
-		COMBO_NUMBER,
-		COMBO_PRICE, TOTAL_PRICE, COMMENT, INSURE, PERSON_INFO,
-		GMT_CREATE,
-		GMT_MODIFY, ALIPAY_ID, ALIPAY_STATUS, START_DATE, END_DATE,
-		ADULT_NUMBER, HOTEL_NUMBER, HOTEL_PRICE, HOTEL_DAY
-		from trek.ORDER
-		where
-		USER_ID =
-		#userId#
-		order by ID desc
-	</select>
-
-	<!-- ==================根据订单ID查找订单详情========================================= -->
-	<select id="getOrderById" resultMap="RM_Order">
-		select ID, USER_ID,
-		PRODUCT_ID, TOUR_ID, STATUS, PAY_STATUS, TYPE_ID, SINGLE_NUMBER,
-		SINGLE_PRICE,
-		DOUBLE_NUMBER, DOUBLE_PRICE, CHILD_NUMBER, CHILD_PRICE,
-		COMBO_NUMBER,
-		COMBO_PRICE, TOTAL_PRICE, COMMENT, INSURE, PERSON_INFO,
-		GMT_CREATE,
-		GMT_MODIFY, ALIPAY_ID, ALIPAY_STATUS, START_DATE, END_DATE,
-		ADULT_NUMBER, HOTEL_NUMBER, HOTEL_PRICE, HOTEL_DAY
-		from
-		trek.ORDER
-		where
-		ID = #id#
-	</select>
-
-	<!-- ==================创建订单========================================= -->
-	<insert id="addOrder">
-		insert into trek.ORDER (USER_ID, PRODUCT_ID, TOUR_ID, STATUS,
-			PAY_STATUS, TYPE_ID, SINGLE_NUMBER, SINGLE_PRICE, DOUBLE_NUMBER,
-			DOUBLE_PRICE, CHILD_NUMBER, CHILD_PRICE, COMBO_NUMBER, COMBO_PRICE,
-			TOTAL_PRICE, COMMENT, INSURE, PERSON_INFO, GMT_CREATE, GMT_MODIFY,
-			ALIPAY_ID, ALIPAY_STATUS, START_DATE, END_DATE, ADULT_NUMBER,
-			HOTEL_NUMBER, HOTEL_PRICE, HOTEL_DAY)
-		values
-			(#userId#, #productId#,
-			#tourId#,
-			#status#, #payStatus#, #typeId#, #singleNumber#,
-			#singlePrice#,
-			#doubleNumber#,
-			#doublePrice#, #childNumber#,
-			#childPrice#,
-			#comboNumber#,
-			#comboPrice#, #totalPrice#, #comment#,
-			#insure#,
-			#personInfo#, now(),
-			now(), #alipayId#, 'init', #startDate#,
-			#endDate#, #adultNumber#,
-			#hotelNumber#, #hotelNumber#, #hotelDay#)
-		<selectKey resultClass="java.lang.Integer" keyProperty="id">
-    		<![CDATA[
-				SELECT LAST_INSERT_ID() AS ID
-			]]>
-		</selectKey>
+	
+	<resultMap id="RM-OrderDetail" class="TA-OrderDetail">
+		<result column="ID" property="id" />
+		<result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+		<result column="INSURE_COUNT" property="insureCount" />
+		<result column="SINGLE_PRICE" property="singlePrice" jdbcType="DECIMAL"/>		
+		<result column="DOUBLE_PRICE" property="doublePrice" jdbcType="DECIMAL"/>		
+		<result column="CHILD_PRICE" property="childPrice" jdbcType="DECIMAL"/>
+		<result column="INSURE_PRICE" property="insurePrice" jdbcType="DECIMAL"/>
+		<result column="GMT_CREATE" property="gmtCreate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<resultMap id="RM-OrderContact" class="TA-OrderContact">
+		<result column="ID" property="id" />
+		<result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR"/>		
+		<result column="CERTIFICATE_TYPE" property="certificateType"  jdbcType="VARCHAR"/>
+		<result column="CERTIFICATE_NUMBER" property="certificateNumber" jdbcType="VARCHAR" />	
+		<result column="IS_MAIN" property="isMain" jdbcType="VARCHAR" />
+		<result column="GMT_CREATE" property="gmtCreate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<insert id="insertOrder">
+		INSERT INTO DJ_ORDER (ID,ORDER_ID,MEMBER_ID,PRODUCT_ID,NAME,PRODUCT_TYPE,PRICE,COUNT,SECONDARY_COUNT,
+			STATUS,STATUS_DETAIL,PAY_TYPE,PAY_STATUS,ALIPAY_ID,MEMO,GMT_CREATE,GMT_MODIFIED,GMT_ORDER_START,GMT_ORDER_END,GMT_PAID)
+		VALUES
+			(#id#,#orderId#,#memberId#,#productId#,#name#,#productType#,#price#,#count#,#secondaryCount#,
+				#status#,#statusDetail#,#payType#,#payStatus#,#alipayId#,#memo#,now(),now(),#gmtOrderStart#,#gmtOrderEnd#,#gmtPaid#)
 	</insert>
-
-	<!-- ==================修改订单状态========================================= -->
-	<update id="updateOrderStatusAndComment">
-		<![CDATA[
-		update trek.ORDER
-		set STATUS = #status#,
-		    COMMENT = #comment#,
-			GMT_MODIFY = now()
-		where ID = #id#
-		]]>
-	</update>
 	
-	<!-- ==================酒店修改订单状态========================================= -->
-	<update id="updatePayStatusHotel">
-		<![CDATA[
-		update trek.ORDER
-		set STATUS = "等待预定确认",
-		    PAY_STATUS = "等待预定确认",
-			GMT_MODIFY = now()
-		where ID = #id#
-		]]>
-	</update>
-	
-	<!-- ==================修改订单状态========================================= -->
-	<update id="updateOrderStatus">
-		<![CDATA[
-		update trek.ORDER
-		set STATUS = #status#,
-			GMT_MODIFY = now()
-		where ID = #id#
-		]]>
-	</update>
-
-	<!-- ==================支付成功后修改支付宝订单号和状态========================================= -->
-	<update id="updateAlipayIdAndStatus">
-		<![CDATA[
-		update trek.ORDER
-		set ALIPAY_ID = #alipayId#,
-			ALIPAY_STATUS = #alipayStatus#,
-			PAY_STATUS = #payStatus#,
+	<update id="updateOrder">
+		UPDATE DJ_ORDER SET 
 			STATUS = #status#,
-			GMT_MODIFY = now()
-		where ID = #id#
-		]]>
+			STATUS_DETAIL = #statusDetail# ,
+			PAY_TYPE = #payType# , 
+			PAY_STATUS = #payStatus# , 
+			MEMO = #memo# ,
+			GMT_MODIFIED = now() ,
+			GMT_ORDER_START = #gmtOrderStart# , 
+			GMT_ORDER_END = #gmtOrderEnd# , 
+			GMT_PAID = #gmtPaid#
+		WHERE 
+			ORDER_ID = #orderId#
 	</update>
-
-	<!-- ==================查询所有订单========================================= -->
-	<select id="listAllOrder" resultMap="RM_Order">
-		select ID, USER_ID,
-		PRODUCT_ID, TOUR_ID, STATUS, PAY_STATUS, TYPE_ID, SINGLE_NUMBER,
-		SINGLE_PRICE,
-		DOUBLE_NUMBER, DOUBLE_PRICE, CHILD_NUMBER, CHILD_PRICE,
-		COMBO_NUMBER,
-		COMBO_PRICE, TOTAL_PRICE, COMMENT, INSURE, PERSON_INFO,
-		GMT_CREATE,
-		GMT_MODIFY, ALIPAY_ID, ALIPAY_STATUS, START_DATE, END_DATE,
-		ADULT_NUMBER, HOTEL_NUMBER, HOTEL_PRICE, HOTEL_DAY
-		from
-		trek.ORDER
-		order by ID desc
+	
+	<update id="updateOrderStatus">
+		UPDATE DJ_ORDER SET 
+			STATUS = #status#, 
+			STATUS_DETAIL = #statusDetail#
+			GMT_MODIFIED = now() 
+		WHERE 
+			ORDER_ID = #orderId#
+	</update>
+	
+	<update id="updatePayStatus">
+		UPDATE DJ_ORDER SET 
+			PAY_STATUS = #payStatus#, 
+			GMT_PAID = #gmtPaid# ,
+			GMT_MODIFIED = now() 
+		WHERE 
+			ORDER_ID = #orderId#
+	</update>
+	
+	<update id="updateAlipayStatus">
+		UPDATE DJ_ORDER SET 
+			ALIPAY_ID = #alipayId#, 
+			GMT_MODIFIED = now() 
+		WHERE 
+			ORDER_ID = #orderId#
+	</update>
+	
+	<select id="queryOrder" resultMap="RM-Order">
+		SELECT * FROM DJ_ORDER WHERE ORDER_ID = #orderId#
 	</select>
-
-
-	<!-- ==================根据订单状态查找订单列表========================================= -->
-	<select id="listOrderByStatus" resultMap="RM_Order">
-		select ID, USER_ID,
-		PRODUCT_ID, TOUR_ID, STATUS, PAY_STATUS, TYPE_ID, SINGLE_NUMBER,
-		SINGLE_PRICE,
-		DOUBLE_NUMBER, DOUBLE_PRICE, CHILD_NUMBER, CHILD_PRICE,
-		COMBO_NUMBER,
-		COMBO_PRICE, TOTAL_PRICE, COMMENT, INSURE, PERSON_INFO,
-		GMT_CREATE,
-		GMT_MODIFY, ALIPAY_ID, ALIPAY_STATUS, START_DATE, END_DATE,
-		ADULT_NUMBER, HOTEL_NUMBER, HOTEL_PRICE, HOTEL_DAY
-		from
-		trek.ORDER
-		where
-		STATUS = #status#
-		order by ID desc
+	
+	<select id="queryOrdersByMember" resultMap="RM-Order">
+		SELECT * FROM DJ_ORDER WHERE MEMBER_ID = #memberId# ORDER BY GMT_MODIFIED DESC
 	</select>
-
-	<!-- ==================根据订单状态查找订单列表========================================= -->
-	<select id="listOrderByPayStatus" resultMap="RM_Order">
-		select ID, USER_ID,
-		PRODUCT_ID, TOUR_ID, STATUS, PAY_STATUS, TYPE_ID, SINGLE_NUMBER,
-		SINGLE_PRICE,
-		DOUBLE_NUMBER, DOUBLE_PRICE, CHILD_NUMBER, CHILD_PRICE,
-		COMBO_NUMBER,
-		COMBO_PRICE, TOTAL_PRICE, COMMENT, INSURE, PERSON_INFO,
-		GMT_CREATE,
-		GMT_MODIFY, ALIPAY_ID, ALIPAY_STATUS, START_DATE, END_DATE,
-		ADULT_NUMBER, HOTEL_NUMBER, HOTEL_PRICE, HOTEL_DAY
-		from
-		trek.ORDER
-		where
-		PAY_STATUS = #payStatus#
-		order by ID desc
+	
+	<select id="queryOrders" resultMap="RM-Order">
+		SELECT * FROM DJ_ORDER WHERE 1=1
+		<isNotEmpty property="name" prepend="AND">
+			NAME LIKE CONCAT('%', #name#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="productId" prepend="AND">
+			PRODUCT_ID = #productId#
+		</isNotEmpty> 
+		<isNotEmpty property="memberId" prepend="AND">
+			MEMBER_ID = #memberId#
+		</isNotEmpty>
+		<isNotEmpty property="orderId" prepend="AND">
+			ORDER_ID = #orderId#
+		</isNotEmpty>
+		<isNotEmpty property="status" prepend="AND">
+			STATUS = #status#
+		</isNotEmpty>
+		<isNotEmpty property="payStatus" prepend="AND">
+			PAY_STATUS = #payStatus#
+		</isNotEmpty>
+		ORDER BY GMT_MODIFIED DESC
 	</select>
+	
+	<!-- ===============================  Order Contact ================================== -->
 
-	<!-- ==================根据订单状态查找订单列表========================================= -->
-	<select id="listOrderByStatusAndPayStatus" resultMap="RM_Order">
-		select ID,
-		USER_ID,
-		PRODUCT_ID, TOUR_ID, STATUS, PAY_STATUS, TYPE_ID,
-		SINGLE_NUMBER, SINGLE_PRICE,
-		DOUBLE_NUMBER, DOUBLE_PRICE, CHILD_NUMBER,
-		CHILD_PRICE, COMBO_NUMBER,
-		COMBO_PRICE, TOTAL_PRICE, COMMENT, INSURE,
-		PERSON_INFO, GMT_CREATE,
-		GMT_MODIFY, ALIPAY_ID, ALIPAY_STATUS,
-		START_DATE, END_DATE,
-		ADULT_NUMBER, HOTEL_NUMBER, HOTEL_PRICE,
-		HOTEL_DAY
-		from
-		trek.ORDER
-		where
-		STATUS = #status# AND
-		PAY_STATUS =
-		#payStatus#
-		order by ID desc
+	<insert id="insertOrderContact">
+		INSERT INTO 
+			DJ_ORDER_CONTACT (ID,ORDER_ID,NAME,MOBILE,EMAIL,CERTIFICATE_TYPE,CERTIFICATE_NUMBER,IS_MAIN,GMT_CREATE)
+		VALUES
+			(#id#,#orderId#,#name#,#mobile#,#email#,#certificateType#,#certificateNumber#,#isMain#,now())
+	</insert>
+	
+	<select id="queryOrderContactsByOrder">
+		SELECT * FROM DJ_ORDER_CONTACT WHERE ORDER_ID = #orderId#
 	</select>
-
-	<!-- ==================根据用户id和订单状态查找订单列表========================================= -->
-	<select id="listOrderByUserIdAndStatus" resultMap="RM_Order">
-		select ID,
-		USER_ID,
-		PRODUCT_ID, TOUR_ID, STATUS, PAY_STATUS, TYPE_ID,
-		SINGLE_NUMBER, SINGLE_PRICE,
-		DOUBLE_NUMBER, DOUBLE_PRICE, CHILD_NUMBER,
-		CHILD_PRICE, COMBO_NUMBER,
-		COMBO_PRICE, TOTAL_PRICE, COMMENT, INSURE,
-		PERSON_INFO, GMT_CREATE,
-		GMT_MODIFY, ALIPAY_ID, ALIPAY_STATUS,
-		START_DATE, END_DATE,
-		ADULT_NUMBER, HOTEL_NUMBER, HOTEL_PRICE,
-		HOTEL_DAY
-		from
-		trek.ORDER
-		where
-		USER_ID = #userId# AND STATUS =
-		#status#
-		order by ID desc
+	
+	<!-- ===============================  Order Detail ================================== -->
+	
+	<insert id="insertOrderDetail">
+		INSERT INTO 
+			DJ_ORDER_CONTACT (ID,ORDER_ID,SINGLE_PRICE,DOUBLE_PRICE,CHILD_PRICE,INSURE_PRICE,INSURE_COUNT,GMT_CREATE)
+		VALUES
+			(#id#,#orderId#,#singlePrice#,#doublePrice#,#childPrice#,#insurePrice#,#insureCount#,now())
+	</insert>
+	
+	<select id="queryOrderDetailByOrder">
+		SELECT * FROM DJ_ORDER_DETAIL WHERE ORDER_ID = #orderId#
 	</select>
-
-	<!-- ==================根据用户id和订单状态查找订单列表========================================= -->
-	<select id="listOrderByUserIdAndPayStatus" resultMap="RM_Order">
-		select ID,
-		USER_ID,
-		PRODUCT_ID, TOUR_ID, STATUS, PAY_STATUS, TYPE_ID,
-		SINGLE_NUMBER, SINGLE_PRICE,
-		DOUBLE_NUMBER, DOUBLE_PRICE, CHILD_NUMBER,
-		CHILD_PRICE, COMBO_NUMBER,
-		COMBO_PRICE, TOTAL_PRICE, COMMENT, INSURE,
-		PERSON_INFO, GMT_CREATE,
-		GMT_MODIFY, ALIPAY_ID, ALIPAY_STATUS,
-		START_DATE, END_DATE,
-		ADULT_NUMBER, HOTEL_NUMBER, HOTEL_PRICE,
-		HOTEL_DAY
-		from
-		trek.ORDER
-		where
-		USER_ID = #userId# AND PAY_STATUS =
-		#payStatus#
-		order by ID desc
-	</select>
-
-	<select id="listOrderByUserIdAndStatusAndPayStatus" resultMap="RM_Order">
-		select ID, USER_ID,
-		PRODUCT_ID, TOUR_ID, STATUS, PAY_STATUS, TYPE_ID,
-		SINGLE_NUMBER, SINGLE_PRICE,
-		DOUBLE_NUMBER, DOUBLE_PRICE, CHILD_NUMBER,
-		CHILD_PRICE, COMBO_NUMBER,
-		COMBO_PRICE, TOTAL_PRICE, COMMENT, INSURE,
-		PERSON_INFO, GMT_CREATE,
-		GMT_MODIFY, ALIPAY_ID, ALIPAY_STATUS,
-		START_DATE, END_DATE,
-		ADULT_NUMBER, HOTEL_NUMBER, HOTEL_PRICE,
-		HOTEL_DAY
-		from
-		trek.ORDER
-		where
-		USER_ID = #userId# AND STATUS = #status#
-		AND PAY_STATUS =
-		#payStatus#
-		order by ID desc
-	</select>
-
-	<select id="listOrderByDate" resultMap="RM_Order">
-		select ID, USER_ID,
-		PRODUCT_ID, TOUR_ID, STATUS, PAY_STATUS, TYPE_ID, SINGLE_NUMBER,
-		SINGLE_PRICE,
-		DOUBLE_NUMBER, DOUBLE_PRICE, CHILD_NUMBER, CHILD_PRICE,
-		COMBO_NUMBER,
-		COMBO_PRICE, TOTAL_PRICE, COMMENT, INSURE, PERSON_INFO,
-		GMT_CREATE,
-		GMT_MODIFY, ALIPAY_ID, ALIPAY_STATUS, START_DATE, END_DATE,
-		ADULT_NUMBER, HOTEL_NUMBER, HOTEL_PRICE, HOTEL_DAY
-		from
-		trek.ORDER
-		where
-		GMT_CREATE between #start# and #end#
-		order by ID desc
-	</select>
+	
 </sqlMap>
