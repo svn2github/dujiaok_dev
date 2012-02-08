@@ -12,6 +12,7 @@ import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.model.OrderContactDO;
 import com.ssnn.dujiaok.model.OrderDO;
 import com.ssnn.dujiaok.model.OrderDetailDO;
+import com.ssnn.dujiaok.util.IntegerUtils;
 
 public class IBatisOrderDAO extends SqlMapClientDaoSupport implements OrderDAO {
 
@@ -69,6 +70,11 @@ public class IBatisOrderDAO extends SqlMapClientDaoSupport implements OrderDAO {
 		condition.put("size", pagination.getSize()) ;
 		return getSqlMapClientTemplate().queryForList("order.queryOrders" , condition) ;
 	}
+	
+	@Override
+	public int countOrders(Map<String, Object> condition) {
+		return IntegerUtils.objectToInt(getSqlMapClientTemplate().queryForObject("order.countOrders",condition)) ;
+	}
 
 	@Override
 	public void insertOrderContact(OrderContactDO contact) {
@@ -90,5 +96,7 @@ public class IBatisOrderDAO extends SqlMapClientDaoSupport implements OrderDAO {
 	public OrderDetailDO queryOrderDetailByOrder(String orderId) {
 		return (OrderDetailDO)getSqlMapClientTemplate().queryForObject("order.queryOrderDetailByOrder" , orderId) ;
 	}
+
+	
 
 }

@@ -1,6 +1,5 @@
 package com.ssnn.dujiaok.biz.service;
 
-import com.ssnn.dujiaok.biz.exception.MemberOrPasswordIncorrectException;
 import com.ssnn.dujiaok.model.AdminDO;
 
 /**

@@ -9,41 +9,48 @@ import com.ssnn.dujiaok.constant.Constant;
  */
 public enum ProductEnums {
 	
+	UNKNOWN("" , "") ,
 	/**
 	 * 门票
 	 */
-	TICKET(Constant.PREFIX_TICKET) ,
+	TICKET(Constant.PREFIX_TICKET , "门票") ,
 	/**
 	 * 酒店
 	 */
-	HOTEL(Constant.PREFIX_HOTEL) ,
+	HOTEL(Constant.PREFIX_HOTEL , "酒店") ,
 	/**
 	 * 酒店房间
 	 */
-	HOTEL_ROOM(Constant.PREFIX_HOTELROOM) ,
+	HOTEL_ROOM(Constant.PREFIX_HOTELROOM , "房间") ,
 	/**
 	 * 自驾
 	 */
-	SELFDRIVE(Constant.PREFIX_SELFDRIVE) ,
+	SELFDRIVE(Constant.PREFIX_SELFDRIVE , "自驾") ,
 	
-	UNKNOWN("UNKNOWN")
+	
 	
 	
 	;
 	
-	private String value ;
-	private ProductEnums(String value){
-		this.value = value ;
+	private String name ;
+	private String desc ;
+	private ProductEnums(String name , String desc){
+		this.name = name ;
+		this.desc = desc ;
 	}
 	
-	public String getValue(){
-		return this.value ;
+	public String getName(){
+		return this.name ;
 	}
 	
-	public static ProductEnums fromValue(String value){
+	public String getDesc() {
+		return desc;
+	}
+
+	public static ProductEnums fromValue(String name){
 		ProductEnums[] enums = ProductEnums.values() ;
 		for(ProductEnums e : enums){
-			if(e.getValue().equals(value)){
+			if(e.getName().equals(name)){
 				return e ;
 			}
 		}

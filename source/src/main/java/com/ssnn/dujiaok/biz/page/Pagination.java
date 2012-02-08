@@ -37,14 +37,14 @@ public class Pagination {
 	/**
 	 * 开始记录数,start from 1
 	 */
-	private int start ;
+	protected int start ;
 	
 	/**
 	 * 一次取出记录条数
 	 */
-	private int size ;
+	protected int size ;
 	
-	private int totalCount ;
+	protected int totalCount ;
 	
 	public int getTotalPages(){
 		return (totalCount+size-1) / size ;

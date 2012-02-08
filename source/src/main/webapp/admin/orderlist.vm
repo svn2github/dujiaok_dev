@@ -1,0 +1,121 @@
+#set($__productType = "order")
+#set($layout = "/admin/default.vm")
+#set($title = "度假OK - 后台 - 订单")
+#set($tab = $__productType)
+###################################################
+
+
+#parse('common/back_tab.vm')
+
+<form id="orderlistForm" name="orderlistForm" method="GET" action="${env.root}/admin/orderlist.htm" onsubmit="return Validator.validate(this,'admin');">
+	<input type="hidden" name="type" value="order"/>
+	<input type="hidden" name="start" id="start" value="1"/>
+	<input type="hidden" name="size" id="size" value="$!size"/>
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="search_sx">
+    			订单编号：<input type="text" name="condition.orderId" value="$!condition.orderId" class="input_m"/>&nbsp;&nbsp;
+    			名称：<input type="text" name="condition.name" value="$!condition.name" class="input_m"/>&nbsp;&nbsp;
+				会员：<input type="text" name="condition.memberId" value="$!condition.memberId" class="input_m"/>&nbsp;&nbsp;
+				&nbsp;&nbsp;
+				类型：
+				<select name="condition.productType">
+					#foreach($e in $enumUtils.listProduct())
+						<option value="$e.name" #if($e.name == $!condition.productType) selected #end >$e.desc</option>
+					#end
+                </select>
+				状态：
+				<select name="condition.status">
+					#foreach($e in $enumUtils.listOrderStatus())
+						<option value="$e.name" #if($e.name == $!condition.status) selected #end >$e.desc</option>
+					#end
+                </select>
+    			<input name="查询" type="submit" value="查询" />
+               
+            </td>
+        </tr>
+    </table>
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td height="10"></td>
+        </tr>
+    </table>
+    #parse('common/back_pagination.vm')
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="list_sy">
+        <tr>
+            <td width="100" align="center">
+                <strong>订单编号</strong>
+            </td>
+            <td width="200" align="center">
+                <strong>名称</strong>
+            </td>
+            <td width="80" align="center">
+                <strong>下单时间</strong>
+            </td>
+            <td width="40" align="center">
+                <strong>金额</strong>
+            </td>
+			<td width="60" align="center">
+                <strong>会员</strong>
+            </td>
+			<td  width="160" align="center">
+				<strong>状态</strong>
+			</td>
+            <td width="100" align="center">
+                <strong>操作</strong>
+            </td>
+			
+        </tr>
+		#if($collectionUtils.size($orders.items) == 0)
+			<tr>
+                <td colspan="5" ><span style="color:red;margin:0 auto;">没有查询到符合条件的记录</span></td>
+            </tr>
+		#else
+        	#foreach($item in $orders.items)
+            <tr>
+                <td>$!item.orderId</td>
+                <td>
+                    <a href="#">[$enumUtils.product($!item.productType).desc] $!item.name</a> #if(!$stringUtils.isBlank($item.memo))<img height="14" width="14" title="#ESCAPE_HTML($item.memo)" src="${env.staticroot}/images/bz_icon.png">#end
+					<br/>
+					#if("FJ" == $!item.productType)
+						$!item.count 晚酒店
+					#elseif("ZJ" == $!item.productType)
+						成人 （$!item.count） 儿童（$!item.secondaryCount） 
+					#elseif("MP" == $!item.productType)
+						$!item.count 张门票
+					#end
+                </td>
+                <td>$dateUtils.format($!item.gmtCreate,"yyyy-MM-dd HH:mm:ss")</td>
+                <td class="F9">$!item.price</td>
+				<td>$!item.memberId</td>
+				<td>$enumUtils.orderStatus($!item.status).desc  #if($item.statusDetail)（$!item.statusDetail）#end</td>
+                <td> 
+                    <a href="${env.root}/admin/orderdetail.htm?orderId=$!item.orderId" target="_order">详情</a>
+				</td>
+				
+            </tr>
+    		#end
+		#end
+    </table>
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td height="10"></td>
+        </tr>
+    </table>
+
+#parse('common/back_pagination.vm')
+ </form>
+ 
+#XUI_JS(["core/xui-core.js","util/util-min.js"])
+#JS(["validator.js","dujiaok.js"])
+<script type="text/javascript">
+    
+    var toPage = function(page , size){
+        var start = (page-1) * size + 1;
+        $('start').value = start ;
+        $('size').value = size ;
+        document.forms[0].submit() ;
+    }
+	
+	
+</script>

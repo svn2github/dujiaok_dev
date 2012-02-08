@@ -2,6 +2,7 @@ package com.ssnn.dujiaok.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 订单
@@ -73,6 +74,11 @@ public class OrderDO {
 	 */
 	private String payStatus ;
 	
+	/**
+	 * 支付宝ID
+	 */
+	private String alipayId ;
+	
 	private String memo ;
 	
 	private Date gmtCreate ;
@@ -88,8 +94,34 @@ public class OrderDO {
 	 */
 	private Date gmtPaid ;
 
+	private OrderDetailDO detail ;
 	
+	private List<OrderContactDO> contacts ;
 	
+	public OrderDetailDO getDetail() {
+		return detail;
+	}
+
+	public void setDetail(OrderDetailDO detail) {
+		this.detail = detail;
+	}
+
+	public List<OrderContactDO> getContacts() {
+		return contacts;
+	}
+
+	public String getAlipayId() {
+		return alipayId;
+	}
+
+	public void setAlipayId(String alipayId) {
+		this.alipayId = alipayId;
+	}
+
+	public void setContacts(List<OrderContactDO> contacts) {
+		this.contacts = contacts;
+	}
+
 	public String getMemo() {
 		return memo;
 	}

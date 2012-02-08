@@ -2,34 +2,37 @@ package com.ssnn.dujiaok.util.enums;
 
 public enum PayTypeEnums {
 
-	ONLINE("ONLINE","在线支付") , 
-	CASH("CASH","前台现付") , 
 	/**
 	 * 
 	 */
-	UNKNOWN("UNKNOWN","状态异常") ,
+	UNKNOWN("","") ,
+	
+	ONLINE("ONLINE","在线支付") , 
+	
+	CASH("CASH","前台现付") , 
+	
 	;
 	
 	
-	private String value ;
+	private String desc ;
 	private String name ;
 	
-	private PayTypeEnums(String value , String name){
-		this.value = value ;
+	private PayTypeEnums(String name , String desc){
+		this.desc = desc ;
 		this.name = name ;
 	}
 	
-	public String getValue(){
-		return this.value ;
+	public String getDesc(){
+		return this.desc ;
 	}
 	
 	public String getName() {
 		return name;
 	}
-	public static PayTypeEnums fromValue(String value){
+	public static PayTypeEnums fromValue(String name){
 		PayTypeEnums[] enums = PayTypeEnums.values() ;
 		for(PayTypeEnums e : enums){
-			if(e.getValue().equals(value)){
+			if(e.getName().equals(name)){
 				return e ;
 			}
 		}

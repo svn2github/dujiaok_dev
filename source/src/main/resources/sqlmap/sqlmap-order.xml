@@ -122,13 +122,41 @@
 		<isNotEmpty property="orderId" prepend="AND">
 			ORDER_ID = #orderId#
 		</isNotEmpty>
+		<isNotEmpty property="productType" prepend="AND">
+			PRODUCT_TYPE = #productType#
+		</isNotEmpty>
 		<isNotEmpty property="status" prepend="AND">
 			STATUS = #status#
 		</isNotEmpty>
 		<isNotEmpty property="payStatus" prepend="AND">
 			PAY_STATUS = #payStatus#
 		</isNotEmpty>
-		ORDER BY GMT_MODIFIED DESC
+		ORDER BY GMT_MODIFIED DESC LIMIT #start# , #size# 
+	</select>
+	
+	<select id="countOrders" resultClass="Integer">
+		SELECT COUNT(*) FROM DJ_ORDER WHERE 1=1
+		<isNotEmpty property="name" prepend="AND">
+			NAME LIKE CONCAT('%', #name#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="productId" prepend="AND">
+			PRODUCT_ID = #productId#
+		</isNotEmpty> 
+		<isNotEmpty property="memberId" prepend="AND">
+			MEMBER_ID = #memberId#
+		</isNotEmpty>
+		<isNotEmpty property="orderId" prepend="AND">
+			ORDER_ID = #orderId#
+		</isNotEmpty>
+		<isNotEmpty property="productType" prepend="AND">
+			PRODUCT_TYPE = #productType#
+		</isNotEmpty>
+		<isNotEmpty property="status" prepend="AND">
+			STATUS = #status#
+		</isNotEmpty>
+		<isNotEmpty property="payStatus" prepend="AND">
+			PAY_STATUS = #payStatus#
+		</isNotEmpty>
 	</select>
 	
 	<!-- ===============================  Order Contact ================================== -->
@@ -140,8 +168,8 @@
 			(#id#,#orderId#,#name#,#mobile#,#email#,#certificateType#,#certificateNumber#,#isMain#,now())
 	</insert>
 	
-	<select id="queryOrderContactsByOrder">
-		SELECT * FROM DJ_ORDER_CONTACT WHERE ORDER_ID = #orderId#
+	<select id="queryOrderContactsByOrder" resultMap="RM-OrderContact">
+		SELECT * FROM DJ_ORDER_CONTACT WHERE ORDER_ID = #orderId# ORDER BY IS_MAIN DESC
 	</select>
 	
 	<!-- ===============================  Order Detail ================================== -->
@@ -153,7 +181,7 @@
 			(#id#,#orderId#,#singlePrice#,#doublePrice#,#childPrice#,#insurePrice#,#insureCount#,now())
 	</insert>
 	
-	<select id="queryOrderDetailByOrder">
+	<select id="queryOrderDetailByOrder" resultMap="RM-OrderDetail">
 		SELECT * FROM DJ_ORDER_DETAIL WHERE ORDER_ID = #orderId#
 	</select>
 	

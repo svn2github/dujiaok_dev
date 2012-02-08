@@ -122,13 +122,18 @@
 			<result name="success"  type="velocity">/admin/hotellist.vm</result>
 		</action>
 		
-		<action name="orderlist" class="com.ssnn.dujiaok.web.action.admin.OrderAction" >
+		<action name="orderlist" class="com.ssnn.dujiaok.web.action.admin.OrderAction" method="list">
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="adminAuthInterceptor" />
-			<result name="success"  type="velocity">/admin/selfDrivelist.vm</result>
-			<param name="type">selfDrive</param>
+			<result name="success"  type="velocity">/admin/orderlist.vm</result>
+			<param name="size">10</param>
 		</action>
 		
+		<action name="orderdetail" class="com.ssnn.dujiaok.web.action.admin.OrderAction">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="velocity">/admin/orderDetail.vm</result>
+		</action>
 		
 		
 	</package>

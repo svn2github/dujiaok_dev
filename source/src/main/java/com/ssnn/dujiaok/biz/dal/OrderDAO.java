@@ -70,6 +70,13 @@ public interface OrderDAO {
 	List<OrderDO> queryOrders(Map<String,Object> condition , Pagination pagination) ;
 	
 	/**
+	 * 统计
+	 * @param condition
+	 * @return
+	 */
+	int countOrders(Map<String,Object> condition) ;
+	
+	/**
 	 * 订单联系人
 	 * @param contact
 	 */

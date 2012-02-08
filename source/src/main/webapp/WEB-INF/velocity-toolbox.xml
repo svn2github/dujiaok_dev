@@ -26,5 +26,9 @@
 		<scope>application</scope>
 		<class>com.ssnn.dujiaok.web.velocity.toolbox.StringUtilsToolbox</class>
 	</tool>
-	
+	<tool>
+		<key>enumUtils</key>
+		<scope>application</scope>
+		<class>com.ssnn.dujiaok.web.velocity.toolbox.EnumUtilsToolbox</class>
+	</tool>
 </toolbox> 

@@ -138,6 +138,7 @@ public class ProductListAction extends BasicAction implements ModelDriven<Pagina
 		this.hotelRoomService = hotelRoomService;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public QueryResult getResult() {
 		return result;
 	}
