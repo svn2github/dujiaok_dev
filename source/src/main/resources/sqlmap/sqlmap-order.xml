@@ -77,7 +77,7 @@
 	<update id="updateOrderStatus">
 		UPDATE DJ_ORDER SET 
 			STATUS = #status#, 
-			STATUS_DETAIL = #statusDetail#
+			STATUS_DETAIL = #statusDetail# ,
 			GMT_MODIFIED = now() 
 		WHERE 
 			ORDER_ID = #orderId#
@@ -105,7 +105,7 @@
 	</select>
 	
 	<select id="queryOrdersByMember" resultMap="RM-Order">
-		SELECT * FROM DJ_ORDER WHERE MEMBER_ID = #memberId# ORDER BY GMT_MODIFIED DESC
+		SELECT * FROM DJ_ORDER WHERE MEMBER_ID = #memberId# ORDER BY GMT_CREATE DESC
 	</select>
 	
 	<select id="queryOrders" resultMap="RM-Order">
@@ -131,7 +131,7 @@
 		<isNotEmpty property="payStatus" prepend="AND">
 			PAY_STATUS = #payStatus#
 		</isNotEmpty>
-		ORDER BY GMT_MODIFIED DESC LIMIT #start# , #size# 
+		ORDER BY GMT_CREATE DESC LIMIT #start# , #size# 
 	</select>
 	
 	<select id="countOrders" resultClass="Integer">

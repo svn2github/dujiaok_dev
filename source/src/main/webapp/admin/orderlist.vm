@@ -60,7 +60,7 @@
 			<td width="60" align="center">
                 <strong>会员</strong>
             </td>
-			<td  width="160" align="center">
+			<td  width="230" align="center">
 				<strong>状态</strong>
 			</td>
             <td width="100" align="center">
@@ -90,11 +90,31 @@
                 <td>$dateUtils.format($!item.gmtCreate,"yyyy-MM-dd HH:mm:ss")</td>
                 <td class="F9">￥$!item.price</td>
 				<td>$!item.memberId</td>
-				<td>$enumUtils.orderStatus($!item.status).desc  #if($item.statusDetail)（$!item.statusDetail）#end</td>
+				<td>
+                    <span id="statusText_$!item.orderId">$enumUtils.orderStatus($!item.status).desc  #if($item.statusDetail != "")（$!item.statusDetail）#end</span>
+					<a href="javascript:void(0);" onclick="showModifyStatus('s_$item.orderId');">修改状态</a>
+					<div>
+                    </div>
+					<span id="s_$!item.orderId" style="z-index:999;display:none;background-color:#efefef;padding:5px;">
+                		<select id="status_$!item.orderId">
+                			#foreach($e in $enumUtils.listOrderStatus())
+                				<option value="$e.name" #if($e.name == $!item.status) selected #end >$e.desc</option>
+                			#end
+                        </select>
+						<select id="detail_$!item.orderId">
+							<option value=""></option>
+                			<option value="超时未付款" #if($!item.statusDetail == "超时未付款") selected #end >超时未付款</option>
+                        </select>
+						<div style="line-height:3px;">&nbsp;</div>
+						<a href="javascript:void(0) ;" onclick="modifyStatus('$item.orderId');">[确定修改]</a>
+						<a href="javascript:void(0) ;" onclick="this.parentNode.style.display='none';">[取消]</a>
+                	</span>
+					</div>
+				</td>
                 <td> 
                     <a href="${env.root}/admin/orderdetail.htm?orderId=$!item.orderId" target="_order">详情</a>
+					
 				</td>
-				
             </tr>
     		#end
 		#end
@@ -104,7 +124,7 @@
             <td height="10"></td>
         </tr>
     </table>
-
+	
 #parse('common/back_pagination.vm')
  </form>
  
@@ -119,5 +139,49 @@
         document.forms[0].submit() ;
     }
 	
+	var showModifyStatus = function(id){
+		var div = $(id);
+		if(div.style.display == 'none'){
+			div.style.display = 'block' ;
+		}else{
+			div.style.display = 'none' ;
+		}
+	}
+	
+	var modifyStatus = function(orderId){
+		if(!confirm('确定更改订单状态？')){
+			return ;
+		}
+		var div = $('s_' + orderId) ;
+		var statusSelect = $('status_' + orderId);
+		var detailSelect = $('detail_' + orderId) ;
+		var statusText = $('statusText_' + orderId);
+		var status = statusSelect.options[statusSelect.selectedIndex].value ;
+		var statusMask = statusSelect.options[statusSelect.selectedIndex].innerHTML ;
+		var detail = detailSelect.options[detailSelect.selectedIndex].value ;
+		var url = '${env.root}/ajax/modifyOrderStatus.htm?orderId=' + orderId + '&status=' + status + '&statusDetail=' + encodeURI(detail) ;
+		xui.util.Ajax.asyncGET(url , 
+    			function(data){
+    				try{
+    					var obj = eval('('+data+')') ;
+    					if(obj.result == "success"){
+							div.style.display = 'none' ;
+							var txt = statusMask + ' ' ;
+							if(detail != ''){
+								txt +=  ' (' + detail + ')'; 
+							}
+							statusText.innerHTML = txt ;
+						}else{
+							alert('修改状态失败！');
+						}
+    				}catch(e){
+    					alert('修改状态失败！');
+    				}
+    			} , 
+    			function(data){
+    				alert("get data error!") ;
+    			}
+    	)
+	}
 	
 </script>

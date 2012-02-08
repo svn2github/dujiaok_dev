@@ -32,7 +32,14 @@
 			<interceptor-ref name="adminAuthInterceptor" />
 			<result name="success"  type="json"></result>
 		</action>
-	</package>
+		
+		<action name="modifyOrderStatus" class="com.ssnn.dujiaok.web.action.ajax.OrderAction" method="status">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="json"></result>
+		</action>
+	</package> 
+	
 	
 	
 	
