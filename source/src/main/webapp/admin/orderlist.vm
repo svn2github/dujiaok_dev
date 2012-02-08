@@ -86,7 +86,7 @@
 					#end
                 </td>
                 <td>$dateUtils.format($!item.gmtCreate,"yyyy-MM-dd HH:mm:ss")</td>
-                <td class="F9">$!item.price</td>
+                <td class="F9">￥$!item.price</td>
 				<td>$!item.memberId</td>
 				<td>$enumUtils.orderStatus($!item.status).desc  #if($item.statusDetail)（$!item.statusDetail）#end</td>
                 <td> 
