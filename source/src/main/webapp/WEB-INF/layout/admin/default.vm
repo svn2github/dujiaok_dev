@@ -20,9 +20,9 @@
 						欢迎您：$!env.admin.username | <a href="javascript:;">退出</a> |  
 						</span>
 					 #end
-                    <a href="#">进入前台首页</a>
+                    <a href="${env.root}/home/index.htm">进入前台首页</a>
                      |  
-					<a href="#">订单后台</a>                
+					<a href="${env.root}/admin/orderlist.htm">订单后台</a>                
                 </td>
             </tr>
         </table>
