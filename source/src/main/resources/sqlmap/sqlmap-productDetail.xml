@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="product">
+	<typeAlias alias="TA-ProductDetail" type="com.ssnn.dujiaok.model.ProductDetailDO"/>
+
+	<resultMap id="RM-ProductDetail" class="TA-ProductDetail" >
+		<result property="id" column="ID"/>
+		<result property="productId" column="PRODUCT_ID"  jdbcType="VARCHAR"/>		
+		<result property="price" column="PRICE" jdbcType="DECIMAL"/>
+		<result property="singlePrice" column="SINGLE_PRICE" jdbcType="DECIMAL"/>
+		<result property="childPrice" column="CHILD_PRICE" jdbcType="DECIMAL"/>
+		<result property="gmtCreate" column="GMT_CREATE" jdbcType="TIMESTAMP"/>
+		<result property="gmtStart" column="GMT_START" jdbcType="TIMESTAMP"/>
+		<result property="gmtEnd" column="GMT_END" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	<insert id="insertProductDetail">
+		INSERT INTO 
+			DJ_PRODUCT_DETAIL (ID,PRODUCT_ID,PRICE,DOUBLE_PRICE,CHILD_PRICE,GMT_START,GMT_END,GMT_CREATE)
+		VALUES 
+			(#id#, #productId#,#price#,#doublePrice#,#childPrice#,#gmtStart#, #gmtEnd#, now())
+		<selectKey resultClass="java.lang.Integer" keyProperty="id">
+    		<![CDATA[
+				SELECT LAST_INSERT_ID() AS ID
+			]]>
+		</selectKey>
+	</insert>
+	
+	<select id="queryProductDetails" resultMap="RM-ProductDetail">
+		select * from DJ_PRODUCT_DETAIL where PRODUCT_ID = #productId#
+	</select>
+	
+	<delete id="deleteProductDetails">
+		delete from DJ_PRODUCT_DETAIL where PRODUCT_ID = #productId#
+	</delete>
+
+</sqlMap>

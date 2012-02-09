@@ -72,13 +72,13 @@ public class SelfDriveDO extends AbstractProduct {
 	 */
 	private Date gmtExpire ;
 	
-	private List<SelfDriveDetailDO> details ;
+	private List<ProductDetailDO> details ;
 	
-	public List<SelfDriveDetailDO> getDetails() {
+	public List<ProductDetailDO> getDetails() {
 		return details;
 	}
 
-	public void setDetails(List<SelfDriveDetailDO> details) {
+	public void setDetails(List<ProductDetailDO> details) {
 		this.details = details;
 	}
 

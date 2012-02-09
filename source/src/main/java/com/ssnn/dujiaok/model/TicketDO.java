@@ -68,7 +68,7 @@ public class TicketDO extends AbstractProduct {
 	
 	private Date gmtExpire ;
 	
-	private List<TicketDetailDO> details  ;
+	private List<ProductDetailDO> details  ;
 
 	
 	public String getNotDiscout() {
@@ -79,11 +79,11 @@ public class TicketDO extends AbstractProduct {
 		this.notDiscout = notDiscout;
 	}
 	
-	public List<TicketDetailDO> getDetails() {
+	public List<ProductDetailDO> getDetails() {
 		return details;
 	}
 
-	public void setDetails(List<TicketDetailDO> details) {
+	public void setDetails(List<ProductDetailDO> details) {
 		this.details = details;
 	}
 

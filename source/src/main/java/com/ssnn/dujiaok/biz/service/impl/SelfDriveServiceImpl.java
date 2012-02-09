@@ -4,13 +4,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.ssnn.dujiaok.biz.dal.ProductDetailDAO;
 import com.ssnn.dujiaok.biz.dal.SelfDriveDAO;
-import com.ssnn.dujiaok.biz.dal.SelfDriveDetailDAO;
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.service.SelfDriveService;
+import com.ssnn.dujiaok.model.ProductDetailDO;
 import com.ssnn.dujiaok.model.SelfDriveDO;
-import com.ssnn.dujiaok.model.SelfDriveDetailDO;
 import com.ssnn.dujiaok.util.UniqueIDUtil;
 import com.ssnn.dujiaok.util.enums.ProductEnums;
 
@@ -23,15 +23,16 @@ public class SelfDriveServiceImpl implements SelfDriveService{
 
 	private SelfDriveDAO selfDriveDAO ;
 	
-	private SelfDriveDetailDAO selfDriveDetailDAO ;
+	private ProductDetailDAO productDetailDAO ;
 	
 	public void setSelfDriveDAO(SelfDriveDAO selfDriveDAO) {
 		this.selfDriveDAO = selfDriveDAO;
 	}
-
-	public void setSelfDriveDetailDAO(SelfDriveDetailDAO selfDriveDetailDAO) {
-		this.selfDriveDetailDAO = selfDriveDetailDAO;
+	
+	public void setProductDetailDAO(ProductDetailDAO productDetailDAO) {
+		this.productDetailDAO = productDetailDAO;
 	}
+
 
 	@Override
 	public SelfDriveDO getSelfDrive(String selfDriveId) {
@@ -42,7 +43,7 @@ public class SelfDriveServiceImpl implements SelfDriveService{
 	public SelfDriveDO getSelfDriveWithDetails(String selfDriveId) {
 		SelfDriveDO selfDrive = selfDriveDAO.querySelfDrive(selfDriveId) ;
 		if(selfDrive != null){
-			List<SelfDriveDetailDO> details = selfDriveDetailDAO.querySelfDriveDetails(selfDriveId) ;
+			List<ProductDetailDO> details = productDetailDAO.queryDetails(selfDriveId) ;
 			selfDrive.setDetails(details) ;
 		}
 		return selfDrive ;
@@ -50,15 +51,15 @@ public class SelfDriveServiceImpl implements SelfDriveService{
 
 	@Override
 	public SelfDriveDO createSelfDriveAndDetails(SelfDriveDO selfDrive) {
-		List<SelfDriveDetailDO> details = selfDrive.getDetails() ;
+		List<ProductDetailDO> details = selfDrive.getDetails() ;
 		if(details!=null){
 			Date gmtExpire = getExpireDate(details) ;
 			selfDrive.setGmtExpire(gmtExpire) ;
 			selfDrive.setProductId(UniqueIDUtil.getUniqueID(ProductEnums.SELFDRIVE)) ;
 			selfDriveDAO.insertSelfDrive(selfDrive) ;
-			for(SelfDriveDetailDO detail : details){
-				detail.setSelfDriveId(selfDrive.getProductId()) ;
-				selfDriveDetailDAO.insertSelfDriveDetail(detail) ;
+			for(ProductDetailDO detail : details){
+				detail.setProductId(selfDrive.getProductId()) ;
+				productDetailDAO.insertDetail(detail) ;
 			}
 		}
 		return selfDrive ;
@@ -66,25 +67,25 @@ public class SelfDriveServiceImpl implements SelfDriveService{
 
 	@Override
 	public SelfDriveDO updateSelfDriveAndDetails(SelfDriveDO selfDrive) {
-		List<SelfDriveDetailDO> details = selfDrive.getDetails() ;
+		List<ProductDetailDO> details = selfDrive.getDetails() ;
 		if(details!=null){
 			//删除之前的detail 重新插入
-			selfDriveDetailDAO.deleteSelfDriveDetails(selfDrive.getProductId()) ;
+			productDetailDAO.deleteDetails(selfDrive.getProductId()) ;
 			Date gmtExpire = getExpireDate(details) ;
 			selfDrive.setGmtExpire(gmtExpire) ;
 			selfDriveDAO.updateSelfDrive(selfDrive) ;
-			for(SelfDriveDetailDO detail : details){
-				detail.setSelfDriveId(selfDrive.getProductId()) ;
-				selfDriveDetailDAO.insertSelfDriveDetail(detail) ;
+			for(ProductDetailDO detail : details){
+				detail.setProductId(selfDrive.getProductId()) ;
+				productDetailDAO.insertDetail(detail) ;
 			}
 		}
 		return selfDrive ;
 	}
 	
 	
-	private Date getExpireDate(List<SelfDriveDetailDO> details){
+	private Date getExpireDate(List<ProductDetailDO> details){
 		Date gmtExpire = null ;
-		for(SelfDriveDetailDO detail : details){
+		for(ProductDetailDO detail : details){
 			Date gmtEnd = detail.getGmtEnd() ;
 			if(gmtExpire == null){
 				gmtExpire = gmtEnd ;
@@ -108,7 +109,7 @@ public class SelfDriveServiceImpl implements SelfDriveService{
 	@Override
 	public void deleteSelfDrive(String selfDriveId) {
 		selfDriveDAO.deleteSelfDrive(selfDriveId) ;
-		selfDriveDetailDAO.deleteSelfDriveDetails(selfDriveId) ;
+		productDetailDAO.deleteDetails(selfDriveId) ;
 	}
 
 }

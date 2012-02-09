@@ -80,14 +80,14 @@ public class HotelRoomDO extends AbstractProduct{
 	/**
 	 * 
 	 */
-	private List<HotelRoomDetailDO> details ;
+	private List<ProductDetailDO> details ;
 
 	
-	public List<HotelRoomDetailDO> getDetails() {
+	public List<ProductDetailDO> getDetails() {
 		return details;
 	}
 
-	public void setDetails(List<HotelRoomDetailDO> details) {
+	public void setDetails(List<ProductDetailDO> details) {
 		this.details = details;
 	}
 

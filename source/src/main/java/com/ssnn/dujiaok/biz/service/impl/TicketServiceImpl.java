@@ -4,29 +4,30 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.ssnn.dujiaok.biz.dal.ProductDetailDAO;
 import com.ssnn.dujiaok.biz.dal.TicketDAO;
-import com.ssnn.dujiaok.biz.dal.TicketDetailDAO;
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.service.TicketService;
+import com.ssnn.dujiaok.model.ProductDetailDO;
 import com.ssnn.dujiaok.model.TicketDO;
-import com.ssnn.dujiaok.model.TicketDetailDO;
 import com.ssnn.dujiaok.util.UniqueIDUtil;
 import com.ssnn.dujiaok.util.enums.ProductEnums;
 
 public class TicketServiceImpl implements TicketService{
 
 	private TicketDAO ticketDAO ;
-	private TicketDetailDAO ticketDetailDAO ;
+	private ProductDetailDAO productDetailDAO ;
 	
 	
 	public void setTicketDAO(TicketDAO ticketDAO) {
 		this.ticketDAO = ticketDAO;
 	}
 
-	public void setTicketDetailDAO(TicketDetailDAO ticketDetailDAO) {
-		this.ticketDetailDAO = ticketDetailDAO;
+	public void setProductDetailDAO(ProductDetailDAO productDetailDAO) {
+		this.productDetailDAO = productDetailDAO;
 	}
+
 
 	@Override
 	public TicketDO getTicket(String ticketId) {
@@ -37,22 +38,22 @@ public class TicketServiceImpl implements TicketService{
 	public TicketDO getTicketWithDetails(String ticketId) {
 		TicketDO ticket = ticketDAO.queryTicket(ticketId) ;
 		if(ticket != null){
-			List<TicketDetailDO> ticketDetails = ticketDetailDAO.queryTicketDetail(ticketId) ;
-			ticket.setDetails(ticketDetails) ;
+			List<ProductDetailDO> details = productDetailDAO.queryDetails(ticketId) ;
+			ticket.setDetails(details) ;
 		}
 		return ticket ;
 	}
 	@Override
 	public TicketDO createTicketAndDetails(TicketDO ticket) {
-		List<TicketDetailDO> details = ticket.getDetails();
+		List<ProductDetailDO> details = ticket.getDetails();
 		if(details!=null){
 			Date gmtExpire = getTicketExpireDate(details) ;
 			ticket.setGmtExpire(gmtExpire) ;
 			ticket.setProductId(UniqueIDUtil.getUniqueID(ProductEnums.TICKET)) ;
 			ticketDAO.insertTicket(ticket) ;
-			for(TicketDetailDO ticketDetail : details){
-				ticketDetail.setTicketId(ticket.getProductId()) ;
-				ticketDetailDAO.insertTicketDetail(ticketDetail) ;
+			for(ProductDetailDO detail : details){
+				detail.setProductId(ticket.getProductId()) ;
+				productDetailDAO.insertDetail(detail) ;
 			}
 		}
 		return ticket ;
@@ -60,26 +61,26 @@ public class TicketServiceImpl implements TicketService{
 
 	@Override
 	public TicketDO updateTicketAndDetails(TicketDO ticket) {
-		List<TicketDetailDO> details = ticket.getDetails();
+		List<ProductDetailDO> details = ticket.getDetails();
 		
 		if(details!=null){
 			//删除之前的detail，重新插入
-			ticketDetailDAO.deleteTicketDetails(ticket.getProductId()) ;
+			productDetailDAO.deleteDetails(ticket.getProductId()) ;
 			Date gmtExpire = getTicketExpireDate(details) ;
 			ticket.setGmtExpire(gmtExpire) ;
 			ticketDAO.updateTicket(ticket) ;
-			for(TicketDetailDO ticketDetail : details){
-				ticketDetail.setTicketId(ticket.getProductId()) ;
-				ticketDetailDAO.insertTicketDetail(ticketDetail) ;
+			for(ProductDetailDO detail : details){
+				detail.setProductId(ticket.getProductId()) ;
+				productDetailDAO.insertDetail(detail) ;
 			}
 		}
 		return ticket ;
 	}
 
 	
-	private Date getTicketExpireDate(List<TicketDetailDO> details){
+	private Date getTicketExpireDate(List<ProductDetailDO> details){
 		Date gmtExpire = null ;
-		for(TicketDetailDO detail : details){
+		for(ProductDetailDO detail : details){
 			Date gmtEnd = detail.getGmtEnd() ;
 			if(gmtExpire == null){
 				gmtExpire = gmtEnd ;
@@ -104,7 +105,7 @@ public class TicketServiceImpl implements TicketService{
 	@Override
 	public void deleteTicket(String ticketId) {
 		ticketDAO.deleteTicket(ticketId) ;
-		ticketDetailDAO.deleteTicketDetails(ticketId) ;
+		productDetailDAO.deleteDetails(ticketId) ;
 	}
 	
 }
