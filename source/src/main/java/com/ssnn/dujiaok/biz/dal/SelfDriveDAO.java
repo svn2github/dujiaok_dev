@@ -22,12 +22,6 @@ public interface SelfDriveDAO {
 	 */
 	SelfDriveDO querySelfDrive(String selfDriveId) ;
 	/**
-	 * 获取产品下的的自驾游数据.
-	 * @param product .
-	 * @return .
-	 */
-	List<SelfDriveDetail> getSelfDriveWithProducts(Product2 product);
-	/**
 	 * 
 	 * @param selfDrive
 	 */

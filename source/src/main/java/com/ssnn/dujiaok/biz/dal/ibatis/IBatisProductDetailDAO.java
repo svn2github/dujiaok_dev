@@ -14,6 +14,11 @@ public class IBatisProductDetailDAO extends SqlMapClientDaoSupport implements Pr
 	public List<ProductDetailDO> queryDetails(String productId) {
 		return getSqlMapClientTemplate().queryForList("product.queryProductDetails" , productId) ;
 	}
+	
+	@Override
+	public List<ProductDetailDO> queryValidDetails(String productId) {
+		return getSqlMapClientTemplate().queryForList("product.queryValidDetails" , productId);
+	}
 
 	@Override
 	public void insertDetail(ProductDetailDO detail) {

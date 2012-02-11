@@ -2,8 +2,6 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="hotel">
 	<typeAlias alias="TA-HotelRoom" type="com.ssnn.dujiaok.model.HotelRoomDO"/>
-	<typeAlias alias="HotelRoomDetail" type="com.ssnn.dujiaok.model.product.detail.HotelRoomDetail"/>
-    <typeAlias alias="TA_Product" type="com.ssnn.dujiaok.model.product.Product2"/>
 	
 	<resultMap id="RM-HotelRoom" class="TA-HotelRoom" >
 		<result property="id" column="ID"/>
@@ -23,19 +21,6 @@
 		<result property="gmtModified" column="GMT_MODIFIED" jdbcType="TIMESTAMP"/>		
 		<result property="gmtExpire" column="GMT_EXPIRE" jdbcType="TIMESTAMP"/>
 	</resultMap>
-	
-	<resultMap id="HotelRoomDetail" class="HotelRoomDetail" >
-        <result property="id" column="ID"/>
-        <result property="hotelCode" column="HOTEL_ID"/>
-        <result property="hotelName" column="HOTEL_NAME"/>
-        <result property="price" column="PRICE"/>
-        <result property="checkinDateBegin" column="GMT_START"/>
-        <result property="checkinDateEnd" column="GMT_END"/>
-        <result property="area" column="ROOM_AREA"/>
-        <result property="bedType" column="BED"/>
-        <result property="facilities" column="ROOM_FACILITIES"/>
-        <result property="pictureUrls" column="CATEGORY_IMAGE"/>
-    </resultMap>
 
 	<insert id="insertRoom">
 		INSERT INTO 
@@ -69,25 +54,6 @@
 	
 	<select id="queryRoom" resultMap="RM-HotelRoom">
 		select * from DJ_HOTEL_ROOM where PRODUCT_ID = #productId#
-	</select>
-	
-	<select id="getHotelRoomWithProducts" resultMap="HotelRoomDetail" parameterClass="TA_Product">
-	    select A.ID, B.HOTEL_ID, '' as HOTEL_NAME, A.PRICE, A.GMT_START,
-		    A.GMT_END, B.ROOM_AREA, B.BED, B.ROOM_FACILITIES, B.CATEGORY_IMAGE
-		  from DJ_HOTEL_ROOM_DETAIL A, dujiaok_dev.DJ_HOTEL_ROOM B
-		  WHERE A.ROOM_ID=B.PRODUCT_ID AND A.GMT_END>curdate()
-		    <isNotNull property="id" prepend="AND">
-              B.PRODUCT_ID=#id#
-            </isNotNull>
-            <isNotNull property="name" prepend="AND">
-              B.NAME like '%'||#name#||'%'
-            </isNotNull>
-            <isNotNull property="desc" prepend="AND">
-              B.INTRODUCTION like '%'||#desc#||'%'
-            </isNotNull>
-            <isNotNull property="remark" prepend="AND">
-              B.MEMO like '%'||#remark#||'%'
-            </isNotNull>
 	</select>
 	
 	<select id="queryRooms" resultMap="RM-HotelRoom">

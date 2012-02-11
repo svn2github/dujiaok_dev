@@ -12,7 +12,12 @@ public interface ProductDetailDAO {
 	 * @return
 	 */
 	List<ProductDetailDO> queryDetails(String productId) ;
-	
+	/**
+	 * 获取当前时间有效的产品detail信息
+	 * @param productId
+	 * @return
+	 */
+	List<ProductDetailDO> queryValidDetails(String productId);
 	/**
 	 * 插入 Detail
 	 * @param roomDetail

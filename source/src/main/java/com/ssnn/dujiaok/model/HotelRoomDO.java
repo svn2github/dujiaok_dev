@@ -1,6 +1,7 @@
 package com.ssnn.dujiaok.model;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -47,11 +48,6 @@ public class HotelRoomDO extends AbstractProduct{
 	private String roomArea ;
 	
 	/**
-	 * 房间图片
-	 */
-	private String images ;
-	
-	/**
 	 * 配套
 	 */
 	private String roomFacilities ;
@@ -75,21 +71,7 @@ public class HotelRoomDO extends AbstractProduct{
 	
 	private Date gmtModified ;
 	
-	
-	
-	/**
-	 * 
-	 */
-	private List<ProductDetailDO> details ;
-
-	
-	public List<ProductDetailDO> getDetails() {
-		return details;
-	}
-
-	public void setDetails(List<ProductDetailDO> details) {
-		this.details = details;
-	}
+	private List<ProductDetailDO> details;
 
 	public Date getGmtCreate() {
 		return gmtCreate;
@@ -155,6 +137,10 @@ public class HotelRoomDO extends AbstractProduct{
 		this.marketPrice = marketPrice;
 	}
 
+	public BigDecimal getCheapestPrice() {
+		return this.cheapestPrice.compareTo(new BigDecimal("-1")) == 0 ? this.marketPrice : this.cheapestPrice;
+	}
+
 	public String getBed() {
 		return bed;
 	}
@@ -169,14 +155,6 @@ public class HotelRoomDO extends AbstractProduct{
 
 	public void setRoomArea(String roomArea) {
 		this.roomArea = roomArea;
-	}
-
-	public String getImages() {
-		return images;
-	}
-
-	public void setImages(String images) {
-		this.images = images;
 	}
 
 	public String getRoomFacilities() {
@@ -201,6 +179,19 @@ public class HotelRoomDO extends AbstractProduct{
 
 	public void setMemo(String memo) {
 		this.memo = memo;
+	}
+
+	public List<ProductDetailDO> getDetails() {
+		return details;
+	}
+
+	public void setDetails(List<ProductDetailDO> details) {
+		this.details = details;
+		if (this.details == null || this.details.size() == 0) {
+			setCheapestPrice(new BigDecimal("-1"));
+		} else {
+			setCheapestPrice(Collections.min(details).getCheapestPrice());
+		}
 	}
 	
 }

@@ -17,11 +17,6 @@ public class HotelDO extends AbstractProduct {
 	private int starRate ;
 	
 	/**
-	 * 图片
-	 */
-	private String images ;
-	
-	/**
 	 * 房间数量
 	 */
 	private int roomAmount ; 
@@ -57,14 +52,6 @@ public class HotelDO extends AbstractProduct {
 
 	public void setStarRate(int starRate) {
 		this.starRate = starRate;
-	}
-
-	public String getImages() {
-		return images;
-	}
-
-	public void setImages(String images) {
-		this.images = images;
 	}
 
 	public int getRoomAmount() {

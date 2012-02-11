@@ -1,6 +1,11 @@
 package com.ssnn.dujiaok.model;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
@@ -48,11 +53,22 @@ public abstract class AbstractProduct {
 	 * 定位坐标
 	 */
 	private String locationCode ;
+	/**
+	 * 产品描述图片.
+	 */
+	private String images;
+	
+	private List<String> pictureUrls = new ArrayList<String>();
 	
 	private Date gmtExpire ;
 	
-	private String memo ;
+	private String memo;
+	/**
+	 * 
+	 */
+	private List<ProductDetailDO> details;
 	
+	protected BigDecimal cheapestPrice;
 	
 	public Date getGmtExpire() {
 		return gmtExpire;
@@ -109,12 +125,43 @@ public abstract class AbstractProduct {
 		this.locationCode = locationCode;
 	}
 	
+	public String getImages() {
+		return images;
+	}
+
+	public void setImages(String images) {
+		this.images = images;
+		if (this.images == null) {
+			this.pictureUrls = new ArrayList<String>();
+		}
+		this.pictureUrls = Arrays.asList(this.images.split(" *, *"));
+	}
+	
+	public List<String> getPictureUrls() {
+		return this.pictureUrls;
+	}
+	
 	public String getProductId() {
 		return productId;
 	}
 	public void setProductId(String productId) {
 		this.productId = productId;
 	}
+//	public List<ProductDetailDO> getDetails() {
+//		return details;
+//	}
+//	public void setDetails(List<ProductDetailDO> details) {
+//		this.details = details;
+//		if (this.details == null) {
+//			this.cheapestPrice = new BigDecimal("-1");
+//		}
+//		this.cheapestPrice = Collections.min(details).getCheapestPrice();
+//	}
+	
+	public void setCheapestPrice(BigDecimal cheapestPrice) {
+		this.cheapestPrice = cheapestPrice;
+	}
+	
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this , ToStringStyle.SHORT_PREFIX_STYLE) ;

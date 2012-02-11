@@ -2,8 +2,6 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="ticket">
 	<typeAlias alias="TA-Ticket" type="com.ssnn.dujiaok.model.TicketDO"/>
-	<typeAlias alias="TicketDetail" type="com.ssnn.dujiaok.model.product.detail.TicketDetail"/>
-    <typeAlias alias="TA_Product" type="com.ssnn.dujiaok.model.product.Product2"/>
 
 	<resultMap id="RM-Ticket" class="TA-Ticket" >
 		<result property="id" column="ID"/>
@@ -29,18 +27,6 @@
 		<result property="gmtModified" column="GMT_MODIFIED" jdbcType="TIMESTAMP"/>
 		<result property="gmtExpire" column="GMT_EXPIRE" jdbcType="TIMESTAMP"/>
 	</resultMap>
-	
-	<resultMap id="TicketDetail" class="TicketDetail" >
-        <result property="id" column="ID"/>
-        <result property="price" column="ID"/>
-        <result property="useDateBegin" column="ID"/>
-        <result property="useDateEnd" column="ID"/>
-        <result property="province" column="ID"/>
-        <result property="city" column="ID"/>
-        <result property="zone" column="ID"/>
-        <result property="location" column="ID"/>
-        <result property="attentionDesc" column="ID"/> 
-    </resultMap>
 	
 	<insert id="insertTicket">
 		INSERT INTO 
@@ -81,28 +67,6 @@
 	
 	<select id="queryTicket" resultMap="RM-Ticket">
 		select * from DJ_TICKET where PRODUCT_ID = #productId#
-	</select>
-	
-	<select id="getTicketWithProducts" resultMap="TicketDetail" parameterClass="TA_Product">
-	    select A.ID, A.PRICE, A.GMT_START, A.GMT_END, B.DEST_PROVINCE, B.DEST_CITY,
-		    B.DEST_AREA, B.DEST_ADDR,B.NOTICE
-		  from dujiaok_dev.DJ_TICKET_DETAIL A, dujiaok_dev.DJ_TICKET B
-		  WHERE A.TICKET_ID=B.PRODUCT_ID AND A.GMT_END>curdate()
-		    <isNotNull property="id" prepend="AND">
-              B.PRODUCT_ID=#id#
-            </isNotNull>
-            <isNotNull property="name" prepend="AND">
-              B.NAME like '%'||#name#||'%'
-            </isNotNull>
-            <isNotNull property="series" prepend="AND">
-              B.PRODUCT_TYPE like '%'||#series#||'%'
-            </isNotNull>
-            <isNotNull property="desc" prepend="AND">
-              B.INTRODUCTION like '%'||#desc#||'%'
-            </isNotNull>
-            <isNotNull property="remark" prepend="AND">
-              B.MEMO like '%'||#remark#||'%'
-            </isNotNull>
 	</select>
 	
 	<select id="queryTickets" resultMap="RM-Ticket">

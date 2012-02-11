@@ -49,6 +49,10 @@ public class OrderDO {
 	 * 订购产品ID
 	 */
 	private String productId ;
+	/**
+	 * 
+	 */
+	private String productDetailId;
 	
 	/**
 	 * 订单总价
@@ -224,6 +228,14 @@ public class OrderDO {
 
 	public void setProductId(String productId) {
 		this.productId = productId;
+	}
+
+	public String getProductDetailId() {
+		return productDetailId;
+	}
+
+	public void setProductDetailId(String productDetailId) {
+		this.productDetailId = productDetailId;
 	}
 
 	public BigDecimal getPrice() {

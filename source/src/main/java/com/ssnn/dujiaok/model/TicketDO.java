@@ -1,6 +1,7 @@
 package com.ssnn.dujiaok.model;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -28,10 +29,6 @@ public class TicketDO extends AbstractProduct {
 	 * 门票类型（电子、短信等）
 	 */
 	private String ticketType ;
-	/**
-	 * 图片
-	 */
-	private String images ;
 	/**
 	 * 支付方式
 	 */
@@ -85,6 +82,11 @@ public class TicketDO extends AbstractProduct {
 
 	public void setDetails(List<ProductDetailDO> details) {
 		this.details = details;
+		if (this.details == null || this.details.size() == 0) {
+			setCheapestPrice(new BigDecimal("-1"));
+		} else {
+			setCheapestPrice(Collections.min(details).getCheapestPrice());
+		}
 	}
 
 	public BigDecimal getMarketPrice() {
@@ -93,6 +95,9 @@ public class TicketDO extends AbstractProduct {
 
 	public void setMarketPrice(BigDecimal marketPrice) {
 		this.marketPrice = marketPrice;
+	}
+	public BigDecimal getCheapestPrice() {
+		return this.cheapestPrice.compareTo(new BigDecimal("-1")) == 0 ? this.marketPrice : this.cheapestPrice;
 	}
 
 	public String getRecommend() {
@@ -109,14 +114,6 @@ public class TicketDO extends AbstractProduct {
 
 	public void setTicketType(String ticketType) {
 		this.ticketType = ticketType;
-	}
-
-	public String getImages() {
-		return images;
-	}
-
-	public void setImages(String images) {
-		this.images = images;
 	}
 
 	public String getPayTypes() {

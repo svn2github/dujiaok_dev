@@ -1,6 +1,9 @@
 package com.ssnn.dujiaok.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -42,11 +45,6 @@ public class SelfDriveDO extends AbstractProduct {
 	private String productTypes ;
 	
 	/**
-	 * 图片
-	 */
-	private String images ;
-	
-	/**
 	 * 费用说明
 	 */
 	private String feeDesc ;
@@ -80,6 +78,11 @@ public class SelfDriveDO extends AbstractProduct {
 
 	public void setDetails(List<ProductDetailDO> details) {
 		this.details = details;
+		if (this.details == null || this.details.size() == 0) {
+			setCheapestPrice(new BigDecimal("-1"));
+		} else {
+			setCheapestPrice(Collections.min(this.details).getCheapestPrice());
+		}
 	}
 
 	public Date getGmtExpire() {
@@ -96,6 +99,10 @@ public class SelfDriveDO extends AbstractProduct {
 
 	public void setMarketPrice(BigDecimal marketPrice) {
 		this.marketPrice = marketPrice;
+	}
+	
+	public BigDecimal getCheapestPrice() {
+		return this.cheapestPrice.compareTo(new BigDecimal("-1")) == 0 ? this.marketPrice : this.cheapestPrice;
 	}
 
 	public int getDays() {
@@ -168,14 +175,6 @@ public class SelfDriveDO extends AbstractProduct {
 
 	public void setGmtModified(Date gmtModified) {
 		this.gmtModified = gmtModified;
-	}
-
-	public String getImages() {
-		return images;
-	}
-
-	public void setImages(String images) {
-		this.images = images;
 	}
 
 	public String getProductTypes() {

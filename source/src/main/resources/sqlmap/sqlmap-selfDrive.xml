@@ -2,8 +2,6 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="selfDrive">
 	<typeAlias alias="TA-SelfDrive" type="com.ssnn.dujiaok.model.SelfDriveDO"/>
-	<typeAlias alias="SelfDriveDetail" type="com.ssnn.dujiaok.model.product.detail.SelfDriveDetail"/>
-	<typeAlias alias="TA_Product" type="com.ssnn.dujiaok.model.product.Product2"/>
 
 	<resultMap id="RM-SelfDrive" class="TA-SelfDrive" >
 		<result property="id" column="ID"/>
@@ -28,20 +26,6 @@
 		<result property="gmtCreate" column="GMT_CREATE" jdbcType="TIMESTAMP"/>
 		<result property="gmtModified" column="GMT_MODIFIED" jdbcType="TIMESTAMP"/>
 		<result property="gmtExpire" column="GMT_EXPIRE" jdbcType="TIMESTAMP"/>
-	</resultMap>
-	
-	<resultMap id="SelfDriveDetail" class="SelfDriveDetail">
-	    <result property="id" column="ID" />
-	    <result property="singlePrice" column="SINGLE_PRICE" />
-	    <result property="doublePrice" column="DOUBLE_PRICE" />
-	    <result property="childPrice" column="CHILD_PRICE" />
-	    <result property="departDateBegin" column="GMT_START" />
-	    <result property="departDateEnd" column="GMT_END" />
-	    <result property="journeyDesc" column="SCHEDULE" />
-	    <result property="destProvince" column="DEST_PROVINCE" />
-	    <result property="destCity" column="DEST_CITY" />
-	    <result property="destZone" column="DEST_AREA" />
-	    <result property="destLocation" column="DEST_ADDR" />
 	</resultMap>
 
 	<insert id="insertSelfDrive">
@@ -84,29 +68,6 @@
 	<select id="querySelfDrive" resultMap="RM-SelfDrive">
 		select * from DJ_SELF_DRIVE where PRODUCT_ID = #productId#
 	</select>
-	
-	<select id="getSelfDriveWithProducts" resultMap="SelfDriveDetail" parameterClass="TA_Product">
-        SELECT A.ID, A.GMT_START, A.GMT_END,A.SINGLE_PRICE,A.DOUBLE_PRICE,
-		    A.CHILD_PRICE, B.DEST_PROVINCE, B.DEST_CITY, B.DEST_AREA,
-		    B.DEST_ADDR,B.SCHEDULE
-		  FROM DJ_SELF_DRIVE_DETAIL A,dujiaok_dev.DJ_SELF_DRIVE B
-		  WHERE A.SELF_DRIVE_ID=B.PRODUCT_ID AND A.GMT_END>curdate()
-		    <isNotNull property="id" prepend="AND">
-		      B.PRODUCT_ID=#id#
-		    </isNotNull>
-		    <isNotNull property="name" prepend="AND">
-              B.NAME like '%'||#name#||'%'
-            </isNotNull>
-            <isNotNull property="series" prepend="AND">
-              B.PRODUCT_TYPE like '%'||#series#||'%'
-            </isNotNull>
-            <isNotNull property="desc" prepend="AND">
-              B.INTRODUCTION like '%'||#desc#||'%'
-            </isNotNull>
-            <isNotNull property="remark" prepend="AND">
-              B.MEMO like '%'||#remark#||'%'
-            </isNotNull>
-    </select>
 	
 	<select id="querySelfDrives" resultMap="RM-SelfDrive">
 		SELECT * FROM DJ_SELF_DRIVE WHERE 1=1 

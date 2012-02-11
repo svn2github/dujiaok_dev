@@ -4,7 +4,11 @@ import java.util.List;
 
 import com.ssnn.dujiaok.biz.service.product.ProductService;
 import com.ssnn.dujiaok.biz.service.tour.TourService;
+import com.ssnn.dujiaok.model.HotelDO;
+import com.ssnn.dujiaok.model.HotelRoomDO;
 import com.ssnn.dujiaok.model.PriceCalendar;
+import com.ssnn.dujiaok.model.SelfDriveDO;
+import com.ssnn.dujiaok.model.TicketDO;
 import com.ssnn.dujiaok.model.Tour;
 import com.ssnn.dujiaok.model.product.Product;
 import com.ssnn.dujiaok.model.product.Product2;
@@ -53,60 +57,60 @@ public class ProductAction extends BasicAction {
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return SUCCESS;
+			return ERROR;
 		}
 	}
 
 	public String getSelfDriveProductDetail() {
 		try {
-			Product2 param = new Product2();
-			//param.setId(this.productId.toString());
-			param.setId("ZJ1201182354069713");
-			Product2 product = this.productService.getSelfDriveProductDetail(param);
+			SelfDriveDO param = new SelfDriveDO();
+			//param.setProductId(this.productId.toString());
+			param.setProductId("ZJ1201201447352717");
+			SelfDriveDO product = this.productService.getSelfDriveProductDetail(param);
 			this.getHttpSession().setAttribute("product", product);
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return SUCCESS;
+			return ERROR;
 		}
 	}
 	
 	public String getHotelProductDetail() {
 		try {
-			Product2 param = new Product2();
-//			param.setId(this.productId.toString());
-			param.setId("JD1201171609535427");
-			Product2 product = this.productService.getHotelProductDetail(param);
+			HotelDO param = new HotelDO();
+//			param.setProductId(this.productId.toString());
+			param.setProductId("JD1201171609535427");
+			HotelDO product = this.productService.getHotelProductDetail(param);
 			this.getHttpSession().setAttribute("product", product);
 			return SUCCESS;
 		} catch (Exception e) {
-			return SUCCESS;
+			return ERROR;
 		}
 	}
 	
 	public String getHotelRoomProductDetail() {
 		try {
-			Product2 param = new Product2();
-			//param.setId(this.productId.toString());
-			param.setId("FJ1201181530466890");
-			Product2 product = this.productService.getHotelRoomProductDetail(param);
+			HotelRoomDO param = new HotelRoomDO();
+			//param.setProductId(this.productId.toString());
+			param.setProductId("FJ1201181530466890");
+			HotelRoomDO product = this.productService.getHotelRoomProductDetail(param);
 			this.getHttpSession().setAttribute("product", product);
 			return SUCCESS;
 		} catch (Exception e) {
-			return SUCCESS;
+			return ERROR;
 		}
 	}
 	
 	public String getTicketProductDetail() {
 		try {
-			Product2 param = new Product2();
-			//param.setId(this.productId.toString());
-			param.setId("MP1201171339498931");
-			Product2 product = this.productService.getTicketProductDetail(param);
+			TicketDO param = new TicketDO();
+			//param.setProductId(this.productId.toString());
+			param.setProductId("MP1201171339498931");
+			TicketDO product = this.productService.getTicketProductDetail(param);
 			this.getHttpSession().setAttribute("product", product);
 			return SUCCESS;
 		} catch (Exception e) {
-			return SUCCESS;
+			return ERROR;
 		}
 	}
 	

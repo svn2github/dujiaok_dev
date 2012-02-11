@@ -12,7 +12,7 @@
 <!-- 内容开始 -->
 <div id="wrap">
     <div class="section urhere">
-    	<p class="F3">您当前的位置： $product.post</p>
+    	<p class="F3">您当前的位置： 酒店 -> $product.name</p>
         <!--span class="F3">分享到： 新浪微博 </span-->
     </div>
     
@@ -50,10 +50,10 @@
 				            </ul>
         				</div>
 	        			<h2 id="introduction">产品介绍</h2>
-				        <p>$!product.desc&nbsp;&nbsp;&nbsp;&nbsp;产品介绍产品介绍产品介绍产品介绍</p>
+				        <p>$!product.introduction&nbsp;&nbsp;&nbsp;&nbsp;产品介绍产品介绍产品介绍产品介绍</p>
 				        <h2 id="remark">备注</h2>
 				        <div class="pro_intro_list2">
-				        <p>$!product.remark;&nbsp;&nbsp;&nbsp;备注备注备注备注备注</p>
+				        <p>$!product.memo;&nbsp;&nbsp;&nbsp;备注备注备注备注备注</p>
 				        </div>
 	    			</div>
 					<iframe id="iframeC" name="iframeC" src="" width="0" height="0" style="display:none;" ></iframe>
@@ -72,20 +72,22 @@
         <div class="d_right">
         	<div class="information">
                 <table>
-                    <tr><th>商品编号：</th><td>$!product.id</td></tr>
-                    <tr><th>星级：</th><td>$!product.details.get(0).starLevel</td></tr>
-                    <tr><th>地址：</th><td>$!product.details.get(0).location</td></tr>
-                    <tr><th>房间数量：</th><td>$!product.details.get(0).roomNum</td></tr>
+                    <tr><th><strong>商品编号</strong>：</th><td>$!product.productId</td></tr>
+                    <tr><th><strong>星级</strong>：</th><td>$!product.starRate</td></tr>
+                    <tr><th><strong>地址</strong>：</th><td>$!product.destAddr</td></tr>
+                    <tr><th><strong>房间数量</strong>：</th><td>$!product.roomAmount</td></tr>
                 </table>
             </div>
             <div class="order">
+            	#if($product.rooms.size() > 0)
             	<form id="orderForm" method="post" action="${env.root}/order/makeorder.htm">
                 	<ul>
-                       <li>预定房间数：&nbsp;<input type="text" name="countPerson" id="countPerson"></li>
+                       <li><strong>预定房间数</strong>：&nbsp;<input type="text" name="countPerson" id="countPerson"></li>
                     </ul>
                 	<button type="submit">&nbsp;&nbsp;&nbsp;</button>
 					<input type="hidden" id="productId" name="productId" value="$product.id" />
                 </form>
+                #end
                 <p class="F3">拨打电话预定 400 666 5599</p>
             </div>
         </div>

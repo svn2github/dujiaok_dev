@@ -8,8 +8,6 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import com.ssnn.dujiaok.biz.dal.SelfDriveDAO;
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.model.SelfDriveDO;
-import com.ssnn.dujiaok.model.product.Product2;
-import com.ssnn.dujiaok.model.product.detail.SelfDriveDetail;
 import com.ssnn.dujiaok.util.IntegerUtils;
 
 /**
@@ -22,12 +20,6 @@ public class IBatisSelfDriveDAO extends SqlMapClientDaoSupport implements SelfDr
 	@Override
 	public SelfDriveDO querySelfDrive(String selfDriveId) {
 		return (SelfDriveDO)getSqlMapClientTemplate().queryForObject("selfDrive.querySelfDrive" ,selfDriveId) ;
-	}
-	
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<SelfDriveDetail> getSelfDriveWithProducts(Product2 product) {
-		return (List<SelfDriveDetail>) getSqlMapClientTemplate().queryForList("selfDrive.getSelfDriveWithProducts", product);
 	}
 	
 	@Override

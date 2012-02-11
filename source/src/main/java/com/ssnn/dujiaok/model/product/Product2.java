@@ -59,7 +59,7 @@ public class Product2 {
 	/**
 	 * .
 	 */
-	private List<? extends ProductDetail> details;
+//	private List<? extends ProductDetail> details;
 	
 	public String getId() {
 		return id;
@@ -95,17 +95,17 @@ public class Product2 {
 	public void setMarketPrice(Double marketPrice) {
 		this.marketPrice = marketPrice;
 	}
-	public List<? extends ProductDetail> getDetails() {
-		return details;
-	}
-	public void setDetails(List<? extends ProductDetail> details) {
-		this.details = details;
-		if (details.size() == 0) {
-			this.cheapestPrice = -1.0;
-		} else {
-			this.cheapestPrice = ((ProductDetail) Collections.min(details)).getCheapestPrice();
-		}
-	}
+//	public List<? extends ProductDetail> getDetails() {
+//		return details;
+//	}
+//	public void setDetails(List<? extends ProductDetail> details) {
+//		this.details = details;
+//		if (details.size() == 0) {
+//			this.cheapestPrice = -1.0;
+//		} else {
+//			this.cheapestPrice = ((ProductDetail) Collections.min(details)).getCheapestPrice();
+//		}
+//	}
 	public String getAttachProduct() {
 		return attachProduct;
 	}
