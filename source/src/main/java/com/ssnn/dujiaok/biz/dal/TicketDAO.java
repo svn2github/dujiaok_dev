@@ -5,8 +5,6 @@ import java.util.Map;
 
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.model.TicketDO;
-import com.ssnn.dujiaok.model.product.Product2;
-import com.ssnn.dujiaok.model.product.detail.TicketDetail;
 
 /**
  * 门票
@@ -21,13 +19,6 @@ public interface TicketDAO {
 	 * @return
 	 */
 	TicketDO queryTicket(String ticketId) ;
-	
-	/**
-	 * 获取产品相关的门票信息.
-	 * @param product .
-	 * @return .
-	 */
-	List<TicketDetail> getTicketWithProducts(Product2 product);
 	
 	/**
 	 * 

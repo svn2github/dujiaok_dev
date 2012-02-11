@@ -5,8 +5,6 @@ import java.util.Map;
 
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.model.SelfDriveDO;
-import com.ssnn.dujiaok.model.product.Product2;
-import com.ssnn.dujiaok.model.product.detail.SelfDriveDetail;
 
 /**
  * 自驾DAO

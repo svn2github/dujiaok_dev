@@ -5,8 +5,6 @@ import java.util.Map;
 
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.model.HotelRoomDO;
-import com.ssnn.dujiaok.model.product.Product2;
-import com.ssnn.dujiaok.model.product.detail.HotelRoomDetail;
 
 /**
  * 酒店房间DAO
@@ -21,12 +19,6 @@ public interface HotelRoomDAO {
 	 * @return
 	 */
 	HotelRoomDO queryRoom(String roomId) ;
-	/**
-	 * 查询产品相关的酒店房间信息.
-	 * @param product .
-	 * @return
-	 */
-	List<HotelRoomDetail> getHotelRoomWithProducts(Product2 product);
 
 	/**
 	 * 

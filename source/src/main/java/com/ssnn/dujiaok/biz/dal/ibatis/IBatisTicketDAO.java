@@ -8,8 +8,6 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import com.ssnn.dujiaok.biz.dal.TicketDAO;
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.model.TicketDO;
-import com.ssnn.dujiaok.model.product.Product2;
-import com.ssnn.dujiaok.model.product.detail.TicketDetail;
 import com.ssnn.dujiaok.util.IntegerUtils;
 
 public class IBatisTicketDAO extends SqlMapClientDaoSupport implements TicketDAO {
@@ -17,12 +15,6 @@ public class IBatisTicketDAO extends SqlMapClientDaoSupport implements TicketDAO
 	@Override
 	public TicketDO queryTicket(String ticketId) {
 		return (TicketDO)getSqlMapClientTemplate().queryForObject("ticket.queryTicket", ticketId) ;
-	}
-	
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<TicketDetail> getTicketWithProducts(Product2 product) {
-		return (List<TicketDetail>) getSqlMapClientTemplate().queryForList("ticket.getTicketWithProducts", product);
 	}
 	
 	@Override

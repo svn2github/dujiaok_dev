@@ -8,8 +8,6 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import com.ssnn.dujiaok.biz.dal.HotelDAO;
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.model.HotelDO;
-import com.ssnn.dujiaok.model.product.Product2;
-import com.ssnn.dujiaok.model.product.detail.HotelDetail;
 import com.ssnn.dujiaok.util.IntegerUtils;
 
 /**
@@ -22,12 +20,6 @@ public class IBatisHotelDAO extends SqlMapClientDaoSupport implements HotelDAO {
 	@Override
 	public HotelDO queryHotel(String hotelId) {
 		return (HotelDO)getSqlMapClientTemplate().queryForObject("hotel.queryHotel",hotelId);
-	}
-	
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<HotelDetail> getHotelByProducts(Product2 product) {
-		return (List<HotelDetail>) getSqlMapClientTemplate().queryForList("hotel.getHotelByProducts", product);
 	}
 
 	@Override
