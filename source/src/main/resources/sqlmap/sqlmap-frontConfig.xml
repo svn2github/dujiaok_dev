@@ -21,7 +21,7 @@
 		<result property="gmtModified" column="GMT_MODIFIED" jdbcType="TIMESTAMP"/>
 	</resultMap>
 
-	<select id="queryFrontConfigs" resultMap="RM-Member">
+	<select id="queryFrontConfigs" resultMap="RM-FrontConfig">
 		select * from DJ_FRONT_CONFIG where channel_key = #channel_key#
 	</select>
 	
