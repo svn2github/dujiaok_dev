@@ -27,7 +27,7 @@
 	<bean id="productDetailDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisProductDetailDAO"></bean>
 	<bean id="productDao" class="com.ssnn.dujiaok.biz.dal.product.impl.ProductDaoImpl"></bean>
 	<bean id="frontConfigDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisFrontConfigDAO"></bean>
-	
+	<bean id="frontViewDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisFrontViewDAO"></bean>
 	<bean id="tourDao" class="com.ssnn.dujiaok.biz.dal.tour.impl.TourDaoImpl"></bean>
 	
 	<bean id="orderDao" class="com.ssnn.dujiaok.biz.dal.order.impl.OrderDaoImpl"></bean>	

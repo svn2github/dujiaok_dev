@@ -21,6 +21,8 @@ public class FrontConfigServiceImpl implements FrontConfigService {
      */
     @Override
     public List<FrontConfigDO> getFrontConfigs(String channelKey) {
+        if(channelKey==null)
+            return null;
         return frontConfigDAO.queryFrontConfigs(channelKey);
     }
 

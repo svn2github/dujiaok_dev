@@ -9,9 +9,21 @@
 			http://roma.alibaba.com/schema http://roma.alibaba.com/schema/roma-component.xsd
 			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
-			default-autowire="byName">
+	default-autowire="byName">
+	<!-- 静态配置 -->
+	<bean id="frontConfigLoadService" class="com.ssnn.dujiaok.service.impl.JvmFrontConfigLoadService"
+		abstract="true">
+		<property name="neetToLoadConfig" value="true" />
+	</bean>
+	<bean id="frontViewManageService" class="com.ssnn.dujiaok.service.impl.JvmFrontViewManageService"
+		abstract="true" />
 
-	
-
-	<bean id="frontConfigLoadService" class="com.ssnn.dujiaok.service.impl.JvmFrontConfigLoadService"></bean>
+	<!-- 首页配置 -->
+	<bean id="indexFrontConfigLoadService" parent="frontConfigLoadService">
+		<property name="channelKey" value="index.page.channel" />
+	</bean>
+	<bean id="indexFrontViewManageService" parent="frontViewManageService">
+		<property name="channelKey" value="index.page.channel" />
+		<property name="frontConfigLoadService" ref="indexFrontConfigLoadService" />
+	</bean>
 </beans>

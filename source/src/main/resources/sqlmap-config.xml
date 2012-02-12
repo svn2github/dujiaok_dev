@@ -25,6 +25,7 @@
   	<sqlMap resource="sqlmap/sqlmap-productDetail.xml" />
   	<sqlMap resource="sqlmap/sqlmap-address.xml" />
   	<sqlMap resource="sqlmap/sqlmap-frontConfig.xml" />
+  	<sqlMap resource="sqlmap/sqlmap-frontView.xml" />
   	<sqlMap resource="sqlmap/sqlmap-admin.xml" />
   	<sqlMap resource="sqlmap/sqlmap-order.xml" />
 </sqlMapConfig>

@@ -12,7 +12,7 @@ import org.apache.commons.lang.StringUtils;
  */
 public class FrontConfigDO implements Serializable {
 
-    private static final long serialVersionUID = 4437660902709122128L;
+    private static final long  serialVersionUID = -4204786260250157252L;
     public static final String TRUE             = "T";
     public static final String FALSE            = "F";
 
@@ -97,6 +97,10 @@ public class FrontConfigDO implements Serializable {
      * 修改时间
      */
     private Date               gmtModified;
+    /**
+     * 描述
+     */
+    private String             description;
 
     public int getId() {
         return id;
@@ -243,6 +247,14 @@ public class FrontConfigDO implements Serializable {
 
     public boolean isHasOriginalPrice() {
         return isHasOriginalPrice;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 }

@@ -2,9 +2,8 @@ package com.ssnn.dujiaok.service.impl;
 
 import java.util.List;
 import com.ssnn.dujiaok.biz.service.FrontConfigService;
-import com.ssnn.dujiaok.constant.FrontConfigConstants;
 import com.ssnn.dujiaok.model.FrontConfigDO;
-import com.ssnn.dujiaok.service.FrontConfigContainer;
+import com.ssnn.dujiaok.service.FrontContainer;
 import com.ssnn.dujiaok.service.FrontConfigLoadService;
 
 /**
@@ -14,6 +13,8 @@ import com.ssnn.dujiaok.service.FrontConfigLoadService;
  */
 public class JvmFrontConfigLoadService implements FrontConfigLoadService {
 
+    private String             channelKey;
+    private boolean            neetToLoadConfig;
     private FrontConfigService frontConfigService;
 
     /*
@@ -21,30 +22,38 @@ public class JvmFrontConfigLoadService implements FrontConfigLoadService {
      * @see com.ssnn.dujiaok.service.FrontConfigService#getIndexChannelConfigs()
      */
     @Override
-    public List<FrontConfigDO> getIndexChannelConfigs() {
-        if (FrontConfigContainer.needToLoadIndexConfig) {
-            loadIndexChannelConfigs();
+    public List<FrontConfigDO> getChannelConfigs() {
+        if (neetToLoadConfig) {
+            loadChannelConfigs();
         }
-        return FrontConfigContainer.getFrontConfig(FrontConfigConstants.CHANNEL_INDEX_PAGE);
+        return FrontContainer.getFrontConfig(channelKey);
     }
 
     /**
      * 加载首页配置
      */
-    public synchronized void loadIndexChannelConfigs() {
-        if (FrontConfigContainer.needToLoadIndexConfig) {
-            loadConfigs(FrontConfigConstants.CHANNEL_INDEX_PAGE);
-            //FrontConfigContainer.needToLoadIndexConfig = Boolean.FALSE;
+    public synchronized void loadChannelConfigs() {
+        if (neetToLoadConfig) {
+            loadConfigs(channelKey);
+            neetToLoadConfig = false;
         }
     }
 
     private void loadConfigs(String channelKey) {
         List<FrontConfigDO> configs = frontConfigService.getFrontConfigs(channelKey);
-        FrontConfigContainer.pubFrontConfig(channelKey, configs);
+        FrontContainer.putFrontConfig(channelKey, configs);
     }
 
     public void setFrontConfigService(FrontConfigService frontConfigService) {
         this.frontConfigService = frontConfigService;
     }
 
+    public void setChannelKey(String channelKey) {
+        this.channelKey = channelKey;
+    }
+
+    public void setNeetToLoadConfig(boolean neetToLoadConfig) {
+        this.neetToLoadConfig = neetToLoadConfig;
+    }
+    
 }

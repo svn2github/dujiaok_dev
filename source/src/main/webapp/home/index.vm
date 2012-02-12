@@ -7,18 +7,21 @@
                 <div class="TodaySpecials">
                     <h2>今日特价</h2>
                     <ul>
-                    <li>
-                    	<a href="${env.root}/product/productdetail.htm?id=1" target="_blank">
-                    		<img src="http://ht.dujiaok.com/saas/trek/images/index/index_13.png" width="210" height="120" />
-                    	</a>
-                    	<p class="clearFix">
-                    		<span>
-                    			<a href="#">苏州双人两日游</a>
-                    		</span>
-                    		<span class="Todayprice">¥698</span>
-                    	</p>
-                    </li>
-                    <li><a href="http://www.dujiaok.com/diablo/trek/product/product/detail.htm?id=2" target="_blank"><img src="http://ht.dujiaok.com/saas/trek/images/index/index_19.png" width="210" height="120" /></a><p class="clearFix"><span>苏州双人两日游</span><span class="Todayprice">¥698</span></p></li>
+                    #if($frontViewMap.get("index.today.specials.module"))
+						#foreach($ts in $frontViewMap.get("index.today.specials.module"))
+                            <li>
+                            	<a href="$!ts.link" target="_blank">
+                            		<img src="$!ts.photoURL" width="210" height="120" />
+                            	</a>
+                            	<p class="clearFix">
+                            		<span>
+                            			<a href="$!ts.link">$!ts.title</a>
+                            		</span>
+                            		<span class="Todayprice">¥$!ts.presentPrice</span>
+                            	</p>
+                            </li>
+						#end
+					#end
                     </ul>
                 </div>
                 <div class="SpecialsAdd">

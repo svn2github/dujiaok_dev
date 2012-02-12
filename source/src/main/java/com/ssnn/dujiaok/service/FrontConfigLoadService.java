@@ -13,5 +13,5 @@ public interface FrontConfigLoadService {
      * 获取首页频道配置信息
      * @return
      */
-    public List<FrontConfigDO> getIndexChannelConfigs();
+    public List<FrontConfigDO> getChannelConfigs();
 }

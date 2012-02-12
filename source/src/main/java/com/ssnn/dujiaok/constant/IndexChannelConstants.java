@@ -5,17 +5,17 @@ package com.ssnn.dujiaok.constant;
  * 
  * @author ib 2012-2-12 上午05:13:43
  */
-public abstract class IndexChannelConstants {
+public class IndexChannelConstants {
 
     /**
      * 频道KEY
      */
-    public static final String CHANNEL_KEY                            = FrontConfigConstants.CHANNEL_INDEX_PAGE;
+    public static final String CHANNEL_KEY                       = FrontConfigConstants.CHANNEL_INDEX_PAGE;
 
     /**
      * A1每日特价模块key
      */
-    public static final String M_TODAY_SPECIALS                  = "index.yoday.specials.module";
+    public static final String M_TODAY_SPECIALS                  = "index.today.specials.module";
     /**
      * A2广告模块key（顶部左边，爱玩水爱夏天）
      */
@@ -117,5 +117,105 @@ public abstract class IndexChannelConstants {
      * E2驴友热议
      */
     public static final String M_TRAVEL_MATE_DYNAMIC             = "index.travel.mate.module";
+
+    public static String getChannelKey() {
+        return CHANNEL_KEY;
+    }
+
+    public static String getmTodaySpecials() {
+        return M_TODAY_SPECIALS;
+    }
+
+    public static String getmImageAdsA2() {
+        return M_IMAGE_ADS_A2;
+    }
+
+    public static String getmBanner() {
+        return M_BANNER;
+    }
+
+    public static String getmSearchTheme() {
+        return M_SEARCH_THEME;
+    }
+
+    public static String getmSearchAttractions() {
+        return M_SEARCH_ATTRACTIONS;
+    }
+
+    public static String getmSearchPeriphery() {
+        return M_SEARCH_PERIPHERY;
+    }
+
+    public static String getmSearchPrice() {
+        return M_SEARCH_PRICE;
+    }
+
+    public static String getmImageAdsA5() {
+        return M_IMAGE_ADS_A5;
+    }
+
+    public static String getmImageAdsB() {
+        return M_IMAGE_ADS_B;
+    }
+
+    public static String getmImageAdsC1() {
+        return M_IMAGE_ADS_C1;
+    }
+
+    public static String getmPeripheryTextRecommend() {
+        return M_PERIPHERY_TEXT_RECOMMEND;
+    }
+
+    public static String getmImageAdsC31() {
+        return M_IMAGE_ADS_C3_1;
+    }
+
+    public static String getmImageAdsC32() {
+        return M_IMAGE_ADS_C3_2;
+    }
+
+    public static String getmPeripheryImageRecommend() {
+        return M_PERIPHERY_IMAGE_RECOMMEND;
+    }
+
+    public static String getmPeripheryAttractionsRecommend() {
+        return M_PERIPHERY_ATTRACTIONS_RECOMMEND;
+    }
+
+    public static String getmImageAdsD1() {
+        return M_IMAGE_ADS_D1;
+    }
+
+    public static String getmLongTermTextRecommend() {
+        return M_LONG_TERM_TEXT_RECOMMEND;
+    }
+
+    public static String getmImageAdsD31() {
+        return M_IMAGE_ADS_D3_1;
+    }
+
+    public static String getmImageAdsD32() {
+        return M_IMAGE_ADS_D3_2;
+    }
+
+    public static String getmLongTermImageRecommend() {
+        return M_LONG_TERM_IMAGE_RECOMMEND;
+    }
+
+    public static String getmLongTermAttractionsRecommend() {
+        return M_LONG_TERM_ATTRACTIONS_RECOMMEND;
+    }
+
+    public static String getmDujiaokDynamicTop() {
+        return M_DUJIAOK_DYNAMIC_TOP;
+    }
+
+    public static String getmDujiaokDynamic() {
+        return M_DUJIAOK_DYNAMIC;
+    }
+
+    public static String getmTravelMateDynamic() {
+        return M_TRAVEL_MATE_DYNAMIC;
+    }
 
 }

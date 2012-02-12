@@ -19,6 +19,7 @@
 		<result property="hasOriginalPrice" column="HAS_ORIGINAL_PRICE" jdbcType="VARCHAR"/>
 		<result property="gmtCreate" column="GMT_CREATE" jdbcType="TIMESTAMP"/>
 		<result property="gmtModified" column="GMT_MODIFIED" jdbcType="TIMESTAMP"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
 	</resultMap>
 
 	<select id="queryFrontConfigs" resultMap="RM-FrontConfig">

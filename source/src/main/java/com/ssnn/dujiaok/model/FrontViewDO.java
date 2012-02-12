@@ -31,7 +31,7 @@ public class FrontViewDO implements Serializable{
     /**
      * 类目
      */
-    private String gategory;
+    private String category;
     /**
      * 标题
      */
@@ -100,13 +100,13 @@ public class FrontViewDO implements Serializable{
     public void setLink(String link) {
         this.link = link;
     }
-
-    public String getGategory() {
-        return gategory;
+    
+    public String getCategory() {
+        return category;
     }
-
-    public void setGategory(String gategory) {
-        this.gategory = gategory;
+    
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getTitle() {
