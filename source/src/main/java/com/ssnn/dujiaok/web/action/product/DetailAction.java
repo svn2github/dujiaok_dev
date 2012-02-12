@@ -11,7 +11,7 @@ import com.ssnn.dujiaok.web.action.BasicAction;
 @SuppressWarnings("serial")
 public class DetailAction extends BasicAction {
 
-	private Object item;
+	private Object product;
 
 	private String productId;
 	
@@ -26,16 +26,19 @@ public class DetailAction extends BasicAction {
 		
 		if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_HOTELROOM)){
 			//房间
-			item = hotelRoomService.getRoomWithDetails(productId) ;
+			product = hotelRoomService.getRoomWithDetails(productId) ;
+			return "room" ;
 		}else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_TICKET)){
 			//门票
-			item = ticketService.getTicketWithDetails(productId);
+			product = ticketService.getTicketWithDetails(productId);
+			return "ticket" ;
 		}else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_SELFDRIVE)){
 			//自驾
-			item = selfDriveService.getSelfDriveWithDetails(productId) ;
+			product = selfDriveService.getSelfDriveWithDetails(productId) ;
+			return "selfDrive" ;
 		}
 		
-		if(item == null){
+		if(product == null){
 			return NONE ;
 		}
 				
@@ -44,16 +47,18 @@ public class DetailAction extends BasicAction {
 
 	/** -------------------------------------------------------------- **/
 
-	public Object getItem() {
-		return item;
-	}
-
-	public void setItem(Object item) {
-		this.item = item;
-	}
+	
 
 	public String getProductId() {
 		return productId;
+	}
+
+	public Object getProduct() {
+		return product;
+	}
+
+	public void setProduct(Object product) {
+		this.product = product;
 	}
 
 	public void setProductId(String productId) {

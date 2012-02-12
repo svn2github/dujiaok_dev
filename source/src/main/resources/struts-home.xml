@@ -14,29 +14,7 @@
 		</action>
 	</package>
 	
-	<package name="product" namespace="/product" extends="default">
-		<action name="productdetail" class="com.ssnn.dujiaok.web.action.product.ProductAction">
-			<interceptor-ref name="basicStack" />
-			<result name="success"  type="velocity">/product/productdetail.vm</result>
-		</action>
-		<action name="selfdrivedetail" class="com.ssnn.dujiaok.web.action.product.ProductAction" method="getSelfDriveProductDetail">
-            <interceptor-ref name="basicStack" />
-            <result name="success"  type="velocity">/product/selfdrivedetail.vm</result>
-        </action>
-        <action name="hoteldetail" class="com.ssnn.dujiaok.web.action.product.ProductAction" method="getHotelProductDetail">
-            <interceptor-ref name="basicStack" />
-            <result name="success"  type="velocity">/product/hoteldetail.vm</result>
-        </action>
-        <action name="hotelroomdetail" class="com.ssnn.dujiaok.web.action.product.ProductAction" method="getHotelRoomProductDetail">
-            <interceptor-ref name="basicStack" />
-            <result name="success"  type="velocity">/product/hotelroomdetail.vm</result>
-        </action>
-        <action name="ticketdetail" class="com.ssnn.dujiaok.web.action.product.ProductAction" method="getTicketProductDetail">
-            <interceptor-ref name="basicStack" />
-            <result name="success"  type="velocity">/product/ticketdetail.vm</result>
-        </action>
-	</package>
-	
+		
 	<package name="order" namespace="/order" extends="default">
 		<action name="makeorder" class="com.ssnn.dujiaok.web.action.order.MakeOrderAction">
 			<interceptor-ref name="basicStack" />

@@ -38,6 +38,11 @@
 			<interceptor-ref name="adminAuthInterceptor" />
 			<result name="success"  type="json"></result>
 		</action>
+		
+		<action name="priceCalendar" class="com.ssnn.dujiaok.web.action.ajax.PriceCalendarAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="json"></result>
+		</action>
 	</package> 
 	
 	

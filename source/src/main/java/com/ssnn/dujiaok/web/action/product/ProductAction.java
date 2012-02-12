@@ -6,7 +6,7 @@ import com.ssnn.dujiaok.biz.service.product.ProductService;
 import com.ssnn.dujiaok.biz.service.tour.TourService;
 import com.ssnn.dujiaok.model.HotelDO;
 import com.ssnn.dujiaok.model.HotelRoomDO;
-import com.ssnn.dujiaok.model.PriceCalendar;
+import com.ssnn.dujiaok.model.PriceCalendarDO;
 import com.ssnn.dujiaok.model.SelfDriveDO;
 import com.ssnn.dujiaok.model.TicketDO;
 import com.ssnn.dujiaok.model.Tour;
@@ -114,7 +114,7 @@ public class ProductAction extends BasicAction {
 		}
 	}
 	
-	public static List<PriceCalendar> getProductPriceCalendar(Product2 product) {
+	public static List<PriceCalendarDO> getProductPriceCalendar(Product2 product) {
 		
 		return null;
 	}

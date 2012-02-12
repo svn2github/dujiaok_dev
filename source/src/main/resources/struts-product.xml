@@ -3,28 +3,12 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<package name="product" namespace="/product" extends="default">
-		
-		<action name="selfDrive" class="com.ssnn.dujiaok.web.action.admin.IndexAction">
-			<interceptor-ref name="defaultStack" />
-			<result name="success" type="redirect">/admin/ticketlist.htm</result>			
-		</action>
-		
-		<action name="ticket" class="com.ssnn.dujiaok.web.action.admin.IndexAction">
-			<interceptor-ref name="defaultStack" />
-			<result name="success" type="redirect">/admin/ticketlist.htm</result>			
-		</action>
-		
-		<action name="hotel" class="com.ssnn.dujiaok.web.action.admin.IndexAction">
-			<interceptor-ref name="defaultStack" />
-			<result name="success" type="redirect">/admin/ticketlist.htm</result>			
-		</action>
-	
+	<package name="product" namespace="/product" extends="default">		
 		<action name="detail" class="com.ssnn.dujiaok.web.action.product.DetailAction">
 			<interceptor-ref name="defaultStack" />
-			<result name="success" type="velocity">/product/detail.vm</result>			
-			<result name="none" type="velocity">/product/notfound.vm</result>
+			<result name="ticket" type="velocity">/product/ticketdetail.vm</result>
+			<result name="selfDrive" type="velocity">/product/selfdrivedetail.vm</result>
+			<result name="room" type="velocity">/product/hotelroomdetail.vm</result>
 		</action>
-	
 	</package>
 </struts>

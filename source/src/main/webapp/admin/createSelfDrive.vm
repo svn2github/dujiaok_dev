@@ -38,7 +38,7 @@
                             至  
                             <input type="text" value="$dateUtils.format($!detail.gmtEnd,'yyyy-MM-dd')"  id="gmtEnd[$!count]" name="details[$count].gmtEnd"/>
                             <br/>
-                            单人价： <input type="text" value="$!detail.singlePrice" name="details[$count].singlePrice" />
+                            单人价： <input type="text" value="$!detail.price" name="details[$count].price" />
                             双人价： <input type="text" value="$!detail.doublePrice" name="details[$count].doublePrice" />
                             儿童价： <input type="text" value="$!detail.childPrice" name="details[$count].childPrice" />
                             #if($count > 0)
@@ -204,7 +204,7 @@
 		'<input type="text" id="gmtStart['+i+']" name="details['+i+'].gmtStart"/>' + 
 		' 至 ' + 
 		'<input type="text"  id="gmtEnd['+i+']" name="details['+i+'].gmtEnd"/> <br/>' +
-		'单人价： <input type="text" name="details['+i+'].singlePrice" /> '  +
+		'单人价： <input type="text" name="details['+i+'].price" /> '  +
 		'双人价： <input type="text" name="details['+i+'].doublePrice" /> '  + 
 		'儿童价： <input type="text" name="details['+i+'].childPrice" /> '  ;
 		if(i > 0){

@@ -67,7 +67,7 @@ public abstract class AbstractProduct {
 	 * 
 	 */
 	private List<ProductDetailDO> details;
-	
+
 	protected BigDecimal cheapestPrice;
 	
 	public Date getGmtExpire() {
@@ -147,16 +147,18 @@ public abstract class AbstractProduct {
 	public void setProductId(String productId) {
 		this.productId = productId;
 	}
-//	public List<ProductDetailDO> getDetails() {
-//		return details;
-//	}
-//	public void setDetails(List<ProductDetailDO> details) {
-//		this.details = details;
-//		if (this.details == null) {
-//			this.cheapestPrice = new BigDecimal("-1");
-//		}
-//		this.cheapestPrice = Collections.min(details).getCheapestPrice();
-//	}
+
+	public List<ProductDetailDO> getDetails() {
+		return details;
+	}
+
+	public void setDetails(List<ProductDetailDO> details) {
+		this.details = details;
+		if (this.details == null) {
+			this.cheapestPrice = new BigDecimal("-1");
+		}
+		this.cheapestPrice = Collections.min(details).getCheapestPrice();
+	}
 	
 	public void setCheapestPrice(BigDecimal cheapestPrice) {
 		this.cheapestPrice = cheapestPrice;
