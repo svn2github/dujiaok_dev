@@ -3,71 +3,77 @@ package com.ssnn.dujiaok.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.apache.commons.lang.StringUtils;
+
+
 /**
  * 类FrontConfig.java的实现描述：前台展示配置DO
  * 
  * @author ib 2012-2-12 上午04:16:23
  */
-public class FrontConfigDO implements Serializable{
+public class FrontConfigDO implements Serializable {
 
-    private static final long serialVersionUID = 1224414905213012373L;
-    private int    id;
+    private static final long serialVersionUID = -377713939950808613L;
+    public static final String TRUE             = "T";
+    public static final String FALSE            = "F";
+
+    private int                id;
     /**
      * 频道key
      */
-    private String channelKey;
+    private String             channelKey;
     /**
      * 频道名称
      */
-    private String channelName;
+    private String             channelName;
     /**
      * 模块key
      */
-    private String moduleKey;
+    private String             moduleKey;
     /**
      * 模块名称
      */
-    private String moduleName;
+    private String             moduleName;
     /**
      * 显示数量
      */
-    private int    dispalyNum;
+    private int                dispalyNum;
     /**
      * 是否有图片
      */
-    private String hasPhoto;
+    private String             hasPhoto;
     /**
      * 是否有链接
      */
-    private String hasLink;
+    private String             hasLink;
     /**
      * 是否有类目
      */
-    private String hasCategory;
+    private String             hasCategory;
     /**
      * 是否有标题
      */
-    private String hasTitle;
+    private String             hasTitle;
     /**
      * 是否有详情
      */
-    private String hasDetail;
+    private String             hasDetail;
     /**
      * 是否有现价
      */
-    private String hasPresentPrice;
+    private String             hasPresentPrice;
     /**
      * 是否有原价
      */
-    private String hasOriginalPrice;
+    private String             hasOriginalPrice;
     /**
      * 创建时间
      */
-    private Date   gmtCreate;
+    private Date               gmtCreate;
     /**
      * 修改时间
      */
-    private Date   gmtModified;
+    private Date               gmtModified;
 
     public int getId() {
         return id;
@@ -115,6 +121,34 @@ public class FrontConfigDO implements Serializable{
 
     public void setDispalyNum(int dispalyNum) {
         this.dispalyNum = dispalyNum;
+    }
+
+    public boolean hasPhoto() {
+        return StringUtils.equals(hasPhoto, TRUE);
+    }
+
+    public boolean hasLink() {
+        return StringUtils.equals(hasLink, TRUE);
+    }
+
+    public boolean hasCategory() {
+        return StringUtils.equals(hasCategory, TRUE);
+    }
+
+    public boolean hasTitle() {
+        return StringUtils.equals(hasTitle, TRUE);
+    }
+
+    public boolean hasDetail() {
+        return StringUtils.equals(hasDetail, TRUE);
+    }
+
+    public boolean hasPresentPrice() {
+        return StringUtils.equals(hasPresentPrice, TRUE);
+    }
+
+    public boolean hasOriginalPrice() {
+        return StringUtils.equals(hasOriginalPrice, TRUE);
     }
 
     public String getHasPhoto() {
