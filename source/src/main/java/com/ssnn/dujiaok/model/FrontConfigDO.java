@@ -5,7 +5,6 @@ import java.util.Date;
 
 import org.apache.commons.lang.StringUtils;
 
-
 /**
  * 类FrontConfig.java的实现描述：前台展示配置DO
  * 
@@ -13,7 +12,7 @@ import org.apache.commons.lang.StringUtils;
  */
 public class FrontConfigDO implements Serializable {
 
-    private static final long serialVersionUID = -377713939950808613L;
+    private static final long serialVersionUID = 6434283752601044523L;
     public static final String TRUE             = "T";
     public static final String FALSE            = "F";
 
@@ -66,6 +65,34 @@ public class FrontConfigDO implements Serializable {
      * 是否有原价
      */
     private String             hasOriginalPrice;
+    /**
+     * 是否有图片
+     */
+    private boolean            isHasPhoto;
+    /**
+     * 是否有链接
+     */
+    private boolean            isHasLink;
+    /**
+     * 是否有类目
+     */
+    private boolean            isHasCategory;
+    /**
+     * 是否有标题
+     */
+    private boolean            isHasTitle;
+    /**
+     * 是否有详情
+     */
+    private boolean            isHasDetail;
+    /**
+     * 是否有现价
+     */
+    private boolean            isHasPresentPrice;
+    /**
+     * 是否有原价
+     */
+    private boolean            isHasOriginalPrice;
     /**
      * 创建时间
      */
@@ -123,40 +150,13 @@ public class FrontConfigDO implements Serializable {
         this.dispalyNum = dispalyNum;
     }
 
-    public boolean hasPhoto() {
-        return StringUtils.equals(hasPhoto, TRUE);
-    }
-
-    public boolean hasLink() {
-        return StringUtils.equals(hasLink, TRUE);
-    }
-
-    public boolean hasCategory() {
-        return StringUtils.equals(hasCategory, TRUE);
-    }
-
-    public boolean hasTitle() {
-        return StringUtils.equals(hasTitle, TRUE);
-    }
-
-    public boolean hasDetail() {
-        return StringUtils.equals(hasDetail, TRUE);
-    }
-
-    public boolean hasPresentPrice() {
-        return StringUtils.equals(hasPresentPrice, TRUE);
-    }
-
-    public boolean hasOriginalPrice() {
-        return StringUtils.equals(hasOriginalPrice, TRUE);
-    }
-
     public String getHasPhoto() {
         return hasPhoto;
     }
 
     public void setHasPhoto(String hasPhoto) {
         this.hasPhoto = hasPhoto;
+        this.isHasPhoto = StringUtils.equals(hasPhoto, TRUE);
     }
 
     public String getHasLink() {
@@ -165,6 +165,7 @@ public class FrontConfigDO implements Serializable {
 
     public void setHasLink(String hasLink) {
         this.hasLink = hasLink;
+        this.isHasLink = StringUtils.equals(hasLink, TRUE);
     }
 
     public String getHasCategory() {
@@ -173,6 +174,7 @@ public class FrontConfigDO implements Serializable {
 
     public void setHasCategory(String hasCategory) {
         this.hasCategory = hasCategory;
+        this.isHasCategory = StringUtils.equals(hasCategory, TRUE);
     }
 
     public String getHasTitle() {
@@ -181,6 +183,7 @@ public class FrontConfigDO implements Serializable {
 
     public void setHasTitle(String hasTitle) {
         this.hasTitle = hasTitle;
+        this.isHasTitle = StringUtils.equals(hasTitle, TRUE);
     }
 
     public String getHasDetail() {
@@ -189,6 +192,7 @@ public class FrontConfigDO implements Serializable {
 
     public void setHasDetail(String hasDetail) {
         this.hasDetail = hasDetail;
+        this.isHasDetail = StringUtils.equals(hasDetail, TRUE);
     }
 
     public String getHasPresentPrice() {
@@ -197,6 +201,7 @@ public class FrontConfigDO implements Serializable {
 
     public void setHasPresentPrice(String hasPresentPrice) {
         this.hasPresentPrice = hasPresentPrice;
+        this.isHasPresentPrice = StringUtils.equals(hasPresentPrice, TRUE);
     }
 
     public String getHasOriginalPrice() {
@@ -205,6 +210,7 @@ public class FrontConfigDO implements Serializable {
 
     public void setHasOriginalPrice(String hasOriginalPrice) {
         this.hasOriginalPrice = hasOriginalPrice;
+        this.isHasOriginalPrice = StringUtils.equals(hasOriginalPrice, TRUE);
     }
 
     public Date getGmtCreate() {
@@ -221,6 +227,34 @@ public class FrontConfigDO implements Serializable {
 
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    public boolean isHasPhoto() {
+        return isHasPhoto;
+    }
+
+    public boolean isHasLink() {
+        return isHasLink;
+    }
+
+    public boolean isHasCategory() {
+        return isHasCategory;
+    }
+
+    public boolean isHasTitle() {
+        return isHasTitle;
+    }
+
+    public boolean isHasDetail() {
+        return isHasDetail;
+    }
+
+    public boolean isHasPresentPrice() {
+        return isHasPresentPrice;
+    }
+
+    public boolean isHasOriginalPrice() {
+        return isHasOriginalPrice;
     }
 
 }
