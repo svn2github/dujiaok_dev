@@ -34,7 +34,7 @@ public class JvmFrontConfigLoadService implements FrontConfigLoadService {
     public synchronized void loadIndexChannelConfigs() {
         if (FrontConfigContainer.needToLoadIndexConfig) {
             loadConfigs(FrontConfigConstants.CHANNEL_INDEX_PAGE);
-            FrontConfigContainer.needToLoadIndexConfig = Boolean.FALSE;
+            //FrontConfigContainer.needToLoadIndexConfig = Boolean.FALSE;
         }
     }
 

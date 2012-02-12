@@ -22,7 +22,7 @@ public class IBatisFrontConfigDAO extends SqlMapClientDaoSupport implements Fron
      */
     @Override
     public List<FrontConfigDO> queryFrontConfigs(String channelKey) {
-        return getSqlMapClientTemplate().queryForList(QUERY_FRONT_CONFIGS);
+        return getSqlMapClientTemplate().queryForList(QUERY_FRONT_CONFIGS, channelKey);
     }
 
 }

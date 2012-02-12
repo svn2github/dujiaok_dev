@@ -10,13 +10,13 @@
 		<result property="moduleKey" column="MODULE_KEY" jdbcType="VARCHAR"/>
 		<result property="moduleName" column="MODULE_NAME" jdbcType="VARCHAR"/>
 		<result property="dispalyNum" column="DISPLAY_NUM" jdbcType="int"/>
-		<result property="hasPhoto" column="HAS_PHOTO " jdbcType="VARCHAR"/>
-		<result property="hasLink" column="HAS_LINK " jdbcType="VARCHAR"/>
-		<result property="hasCategory" column="HAS_CATEGORY " jdbcType="VARCHAR"/>
-		<result property="hasTitle" column="HAS_TITLE  " jdbcType="VARCHAR"/>
-		<result property="hasDetail" column="HAS_DETAIL " jdbcType="VARCHAR"/>
-		<result property="hasPresentPrice" column="HAS_PRESENT_PRICE " jdbcType="VARCHAR"/>
-		<result property="hasOriginalPrice" column="HAS_ORIGINAL_PRICE " jdbcType="VARCHAR"/>
+		<result property="hasPhoto" column="HAS_PHOTO" jdbcType="VARCHAR"/>
+		<result property="hasLink" column="HAS_LINK" jdbcType="VARCHAR"/>
+		<result property="hasCategory" column="HAS_CATEGORY" jdbcType="VARCHAR"/>
+		<result property="hasTitle" column="HAS_TITLE" jdbcType="VARCHAR"/>
+		<result property="hasDetail" column="HAS_DETAIL" jdbcType="VARCHAR"/>
+		<result property="hasPresentPrice" column="HAS_PRESENT_PRICE" jdbcType="VARCHAR"/>
+		<result property="hasOriginalPrice" column="HAS_ORIGINAL_PRICE" jdbcType="VARCHAR"/>
 		<result property="gmtCreate" column="GMT_CREATE" jdbcType="TIMESTAMP"/>
 		<result property="gmtModified" column="GMT_MODIFIED" jdbcType="TIMESTAMP"/>
 	</resultMap>
