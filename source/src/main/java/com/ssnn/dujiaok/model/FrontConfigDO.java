@@ -12,7 +12,7 @@ import org.apache.commons.lang.StringUtils;
  */
 public class FrontConfigDO implements Serializable {
 
-    private static final long serialVersionUID = 6434283752601044523L;
+    private static final long serialVersionUID = 4437660902709122128L;
     public static final String TRUE             = "T";
     public static final String FALSE            = "F";
 
@@ -21,10 +21,6 @@ public class FrontConfigDO implements Serializable {
      * 频道key
      */
     private String             channelKey;
-    /**
-     * 频道名称
-     */
-    private String             channelName;
     /**
      * 模块key
      */
@@ -116,14 +112,6 @@ public class FrontConfigDO implements Serializable {
 
     public void setChannelKey(String channelKey) {
         this.channelKey = channelKey;
-    }
-
-    public String getChannelName() {
-        return channelName;
-    }
-
-    public void setChannelName(String channelName) {
-        this.channelName = channelName;
     }
 
     public String getModuleKey() {
