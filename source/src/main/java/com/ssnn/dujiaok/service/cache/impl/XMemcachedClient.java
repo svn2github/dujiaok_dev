@@ -1,4 +1,4 @@
-package com.ssnn.dujiaok.service.cache.memcached;
+package com.ssnn.dujiaok.service.cache.impl;
 
 import java.io.IOException;
 import java.io.Serializable;
