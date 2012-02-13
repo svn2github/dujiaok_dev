@@ -1,4 +1,4 @@
-package com.ssnn.dujiaok.biz.service.cache.memcached;
+package com.ssnn.dujiaok.service.cache.memcached;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -18,7 +18,7 @@ import net.rubyeye.xmemcached.utils.AddrUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.ssnn.dujiaok.biz.service.cache.CacheClient;
+import com.ssnn.dujiaok.service.cache.CacheClient;
 
 /**
  * XMemcached实现

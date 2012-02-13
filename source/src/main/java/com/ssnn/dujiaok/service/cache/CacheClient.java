@@ -1,4 +1,4 @@
-package com.ssnn.dujiaok.biz.service.cache;
+package com.ssnn.dujiaok.service.cache;
 
 import java.io.Serializable;
 import java.util.Collection;
