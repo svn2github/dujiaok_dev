@@ -75,7 +75,5 @@ public class DetailAction extends BasicAction {
 
 	public void setSelfDriveService(SelfDriveService selfDriveService) {
 		this.selfDriveService = selfDriveService;
-	}
-
-	
+	}	
 }

@@ -12,7 +12,7 @@ public class OrderDetailDO {
 
 	private int id ;
 	
-	private String orderId ;
+	private String orderId;
 	
 	/**
 	 * 自驾为单人价格，其他均为价格

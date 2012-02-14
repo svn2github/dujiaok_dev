@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.ssnn.dujiaok.util.DateUtil;
+import com.ssnn.dujiaok.util.ProductUtils;
 
 public class ProductDetailDO implements Comparable<ProductDetailDO> {
 
@@ -149,8 +150,8 @@ public class ProductDetailDO implements Comparable<ProductDetailDO> {
 		this.gmtCreate = gmtCreate;
 	}
 
-	public List<Date> getStartDates() {
-		return startDates;
+	public List<String> getStartDates() {
+		return ProductUtils.formatDate(startDates, "yyyy-MM-dd");
 	}
 
 	public void setStartDates(List<Date> startDates) {

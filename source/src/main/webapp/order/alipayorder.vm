@@ -1,19 +1,4 @@
 #set($layout="/order/default.vm")
 <div class="loading">系统处理中......</div>
-
+$alipayResult
 <!--支付宝付款接口-->
-<input id='alipayResult' value='$alipayResult' type="hidden"/>
-  <SCRIPT LANGUAGE="JavaScript">
-  <!--
-String.prototype.replaceAll = function(s1,s2) { 
-    return this.replace(new RegExp(s1,"gm"),s2); 
-}
-
-var alipayResult = document.getElementById('alipayResult');
-var formString = alipayResult.value.replaceAll("&lt;", '<').replaceAll("&gt;", '>').replaceAll("&quot;", '\"').replaceAll("&#39;", '\'')
-
-document.write(formString);
-//alert(formString)
-
-  //-->
-  </SCRIPT>

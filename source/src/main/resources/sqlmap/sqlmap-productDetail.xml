@@ -30,6 +30,11 @@
 		select * from DJ_PRODUCT_DETAIL where PRODUCT_ID = #productId#
 	</select>
 	
+	<select id="queryProductDetail" resultMap="RM-ProductDetail">
+		select * from DJ_PRODUCT_DETAIL
+		  where PRODUCT_ID = #productId# AND ID=#productDetailId#
+	</select>
+	
 	<select id="queryValidDetails" resultMap="RM-ProductDetail">
 		select * from DJ_PRODUCT_DETAIL
 		  where PRODUCT_ID = #productId# AND GMT_END>CURDATE()

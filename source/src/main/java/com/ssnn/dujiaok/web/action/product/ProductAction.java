@@ -2,32 +2,35 @@ package com.ssnn.dujiaok.web.action.product;
 
 import java.util.List;
 
-import com.ssnn.dujiaok.biz.service.product.ProductService;
-import com.ssnn.dujiaok.biz.service.tour.TourService;
+import com.ssnn.dujiaok.biz.service.HotelRoomService;
+import com.ssnn.dujiaok.biz.service.HotelService;
+import com.ssnn.dujiaok.biz.service.SelfDriveService;
+import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.model.HotelDO;
 import com.ssnn.dujiaok.model.HotelRoomDO;
-import com.ssnn.dujiaok.model.PriceCalendarDO;
 import com.ssnn.dujiaok.model.SelfDriveDO;
 import com.ssnn.dujiaok.model.TicketDO;
 import com.ssnn.dujiaok.model.Tour;
 import com.ssnn.dujiaok.model.product.Product;
 import com.ssnn.dujiaok.model.product.Product2;
+import com.ssnn.dujiaok.util.ProductUtils;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 public class ProductAction extends BasicAction {
 	
-	private Integer productId;
+	private String productId;
 	
-	private ProductService productService;
-	
-	private TourService tourService;
+	private SelfDriveService selfDriveService;
+	private HotelService hotelService;
+	private HotelRoomService hotelRoomService;
+	private TicketService ticketService;
 
 	@Override
 	public String execute() throws Exception {
 		try {
-			Product product = this.productService.getProductById(productId);
+			Product product = null;//this.productService.getProductById(productId);
 			this.getHttpSession().setAttribute("product", product);
-			List<Tour> tours = tourService.listTourByProductId(productId);
+			List<Tour> tours = null;//tourService.listTourByProductId(productId);
 			this.getHttpSession().setAttribute("dateList", tours);
 			double tehuiMin = 0;
 	        for (int i = 0; i < tours.size(); i++) {
@@ -64,13 +67,15 @@ public class ProductAction extends BasicAction {
 	public String getSelfDriveProductDetail() {
 		try {
 			SelfDriveDO param = new SelfDriveDO();
-			//param.setProductId(this.productId.toString());
+			//param.setProductId(this.productId);
 			param.setProductId("ZJ1201201447352717");
-			SelfDriveDO product = this.productService.getSelfDriveProductDetail(param);
+			SelfDriveDO product = this.selfDriveService.getSelfDriveWithDetails(param.getProductId());
+			ProductUtils.filteInvalideProductDetail(product.getDetails());
 			this.getHttpSession().setAttribute("product", product);
 			return SUCCESS;
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			//TODO LOG EXCEPTION STACK
 			return ERROR;
 		}
 	}
@@ -78,12 +83,13 @@ public class ProductAction extends BasicAction {
 	public String getHotelProductDetail() {
 		try {
 			HotelDO param = new HotelDO();
-//			param.setProductId(this.productId.toString());
+//			param.setProductId(this.productId);
 			param.setProductId("JD1201171609535427");
-			HotelDO product = this.productService.getHotelProductDetail(param);
+			HotelDO product = this.hotelService.getHotel(param.getProductId());
 			this.getHttpSession().setAttribute("product", product);
 			return SUCCESS;
 		} catch (Exception e) {
+			//TODO LOG EXCEPTION STACK
 			return ERROR;
 		}
 	}
@@ -91,12 +97,14 @@ public class ProductAction extends BasicAction {
 	public String getHotelRoomProductDetail() {
 		try {
 			HotelRoomDO param = new HotelRoomDO();
-			//param.setProductId(this.productId.toString());
+			//param.setProductId(this.productId);
 			param.setProductId("FJ1201181530466890");
-			HotelRoomDO product = this.productService.getHotelRoomProductDetail(param);
+			HotelRoomDO product = this.hotelRoomService.getRoomWithDetails(param.getProductId());
+			ProductUtils.filteInvalideProductDetail(product.getDetails());
 			this.getHttpSession().setAttribute("product", product);
 			return SUCCESS;
 		} catch (Exception e) {
+			//TODO LOG EXCEPTION STACK
 			return ERROR;
 		}
 	}
@@ -104,35 +112,16 @@ public class ProductAction extends BasicAction {
 	public String getTicketProductDetail() {
 		try {
 			TicketDO param = new TicketDO();
-			//param.setProductId(this.productId.toString());
-			param.setProductId("MP1201171339498931");
-			TicketDO product = this.productService.getTicketProductDetail(param);
+			//param.setProductId(this.productId);
+			param.setProductId("MP120117105857939");
+			TicketDO product = this.ticketService.getTicketWithDetails(param.getProductId());
+			ProductUtils.filteInvalideProductDetail(product.getDetails());
 			this.getHttpSession().setAttribute("product", product);
 			return SUCCESS;
 		} catch (Exception e) {
+			//TODO LOG EXCEPTION STACK
 			return ERROR;
 		}
-	}
-	
-	public static List<PriceCalendarDO> getProductPriceCalendar(Product2 product) {
-		
-		return null;
-	}
-	
-	public ProductService getProductService() {
-		return productService;
-	}
-
-	public void setProductService(ProductService productService) {
-		this.productService = productService;
-	}
-	
-	public TourService getTourService() {
-		return tourService;
-	}
-
-	public void setTourService(TourService tourService) {
-		this.tourService = tourService;
 	}
 
 	public String getProductId() {
@@ -140,10 +129,22 @@ public class ProductAction extends BasicAction {
 	}
 
 	public void setProductId(String productId) {
-		try {
-			this.productId = Integer.valueOf(productId);
-		} catch (Exception e) {
-			throw new IllegalArgumentException("Invalid product id");
-		}
+		this.productId = productId;
+	}
+
+	public void setSelfDriveService(SelfDriveService selfDriveService) {
+		this.selfDriveService = selfDriveService;
+	}
+
+	public void setHotelService(HotelService hotelService) {
+		this.hotelService = hotelService;
+	}
+
+	public void setHotelRoomService(HotelRoomService hotelRoomService) {
+		this.hotelRoomService = hotelRoomService;
+	}
+
+	public void setTicketService(TicketService ticketService) {
+		this.ticketService = ticketService;
 	}
 }

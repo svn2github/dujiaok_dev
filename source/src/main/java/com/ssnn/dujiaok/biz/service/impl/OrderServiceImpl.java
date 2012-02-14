@@ -25,15 +25,15 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public OrderDO createOrderAndDetailContact(OrderDO order) {
-		if(order.getDetail() == null){
-			throw new IllegalArgumentException("detail cant be null") ;
-		}
+//		if(order.getDetail() == null){
+//			throw new IllegalArgumentException("detail cant be null") ;
+//		}
 		String orderId = UniqueIDUtil.getOrderID(order.getMemberId()) ;
 		order.setOrderId(orderId) ;
 		orderDAO.insertOrder(order) ;
-		OrderDetailDO detail = order.getDetail() ; 
-		detail.setOrderId(orderId) ;
-		orderDAO.insertOrderDetail(detail) ;
+//		OrderDetailDO detail = order.getDetail() ; 
+//		detail.setOrderId(orderId) ;
+//		orderDAO.insertOrderDetail(detail) ;
 		if(!CollectionUtils.isEmpty(order.getContacts())){
 			for(OrderContactDO contact : order.getContacts()){
 				contact.setOrderId(orderId) ;

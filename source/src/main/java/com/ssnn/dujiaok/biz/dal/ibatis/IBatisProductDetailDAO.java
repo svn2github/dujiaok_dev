@@ -1,6 +1,8 @@
 package com.ssnn.dujiaok.biz.dal.ibatis;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
@@ -13,6 +15,15 @@ public class IBatisProductDetailDAO extends SqlMapClientDaoSupport implements Pr
 	@Override
 	public List<ProductDetailDO> queryDetails(String productId) {
 		return getSqlMapClientTemplate().queryForList("product.queryProductDetails" , productId) ;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public ProductDetailDO queryDetail(String productId, String detailID) {
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("productId", productId);
+		param.put("productDetailId", detailID);
+		return (ProductDetailDO) getSqlMapClientTemplate().queryForObject("product.queryProductDetail", param);
 	}
 	
 	@Override

@@ -125,19 +125,20 @@
             		#if($product.details.size()>0)
                 	<ul>
                     	<li>使用日期：
-                   	    	<select name="ticketId" id="ticketId" onchange="changePrice()">
+                   	    	<select name="productDetailId" id="productDetailId" onchange="changePrice()">
 								#foreach($ticket in $product.details)
-                                  #foreach($ticketDay in $tour.useDates)
+                                  #foreach($ticketDay in $ticket.startDates)
                                     <option value=$ticket.id>$ticketDay</option>
                                   #end
 								#end
                   	        </select>
                   	     </li>
-                         <li>价格<span id='price'>$product.details.get(0).price</span>元</li>
-                         <li>数量&nbsp;<input type="text" name="ticketCount" id="ticketCount"></li>
+                  	     <input type="hidden" id="useDate" name="useDate" value="$!product.details.get(0).startDates.get(0)" />
+                         <li>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：<span id='price'>$product.details.get(0).price</span>元</li>
+                         <li>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：&nbsp;<input type="text" name="ticketCount" id="ticketCount"></li>
                     </ul>
                 	<button type="submit">&nbsp;&nbsp;&nbsp;</button>
-					<input type="hidden" id="productId" name="productId" value="$product.id" />
+					<input type="hidden" id="productId" name="productId" value="$product.productId" />
 					#end
                 </form>
                 <p class="F3">拨打电话预定 400 666 5599</p>
@@ -153,16 +154,19 @@
 	var ticketInfos = [
 	  #foreach($detail in $product.detail) 
 	  	{id: "$!detail.id",
-	  	 rice: "$!detail.price"
+	  	 price: "$!detail.price"
 	  	},	
   	  #end
 	]
 function changePrice(){
-    var ticketId = document.getElementById('ticketId').value;
-	var price = document.getElementById('singlePrice');
+    var temp = document.getElementById('productDetailId');
+    var ticketId = temp.value;
+	var price = document.getElementById('price');
+    var useDay = temp.options[temp.selectedIndex].text;
+	document.getElementById('useDate').value = useDay;
     for (var i = 0; i < ticketInfos.length; i++) {
       if (ticketId == ticketInfos[i].id) {
-          price.innerHTML = ticketInfos[i].singlePrice;
+          price.innerHTML = ticketInfos[i].price;
       }
     }
 }

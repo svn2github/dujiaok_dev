@@ -1,25 +1,22 @@
 package com.ssnn.dujiaok.web.action.order;
 
-import com.ssnn.dujiaok.biz.service.product.ProductService;
+import com.ssnn.dujiaok.biz.service.OrderService;
+import com.ssnn.dujiaok.model.OrderDO;
 import com.ssnn.dujiaok.model.product.Product;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 public class PayDetailAction extends BasicAction {
 	private String orderId;
-	private String productId;
-	private String amount;
-	
-	private ProductService productService;
+	private OrderService orderService;
 	
 	@Override
 	public String execute() {
-		Product product = this.productService.getProductById(new Integer(productId));
-        if(product != null){
-            this.getHttpSession().setAttribute("post", product.getPost());
+		OrderDO orderDO = this.orderService.getOrderAndDetailContact(this.orderId);
+        if(orderDO == null){
+            return ERROR;
         }
-        this.getHttpSession().setAttribute("amount", amount);
         this.getHttpSession().setAttribute("orderId", orderId);
-        this.getHttpSession().setAttribute("product", product);
+        this.getHttpSession().setAttribute("order", orderDO);
         return SUCCESS;
 	}
 
@@ -31,27 +28,7 @@ public class PayDetailAction extends BasicAction {
 		this.orderId = orderId;
 	}
 
-	public String getProductId() {
-		return productId;
-	}
-
-	public void setProductId(String productId) {
-		this.productId = productId;
-	}
-
-	public String getAmount() {
-		return amount;
-	}
-
-	public void setAmount(String amount) {
-		this.amount = amount;
-	}
-
-	public ProductService getProductService() {
-		return productService;
-	}
-
-	public void setProductService(ProductService productService) {
-		this.productService = productService;
+	public void setOrderService(OrderService orderService) {
+		this.orderService = orderService;
 	}
 }

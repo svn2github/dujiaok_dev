@@ -1,6 +1,8 @@
 package com.ssnn.dujiaok.util;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -58,6 +60,29 @@ public class ProductUtils {
 	
 	public static BigDecimal getChpestPrice(ProductDetailDO detail){
 		return null ;
+	}
+	public static void filteInvalideProductDetail(List<ProductDetailDO> detailDOs) {
+		if (detailDOs == null) {
+			return;
+		}
+		Date nowDate = new Date();
+		for (int i = detailDOs.size() - 1; i >= 0; i--) {
+			ProductDetailDO detailDO = detailDOs.get(i);
+			if (nowDate.after(detailDO.getGmtEnd())) {
+				detailDOs.remove(i);
+			}
+		}
+	}
+	
+	public static List<String> formatDate(List<Date> dates, String format) {
+		DateFormat dateFormat = new SimpleDateFormat(format);
+		List<String> result = new ArrayList<String>();
+		if (dates != null) {
+			for (Date temp : dates) {
+				result.add(dateFormat.format(temp));
+			}
+		}
+		return result;
 	}
 }
 

@@ -98,22 +98,25 @@
             </div>
             <div class="order">
             	#if ($product.details.size() > 0)
-            	<form id="orderForm" method="post" action="${env.root}/order/makeorder.htm">
+            	<form id="orderForm" method="post" action="${env.root}/order/makeselfdriveorder.htm">
                 	<ul>
                     	<li>游玩日期：
-                   	    	<select name="selfDriveId" id="selfDriveId" onchange="changePrice()">
+                   	    	<select name="productDetailId" id="productDetailId" onchange="changePrice()">
+                   	    		#set i = 1
 								#foreach($detail in $product.details)
                                   #foreach($departDay in $detail.startDates)
-                                    <option value=$detail.id>$departDay</option>
+                                    <option value=$detail.id selected=$i==1>$departDay</option>
+                                    $i = $i + 1
                                   #end
 								#end
                   	        </select>
                   	     </li>
+                  	     <input type="hidden" id="departDate" name="departDate" value="$!product.details.get(0).startDates.get(0)" />
                          <li>单人<span id='singlePrice'>$!product.details.get(0).price</span>元&nbsp;&nbsp;双人<span id='doublePrice'>$!product.details.get(0).doublePrice</span>元&nbsp;&nbsp;#if($product.details.get(0).childPrice!=0)儿童<span id='childPrice'>$!product.details.get(0).childPrice</span> 元#end </li>
-                         <li>成人数&nbsp;<input type="text" name="countPerson" id="countPerson">&nbsp;&nbsp;&nbsp;&nbsp;#if($product.details.childPrice!=0)儿童数&nbsp;<input type="text" name="countChild" id="countChild">&nbsp;&nbsp;&nbsp;&nbsp;#else <input type="hidden" id="countChild" value="0"> #end </li>
+                         <li>成人数&nbsp;<input type="text" name="adultNum" id="adultNum">&nbsp;&nbsp;&nbsp;&nbsp;#if($product.details.childPrice!=0)儿童数&nbsp;<input type="text" name="childNum" id="childNum">&nbsp;&nbsp;&nbsp;&nbsp;#else <input type="hidden" id="countChild" value="0"> #end </li>
                     </ul>
                 	<button type="submit">&nbsp;&nbsp;&nbsp;</button>
-					<input type="hidden" id="productId" name="productId" value="$product.id" />
+				<input type="hidden" id="productId" name="productId" value="$product.productId" />
                 </form>
                 #end
                 <p class="F3">拨打电话预定 400 666 5599</p>
@@ -134,10 +137,13 @@
   	  #end
 	]
 function changePrice(){
-    var selfDriveId = document.getElementById('selfDriveId').value;
+    var selfDriveId = document.getElementById('productDetailId').value;
+    var dayOptions = document.getElementById('productDetailId');
+    var departDay = dayOptions.options[dayOptions.selectedIndex].text;
 	var singlePrice = document.getElementById('singlePrice');
     var doublePrice = document.getElementById('doublePrice');
     var childPrice = document.getElementById('childPrice');
+    document.getElementById('departDate').value = departDay;
     for (var i = 0; i < selfDriveInfos.length; i++) {
       if (selfDriveId == selfDriveInfos[i].id) {
           singlePrice.innerHTML = selfDriveInfos[i].singlePrice;
