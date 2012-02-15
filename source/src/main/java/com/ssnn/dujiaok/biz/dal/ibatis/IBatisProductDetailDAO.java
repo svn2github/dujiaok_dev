@@ -1,5 +1,6 @@
 package com.ssnn.dujiaok.biz.dal.ibatis;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,8 +27,12 @@ public class IBatisProductDetailDAO extends SqlMapClientDaoSupport implements Pr
 		return (ProductDetailDO) getSqlMapClientTemplate().queryForObject("product.queryProductDetail", param);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<ProductDetailDO> queryValidDetails(String productId) {
+	public List<ProductDetailDO> queryValidDetails(String productId , Date gmtEnd) {
+		Map<String,Object> condition = new HashMap<String,Object>() ;
+		condition.put("productId", productId) ;
+		condition.put("gmtEnd", gmtEnd) ;
 		return getSqlMapClientTemplate().queryForList("product.queryValidDetails" , productId);
 	}
 
