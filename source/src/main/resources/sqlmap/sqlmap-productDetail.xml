@@ -36,8 +36,10 @@
 	</select>
 	
 	<select id="queryValidDetails" resultMap="RM-ProductDetail">
+		<![CDATA[
 		select * from DJ_PRODUCT_DETAIL
-		  where PRODUCT_ID = #productId# AND GMT_END>CURDATE()
+		  	where PRODUCT_ID = #productId# AND GMT_END > CURDATE() AND GMT_END < #gmtEnd#
+		  ]]> 
 	</select>
 	
 	<delete id="deleteProductDetails">

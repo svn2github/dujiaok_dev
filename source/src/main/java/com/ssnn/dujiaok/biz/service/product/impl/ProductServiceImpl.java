@@ -18,6 +18,7 @@ import com.ssnn.dujiaok.model.SelfDriveDO;
 import com.ssnn.dujiaok.model.TicketDO;
 import com.ssnn.dujiaok.model.product.Product;
 import com.ssnn.dujiaok.model.product.Product2;
+import com.ssnn.dujiaok.util.ProductUtils;
 
 public class ProductServiceImpl implements ProductService {
 	@Autowired
@@ -49,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
 		if (selfDriveDO == null) {
 			return null;
 		}
-		List<ProductDetailDO> details = this.productDetailDAO.queryValidDetails(product.getProductId());
+		List<ProductDetailDO> details = this.productDetailDAO.queryValidDetails(product.getProductId() , ProductUtils.getDetailValidEnd());
 		selfDriveDO.setDetails(details);
 		return selfDriveDO;
 	}
@@ -65,7 +66,7 @@ public class ProductServiceImpl implements ProductService {
 		if (hotelRoomDO == null) {
 			return null;
 		}
-		List<ProductDetailDO> details = this.productDetailDAO.queryValidDetails(product.getProductId());
+		List<ProductDetailDO> details = this.productDetailDAO.queryValidDetails(product.getProductId() ,  ProductUtils.getDetailValidEnd());
 		hotelRoomDO.setDetails(details);
 		return hotelRoomDO;
 	}
@@ -76,7 +77,7 @@ public class ProductServiceImpl implements ProductService {
 		if (ticketDO == null) {
 			return null;
 		}
-		List<ProductDetailDO> details = this.productDetailDAO.queryValidDetails(product.getProductId());
+		List<ProductDetailDO> details = this.productDetailDAO.queryValidDetails(product.getProductId() ,  ProductUtils.getDetailValidEnd());
 		ticketDO.setDetails(details);
 		return ticketDO;
 	}

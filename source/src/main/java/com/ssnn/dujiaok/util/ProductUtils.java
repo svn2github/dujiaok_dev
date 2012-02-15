@@ -4,11 +4,13 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
+
 import com.ssnn.dujiaok.model.PriceCalendarDO;
-import com.ssnn.dujiaok.model.PriceCalendarDO.Item;
 import com.ssnn.dujiaok.model.ProductDetailDO;
 
 
@@ -28,18 +30,17 @@ public class ProductUtils {
 	 */
 	public static List<PriceCalendarDO> getPriceCalendar(List<ProductDetailDO> details){		
 		List<PriceCalendarDO> calendar = new ArrayList<PriceCalendarDO>() ;
+		DateFormat df = new SimpleDateFormat(PC_YM_FORMAT) ;
+		if(CollectionUtils.isNotEmpty(details)){
+			for(ProductDetailDO detail : details){
+				List<Date> dates = findDays(detail) ;
+				for(Date date : dates){
+					String key = df.format(date) ;
+					
+				}
+			}
+		}
 		
-		PriceCalendarDO pc = new PriceCalendarDO() ;
-		pc.setSevertime("2012-02") ;
-		
-		List<Item> list = new ArrayList<Item>() ;
-		list.add(new Item(11,("214"))) ;
-		list.add(new Item(10,("222"))) ;
-		list.add(new Item(9,("333"))) ;
-		list.add(new Item(1,("22"))) ;
-		pc.setData(list) ;
-		
-		calendar.add(pc) ;
 		return calendar ;
 	}
 	
@@ -59,8 +60,22 @@ public class ProductUtils {
 	}
 	
 	public static BigDecimal getChpestPrice(ProductDetailDO detail){
-		return null ;
+		if(detail.getDoublePrice() == null){
+			return detail.getPrice() ;
+		}
+		BigDecimal singlePrice = detail.getDoublePrice() ;
+		singlePrice = singlePrice.divide(new BigDecimal(2)) ;
+		return singlePrice.compareTo(detail.getPrice()) < 0 ? singlePrice : detail.getPrice() ;
 	}
+
+	
+	//detail 取3个月内
+	public static Date getDetailValidEnd(){
+		Calendar c = Calendar.getInstance() ;
+		c.add(Calendar.MONTH, 3) ;
+		return c.getTime() ;
+	}
+
 	public static void filteInvalideProductDetail(List<ProductDetailDO> detailDOs) {
 		if (detailDOs == null) {
 			return;
@@ -84,5 +99,6 @@ public class ProductUtils {
 		}
 		return result;
 	}
+
 }
 

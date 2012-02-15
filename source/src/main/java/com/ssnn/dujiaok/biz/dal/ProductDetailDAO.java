@@ -1,5 +1,6 @@
 package com.ssnn.dujiaok.biz.dal;
 
+import java.util.Date;
 import java.util.List;
 
 import com.ssnn.dujiaok.model.ProductDetailDO;
@@ -24,7 +25,7 @@ public interface ProductDetailDAO {
 	 * @param productId
 	 * @return
 	 */
-	List<ProductDetailDO> queryValidDetails(String productId);
+	List<ProductDetailDO> queryValidDetails(String productId ,  Date gmtEnd);
 	/**
 	 * 插入 Detail
 	 * @param roomDetail
