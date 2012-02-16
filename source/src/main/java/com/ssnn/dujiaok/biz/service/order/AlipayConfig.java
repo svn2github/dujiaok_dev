@@ -1,5 +1,9 @@
 package com.ssnn.dujiaok.biz.service.order;
 
+import com.ssnn.dujiaok.constant.Constant;
+import com.ssnn.dujiaok.util.EnvPropertiesUtil;
+import com.ssnn.dujiaok.web.velocity.toolbox.EnvPropertiesToolbox;
+
 /* *
  *类名：AlipayConfig
  *功能：基础配置类
@@ -35,11 +39,11 @@ public class AlipayConfig {
     
     // 支付宝服务器通知的页面 要用 http://格式的完整路径，不允许加?id=123这类自定义参数
     // 必须保证其地址能够在互联网中访问的到
-    public static String notify_url = "localhost:8080/dujiaok/order/alipayReturn.htm";
+    public static String notify_url ;
     
     // 当前页面跳转后的页面 要用 http://格式的完整路径，不允许加?id=123这类自定义参数
     // 域名不能写成http://localhost/create_direct_pay_by_user_jsp_utf8/return_url.jsp ，否则会导致return_url执行无效
-    public static String return_url = "localhost:8080/dujiaok/order/alipayReturn.htm";
+    public static String return_url ;
 
     //↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     
@@ -54,6 +58,16 @@ public class AlipayConfig {
     public static String sign_type = "MD5";
     
     //访问模式,根据自己的服务器是否支持ssl访问，若支持请选择https；若不支持请选择http
-    public static String transport = "http";
+    public static String transport = Constant.PROTOCOL;
+    
+    static {
+    	String urlPrefix = EnvPropertiesToolbox.makeUrl(Constant.PROTOCOL, 
+    			EnvPropertiesUtil.getProperty("dujiaok.domainName"), 
+    			EnvPropertiesUtil.getProperty("dujiaok.port")) ;
+    	
+    	notify_url = urlPrefix + "order/alipayReturn.htm" ;
+    	
+    	return_url	= urlPrefix + "order/alipayReturn.htm" ;
+    }
 
 }

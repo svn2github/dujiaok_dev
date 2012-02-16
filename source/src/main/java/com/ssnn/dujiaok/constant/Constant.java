@@ -2,6 +2,8 @@ package com.ssnn.dujiaok.constant;
 
 public class Constant {
 
+	public static final String PROTOCOL = "http" ;
+	
 	/**
      * 支付宝交易未付款
      */
