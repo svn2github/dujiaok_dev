@@ -15,6 +15,7 @@
 	<import resource="classpath:bean/biz-common.xml" />
 	<import resource="classpath:bean/biz-dao.xml" />
 	<import resource="classpath:bean/biz-service.xml" />
+	<import resource="classpath:bean/biz-cache.xml" />
 	<import resource="classpath:bean/biz-datasource.xml" />
 	<import resource="classpath:bean/service.xml" />
 
