@@ -18,15 +18,18 @@ import com.ssnn.dujiaok.util.enums.ProductEnums;
 public class UniqueIDUtil {
 
 	private static final String format = "yyMMddHHmmssS" ;
-	
-	private static long tickcount = 0 ;
-	
+		
 	public static String buildUniqueId(ProductEnums product){
 		String time = getTimestamp() ;
 		String random = String.valueOf(new Random().nextInt(10)) ;
 		return product.getName() + time + random ; 
 	}
 	
+	/**
+	 * OrderId time(36进制) + member.id 
+	 * @param member
+	 * @return
+	 */
 	public static String buildOrderId(MemberDO member){
 		DateFormat df = new SimpleDateFormat(format) ;
 		String dd = df.format(new Date()) ;
@@ -41,13 +44,4 @@ public class UniqueIDUtil {
 		return new SimpleDateFormat(format).format(d) ;
 	}
 	
-	private static String conventE2N(String memberId){
-		int hash = memberId.hashCode() ;
-		return String.valueOf(Math.abs(hash)) ;
-	}
-	
-	public static void main(String[] args) {
-		
-		
-	}
 }
