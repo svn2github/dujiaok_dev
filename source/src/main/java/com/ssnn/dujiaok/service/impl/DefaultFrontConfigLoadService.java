@@ -1,9 +1,10 @@
 package com.ssnn.dujiaok.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import com.ssnn.dujiaok.biz.service.FrontConfigService;
 import com.ssnn.dujiaok.model.FrontConfigDO;
-import com.ssnn.dujiaok.service.FrontContainer;
 import com.ssnn.dujiaok.service.FrontConfigLoadService;
 
 /**
@@ -11,7 +12,7 @@ import com.ssnn.dujiaok.service.FrontConfigLoadService;
  * 
  * @author ib 2012-2-12 下午04:36:31
  */
-public class JvmFrontConfigLoadService implements FrontConfigLoadService {
+public class DefaultFrontConfigLoadService extends AbstractCacheSupport implements FrontConfigLoadService {
 
     private String             channelKey;
     private boolean            neetToLoadConfig;
@@ -26,7 +27,7 @@ public class JvmFrontConfigLoadService implements FrontConfigLoadService {
         if (neetToLoadConfig) {
             loadChannelConfigs();
         }
-        return FrontContainer.getFrontConfig(channelKey);
+        return getValue(channelKey);
     }
 
     /**
@@ -40,8 +41,8 @@ public class JvmFrontConfigLoadService implements FrontConfigLoadService {
     }
 
     private void loadConfigs(String channelKey) {
-        List<FrontConfigDO> configs = frontConfigService.getFrontConfigs(channelKey);
-        FrontContainer.putFrontConfig(channelKey, configs);
+        List<FrontConfigDO> configs = (List<FrontConfigDO>) frontConfigService.getFrontConfigs(channelKey);
+        putValue(channelKey, configs);
     }
 
     public void setFrontConfigService(FrontConfigService frontConfigService) {
@@ -55,5 +56,5 @@ public class JvmFrontConfigLoadService implements FrontConfigLoadService {
     public void setNeetToLoadConfig(boolean neetToLoadConfig) {
         this.neetToLoadConfig = neetToLoadConfig;
     }
-    
+
 }

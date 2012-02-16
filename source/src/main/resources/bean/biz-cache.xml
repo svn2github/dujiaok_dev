@@ -12,12 +12,6 @@
 			default-autowire="byName">
 
 	
-
-	<bean id="cacheClient" class="com.ssnn.dujiaok.biz.common.cache.JVMCacheClient"></bean>
-	
-	<bean id="frontCache" class="com.ssnn.dujiaok.biz.service.cache.impl.FrontCacheImpl">
-		<property name="cacheClient" ref="cacheClient" />
-		<property name="regionName" value="front_cfg" />
-	</bean>
+	<bean id="cacheClient" class="com.ssnn.dujiaok.service.cache.impl.JvmCacheClient"/>
 	
 </beans>

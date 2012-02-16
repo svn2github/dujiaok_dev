@@ -7,7 +7,6 @@ import com.ssnn.dujiaok.biz.service.FrontViewService;
 import com.ssnn.dujiaok.model.FrontConfigDO;
 import com.ssnn.dujiaok.model.FrontViewDO;
 import com.ssnn.dujiaok.service.FrontConfigLoadService;
-import com.ssnn.dujiaok.service.FrontContainer;
 import com.ssnn.dujiaok.service.FrontViewManageService;
 
 /**
@@ -15,9 +14,8 @@ import com.ssnn.dujiaok.service.FrontViewManageService;
  * 
  * @author ib 2012-2-13 上午02:00:01
  */
-public class JvmFrontViewManageService implements FrontViewManageService {
+public class DefaultFrontViewManageService extends AbstractCacheSupport implements FrontViewManageService {
 
-    private String                 channelKey;
     private FrontConfigLoadService frontConfigLoadService;
     private FrontViewService       frontViewService;
 
@@ -27,10 +25,6 @@ public class JvmFrontViewManageService implements FrontViewManageService {
      */
     @Override
     public Map<String, List<FrontViewDO>> getFrontViewsMap() {
-        return getFrontViewsMap(channelKey);
-    }
-
-    private Map<String, List<FrontViewDO>> getFrontViewsMap(String channelKey) {
         List<FrontConfigDO> configs = frontConfigLoadService.getChannelConfigs();
         if (configs == null) {
             return null;
@@ -40,23 +34,20 @@ public class JvmFrontViewManageService implements FrontViewManageService {
         // 获取所有的moduleKey
         for (FrontConfigDO frontConfigDO : configs) {
             moduleKey = frontConfigDO.getModuleKey();
-            List<FrontViewDO> frontViews = FrontContainer.getFrontViews(moduleKey);
+            List<FrontViewDO> frontViews =getValue(moduleKey);
 
             // 缓存中没有，重新获取
             if (frontViews == null) {
-                frontViews = frontViewService.getFrontViewDOs(moduleKey, frontConfigDO.getDispalyNum());
+                frontViews = (List<FrontViewDO>) frontViewService.getFrontViewDOs(moduleKey,
+                                                                                       frontConfigDO.getDispalyNum());
                 // 若获取到，放入缓存中
                 if (frontViews != null) {
-                    FrontContainer.putFrontViewList(moduleKey, frontViews);
+                    putValue(moduleKey, frontViews);
                 }
             }
             resultMap.put(moduleKey, frontViews);
         }
         return resultMap;
-    }
-
-    public void setChannelKey(String channelKey) {
-        this.channelKey = channelKey;
     }
 
     public void setFrontConfigLoadService(FrontConfigLoadService frontConfigLoadService) {
@@ -66,5 +57,4 @@ public class JvmFrontViewManageService implements FrontViewManageService {
     public void setFrontViewService(FrontViewService frontViewService) {
         this.frontViewService = frontViewService;
     }
-
 }
