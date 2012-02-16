@@ -23,8 +23,9 @@ public class ProductUtils {
 	
 	private static final String PC_YMD_FORMAT = "yyyy-MM-dd" ; //价格日历格式
 	private static final String PC_YM_FORMAT = "yyyy-MM" ; //价格日历格式
+	
 	/**
-	 * 
+	 * 获取价格日历
 	 * @param details
 	 * @return
 	 */
