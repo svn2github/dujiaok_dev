@@ -43,7 +43,7 @@ public class IBatisSelfDriveDAOTest extends AbstractBaseJUnit4Test {
 		selfDrive.setName("自驾001") ;
 		selfDrive.setPayTypes("paytypes") ;
 		selfDrive.setSchedule("schedule") ;
-		selfDrive.setProductId(UniqueIDUtil.getUniqueID(ProductEnums.SELFDRIVE)) ;
+		selfDrive.setProductId(UniqueIDUtil.buildUniqueId(ProductEnums.SELFDRIVE)) ;
 		selfDriveDAO.insertSelfDrive(selfDrive) ;
 	}
 	

@@ -33,7 +33,7 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public HotelDO createHotel(HotelDO hotel) {
-		hotel.setProductId(UniqueIDUtil.getUniqueID(ProductEnums.HOTEL));
+		hotel.setProductId(UniqueIDUtil.buildUniqueId(ProductEnums.HOTEL));
 		hotelDAO.insertHotel(hotel);
 		return hotel;
 	}

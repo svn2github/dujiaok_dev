@@ -39,9 +39,11 @@
                 <li #if($tab=="ticket") class="cur" #end>
                     <a href="${env.root}/admin/ticketlist.htm">门票</a>
                 </li>
+				<!--
 				<li #if($tab=="order") class="cur" #end>
                     <a href="${env.root}/admin/orderlist.htm">订单</a>
                 </li>
+				-->
             </ul>
         </td>
     </tr>

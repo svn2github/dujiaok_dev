@@ -77,7 +77,6 @@ public class OrderDetailAction extends BasicAction {
 		
 		List<OrderContactDO> contacts = null;
 		orderDO.setContacts(contacts);
-		orderDO.setOrderId(UniqueIDUtil.getOrderID(orderDO.getMemberId()));
 		//set order default value
 		OrderUtils.setOrderDefaultValue(orderDO);
 		if (!OrderUtils.checkOrderKeyInfo(orderDO)) {

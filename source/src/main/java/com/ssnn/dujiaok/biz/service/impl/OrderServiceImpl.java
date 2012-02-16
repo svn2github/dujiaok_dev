@@ -6,10 +6,12 @@ import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
 
+import com.ssnn.dujiaok.biz.dal.MemberDAO;
 import com.ssnn.dujiaok.biz.dal.OrderDAO;
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.service.OrderService;
+import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.model.OrderContactDO;
 import com.ssnn.dujiaok.model.OrderDO;
 import com.ssnn.dujiaok.model.OrderDetailDO;
@@ -19,8 +21,14 @@ public class OrderServiceImpl implements OrderService {
 
 	private OrderDAO orderDAO ;
 	
+	private MemberDAO memberDAO  ;
+	
 	public void setOrderDAO(OrderDAO orderDAO) {
 		this.orderDAO = orderDAO;
+	}
+	
+	public void setMemberDAO(MemberDAO memberDAO) {
+		this.memberDAO = memberDAO;
 	}
 
 	@Override
@@ -28,7 +36,11 @@ public class OrderServiceImpl implements OrderService {
 //		if(order.getDetail() == null){
 //			throw new IllegalArgumentException("detail cant be null") ;
 //		}
-		String orderId = UniqueIDUtil.getOrderID(order.getMemberId()) ;
+		MemberDO member = memberDAO.queryMember(order.getMemberId()) ;
+		if(member == null){
+			return null ;
+		}
+		String orderId = UniqueIDUtil.buildOrderId(member) ;
 		order.setOrderId(orderId) ;
 		orderDAO.insertOrder(order) ;
 //		OrderDetailDO detail = order.getDetail() ; 

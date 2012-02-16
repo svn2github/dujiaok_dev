@@ -49,7 +49,7 @@ public class HotelRoomServiceImpl implements HotelRoomService {
 		if (details != null) {
 			Date gmtExpire = getExpireDate(details);
 			room.setGmtExpire(gmtExpire);
-			room.setProductId(UniqueIDUtil.getUniqueID(ProductEnums.HOTEL_ROOM));
+			room.setProductId(UniqueIDUtil.buildUniqueId(ProductEnums.HOTEL_ROOM));
 			hotelRoomDAO.insertRoom(room);
 			for (ProductDetailDO detail : details) {
 				detail.setProductId(room.getProductId());

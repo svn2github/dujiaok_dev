@@ -41,5 +41,5 @@
 	<include file="struts-member.xml"></include>
 	<include file="struts-admin.xml"></include>
 	<include file="struts-ajax.xml"></include>
-	<!-- <include file="struts-product.xml"></include> -->
+	<include file="struts-product.xml"></include> 
 </struts>

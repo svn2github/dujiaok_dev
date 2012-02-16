@@ -27,7 +27,7 @@ public class IBatisHotelRoomDAOTest extends AbstractBaseJUnit4Test {
 	public void test_insert(){
 		HotelRoomDO room = new HotelRoomDO() ;
 		room.setBed("1.5大床");
-		room.setHotelId(UniqueIDUtil.getUniqueID(ProductEnums.HOTEL)) ;
+		room.setHotelId(UniqueIDUtil.buildUniqueId(ProductEnums.HOTEL)) ;
 		room.setMarketPrice(new BigDecimal("22.2")) ;
 		room.setName("大床房");
 		room.setPayTypes("支付宝");
@@ -36,7 +36,7 @@ public class IBatisHotelRoomDAOTest extends AbstractBaseJUnit4Test {
 		room.setIntroduction("intro") ;
 		room.setMemo("memo") ;
 		room.setRoomFacilities("配套");
-		room.setProductId(UniqueIDUtil.getUniqueID(ProductEnums.HOTEL_ROOM)) ;
+		room.setProductId(UniqueIDUtil.buildUniqueId(ProductEnums.HOTEL_ROOM)) ;
 		hotelRoomDAO.insertRoom(room) ;
 	}
 	

@@ -55,7 +55,7 @@ public class SelfDriveServiceImpl implements SelfDriveService{
 		if(details!=null){
 			Date gmtExpire = getExpireDate(details) ;
 			selfDrive.setGmtExpire(gmtExpire) ;
-			selfDrive.setProductId(UniqueIDUtil.getUniqueID(ProductEnums.SELFDRIVE)) ;
+			selfDrive.setProductId(UniqueIDUtil.buildUniqueId(ProductEnums.SELFDRIVE)) ;
 			selfDriveDAO.insertSelfDrive(selfDrive) ;
 			for(ProductDetailDO detail : details){
 				detail.setProductId(selfDrive.getProductId()) ;

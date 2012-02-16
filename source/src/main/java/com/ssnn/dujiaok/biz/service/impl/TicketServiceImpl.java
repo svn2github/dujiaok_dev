@@ -49,7 +49,7 @@ public class TicketServiceImpl implements TicketService{
 		if(details!=null){
 			Date gmtExpire = getTicketExpireDate(details) ;
 			ticket.setGmtExpire(gmtExpire) ;
-			ticket.setProductId(UniqueIDUtil.getUniqueID(ProductEnums.TICKET)) ;
+			ticket.setProductId(UniqueIDUtil.buildUniqueId(ProductEnums.TICKET)) ;
 			ticketDAO.insertTicket(ticket) ;
 			for(ProductDetailDO detail : details){
 				detail.setProductId(ticket.getProductId()) ;

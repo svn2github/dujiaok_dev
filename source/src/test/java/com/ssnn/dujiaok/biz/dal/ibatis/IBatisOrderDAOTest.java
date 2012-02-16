@@ -34,11 +34,12 @@ public class IBatisOrderDAOTest extends AbstractBaseJUnit4Test{
 		order.setMemberId("testfree") ;
 		order.setMemo("memo") ;
 		order.setName("越南-缅甸10日游-订单") ;
-		order.setOrderId(UniqueIDUtil.getOrderID("testfree")) ;
+		
+		order.setOrderId("sfff33") ;
 		order.setPayStatus(PayStatusEnums.PAID.getName()) ;
 		order.setPayType(PayTypeEnums.CASH.getName()) ;
 		order.setPrice(new BigDecimal("21.44")) ;
-		order.setProductId(UniqueIDUtil.getUniqueID(ProductEnums.HOTEL)) ;
+		order.setProductId(UniqueIDUtil.buildUniqueId(ProductEnums.HOTEL)) ;
 		order.setProductType(ProductEnums.HOTEL.getName()) ;
 		order.setSecondaryCount(100) ;
 		order.setStatus(OrderStatusEnums.CLOSED.getName()) ;
