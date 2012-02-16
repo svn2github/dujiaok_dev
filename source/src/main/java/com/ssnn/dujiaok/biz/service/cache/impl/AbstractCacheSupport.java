@@ -65,8 +65,13 @@ public class AbstractCacheSupport implements InitializingBean{
 	 */
 	static class InternalStoreItem<T> implements Serializable{
 		private static final long serialVersionUID = 1L;
-		private Date modifyTime ; //�����޸�ʱ��
-		private T item ; //�������item
+		private Date modifyTime ; //
+		private T item ; //
+		
+		public InternalStoreItem(){
+			this.modifyTime = new Date() ;
+		}
+		
 		public Date getModifyTime() {
 			return modifyTime;
 		}
