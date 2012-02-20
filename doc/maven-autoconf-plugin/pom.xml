@@ -1,0 +1,155 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	 
+	<parent>
+		<groupId>com.alibaba.maven.plugins</groupId>
+		<artifactId>plugin.parent</artifactId>
+		<version>2</version>
+	</parent>
+	
+	<groupId>com.alibaba.maven.plugins</groupId>
+	<artifactId>maven-autoconf-plugin</artifactId>
+	<packaging>maven-plugin</packaging>
+	<version>0.4</version>
+	<name>maven-autoconf-plugin Maven Mojo</name>
+	<url>http://repo.alibaba-inc.com</url>
+
+	<properties>
+		<encoding>UTF-8</encoding>
+		<maven.scm.version>1.1</maven.scm.version>
+		<maven_api_version>2.0.10</maven_api_version>
+	</properties>
+
+	<scm>
+		<connection>scm:svn:http://svn.alibaba-inc.com/repos/ali_platform/maven/plugins/maven-autoconf-plugin/trunk</connection>
+		<developerConnection>scm:svn:http://svn.alibaba-inc.com/repos/ali_platform/maven/plugins/maven-autoconf-plugin/trunk</developerConnection>
+		<url>http://svn.alibaba-inc.com/repos/ali_platform/maven/plugins/maven-autoconf-plugin/trunk</url>
+	</scm>
+
+	<distributionManagement>
+		<site>
+			<id>b2b.repo.server</id>
+			<name>Maven Build Site</name>
+			<url>dav:http://repo.alibaba-inc.com/mvn/internal/snapshots/sites/maven-autoconf-plugin</url>
+		</site>
+	</distributionManagement>
+
+	<dependencies>
+		<!--
+		<dependency>
+            <groupId>org.codehaus.groovy.maven</groupId>
+            <artifactId>gmaven-mojo</artifactId>
+            <version>1.0-rc-5</version>
+        </dependency>
+        -->
+        
+        <dependency>
+            <groupId>com.alibaba.maven.plugins</groupId>
+            <artifactId>autoconf-lib</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+
+		<!-- autoconf lib -->
+		<dependency>
+			<groupId>com.alibaba.platform.shared</groupId>
+			<artifactId>autoconfig.config</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<!--
+			<dependency> <groupId>org.apache.maven</groupId>
+			<artifactId>maven-artifact</artifactId> <version>2.0.6</version>
+			</dependency> <dependency> <groupId>org.apache.maven</groupId>
+			<artifactId>maven-settings</artifactId>
+			<version>${maven.api.version}</version> </dependency> <dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-archiver</artifactId> <version>2.2</version>
+			</dependency> <dependency> <groupId>org.codehaus.plexus</groupId>
+			<artifactId>plexus-utils</artifactId> <version>1.5.6</version>
+			</dependency> <dependency> <groupId>junit</groupId>
+			<artifactId>junit</artifactId> <version>3.8.1</version>
+			<scope>test</scope> </dependency> <dependency>
+			<groupId>org.apache.maven.shared</groupId>
+			<artifactId>maven-plugin-testing-harness</artifactId>
+			<version>1.1</version> <scope>test</scope> </dependency>
+		-->
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-digester</groupId>
+			<artifactId>commons-digester</artifactId>
+			<version>1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.8.0</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.3</version>
+		</dependency>
+		<dependency>
+			<groupId>oro</groupId>
+			<artifactId>oro</artifactId>
+			<version>2.0.8</version>
+		</dependency>
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jcraft</groupId>
+			<artifactId>jsch</artifactId>
+			<version>0.1.38</version>
+		</dependency>
+	</dependencies>
+
+	<developers>
+		<developer>
+			<name>Shawn, Qian</name>
+			<id>shawn.qianx</id>
+			<email>shawn.qianx@alibaba-inc.com</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>+8</timezone>
+		</developer>
+		<developer>
+			<name>YunDong</name>
+			<id>yundong</id>
+			<email>yundong@taobao.com</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>+8</timezone>
+		</developer>
+	</developers>
+</project>
