@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	 
+	
 	<parent>
 		<groupId>com.alibaba.maven.plugins</groupId>
 		<artifactId>plugin.parent</artifactId>
@@ -21,12 +21,14 @@
 		<maven_api_version>2.0.10</maven_api_version>
 	</properties>
 
+
+	<!--
 	<scm>
 		<connection>scm:svn:http://svn.alibaba-inc.com/repos/ali_platform/maven/plugins/maven-autoconf-plugin/trunk</connection>
 		<developerConnection>scm:svn:http://svn.alibaba-inc.com/repos/ali_platform/maven/plugins/maven-autoconf-plugin/trunk</developerConnection>
 		<url>http://svn.alibaba-inc.com/repos/ali_platform/maven/plugins/maven-autoconf-plugin/trunk</url>
 	</scm>
-
+-->
 	<distributionManagement>
 		<site>
 			<id>b2b.repo.server</id>
