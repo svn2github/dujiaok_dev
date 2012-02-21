@@ -15,14 +15,13 @@
  */
 package com.alibaba.maven.plugins.autoconf;
 
-import com.alibaba.antx.config.ConfigConstant;
-import com.alibaba.antx.config.ConfigRuntimeImpl;
-import com.alibaba.antx.util.PatternSet;
+import java.io.File;
+
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
-import org.codehaus.plexus.util.StringUtils;
 
-import java.io.File;
+import com.alibaba.antx.config.ConfigRuntimeImpl;
+import com.alibaba.antx.util.PatternSet;
 
 /**
  * Autoconf Mojo, eg: mvn autoconf:autoconf
@@ -99,20 +98,6 @@ public class AutoconfMojo extends AbstractAutoconfMojo {
      */
     private boolean verbose;
 
-    /**
-     * @parameter expression="${minasUri}"
-     */
-    private String minasUri;
-
-    /**
-     * @parameter expression="${minas.username}"
-     */
-    private String minasUsername;
-
-    /**
-     * @parameter expression="${minas.version}"
-     */
-    private String minasVersion;
 
     /**
      * @parameter default-value="${basedir}"
@@ -130,24 +115,6 @@ public class AutoconfMojo extends AbstractAutoconfMojo {
             getLog().info("Customized user properties:" + properties + " using encoding:" + encoding);
             runtime.setUserPropertiesFile(properties, encoding);
         }
-
-        if ( StringUtils.isEmpty( minasUri ) ) {
-            minasUri = getMinasUriFromAntxProperties( runtime, basedir );
-        }
-
-        if ( StringUtils.isNotEmpty( minasUri ) ) {
-
-            runtime.setMinasProperties( minasUri );
-
-            if ( StringUtils.isNotEmpty( minasVersion ) ) {
-                runtime.getPropertiesSet().getMinasProperties().setRevision( minasVersion );
-            }
-
-            if ( StringUtils.isNotEmpty( minasUsername ) ) {
-                runtime.getPropertiesSet().getMinasProperties().setMinasUsername( minasUsername );
-            }
-        }
-
 
         if(path != null && path.trim().length() > 0){
             runtime.setDests(path.split(","));

@@ -146,19 +146,6 @@ public class ConfigMojo extends AbstractAutoconfMojo {
             minasUri = getMinasUriFromAntxProperties( runtimeImpl, basedir );
         }
 
-        if ( StringUtils.isNotEmpty( minasUri ) ) {
-            runtimeImpl.setMinasProperties( minasUri );
-
-            if ( StringUtils.isNotEmpty( minasUsername ) ) {
-                runtimeImpl.getPropertiesSet().getMinasProperties().setMinasUsername( minasUsername );
-            }
-
-            if ( StringUtils.isNotEmpty( minasVersion ) ) {
-                runtimeImpl.getPropertiesSet().getMinasProperties().setRevision( minasVersion );
-            }
-        }
-
-
         // convert to string[], again.
         String[] targetFileNames = new String[targetFiles.length];
         for (int i = 0; i < targetFiles.length; i++) {
