@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!-- Constant -->
+	<constant name="struts.action.extension" value="htm" />
+	
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.velocity.toolboxlocation" value="WEB-INF/velocity-toolbox.xml" />
+	<constant name="struts.velocity.configfile" value="WEB-INF/velocity.properties" />
+	<constant name="struts.objectFactory" value="spring"></constant>
+
+	<include file="struts-default.xml" />
+
+	<package name="default" extends="struts-default">
+		
+		<result-types>
+			<result-type name="velocity" class="com.ssnn.dujiaok.web.velocity.layout.VelocityLayoutResult" />
+		</result-types>
+		
+		<interceptors>
+			<interceptor name="memberAuthInterceptor" class="com.ssnn.dujiaok.web.interceptor.MemberAuthInterceptor"></interceptor>
+			<interceptor name="adminAuthInterceptor" class="com.ssnn.dujiaok.web.interceptor.AdminAuthInterceptor"></interceptor>
+		</interceptors>
+		<global-results>
+			<result name="error">/common/error.htm</result>
+			<result name="memberLogin" type="redirect">/member/login.htm?Done=${Done}</result>
+			<result name="adminLogin" type="redirect">/admin/login.htm?Done=${Done}</result>
+			
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping result="exception" exception="java.lang.Exception" />
+		</global-exception-mappings>
+
+
+	</package>
+
+	<include file="struts-home.xml"></include>
+	<include file="struts-member.xml"></include>
+	<include file="struts-admin.xml"></include>
+	<include file="struts-ajax.xml"></include>
+	<include file="struts-product.xml"></include> 
+</struts>
