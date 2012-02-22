@@ -1,7 +1,11 @@
 package com.ssnn.dujiaok.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
 
 public class PriceCalendarDO {
 
@@ -69,6 +73,26 @@ public class PriceCalendarDO {
 				return false;
 			}
 			return this.getId() == ((Item) obj).getId();
+		}
+	}
+	
+	/**
+	 * 排序，检查重复
+	 */
+	public void complete(){
+		if(CollectionUtils.isEmpty(this.data)){
+			return ;
+		}
+		Collections.sort(this.data) ;
+		Item prev = null ;
+		for(Iterator<Item> i = this.data.iterator() ;i.hasNext() ;){
+			Item cur = i.next() ;
+			if(prev != null){
+				if(cur.equals(prev)){
+					i.remove() ;
+				}
+			}
+			prev = cur ;
 		}
 	}
 }

@@ -102,8 +102,14 @@
 	#end
 #end
 
-#macro(ESCAPE_HTML $txt)
+#macro(ESC_HTML $txt)
 	#if($txt)
 	$stringUtils.escapeHtml($txt)
+	#end
+#end
+
+#macro(ESC_JS $txt)
+	#if($txt)
+	$stringUtils.escapeJS($txt)
 	#end
 #end

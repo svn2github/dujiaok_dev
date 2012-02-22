@@ -10,6 +10,8 @@ import java.util.List;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
+import com.ssnn.dujiaok.util.StringListConventUtil;
+
 /**
  * 
  * @author shenjia.caosj 2012-1-17
@@ -131,10 +133,8 @@ public abstract class AbstractProduct {
 
 	public void setImages(String images) {
 		this.images = images;
-		if (this.images == null) {
-			this.pictureUrls = new ArrayList<String>();
-		}
-		this.pictureUrls = Arrays.asList(this.images.split(" *, *"));
+		
+		this.pictureUrls = StringListConventUtil.toList(this.images) ;
 	}
 	
 	public List<String> getPictureUrls() {

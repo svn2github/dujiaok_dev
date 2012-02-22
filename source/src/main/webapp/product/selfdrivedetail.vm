@@ -1,26 +1,19 @@
 #set($layout="/product/default.vm")
-<!--
-.Focus_list{ width:710px; height:250px; margin-left:10px; margin-top:10px; padding:20px; display:inline; float:left;}
-.Focus_list img{ border:1px solid #dcdcdc; padding:2px; float:left;} 
-.Focus_list ul{  float:left; padding-left:8px;}
-.Focus_list ul li{ height:24px; line-height:24px; background:url(../images/icon_01.png) left no-repeat; padding-left:12px;}
-
--->
 
     
 <!-- 内容开始 -->
 <div id="wrap">
     <div class="section urhere">
-    	<p class="F3">您当前的位置： 自驾游 -> $product.name</p>
+    	<p class="F3">您当前的位置： 自驾游  - $product.name</p>
         <!--span class="F3">分享到： 新浪微博 </span-->
     </div>
     
     <div id="detail" class="section">
     	<div class="d_left">
-        	<h2 class="d_title">$product.name</h2>
+        	<h2 class="d_title">$!product.name</h2>
                 <div id="Focus">
                     <ul id="Focus_content">
-                        #foreach($pictureUrl in $product.pictureUrls)
+                        #foreach($!pictureUrl in $!product.pictureUrls)
                           <li class="circularPanel">
                             <img src=$!pictureUrl width="710" height="250" />
                             <h2></h2>
@@ -28,15 +21,13 @@
                         #end
                     </ul>
                 <ul class="trigger">
-                    #foreach($pictureUrl in $product.pictureUrls)
+                    #foreach($!pictureUrl in $!product.pictureUrls)
                       <li class="circularTrigger"></li>
                     #end
                 </ul>
                 </div>
-				<script type="text/javascript">
-                var x = new xui.widgets.Slide();
-                </script>
-            <div><img src="http://ht.dujiaok.com/saas/trek/images/temp01.gif" width="710" height="457" /></div>
+				
+            
             <div style="padding-top:10px;">
             	<div id="frame_content" width="710">
             		<div id="pro_intro" class="FS12 F2">
@@ -49,37 +40,20 @@
 				            </ul>
         				</div>
 	        			<h2 id="introduction">产品介绍</h2>
-				        <p>$!product.introduction&nbsp;&nbsp;&nbsp;&nbsp;产品介绍</p>
+							<p>#ESCAPE_HTML($!product.introduction)</p>
 						<h2 id="jouney">行程</h2>
-						<p>$!product.schedule</p>
-				        <h3>第一天：上海-乌镇</h3>
 				        <div class="pro_intro_list1">
-				            
+				            <p>#ESCAPE_HTML($!product.schedule)</p>
 				        </div>
 				        <h2 id="feedesc">费用说明</h2>
 				        <div class="pro_intro_list2">
-					        <p>$!product.feeDesc</p>
-					        <h4>费用包含</h4>
-				            <ul>
-				                <li>1、自理景点：请游客不要自行参加行程外的自费项目，如由此引起的投诉和纠纷敬请自负</li>
-				                <li>2、自理景点：请游客不要自行参加行程外的自费项目，如由此引起的投诉和纠纷敬请自负</li>
-				                <li>3、自理景点：请游客不要自行参加行程外的自费项目，如由此引起的投诉和纠纷敬请自负二</li>
-				            </ul>
+					        <p>#ESCAPE_HTML($!product.feeDesc)</p>
 				        </div>
 				        <h2 id="remark">备注</h2>
 				        <div class="pro_intro_list3">
-				          <p>$!product.memo备注备注备注备注备注备注备注</p>
+				          <p>#ESCAPE_HTML($!product.memo)</p>
 				        </div>
 	    			</div>
-					<iframe id="iframeC" name="iframeC" src="" width="0" height="0" style="display:none;" ></iframe>
-					<script type="text/javascript"> 
-					function sethash(){
-					    hashH = document.documentElement.scrollHeight; 
-					    urlC = "http://www.dujiaok.com/diablo/trek/product/product/agent.htm"; 
-					    document.getElementById("iframeC").src=urlC+"#"+hashH; 
-					}
-					window.onload=sethash;
-					</script>
             	</div>
             </div>
         </div>
@@ -102,21 +76,19 @@
                 	<ul>
                     	<li>游玩日期：
                    	    	<select name="productDetailId" id="productDetailId" onchange="changePrice()">
-                   	    		#set i = 1
 								#foreach($detail in $product.details)
-                                  #foreach($departDay in $detail.startDates)
-                                    <option value=$detail.id selected=$i==1>$departDay</option>
-                                    $i = $i + 1
+                                  #foreach($day in $detail.startDates)
+                                    <option value="$detail.id">$day</option>
                                   #end
 								#end
                   	        </select>
                   	     </li>
                   	     <input type="hidden" id="departDate" name="departDate" value="$!product.details.get(0).startDates.get(0)" />
                          <li>单人<span id='singlePrice'>$!product.details.get(0).price</span>元&nbsp;&nbsp;双人<span id='doublePrice'>$!product.details.get(0).doublePrice</span>元&nbsp;&nbsp;#if($product.details.get(0).childPrice!=0)儿童<span id='childPrice'>$!product.details.get(0).childPrice</span> 元#end </li>
-                         <li>成人数&nbsp;<input type="text" name="adultNum" id="adultNum">&nbsp;&nbsp;&nbsp;&nbsp;#if($product.details.childPrice!=0)儿童数&nbsp;<input type="text" name="childNum" id="childNum">&nbsp;&nbsp;&nbsp;&nbsp;#else <input type="hidden" id="countChild" value="0"> #end </li>
+                         <li>成人数&nbsp;<input type="text" name="adultNum" id="adultNum">&nbsp;&nbsp;&nbsp;&nbsp;#if($!product.details.childPrice!=0)儿童数&nbsp;<input type="text" name="childNum" id="childNum">&nbsp;&nbsp;&nbsp;&nbsp;#else <input type="hidden" id="countChild" value="0"> #end </li>
                     </ul>
                 	<button type="submit">&nbsp;&nbsp;&nbsp;</button>
-				<input type="hidden" id="productId" name="productId" value="$product.productId" />
+					<input type="hidden" id="productId" name="productId" value="$!product.productId" />
                 </form>
                 #end
                 <p class="F3">拨打电话预定 400 666 5599</p>
@@ -126,7 +98,13 @@
 </div>    
 <!-- 内容结束 -->
 
+
+
+
 <script>
+
+    var x = new xui.widgets.Slide();
+                
 	var selfDriveInfos = [
 	  #foreach($tour in $product.details) 
 	  	{id: "$!tour.id",
@@ -136,22 +114,23 @@
 	  	},	
   	  #end
 	]
-function changePrice(){
-    var selfDriveId = document.getElementById('productDetailId').value;
-    var dayOptions = document.getElementById('productDetailId');
-    var departDay = dayOptions.options[dayOptions.selectedIndex].text;
-	var singlePrice = document.getElementById('singlePrice');
-    var doublePrice = document.getElementById('doublePrice');
-    var childPrice = document.getElementById('childPrice');
-    document.getElementById('departDate').value = departDay;
-    for (var i = 0; i < selfDriveInfos.length; i++) {
-      if (selfDriveId == selfDriveInfos[i].id) {
-          singlePrice.innerHTML = selfDriveInfos[i].singlePrice;
-          doublePrice.innerHTML = selfDriveInfos[i].doublePrice;
-          childPrice.innerHTML = selfDriveInfos[i].childPrice;
-      }
+	
+    function changePrice(){
+        var selfDriveId = document.getElementById('productDetailId').value;
+        var dayOptions = document.getElementById('productDetailId');
+        var departDay = dayOptions.options[dayOptions.selectedIndex].text;
+    	var singlePrice = document.getElementById('singlePrice');
+        var doublePrice = document.getElementById('doublePrice');
+        var childPrice = document.getElementById('childPrice');
+        document.getElementById('departDate').value = departDay;
+        for (var i = 0; i < selfDriveInfos.length; i++) {
+          if (selfDriveId == selfDriveInfos[i].id) {
+              singlePrice.innerHTML = selfDriveInfos[i].singlePrice;
+              doublePrice.innerHTML = selfDriveInfos[i].doublePrice;
+              childPrice.innerHTML = selfDriveInfos[i].childPrice;
+          }
+        }
     }
-}
 
 </script>
 

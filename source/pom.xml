@@ -21,6 +21,13 @@
 
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>releases</id>
+			<url>http://www.dujiaok.com:8081/nexus/content/repositories/releases</url>
+		</repository>
+	</repositories>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -304,6 +311,7 @@
 			<classifier>jdk15</classifier>
 		</dependency>
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -312,6 +320,21 @@
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<archive>
+						<addMavenDescriptor>true</addMavenDescriptor>
+						<index>true</index>
+						<manifestEntries>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>${project.artifactId}</artifactId>
+							<version>${project.version}</version>
+							<timestamp>${timestamp}</timestamp>
+						</manifestEntries>
+					</archive>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -325,6 +348,7 @@
 					<downloadSources>true</downloadSources>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
@@ -341,8 +365,8 @@
 				</configuration>
 			</plugin>
 		</plugins>
-
 	</build>
+
 	<profiles>
 		<profile>
 			<id>jdk-1.6</id>
@@ -355,6 +379,48 @@
 				<maven.compiler.target>1.6</maven.compiler.target>
 				<maven.compiler.compilerVersion>1.6</maven.compiler.compilerVersion>
 			</properties>
+		</profile>
+
+		<profile>
+			<id>dev</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>!release</value>
+				</property>
+			</activation>
+			<properties>
+				<release_directory>${project.build.directory}</release_directory>
+			</properties>
+
+			<build>
+				<plugins>
+
+
+					<plugin>
+						<groupId>com.ssnn.maven.plugins</groupId>
+						<artifactId>maven-autoconf-plugin</artifactId>
+						<version>0.4</version>
+						<executions>
+							<execution>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>config</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<destFiles>
+								<destFile>${release_directory}/dujiaok-${pom.version}.war</destFile>
+							</destFiles>
+							<includeDescriptorPatterns>
+								<includeDescriptorPattern>META-INF/autoconf/auto-config.xml</includeDescriptorPattern>
+							</includeDescriptorPatterns>
+						</configuration>
+					</plugin>
+				</plugins>
+
+			</build>
 		</profile>
 	</profiles>
 

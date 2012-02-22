@@ -1,12 +1,6 @@
 #set($layout="/product/default.vm")
 <style>
-<!--
-.Focus_list{ width:710px; height:250px; margin-left:10px; margin-top:10px; padding:20px; display:inline; float:left;}
-.Focus_list img{ border:1px solid #dcdcdc; padding:2px; float:left;} 
-.Focus_list ul{  float:left; padding-left:8px;}
-.Focus_list ul li{ height:24px; line-height:24px; background:url(../images/icon_01.png) left no-repeat; padding-left:12px;}
 
--->
 </style>
 #STATIC("CSS",["/blogcal/blogcalendar.css"])
 
@@ -14,16 +8,15 @@
 <!-- 内容开始 -->
 <div id="wrap">
     <div class="section urhere">
-    	<p class="F3">您当前的位置： 门票 -> $product.name</p>
-        <!--span class="F3">分享到： 新浪微博 </span-->
+    	<p class="F3">您当前的位置： 门票  -  $!product.name</p>
     </div>
     
     <div id="detail" class="section">
     	<div class="d_left">
-        	<h2 class="d_title">$product.name</h2>
+        	<h2 class="d_title">$!product.name</h2>
                 <div id="Focus">
                     <ul id="Focus_content">
-                        #foreach($pictureUrl in $product.pictureUrls)
+                        #foreach($pictureUrl in $!product.pictureUrls)
                           <li class="circularPanel">
                             <img src=$!pictureUrl width="710" height="250" />
                             <h2></h2>
@@ -31,14 +24,12 @@
                         #end
                     </ul>
                 <ul class="trigger">
-                    #foreach($pictureUrl in $product.pictureUrls)
+                    #foreach($pictureUrl in $!product.pictureUrls)
                       <li class="circularTrigger"></li>
                     #end
                 </ul>
                 </div>
-				<script type="text/javascript">
-                var x = new xui.widgets.Slide();
-                </script>
+				
             <!--价格日历-->
 			<div class="Calendar">
 				<div id="idCalendarPre">上一月</div>
@@ -58,13 +49,12 @@
 						</tr>
 					</thead>
 					<tbody id="idCalendar">
-            
 					</tbody>
 				</table>
 				
-				
+				<!--
                 <input id="idCalendarNow" type="button" value="当前月" />
-                
+                -->
 			</div>
 			<!-- end  价格日历-->
             <!--产品信息说明-->
@@ -80,40 +70,30 @@
 				            </ul>
         				</div>
 	        			<h2 id="introduction">产品介绍</h2>
-				        <p>$!product.introduction&nbsp;&nbsp;&nbsp;&nbsp;产品介绍产品介绍产品介绍产品介绍</p>
+							<p>$!product.introduction</p>
 						<h2 id="attention">注意事项</h2>
-						<p>$!product.introduction注意事项注意事项注意事项注意事项注意事项注意事项</p>
 				        <div class="pro_intro_list1">
-				            
+				            <p>$!product.notice</p>
 				        </div>
 				        <h2 id="feedesc">费用说明</h2>
 				        <div class="pro_intro_list2">
-				        <p>$!product.feedesc;&nbsp;&nbsp;&nbsp;费用说明费用说明费用说明费用说明</p>
+							<p>$!product.feedesc</p>
 				        </div>
 				        <h2 id="remark">备注</h2>
 				        <div class="pro_intro_list2">
-				        <p>$!product.memo;&nbsp;&nbsp;&nbsp;备注备注备注备注备注</p>
+							<p>$!product.memo</p>
 				        </div>
 	    			</div>
-					<iframe id="iframeC" name="iframeC" src="" width="0" height="0" style="display:none;" ></iframe>
-					<script type="text/javascript"> 
-					function sethash(){
-					    hashH = document.documentElement.scrollHeight; 
-					    urlC = "http://www.dujiaok.com/diablo/trek/product/product/agent.htm"; 
-					    document.getElementById("iframeC").src=urlC+"#"+hashH; 
-					}
-					window.onload=sethash;
-					</script>
             	</div>
             </div>
         </div>
         
         <div class="d_right">
         	<div class="information">
-				##set($tehui= $dateList.get(0).doublePrice/2)
+				
             	<h3><i>特惠价</i> ￥<b><span id='tehui'>$!product.cheapestPrice</span></b>元/人起</h3>
                 <table>
-                	<tr><th>市场价：</th><td>$!product.marketPrice元</td></tr>
+                	<tr><th>市场价：</th><td>￥$!product.marketPrice </td></tr>
                     <tr><th>商品编号：</th><td>$!product.productId</td></tr>
                     <tr><th>支付方式：</th><td>$!product.payTypes</td></tr>
                     <tr><th>产品类别：</th><td>$!product.productTypes</td></tr>
@@ -122,7 +102,7 @@
             </div>
             <div class="order">
             	<form id="orderForm" method="post" action="${env.root}/order/makeorder.htm">
-            		#if($product.details.size()>0)
+            		#if(!$collectionUtils.isEmpty($product.details))
                 	<ul>
                     	<li>使用日期：
                    	    	<select name="productDetailId" id="productDetailId" onchange="changePrice()">
@@ -133,7 +113,7 @@
 								#end
                   	        </select>
                   	     </li>
-                  	     <input type="hidden" id="useDate" name="useDate" value="$!product.details.get(0).startDates.get(0)" />
+                  	     ###<input type="hidden" id="useDate" name="useDate" value="$!product.details.get(0).startDates.get(0)" />
                          <li>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：<span id='price'>$product.details.get(0).price</span>元</li>
                          <li>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：&nbsp;<input type="text" name="ticketCount" id="ticketCount"></li>
                     </ul>
@@ -149,8 +129,11 @@
 <!-- 内容结束 -->
 
 #STATIC("JS",["/blogcal/blogcalendar.js"])
-#XUI_JS(["core/xui-core.js","util/util-min.js"])
+#XUI_JS(["core/xui-core.js","util/util-min.js","slide/slide.js"])
 <script>
+	
+	var x = new xui.widgets.Slide();
+
 	var ticketInfos = [
 	  #foreach($detail in $product.detail) 
 	  	{id: "$!detail.id",
@@ -158,18 +141,20 @@
 	  	},	
   	  #end
 	]
-function changePrice(){
-    var temp = document.getElementById('productDetailId');
-    var ticketId = temp.value;
-	var price = document.getElementById('price');
-    var useDay = temp.options[temp.selectedIndex].text;
-	document.getElementById('useDate').value = useDay;
-    for (var i = 0; i < ticketInfos.length; i++) {
-      if (ticketId == ticketInfos[i].id) {
-          price.innerHTML = ticketInfos[i].price;
-      }
+	
+	
+    function changePrice(){
+        var temp = document.getElementById('productDetailId');
+        var ticketId = temp.value;
+    	var price = document.getElementById('price');
+        var useDay = temp.options[temp.selectedIndex].text;
+    	document.getElementById('useDate').value = useDay;
+        for (var i = 0; i < ticketInfos.length; i++) {
+          if (ticketId == ticketInfos[i].id) {
+              price.innerHTML = ticketInfos[i].price;
+          }
+        }
     }
-}
 
 	
 
@@ -222,7 +207,7 @@ function changePrice(){
     $("idCalendarNext").onclick = function(){ cale.NextMonth(); }
     //$("idCalendarPreYear").onclick = function(){ cale.PreYear(); }
     //$("idCalendarNextYear").onclick = function(){ cale.NextYear(); }
-    $("idCalendarNow").onclick = function(){ cale.NowMonth(); }
+    //$("idCalendarNow").onclick = function(){ cale.NowMonth(); }
 
 
 </script>

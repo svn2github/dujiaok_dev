@@ -21,4 +21,8 @@ public class StringUtilsToolbox {
 	public String escapeHtml(String str){
 		return StringEscapeUtils.escapeHtml(str) ;
 	}
+	
+	public String escapeJS(String str){
+		return StringEscapeUtils.escapeJavaScript(str) ;
+	}
 }

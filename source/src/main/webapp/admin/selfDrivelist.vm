@@ -66,7 +66,7 @@
             <tr>
                 <td>$!selfDrive.productId</td>
                 <td>
-                    <a href="#">$!selfDrive.name</a> #if(!$stringUtils.isBlank($selfDrive.memo))<img height="14" width="14" title="#ESCAPE_HTML($selfDrive.memo)" src="${env.staticroot}/images/bz_icon.png">#end
+                    <a href="#">$!selfDrive.name</a> #if(!$stringUtils.isBlank($selfDrive.memo))<img height="14" width="14" title="#ESC_HTML($selfDrive.memo)" src="${env.staticroot}/images/bz_icon.png">#end
                 </td>
                 <td>$!selfDrive.destProvince $!selfDrive.destCity</td>
                 <td class="F9">#AUTOCHECK_TIME($!selfDrive.gmtExpire,'yyyy-MM-dd')</td>

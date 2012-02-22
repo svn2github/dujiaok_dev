@@ -6,7 +6,11 @@
 
 	<!-- Constant -->
 	<constant name="struts.action.extension" value="htm" />
-	<constant name="struts.devMode" value="true" />
+	#if(${dujiaok.production})
+		<constant name="struts.devMode" value="false" />
+	#else
+		<constant name="struts.devMode" value="true" />
+	#end
 	<constant name="struts.velocity.toolboxlocation" value="WEB-INF/velocity-toolbox.xml" />
 	<constant name="struts.velocity.configfile" value="WEB-INF/velocity.properties" />
 	<constant name="struts.objectFactory" value="spring"></constant>

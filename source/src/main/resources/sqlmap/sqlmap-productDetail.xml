@@ -38,7 +38,7 @@
 	<select id="queryValidDetails" resultMap="RM-ProductDetail">
 		<![CDATA[
 		select * from DJ_PRODUCT_DETAIL
-		  	where PRODUCT_ID = #productId# AND GMT_END > CURDATE() AND GMT_END < #gmtEnd#
+		  	where PRODUCT_ID = #productId# AND GMT_END > now() AND GMT_START < #gmtEnd#
 		  ]]> 
 	</select>
 	

@@ -9,8 +9,11 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.time.DateUtils;
 
 import com.ssnn.dujiaok.model.PriceCalendarDO;
+import com.ssnn.dujiaok.model.PriceCalendarDO.Item;
 import com.ssnn.dujiaok.model.ProductDetailDO;
 
 
@@ -21,7 +24,6 @@ import com.ssnn.dujiaok.model.ProductDetailDO;
  */
 public class ProductUtils {
 	
-	private static final String PC_YMD_FORMAT = "yyyy-MM-dd" ; //价格日历格式
 	private static final String PC_YM_FORMAT = "yyyy-MM" ; //价格日历格式
 	
 	/**
@@ -30,19 +32,46 @@ public class ProductUtils {
 	 * @return
 	 */
 	public static List<PriceCalendarDO> getPriceCalendar(List<ProductDetailDO> details){		
-		List<PriceCalendarDO> calendar = new ArrayList<PriceCalendarDO>() ;
+		List<PriceCalendarDO> list = new ArrayList<PriceCalendarDO>() ;
 		DateFormat df = new SimpleDateFormat(PC_YM_FORMAT) ;
 		if(CollectionUtils.isNotEmpty(details)){
 			for(ProductDetailDO detail : details){
 				List<Date> dates = findDays(detail) ;
+				String price = "￥" + getChpestPrice(detail).toString() ;
 				for(Date date : dates){
 					String key = df.format(date) ;
-					
+					PriceCalendarDO cal = getCalendar(list, key) ;
+					if(cal == null){
+						cal = new PriceCalendarDO() ;
+						cal.setSevertime(key) ;
+						list.add(cal) ;
+					}
+					cal.getData().add(new Item(date.getDate() , price )) ;
 				}
 			}
 		}
-		
-		return calendar ;
+		for(PriceCalendarDO cal : list){
+			cal.complete() ;
+		}
+		return list ;
+	}
+	
+	private static PriceCalendarDO getCalendar(List<PriceCalendarDO> list , String key ){
+		for(PriceCalendarDO cal : list){
+			if(StringUtils.equals(key, cal.getSevertime())){
+				return cal ;
+			}
+		}
+		return null ;
+	}
+	
+	/**
+	 * detail 时间是否交叉
+	 * @param details
+	 * @return
+	 */
+	public static boolean isDetailDateValid(List<ProductDetailDO> details){
+		return true ;
 	}
 	
 	public static List<Date> findDays(ProductDetailDO detail){
