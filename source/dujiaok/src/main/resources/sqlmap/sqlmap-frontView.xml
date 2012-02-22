@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="frontView">
+	
+	<typeAlias alias="TA-FrontView" type="com.ssnn.dujiaok.model.FrontViewDO"/>
+
+	<resultMap id="RM-FrontView" class="TA-FrontView" >
+		<result property="id" column="ID"/>
+		<result property="frontViewId" column="FRONT_VIEW_ID" jdbcType="VARCHAR"/>
+		<result property="moduleKey" column="MODULE_KEY" jdbcType="VARCHAR"/>
+		<result property="photoURL" column="PHOTO_URL" jdbcType="VARCHAR"/>
+		<result property="link" column="LINK" jdbcType="VARCHAR"/>
+		<result property="category" column="CATEGORY" jdbcType="VARCHAR"/>
+		<result property="title" column="TITLE" jdbcType="VARCHAR"/>
+		<result property="detail" column="DETAIL" jdbcType="VARCHAR"/>
+		<result property="presentPrice" column="PRESENT_PRICE" jdbcType="VARCHAR"/>
+		<result property="originalPrice" column="ORIGINAL_PRICE" jdbcType="VARCHAR"/>
+		<result property="orderKey" column="ORDER_KEY" jdbcType="BigInt"/>
+		<result property="gmtCreate" column="GMT_CREATE" jdbcType="TIMESTAMP"/>
+		<result property="gmtModified" column="GMT_MODIFIED" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="queryFrontViews" resultMap="RM-FrontView" parameterClass="map">
+		select * from DJ_FRONT_VIEW where MODULE_KEY = #moduleKey# order by ORDER_KEY desc limit #displayNum#
+	</select>
+	
+</sqlMap>

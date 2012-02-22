@@ -1,0 +1,52 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="home" namespace="/home" extends="default">
+		<action name="index" class="com.ssnn.dujiaok.web.action.home.IndexAction">
+			<interceptor-ref name="basicStack" />
+			<result name="success"  type="velocity">/home/index.vm</result>
+		</action>
+		<action name="test" class="com.ssnn.dujiaok.web.action.home.IndexAction">
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="velocity">/home/test.vm</result>
+		</action>
+	</package>
+	
+	
+	<package name="order" namespace="/order" extends="default">
+		<action name="makeorder" class="com.ssnn.dujiaok.web.action.order.MakeOrderAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/makeorder.vm</result>
+		</action>
+		<action name="makeselfdriveorder" class="com.ssnn.dujiaok.web.action.order.MakeOrderAction" method="makeSelfDriveOrder">
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/makeselfdriveorder.vm</result>
+		</action>
+		<action name="selfdriveorderdetail" class="com.ssnn.dujiaok.web.action.order.OrderDetailAction" method="makeSelfDriveOrder">
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/selfdriveorderdetail.vm</result>
+		</action>
+		<action name="maketicketorder" class="com.ssnn.dujiaok.web.action.order.MakeOrderAction" method="makeTicketOrder">
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/maketicketorder.vm</result>
+		</action>
+		<action name="ticketorderdetail" class="com.ssnn.dujiaok.web.action.order.OrderDetailAction" method="makeTicketOrder">
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/ticketorderdetail.vm</result>
+		</action>
+		<action name="paydetail" class="com.ssnn.dujiaok.web.action.order.PayDetailAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/paydetail.vm</result>
+		</action>
+		<action name="alipayorder" class="com.ssnn.dujiaok.web.action.order.AlipayOrderAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/alipayorder.vm</result>
+		</action>
+		<action name="paysuccess" class="com.ssnn.dujiaok.web.action.order.AlipayCallBackAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/paysuccess.vm</result>
+		</action>
+	</package>
+</struts>

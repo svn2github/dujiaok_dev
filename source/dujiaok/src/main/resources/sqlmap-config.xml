@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+    
+<sqlMapConfig>
+	<!--
+      - ===============================================
+      - 打开命名空间
+      - @author Flouny.Caesar
+      - @date 2009-08-21
+      - ===============================================
+	-->
+    <settings useStatementNamespaces="true" />
+    
+  	<sqlMap resource="sqlmap/sqlmap-product.xml" />
+  	<sqlMap resource="sqlmap/sqlmap-member.xml" />
+	<sqlMap resource="sqlmap/sqlmap-tour.xml" />
+  	<sqlMap resource="sqlmap/sqlmap-ticket.xml" />
+  	
+  	<sqlMap resource="sqlmap/sqlmap-hotel.xml" />
+  	<sqlMap resource="sqlmap/sqlmap-hotelRoom.xml" />
+  	
+  	<sqlMap resource="sqlmap/sqlmap-selfDrive.xml" />
+  	<sqlMap resource="sqlmap/sqlmap-productDetail.xml" />
+  	<sqlMap resource="sqlmap/sqlmap-address.xml" />
+  	<sqlMap resource="sqlmap/sqlmap-frontConfig.xml" />
+  	<sqlMap resource="sqlmap/sqlmap-frontView.xml" />
+  	<sqlMap resource="sqlmap/sqlmap-admin.xml" />
+  	<sqlMap resource="sqlmap/sqlmap-order.xml" />
+</sqlMapConfig>

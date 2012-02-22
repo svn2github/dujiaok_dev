@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="admin">
+	
+	<typeAlias alias="TA-Admin" type="com.ssnn.dujiaok.model.AdminDO"/>
+
+	<resultMap id="RM-Admin" class="TA-Admin" >
+		<result property="id" column="ID"/>
+		<result property="username" column="USERNAME" jdbcType="VARCHAR"/>
+		<result property="password" column="PASSWORD" jdbcType="VARCHAR"/>
+		<result property="gmtCreate" column="GMT_CREATE" jdbcType="TIMESTAMP"/>
+		<result property="gmtModified" column="GMT_MODIFIED" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="queryAdmin" resultMap="RM-Admin">
+		select * from DJ_ADMIN where username = #username#
+	</select>
+	
+	<select id="queryAdminByUsernameAndPassword" resultMap="RM-Admin">		
+		select * from DJ_ADMIN where password = #password# and username = #username#
+	</select>
+	
+</sqlMap>

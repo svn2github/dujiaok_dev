@@ -1,0 +1,76 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="member" namespace="/member" extends="default">
+		<action name="login" class="com.ssnn.dujiaok.web.action.member.LoginAction">
+			<interceptor-ref name="basicStack" />
+			<result name="success"  type="velocity">/member/login.vm</result>
+			<result name="home" type="redirect">/home/index.htm</result>
+		</action>
+		
+		<action name="dologin" class="com.ssnn.dujiaok.web.action.member.LoginAction" method="doLogin">
+			<interceptor-ref name="basicStack" />
+			<result name="success"  type="redirect">/home/index.htm</result>
+			<result name="input" type="velocity">/member/login.vm</result>
+		</action>
+		
+		<action name="logout" class="com.ssnn.dujiaok.web.action.member.LoginAction" method="logout">
+			<interceptor-ref name="basicStack" />
+			<result name="success"  type="redirect">/member/login.htm</result>
+		</action>
+		
+		<action name="register" class="com.ssnn.dujiaok.web.action.member.RegisterAction">
+			<interceptor-ref name="basicStack" />
+			<result name="success"  type="velocity">/member/register.vm</result>
+		</action>
+		
+		<action name="doregister" class="com.ssnn.dujiaok.web.action.member.RegisterAction" method="doRegister">
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="redirect">/home/index.htm</result>
+			<result name="input" type="velocity">/member/register.vm</result>
+		</action>
+		
+		<action name="index" class="com.ssnn.dujiaok.web.action.member.ModifyAction">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="memberAuthInterceptor" />
+			<result name="success"  type="velocity">/member/index.vm</result>
+		</action>
+		
+		<action name="modify" class="com.ssnn.dujiaok.web.action.member.ModifyAction">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="memberAuthInterceptor" />
+			<result name="success"  type="velocity">/member/modify.vm</result>
+		</action>
+		
+		<action name="domodify" class="com.ssnn.dujiaok.web.action.member.ModifyAction" method="doModify">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="memberAuthInterceptor" />
+			<result name="success"  type="velocity">/member/modify.vm</result>
+			<result name="input"  type="velocity">/member/modify.vm</result>
+		</action>
+		
+		<action name="modifyPassword" class="com.ssnn.dujiaok.web.action.member.ModifyAction">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="memberAuthInterceptor" />
+			<result name="success"  type="velocity">/member/modifyPassword.vm</result>
+		</action>
+		
+		<action name="domodifyPassword" class="com.ssnn.dujiaok.web.action.member.ModifyAction" method="doModifyPassword">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="memberAuthInterceptor" />
+			<result name="input"  type="velocity">/member/modifyPassword.vm</result>
+			<result name="success"  type="velocity">/member/modifyPassword.vm</result>
+		</action>
+		
+		<action name="orderlist" class="com.ssnn.dujiaok.web.action.member.OrderAction">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="memberAuthInterceptor" />
+			<result name="success"  type="velocity">/member/orderlist.vm</result>
+		</action>
+		
+	</package>
+	
+	
+</struts>
