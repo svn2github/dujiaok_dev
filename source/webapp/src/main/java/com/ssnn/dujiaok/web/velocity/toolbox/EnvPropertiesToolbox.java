@@ -15,9 +15,9 @@ import com.ssnn.dujiaok.web.context.ContextHolder;
  */
 public class EnvPropertiesToolbox {
 
-	private static final String KEY_DUJIAOK_DOMAIN_NAME = "dujiaok.domainName" ;
-	private static final String KEY_DUJIAOK_PORT = "dujiaok.port" ;
-	private static final String KEY_DUJIAOK_STATIC_URL = "dujiaok.static.url" ;
+	private static final String KEY_DUJIAOK_DOMAIN_NAME = "doucome.domainName" ;
+	private static final String KEY_DUJIAOK_PORT = "doucome.port" ;
+	private static final String KEY_DUJIAOK_STATIC_URL = "doucome.static.url" ;
 	
 	private static String rootPath = null ;
 	

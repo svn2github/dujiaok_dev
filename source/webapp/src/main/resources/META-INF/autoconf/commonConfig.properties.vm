@@ -1,4 +1,10 @@
-dujiaok.output = ${dujiaok_output}
-dujiaok.database.driver.url = ${dujiaok_database_driver_url}
-dujiaok.database.driver.username = ${dujiaok_database_driver_username}
-dujiaok.database.driver.password = ${dujiaok_database_driver_password}
+doucome.output = ${doucome_output}
+doucome.database.driver.url = ${doucome_database_driver_url}
+doucome.database.driver.username = ${doucome_database_driver_username}
+doucome.database.driver.password = ${doucome_database_driver_password}
+
+doucome.domainName = ${doucome_domainName}
+doucome.port = ${doucome_port}
+doucome.static.url = ${doucome_static_url}
+
+doucome.production = ${doucome_production}

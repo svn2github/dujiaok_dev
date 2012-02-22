@@ -15,17 +15,6 @@
 	<packaging>war</packaging>
 	<name>dujiaok</name>
 
-	<properties>
-		<spring.version>3.0.0.RELEASE</spring.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.build.compileVersion>1.6</project.build.compileVersion>
-		<maven.test.skip>true</maven.test.skip>
-		<downloadSource>true</downloadSource>
-		<java_source_version>1.6</java_source_version>
-		<java_target_version>1.6</java_target_version>
-		<file_encoding>UTF-8</file_encoding>
-
-	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -188,7 +177,7 @@
 						</executions>
 						<configuration>
 							<destFiles>
-								<destFile>${release_directory}/dujiaok-${pom.version}.war</destFile>
+								<destFile>${release_directory}/${pom.artifactId}-${pom.version}.war</destFile>
 							</destFiles>
 							<includeDescriptorPatterns>
 								<includeDescriptorPattern>META-INF/autoconf/auto-config.xml</includeDescriptorPattern>

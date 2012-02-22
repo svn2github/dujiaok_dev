@@ -17,12 +17,12 @@
          <value>com.mysql.jdbc.Driver</value>
       </property>
       <property name="jdbcUrl">
-         <value><![CDATA[${dujiaok.database.driver.url}]]></value>
+         <value><![CDATA[${doucome.database.driver.url}]]></value>
       </property>
       <property name="properties">
          <props>
-            <prop key="user">${dujiaok.database.driver.username}</prop>
-            <prop key="password">${dujiaok.database.driver.password}</prop>
+            <prop key="user">${doucome.database.driver.username}</prop>
+            <prop key="password">${doucome.database.driver.password}</prop>
             <prop key="clientEncoding">UTF-8</prop>
             <prop key="serverEncoding">UTF-8</prop>
          </props>

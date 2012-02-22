@@ -6,7 +6,7 @@
 
 	<!-- Constant -->
 	<constant name="struts.action.extension" value="htm" />
-	#if(${dujiaok.production})
+	#if(${doucome_production})
 		<constant name="struts.devMode" value="false" />
 	#else
 		<constant name="struts.devMode" value="true" />

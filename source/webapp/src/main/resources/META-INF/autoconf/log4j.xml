@@ -7,12 +7,12 @@
   -
   - @author Michael Zhou
  -->
-#set($loggingRoot = $!{dujiaok_loggingRoot})
+#set($loggingRoot = $!{doucome_loggingRoot})
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
     <!-- ===================================================================== -->
     <!--  以下是appender的定义                                                 -->
     <!-- ===================================================================== -->
-    #if($dujiaok_production != "true")
+    #if($doucome_production != "true")
         <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
 		      <param name="Target" value="System.out" />
 		      <param name="Threshold" value="WARN" />
@@ -23,7 +23,7 @@
     #end
     <appender name="PROJECT" class="org.apache.log4j.DailyRollingFileAppender">
         <param name="file" value="${loggingRoot}/sys/sys.log"/> 
-        #if($dujiaok_production != "true") 
+        #if($doucome_production != "true") 
         <param name="append" value="false"/>
         #else 
         <param name="append" value="true"/> 
@@ -39,10 +39,10 @@
     <!--  Root logger的定义                                                    -->
     <!-- ===================================================================== -->
     <root>
-        <level value="$dujiaok_loggingLevel"/>
+        <level value="$doucome_loggingLevel"/>
         <appender-ref ref="PROJECT"/>
         <appender-ref ref="ExceptionAppender" />
-        #if($dujiaok_production != "true")
+        #if($doucome_production != "true")
            <appender-ref ref="CONSOLE" />
         #end
         <!-- <appender-ref ref="ASYNC" /> -->

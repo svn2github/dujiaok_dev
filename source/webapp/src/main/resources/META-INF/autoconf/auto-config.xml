@@ -6,25 +6,36 @@
 -->
 <config description="自动配置">
 	<group name="common config">
-		<property name="dujiaok.output" description="应用程序的输出目录"  defaultValue="/home/admin/output"/>
-		<property name="dujiaok.production" description="生产模式"  defaultValue="false">
+		<property name="doucome.output" description="应用程序的输出目录"  defaultValue="/home/admin/output"/>
+		<property name="doucome.production" description="生产模式"  defaultValue="false">
 			<validator name="choice" choice="true,false"/>
 		</property>
-		<property name="dujiaok.loggingRoot" defaultValue="${dujiaok_output}/logs"  description="日志"></property>
-		<property name="dujiaok.loggingLevel" defaultValue="info"  description="日志输出级别"></property>
+		<property name="doucome.loggingRoot" defaultValue="${doucome_output}/logs"  description="日志"></property>
+		<property name="doucome.loggingLevel" defaultValue="info"  description="日志输出级别"></property>
 	</group>
 
 	<group name="database">
-		<property name="dujiaok.database.driver.url" description="mtrade数据库的url" defaultValue="jdbc:oracle:thin:@10.20.147.1:1521:itbutest"/>
-		<property name="dujiaok.database.driver.username" description="mtrade数据库的username" defaultValue="mtrade"/>
-		<property name="dujiaok.database.driver.password" description="mtrade数据库的password" defaultValue="mtrade_test"/>
+		<property name="doucome.database.driver.url" description="mtrade数据库的url" defaultValue="jdbc:oracle:thin:@10.20.147.1:1521:itbutest"/>
+		<property name="doucome.database.driver.username" description="mtrade数据库的username" defaultValue="mtrade"/>
+		<property name="doucome.database.driver.password" description="mtrade数据库的password" defaultValue="mtrade_test"/>
 	</group>
 	
+	<group name="web">
+		<property name="doucome.static.url" defaultValue="http://www.ht.dujiaok.com:801/dujiaok" description="static"></property>
+		<property name="doucome.domainName" defaultValue="dujiaok.com" description="domain"></property>
+		<property name="doucome.port" defaultValue="80" description="port">
+			<validator name="number"></validator>
+		</property>
+		<property name="doucome.appserver.port" defaultValue="8080" description="appserver port">
+			<validator name="number"></validator>
+		</property>
+	</group>
 	
 	<script>
-		<generate template="commonConfig.properties.vm" destfile="WEB-INF/classes/commonConfig.properties" charset="utf-8" />
-		<generate template="struts.xml.vm" destfile="WEB-INF/classes/struts.xml" charset="utf-8" />
-		<generate template="log4j.xml" destfile="WEB-INF/classes/log4j.xml" charset="utf-8" />
+		<generate template="commonConfig.properties.vm" destfile="WEB-INF/classes/bean/commonConfig.properties" charset="UTF-8" />
+		<generate template="struts.xml.vm" destfile="WEB-INF/classes/struts.xml" charset="UTF-8" />
+		<generate template="log4j.xml" destfile="WEB-INF/classes/log4j.xml" charset="UTF-8" />
 	</script>
 </config>
+
 
