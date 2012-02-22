@@ -161,8 +161,37 @@
 
 			<build>
 				<plugins>
-
-
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>prepare-deploy-package</id>
+								<phase>package</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<!-- Configured Artifacts -->
+										<mkdir dir="${release_directory}/web-deploy" />
+										<copy todir="${release_directory}/web-deploy">
+											<fileset dir="${project.basedir}">
+												<include name="htdocs/**" />
+												<include name="conf/**" />
+												<include name="bin/**" />
+											</fileset>
+										</copy>
+										<chmod dir="${release_directory}/web-deploy/bin" perm="755"
+											includes="**" />
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				
+				
+				
 					<plugin>
 						<groupId>com.ssnn.maven.plugins</groupId>
 						<artifactId>maven-autoconf-plugin</artifactId>
