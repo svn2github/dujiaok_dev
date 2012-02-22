@@ -179,7 +179,7 @@
 						<configuration>
 							<destFiles>
 								<destFile>${release_directory}/web-deploy</destFile>
-								<destFile>${release_directory}/dujiaok.bundle.war-${pom.version}.war</destFile>
+								<destFile>${release_directory}/dujiaok.webapp-${pom.version}.war</destFile>
 							</destFiles>
 							<includeDescriptorPatterns>
 								<!-- intl-site flavor -->
