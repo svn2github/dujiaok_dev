@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="gb2312"?>
+<config>
+  <script>
+      <generate template="env.sh.vm" destfile="env.sh" charset="UTF-8"/>
+  </script>
+</config>
