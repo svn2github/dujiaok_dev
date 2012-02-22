@@ -36,9 +36,6 @@
 
 
 		<plugins>
-			<!-- Plugin to support ali-war type artifacts <plugin> <groupId>com.alibaba.maven.plugins</groupId> 
-				<artifactId>maven-car-plugin</artifactId> <extensions>true</extensions> </plugin> -->
-			<!-- Copy war artifact -->
 			<plugin>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<version>2.1</version>

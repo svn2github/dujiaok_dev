@@ -30,11 +30,25 @@
 
 	</properties>
 
-	<repositories>
-		<repository>
-			<id>releases</id>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>Doucome-plugin-repo</id>
 			<url>http://www.dujiaok.com:8081/nexus/content/repositories/releases</url>
-		</repository>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+	
+	
+	<repositories>
+		<pluginRepository>
+			<id>Doucome-internal-repo</id>
+			<url>http://www.dujiaok.com:8081/nexus/content/repositories/releases</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
 	</repositories>
 
 	<dependencyManagement>
