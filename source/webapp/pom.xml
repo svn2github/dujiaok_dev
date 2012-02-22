@@ -193,7 +193,7 @@
 				
 				
 					<plugin>
-						<groupId>com.ssnn.maven.plugins</groupId>
+						<groupId>com.doucome.maven.plugins</groupId>
 						<artifactId>maven-autoconf-plugin</artifactId>
 						<version>0.4</version>
 						<executions>
