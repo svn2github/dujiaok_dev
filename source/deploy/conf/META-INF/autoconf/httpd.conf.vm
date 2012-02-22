@@ -1,0 +1,86 @@
+Listen ${doucome_port}
+
+ServerRoot "${doucome_output}"
+DocumentRoot "${doucome_htdocs_home}"
+ServerName ${doucome_domainName}
+
+
+DefaultLanguage cn
+AddDefaultCharset GB2312
+
+PidFile "${doucome_output}/logs/httpd.pid"
+
+User  ${doucome_unix_user}
+Group ${doucome_unix_user}
+
+Timeout 30
+KeepAlive On
+MaxKeepAliveRequests 500
+KeepAliveTimeout 25
+
+<IfModule worker.c>
+     StartServers     5
+     MaxClients       1024
+     MinSpareThreads  25
+     MaxSpareThreads  75
+     ThreadsPerChild  64
+     ThreadLimit      128
+     ServerLimit      16
+</IfModule>
+
+# Assume no memory leaks at all
+MaxRequestsPerChild 20000
+
+LogFormat "%h %{ORIG_CLIENT_IP}i %l %u %t \"%m /%{HOST}i%U%q %H\" %>s %b %D \"%{Referer}i\" \"%{User-Agent}i\" %{ali_beacon_id}n - \"a=%{ali_apache_track}n; b=-; c=%{ali_resin_trace}n\" %{ali_server_name}n"   cookie_log
+## CustomLog "|/usr/alibaba/cronolog/sbin/cronolog ${doucome_output}/logs/cookie_logs/%w/cookie_log" cookie_log
+CustomLog "|/usr/bin/logger -p local1.info" cookie_log
+ErrorLog  "${doucome_output}/logs/apache_error.log"
+
+<Directory />
+    Options FollowSymLinks
+    AllowOverride None
+    order allow,deny
+    allow from all
+</Directory>
+
+<Directory "${doucome_htdocs_home}">
+    Options FollowSymLinks
+    AllowOverride None
+    order allow,deny
+    allow from all
+</Directory>
+
+TypesConfig ${doucome_httpdhome}/conf/mime.types
+DefaultType text/plain
+DirectoryIndex index.html
+
+
+NameVirtualHost *
+
+
+SetOutputFilter DEFLATE
+<Location />
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</Location>
+
+ErrorDocument 404 http://page.china.alibaba.com/shtml/static/wrongpage.html
+ErrorDocument 509 http://page.china.alibaba.com/shtml/static/error999.html
+
+##Include mod_jk's specific configuration file-zgl
+##Include ${doucome_deployhome}/conf/mod_jk.conf
+
+##Include mod_proxy
+Include ${doucome_deployhome}/conf/mod_proxy.conf
+
+# hide the server info in http header
+ServerTokens Prod
+
+
+<IfModule mod_headers.c>
+        Header set X-Content-Type-Options "nosniff"    
+        Header set X-XSS-protection "1;mode=block"   
+        RequestHeader unset Range
+</IfModule>

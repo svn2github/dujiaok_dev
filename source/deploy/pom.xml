@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
-	
+
 		<groupId>com.doucome.dujiaok</groupId>
 		<artifactId>dujiaok.all</artifactId>
 		<version>1.0-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
-	
+
 	</parent>
 
 	<groupId>com.doucome.dujiaok</groupId>
@@ -25,5 +26,176 @@
 			<type>war</type>
 		</dependency>
 	</dependencies>
-		
+
+	<build>
+		<resources>
+			<resource>
+				<directory>bin</directory>
+			</resource>
+		</resources>
+
+
+		<plugins>
+			<!-- Plugin to support ali-war type artifacts <plugin> <groupId>com.alibaba.maven.plugins</groupId> 
+				<artifactId>maven-car-plugin</artifactId> <extensions>true</extensions> </plugin> -->
+			<!-- Copy war artifact -->
+			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.1</version>
+				<executions>
+					<execution>
+						<id>copy-war</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.doucome.dujiaok</groupId>
+									<artifactId>dujiaok.webapp</artifactId>
+									<version>${pom.version}</version>
+									<type>war</type>
+									<overWrite>true</overWrite>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${release_directory}</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<profiles>
+		<!-- Release profile will just copy war and package resource files to target/release, 
+			without configured. -->
+		<!-- Appops should take the responsibility to configure them before deploying 
+			to production server -->
+		<profile>
+			<id>release</id>
+			<activation>
+				<!--activeByDefault>true</activeByDefault -->
+				<property>
+					<name>env</name>
+					<value>release</value>
+				</property>
+			</activation>
+			<properties>
+				<release_directory>${project.parent.build.directory}</release_directory>
+			</properties>
+			<build>
+				<plugins>
+					<!-- Tar script/conf/template resources -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>assembly-deploy-package</id>
+								<phase>package</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<jar destfile="${release_directory}/web-deploy.jar">
+											<zipfileset dir="${project.basedir}/conf/META-INF"
+												prefix="META-INF" />
+											<zipfileset dir="${project.basedir}">
+												<include name="htdocs/**" />
+												<include name="templates/**" />
+												<include name="conf/**" />
+												<exclude name="conf/META-INF/**" />
+											</zipfileset>
+											<zipfileset dir="${project.basedir}" filemode="755">
+												<include name="bin/**" />
+											</zipfileset>
+										</jar>
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<!-- Dev profile will configure all files and copy them to target/dev, 
+			for testing purpose -->
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>env</name>
+					<value>!release</value>
+				</property>
+			</activation>
+			<properties>
+				<release_directory>${project.build.directory}/dev</release_directory>
+			</properties>
+			<build>
+				<plugins>
+					<!-- Copy script/conf/template resources -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>prepare-deploy-package</id>
+								<phase>package</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<!-- Configured Artifacts -->
+										<mkdir dir="${release_directory}/web-deploy" />
+										<copy todir="${release_directory}/web-deploy">
+											<fileset dir="${project.basedir}">
+												<include name="htdocs/**" />
+												<include name="conf/**" />
+												<include name="bin/**" />
+											</fileset>
+										</copy>
+										<chmod dir="${release_directory}/web-deploy/bin" perm="755"
+											includes="**" />
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- do auto config for integration test -->
+					<plugin>
+						<groupId>com.ssnn.maven.plugins</groupId>
+						<artifactId>maven-autoconf-plugin</artifactId>
+						<version>0.4</version>
+						<executions>
+							<execution>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>config</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<destFiles>
+								<destFile>${release_directory}/web-deploy</destFile>
+								<destFile>${release_directory}/dujiaok.bundle.war-${pom.version}.war</destFile>
+							</destFiles>
+							<includeDescriptorPatterns>
+								<!-- intl-site flavor -->
+								<includeDescriptorPattern>autoconf/auto-config.xml</includeDescriptorPattern>
+								<!-- china-site flavor -->
+								<includeDescriptorPattern>conf/META-INF/autoconf/auto-config.xml</includeDescriptorPattern>
+								
+							</includeDescriptorPatterns>
+						</configuration>
+					</plugin>
+				</plugins>
+
+			</build>
+		</profile>
+	</profiles>
 </project>

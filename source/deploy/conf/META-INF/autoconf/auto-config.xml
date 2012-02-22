@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <group name="soft home" description="环境设置">
+        <property name="doucome.unix.user" defaultValue="admin" description="Linux下运行的用户,为apache使用"/>
+    </group>
+    
+    <group name="server env" description="JBOSS的设置">
+        <property name="doucome.deployhome" defaultValue="/home/${mobiletrade_unix_user}/web-deploy" description="应用程序部署目录"/>
+        <property name="doucome.htdocs.home" defaultValue="${doucome_deployhome}/htdocs" description="http htdocs 目录"/>
+        <property name="doucome.javahome" defaultValue="/usr/alibaba/java" description="运行JBOSS的JDK"/>
+        <property name="doucome.httpdhome" defaultValue="/usr/alibaba/httpd" description="运行httpd的目录"/>
+        <property name="doucome.jettyhome" defaultValue="/usr/alibaba/jetty" description="JETTY的目录"/>
+        <property name="doucome.jettyserverhome" defaultValue="${doucome_deployhome}/jetty_server" description="Jetty的目录"/>
+     
+    </group>
+    
+    
+    <script>
+	   
+        <generate template="httpd.conf.vm" destfile="conf/httpd.conf" charset="UTF-8"/>
+                
+        <generate template="jetty/bin/httpd.vm" destfile="bin/httpd" charset="UTF-8"/>
+        <generate template="jetty/start.ini.vm" destfile="conf/jetty/start.ini" charset="UTF-8"/>
+        <generate template="jetty/bin/env.sh.vm" destfile="bin/env.sh" charset="UTF-8"/>
+        
+        <generate template="mod_proxy.conf.vm" destfile="conf/mod_proxy.conf" charset="UTF-8"/>
+    </script>
+</config>

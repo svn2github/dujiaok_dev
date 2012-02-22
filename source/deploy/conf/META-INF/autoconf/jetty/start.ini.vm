@@ -1,0 +1,7 @@
+OPTIONS=Server,jsp,jmx,servlets,resources,webapp
+
+$doucome_jettyserverhome/etc/jetty.xml
+$doucome_jettyserverhome/etc/jetty-logging.xml
+$doucome_jettyserverhome/etc/jetty-jmx.xml
+$doucome_jettyserverhome/etc/jetty-deploy.xml
+$doucome_jettyserverhome/etc/jetty-webapps.xml
