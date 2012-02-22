@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms>
+
+	<form id="loginForm">
+		<item name="memberId" dataType="Require" msg="用户名不为空" /> 
+		<item name="memberId" dataType="Limit" min="6" max="20" msg="用户名长度6~20个字符" />
+		<item name="password" dataType="Require" msg="密码不为空" />
+		<item name="password" dataType="Limit" min="6" max="20" msg="密码长度6~20个字符" />
+	</form>
+
+	<form id="registerForm">
+		<item name="memberId" dataType="Require" msg="用户名不为空" /> 
+		<item name="memberId" dataType="Limit" min="6" max="12" msg="用户名长度6~12个字符" />
+		<item name="nickname" dataType="Require" msg="昵称不能为空" />	
+		<item name="nickname" dataType="Limit" min="2" max="12" msg="昵称长度2~12个字符" />	
+		<item name="password" dataType="Require" msg="密码不为空" />
+		<item name="password" dataType="Limit" min="6" max="20" msg="密码长度6~20个字符" />
+		<item name="password2" dataType="Repeat" to="password" msg="两次输入的密码不一致" />
+		<item name="email" dataType="Require" msg="E-mail不为空" /> 		
+		<item name="email" dataType="Email" msg="E-mail格式不正确" />
+	</form>	
+	
+	<form id="modifyMemberForm">
+		<item name="nickname" dataType="Require" msg="昵称不能为空" />	
+		<item name="nickname" dataType="Limit" min="2" max="12" msg="昵称长度2~12个字符" />	
+		<item name="mobileNo" dataType="Mobile" msg="手机号格式不正确" />	
+		<item name="email" dataType="Require" msg="E-mail不为空" /> 		
+		<item name="email" dataType="Email" msg="E-mail格式不正确" />
+	</form>	
+	
+	<form id="modifyMemberPasswordForm">
+		<item name="password" dataType="Require" msg="原密码不为空" />
+		<item name="newPassword" dataType="Require" msg="密码不为空" />
+		<item name="newPassword" dataType="Limit" min="6" max="20" msg="密码长度6~20个字符" />
+		<item name="newPassword2" dataType="Repeat" to="newPassword" msg="两次输入的密码不一致" />
+	</form>	
+	
+</forms>

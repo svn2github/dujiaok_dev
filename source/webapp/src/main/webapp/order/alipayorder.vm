@@ -1,0 +1,4 @@
+#set($layout="/order/default.vm")
+<div class="loading">系统处理中......</div>
+$alipayResult
+<!--支付宝付款接口-->

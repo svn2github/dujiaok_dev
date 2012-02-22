@@ -1,0 +1,51 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    
+    <package name="struts-json" extends="default">
+        <result-types>
+            <result-type name="json" class="org.apache.struts2.json.JSONResult"/>
+        </result-types>
+        <interceptors>
+            <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
+        </interceptors>
+    </package>
+	
+	<package name="ajax" namespace="/ajax" extends="struts-json">
+		<action name="address" class="com.ssnn.dujiaok.web.action.ajax.AddressAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success"  type="json"></result>
+		</action>
+		<action name="queryHotel" class="com.ssnn.dujiaok.web.action.ajax.QueryHotelAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success"  type="json"></result>
+		</action>
+		<action name="test" class="com.ssnn.dujiaok.web.action.home.IndexAction">
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="velocity">/home/test.vm</result>
+		</action>
+		<!-- 删除 -->
+		<action name="delProduct" class="com.ssnn.dujiaok.web.action.ajax.DelProductAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="json"></result>
+		</action>
+		
+		<action name="modifyOrderStatus" class="com.ssnn.dujiaok.web.action.ajax.OrderAction" method="status">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="json"></result>
+		</action>
+		
+		<action name="priceCalendar" class="com.ssnn.dujiaok.web.action.ajax.PriceCalendarAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="json"></result>
+		</action>
+	</package> 
+	
+	
+	
+	
+</struts>

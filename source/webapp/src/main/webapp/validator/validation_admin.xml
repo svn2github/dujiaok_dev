@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms>
+
+	<form id="adminLoginForm">
+		<item name="username" dataType="Require" msg="用户名不为空" /> 
+		<item name="username" dataType="Limit" min="2" max="32" msg="用户名长度2~32个字符" />
+		<item name="password" dataType="Require" msg="密码不为空" />
+		<item name="password" dataType="Limit" min="6" max="32" msg="密码长度6~32个字符" />
+	</form>
+
+	<form id="createTicketForm">
+		<item name="name" dataType="Require" msg="产品名称不为空" />
+		<item name="name" dataType="Limit" min="2" max="80" msg="产品名称长度2~80个字符" />
+		<item name="details[$].price" dataType="Require"  batch="true" msg="第$行价格不能为空"/>
+		<item name="details[$].price" dataType="Double"  batch="true" msg="第$行价格格式不正确"/>
+		<item name="details[$].gmtStart" dataType="Date"  batch="true" format="ymd"  msg="第$行开始时间格式不正确"/>
+		<item name="details[$].gmtEnd" dataType="Date"  batch="true" format="ymd"  msg="第$行结束时间格式不正确"/>
+		<item name="marketPrice" dataType="Double"   msg="市场价格式不正确"/>
+		<item name="ticketType" dataType="Require"  msg="门票类型必须选择"/>
+		<item name="destProvince" dataType="Require" msg="省不能为空"/>
+		<item name="destProvince" dataType="Limit" mix="2" max="32" msg="省长度2-32个字符"/>
+		<item name="destCity" dataType="Limit" mix="2" max="32"  msg="市长度2-32个字符"/>
+		<item name="destArea" dataType="Limit" mix="2" max="32"  msg="地区长度2-32个字符"/>
+		<item name="destAddr" dataType="Limit"  mix="2" max="100"  msg="详细地址长度2-100个字符"/>
+		<item name="imagesList" dataType="Require"  batch="true"  msg="上传图片第$行必须填写"/>
+		<item name="imagesList" dataType="Limit"  batch="true" min="2" max="200" msg="上传图片第$行长度2~200字符"/>
+		<item name="introduction" dataType="Require"  msg="产品简介必须填写"/>
+		<item name="introduction" dataType="Limit" max="4000" msg="产品简介长度不大于4000字符"/>
+		<item name="notice" dataType="Require"  msg="注意事项必须填写"/>
+		<item name="notice" dataType="Limit" max="4000" msg="注意事项不大于4000字符"/>
+		<item name="feeDesc" dataType="Limit" max="4000" msg="费用说明不大于4000字符"/>
+		<item name="memo" dataType="Limit" max="4000" msg="备注不大于4000字符"/>
+	</form>
+	
+	<form id="createHotelForm">
+		<item name="name" dataType="Require" msg="酒店名称不为空" />
+		<item name="name" dataType="Limit" min="2" max="80" msg="酒店名称长度2~80个字符" />
+		<item name="destProvince" dataType="Limit" mix="2" max="32" msg="省长度2-32个字符"/>
+		<item name="destCity" dataType="Limit" mix="2" max="32"  msg="市长度2-32个字符"/>
+		<item name="destArea" dataType="Limit" mix="2" max="32"  msg="地区长度2-32个字符"/>
+		<item name="destAddr" dataType="Require"   msg="详细地址不能为空"/>
+		<item name="destAddr" dataType="Limit"  mix="2" max="100"  msg="详细地址长度2-100个字符"/>
+		<item name="roomAmount" dataType="Require"  msg="房间数量必须填写"/>
+		<item name="roomAmount" dataType="Limit" mix="2" max="32"  msg="房间数量长度2~32个字符"/>
+		<item name="imagesList" dataType="Require"  batch="true"  msg="上传图片第$行必须填写"/>
+		<item name="imagesList" dataType="Limit"  batch="true" min="2" max="200" msg="上传图片第$行长度2~200字符"/>
+		<item name="introduction" dataType="Require"  msg="产品简介必须填写"/>
+		<item name="introduction" dataType="Limit" max="4000" msg="产品简介长度不大于4000字符"/>
+		<item name="memo" dataType="Limit" max="4000" msg="备注不大于4000字符"/>
+	</form>
+	
+	<form id="createHotelRoomForm">
+		<item name="name" dataType="Require" msg="酒店名称不为空" />
+		<item name="name" dataType="Limit" min="2" max="80" msg="酒店名称长度2~80个字符" />
+		<item name="hotelName" dataType="Require" msg="请检查酒店编号是否正确" />
+		<item name="hotelId" dataType="Require" msg="不存在酒店编号" />
+		<item name="details[$].price" dataType="Require"  batch="true" msg="第$行价格不能为空"/>
+		<item name="details[$].price" dataType="Double"  batch="true" msg="第$行价格格式不正确"/>
+		<item name="details[$].gmtStart" dataType="Date"  batch="true" format="ymd"  msg="第$行开始时间格式不正确"/>
+		<item name="details[$].gmtEnd" dataType="Date"  batch="true" format="ymd"  msg="第$行结束时间格式不正确"/>
+		<item name="marketPrice" dataType="Double"   msg="市场价格式不正确"/>
+		<item name="imagesList" dataType="Require"  batch="true"  msg="上传图片第$行必须填写"/>
+		<item name="imagesList" dataType="Limit"  batch="true" min="2" max="200" msg="上传图片第$行长度2~200字符"/>
+		<item name="bed" dataType="Require"  msg="床型必须填写"/>
+		<item name="bed" dataType="Limit"  min="2" max="32"  msg="床型2~32个字符"/>
+		<item name="roomArea" dataType="Require"  msg="面积必须填写"/>
+		<item name="roomArea" dataType="Limit"  min="2" max="32"  msg="面积2~32个字符"/>
+		<item name="introduction" dataType="Require"  msg="产品简介必须填写"/>
+		<item name="introduction" dataType="Limit" max="4000" msg="产品简介长度不大于4000字符"/>
+		<item name="memo" dataType="Limit" max="4000" msg="备注不大于4000字符"/>
+	</form>
+	
+	<form id="createSelfDriveForm">
+		<item name="name" dataType="Require" msg="名称不为空" />
+		<item name="name" dataType="Limit" min="2" max="80" msg="名称长度2~80个字符" />
+		<item name="details[$].price" dataType="Require"  batch="true" msg="第$行单人价格不能为空"/>
+		<item name="details[$].price" dataType="Double"  batch="true" msg="第$行单人价格格式不正确"/>
+		<item name="details[$].doublePrice" dataType="Require"  batch="true" msg="第$行双人价格不能为空"/>
+		<item name="details[$].doublePrice" dataType="Double"  batch="true" msg="第$行双人价格格式不正确"/>
+		<item name="details[$].childPrice" dataType="Require"  batch="true" msg="第$行儿童价格不能为空"/>
+		<item name="details[$].childPrice" dataType="Double"  batch="true" msg="第$行儿童价格格式不正确"/>
+		<item name="details[$].gmtStart" dataType="Date"  batch="true" format="ymd"  msg="第$行开始时间格式不正确"/>
+		<item name="details[$].gmtEnd" dataType="Date"  batch="true" format="ymd"  msg="第$行结束时间格式不正确"/>
+		<item name="marketPrice" dataType="Double"   msg="市场价格式不正确"/>
+		<item name="destProvince" dataType="Limit" mix="2" max="32" msg="省长度2-32个字符"/>
+		<item name="destCity" dataType="Limit" mix="2" max="32"  msg="市长度2-32个字符"/>
+		<item name="destArea" dataType="Limit" mix="2" max="32"  msg="地区长度2-32个字符"/>
+		<item name="destAddr" dataType="Limit"  mix="2" max="100"  msg="详细地址长度2-100个字符"/>
+		<item name="days" dataType="Require"   msg="游玩天数必须填写"/>
+		<item name="days" dataType="Integer"   msg="游玩天数必须为数字"/>
+		<item name="imagesList" dataType="Require"  batch="true"  msg="上传图片第$行必须填写"/>
+		<item name="imagesList" dataType="Limit"  batch="true" min="2" max="200" msg="上传图片第$行长度2~200字符"/>
+		<item name="introduction" dataType="Require"  msg="产品简介必须填写"/>
+		<item name="introduction" dataType="Limit" max="4000" msg="产品简介长度不大于4000字符"/>
+		<item name="schedule" dataType="Require"  msg="行程必须填写"/>
+		<item name="schedule" dataType="Limit" max="4000" msg="行程不大于4000字符"/>
+		<item name="feeDesc" dataType="Limit" max="4000" msg="费用说明不大于4000字符"/>
+		<item name="memo" dataType="Limit" max="4000" msg="备注不大于4000字符"/>
+	</form>
+</forms>

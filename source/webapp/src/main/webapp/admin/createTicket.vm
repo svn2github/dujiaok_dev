@@ -1,0 +1,288 @@
+#set($layout="/admin/default.vm")
+#set($title="度假OK - 后台 - 发布门票")
+#set($menu_name="发布门票")
+#XUI_CSS(["common/reset.css","eshop/simple-date/xui-simple-datepicker.css"])
+#KISSY_EDITOR_CSS()
+###################################################
+<form id="createTicketForm" name="createTicketForm" method="POST" action="${env.root}/admin/docreateTicket.htm" onsubmit="return Validator.validate(this,'admin');">
+    <input name="id"  type="hidden" value="$!id" />
+    <input name="productId"  type="hidden" value="$!productId" />
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td height="10"></td>
+        </tr>
+    </table>
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="fabu_mb">
+        <tr>
+            <td width="103" align="right">编号：</td>
+            <td width="857">$!ticket.productId</td>
+        </tr>
+        <tr>
+            <td align="right">名称：</td>
+            <td>
+                <input type="text" id='name' name='name' value="$!ticket.name" class="input_m"/>
+                &nbsp;<i class="F9"></i>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">出行时间：</td>
+            <td>
+                <div id="times">
+                    #foreach($!detail in $!ticket.details)
+                        #set($count = $velocityCount)
+                        #set($count = $count - 1)
+                        <div id="time$!count" class="line_sep">
+                            <input type="hidden" value="$!detail.id" name="details[$count].id"/>
+                            <input type="hidden" value="$!detail.productId" name="details[$count].productId"/>
+                            <input type="text" value="$dateUtils.format($!detail.gmtStart,'yyyy-MM-dd')"  id="gmtStart[$!count]" name="details[$count].gmtStart"/>
+                            至  
+                            <input type="text" value="$dateUtils.format($!detail.gmtEnd,'yyyy-MM-dd')"  id="gmtEnd[$!count]" name="details[$count].gmtEnd"/>
+                            价格： <input type="text" value="$!detail.price" name="details[$count].price" />
+                            #if($count > 0)
+                                <input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;" />
+                            #end
+                        </div>
+                    #end
+                </div>
+                <input type="button" value="+ 增加" onclick="addTime() ;"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">市场价：</td>
+            <td>
+                <input type="text" id='marketPrice' name='marketPrice' value="$!ticket.marketPrice"  class="input_m" />元
+            </td>
+        </tr>
+        <tr>
+            <td align="right">支付方式：</td>
+            <td>
+                <input type="checkbox" name="payTypesList" value="ONLINE" #if( $collectionUtils.contains($!payTypesList,"ONLINE"))checked#end />
+                    网上支付
+                    <input type="checkbox" name="payTypesList" value="CASH" #if( $collectionUtils.contains($!payTypesList,"CASH"))checked#end/>
+                        前台现付
+            </td>
+        </tr>
+        <tr>
+            <td align="right">所在地：</td>
+            <td>
+                <select id='destProvince'  name='destProvince' onchange="selectProvince();"></select>
+                <select id='destCity' name='destCity' onchange="selectCity();"></select>
+                <select id='destArea' name='destArea' ></select>
+                <input type="text" id='destAddr'  name='destAddr' value="$!ticket.destAddr" class="input_b"/>
+                &nbsp;&nbsp;<a href="#">查看地图坐标</a>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">推荐指数：</td>
+            <td>
+                <select id='recommend'  name='recommend'>
+                    <option>5</option>
+                    <option>4.5</option>
+                    <option>4</option>
+                    <option>3.5</option>
+                    <option>3</option>
+                    <option>2.5</option>
+                    <option>2</option>
+                    <option>1.5</option>
+                    <option>1</option>
+                    <option>0.5</option>
+                    <option>0</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">门票类型：</td>
+            <td>
+                <input type="radio" name="ticketType" value="ETICKET_SMS" #if($ticket.ticketType == "ETICKET_SMS") checked #end/>
+                    电子票(手机短信)&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="ticketType" value="TICKET_SELF" #if($ticket.ticketType == "TICKET_SELF") checked #end />
+                        实物票(景点取)&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="ticketType" value="TICKET_MAIL" #if($ticket.ticketType == "TICKET_MAIL") checked #end />
+                            实物票(邮寄)
+            </td>
+        </tr>
+        <tr>
+            <td align="right">产品类别：</td>
+            <td>
+                <input type="checkbox" name="productTypesList" value="人气" #if( $collectionUtils.contains($!productTypesList,"人气")) checked #end />
+                    人气
+                    <input type="checkbox" name="productTypesList" value="山水" #if( $collectionUtils.contains($!productTypesList,"山水")) checked #end/>
+                        山水
+                        <input type="checkbox" name="productTypesList" value="自然环境" #if( $collectionUtils.contains($!productTypesList,"自然环境")) checked #end/>
+                            自然环境
+                            <input type="checkbox" name="productTypesList" value="亲子游" #if( $collectionUtils.contains($!productTypesList,"亲子游")) checked #end/>
+                                亲子游
+                                <input type="checkbox" name="productTypesList" value="情侣游" #if( $collectionUtils.contains($!productTypesList,"情侣游")) checked #end />
+                                    情侣游
+                                    <input type="checkbox" name="productTypesList" value="家庭游" #if( $collectionUtils.contains($!productTypesList,"家庭游")) checked #end/>
+                                        家庭游
+            </td>
+        </tr>
+        <tr>
+            <td align="right">上传图片：</td>
+            <td>
+                <div id="images">
+                    #foreach($image in $imagesList)
+                        #set($count = $velocityCount)
+                        #set($count = $count - 1)
+                        <div id="image$count">
+                            <input type="text"  name='imagesList' value="$!image"/>
+                            #if($count > 0)
+                                <input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;"  class="input_b"/>
+                            #end
+                        </div>
+                    #end
+                </div>
+                <input type="button" value="+ 增加" onclick="addImage() ;"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">产品简介：</td>
+            <td>
+                <textarea id='introduction' name='introduction' cols="45" rows="8">$!ticket.introduction</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">注意事项：</td>
+            <td>
+                <textarea id='notice' name='notice' cols="45" rows="8">$!ticket.notice</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">费用说明：</td>
+            <td>
+                <textarea id='feeDesc' name='feeDesc' cols="45" rows="8">$!ticket.feeDesc</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">备注：</td>
+            <td>
+                <textarea id='memo' name='memo' cols="45" rows="8" >$!ticket.memo</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">&nbsp;</td>
+            <td>
+                <input type="submit" name="button" id="button" value="  发 布  " />
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="notDiscout" id="notDiscout" value="T" #if($ticket.notDiscout == "T") checked #end/>
+                该产品为不打折景点</td>
+        </tr>
+    </table>
+</form>
+#XUI_JS(["core/xui-core.js","util/util-min.js","simple-date/xui-simple-datepicker.js"])
+#JS(["validator.js","dujiaok.js"])
+#KISSY_EDITOR_JS()
+<script type="text/javascript">
+    var lastDetailsIndex = $collectionUtils.size($!ticket.details)  ; //行程个数
+	var lastImagesIndex = $collectionUtils.size($imagesList) ; //上传照片个数
+			
+	var attachDatePicker = function(id){
+		var dateVal = $(id).value ;
+		var date ;
+		if(dateVal==null||dateVal==''){
+			date = new Date() ;
+		}else{
+		 	date = new Date(dateVal) ;
+		}
+		
+		var picker = new xui.widgets.simpleDatePicker(id,'YYYY-MM-DD',date);
+		picker.setModel({inconver:true,'selectBefore':function(dates){
+        	$(id).value = dates ;
+        }});
+	}		
+	
+	var addTime = function(){
+		var i = lastDetailsIndex  ;
+		
+		var divElement = document.createElement('div') ;
+		divElement.id = 'time' + i ;
+		divElement.className = 'line_sep' ;
+		$('times').appendChild(divElement) ;
+					
+		var innerHTML = '<input type="hidden" name="details['+i+'].id"/>' +
+		'<input type="text" id="gmtStart['+i+']" name="details['+i+'].gmtStart"/>' + 
+		' 至 ' + 
+		'<input type="text"  id="gmtEnd['+i+']" name="details['+i+'].gmtEnd"/>' +
+		'价格： <input type="text" name="details['+i+'].price" /> '  ;
+		if(i > 0){
+			innerHTML += '<input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;"  />' ;
+		}
+		$('time'+i).innerHTML = innerHTML ;
+		attachDatePicker('gmtStart['+i+']') ;
+		attachDatePicker('gmtEnd['+i+']') ;
+		lastDetailsIndex ++ ;
+		
+	}
+			
+	for(var i=0 ;i<lastDetailsIndex;i++){
+		///////datepicker
+		attachDatePicker('gmtStart['+i+']') ;
+		attachDatePicker('gmtEnd['+i+']') ;
+	}
+
+	var removeElement = function(ele){
+		ele.parentNode.removeChild(ele) ;
+	}
+	
+	
+	
+	var addImage = function(){
+		var i = lastImagesIndex  ;
+		if(i > 3){
+			return ;
+		}
+		var divElement = document.createElement('div') ;
+		divElement.id = 'image' + i ;
+		$('images').appendChild(divElement) ;
+		var innerHTML = '<input type="text"  name="imagesList" />' ;
+		if(i > 0){
+			innerHTML += '<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />' ;
+		}
+		$('image'+i).innerHTML = innerHTML ;
+		lastImagesIndex ++ ;
+	}
+	
+	var selectProvince = function (){
+		var select = $('destProvince') ;
+		var name = select.options[select.selectedIndex].value ;
+		initAddressSelect(url,'destCity','city','',name) ;
+		$('destArea').options.length = 0 ;
+	}
+	
+	var selectCity = function(){
+		var select = $('destCity') ;
+		var name = select.options[select.selectedIndex].value ;
+		initAddressSelect(url,'destArea','area','',name) ;
+	}
+	
+	//省市地区
+	var province = '$!ticket.destProvince' ;
+	var city = '$!ticket.destCity' ;
+	var area = '$!ticket.destArea' ;
+	var url = '${env.root}/ajax/address.htm' ;	
+	
+	///初始化
+	if(lastDetailsIndex <= 0){
+		addTime() ;	
+	}
+	if(lastImagesIndex <= 0){
+		addImage() ;
+	}
+	
+	initAddressSelect(url,'destProvince','province',province) ;
+	initAddressSelect(url,'destCity','city',city,province) ;
+	initAddressSelect(url,'destArea','area',area,city) ;
+	var recommend = '$!ticket.recommend';
+	setupSelect('recommend',recommend) ;
+	
+	//load edtor
+	KISSY.ready(function(S) {
+        S.use('editor', function(S) {
+			window.editor = loadediter("#introduction") ;
+            window.editor = loadediter("#notice") ;
+			window.editor = loadediter("#feeDesc") ;
+			window.editor = loadediter("#memo") ;
+        });
+    });
+</script>

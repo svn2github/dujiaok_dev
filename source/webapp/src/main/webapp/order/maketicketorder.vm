@@ -1,0 +1,358 @@
+#set($layout="/order/default.vm")
+<form id="orderForm" method="post" action="${env.root}/order/selfdriveorderdetail.htm" onsubmit="javascript:return new Totalorders().checkForm1()" >
+    <input type="hidden" value="$!product.marketPrice" id="Adult_mkprice">
+	<!-- 内容开始 -->
+    <div id="wrap">
+		<div class="step-box"><div class="step-1"></div></div>
+        <div class="section urhere">
+            <!--span class="F3">分享到： 新浪微博 </span-->
+        </div>
+        <div id="dingdan" class="section">
+        	<div class="d_left">
+        		<h2 class="d_title"><span class="order-nav">预订：</span>$product.name</h2>
+                <table class="d_dgcp"  cellpadding="0" cellspacing="0">
+                	<tr>
+                    	<th>编号</th>
+                        <th>线路名称</th>
+                        <th>出发信息</th>
+                        <th>人数</th>
+                    </tr>
+                    <tr>
+                    	<td>$!product.productId</td>
+                        <td>$!product.name</td>
+                        <td class="F10">$!startDate&nbsp;&nbsp至<br />$!endDate</td>
+                        <td class="F10">
+                        	成人 <input type="text" name="adultNum" id="adultNum" maxlength="3" class="wpx34" value="$!order.count"/>
+                        	<span class="F2">（单人价：<span id="Adult_price">$!product.details.get(0).price</span>元　双人价
+                        	<span id="Adult_price2">$!product.details.get(0).doublePrice</span>元）</span><br />
+							#if($!productDetail.childPrice!='')
+								儿童 <input type="text" name="childNum" id="childNum" maxlength="3" class="wpx34" value="$!order.secondaryCount"/>
+								<span class="F2">（儿童价：<span id="Child_price">$!product.details.get(0).childPrice</span>元）</span>
+							#else
+								<input type="hidden" name="childNum" id="childNum" value="0"/>
+								<span id="Child_price" style="display:none">0</span>
+							#end
+						</td>
+                    </tr>
+                </table>
+                <h3 class="dingdanhead">附加产品</h3>
+                <ul class="Insurance clearFix">
+                	<li class="clearFix">
+                    	<ul class="Insurance_one">
+                        	<li class="Insurance_check">
+                        		<input name="Accident_Insurance" type="checkbox" value="" id="Accident_Insurance" checked /></li>
+                    		<li class="Insurance_name">自由行-平安国内短途意外险</li>
+                    		<li style="display:none">市场价：<span id="Insurance_mkprice">20</span>元</li>
+                    		<li>ok价：<span id="Insurance_okprice">20</span>元(天/人)</li>
+                    		<li><span class="F10" id="Insurance_oknum"></span>份</li>
+                    		<li><span class="F9"><span id="Insurance_okTotal">6</span>元</span></p></li>
+                        </ul>
+                   </li>
+                </ul>
+                <h3 class="dingdanhead">主联系人信息</h3>
+                <table class="d_ywrxx"  cellpadding="0" cellspacing="0">
+                	<tr>
+                    	<th><i>*</i> 主联系人姓名：</th>
+                        <td><input type="text" name="erh_Name0" id="erh_Name0" class="wpx184" value="$!member.nickname"/></td>
+                    </tr>
+                    <tr>
+                    	<th><i>*</i> 主联系人手机：</th>
+                        <td><input type="text" name="erh_Tel0" maxlength=11 id="erh_Tel0" class="wpx184" value="$!member.mobileNo" /></td>
+                    </tr>
+                    <tr>
+                    	<th><i>*</i> 证件类型：</th>
+                        <td><!--form id="form1" name="form1" method="post" action=""-->
+                          <select name="select0" id="select0">
+                            <option>身份证</option>
+                            <option>护照</option>
+                            <option>军官证</option>
+							<option>其它</option>
+                          </select>
+                        <!--/form--></td>
+                    </tr>
+                    <tr>
+                    	<th><i>*</i> 证件号码：</th>
+                        <td><input type="text" name="erh_Certificate0" id="erh_Certificate0" class="wpx184" /></td>
+                    </tr>
+                    <tr>
+                    	<th>E-mail：</th>
+                        <td><input type="text" name="erh_Email0" id="erh_Email0" class="wpx1843" value="$!member.email" /></td>
+                    </tr>
+                    </table>
+                </table>
+                <div id="Creat_order" class="hid"></div>
+				<div id="add_order" style="float:right;padding:0 450px 30px 0;"><a href="javascript:" id="add_person">+ 添加游玩人</a></div>
+				<div style="clear:both;"></div>
+                <div class="d_qrxd" >
+                	<button type="submit" id="submit">&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                </div>
+                <div class="d_ydxx">
+                	<!--p><input name="" type="checkbox" value="" checked />同意度假OK预订协议</p-->
+                	<textarea name="comment" id="comment" cols="45" rows="5" style="display:none"></textarea>
+                </div>
+          </div>
+            
+            <div class="d_right">
+            	<h3>订单金额总计</h3>
+                <div class="information"> 
+                    <table  cellpadding="0" cellspacing="0">
+                    	<tr><th>市 场 价：</th><td><span id="Price">$product.marketPrice</span>元</td></tr>
+                    	<tr><th>ok价：</th><td><span id="difference">100</span>元</td></tr>
+                        <tr><th>保险费用：</th><td><span id="Total_bx">10</span>元</td></tr>
+                        <tr><th>累计节省：</th><td><span id="Total_Save">1458</span>元</td></tr>
+                    </table>
+                    <p class="Settlement_amount">订单结算金额<br /><b>￥<span id="Order_Total">178370</span></b></p>
+                </div> 
+            </div>
+
+        </div>
+   </div>    
+        <!-- 内容结束 -->
+    </div>
+</div>
+<input type="hidden" name="productId" id="productId" value="$!product.productId" />
+<input type="hidden" name="productDetailId" id="productDetailId" value="$!product.details.get(0).id" />
+<input type="hidden" name="departDate" id="departDate" value="$!startDate" />
+
+</form>
+	
+	
+<script>
+function submitForm(){
+	var orderForm = document.getElementById('orderForm');
+	orderForm.action = $('webUrl').value + 'trek/order/order/saveorder.htm';
+	
+	$('amount').value = $('Order_Total').innerHTML;
+	$('adultNumber').value = $('adultNum').value;
+	$('countChild').value = $('childNum').value;
+	if($('Accident_Insurance').checked){
+		$('isNeedRiskInput').value = "y";
+	}
+	
+	orderForm.submit();
+}
+
+
+var EV = xui.util.Event,
+	DOM = xui.util.Dom;
+var Totalorders = function(){};
+Totalorders.prototype = {
+	Total:function(){
+		var SELF = this;
+		SELF.Adult_price();
+	},
+	bind:function(){
+		var SELF = this;
+		SELF.Creat_order();
+		SELF.Total();
+		EV.on($('adultNum'),'blur',function(){
+			SELF.Total();
+			SELF.Creat_order();
+			xui.widgets.Tip.clear();
+		})
+		EV.on($('childNum'),'blur',function(){
+			SELF.Total();
+		})
+		EV.on($('Accident_Insurance'),'click',function(){
+			xui.widgets.Tip.clear();										   
+			SELF.Total();
+			SELF.Creat_order();
+		})
+		EV.on($('Room_rate'),'click',function(){
+			SELF.Total();
+		})
+		EV.on($('add_person'),'click',function(){
+			SELF.Creat_person();
+		})
+		EV.on($('submit'),'click',function(){
+				SELF.checkForm();
+		})
+		EV.on(DOM.getElementsByClassName('wpx184'),'keyup',function(){
+			if(this.value == ""){
+				xui.widgets.Tip.show(this.id,'带*号为必填项,请重新输入。');
+			}else{
+				xui.widgets.Tip._close(this.id+'china');
+			}
+		})
+		EV.on(DOM.getElementsByClassName('wpx184'),'blur',function(){
+			if(this.value == ""){
+				xui.widgets.Tip.show(this.id,'带*号为必填项,请重新输入。');
+			}else{
+				xui.widgets.Tip._close(this.id+'china');
+			}
+		})
+	},
+	bind2:function(){
+		var EL = DOM.getElementsByClassName('Del_person'),
+			EL2 = DOM.getElementsByClassName('person_Order');
+		var SELF = this;
+		EV.on(EL,'click',function(){
+			for(i=0;i<EL.length;i++){
+				if(EL[i] == this ){
+					$('Creat_order').removeChild(EL2[i]);
+					SELF.bind3();
+				}
+			xui.widgets.Tip.clear();
+			}
+		})
+		EV.on(DOM.getElementsByClassName('wpx184'),'keyup',function(){
+			if(this.value == ""){
+				xui.widgets.Tip.show(this.id,'带*号为必填项,请重新输入。');
+			}else{
+				xui.widgets.Tip._close(this.id+'china');
+			}
+		})
+	},
+	bind3:function(EL){
+		var EL = DOM.getElementsByClassName('Del_person');
+		if(EL.length == 0){
+			$('Creat_order').innerHTML = "";
+		}
+	},
+	bind4:function(){
+		EV.on(DOM.getElementsByClassName('wpx184'),'keyup',function(){
+			if(this.value == ""){
+				xui.widgets.Tip.show(this.id,'带*号为必填项,请重新输入。');
+			}else{
+				xui.widgets.Tip._close(this.id+'china');
+			}
+		})
+	},
+	/**
+	*订单金额总计数据
+	*/
+	Adult_price:function(){
+		var EL = parseInt($('adultNum').value),
+			EL2 = parseInt($('childNum').value),
+			EL3 = Number($('Adult_price').innerHTML),
+			EL4 = Number($('Child_price').innerHTML),
+			EL5 = 20;//$('Insurance_mkprice').innerHTML,
+			EL6 = Number($('Adult_price2').innerHTML),
+			EL7 = 20//$('Insurance_okprice').innerHTML,
+			EL9 = Math.floor(EL/2),
+			EL10 = Number($('Adult_mkprice').value);
+		var SELF = this;
+		var totalPrice = Math.floor(EL/2) * EL6 + EL%2 * EL3 + EL4 * EL2;
+		if($('Accident_Insurance').checked){
+			SELF.Adult_price_init((EL + EL2) * (EL10 + EL5), totalPrice, (EL + EL2)*EL7)
+		}else{
+			SELF.Adult_price_init((EL + EL2) * (EL10 + EL5), totalPrice, 0)
+		}
+	},
+	Adult_price_init:function(num1,num2,num3){
+		$('Price').innerHTML = num1;
+		$('difference').innerHTML = num2;
+		$('Total_bx').innerHTML = num3;
+		$('Total_Save').innerHTML = num1-num2-num3;
+		$('Order_Total').innerHTML = num2+num3;
+		$('Insurance_okTotal').innerHTML = num3;
+	},
+	/**
+	*附加产品数据
+	*/
+	Add_Products:function(){
+			$('Insurance_oknum').innerHTML = $('adultNum').value-0;
+			$('Insurance_okTotal').innerHTML = $('Insurance_oknum').innerHTML*$('Insurance_okprice').innerHTML*$('tourDays').value;
+	},
+	Creat_order:function(){
+		var SELF = this;
+		var EL = $('adultNum').value,
+			EL2 = $('Creat_order');
+		if($('Accident_Insurance').checked){
+			DOM.addClass($('add_order'),'hid')
+			if(EL>=2){
+				DOM.removeClass($('Creat_order'),'hid');
+				var Contact = [];
+				Contact.push('<h3 class="dingdanhead">游玩人信息</h3>');
+				for(i=1; i<EL;i++){
+					Contact.push('<table class="d_ywrxx"  cellpadding="0" cellspacing="0"><tr><th><i>*</i> 游玩人姓名：</th><td><input type="text" name="erh_Name'+i+'" id="erh_Name'+i+'" class="wpx184" /></td></tr>');
+					Contact.push('<tr><th><i>*</i> 游玩人手机：</th><td><input type="text" name="erh_Tel'+i+'" id="erh_Tel'+i+'" class="wpx184" /></td></tr>');
+					Contact.push('<tr><th><i>*</i> 证件类型：</th><td><select name="select'+i+'" id="select'+i+'"><option>身份证</option><option>护照</option><option>军官证</option><option>其它</option></select></td></tr>');
+					Contact.push('<tr><th><i>*</i> 证件号码：</th><td><input type="text" name="erh_Certificate'+i+'" id="erh_Certificate'+i+'" class="wpx184" /></td></tr>');
+					Contact.push('<tr><th>E-mail：</th><td><input type="text" name="erh_Email'+i+'" id="erh_Email'+i+'" class="wpx1843" /></td></tr>');
+					Contact.push('</table>')
+				}
+				EL2.innerHTML = Contact.join('');
+				SELF.bind4();
+			}else{
+				$('Creat_order').innerHTML = "";
+			}
+		}else{
+			$('Creat_order').innerHTML = "";
+			DOM.removeClass($('add_order'),'hid');
+		}
+	},
+	Creat_person:function(){
+		var SELF = this;
+		var EL =  $('Creat_order').getElementsByTagName('table');
+			EL2 = $('Creat_order');
+		var Contact = [];
+		Contact.push('<h3 class="dingdanhead">游玩人信息</h3>');
+		for(i=1; i<EL.length+2;i++){
+			Contact.push('<div class="person_Order"><div style="clear:both;"></div>');
+			Contact.push('<table class="d_ywrxx"  cellpadding="0" cellspacing="0"><tr><th><i>*</i> 游玩人姓名：</th><td><input type="text" name="erh_Name'+i+'" id="erh_Name'+i+'" class="wpx184" /></td></tr>');
+			Contact.push('<tr><th><i>*</i> 游玩人手机：</th><td><input type="text" name="erh_Tel'+i+'" id="erh_Tel'+i+'" class="wpx184" /></td></tr>');
+			Contact.push('<tr><th><i>*</i> 证件类型：</th><td><select name="select'+i+'" id="select'+i+'"><option>身份证</option><option>护照</option><option>军官证</option><option>其它</option></select></td></tr>');
+			Contact.push('<tr><th><i>*</i> 证件号码：</th><td><input type="text" name="erh_Certificate'+i+'" id="erh_Certificate'+i+'" class="wpx184" /></td></tr>');
+			Contact.push('<tr><th>E-mail：</th><td><input type="text" name="erh_Email'+i+'" id="erh_Email'+i+'" class="wpx1843" /></td></tr>');
+			Contact.push('</table>')
+			Contact.push('<div style="float:left; padding:0 0 30px 100px;"><a href="javascript:" class="Del_person">- 删除游玩人</a></div></div>')
+		}
+		EL2.innerHTML = Contact.join('');
+		DOM.removeClass($('Creat_order'),'hid');
+		SELF.bind2();
+	},
+	checkForm:function(){
+		var SELF = this;
+		var EL = DOM.getElementsByClassName('wpx184');
+		xui.widgets.Tip.clear();
+		for (i=0; i<EL.length; i++){
+			if(EL[i].value==""){
+				xui.widgets.Tip.show(EL[i].id,'带*号为必填项,不能为空!请重新输入。');
+			}else if(EL[i] == $("erh_Tel0")&!xui.util.NumberUtil.isNumber(EL[i].value)){
+				xui.widgets.Tip.show(EL[i].id,'手机号码必须为11位数字。');
+			}else if(EL[i] == $("erh_Tel0")&EL[i].value.length!==11){
+				xui.widgets.Tip.show(EL[i].id,'手机号码必须为11位数字。');
+			}
+		}
+		SELF.postData();
+	},
+	checkForm1:function(){
+		var EL = DOM.getElementsByClassName('wpx184');
+		for (i=0; i<EL.length; i++){
+			if(EL[i].value==""||$("erh_Tel0").value.length!==11||!xui.util.NumberUtil.isNumber($("erh_Tel0").value)){
+				return false;
+			}
+		}
+		return true;
+	},
+	postData:function(){
+		var SELF = this;
+		SELF.value = "";
+		var EL = $('adultNum').value;
+		for (i=0;i<EL; i++){
+			if(SELF.value && $('erh_Name'+i) != null){
+				SELF.value = SELF.value+',\{name:\"'+$('erh_Name'+i).value+'\",tel:\"'+$('erh_Tel'+i).value+'\",select:\"'+$('select'+i).value+'\",Certificate:\"'+$('erh_Certificate'+i).value+'\",Email:\"'+$('erh_Email'+i).value+'\"\}';
+			}else{
+				SELF.value ='[{name:\"'+$('erh_Name0').value+'\",tel:\"'+$('erh_Tel0').value+'\",select:\"'+$('select0').value+'\",Certificate:\"'+$('erh_Certificate0').value+'\",Email:\"'+$('erh_Email0').value+'\"\}';
+			}			
+		}
+		SELF.value = SELF.value + ']';
+		SELF.setValue(SELF.value);
+	},
+	setValue:function(data){
+		$('isNeedRiskInput').value = "n";
+		$('amount').value = $('Order_Total').innerHTML;
+    	$('Adult_Number').value = $('adultNum').value;
+    	$('countChild').value = $('childNum').value;
+		$('perosonInfo').value = data;
+    	if($('Accident_Insurance').checked){
+    		$('isNeedRiskInput').value = "y";
+    	}
+	}
+};					   
+EV.onDOMReady(function(){
+	var b = new Totalorders();
+	b.bind();
+});
+</script>

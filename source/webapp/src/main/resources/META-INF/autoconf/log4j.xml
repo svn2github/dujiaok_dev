@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<!--
+  - Log4j配置文件。
+  -
+  - 请使用专用的XML编辑器编辑此文件，以确保其符合log4j.dtd。
+  -
+  - @author Michael Zhou
+ -->
+#set($loggingRoot = $!{dujiaok_loggingRoot})
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <!-- ===================================================================== -->
+    <!--  以下是appender的定义                                                 -->
+    <!-- ===================================================================== -->
+    #if($dujiaok_production != "true")
+        <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		      <param name="Target" value="System.out" />
+		      <param name="Threshold" value="WARN" />
+		      <layout class="org.apache.log4j.PatternLayout">
+		         <param name="ConversionPattern" value="%d [%-5p](%C{2},%L) - %m%n" />
+		      </layout>
+	    </appender>
+    #end
+    <appender name="PROJECT" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="${loggingRoot}/sys/sys.log"/> 
+        #if($dujiaok_production != "true") 
+        <param name="append" value="false"/>
+        #else 
+        <param name="append" value="true"/> 
+        #end 
+        <param name="encoding" value="GBK"/>
+        <param name="threshold" value="info"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%X{requestURIWithQueryString}] %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+  
+    <!-- ===================================================================== -->
+    <!--  Root logger的定义                                                    -->
+    <!-- ===================================================================== -->
+    <root>
+        <level value="$dujiaok_loggingLevel"/>
+        <appender-ref ref="PROJECT"/>
+        <appender-ref ref="ExceptionAppender" />
+        #if($dujiaok_production != "true")
+           <appender-ref ref="CONSOLE" />
+        #end
+        <!-- <appender-ref ref="ASYNC" /> -->
+    </root>
+    
+</log4j:configuration>

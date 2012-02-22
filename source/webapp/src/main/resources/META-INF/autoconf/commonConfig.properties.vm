@@ -1,0 +1,4 @@
+dujiaok.output = ${dujiaok_output}
+dujiaok.database.driver.url = ${dujiaok_database_driver_url}
+dujiaok.database.driver.username = ${dujiaok_database_driver_username}
+dujiaok.database.driver.password = ${dujiaok_database_driver_password}
