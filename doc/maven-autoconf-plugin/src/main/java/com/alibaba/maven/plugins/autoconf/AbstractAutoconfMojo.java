@@ -13,16 +13,6 @@
  */
 package com.alibaba.maven.plugins.autoconf;
 
-import com.alibaba.antx.config.ConfigConstant;
-import com.alibaba.antx.config.ConfigRuntime;
-import com.alibaba.antx.config.ConfigRuntimeImpl;
-import com.alibaba.antx.config.props.PropertiesFile;
-import com.alibaba.antx.util.i18n.LocaleInfo;
-import com.alibaba.antx.util.i18n.UnsupportedLocaleException;
-import org.apache.commons.lang.StringUtils;
-import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -30,6 +20,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Locale;
 import java.util.Properties;
+
+import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.maven.plugin.AbstractMojo;
+import org.apache.maven.plugin.MojoExecutionException;
+
+import com.alibaba.antx.config.ConfigConstant;
+import com.alibaba.antx.config.ConfigRuntimeImpl;
+import com.alibaba.antx.util.i18n.LocaleInfo;
+import com.alibaba.antx.util.i18n.UnsupportedLocaleException;
 
 /**
  * @author gang.lvg
@@ -100,7 +100,7 @@ public abstract class AbstractAutoconfMojo extends AbstractMojo {
             runtime.setUserPropertiesFile( userProp, encoding );
         }
 
-        if ( interactiveMode ) {
+        if ( BooleanUtils.isTrue(interactiveMode) ) {
             if ( ConfigConstant.INTERACTIVE_ON.equalsIgnoreCase( interactive ) ) {
                 runtime.setInteractiveMode( ConfigConstant.INTERACTIVE_ON );
             } else {
@@ -150,22 +150,6 @@ public abstract class AbstractAutoconfMojo extends AbstractMojo {
         return result;
     }
 
-    protected String getMinasUriFromAntxProperties( ConfigRuntime runtime, File basedir ) {
-
-        String result = null;
-
-        PropertiesFile userProp = runtime.getPropertiesSet().getUserPropertiesFile();
-
-        if ( userProp != null ) {
-            Object obj = userProp.getProperties().get( KEY_MINAS_URI );
-            if ( obj != null ) {
-                result = obj.toString();
-            }
-        } else {
-            result = getAntxProperties( basedir ).getProperty( KEY_MINAS_URI );
-        }
-
-        return result;
-    }
+   
 
 }

@@ -245,7 +245,7 @@ public class ConfigRuntimeImpl implements ConfigRuntime {
             //MainWindow.run(this);
         } else if (inlineDescriptor == null) {
             // 扫描所有文件或目录，取得要配置的entries
-            List entries = scan(false);
+            List<ConfigEntry> entries = scan(false);
 
             if (entries.isEmpty() && !ConfigConstant.INTERACTIVE_ON.equals(interactiveMode)) {
                 info("Nothing to configure");
@@ -258,7 +258,7 @@ public class ConfigRuntimeImpl implements ConfigRuntime {
             wizard.loadAndStart();
 
             // 生成配置文件
-            for (Iterator i = entries.iterator(); i.hasNext();) {
+            for (Iterator<ConfigEntry> i = entries.iterator(); i.hasNext();) {
                 ConfigEntry entry = (ConfigEntry) i.next();
 
                 entry.generate();
@@ -271,8 +271,8 @@ public class ConfigRuntimeImpl implements ConfigRuntime {
         }
     }
 
-    public List scan(boolean includeEmptyEntries) {
-        List entries = new ArrayList(destFiles.length);
+    public List<ConfigEntry> scan(boolean includeEmptyEntries) {
+        List<ConfigEntry> entries = new ArrayList<ConfigEntry>(destFiles.length);
 
         for (int i = 0; i < destFiles.length; i++) {
             File destFile = destFiles[i];

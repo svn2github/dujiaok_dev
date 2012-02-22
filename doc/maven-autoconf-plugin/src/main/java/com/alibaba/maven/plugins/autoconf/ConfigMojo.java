@@ -15,19 +15,19 @@
  */
 package com.alibaba.maven.plugins.autoconf;
 
-import com.alibaba.antx.config.ConfigRuntimeImpl;
-import com.alibaba.antx.util.PatternSet;
-import com.alibaba.maven.plugins.autoconf.util.AntPathMatcher;
-import org.apache.commons.lang.StringUtils;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.alibaba.antx.config.ConfigRuntimeImpl;
+import com.alibaba.antx.util.PatternSet;
+import com.alibaba.maven.plugins.autoconf.util.AntPathMatcher;
 
 /**
  * Config Mojo
@@ -94,21 +94,6 @@ public class ConfigMojo extends AbstractAutoconfMojo {
     String finalName;
 
     /**
-     * @parameter expression="${minasUri}"
-     */
-    private String minasUri;
-
-    /**
-     * @parameter expression="${minas.username}"
-     */
-    private String minasUsername;
-
-    /**
-     * @parameter expression="${minas.version}"
-     */
-    private String minasVersion;
-
-    /**
      * @parameter default-value="${basedir}"
      */
     private File basedir;
@@ -141,10 +126,6 @@ public class ConfigMojo extends AbstractAutoconfMojo {
 	
 	private void doConfigure(File[] targetFiles) throws MojoExecutionException{
 	    ConfigRuntimeImpl runtimeImpl = getRuntimeImpl();
-
-        if ( StringUtils.isEmpty( minasUri ) ) {
-            minasUri = getMinasUriFromAntxProperties( runtimeImpl, basedir );
-        }
 
         // convert to string[], again.
         String[] targetFileNames = new String[targetFiles.length];
@@ -336,7 +317,7 @@ public class ConfigMojo extends AbstractAutoconfMojo {
 	public static void main(String[] args){
 	    ConfigMojo mojo = new ConfigMojo();
 	    mojo.destFiles = new String[]{
-	            "D:\\tmp\\test",
+	            "D:/test.jar",
 	            //"d:/tmp/test/lib/*.jar",
 	            //"d:/tmp/test/classes"
 	    };
