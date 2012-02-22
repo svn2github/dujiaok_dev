@@ -1,13 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<!-- 
 	<parent>
 		<groupId>com.alibaba.maven.plugins</groupId>
 		<artifactId>plugin.parent</artifactId>
 		<version>2</version>
 	</parent>
- -->
+
 	<groupId>com.alibaba.maven.plugins</groupId>
 	<artifactId>autoconf-lib</artifactId>
 	<packaging>jar</packaging>
@@ -79,11 +78,29 @@
 							<goal>run</goal>
 						</goals>
 					</execution>
+					<execution>
+						<id>test-compile</id>
+						<phase>test-compile</phase>
+						<configuration>
+							<tasks>
+								<taskdef name="groovyc" classname="org.codehaus.groovy.ant.Groovyc">
+									<classpath refid="maven.compile.classpath" />
+								</taskdef>
+								<mkdir dir="${project.build.testOutputDirectory}" />
+								<groovyc destdir="${project.build.testOutputDirectory}"
+									srcdir="${basedir}/src/test/groovy/" listfiles="true">
+									<classpath refid="maven.test.classpath" />
+								</groovyc>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
 				</executions>
 			</plugin>
 
 			<!-- customized eclipse plugin that adds groovy nature -->
-			<!-- 
 			<plugin>
 				<groupId>com.alibaba.org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
@@ -92,7 +109,7 @@
 					<addVersionToProjectName>true</addVersionToProjectName>
 					<downloadSources>true</downloadSources>
 					<downloadJavadocs>false</downloadJavadocs>
-					
+					<!-- variable is set in pampas pom -->
 					<projectTextFileEncoding>${file_encoding}</projectTextFileEncoding>
 
 					<projectnatures>
@@ -114,7 +131,7 @@
 					</classpathContainers>
 				</configuration>
 			</plugin>
-	-->
+
 			<!-- adding additional sources -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
