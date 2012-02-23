@@ -27,18 +27,18 @@ BASE_BIN_DIR=`pwd`
 HOST_NAME=`hostname`
 LOG_DIR=$OUTPUT_HOME/logs
 JETTY_PID="$BASE_BIN_DIR/jetty.pid"
-##检查的日志文件
+##CHECK LOG
 WLS_CHECK_LOG="$LOG_DIR/admin_server_out.log"
 JETTY_CHECK_LOG="$LOG_DIR/jetty_stdout.log"
 APACHE_LOG="$LOG_DIR/apache_error.log"
-##以前的日志保存
+##save old LOGs
 LOGS_SAVED="$LOG_DIR/logs_saved"
-##成功的状态
+##Success FLAG
 SUCCESSMSG="with property loggingRoot ="
 
 TIMESTAMP=`date +%Y_%m_%d_%H_%M`
 
-##hummock 日志目录创建
+##hummock create log directory 
 HUMMOCK_LOGDIR="$LOG_DIR/hummock"
 if [ ! -d $HUMMOCK_LOGDIR ]; then
    mkdir -p $HUMMOCK_LOGDIR
@@ -81,7 +81,7 @@ if [ ! -z "$STR" ]; then
     exit;
 fi    
     
-## start jetty 
+## start Jetty 
 echo -e "$HOST_NAME: starting jetty ...\c"
 $BASE_BIN_DIR/jettyctl.sh start 1>$JETTY_CHECK_LOG 2>$JETTY_CHECK_LOG &
 COUNT=0
@@ -96,7 +96,7 @@ sleep 20
 
 success "Oook!"
 
-##启动apache
+##Start apache
 if ! $cygwin; then
     echo -e "$HOST_NAME: starting httpd ..."
     chmod +x $BASE_BIN_DIR/httpd
