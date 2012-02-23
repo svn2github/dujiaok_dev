@@ -37,13 +37,13 @@ then
 	mkdir "$JETTY_SERVER_HOME/etc"	
 fi 
 
-cp  "$EXODUS2_DEPLOY_HOME/conf/jetty/etc/jetty.xml" "$JETTY_SERVER_HOME/etc/jetty.xml"
-cp  "$EXODUS2_DEPLOY_HOME/conf/jetty/etc/jetty-logging.xml" "$JETTY_SERVER_HOME/etc/jetty-logging.xml"
-cp  "$EXODUS2_DEPLOY_HOME/conf/jetty/etc/jetty-jmx.xml" "$JETTY_SERVER_HOME/etc/jetty-jmx.xml"
-cp  "$EXODUS2_DEPLOY_HOME/conf/jetty/etc/jetty-deploy.xml" "$JETTY_SERVER_HOME/etc/jetty-deploy.xml"
-cp  "$EXODUS2_DEPLOY_HOME/conf/jetty/etc/jetty-webapps.xml" "$JETTY_SERVER_HOME/etc/jetty-webapps.xml"
-cp  "$EXODUS2_DEPLOY_HOME/conf/jetty/etc/webdefault.xml" "$JETTY_SERVER_HOME/etc/webdefault.xml"
-cp  "$EXODUS2_DEPLOY_HOME/conf/jetty/start.ini" "$JETTY_SERVER_HOME/start.ini"
+cp  "$DOUCOME_DEPLOY_HOME/conf/jetty/etc/jetty.xml" "$JETTY_SERVER_HOME/etc/jetty.xml"
+cp  "$DOUCOME_DEPLOY_HOME/conf/jetty/etc/jetty-logging.xml" "$JETTY_SERVER_HOME/etc/jetty-logging.xml"
+cp  "$DOUCOME_DEPLOY_HOME/conf/jetty/etc/jetty-jmx.xml" "$JETTY_SERVER_HOME/etc/jetty-jmx.xml"
+cp  "$DOUCOME_DEPLOY_HOME/conf/jetty/etc/jetty-deploy.xml" "$JETTY_SERVER_HOME/etc/jetty-deploy.xml"
+cp  "$DOUCOME_DEPLOY_HOME/conf/jetty/etc/jetty-webapps.xml" "$JETTY_SERVER_HOME/etc/jetty-webapps.xml"
+cp  "$DOUCOME_DEPLOY_HOME/conf/jetty/etc/webdefault.xml" "$JETTY_SERVER_HOME/etc/webdefault.xml"
+cp  "$DOUCOME_DEPLOY_HOME/conf/jetty/start.ini" "$JETTY_SERVER_HOME/start.ini"
 
 
 webapps="$JETTY_SERVER_HOME/webapps"
@@ -55,9 +55,9 @@ fi
 
 if  $production_mode ; then
 	rm -rf  "$JETTY_SERVER_HOME/webapps/root.war" 
-	cp "$EXODUS2_DEPLOY_HOME/web.war"  "$JETTY_SERVER_HOME/webapps/root.war" 
+	cp "$DOUCOME_DEPLOY_HOME/web.war"  "$JETTY_SERVER_HOME/webapps/root.war" 
 else
-	cp  "$EXODUS2_DEPLOY_HOME/../mobiletrade.bundle.war-1.0-SNAPSHOT.war"  "$JETTY_SERVER_HOME/webapps/root.war"
+	cp  "$DOUCOME_DEPLOY_HOME/../mobiletrade.bundle.war-1.0-SNAPSHOT.war"  "$JETTY_SERVER_HOME/webapps/root.war"
 fi
 
 
