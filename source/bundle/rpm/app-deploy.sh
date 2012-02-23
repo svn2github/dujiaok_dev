@@ -19,9 +19,9 @@ function deploy_war() {
   
   if [ $PRODUCTION == true ]; then
     mkdir -p $OUTPUT_HOME
-    cp  $TARGET/dujiaok.webapp.war-1.0-SNAPSHOT.war $WEBAPP_HOME/web.war
+    cp  $TARGET/dujiaok.bundle.war-1.0-SNAPSHOT.war $WEBAPP_HOME/web.war
   else
     mkdir -p $WEBAPP_HOME
-    cp  $TARGET/dujiaok.webapp.war-1.0-SNAPSHOT.war $WEBAPP_HOME/..
+    cp  $TARGET/dujiaok.bundle.war-1.0-SNAPSHOT.war $WEBAPP_HOME/..
   fi
 }
