@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo "TARGET=$TARGET |  WEBAPP_HOME=$WEBAPP_HOME"
 
 function deploy_template() {
   deploy  $TARGET/web-deploy.jar $WEBAPP_HOME
@@ -14,6 +13,9 @@ function deploy_task() {
 }
 
 function deploy_war() {
+	
+	echo "deploy war target = $TARGET  and  webapp_home=$WEBAPP_HOME"
+  
   if [ $PRODUCTION == true ]; then
     mkdir -p $OUTPUT_HOME
     cp  $TARGET/dujiaok.webapp.war-1.0-SNAPSHOT.war $WEBAPP_HOME/web.war

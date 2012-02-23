@@ -1,0 +1,56 @@
+<table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+        <td style=" background:#fff6ce; border:1px solid #ffba15; padding:10px;">
+            <a href="${env.root}/admin/createSelfDrive.htm" >  发布周边自驾   </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="${env.root}/admin/createTicket.htm" >  发布打折门票   </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="${env.root}/admin/createHotelRoom.htm" >  发布房间   </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="${env.root}/admin/createHotel.htm" >  发布酒店   </a>
+        </td>
+    </tr>
+</table>
+
+<table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+        <td height="10"></td>
+    </tr>
+</table>
+
+#if($result.memo)
+	$result.memo
+#end
+
+#if($result.emo)
+	$result.memo
+#end
+
+<table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+        <td>
+            <ul class="tab_sy clearFix">
+                <li #if($tab=="selfDrive") class="cur" #end>
+                    <a href="${env.root}/admin/selfDrivelist.htm">自驾</a>
+                </li>
+                <li #if($tab=="hotel") class="cur" #end>
+                    <a href="${env.root}/admin/hotellist.htm">酒店</a>
+                </li>
+                <li #if($tab=="ticket") class="cur" #end>
+                    <a href="${env.root}/admin/ticketlist.htm">门票</a>
+                </li>
+				<!--
+				<li #if($tab=="order") class="cur" #end>
+                    <a href="${env.root}/admin/orderlist.htm">订单</a>
+                </li>
+				-->
+            </ul>
+        </td>
+    </tr>
+</table>
+	
+<table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+        <td height="10"></td>
+    </tr>
+</table>

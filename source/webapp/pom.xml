@@ -12,7 +12,7 @@
 	
 	<groupId>com.doucome.dujiaok</groupId>
 	<artifactId>dujiaok.webapp</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>dujiaok</name>
 
 	<dependencies>
@@ -176,10 +176,11 @@
 						</executions>
 						<configuration>
 							<destFiles>
-								<destFile>${release_directory}/${pom.artifactId}-${pom.version}.war</destFile>
+								<destFile>${release_directory}/${pom.artifactId}-${pom.version}.jar</destFile>
 							</destFiles>
 							<includeDescriptorPatterns>
 								<includeDescriptorPattern>META-INF/autoconf/auto-config.xml</includeDescriptorPattern>
+								<includeDescriptorPattern>WEB-INF/autoconf/auto-config.xml</includeDescriptorPattern>
 							</includeDescriptorPatterns>
 						</configuration>
 					</plugin>

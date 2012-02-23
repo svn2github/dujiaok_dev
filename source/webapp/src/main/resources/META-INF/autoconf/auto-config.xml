@@ -32,9 +32,9 @@
 	</group>
 	
 	<script>
-		<generate template="commonConfig.properties.vm" destfile="WEB-INF/classes/bean/commonConfig.properties" charset="UTF-8" />
-		<generate template="struts.xml.vm" destfile="WEB-INF/classes/struts.xml" charset="UTF-8" />
-		<generate template="log4j.xml" destfile="WEB-INF/classes/log4j.xml" charset="UTF-8" />
+		<generate template="commonConfig.properties.vm" destfile="bean/commonConfig.properties" charset="UTF-8" />
+		<generate template="struts.xml.vm" destfile="struts.xml" charset="UTF-8" />
+		<generate template="log4j.xml" destfile="log4j.xml" charset="UTF-8" />
 	</script>
 </config>
 

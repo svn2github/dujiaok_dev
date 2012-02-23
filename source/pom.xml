@@ -12,6 +12,7 @@
 	<modules>
 		<module>./webapp</module>
 		<module>./deploy</module>
+		<module>./bundle/war</module>
 	</modules>
 	
 	<properties>

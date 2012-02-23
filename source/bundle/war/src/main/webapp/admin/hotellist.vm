@@ -1,0 +1,154 @@
+#set($__productType = "hotel")
+#set($layout = "/admin/default.vm")
+#set($title = "度假OK - 后台 - 酒店")
+#set($tab = $__productType)
+###################################################
+
+
+#parse('common/back_tab.vm')
+
+<form id="hotellistForm" name="hotellistForm" method="GET" action="${env.root}/admin/hotellist.htm" onsubmit="return Validator.validate(this,'admin');">
+	<input type="hidden" name="type" value="ticket"/>
+	<input type="hidden" name="start" id="start" value="1"/>
+	<input type="hidden" name="size" id="size" value="$!size"/>
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="search_sx">
+    			编号：<input type="text" name="productId" value="$!productId"/>&nbsp;&nbsp;
+    			名称：<input type="text" name="name" value="$!name"/>&nbsp;&nbsp;
+    			目的地：
+				<select id='destProvince'  name='destProvince' onchange="selectProvince();"></select>
+                <select id='destCity' name='destCity' ></select>
+				&nbsp;&nbsp;
+    			状态：
+                <select name="gmtExpire" id="gmtExpire">
+        			<option value=''>全部</option>
+        			<option value='$dateUtils.addDays($dateUtils.now(),0,"yyyy-MM-dd")'>已过期</option>
+        			<option value='$dateUtils.addDays($dateUtils.now(),7,"yyyy-MM-dd")'>一周内过期</option>
+        			<option value='$dateUtils.addDays($dateUtils.now(),30,"yyyy-MM-dd")'>一月内过期</option>
+                </select>
+                &nbsp;&nbsp;
+    			<input name="查询" type="submit" value="查询" />
+               
+            </td>
+        </tr>
+    </table>
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td height="10"></td>
+        </tr>
+    </table>
+    #parse('common/back_pagination.vm')
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="list_jd list_jd_top">
+        <tr>
+            <td width="129" align="center">
+                <strong>酒店编号</strong>
+            </td>
+			<td width="129" align="center">
+                <strong>房间编号</strong>
+            </td>
+            <td width="400" align="center">
+                <strong>名称</strong>
+            </td>
+            <td width="120" align="center">
+                <strong>所在地</strong>
+            </td>
+            <td width="100" align="center">
+                <strong>到期时间</strong>
+            </td>
+            <td width="200" align="center">
+                <strong>操作</strong>
+            </td>
+        </tr>
+		#if($collectionUtils.size($result.items) == 0)
+			<tr>
+                <td colspan="5" ><span style="color:red;margin:0 auto;">没有查询到符合条件的记录</span></td>
+            </tr>
+		#else
+        	#foreach($hotel in $result.items)
+            <tr  >
+                <td class="border_top_line">$!hotel.productId</td>
+				<td class="border_top_line"></td>
+                <td class="border_top_line">
+                    <a href="#"><b>$!hotel.name</b></a> #if(!$stringUtils.isBlank($hotel.memo))<img height="14" width="14" title="#ESC_HTML($hotel.memo)" src="${env.staticroot}/images/bz_icon.png">#end
+                </td>
+                <td class="border_top_line">$!hotel.destProvince $!hotel.destCity</td>
+                <td class="border_top_line"></td>
+                <td class="border_top_line">
+        			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createTicket.htm?productId=$!hotel.productId');">复制链接</a>&nbsp;&nbsp;
+                    <a href="${env.root}/admin/createHotel.htm?productId=$!hotel.productId">修改</a>&nbsp;&nbsp;
+        			<a href="javascript:void(0);" onclick="confirmAndDelHotel('$!hotel.productId')">删除</a>
+                </td>
+            </tr>
+				#foreach($room in $hotel.rooms)
+					<tr>
+                        <td></td>
+        				<td>$!room.productId</td>
+                        <td>
+                            &nbsp;&nbsp;<a href="${env.root}/product/detail.htm?productId=$!room.productId" target="_product">$!room.name</a> 
+                        </td>
+                        <td></td>
+                        <td class="F9">#AUTOCHECK_TIME($!room.gmtExpire,'yyyy-MM-dd')</td>
+                        <td>
+                			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createHotelRoom.htm?productId=$!room.productId');">复制链接</a>&nbsp;&nbsp;
+                            <a href="${env.root}/admin/createHotelRoom.htm?productId=$!room.productId">修改</a>&nbsp;&nbsp;
+                			<a href="javascript:void(0);" onclick="confirmAndDelProduct('$!room.productId')">删除</a>
+                        </td>
+                    </tr>
+				#end
+    		#end
+		#end
+    </table>
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td height="10"></td>
+        </tr>
+    </table>
+
+#parse('common/back_pagination.vm')
+ </form>
+ 
+#XUI_JS(["core/xui-core.js","util/util-min.js"])
+#JS(["validator.js","dujiaok.js"])
+<script type="text/javascript">
+    var gmtExpire = '$dateUtils.format($!gmtExpire,"yyyy-MM-dd")' ;
+    setupSelect('gmtExpire',gmtExpire) ;
+    var copy2clipboard = function(data){
+        setClipboard(data);
+        return false ;
+    }
+    var toPage = function(page , size){
+        var start = (page-1) * size + 1;
+        $('start').value = start ;
+        $('size').value = size ;
+        document.forms[0].submit() ;
+    }
+	
+	var url = '${env.root}/ajax/address.htm' ;	
+	var province = '$!destProvince' ;
+	var city = '$!destCity' ;
+	
+	var selectProvince = function (){
+		var select = $('destProvince') ;
+		var name = select.options[select.selectedIndex].value ;
+		initAddressSelect(url,'destCity','city','',name) ;
+		$('destArea').options.length = 0 ;
+	}
+	
+	var confirmAndDelProduct = function(val){
+		if(!confirm('确定删除编号为[' + val + ']的房间记录？')){
+			return ;
+		}
+		delProduct(val , '${env.root}') ;
+	}
+	
+	var confirmAndDelHotel = function(val){
+		if(!confirm('确定删除酒店记录，删除酒店会删除酒店下的所有房间？')){
+			return ;
+		}
+		delProduct(val , '${env.root}') ;
+	}
+	
+	initAddressSelect(url,'destProvince','province',province) ;
+	initAddressSelect(url,'destCity','city',city,province) ;
+</script>
