@@ -1,7 +1,8 @@
 #set ($app_port = $numberUtil.createInteger(${doucome_appserver_port}) )
 <IfModule mod_proxy.c>
+	<Proxy *>
 	ProxyRequests Off
 	ProxyPreserveHost On	
-	ProxyPassMatch ^(/|/index.htm|/(admin|member|order|home|remote)/(.*))$ http://localhost:${app_port} min=5 smax=16 max=64 ttl=600 timeout=30
-	
+	ProxyPassMatch / http://localhost:${app_port} min=5 smax=16 max=64 ttl=600 timeout=30
+	</Proxy>
 </IfModule>
