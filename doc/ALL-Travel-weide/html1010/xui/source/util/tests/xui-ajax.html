@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>xui-ajax</title>
+		<link rel="stylesheet" type="text/css" href="../../external/yui-2.6/logger/assets/skins/sam/logger.css" />
+        <link rel="stylesheet" type="text/css" href="../../external/yui-2.6/fonts/fonts-min.css" />
+        <link rel="stylesheet" type="text/css" href="../../external/yui-2.6/yuitest/assets/skins/sam/yuitest.css" />
+        <script type="text/javascript" src="../../external/yui-2.6/yahoo-dom-event/yahoo-dom-event.js"></script>
+        <script type="text/javascript" src="../../external/yui-2.6/logger/logger-min.js"></script>
+        <script type="text/javascript" src="../../external/yui-2.6/yuitest/yuitest-min.js"></script>
+		
+		<script type="text/javascript" src="../../core/xui-core.js"></script>
+		<script type="text/javascript" src="../xui-ajax.js"></script>
+    </head>
+    <body class="yui-skin-sam">
+    	<form id="form1" name="form1"></form>
+    	<script type="text/javascript">            
+            xuitest = {};
+			xuitest.util = {};
+			
+            xuitest.util.AjaxTest = new YAHOO.tool.TestCase({
+                //---------------------------------------------------------------------
+                // setUp and tearDown methods - optional
+                //---------------------------------------------------------------------
+                
+                /*
+                 * Sets up data that is needed by each test.
+                 */
+                setUp: function(){
+                },
+                
+                /*
+                 * Cleans up everything that was created by setUp().
+                 */
+                tearDown: function(){
+                },
+                
+                //---------------------------------------------------------------------
+                // Test methods - names must begin with "test"
+                //---------------------------------------------------------------------
+                				
+				test1: function(){					
+                    xui.util.Ajax.asyncGETProxy(
+						{url:'file_for_ajax_test.js',vName:'XUI_AJAX_TEXT'},
+						function(s){
+							YAHOO.util.Assert.isTrue(s!='Ajax跨域GET之测试样本');
+						}
+					);
+                },				
+                test2: function(){					
+                    xui.util.Ajax.asyncGET('file_for_ajax_test.txt',
+						function(s){
+							YAHOO.util.Assert.isTrue(s.indexOf('k1')>-1);
+						}
+					);
+                },
+				test3: function(){					
+                    var s = xui.util.Ajax.syncGet('file_for_ajax_test.txt');
+					YAHOO.util.Assert.isTrue(s.indexOf('k1')>-1);
+                },
+				test4: function(){					
+                    xui.util.Ajax.asyncPOST('file_for_ajax_test.txt',null,
+						function(s){
+							YAHOO.util.Assert.isTrue(s.indexOf('k1')>-1);
+						}
+					);					
+                },
+				test5: function(){					
+                    xui.util.Ajax.asyncPOSTForm('http://localhost:8080/','form1',
+						function(s){
+						}
+					);					
+                }
+            });            
+            
+            xuitest.util.AjaxSuite = new YAHOO.tool.TestSuite("Ajax Suite");
+            xuitest.util.AjaxSuite.add(xuitest.util.AjaxTest);
+            
+            YAHOO.util.Event.onDOMReady(function(){
+                //create the logger
+                var logger = new YAHOO.tool.TestLogger("testLogger");
+                YAHOO.tool.TestRunner.add(xuitest.util.AjaxSuite);
+                
+                //run the tests
+                YAHOO.tool.TestRunner.run();
+            });
+
+        </script>
+    </body>
+</html>

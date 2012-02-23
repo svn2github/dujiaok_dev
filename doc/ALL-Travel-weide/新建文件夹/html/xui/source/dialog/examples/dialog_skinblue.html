@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>dialog</title>
+<link href="../../../resource/css/common/reset.css" rel="stylesheet" type="text/css" />
+<link href="../../../resource/css/skinblue/dialog/dialog.css" rel="stylesheet" type="text/css" />
+
+<script src="../../core/xui-core.js"></script>
+<script src="../xui-dialog.js"></script>
+
+<script>
+	function open1(){
+		var d1 = new xui.widgets.Dialog('dialog1',{
+			title:'sample1',
+			width:300,
+			height:300,
+			content:{url:'_inner.html'}			
+		});
+		d1.on('beforeOpen',function(){
+			alert('width='+this.get('width'));
+		});
+		d1.on('afterClose',function(){
+			alert(this.id+' be closed!')
+		});		
+		d1.open();
+		
+		var d2 = new xui.widgets.Dialog('dialog2',{
+			title:'sample2',
+			width:200,
+			height:200,
+			modal:true,
+			content:{url:'_inner.html'}			
+		});
+		//本窗口内的事件监听
+		d2.on('afterClose',function(){
+			alert(this.id+' be closed!')
+		});
+		//跨窗口的事件监听	
+		$Listen('returnValue',function(arg){
+			var s = 'Event=' + arg[0];//第1个参数为事件名
+			s+= '\nReturn=' + arg[1];//第2个参数为事件上下文
+			alert(s);
+		});
+		//跨窗口的事件监听	
+		$Listen('change',function(arg){
+			d2.set('width',arg[1]);
+			d2.set('height',arg[1]);
+			d2.set('title','Change');
+		});
+		d2.open();
+	}
+</script>
+</head>
+
+<body>
+
+
+
+<img src="https://checkcode-itbu.alisoft.com/alisoft/checkcode?sessionID=4dOqV7S1$4rZ0dPvl5N3sLlj3zZaRkxS&random" />
+<div id="ssss"></div>
+<button onclick="isd()">ssssssssss</button>
+<script>
+function isd(){
+	//$('ssss').innerHTML = '<iframe id="ssd" src="?sd='+new Date().getTime()+'" ></iframe>';
+	//$('ssd').src = '?kl';
+	var f = document.createElement('iframe');
+	f.src = '?kl='+new Date().getTime();
+	document.body.appendChild(f);
+}
+</script>
+
+<!--input type="button" value="Open Dialog" onclick='open1();'/>	
+
+<br /><br />
+<select>
+	<option>11111111111111111111111111111111111111111111</option>
+</select><br />
+<select>
+	<option>11111111111111111111111111111111111111111111</option>
+</select><br />
+<select>
+	<option>11111111111111111111111111111111111111111111</option>
+</select><br />
+<select>
+	<option>11111111111111111111111111111111111111111111</option>
+</select><br />
+<select>
+	<option>11111111111111111111111111111111111111111111</option>
+</select><br />
+<select>
+	<option>11111111111111111111111111111111111111111111</option>
+</select><br />
+<select>
+	<option>11111111111111111111111111111111111111111111</option>
+</select><br />
+<select>
+	<option>11111111111111111111111111111111111111111111</option>
+</select><br />
+<select>
+	<option>11111111111111111111111111111111111111111111</option>
+</select><br />
+<select>
+	<option>11111111111111111111111111111111111111111111</option>
+</select><br />
+	
+<div style="position:absolute;left:300px;top:300px;">	
+<div class="xui-dialog-bg" style="width:100px;left:300px;top:300px;"><!--可以自己定宽度 也可以不输入-->
+  <div class="xui-dialog-border">
+	<div class="xui-dialog-titlebar">
+		<label>浮出框</label>
+		<span class="xui-dialog-titlebar-button">
+			<input type="button" class="xui-dialog-titlebar-close" />
+		</span></div>
+	<div class="xui-dialog-content" style="height:120px">
+		<iframe style="width:100%;height:100%;" frameborder="0"/>
+	</div>
+  </div>
+</div>
+
+</div-->
+</body>
+</html>

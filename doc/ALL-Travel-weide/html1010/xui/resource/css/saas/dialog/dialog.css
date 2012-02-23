@@ -1,0 +1,90 @@
+﻿.xui-dialog-bg{
+	width:315px;
+	overflow:hidden;
+}
+.xui-dialog-title{
+	background:url(../../../images/saas/dialog/skinblue.png) no-repeat 0 -38px #f5fcfe;
+	margin-left:15px;
+	float:left;
+	height:25px;
+	margin-top:5px;
+	font-size:14px;
+	font-weight:bold;
+	padding-top:6px;
+	color:#00b7e3;
+	padding-left:20px;
+
+}
+.xui-dialog-title2{
+	float:left;
+	display:block;
+	height:50px;
+	width:18px;
+	height:31px;
+	margin-top:5px;
+	background:url(../../../images/saas/dialog/skinblue.png) no-repeat 0 -73px  #f5fcfe;
+}
+
+.xui-dialog-title-lable{
+	color:#fff;
+	margin-top:14px;
+	margin-left:12px;
+	display:inline-block;
+}
+
+.xui-dialog-border{
+	border: 1px solid #a4d8f8;
+	background-color:#00B7E3;
+	padding-bottom:5px;
+}
+.xui-dialog-content-border{
+	border:1px solid #fff;
+}
+.xui-dialog-bg .xui-dialog-titlebar{
+	overflow:hidden;
+	zoom:1;
+	background:url(../../../images/saas/dialog/skinblue.png) repeat-x;
+	height:36px;
+}
+
+/*.xui-dialog-titlebar label{
+	float:left;
+	font-size:18px;
+	line-height:30px;
+	font-weight:bold;
+	color:#00b7e3;
+	padding-left:10px;
+	text-indent:0.3em;
+}*/
+
+.xui-dialog-titlebar-button{
+	float:right;
+	height:18px; width:43px;
+	overflow:hidden;
+	margin-top:2px;
+}
+
+.xui-dialog-titlebar-minimize{
+	
+}
+
+.xui-dialog-titlebar-close{
+	background: url(../../../images/saas/dialog/skinblue.png) no-repeat 0px -109px;
+	border:0px;
+	display:inline-block;
+	float:right;
+	width:18px;
+	height:18px;
+	margin-right:5px;
+	
+}
+.xui-dialog-titlebar-close:hover{
+	background: url(../../../images/saas/dialog/skinblue.png) no-repeat 0px -130px;
+}
+.xui-dialog-content{
+	margin:0px 5px;
+	overflow:hidden;
+	background:#fff url(../../../images/saas/dialog/bg.gif) center 0 no-repeat;
+}
+
+

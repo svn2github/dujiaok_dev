@@ -1,0 +1,57 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+	font-size:12px;
+}
+
+img {
+	border:medium none;
+}
+
+em, strong {
+	font-style:normal;
+	font-weight:normal;
+}
+
+li {
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-size:100%;
+	font-weight:normal;
+}
+
+input, button, textarea, select {
+	font-family:inherit;
+	font-size:inherit;
+	font-weight:inherit;
+}
+
+input, button, textarea, select {
+	-x-system-font:none;
+	font-family:Tahoma,Helvetica,Arial,sans-serif;
+	font-size:100%;
+	font-size-adjust:none;
+	font-stretch:normal;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:normal;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+fieldset {
+	border: 0;
+}
+
+a{
+	text-decoration:none;
+}
+ins{text-decoration:none;}

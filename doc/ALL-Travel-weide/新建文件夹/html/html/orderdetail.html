@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>联系人详情展示</title>
+<link rel="stylesheet" type="text/css" href="../css/General.css"/>
+<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+<script type="text/javascript" src="../xui/source/core/xui-core.js"></script>
+<script type="text/javascript" src="../xui/source/util/util.js"></script>
+<script type="text/javascript">
+var EV = xui.util.Event,
+DOM = xui.util.Dom;
+var personInfo=function(){};
+personInfo.prototype={
+	init:function(){
+		this.render();
+	},
+	render:function(){
+		var SELF = this;
+		var EL = $('personInfo').value,
+			EL2 = $('personInfo_view');
+		SELF.Show(EL);
+	},
+	Show:function(data){
+		var jsonData = eval(data);
+		var b = [];
+		for(var i=0; i<eval(data).length; i++){
+			if(i==0){
+				b.push('<h3 class="dingdanhead">主联系人信息</h3>')
+				b.push('<div class="person_Order"><div style="clear:both;"></div>');
+				b.push('<table class="d_ywrxx"  cellpadding="0" cellspacing="0"><tr><th><i>*</i> 主联系人姓名：</th><td>'+jsonData[i].name+'</td></tr>');
+				b.push('<tr><th><i>*</i> 主联系人手机：</th><td>'+jsonData[i].tel+'</td></tr>');
+				b.push('<tr><th><i>*</i> 证件类型：</th><td>'+jsonData[i].select+'</td></tr>');
+				b.push('<tr><th><i>*</i> 证件号码：</th><td>'+jsonData[i].Certificate+'</td></tr>');
+				b.push('<tr><th>E-mail：</th><td>'+jsonData[i].Email+'</td></tr>');
+				b.push('</table></div>');
+			}else{
+				b.push('<h3 class="dingdanhead">游玩人信息</h3>')
+				b.push('<div class="person_Order"><div style="clear:both;"></div>');
+				b.push('<table class="d_ywrxx"  cellpadding="0" cellspacing="0"><tr><th><i>*</i> 游玩人姓名：</th><td>'+jsonData[i].name+'</td></tr>');
+				b.push('<tr><th><i>*</i> 游玩人手机：</th><td>'+jsonData[i].tel+'</td></tr>');
+				b.push('<tr><th><i>*</i> 证件类型：</th><td>'+jsonData[i].select+'</td></tr>');
+				b.push('<tr><th><i>*</i> 证件号码：</th><td>'+jsonData[i].Certificate+'</td></tr>');
+				b.push('<tr><th>E-mail：</th><td>'+jsonData[i].Email+'</td></tr>');
+				b.push('</table></div>');
+			}
+		}
+		$('personInfo_view').innerHTML =  b.join('');
+	}
+	
+}
+EV.onDOMReady(function(){
+	var b = new personInfo();
+	b.init();
+});  
+</script>
+</head>
+<body>
+<input type="hidden" value='[{name:"中文",tel:"qwe",select:"身份证",Certificate:"qwe4",Email:"是"},{name:"方式大丰收",tel:"q",select:"身份证",Certificate:"是",Email:"是"},{name:"是",tel:"",select:"身份证",Certificate:"",Email:""}]' id="personInfo" />
+<div id="dingdan">
+<div class="d_left">
+<div id="personInfo_view"></div>
+</div>
+</div>
+</body>
+</html>

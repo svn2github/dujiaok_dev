@@ -1,0 +1,20 @@
+原来js稍微改一下生成的字符串有点错误
+改成
+		var EL = $('Adult_Num').value;
+		for (i=0;i<EL; i++){
+			if(SELF.value){
+				SELF.value = SELF.value+',\{name:\"'+$('erh_Name'+i).value+'\",tel:\"'+$('erh_Tel'+i).value+'\",select:\"'+$('select'+i).value+'\",Certificate:\"'+$('erh_Certificate'+i).value+'\",Email:\"'+$('erh_Email'+i).value+'\"\}';
+			}else{
+				SELF.value ='[{name:\"'+$('erh_Name0').value+'\",tel:\"'+$('erh_Tel0').value+'\",select:\"'+$('select0').value+'\",Certificate:\"'+$('erh_Certificate0').value+'\",Email:\"'+$('erh_Email0').value+'\"\}';
+			}			
+		}
+生成数据为[{name:"中文",tel:"qwe",select:"身份证",Certificate:"qwe4",Email:"是"},{name:"方式大丰收",tel:"q",select:"身份证",Certificate:"是",Email:"是"},{name:"是",tel:"",select:"身份证",Certificate:"",Email:""}
+少了一个"]"
+在生成数据上加个字符串+"]"
+这样的数据就可以正常显示了
+[{name:"中文",tel:"qwe",select:"身份证",Certificate:"qwe4",Email:"是"},{name:"方式大丰收",tel:"q",select:"身份证",Certificate:"是",Email:"是"},{name:"是",tel:"",select:"身份证",Certificate:"",Email:""}]
+
+
+不明白的地方旺旺问我
+
+xui换成我这个

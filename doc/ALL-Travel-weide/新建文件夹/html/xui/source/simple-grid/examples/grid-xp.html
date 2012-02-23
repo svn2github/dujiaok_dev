@@ -1,0 +1,673 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link  rel="stylesheet" type="text/css" href="http://img.s.aliimg.com/eq/css/common.css?v=20100921" />
+<link  rel="stylesheet" type="text/css" href="http://img.s.aliimg.com/eq/css/affiche.css?v=20100921" />
+<link  rel="stylesheet" type="text/css" href="http://img.s.aliimg.com/eq/css/bulletin.css?v=20100921" />
+<link  rel="stylesheet" type="text/css" href="http://img.s.aliimg.com/eq/css/hunter.css?v=20100921" />
+
+<link  rel="stylesheet" type="text/css" href="http://img.s.aliimg.com/eq/xui/resource/css/saas/common/common.css?v=20100921" />
+<link  rel="stylesheet" type="text/css" href="http://img.s.aliimg.com/eq/xui/resource/css/default/tip/dtip.css?v=20100921" />
+<link  rel="stylesheet" type="text/css" href="http://img.s.aliimg.com/eq/xui/resource/css/saas/pop-tips/pop-tips.css?v=20100921" />
+
+<link  href="../../../resource/css/common/reset.css" type="text/css" media="all" rel="stylesheet" />
+<link  href="../../../resource/css/xp/simple-grid/simple-grid.css" type="text/css" media="all" rel="stylesheet" />
+<script src="../../core/xui-core-min.js"></script>
+<script  src="../../util/util-min.js"></script>
+<script  src="../xui-simple-grid.js"></script>
+<style>
+.myopt{
+	height:80px;
+	position:relative;
+}
+.myopt-line2{ 
+	visibility:hidden;
+	background:none repeat scroll 0 0 #00B7E3;height:25px;
+	white-space:nowrap;
+	position:absolute;
+	bottom:0;
+	right:0;
+}
+/**鼠标移上去*/
+.xui-simpleGrid-row-hover .myopt .myopt-line2 {
+	visibility:visible;
+
+}
+.xui-simpleGrid-row-hover .myopt-line2 a{white-space:nowrap; }
+.siderArr{background:url("http://img.s.aliimg.com/eq/images/map.png") no-repeat scroll -755px -27px #FFFFFF;float:left;height:25px;width:37px}
+</style>
+<title>simple-grid</title>
+</head>
+
+<body style="padding:50px;">
+<input type="email"  value="" title=""/>
+<input type="text" id="kk"  value="" title=""/>
+<table width="200" border="1">
+  <tr  class="xui-simpleGrid-hd-row">
+    <td class="xui-simpleGrid-cell " style="width:60px; text-align:center">
+            xxxx<button  class="xui-simpleGrid-sort " ></button>
+      </td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="width:50px">xxx</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="width:50px">xxx</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<input type="text" id="t1"  value=""/><input type="text" id="t2"  value=""/><input type="button"  onclick="myRelod()"  value="查询"/><input type="button"  onclick="sort()"  value="sort"/><input type="button"  onclick="selectAll()"  value="selectAll"/><input type="button"  onclick="getSelect()"  value="getSelect"/>
+<div id="grid-example" class="xui-simpleGrid-panel" style="width: 756px;"> 
+	<div class="xui-simpleGrid-panelHead"></div>
+	<div class="xui-simpleGrid-panelBody" >
+        <div class="xui-simpleGrid-header"  >
+            <table >
+                <tbody>
+                <tr class="xui-simpleGrid-hd-row">
+                			<td class="xui-simpleGrid-hd-checkbox xui-simpleGrid-cell " style="width:20px;">
+                <div class="xui-simpleGrid-hd-inner xui-simpleGrid-hd-inner-default" unselectable="on"><input class="xui-simpleGrid-hd-checkbox" name="" type="checkbox" value="" /></div>
+            </td>
+                    <td class="xui-simpleGrid-hd-icon xui-simpleGrid-cell " style="width: 50px;">
+                        <div class="xui-simpleGrid-hd-inner xui-simpleGrid-hd-inner-default" >图标<button  class="xui-simpleGrid-sort " ></button></div>
+                    </td>
+                    <td class="xui-simpleGrid-hd-buyer xui-simpleGrid-cell" style="width: 138px">
+                        <div class="xui-simpleGrid-hd-inner xui-simpleGrid-hd-inner-default" unselectable="on">买家信息<button  class="xui-simpleGrid-sort" ></button></div></td>
+                    <td class="xui-simpleGrid-hd-trend xui-simpleGrid-cell" style="width: 60px;">
+                        <div class="xui-simpleGrid-hd-inner xui-simpleGrid-hd-inner-default" unselectable="on">意向<button  class="xui-simpleGrid-sort" ></button></div></td>
+                    <td class="xui-simpleGrid-hd-actions xui-simpleGrid-cell " style="width: 140px; ">
+                        <div class="xui-simpleGrid-hd-inner xui-simpleGrid-hd-inner-default" unselectable="on"><button  class="xui-simpleGrid-sort" ></button></div></td>
+                    <td class="xui-simpleGrid-hd-remark xui-simpleGrid-cell " style="width: 200px; ">
+                        <div class="xui-simpleGrid-hd-inner xui-simpleGrid-hd-inner-default" unselectable="on">备注<button  class="xui-simpleGrid-sort" ></button></div></td>
+                    <td class="xui-simpleGrid-hd-opt xui-simpleGrid-cell " style="width: 168px; ">
+                        <div class="xui-simpleGrid-hd-inner xui-simpleGrid-hd-inner-default" unselectable="on">操作<button  class="xui-simpleGrid-sort" ></button></div></td>                </tr>
+                </tbody>
+          </table>
+        </div>
+
+        <div class="xui-simpleGrid-body"  style="width:756px;overflow-y:auto; overflow-x:hidden;">
+            <div class="xui-simpleGrid-row xui-simpleGrid-rowIndex-0">
+				<table class="xui-simpleGrid-row-table" style="width: 100%" >
+                <tbody>
+                          <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="width:20px;">
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on"></div>
+                     </td>
+                <tr>
+                    <td class="xui-simpleGrid-col-icon xui-simpleGrid-cell " style="width: 50px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="Icon Icon11"></span>
+                        </div>
+                  </td>
+                     <td class="xui-simpleGrid-col-buyer xui-simpleGrid-cell " style="width: 138px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div onclick="Page.viewEnquiry('C7ZKBFFWPSROOBNQ2VD2','byLink','0')" style="cursor: pointer;"><a title="张洁3的公司（个体经营）" onclick="return false;" href="javascript:;">张洁3的公司（个体经...</a></div>
+                            <div title="西藏拉萨市" class="mg-top">[西藏拉萨市]</div>
+                        </div>
+                     </td>
+                    <td class="xui-simpleGrid-col-trend xui-simpleGrid-cell " style="width: 60px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="FB FC2">高</span>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-actions xui-simpleGrid-cell " style="width: 140px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div>访 问 我：09月20日</div>
+                            <div>访问别人：09月20日</div>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-remark xui-simpleGrid-cell " style="width: 200px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                            <div id="editMemoC7ZKBFFWPSROOBNQ2VD2" title=""><span style="color: rgb(204, 204, 204);">及时记录跟进情况</span>&nbsp;</div><a xtagid="editMemoC7ZKBFFWPSROOBNQ2VD2" class="edit xui-edit-tip" href="javascript:;"><span class="Icon Icon5"></span>编辑</a>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell " style="width: 168px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on" style="overflow:visible">
+                        <span id="ww_C7ZKBFFWPSROOBNQ2VD2" class="Icon Talk-gray" onclick="sendWWMsg('zjmtest003','cnalichn','zjm798','cnalichn','C7ZKBFFWPSROOBNQ2VD2','eq.list_talk')" title="离线"></span><span class="Icon Flag" id="eq_C7ZKBFFWPSROOBNQ2VD2" payattention="2" enquiryid="C7ZKBFFWPSROOBNQ2VD2" buyermemberid="cnalichnzjmtest003" title="点此取消关注后，您将得不到动态提醒和买家上线提醒！" onclick="Page.clickPayAttention('C7ZKBFFWPSROOBNQ2VD2');"></span>
+                        </div>
+                  </td>
+                </tr>
+          </tbody></table>            
+            </div>
+          <div class="xui-simpleGrid-row xui-simpleGrid-rowIndex-1">
+				<table class="xui-simpleGrid-row-table" style="width: 100%" >
+                <tbody>
+                          <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="width:20px;">
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on"></div>
+                     </td>
+                <tr>
+                    <td class="xui-simpleGrid-col-icon xui-simpleGrid-cell " style="width: 50px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="Icon Icon11"></span>
+                        </div>
+                  </td>
+                     <td class="xui-simpleGrid-col-buyer xui-simpleGrid-cell " style="width: 138px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div onclick="Page.viewEnquiry('C7ZKBFFWPSROOBNQ2VD2','byLink','0')" style="cursor: pointer;"><a title="张洁3的公司（个体经营）" onclick="return false;" href="javascript:;">张洁3的公司（个体经...</a></div>
+                            <div title="西藏拉萨市" class="mg-top">[西藏拉萨市]</div>
+                        </div>
+                     </td>
+                    <td class="xui-simpleGrid-col-trend xui-simpleGrid-cell " style="width: 60px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="FB FC2">高</span>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-actions xui-simpleGrid-cell " style="width: 140px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div>访 问 我：09月20日</div>
+                            <div>访问别人：09月20日</div>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-remark xui-simpleGrid-cell " style="width: 200px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                            <div id="editMemoC7ZKBFFWPSROOBNQ2VD2" title=""><span style="color: rgb(204, 204, 204);">及时记录跟进情况</span>&nbsp;</div><a xtagid="editMemoC7ZKBFFWPSROOBNQ2VD2" class="edit xui-edit-tip" href="javascript:;"><span class="Icon Icon5"></span>编辑</a>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell " style="width: 168px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        <span id="ww_C7ZKBFFWPSROOBNQ2VD2" class="Icon Talk-gray" onclick="sendWWMsg('zjmtest003','cnalichn','zjm798','cnalichn','C7ZKBFFWPSROOBNQ2VD2','eq.list_talk')" title="离线"></span><span class="Icon Flag" id="eq_C7ZKBFFWPSROOBNQ2VD2" payattention="2" enquiryid="C7ZKBFFWPSROOBNQ2VD2" buyermemberid="cnalichnzjmtest003" title="点此取消关注后，您将得不到动态提醒和买家上线提醒！" onclick="Page.clickPayAttention('C7ZKBFFWPSROOBNQ2VD2');"></span>
+                        </div>
+                  </td>
+                </tr>
+          </tbody></table></div>
+            <div class="xui-simpleGrid-row xui-simpleGrid-rowIndex-2">
+				<table class="xui-simpleGrid-row-table" style="width: 100%" >
+                <tbody>
+                          <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="width:20px;">
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on"></div>
+                     </td>
+                <tr>
+                    <td class="xui-simpleGrid-col-icon xui-simpleGrid-cell " style="width: 50px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="Icon Icon11"></span>
+                        </div>
+                  </td>
+                     <td class="xui-simpleGrid-col-buyer xui-simpleGrid-cell " style="width: 138px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div onclick="Page.viewEnquiry('C7ZKBFFWPSROOBNQ2VD2','byLink','0')" style="cursor: pointer;"><a title="张洁3的公司（个体经营）" onclick="return false;" href="javascript:;">张洁3的公司（个体经...</a></div>
+                            <div title="西藏拉萨市" class="mg-top">[西藏拉萨市]</div>
+                        </div>
+                     </td>
+                    <td class="xui-simpleGrid-col-trend xui-simpleGrid-cell " style="width: 60px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="FB FC2">高</span>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-actions xui-simpleGrid-cell " style="width: 140px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div>访 问 我：09月20日</div>
+                            <div>访问别人：09月20日</div>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-remark xui-simpleGrid-cell " style="width: 200px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                            <div id="editMemoC7ZKBFFWPSROOBNQ2VD2" title=""><span style="color: rgb(204, 204, 204);">及时记录跟进情况</span>&nbsp;</div><a xtagid="editMemoC7ZKBFFWPSROOBNQ2VD2" class="edit xui-edit-tip" href="javascript:;"><span class="Icon Icon5"></span>编辑</a>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell " style="width: 168px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        <span id="ww_C7ZKBFFWPSROOBNQ2VD2" class="Icon Talk-gray" onclick="sendWWMsg('zjmtest003','cnalichn','zjm798','cnalichn','C7ZKBFFWPSROOBNQ2VD2','eq.list_talk')" title="离线"></span><span class="Icon Flag" id="eq_C7ZKBFFWPSROOBNQ2VD2" payattention="2" enquiryid="C7ZKBFFWPSROOBNQ2VD2" buyermemberid="cnalichnzjmtest003" title="点此取消关注后，您将得不到动态提醒和买家上线提醒！" onclick="Page.clickPayAttention('C7ZKBFFWPSROOBNQ2VD2');"></span>
+                        </div>
+                  </td>
+                </tr>
+          </tbody></table></div>
+            <div class="xui-simpleGrid-row xui-simpleGrid-rowIndex-3">
+ 				<table class="xui-simpleGrid-row-table" style="width: 100%" >
+                <tbody>
+                <tr>
+                          <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="width:20px;">
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on"></div>
+                     </td>
+                    <td class="xui-simpleGrid-col-icon xui-simpleGrid-cell " style="width: 50px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="Icon Icon11"></span>
+                        </div>
+                  </td>
+                     <td class="xui-simpleGrid-col-buyer xui-simpleGrid-cell " style="width: 138px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div onclick="Page.viewEnquiry('C7ZKBFFWPSROOBNQ2VD2','byLink','0')" style="cursor: pointer;"><a title="张洁3的公司（个体经营）" onclick="return false;" href="javascript:;">张洁3的公司（个体经...</a></div>
+                            <div title="西藏拉萨市" class="mg-top">[西藏拉萨市]</div>
+                        </div>
+                     </td>
+                    <td class="xui-simpleGrid-col-trend xui-simpleGrid-cell " style="width: 60px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="FB FC2">高</span>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-actions xui-simpleGrid-cell " style="width: 140px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div>访 问 我：09月20日</div>
+                            <div>访问别人：09月20日</div>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-remark xui-simpleGrid-cell " style="width: 200px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                            <div id="editMemoC7ZKBFFWPSROOBNQ2VD2" title=""><span style="color: rgb(204, 204, 204);">及时记录跟进情况</span>&nbsp;</div><a xtagid="editMemoC7ZKBFFWPSROOBNQ2VD2" class="edit xui-edit-tip" href="javascript:;"><span class="Icon Icon5"></span>编辑</a>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell " style="width: 168px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        <span id="ww_C7ZKBFFWPSROOBNQ2VD2" class="Icon Talk-gray" onclick="sendWWMsg('zjmtest003','cnalichn','zjm798','cnalichn','C7ZKBFFWPSROOBNQ2VD2','eq.list_talk')" title="离线"></span><span class="Icon Flag" id="eq_C7ZKBFFWPSROOBNQ2VD2" payattention="2" enquiryid="C7ZKBFFWPSROOBNQ2VD2" buyermemberid="cnalichnzjmtest003" title="点此取消关注后，您将得不到动态提醒和买家上线提醒！" onclick="Page.clickPayAttention('C7ZKBFFWPSROOBNQ2VD2');"></span>
+                        </div>
+                  </td>
+                </tr>
+          </tbody></table></div>
+            <div class="xui-simpleGrid-row xui-simpleGrid-rowIndex-4">
+				<table class="xui-simpleGrid-row-table" style="width: 100%" >
+                <tbody>
+                <tr>
+                          <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="width:20px;">
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on"></div>
+                     </td>
+                    <td class="xui-simpleGrid-col-icon xui-simpleGrid-cell " style="width: 50px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="Icon Icon11"></span>
+                        </div>
+                  </td>
+                     <td class="xui-simpleGrid-col-buyer xui-simpleGrid-cell " style="width: 138px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div onclick="Page.viewEnquiry('C7ZKBFFWPSROOBNQ2VD2','byLink','0')" style="cursor: pointer;"><a title="张洁3的公司（个体经营）" onclick="return false;" href="javascript:;">张洁3的公司（个体经...</a></div>
+                            <div title="西藏拉萨市" class="mg-top">[西藏拉萨市]</div>
+                        </div>
+                     </td>
+                    <td class="xui-simpleGrid-col-trend xui-simpleGrid-cell " style="width: 60px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="FB FC2">高</span>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-actions xui-simpleGrid-cell " style="width: 140px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div>访 问 我：09月20日</div>
+                            <div>访问别人：09月20日</div>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-remark xui-simpleGrid-cell " style="width: 200px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                            <div id="editMemoC7ZKBFFWPSROOBNQ2VD2" title=""><span style="color: rgb(204, 204, 204);">及时记录跟进情况</span>&nbsp;</div><a xtagid="editMemoC7ZKBFFWPSROOBNQ2VD2" class="edit xui-edit-tip" href="javascript:;"><span class="Icon Icon5"></span>编辑</a>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell " style="width: 168px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        <span id="ww_C7ZKBFFWPSROOBNQ2VD2" class="Icon Talk-gray" onclick="sendWWMsg('zjmtest003','cnalichn','zjm798','cnalichn','C7ZKBFFWPSROOBNQ2VD2','eq.list_talk')" title="离线"></span><span class="Icon Flag" id="eq_C7ZKBFFWPSROOBNQ2VD2" payattention="2" enquiryid="C7ZKBFFWPSROOBNQ2VD2" buyermemberid="cnalichnzjmtest003" title="点此取消关注后，您将得不到动态提醒和买家上线提醒！" onclick="Page.clickPayAttention('C7ZKBFFWPSROOBNQ2VD2');"></span>
+                        </div>
+                  </td>
+                </tr>
+          </tbody></table></div>
+            <div class="xui-simpleGrid-row xui-simpleGrid-rowIndex-5">
+				<table class="xui-simpleGrid-row-table" style="width: 100%" >
+                <tbody>
+                <tr>
+                          <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="width:20px;">
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on"></div>
+                     </td>
+                    <td class="xui-simpleGrid-col-icon xui-simpleGrid-cell " style="width: 50px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="Icon Icon11"></span>
+                        </div>
+                  </td>
+                     <td class="xui-simpleGrid-col-buyer xui-simpleGrid-cell " style="width: 138px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div onclick="Page.viewEnquiry('C7ZKBFFWPSROOBNQ2VD2','byLink','0')" style="cursor: pointer;"><a title="张洁3的公司（个体经营）" onclick="return false;" href="javascript:;">张洁3的公司（个体经...</a></div>
+                            <div title="西藏拉萨市" class="mg-top">[西藏拉萨市]</div>
+                        </div>
+                     </td>
+                    <td class="xui-simpleGrid-col-trend xui-simpleGrid-cell " style="width: 60px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="FB FC2">高</span>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-actions xui-simpleGrid-cell " style="width: 140px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div>访 问 我：09月20日</div>
+                            <div>访问别人：09月20日</div>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-remark xui-simpleGrid-cell " style="width: 200px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                            <div id="editMemoC7ZKBFFWPSROOBNQ2VD2" title=""><span style="color: rgb(204, 204, 204);">及时记录跟进情况</span>&nbsp;</div><a xtagid="editMemoC7ZKBFFWPSROOBNQ2VD2" class="edit xui-edit-tip" href="javascript:;"><span class="Icon Icon5"></span>编辑</a>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell " style="width: 168px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        <span id="ww_C7ZKBFFWPSROOBNQ2VD2" class="Icon Talk-gray" onclick="sendWWMsg('zjmtest003','cnalichn','zjm798','cnalichn','C7ZKBFFWPSROOBNQ2VD2','eq.list_talk')" title="离线"></span><span class="Icon Flag" id="eq_C7ZKBFFWPSROOBNQ2VD2" payattention="2" enquiryid="C7ZKBFFWPSROOBNQ2VD2" buyermemberid="cnalichnzjmtest003" title="点此取消关注后，您将得不到动态提醒和买家上线提醒！" onclick="Page.clickPayAttention('C7ZKBFFWPSROOBNQ2VD2');"></span>
+                        </div>
+                  </td>
+                </tr>
+          </tbody></table></div>
+            <div class="xui-simpleGrid-row  xui-simpleGrid-rowIndex-6">
+				<table class="xui-simpleGrid-row-table" style="width: 100%" >
+                <tbody>
+                <tr>
+                          <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="width:20px;">
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on"></div>
+                     </td>
+                    <td class="xui-simpleGrid-col-icon xui-simpleGrid-cell " style="width: 50px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="Icon Icon11"></span>
+                        </div>
+                  </td>
+                     <td class="xui-simpleGrid-col-buyer xui-simpleGrid-cell " style="width: 138px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div onclick="Page.viewEnquiry('C7ZKBFFWPSROOBNQ2VD2','byLink','0')" style="cursor: pointer;"><a title="张洁3的公司（个体经营）" onclick="return false;" href="javascript:;">张洁3的公司（个体经...</a></div>
+                            <div title="西藏拉萨市" class="mg-top">[西藏拉萨市]</div>
+                        </div>
+                     </td>
+                    <td class="xui-simpleGrid-col-trend xui-simpleGrid-cell " style="width: 60px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="FB FC2">高</span>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-actions xui-simpleGrid-cell " style="width: 140px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div>访 问 我：09月20日</div>
+                            <div>访问别人：09月20日</div>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-remark xui-simpleGrid-cell " style="width: 200px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                            <div id="editMemoC7ZKBFFWPSROOBNQ2VD2" title=""><span style="color: rgb(204, 204, 204);">及时记录跟进情况</span>&nbsp;</div><a xtagid="editMemoC7ZKBFFWPSROOBNQ2VD2" class="edit xui-edit-tip" href="javascript:;"><span class="Icon Icon5"></span>编辑</a>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell " style="width: 168px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        <span id="ww_C7ZKBFFWPSROOBNQ2VD2" class="Icon Talk-gray" onclick="sendWWMsg('zjmtest003','cnalichn','zjm798','cnalichn','C7ZKBFFWPSROOBNQ2VD2','eq.list_talk')" title="离线"></span><span class="Icon Flag" id="eq_C7ZKBFFWPSROOBNQ2VD2" payattention="2" enquiryid="C7ZKBFFWPSROOBNQ2VD2" buyermemberid="cnalichnzjmtest003" title="点此取消关注后，您将得不到动态提醒和买家上线提醒！" onclick="Page.clickPayAttention('C7ZKBFFWPSROOBNQ2VD2');"></span>
+                        </div>
+                  </td>
+                </tr>
+          </tbody></table></div>
+            <div class="xui-simpleGrid-row  xui-simpleGrid-rowIndex-7">
+				<table class="xui-simpleGrid-row-table" style="width: 100%" >
+                <tbody>
+                <tr>
+                          <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="width:20px;">
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on"></div>
+                     </td>
+                    <td class="xui-simpleGrid-col-icon xui-simpleGrid-cell " style="width: 50px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="Icon Icon11"></span>
+                        </div>
+                  </td>
+                     <td class="xui-simpleGrid-col-buyer xui-simpleGrid-cell " style="width: 138px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div onclick="Page.viewEnquiry('C7ZKBFFWPSROOBNQ2VD2','byLink','0')" style="cursor: pointer;"><a title="张洁3的公司（个体经营）" onclick="return false;" href="javascript:;">张洁3的公司（个体经...</a></div>
+                            <div title="西藏拉萨市" class="mg-top">[西藏拉萨市]</div>
+                        </div>
+                     </td>
+                    <td class="xui-simpleGrid-col-trend xui-simpleGrid-cell " style="width: 60px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="FB FC2">高</span>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-actions xui-simpleGrid-cell " style="width: 140px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div>访 问 我：09月20日</div>
+                            <div>访问别人：09月20日</div>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-remark xui-simpleGrid-cell " style="width: 200px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                            <div id="editMemoC7ZKBFFWPSROOBNQ2VD2" title=""><span style="color: rgb(204, 204, 204);">及时记录跟进情况</span>&nbsp;</div><a xtagid="editMemoC7ZKBFFWPSROOBNQ2VD2" class="edit xui-edit-tip" href="javascript:;"><span class="Icon Icon5"></span>编辑</a>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell " style="width: 168px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        <span id="ww_C7ZKBFFWPSROOBNQ2VD2" class="Icon Talk-gray" onclick="sendWWMsg('zjmtest003','cnalichn','zjm798','cnalichn','C7ZKBFFWPSROOBNQ2VD2','eq.list_talk')" title="离线"></span><span class="Icon Flag" id="eq_C7ZKBFFWPSROOBNQ2VD2" payattention="2" enquiryid="C7ZKBFFWPSROOBNQ2VD2" buyermemberid="cnalichnzjmtest003" title="点此取消关注后，您将得不到动态提醒和买家上线提醒！" onclick="Page.clickPayAttention('C7ZKBFFWPSROOBNQ2VD2');"></span>
+                        </div>
+                  </td>
+                </tr>
+          </tbody></table></div>
+            <div class="xui-simpleGrid-row   xui-simpleGrid-rowIndex-8 ">
+				<table class="xui-simpleGrid-row-table" style="width: 100%" >
+                <tbody>
+                <tr>
+                          <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="width:20px;">
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on"></div>
+                     </td>
+                    <td class="xui-simpleGrid-col-icon xui-simpleGrid-cell " style="width: 50px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="Icon Icon11"></span>
+                        </div>
+                  </td>
+                     <td class="xui-simpleGrid-col-buyer xui-simpleGrid-cell " style="width: 138px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div onclick="Page.viewEnquiry('C7ZKBFFWPSROOBNQ2VD2','byLink','0')" style="cursor: pointer;"><a title="张洁3的公司（个体经营）" onclick="return false;" href="javascript:;">张洁3的公司（个体经...</a></div>
+                            <div title="西藏拉萨市" class="mg-top">[西藏拉萨市]</div>
+                        </div>
+                     </td>
+                    <td class="xui-simpleGrid-col-trend xui-simpleGrid-cell " style="width: 60px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="FB FC2">高</span>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-actions xui-simpleGrid-cell " style="width: 140px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div>访 问 我：09月20日</div>
+                            <div>访问别人：09月20日</div>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-remark xui-simpleGrid-cell " style="width: 200px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                            <div id="editMemoC7ZKBFFWPSROOBNQ2VD2" title=""><span style="color: rgb(204, 204, 204);">及时记录跟进情况</span>&nbsp;</div><a xtagid="editMemoC7ZKBFFWPSROOBNQ2VD2" class="edit xui-edit-tip" href="javascript:;"><span class="Icon Icon5"></span>编辑</a>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell " style="width: 168px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        <span id="ww_C7ZKBFFWPSROOBNQ2VD2" class="Icon Talk-gray" onclick="sendWWMsg('zjmtest003','cnalichn','zjm798','cnalichn','C7ZKBFFWPSROOBNQ2VD2','eq.list_talk')" title="离线"></span><span class="Icon Flag" id="eq_C7ZKBFFWPSROOBNQ2VD2" payattention="2" enquiryid="C7ZKBFFWPSROOBNQ2VD2" buyermemberid="cnalichnzjmtest003" title="点此取消关注后，您将得不到动态提醒和买家上线提醒！" onclick="Page.clickPayAttention('C7ZKBFFWPSROOBNQ2VD2');"></span>
+                        </div>
+                  </td>
+                </tr>
+          </tbody></table></div>
+            <div class="xui-simpleGrid-row xui-simpleGrid-row-last  xui-simpleGrid-rowIndex-9 ">
+				<table class="xui-simpleGrid-row-table" style="width: 100%" >
+                <tbody>
+                <tr>
+                          <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="width:20px;">
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on"></div>
+                     </td>
+                    <td class="xui-simpleGrid-col-icon xui-simpleGrid-cell " style="width: 50px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="Icon Icon11"></span>
+                        </div>
+                  </td>
+                     <td class="xui-simpleGrid-col-buyer xui-simpleGrid-cell " style="width: 138px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div onclick="Page.viewEnquiry('C7ZKBFFWPSROOBNQ2VD2','byLink','0')" style="cursor: pointer;"><a title="张洁3的公司（个体经营）" onclick="return false;" href="javascript:;">张洁3的公司（个体经...</a></div>
+                            <div title="西藏拉萨市" class="mg-top">[西藏拉萨市]</div>
+                        </div>
+                     </td>
+                    <td class="xui-simpleGrid-col-trend xui-simpleGrid-cell " style="width: 60px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<span class="FB FC2">高</span>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-actions xui-simpleGrid-cell " style="width: 140px" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        	<div>访 问 我：09月20日</div>
+                            <div>访问别人：09月20日</div>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-remark xui-simpleGrid-cell " style="width: 200px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                            <div id="editMemoC7ZKBFFWPSROOBNQ2VD2" title=""><span style="color: rgb(204, 204, 204);">及时记录跟进情况</span>&nbsp;</div><a xtagid="editMemoC7ZKBFFWPSROOBNQ2VD2" class="edit xui-edit-tip" href="javascript:;"><span class="Icon Icon5"></span>编辑</a>
+                        </div>
+                  </td>
+                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell " style="width: 168px;" >
+                    	<div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                        <span id="ww_C7ZKBFFWPSROOBNQ2VD2" class="Icon Talk-gray" onclick="sendWWMsg('zjmtest003','cnalichn','zjm798','cnalichn','C7ZKBFFWPSROOBNQ2VD2','eq.list_talk')" title="离线"></span><span class="Icon Flag" id="eq_C7ZKBFFWPSROOBNQ2VD2" payattention="2" enquiryid="C7ZKBFFWPSROOBNQ2VD2" buyermemberid="cnalichnzjmtest003" title="点此取消关注后，您将得不到动态提醒和买家上线提醒！" onclick="Page.clickPayAttention('C7ZKBFFWPSROOBNQ2VD2');"></span>
+                        </div>
+                  </td>
+                </tr>
+          </tbody></table></div>
+        </div>
+    </div>
+	<div class="xui-simpleGrid-pagebar" >
+    	<div class="xui-simpleGrid-pagebar-detail">当前显示<span class="xui-pagebar-start"></span>- <span class="xui-pagebar-end"></span>条 共<span class="xui-pagebar-total"></span>条 </div>
+        <div class="xui-simpleGrid-page"> <button  class="xui-pagebar-btn-text xui-pagebar-btn-first" title="first Page">&nbsp;</button><button class="xui-pagebar-btn-text xui-pagebar-btn-prev" title="prev Page">&nbsp;</button><span>第</span><input  class="xui-pagebar-btn-number"  type="text"/><span>页</span><button class="xui-pagebar-btn xui-pagebar-btn-go" title="确定"  >确定</button><button class="xui-pagebar-btn-text xui-pagebar-btn-next" title="Next Page"  >&nbsp;</button><button class="xui-pagebar-btn-text xui-pagebar-btn-last" title="last Page">&nbsp;</button></div>
+    </div>
+  
+</div>
+
+
+<script>
+var dataUrl = 'data.html';
+var	schema =['icon','buyer','trend','actions','remark'];
+var colModel = new xui.widgets.SimpleGridColModel({
+				defaults: { 
+					sortable: false 
+				},
+				columns: [
+					{id: 'icon', header: '图1标', dataIndex: 'icon',renderer:onRenderIcon}	,
+					{id: 'buyer', header: '买家信息', dataIndex: 'buyer',renderer:onRenderBuyer,align:'left'},
+					{id: 'trend', header: '意向', dataIndex: 'trend',renderer:onRenderTrend}	,
+					{id: 'actions', header: '<div style=" margin-left:30px;"><span id="gridTitleDynamic" class="Left">7天买家动态</span><span class="Icon I-arr5"></span></div>', dataIndex: 'actions',renderer:onRenderActions},
+					{id: 'remark', header: '备注', dataIndex: 'remark',renderer:onRenderRemark},
+					{id: 'opt', header: '操作',renderer:onRenderOpt}	
+				]
+			})
+var g = new xui.widgets.SimpleGrid('grid-example',{checkbox:true,limit:10,hasPagebar:true});
+g.init(dataUrl,colModel,schema);
+g.on('rowmouseover',a)
+function a(e,o){
+var x =o[0].trend;
+}
+function xxx(e){
+	alert(g.getMouseoverRowIndex())
+}
+function onRenderIcon(v,o){
+	return '<span class="Icon Icon11" style="margin-left:13px" onclick ="xxx(event)">11</span>';
+}
+function onRenderBuyer(v,o){
+	return '<div onclick="Page.viewEnquiry(\'C7ZKBFFWPSROOBNQ2VD2\',\'byLink\',\'0\')" style="cursor: pointer;"><a title="张洁3的公司（个体经营）" onclick="return false;" href="javascript:;">张洁3的公司（个体经...</a></div><div title="西藏拉萨市" class="mg-top">[西藏拉萨市]</div>';
+}
+function onRenderTrend(v,o){
+	return '<span class="FB FC2">高</span>';
+}
+function onRenderActions(v,o){
+	return '<div><span style="letter-spacing: 1.1mm;_letter-spacing: 1.5mm">访问我</span>：09月20日</div><div>访问别人：09月20日</div>';
+}
+
+function onRenderRemark(v,o){
+	return '<div id="editMemoC7ZKBFFWPSROOBNQ2VD2" title=""><span style="color: rgb(204, 204, 204);">及时记录跟进情况</span>&nbsp;</div><a xtagid="editMemoC7ZKBFFWPSROOBNQ2VD2" class="edit xui-edit-tip" href="javascript:;"><span class="Icon Icon5"></span>编辑</a>';
+
+}
+function onRenderRemark(v,o){
+	return '<div id="editMemoC7ZKBFFWPSROOBNQ2VD2" title=""><span style="color: rgb(204, 204, 204);">及时记录跟进情况</span>&nbsp;</div><a xtagid="editMemoC7ZKBFFWPSROOBNQ2VD2" class="edit xui-edit-tip" href="javascript:;"><span class="Icon Icon5"></span>编辑</a>';
+
+}
+function onRenderOpt(v,o){
+	return '<div class="myopt "><div class="ClearFix"><span id="ww_C7ZKBFFWPSROOBNQ2VD2" class="Icon Talk-gray" onclick="sendWWMsg(\'zjmtest003\',\'cnalichn\',\'zjm798\',\'cnalichn\',\'C7ZKBFFWPSROOBNQ2VD2\',\'eq.list_talk\')" title="离线"></span><span class="Icon Flag" id="eq_C7ZKBFFWPSROOBNQ2VD2" payattention="2" enquiryid="C7ZKBFFWPSROOBNQ2VD2" buyermemberid="cnalichnzjmtest003" title="点此取消关注后，您将得不到动态提醒和买家上线提醒！" onclick="Page.clickPayAttention(\'C7ZKBFFWPSROOBNQ2VD2\');"></span></div><div  class="myopt-line2" ><span class="siderArr"></span><a id="buyerRadarTipC6MCY4EHXSYANA2VN0WF" href="javascript:Page.viewBuyerRadar(\'C6MCY4EHXSYANA2VN0WF\',\'C6MCY4D37ZTAVTYTVK4J\');"><span class="Icon Icon12-b"></span>买家雷达</a><a href="javascript:Page.deleteEnquiry(\'C6MCY4EHXSYANA2VN0WF\');"><span class="Icon Icon7"></span>删除删除删删除删除删删除删除删删除删除删</a></div></div>';
+}
+g.on('rowmouseover',myrowover)
+function myrowover(e,os){
+	//console.log(os[0])
+	
+}
+/*var dataUrl = 'data.jsp';
+var	schema =['sex','age','birthday','name','status'];
+
+
+var colModel = new xui.widgets.SimpleGridColModel({
+				defaults: { 
+					width: '10%',
+					sortable: true 
+				},
+				columns: [
+					{id: 'sex', header: '性别', dataIndex: 'sex',renderer:onRender}	,
+					{id: 'age', header: '年龄', dataIndex: 'age'}	,
+					{id: 'birthday', header: '日期', dataIndex: 'birthday',align:'left'}	,
+					{id: 'name', header: '名字', dataIndex: 'name',align:'right'},
+					{id: 'opt', header: '操作', renderer: onRenderopt,sortable: false }	
+				]
+			})
+var g = new xui.widgets.SimpleGrid('grid-example',{toPageNum:2,checkbox:true,defaultSort:'sex',limit:10,hasPagebar:true});
+g.init(dataUrl,colModel,schema);
+g.on('rowclick',myrowclick);
+g.on('rowmouseover',myrowover)
+g.on('rowmouseout',myrowout)
+g.on('sort',mysort)
+g.on('rowselect',myselect)
+g.on('rowdblclick',myrowdblclick)
+g.on('dsload',mydsload)
+g.on('unrowselect',myunselect)
+g.on('ajaxerror',function(){alert(2)});
+g.on('dserror',function(en,os){alert(os)});*/
+/**自定义渲染单元格
+ * @param {String} v v是当前行，该单元的的值
+ * @param {Object} o 是当前行的对象{sex:"1",age:"2222123",birthday:"2008-10-11",name:"1111",status:"1" }
+ */
+//function onRender(v,o){
+//	//alert(v)
+//	//alert(o.birthday)
+//	return '<div style="text-align:left">'+v+ '自定1义'+o.birthday+'</div>';
+//}
+//function onRenderopt(v,o){
+//	
+//	return '<span id="my'+o.sex+'" style="display:none"><a href="#"  >删除</a></span>';
+//}
+//function onRendername(v,o){
+//	return v
+//}
+//function myRelod(){
+//	var oparms = {stateType: $('t1').value,myType:$('t2').value,defaultSort:'age'};
+//	g.reload(oparms);
+//}
+//function sort(){
+//	g.sort('age','desc',true)
+//}
+//
+///**
+// * @param {String} en 事件
+// * @param {Object} o 是当前行的对象{sex:"1",age:"2222123",birthday:"2008-10-11",name:"1111",status:"1" }
+//*/
+//function myrowclick(en,os){
+//	//alert('myrowclick'+os[0].sex)
+//}
+//function myrowdblclick(en,os){
+//	alert('myrowdblclick'+os[0].sex)
+//}
+//function mydsload(en,o){
+//	alert(o[0])
+//}
+//
+//function myrowover(e,os){
+//	//alert(os[0].sex)
+//	$('my'+os[0].sex).style.display = '';
+//}
+//
+//function myrowout(e,os){
+//	$('my'+os[0].sex).style.display = 'none';
+//}
+//
+//function mysort(e,sortId){
+//	if(sortId == 'birthday'){
+//		alert(sortId);
+//	}
+//}
+//
+//function selectAll(){
+//	g.selectAll();
+//}
+//function myselect(e,o){
+//	//alert(o[0].birthday)
+//}
+//function myunselect(e,o){
+//	//alert('un' +o[0].birthday)
+//}
+//function getSelect(){
+//	var os = g.getSelect();
+//	alert(os.length)
+//}
+//function xxxx(){
+//	alert('1111')
+//}
+//		var kl =new  xui.util.KeyListener('kk',{keys:13},{fn:xxxx});
+//		kl.enable();
+//		
+//		$('kk').title = '输入特殊字符.\',%,;-->`~!@#$%^&*()_+=-[]\;\',./?><":|}{作为模板名'
+</script>
+</body>
+</html>

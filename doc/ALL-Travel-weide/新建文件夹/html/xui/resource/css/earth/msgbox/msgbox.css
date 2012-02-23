@@ -1,0 +1,21 @@
+/* andrewfang for edittip*/
+.xui-msgbox{ width:360px; border:1px solid #87bdd9; -moz-border-radius:3px;}
+.xui-msgbox-in{background:-moz-linear-gradient(top, #fff 70%, #e7f2fc); border:1px solid #fff; margin:0; padding:10px; text-align:center}
+.xui-msgbox-in .xui-msg{ font-size:14px; margin:10px auto; color:#000000; display:block;}
+.xui-msgbox-submit{padding-top:20px;font-size:12px;}
+.xui-msgbox-btn{
+	background:-moz-linear-gradient(top,#fdfeff 50%,#cbe3f9 100%);
+	font-size:18px; font-weight:bold; color:#0b5c77;
+	padding:5px 10px; cursor:pointer;  -moz-border-radius:3px;
+	-moz-border-top-colors:#a2bad0 #fff;
+	-moz-border-right-colors:#a2bad0 #fff;
+	-moz-border-bottom-colors:#a2bad0 #fff;
+	-moz-border-left-colors:#a2bad0 #fff;
+	margin:0 5px;
+}
+.xui-msgbox-btn:hover{background:-moz-linear-gradient(top,#fdfeff 50%,#f0f7fc 100%);}
+.xui-msgbox-btn:active{background:-moz-linear-gradient(top,#cbe3f9 10%,#fdfeff 80%);}
+
+.xui-msgbox-btn .xui-msgbox-icon-confirm{}
+.xui-msgbox-btn .xui-msgbox-icon-cancel{}
+

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>xui-core</title>
+		<link rel="stylesheet" type="text/css" href="../../external/yui-2.6/logger/assets/skins/sam/logger.css" />
+        <link rel="stylesheet" type="text/css" href="../../external/yui-2.6/fonts/fonts-min.css" />
+        <link rel="stylesheet" type="text/css" href="../../external/yui-2.6/yuitest/assets/skins/sam/yuitest.css" />
+        <script type="text/javascript" src="../../external/yui-2.6/yahoo-dom-event/yahoo-dom-event.js"></script>
+        <script type="text/javascript" src="../../external/yui-2.6/logger/logger-min.js"></script>
+        <script type="text/javascript" src="../../external/yui-2.6/yuitest/yuitest-min.js"></script>
+		
+		<script type="text/javascript" src="../xui-core.js"></script>
+    </head>
+    <body class="yui-skin-sam">
+    <script type="text/javascript">            
+            xuitest = {};
+			xuitest.core = {};
+            xuitest.core.CoreTest = new YAHOO.tool.TestCase({
+                //---------------------------------------------------------------------
+                // setUp and tearDown methods - optional
+                //---------------------------------------------------------------------
+                
+                /*
+                 * Sets up data that is needed by each test.
+                 */
+                setUp: function(){
+                    this.Assert = YAHOO.util.Assert;
+                },
+                
+                /*
+                 * Cleans up everything that was created by setUp().
+                 */
+                tearDown: function(){
+					  delete this.Assert;
+                },
+                
+                //---------------------------------------------------------------------
+                // Test methods - names must begin with "test"
+                //---------------------------------------------------------------------
+                
+                test1: function(){	
+					this.Assert.areEqual(document.getElementById('doc'),
+                        $('doc'));
+                },
+				test2:function(){
+					var ArrayAssert = YAHOO.util.ArrayAssert; 
+					ArrayAssert.itemsAreEqual(document.getElementsByName('docname'),$N('docname'));					
+				},
+				test3:function(){
+					this.Assert.areEqual(document.getElementsByTagName('div'),
+                        $T('div'));
+				},
+				test4:function(){
+					$Displays('p',true);
+					this.Assert.areEqual('',document.getElementById('p1').style.display)
+				},
+				test5:function(){
+					this.Assert.areEqual('%25%23%26%3D%3F',$EscapeURI('%#&=?'))
+					this.Assert.areEqual('%20',$EscapeURI(' '));
+					this.Assert.areEqual('%2B',$EscapeURI('+'));
+					this.Assert.areEqual('%2F',$EscapeURI('/'));
+				},
+				test6:function(){
+					this.Assert.isNumber($Canvas().clientWidth);
+					this.Assert.isNumber($Canvas().clientHeight);
+					this.Assert.isNumber($Canvas().scrollTop);
+					this.Assert.isNumber($Canvas().scrollLeft);
+					this.Assert.isNumber($Canvas().scrollWidth);
+					this.Assert.isNumber($Canvas().scrollHeight);
+				}
+				
+			});            
+            
+            xuitest.coreSuite = new YAHOO.tool.TestSuite("Core  Suite");
+            xuitest.coreSuite.add( xuitest.core.CoreTest);
+            
+            YAHOO.util.Event.onDOMReady(function(){
+                //create the logger
+                var logger = new YAHOO.tool.TestLogger("testLogger");
+                YAHOO.tool.TestRunner.add(xuitest.core.CoreTest);
+                
+                //run the tests
+                YAHOO.tool.TestRunner.run();
+            });
+            
+        </script>
+        <div id="ifm"></div>
+        <div id="doc"></div><div name="docname">1</div><div name="docname">2</div><div name="docname">3</div>
+        <p id="p1">p1</p> <p id="p2">p2</p> <p id="p3">p3</p>
+    </body>
+</html>

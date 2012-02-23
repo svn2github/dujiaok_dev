@@ -1,0 +1,24 @@
+﻿
+.clearfix:after
+{
+content:".";
+display:block;
+height:0;
+clear:both;
+visibility:hidden;
+}
+.clearfix
+{
+display:inline-block;
+}
+.clearfix {display:block;} 
+
+.xui-pop-tips{ width:300px; height:200px; background:url(../../../images/saas/pop-tips/pop-tips.png) no-repeat; font-size:12px;position:fixed;bottom:0; right:0;_position:absolute;}
+.xui-pop-tips-title .xui-pop-tips-title-tip{ color:#fff; float:left; padding-top:8px;padding-left:8px; height:20px;}
+.xui-pop-tips-title .xui-pop-tips-close{width:12px; height:12px; margin:8px; background:url(../../../images/saas/pop-tips/pop-tips-close.gif) no-repeat; float:right; cursor:pointer; font-size:10px }
+.xui-pop-tips-content{ color:#2868a3; }
+.xui-pop-tips-content .xui-pop-tips-content-title{ font-weight:bold; margin-bottom:10px; font-size:14px; text-align:center }
+.xui-pop-tips-content .xui-pop-tips-content-detail{color:#666; overflow:hidden; margin-bottom:5px; line-height:16px;}
+.xui-pop-tips-content-btn{background:url(../../../images/pop_content_btn.png) no-repeat;width:80px; height:24px; margin:0 auto}
+
+

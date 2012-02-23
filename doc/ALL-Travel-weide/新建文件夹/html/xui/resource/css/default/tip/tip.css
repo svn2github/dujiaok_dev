@@ -1,0 +1,346 @@
+/*=========================Tips============================*/
+.xui-tip ul, .xui-tip li , .xui-tip-ul{ margin:0; padding:0;}
+.xui-tip-ul{border:1px #be9e70 solid; _width:210px; overflow:hidden;height:18px; line-height:20px; padding:0 4px; background:#fdfdcf;}
+.xui-tip-left{width:19px;height:35px;background: url(../../../images/default/tip/tip_left.gif);float:left}
+.xui-tip-bg{width:auto;float:left; font-size:12px; color:#000; }
+.xui-tip-right{width:8px;height:35px;background:url(../../../images/default/tip/tip_right.gif);float:left}
+
+
+/*tip*/
+/*noticec*/
+.xui-tip-noticec{
+	padding:10px 10px;
+	margin:10px auto;
+	font-size:12px;
+	color:#000;
+	overflow:auto;
+	overflow-y:hidden;
+	overflow-x:hidden;
+	width:94%;
+	}
+.xui-tip-noticec-icon{
+	background: url(../../../images/common/icon.gif) no-repeat -70px -51px;
+	width:20px;
+	height:15px;
+	float:left;
+	margin-right:10px;
+	}
+.xui-tip-noticec p{float:left;white-space:normal;word-break:break-all;word-wrap:break-word;width:50%;}
+/*noticeb*/
+.xui-tip-noticeb{
+	border:1px solid #c3d2e5;
+	background:#f6f9fe;
+	padding:10px 10px;
+	margin:10px auto;
+	width:94%;
+	font-size:12px;
+	color:#000;
+	overflow:auto;
+	overflow-y:hidden;
+	overflow-x:hidden;
+	}
+.xui-tip-noticeb-icon{
+	background:url(../../../images/common/icon.gif) no-repeat -70px -51px;
+	width:20px;
+	height:15px;
+	float:left;
+	margin-right:10px;
+	}
+.xui-tip-noticeb p{float:left;white-space:normal;word-break:break-all;word-wrap:break-word;width:50%;}
+/*noticea*/
+.xui-tip-noticea{
+	border:1px solid #c3d2e5;
+	background:#f6f9fe;
+	padding:10px 10px;
+	margin:10px auto;
+	line-height:20px;
+	width:94%;
+	font-size:14px;
+	color:#000;
+	font-weight:bold;
+	overflow:auto;
+	overflow-y:hidden;
+	overflow-x:hidden;
+	}
+.xui-tip-noticea-icon{
+	background:url(../../../images/common/icon.gif) no-repeat -65px -68px;
+	width:25px;
+	height:30px;
+	float:left;
+	margin-right:10px;
+	}
+.xui-tip-noticea p{float:left;white-space:normal;word-break:break-all;word-wrap:break-word;width:50%;}
+
+
+
+
+/*alertc*/
+.xui-tip-alertc{
+	padding:10px 10px;
+	margin:10px auto;
+	width:94%;
+	font-size:12px;
+	color:#000;
+	overflow:auto;
+	overflow-y:hidden;
+	overflow-x:hidden;
+	}
+.xui-tip-alertc-icon{
+	background:url(../../../images/common/icon.gif) no-repeat -63px -2px;
+	width:17px;
+	height:15px;
+	float:left;
+	margin-right:10px;
+	}
+.xui-tip-alertc p{float:left;white-space:normal;word-break:break-all;word-wrap:break-word;width:50%;}
+/*alertb*/
+.xui-tip-alertb{
+	border:1px solid #fddb9b;
+	background:#fefbd0;
+	padding:10px 10px;
+	margin:10px auto;
+	width:94%;
+	font-size:12px;
+	color:#000;
+	overflow:auto;
+	overflow-y:hidden;
+	overflow-x:hidden;
+	}
+.xui-tip-alertb-icon{
+	background:url(../../../images/common/icon.gif) no-repeat -63px -2px;
+	width:17px;
+	height:15px;
+	float:left;
+	margin-right:10px;
+	}
+.xui-tip-alertb p{float:left;white-space:normal;word-break:break-all;word-wrap:break-word;width:50%;}
+/*alerta*/
+.xui-tip-alerta{
+	border:1px solid #fddb9b;
+	background:#fefbd0;
+	padding:10px 10px;
+	margin:10px auto;
+	width:94%;
+	font-size:14px;
+	font-weight:bold;
+	color:#000;
+	overflow:auto;
+	overflow-y:hidden;
+	overflow-x:hidden;
+	}
+.xui-tip-alerta-icon{
+	background:url(../../../images/common/icon.gif) no-repeat -58px -22px;
+	width:29px;
+	height:27px;
+	float:left;
+	margin-right:10px;
+	}
+.xui-tip-alerta p{float:left;white-space:normal;word-break:break-all;word-wrap:break-word;width:50%;}
+
+
+
+
+
+/*errorc*/
+.xui-tip-errorc{
+	padding:10px 10px;
+	margin:10px auto;
+	width:94%;
+	font-size:12px;
+	color:#000;
+	overflow:auto;
+	overflow-y:hidden;
+	overflow-x:hidden;
+	}
+.xui-tip-errorc-icon{
+	background:url(../../../images/common/icon.gif) no-repeat -17px -2px;
+	width:15px;
+	height:15px;
+	float:left;
+	margin-right:10px;
+	}
+.xui-tip-errorc p{float:left;white-space:normal;word-break:break-all;word-wrap:break-word;width:50%;}
+/*errorb*/
+.xui-tip-errorb{
+	background:#fce8e9;
+	border:1px solid #f9c5c7;
+	padding:10px 10px;
+	margin:10px auto;
+	width:94%;
+	font-size:12px;
+	color:#000;
+	overflow:auto;
+	overflow-y:hidden;
+	overflow-x:hidden;
+	}
+.xui-tip-errorb-icon{
+	background:url(../../../images/common/icon.gif) no-repeat -17px -2px;
+	width:15px;
+	height:15px;
+	float:left;
+	margin-right:10px;
+	}
+.xui-tip-errorb p{float:left;white-space:normal;word-break:break-all;word-wrap:break-word;width:50%;}
+/*errora*/
+.xui-tip-errora{
+	background:#fce8e9;
+	border:1px solid #f9c5c7;
+	padding:10px 10px;
+	margin:10px auto;
+	width:94%;
+	font-size:14px;
+	font-weight:bold;
+	color:#000;
+	overflow:auto;
+	overflow-y:hidden;
+	overflow-x:hidden;
+	}
+.xui-tip-errora-icon{
+	background:url(../../../images/common/icon.gif) no-repeat -11px -21px;
+	width:29px;
+	height:31px;
+	float:left;
+	margin-right:10px;
+	}
+.xui-tip-errora p{float:left;line-height:20px;white-space:normal;word-break:break-all;word-wrap:break-word;width:50%;}
+
+
+
+
+
+/*infoc*/
+.xui-tip-infoc{
+	padding:10px 10px;
+	margin:10px auto;
+	width:94%;
+	font-size:12px;
+	color:#000;
+	overflow:auto;
+	overflow-y:hidden;
+	overflow-x:hidden;
+	}
+.xui-tip-infoc-icon{
+	background:url(../../../images/common/icon.gif) no-repeat -17px -52px;
+	width:17px;
+	height:16px;
+	float:left;
+	margin-right:10px;
+	}
+.xui-tip-infoc p{float:left;white-space:normal;word-break:break-all;word-wrap:break-word;width:50%;}
+/*errorb*/
+.xui-tip-infob{
+	background:#e7f4fc;
+	border:1px solid #c3d2e5;
+	padding:10px 10px;
+	margin:10px auto;
+	width:94%;
+	font-size:12px;
+	color:#000;
+	overflow:auto;
+	overflow-y:hidden;
+	overflow-x:hidden;
+	}
+.xui-tip-infob-icon{
+	background:url(../../../images/common/icon.gif) no-repeat -17px -52px;
+	width:17px;
+	height:16px;
+	float:left;
+	margin-right:10px;
+	}
+.xui-tip-infob p{float:left;white-space:normal;word-break:break-all;word-wrap:break-word;width:50%;}
+/*infoa*/
+.xui-tip-infoa{
+	background:#e7f4fc;
+	border:1px solid #c3d2e5;
+	padding:10px 10px;
+	margin:10px auto;
+	width:94%;
+	color:#000;
+	font-weight:bold;
+	overflow:auto;
+	overflow-y:hidden;
+	overflow-x:hidden;
+	}
+.xui-tip-infoa p{font-size:15px;}
+.xui-tip-infoa-icon{
+	background:url(../../../images/common/icon.gif) no-repeat -9px -69px;
+	width:32px;
+	height:31px;
+	float:left;
+	margin-right:10px;
+	}
+.xui-tip-infoa p{float:left;line-height:20px;white-space:normal;word-break:break-all;word-wrap:break-word;width:50%;}
+
+
+
+
+
+/*successc*/
+.xui-tip-successc{
+	padding:10px 10px;
+	margin:10px auto;
+	width:94%;
+	font-size:12px;
+	color:#000;
+	overflow:auto;
+	overflow-y:hidden;
+	overflow-x:hidden;
+	}
+.xui-tip-successc-icon{
+	background:url(../../../images/common/icon.gif) no-repeat -178px -4px;
+	width:17px;
+	height:15px;
+	float:left;
+	margin-right:10px;
+	}
+.xui-tip-successc p{float:left;white-space:normal;word-break:break-all;word-wrap:break-word;width:50%;}
+/*successb*/
+.xui-tip-successb{
+	background:#eff6e4;
+	border:1px solid #cae2a4;
+	padding:10px 10px;
+	margin:10px auto;
+	width:94%;
+	font-size:12px;
+	color:#000;
+	overflow:auto;
+	overflow-y:hidden;
+	overflow-x:hidden;
+	}
+.xui-tip-successb-icon{
+	background:url(../../../images/common/icon.gif) no-repeat -178px -4px;
+	width:17px;
+	height:15px;
+	float:left;
+	margin-right:10px;
+	}
+.xui-tip-successb p{float:left;white-space:normal;word-break:break-all;word-wrap:break-word;width:50%;}
+/*successa*/
+.xui-tip-successa{
+	background:#eff6e4;
+	border:1px solid #cae2a4;
+	padding:10px 10px;
+	margin:10px auto;
+	width:94%;
+	font-size:14px;
+	font-weight:bold;
+	color:#000;
+	overflow:auto;
+	overflow-y:hidden;
+	overflow-x:hidden;
+	}
+.xui-tip-successa-icon{
+	background:url(../../../images/common/icon.gif) no-repeat -160px -19px;
+	width:31px;
+	height:31px;
+	float:left;
+	margin-right:10px;
+	}
+.xui-tip-successa p{float:left;line-height:20px;white-space:normal;word-break:break-all;word-wrap:break-word;width:50%;}
+
+/*
+* queryTip style
+*/
+.xui-tip-qtip-border{border:2px solid #14a9d6; border-top:4px solid #14a9d6; color:#ff6600; background-color:#fff; padding:5px 20px 10px 10px; white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word; word-break:break-all;}
+.xui-tip-qtip-bar{}
+.xui-tip-qtip-btn{position: absolute; right:5px; top:10px; background:url(../../../images/default/tip/qtip_btn.png); width:16px; height:16px; cursor:pointer;}

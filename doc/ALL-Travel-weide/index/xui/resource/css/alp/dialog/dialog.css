@@ -1,0 +1,59 @@
+.xui-dialog-bg{
+	width:315px;
+	background: #88b2ec;
+	overflow:hidden;
+}
+
+.xui-dialog-border{
+	border: 1px solid #739fdb;
+	margin:4px 4px;
+}
+.xui-dialog-content-border{
+	border:1px solid #fff;
+}
+.xui-dialog-bg .xui-dialog-titlebar{
+	overflow:hidden;
+	zoom:1;
+	background:#88b2ec;
+}
+
+.xui-dialog-titlebar label{
+	float:left;
+	font-size:14px;
+	line-height:30px;
+	font-weight:bold;
+	color:#ffffff;
+	padding-left:10px;
+	text-indent:0.3em;
+}
+
+.xui-dialog-titlebar-button{
+	float:right;
+	height:11px; width:32px;
+	overflow:hidden;
+	margin-top:6px;
+}
+
+.xui-dialog-titlebar-minimize{
+	background: url(../../../images/alp/dialog/dialog_button.png) no-repeat 0 0;
+}
+
+.xui-dialog-titlebar-close{
+	background: url(../../../images/alp/dialog/dialog_button.png) no-repeat -22px 0;
+	border:0px;
+	display:inline-block;
+	float:right;
+	width:11px;
+	height:11px;
+	margin-right:3px;
+	cursor:pointer;
+}
+
+.xui-dialog-content{
+	width:100%;
+	overflow:hidden;
+	background:#fff;
+	background:#e7eff8;
+}
+
+

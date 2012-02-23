@@ -1,0 +1,12 @@
+/*=========================xui-dtip============================*/
+.xui-dtip{border:1px solid #14a9d6; width:150px; background:url(../../../images/blue/tip/dtip_bg.png) repeat-x; background-color:#f5fcfe; position:absolute; top:50px; left:50px;}
+.xui-dtip-closebtn{position:absolute; width:16px; height:16px; background:url(../../../images/blue/tip/dtip.png) -16px 0 no-repeat; cursor:pointer; display:block; right:0px; top:0px;}
+.xui-dtip-arr1{background:url(../../../images/blue/tip/dtip.png) 0px -10px no-repeat; width:15px; height:8px; font-size:0; display:block; bottom:-8px; left:20px; position:absolute;}
+.xui-dtip-arr2{background:url(../../../images/blue/tip/dtip.png) 0px -10px no-repeat; width:15px; height:8px; font-size:0; display:block; bottom:-8px; right:20px; position:absolute;}
+.xui-dtip-arr3{background:url(../../../images/blue/tip/dtip.png) 0px -19px no-repeat; width:8px; height:15px; font-size:0; display:block; bottom:20px; left:-8px; position:absolute;}
+.xui-dtip-arr4{background:url(../../../images/blue/tip/dtip.png) 0px -19px no-repeat; width:8px; height:15px; font-size:0; display:block; top:20px; left:-8px; position:absolute;}
+.xui-dtip-arr5{background:url(../../../images/blue/tip/dtip.png) no-repeat; width:15px; height:9px; font-size:0; display:block; top:-8px; left:20px; position:absolute;}
+.xui-dtip-arr6{background:url(../../../images/blue/tip/dtip.png) no-repeat; width:15px; height:9px; font-size:0; display:block; top:-8px; right:20px; position:absolute;}
+.xui-dtip-arr7{background:url(../../../images/blue/tip/dtip.png) -10px -19px no-repeat; width:8px; height:15px; font-size:0; display:block; top:20px; right:-8px; position:absolute;}
+.xui-dtip-arr8{background:url(../../../images/blue/tip/dtip.png) -10px -19px no-repeat; width:8px; height:15px; font-size:0; display:block; bottom:20px; right:-8px; position:absolute;}
+.xui-dtip-con{margin:10px;}

@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>XUI-SELECT</title>
+<link rel="stylesheet" type="text/css"  href="../../../resource/css/common/reset.css"/>
+<link rel="stylesheet" type="text/css"  href="../../../resource/css/default/select/select.css" />
+<script type="text/javascript" src="../../core/xui-core-min.js"></script>
+<script type="text/javascript" src="../xui-select.js"></script>
+<script type="text/javascript">
+</script>
+<style type="text/css">
+</style>
+</head>
+<body>
+<input  type="button" onclick="b.show()"/>
+	 <select name="days" id="days">
+		            <option value="30">30日</option>
+		            <option value="60">60日</option>
+		            <option value="90">90日</option>
+		            <option value="">全部</option>
+		            </select>
+<script>
+var b = new xui.widgets.Select('days',80); 
+b.setModel({suggest:'true'});
+//b.setModel({suggest:'true',selectModel:'false',initValue:'请在此输入'});
+
+
+
+(function(t){
+				alert(t)
+				  
+		})(1);
+</script>
+</body>
+</html>

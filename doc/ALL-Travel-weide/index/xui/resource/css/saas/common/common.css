@@ -1,0 +1,371 @@
+/*--@skin for saas--*/
+.xui-select {
+background:transparent url(../../../images/saas/select/select.png) repeat-x scroll 0 -22px;
+border:1px solid #abcde0;
+color:#007190;
+float:left;
+height:22px;
+}
+.xui-select-value {
+float:left;
+height:22px;
+line-height:22px;
+margin:0 0 0 3px;
+overflow:hidden;
+text-align:center;
+border:0px;
+background:none;
+color:#007190;
+}
+.xui-select-btn {
+background:transparent url(../../../images/saas/select/select.png) repeat scroll;
+cursor:pointer;
+float:right;
+height:22px;
+width:18px;
+}
+.xui-select-option {
+background-color:#FFFFFF;
+border-color:-moz-use-text-color #D4D6D7 #D4D6D7;
+border-style:none solid solid;
+border-width:0 1px 1px;
+color:#007190;
+left:-1px;
+position:absolute;
+top:21px;
+width:100%;
+border:1px solid #D4D6D7;
+border-top:0px;
+}
+.xui-select-option div {
+cursor:pointer;
+height:26px;
+line-height:26px;
+text-indent:10px;
+width:100%;
+}
+.xui-select-hover {
+background-color:#EFEFEF;
+}
+
+
+
+
+/*--data--*/
+.xui-dp a{color:#00a3d4; text-decoration:none;}
+.xui-dp a:hover{color:#007190; text-decoration:none;}
+
+.xui-dp-box{border:1px solid #abcde0; background:url(../../../images/saas/simple-date/xuidate.png) 0 -102px repeat-x; height:22px; color:#007190; position:absolute; overflow:hidden; line-height:22px;}
+.xui-dp-value{float:left; text-align:center;}
+.xui-dp-call{background:url(../../../images/saas/simple-date/xuidate.png) 0 -80px; cursor:pointer; float:right; width:18px; height:22px;}
+
+.xui-dp{border:1px solid #00b7e3; padding:3px; background-color:#FFF; width:178px; position:absolute; display:none; z-index:9999;}
+.xui-dp-ym{height:22px;}
+.xui-dp-ym div{width:80px; background:url(../../../images/saas/simple-date/xuidate.png) 0px -38px repeat-x; height:19px; border:1px solid #86abb4;}
+.xui-dp-month{float:left;}
+.xui-dp-month span{float:left; width:60px; margin:1px; line-height:18px; text-align:center; height:17px; background-color:#00b7e3; color:#FFF; overflow:hidden;}
+.xui-dp-btn-month{background:url(../../../images/saas/simple-date/xuidate.png); width:18px; height:19px; float:right;}
+.xui-dp-btn-month:hover{background-position:-18px 0px;}
+.xui-dp-year{float:right;}
+.xui-dp-year span{width:61px; overflow:hidden; line-height:18px; text-align:center; float:left;}
+.xui-dp-year b{width:18px; height:19px; float:left;}
+.xui-dp-btn-pre,.xui-dp-btn-next{float:left; height:9px; width:18px; background:url(../../../images/saas/simple-date/xuidate.png) 0px -19px; font-size:0px;}
+.xui-dp-btn-pre:hover{background-position:-18px -19px;}
+.xui-dp-btn-next{background-position:0px -28px;}
+.xui-dp-btn-next:hover{background-position:-18px -28px;}
+.xui-dp-day table{border-top:1px solid #e4e9e9; border-left:1px solid #e4e9e9; margin:3px auto;}
+.xui-dp-day td,.xui-dp-day th{border-bottom:1px solid #e4e9e9; border-right:1px solid #e4e9e9; text-align:center;}
+.xui-dp-day th{padding:3px;}
+.xui-dp-day th{background-color:#e4e8e9; color:#83b805;}
+.xui-dp-a:hover{background-color:#00b7e3; color:#fff;}
+.xui-dp-noa,.xui-dp-a{width:24px; height:20px; float:left; line-height:20px; overflow:hidden;}
+a.xui-dp-noa{color:#7a6c69;}
+a.xui-dp-nowday{background:url(../../../images/saas/simple-date/xuidate.png) 0px -58px; color:#fff;}
+.xui-dp-hms{overflow:hidden; line-height:22px;}
+.xui-dp-hms span{float:left; margin-right:3px;}
+.xui-dp-hms a{text-align:center; width:16px; float:left; margin-right:2px; *line-height:18px;}
+.xui-dp-hms a.xui-dp-sub,.xui-dp-hms a.xui-dp-close{border:1px solid #e4e9e9; color:#83b805; float:left; margin-right:2px; cursor:pointer; width:35px;}
+.xui-dp-hms a.xui-dp-sub:hover,.xui-dp-hms a.xui-dp-close:hover{border:1px solid #a3a3a3;}
+.xui-dp-md{border:1px solid #00b7e3; position:absolute; left:3px; top:23px; background-color:#FFF; width:80px; display:none;}
+.xui-dp-md a{width:80px; float:left; text-align:center; height:20px; line-height:20px;}
+.xui-dp-md a:hover{background-color:#00b7e3; color:#fff;}
+.xui-dp-dialog{border:1px solid #00b7e3; position:absolute; width:150px; left:15px; bottom:20px; background-color:#FFF; display:none;}
+.xui-dp-dialog a{float:left; width:16px; padding:2px; text-align:center;}
+.xui-dp-dialog a:hover{background-color:#a9a9a9;}
+
+/*-----------------------Msg box-------------------------------------*/
+
+.xui-msgbox{ width:360px; overflow:hidden; border:3px solid #14a9d6; background:#f5fcfe url(../../../images/saas/msgbox/bg.png) repeat-x;}
+.xui-msgbox-in{overflow:hidden; padding:30px 10px 20px 10px; font-size:13px; text-align:center}
+.xui-msgbox-submit{
+	border-top:1px solid #d5e9ef;
+	-moz-border-top-colors:#d5e9ef #fff;
+	padding-top:10px;
+	margin-top:20px;
+	font-size:12px;
+}
+.xui-msgbox-btn {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	border:1px solid #14a9d6;
+	color:#fff;
+	font-weight:bold;
+	padding:5px 10px;
+	margin-right:10px;
+	cursor:pointer;
+	background:#14a9d6;
+}
+
+
+/*------------------------Dialog-------------------------------------------*/
+.xui-dialog-bg{
+	width:315px;
+	overflow:hidden;
+}
+.xui-dialog-title{
+	background:url(../../../images/saas/dialog/skinblue.png) no-repeat 0 -38px #f5fcfe;
+	margin-left:15px;
+	float:left;
+	height:25px;
+	margin-top:5px;
+	font-size:14px;
+	font-weight:bold;
+	padding-top:6px;
+	color:#00b7e3;
+	padding-left:20px;
+
+}
+.xui-dialog-title2{
+	float:left;
+	display:block;
+	height:50px;
+	width:18px;
+	height:31px;
+	margin-top:5px;
+	background:url(../../../images/saas/dialog/skinblue.png) no-repeat 0 -73px  #f5fcfe;
+}
+
+.xui-dialog-title-lable{
+	color:#fff;
+	margin-top:14px;
+	margin-left:12px;
+	display:inline-block;
+}
+
+.xui-dialog-border{
+	border: 1px solid #a4d8f8;
+	background-color:#00B7E3;
+	padding-bottom:5px;
+}
+.xui-dialog-content-border{
+	border:1px solid #fff;
+}
+.xui-dialog-bg .xui-dialog-titlebar{
+	overflow:hidden;
+	zoom:1;
+	background:url(../../../images/saas/dialog/skinblue.png) repeat-x;
+	height:36px;
+}
+
+/*.xui-dialog-titlebar label{
+	float:left;
+	font-size:18px;
+	line-height:30px;
+	font-weight:bold;
+	color:#00b7e3;
+	padding-left:10px;
+	text-indent:0.3em;
+}*/
+
+.xui-dialog-titlebar-button{
+	float:right;
+	height:18px; width:43px;
+	overflow:hidden;
+	margin-top:2px;
+}
+
+.xui-dialog-titlebar-minimize{
+	
+}
+
+.xui-dialog-titlebar-close{
+	background: url(../../../images/saas/dialog/skinblue.png) no-repeat 0px -109px;
+	border:0px;
+	display:inline-block;
+	float:right;
+	width:18px;
+	height:18px;
+	margin-right:5px;
+	
+}
+.xui-dialog-titlebar-close:hover{
+	background: url(../../../images/saas/dialog/skinblue.png) no-repeat 0px -130px;
+}
+.xui-dialog-content{
+	margin:0px 5px;
+	overflow:hidden;
+	background:#fff url(../../../images/saas/dialog/bg.gif) center 0 no-repeat;
+}
+
+/*----gird---*/
+
+
+
+.xui-simpleGrid-panelBody .xui-simpleGrid-body .xui-simpleGrid-row {
+	zoom:1;
+	table-layout:fixed;
+}
+
+.xui-simpleGrid-panel table {
+}
+.xui-simpleGrid-cell{
+	position:relative;
+	zoom:1;
+  /*  -moz-user-select: none;
+    -khtml-user-select:none;
+    -webkit-user-select:ignore;*/
+	-moz-user-focus: ignore !important; 
+	
+}
+.xui-simpleGrid-header{
+	border:solid 1px  #d8d8d8;
+	border-top-color:#00b7e3;
+	background:#f7f7f7  url(../../../images/xp/simple-grid/simple-grid-hd.png) no-repeat;
+	overflow:hidden;
+}
+.xui-simpleGrid-sort{
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	border:0 ;
+	cursor:pointer;
+	height:15px;
+	width:13px;
+	vertical-align:middle;
+	display:none;
+}
+
+.xui-simpleGrid-sort-asc .xui-simpleGrid-sort{
+	display:inline-block;
+	background:#e9f1fa  url(../../../images/default/simple-grid/simple-grid.gif) no-repeat;
+	background-position:0 -90px;
+}
+.xui-simpleGrid-sort-desc .xui-simpleGrid-sort{
+	display:inline-block;
+	background:#e9f1fa  url(../../../images/default/simple-grid/simple-grid.gif) no-repeat;
+	background-position:-14px -90px;
+}
+.xui-simpleGrid-sort-default .xui-simpleGrid-sort{
+	display:inline-block;
+	background:#e9f1fa  url(../../../images/default/simple-grid/simple-grid.gif) no-repeat;
+	background-position:-14px -105px;
+}
+
+.xui-simpleGrid-hd-row{
+	height:26px;
+}
+.xui-simpleGrid-hd-row td{
+	border-right:solid 0px  #becce2;
+}
+.xui-simpleGrid-cell-inner, .xui-simpleGrid-hd-inner{
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+	overflow:hidden;
+}
+.xui-simpleGrid-hd-inner-default{
+	text-align:center;
+	color:#616161;
+	font-size:12px;
+	font-weight:bold;
+}
+.xui-simpleGrid-body{ margin-top:5px; margin-bottom:10px}
+
+.xui-simpleGrid-cell-inner-default{
+	text-align:center;
+	color:#505050;
+	font-size:12px;
+}
+
+.xui-simpleGrid-row {
+	cursor: default;
+	height:80px;
+	padding: 2px 2px 1px 2px;
+	border-bottom:solid 1px #dfdfdf;
+}
+.xui-simpleGrid-row-selected{
+	background:#fdfdd9;
+	border:solid 0px #cbae85;
+	padding: 2px 2px 1px 2px;
+	border-bottom:solid 1px #cbae85  ;
+}
+.xui-simpleGrid-row-hover{
+	padding:0;
+	background:url(../../../images/xp/simple-grid/simple-grid-hover.png) repeat-x;
+	border:solid 2px #00b7e3;
+}
+.xui-simpleGrid-row-last{
+}
+
+.xui-simpleGrid-pagebar{
+	height:18px;
+	padding:5px 15px 7px 15px;
+	background-color:#e9f1fa;
+	border:solid 1px  #becce2;
+	zoom:1;
+}
+.xui-simpleGrid-pagebar button{ padding:0}
+.xui-simpleGrid-pagebar-detail{
+	float:left;
+	padding-top:2px;
+}
+.xui-simpleGrid-page{
+	float:right;
+}
+.xui-pagebar-btn-text {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	border:0 ;
+	cursor:pointer;
+	width:14px;height:17px;
+	margin-left:5px;
+	background: url(../../../images/default/simple-grid/simple-grid.gif) no-repeat;
+}
+.xui-pagebar-btn-go{
+	height:20px; width:40px;
+	vertical-align:baseline;
+}
+
+.xui-pagebar-btn-last{
+	background-position:-14px 3px;
+}
+.xui-pagebar-btn-last-disabled{
+	background-position:-14px -13px;
+}
+.xui-pagebar-btn-next{
+	background-position:0 3px;
+}
+.xui-pagebar-btn-next-disabled{
+	background-position:0 -13px;
+}
+.xui-pagebar-btn-prev{
+	background-position:0 -30px;
+}
+.xui-pagebar-btn-prev-disabled{
+	background-position:0 -76px;
+}
+.xui-pagebar-btn-first{
+	background-position:-14px -30px;
+}
+.xui-pagebar-btn-first-disabled{
+	background-position:-14px -76px;
+}
+.xui-pagebar-btn-number{
+	text-align:center;
+	width:30px;
+	height:13px;
+
+
+}

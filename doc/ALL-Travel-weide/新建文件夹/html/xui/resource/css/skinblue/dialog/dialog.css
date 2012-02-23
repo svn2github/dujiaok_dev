@@ -1,0 +1,59 @@
+﻿.xui-dialog-bg{
+	width:315px;
+	overflow:hidden;
+}
+
+.xui-dialog-border{
+	border: 1px solid #a4d8f8;
+	background-color:#399ddd;
+	padding-bottom:5px;
+}
+.xui-dialog-content-border{
+	border:1px solid #fff;
+}
+.xui-dialog-bg .xui-dialog-titlebar{
+	overflow:hidden;
+	zoom:1;
+	background:url(../../../images/skinblue/dialog/skinblue.png) repeat-x;
+}
+
+.xui-dialog-titlebar label{
+	float:left;
+	font-size:18px;
+	line-height:30px;
+	font-weight:bold;
+	color:#fff;
+	padding-left:10px;
+	text-indent:0.3em;
+}
+
+.xui-dialog-titlebar-button{
+	float:right;
+	height:18px; width:43px;
+	overflow:hidden;
+	margin-top:2px;
+}
+
+.xui-dialog-titlebar-minimize{
+	
+}
+
+.xui-dialog-titlebar-close{
+	background: url(../../../images/skinblue/dialog/skinblue.png) no-repeat 0px -54px;
+	border:0px;
+	display:inline-block;
+	float:right;
+	width:41px;
+	height:18px;
+	margin-right:3px;
+}
+.xui-dialog-titlebar-close:hover{
+	background: url(../../../images/skinblue/dialog/skinblue.png) no-repeat 0px -36px;
+}
+.xui-dialog-content{
+	margin:0px 5px;
+	overflow:hidden;
+	background:#fff url(../../../images/skinblue/dialog/bg.gif) center 0 no-repeat;
+}
+
+
