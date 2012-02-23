@@ -54,6 +54,7 @@ then
 fi 
 
 if  $production_mode ; then
+	echo "start copy war $DOUCOME_DEPLOY_HOME/web.war to $JETTY_SERVER_HOME/webapps/root.war"
 	rm -rf  "$JETTY_SERVER_HOME/webapps/root.war" 
 	cp "$DOUCOME_DEPLOY_HOME/web.war"  "$JETTY_SERVER_HOME/webapps/root.war" 
 else
