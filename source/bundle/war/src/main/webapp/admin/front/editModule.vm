@@ -1,0 +1,37 @@
+#set($layout="/admin/default.vm")
+#set($title="度假OK - 后台 - 前台资料编辑")
+#set($menu_name = "编辑前台")
+#KISSY_EDITOR_CSS()
+###################################################
+<form name="createHotelForm" id="createHotelForm" action="${env.root}/admin/docreateHotel.htm" onsubmit="return Validator.validate(this,'admin');">
+<input name="id"  type="hidden" value="$!id" />
+<input name="productId"  type="hidden" value="$!productId" />
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td height="10"></td>
+        </tr>
+    </table>
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="fabu_mb">
+        <tr>
+            <td width="103" align="right">模块名称：</td>
+            <td width="857">$!productId</td>
+        </tr>
+        <tr>
+            <td align="right">名称：</td>
+            <td>
+				<input type="text" id='name' name='name' value="$!hotel.name" class="input_m" />
+                &nbsp;<i class="F9"></i>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">&nbsp;</td>
+            <td>
+                <input type="submit" name="button" id="button" value="  发 布  " />
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+#XUI_JS(["core/xui-core.js","util/util-min.js"])
+#JS(["validator.js","dujiaok.js"])

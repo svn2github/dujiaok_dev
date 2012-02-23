@@ -31,4 +31,9 @@
 		<scope>application</scope>
 		<class>com.ssnn.dujiaok.web.velocity.toolbox.EnumUtilsToolbox</class>
 	</tool>
+	<tool>
+		<key>fontConstants</key>
+		<scope>application</scope>
+		<class>com.ssnn.dujiaok.web.velocity.toolbox.FrontConstants</class>
+	</tool>
 </toolbox> 
