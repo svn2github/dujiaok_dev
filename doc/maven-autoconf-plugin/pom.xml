@@ -4,7 +4,7 @@
 
 
 
-	<groupId>com.ssnn.maven.plugins</groupId>
+	<groupId>com.doucome.maven.plugins</groupId>
 	<artifactId>maven-autoconf-plugin</artifactId>
 	<packaging>maven-plugin</packaging>
 	<version>0.4</version>
