@@ -8,7 +8,8 @@ function deploy_template() {
 }
 
 function deploy_task() {
-  deploy_template
+  echo "skip deploy task ."
+  # deploy_template
   # mkdir -p $TASK_HOME 
   # cp -r $TARGET/mobiletrade.task.*-1.0-SNAPSHOT.jar $TASK_HOME 
 }
