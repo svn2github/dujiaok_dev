@@ -1,0 +1,117 @@
+#set($layout="/common/blank.vm")
+#####前台页面默认的Layout
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+        <title>#if ($title)$!title #else 度假OK #end</title>
+                #KISSY_EDITOR_CSS()
+				#STATIC("CSS",["/blogcal/blogcalendar.css"])
+				#XUI_CSS(["common/reset.css","eshop/simple-date/xui-simple-datepicker.css"])
+    </head>
+    <body>
+        <textarea id="test" name="test" style="width:800px;height:200px;">BLANK</textarea>
+        ############################################################################################
+		
+		<input type="text" value="" style="width:110px;" id="tim" />
+		
+		####################################################################
+		
+		<div class="Calendar">
+  <div id="idCalendarPre">上一月</div>
+  <div id="idCalendarNext">下一月</div>
+
+  <span id="idCalendarYear"></span>年 <span id="idCalendarMonth"></span>月
+  <table cellspacing="0">
+    <thead>
+      <tr>
+        <td>日</td>
+        <td>一</td>
+        <td>二</td>
+
+        <td>三</td>
+        <td>四</td>
+        <td>五</td>
+        <td>六</td>
+      </tr>
+    </thead>
+    <tbody id="idCalendar">
+
+    </tbody>
+  </table>
+</div>
+
+<input id="idCalendarPreYear" type="button" value="上一年" />
+<input id="idCalendarNow" type="button" value="当前月" />
+<input id="idCalendarNextYear" type="button" value="下一年" />
+		
+		
+		
+		
+		#############################
+        #KISSY_EDITOR_JS()
+		#STATIC("JS",["/blogcal/blogcalendar.js"])
+		#XUI_JS(["core/xui-core.js","util/util-min.js","simple-date/xui-simple-datepicker.js"])
+        <script type="text/javascript">
+		/////kissy editor
+            KISSY.ready(function(S) {
+            S.use('editor', function(S) {
+            window.editor = loadediter("#test")
+            });
+            });
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////			
+	    ///////datepicker
+		var b = new Date();
+        b.setDate(b.getDate()-1);
+        var fs = new Date();
+        fs.setDate(fs.getDate()-7);
+        var fs1 = new Date();
+        fs1.setDate(fs1.getDate()-7);
+        var f = new xui.widgets.simpleDatePicker('tim','YYYY-MM-DD',b,{selectModel:'week'});
+        
+        
+        //f.setModel({tms:'false',closeModel:'true',initvalue:'请选择'});
+        f.setModel({closeModel:'true',tms:'false',distime:['1000-10-01','2009-11-16','2011-12-01','9999-12-28'],'selectBefore':function(dates){
+        	///$('xxx').submit();
+        }});
+        
+       
+
+///////////////////////////////////////////////////////////
+/////BLOG CALENDAR
+			
+			
+			//初始化Calendar
+			var cale = new Calendar("idCalendar", {
+	SelectDay: new Date().setDate(10),
+	onSelectDay: function(o){ o.className = "onSelect"; },
+	onToday: function(o){ o.className = "onToday"; },
+	onFinish: function(){
+		var self = this;
+		$("idCalendarYear").innerHTML = this.Year; $("idCalendarMonth").innerHTML = this.Month;
+		var flag = [{severtime:"2012-01",data:[{id:10,name:"250元"},{id:15,name:"250"},{id:16,name:"250"}]},{severtime:"2012-02",data:[{id:12,name:"250元"},{id:14,name:"250"},{id:16,name:"250"}]}];
+		for(var i = 0, len = flag.length; i < len; i++){
+			var timer = flag[i].severtime.split("-");
+			var b = self.Year == timer[0] && self.Month == timer[1]?true:false;
+			if(b){
+				var pricredate = flag[i].data;
+				for(var i = 0; i<pricredate.length; i++){
+					self.Days[pricredate[i].id].innerHTML = "<a href='javascript:void(0);' onclick=\"alert('日期是:"+self.Year+"/"+self.Month+"/"+pricredate[i].id+"');return false;\">" + pricredate[i].id + "</a><br>"+pricredate[i].name+"";
+		}
+				}
+				
+			}
+			
+	}
+});
+
+$("idCalendarPre").onclick = function(){ cale.PreMonth(); }
+$("idCalendarNext").onclick = function(){ cale.NextMonth(); }
+$("idCalendarPreYear").onclick = function(){ cale.PreYear(); }
+$("idCalendarNextYear").onclick = function(){ cale.NextYear(); }
+
+$("idCalendarNow").onclick = function(){ cale.NowMonth(); }
+        </script>
+    </body>
+</html>
