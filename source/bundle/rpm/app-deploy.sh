@@ -2,6 +2,7 @@
 
 
 function deploy_template() {
+  echo "run app-deploy.sh deploy_template target = $TARGET  and  webapp_home=$WEBAPP_HOME"
   deploy  $TARGET/web-deploy.jar $WEBAPP_HOME
   chmod 755 $WEBAPP_HOME/bin/*
 }
@@ -14,7 +15,7 @@ function deploy_task() {
 
 function deploy_war() {
 	
-	echo "deploy war target = $TARGET  and  webapp_home=$WEBAPP_HOME"
+  echo "run app-deploy.sh deploy_war target = $TARGET  and  webapp_home=$WEBAPP_HOME"
   
   if [ $PRODUCTION == true ]; then
     mkdir -p $OUTPUT_HOME
