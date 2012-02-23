@@ -58,7 +58,7 @@ if  $production_mode ; then
 	rm -rf  "$JETTY_SERVER_HOME/webapps/root.war" 
 	cp "$DOUCOME_DEPLOY_HOME/web.war"  "$JETTY_SERVER_HOME/webapps/root.war" 
 else
-	cp  "$DOUCOME_DEPLOY_HOME/../mobiletrade.bundle.war-1.0-SNAPSHOT.war"  "$JETTY_SERVER_HOME/webapps/root.war"
+	cp  "$DOUCOME_DEPLOY_HOME/../dujiaok.bundle.war-1.0-SNAPSHOT.war"  "$JETTY_SERVER_HOME/webapps/root.war"
 fi
 
 
