@@ -26,4 +26,8 @@
 		select * from DJ_FRONT_CONFIG where channel_key = #channel_key#
 	</select>
 	
+	<select id="queryOneFrontConfig" resultMap="RM-FrontConfig">
+		select * from DJ_FRONT_CONFIG where MODULE_KEY = #module_key#
+	</select>
+	
 </sqlMap>

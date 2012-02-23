@@ -13,20 +13,74 @@
     </table>
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="fabu_mb">
         <tr>
-            <td width="103" align="right">模块名称：</td>
-            <td width="857">$!productId</td>
+            <td>模块编辑：$!frontconfig.moduleName</td>
         </tr>
         <tr>
-            <td align="right">名称：</td>
             <td>
-				<input type="text" id='name' name='name' value="$!hotel.name" class="input_m" />
-                &nbsp;<i class="F9"></i>
+				<table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="fabu_mb">
+					#set($fvCount=0)
+					#foreach($fv in $!frontViews)
+						<input type="hidden" name="frontViewId_$velocityCount" value="$!fv.frontViewId"/>
+                        <tr>
+							<td>
+								类目：<input type="text" name="category_$velocityCount" value="$!fv.category"/>
+								标题：<input type="text" name="title_$velocityCount" value="$!fv.title"　style=" width: 180px;"/>
+								原价：¥<input type="text" name="originalPrice_$velocityCount" value="$!fv.originalPrice"/>
+								价格：¥<input type="text" name="presentPrice_$velocityCount" value="$!fv.presentPrice"/>
+							</td>
+                        </tr>
+						<tr>
+							<td>
+								链接地址：<input type="text" name="link_$velocityCount" value="$!fv.link"/>
+							</td>
+                        </tr>
+						<tr>
+							<td>
+								图片地址：<input type="text" name="photoURL_$velocityCount" value="$!fv.photoURL"/>
+							</td>
+                        </tr>
+						<tr>
+							<td>
+								详情：<textarea rows="3" cols="80" name="detail_$velocityCount">$!fv.detail</textarea>
+							</td>
+                        </tr>
+						#set($fvCount=$velocityCount)
+					#end
+					#if($fvCount < $!frontconfig.dispalyNum)
+							#set($fvCount=$fvCount+1)
+							#foreach($index in [$!fvCount..$!frontconfig.dispalyNum])
+        						<input type="hidden" name="frontViewId_$index" value=""/>
+                                <tr>
+        							<td>
+        								类目：<input type="text" name="category_$index" value="$!fv.category"/>
+        								标题：<input type="text" name="title_$index" value="$!fv.title"　style=" width: 180px;"/>
+        								原价：¥<input type="text" name="originalPrice_$index" value="$!fv.originalPrice"/>
+        								价格：¥<input type="text" name="presentPrice_$index" value="$!fv.presentPrice"/>
+        							</td>
+                                </tr>
+        						<tr>
+        							<td>
+        								链接地址：<input type="text" name="link_$index" value="$!fv.link"/>
+        							</td>
+                                </tr>
+        						<tr>
+        							<td>
+        								图片地址：<input type="text" name="photoURL_$index" value="$!fv.photoURL"/>
+        							</td>
+                                </tr>
+        						<tr>
+        							<td>
+        								详情：<textarea rows="3" cols="80" name="detail_$index">$!fv.detail</textarea>
+        							</td>
+                                </tr>
+							#end
+					#end
+                </table>
             </td>
         </tr>
         <tr>
-            <td align="right">&nbsp;</td>
             <td>
-                <input type="submit" name="button" id="button" value="  发 布  " />
+                <input type="submit" name="button" id="button" value="保存  " />$fvCount
             </td>
         </tr>
     </table>

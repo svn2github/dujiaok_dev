@@ -13,21 +13,30 @@ import com.ssnn.dujiaok.model.FrontConfigDO;
  */
 public class FrontConfigServiceImpl implements FrontConfigService {
 
-    private FrontConfigDAO frontConfigDAO;
+	private FrontConfigDAO frontConfigDAO;
 
-    /*
-     * (non-Javadoc)
-     * @see com.ssnn.dujiaok.biz.service.FrontConfigService#getFrontConfigs(java.lang.String)
-     */
-    @Override
-    public List<FrontConfigDO> getFrontConfigs(String channelKey) {
-        if(channelKey==null)
-            return null;
-        return frontConfigDAO.queryFrontConfigs(channelKey);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.ssnn.dujiaok.biz.service.FrontConfigService#getFrontConfigs(java.
+	 * lang.String)
+	 */
+	@Override
+	public List<FrontConfigDO> getFrontConfigs(String channelKey) {
+		if (channelKey == null)
+			return null;
+		return frontConfigDAO.queryFrontConfigs(channelKey);
+	}
 
-    public void setFrontConfigDAO(FrontConfigDAO frontConfigDAO) {
-        this.frontConfigDAO = frontConfigDAO;
-    }
+	public FrontConfigDO getOneFrontConfig(String moduleKey) {
+		if (moduleKey == null)
+			return null;
+		return frontConfigDAO.queryOneFrontConfig(moduleKey);
+	}
+
+	public void setFrontConfigDAO(FrontConfigDAO frontConfigDAO) {
+		this.frontConfigDAO = frontConfigDAO;
+	}
 
 }

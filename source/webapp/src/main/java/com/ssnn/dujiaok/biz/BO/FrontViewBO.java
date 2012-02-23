@@ -41,6 +41,16 @@ public class FrontViewBO {
 		return resultMap;
 	}
 
+	public List<FrontViewDO> getDefaultFrontViewsByModuleKey(String moduleKey) {
+		FrontConfigDO config = frontConfigService.getOneFrontConfig(moduleKey);
+		if (config != null) {
+			return frontViewService.getFrontViewDOs(moduleKey, config
+					.getDispalyNum());
+		}
+		
+		return null;
+	}
+
 	public void setFrontViewService(FrontViewService frontViewService) {
 		this.frontViewService = frontViewService;
 	}

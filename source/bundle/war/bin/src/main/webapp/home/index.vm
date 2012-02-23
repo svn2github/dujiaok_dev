@@ -7,8 +7,8 @@
                 <div class="TodaySpecials">
                     <h2>今日特价</h2>
                     <ul>
-                    #if($frontViewMap.get("index.today.specials.module"))
-						#foreach($ts in $frontViewMap.get("index.today.specials.module"))
+                    #if($!frontViewMap.get("index.today.specials.module"))
+						#foreach($ts in $!frontViewMap.get("index.today.specials.module"))
                             <li>
                             	<a href="$!ts.link" target="_blank">
                             		<img src="$!ts.photoURL" width="210" height="120" />

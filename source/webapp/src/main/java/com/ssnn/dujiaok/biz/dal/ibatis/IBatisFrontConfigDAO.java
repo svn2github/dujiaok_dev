@@ -12,17 +12,29 @@ import com.ssnn.dujiaok.model.FrontConfigDO;
  * 
  * @author ib 2012-2-12 上午05:01:55
  */
-public class IBatisFrontConfigDAO extends SqlMapClientDaoSupport implements FrontConfigDAO {
+public class IBatisFrontConfigDAO extends SqlMapClientDaoSupport implements
+		FrontConfigDAO {
 
-    private final static String QUERY_FRONT_CONFIGS = "frontConfig.queryFrontConfigs";
+	private final static String QUERY_FRONT_CONFIGS = "frontConfig.queryFrontConfigs";
+	private final static String QUERY_ONE_FRONT_CONFIG = "frontConfig.queryOneFrontConfig";
 
-    /*
-     * (non-Javadoc)
-     * @see com.ssnn.dujiaok.biz.dal.FrontConfigDAO#queryFrontConfigs(java.lang.String)
-     */
-    @Override
-    public List<FrontConfigDO> queryFrontConfigs(String channelKey) {
-        return getSqlMapClientTemplate().queryForList(QUERY_FRONT_CONFIGS, channelKey);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.ssnn.dujiaok.biz.dal.FrontConfigDAO#queryFrontConfigs(java.lang.String
+	 * )
+	 */
+	@Override
+	public List<FrontConfigDO> queryFrontConfigs(String channelKey) {
+		return getSqlMapClientTemplate().queryForList(QUERY_FRONT_CONFIGS,
+				channelKey);
+	}
+
+	@Override
+	public FrontConfigDO queryOneFrontConfig(String moduleKey) {
+		return (FrontConfigDO) getSqlMapClientTemplate().queryForObject(
+				QUERY_ONE_FRONT_CONFIG, moduleKey);
+	}
 
 }

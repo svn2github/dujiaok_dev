@@ -15,87 +15,91 @@ public abstract class AbstractCacheSupport implements InitializingBean {
 
 	public static final int ONE_YEAR_MILLISECONDS = 3600 * 1000 * 24 * 365; // 1年
 
-	public static final int ONE_HOUR_MILLISECONDS = 3600 * 1000;           // 1小时
+	public static final int ONE_HOUR_MILLISECONDS = 3600 * 1000; // 1小时
 
-	public static final int ONE_DAY_MILLISECONDS  = 3600 * 1000 * 24;      // 1天
+	public static final int ONE_DAY_MILLISECONDS = 3600 * 1000 * 24; // 1天
 
-    /**
-     * Cache RegionName
-     */
-    private String             regionName;
+	/**
+	 * Cache RegionName
+	 */
+	private String regionName;
 
-    public <T> boolean putValue(String key, T value) {
-        InternalStoreItem item = new InternalStoreItem();
-        item.setItem(value);
-        return cacheClient.put(buildCacheKey(key), item);
-    }
+	public <T> boolean putValue(String key, T value) {
+		InternalStoreItem item = new InternalStoreItem();
+		item.setItem(value);
+		return cacheClient.put(buildCacheKey(key), item);
+	}
 
-    public <T> T getValue(String key) {
-        InternalStoreItem item = cacheClient.get(buildCacheKey(key));
-        if (item == null) {
-            return null;
-        }
-        return (T) item.getItem();
-    }
+	public <T> T getValue(String key) {
+		InternalStoreItem item = cacheClient.get(buildCacheKey(key));
+		if (item == null) {
+			return null;
+		}
+		return (T) item.getItem();
+	}
 
-    /**
-     * Cache Client
-     */
-    private CacheClient cacheClient;
+	public boolean clearKey(String key) {
+		return cacheClient.delete(key);
+	}
 
-    private String buildCacheKey(String key) {
-        return regionName + "_" + key;
-    }
+	/**
+	 * Cache Client
+	 */
+	private CacheClient cacheClient;
 
-    public void setRegionName(String regionName) {
-        this.regionName = regionName;
-    }
+	private String buildCacheKey(String key) {
+		return regionName + "_" + key;
+	}
 
-    public CacheClient getCacheClient() {
-        return cacheClient;
-    }
+	public void setRegionName(String regionName) {
+		this.regionName = regionName;
+	}
 
-    public void setCacheClient(CacheClient cacheClient) {
-        this.cacheClient = cacheClient;
-    }
+	public CacheClient getCacheClient() {
+		return cacheClient;
+	}
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        if (cacheClient == null) {
-            throw new IllegalStateException("cacheClient is null !");
-        }
-        if (StringUtils.isBlank(regionName)) {
-            throw new IllegalStateException("regionName is Blank !");
-        }
-    }
+	public void setCacheClient(CacheClient cacheClient) {
+		this.cacheClient = cacheClient;
+	}
 
-    /**
-     * @param <T>
-     */
-    private static class InternalStoreItem<T> implements Serializable {
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		if (cacheClient == null) {
+			throw new IllegalStateException("cacheClient is null !");
+		}
+		if (StringUtils.isBlank(regionName)) {
+			throw new IllegalStateException("regionName is Blank !");
+		}
+	}
 
-        private static final long serialVersionUID = 1L;
-        private Date              modifyTime;           //
-        private T                 item;                 //
+	/**
+	 * @param <T>
+	 */
+	private static class InternalStoreItem<T> implements Serializable {
 
-        public InternalStoreItem(){
-            this.modifyTime = new Date();
-        }
+		private static final long serialVersionUID = 1L;
+		private Date modifyTime; //
+		private T item; //
 
-        public Date getModifyTime() {
-            return modifyTime;
-        }
+		public InternalStoreItem() {
+			this.modifyTime = new Date();
+		}
 
-        public void setModifyTime(Date modifyTime) {
-            this.modifyTime = modifyTime;
-        }
+		public Date getModifyTime() {
+			return modifyTime;
+		}
 
-        public T getItem() {
-            return item;
-        }
+		public void setModifyTime(Date modifyTime) {
+			this.modifyTime = modifyTime;
+		}
 
-        public void setItem(T item) {
-            this.item = item;
-        }
-    }
+		public T getItem() {
+			return item;
+		}
+
+		public void setItem(T item) {
+			this.item = item;
+		}
+	}
 }

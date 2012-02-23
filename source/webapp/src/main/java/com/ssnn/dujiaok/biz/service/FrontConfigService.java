@@ -10,4 +10,5 @@ import com.ssnn.dujiaok.model.FrontConfigDO;
  */
 public interface FrontConfigService {
     public List<FrontConfigDO> getFrontConfigs(String channelKey);
+    public FrontConfigDO getOneFrontConfig(String moduleKey);
 }
