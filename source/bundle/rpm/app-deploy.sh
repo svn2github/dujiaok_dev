@@ -16,12 +16,14 @@ function deploy_task() {
 
 function deploy_war() {
 	
-  echo "run app-deploy.sh deploy_war target = $TARGET  and  webapp_home=$WEBAPP_HOME"
+  # echo "run app-deploy.sh deploy_war target = $TARGET  and  webapp_home=$WEBAPP_HOME"
   
   if [ $PRODUCTION == true ]; then
+	echo "COPY  $TARGET/dujiaok.bundle.war-1.0-SNAPSHOT.war to $WEBAPP_HOME/web.war "
     mkdir -p $OUTPUT_HOME
     cp  $TARGET/dujiaok.bundle.war-1.0-SNAPSHOT.war $WEBAPP_HOME/web.war
   else
+	echo "COPY  $TARGET/dujiaok.bundle.war-1.0-SNAPSHOT.war to $WEBAPP_HOME/.. "
     mkdir -p $WEBAPP_HOME
     cp  $TARGET/dujiaok.bundle.war-1.0-SNAPSHOT.war $WEBAPP_HOME/..
   fi
