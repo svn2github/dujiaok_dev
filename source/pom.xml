@@ -11,9 +11,9 @@
 	
 	<modules>
 		<module>./webapp</module>
-		<module>./deploy</module>
 		<module>./bundle/war</module>
 		<module>./bundle/rpm</module>
+		<module>./deploy</module>
 	</modules>
 	
 	<properties>
