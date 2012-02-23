@@ -1,0 +1,61 @@
+<project basedir="." default="default">
+	
+	<property name="appName" value="DUMMY"/>
+	<property name="projectRoot" location="${basedir}"/>
+	<property name="versionFormat" value="yyyyMMdd"/>
+	<property name="rpmIncludes" value="**/*"/>
+	
+	<property environment="env"/>
+	<condition property="useEnv">
+		<isset property="env.date"/>
+	</condition>
+	
+	<target name="init1" if="useEnv">
+		<property name="date" value="${env.date}"/>
+	</target>
+	
+	<target name="init2">
+		<tstamp>
+			<format property="date" pattern="${versionFormat}"/>
+		</tstamp>
+	</target>
+	
+	<target name="default" depends="init1,init2">
+		<property name="scriptRoot" location="${ant.file}/../.."/>
+		<property name="rpmbuildRoot" location="${projectRoot}/target/rpm"/>
+		
+		<delete dir="${rpmbuildRoot}"/>
+		
+		<copy flatten="true" todir="${rpmbuildRoot}">
+			<fileset dir="${scriptRoot}" excludes="framework/**"/>
+			<fileset dir="${scriptRoot}/framework" excludes="build.xml"/>
+		</copy>
+
+		<path id="fileList.ref">
+			<fileset dir="${projectRoot}/target/rpm" includes="**/*"/>
+			<fileset dir="${projectRoot}/target" includes="${rpmIncludes}"/>
+		</path>
+		
+		<pathconvert property="fileList" refid="fileList.ref" pathsep="${line.separator}%verify(md5 size mtime) "/>
+
+		<mkdir dir="${rpmbuildRoot}/BUILD"/>
+		<mkdir dir="${rpmbuildRoot}/RPMS"/>
+		<mkdir dir="${rpmbuildRoot}/SOURCES"/>
+		<mkdir dir="${rpmbuildRoot}/SPECS"/>
+		
+		<copy todir="${rpmbuildRoot}/SPECS" file="${scriptRoot}/framework/rpm.spec">
+			<filterchain>
+				<replacetokens>
+					<token key="appName" value="${appName}"/>
+					<token key="prefixDir" value="${projectRoot}"/>
+					<token key="date" value="${date}"/>
+					<token key="fileList" value="${fileList}"/>
+				</replacetokens>
+			</filterchain>
+		</copy>
+
+		<rpm specFile="rpm.spec" topDir="${rpmbuildRoot}" cleanBuildDir="true" failOnError="true"/>
+		
+	</target>
+
+</project>
