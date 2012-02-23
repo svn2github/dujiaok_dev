@@ -34,7 +34,7 @@ APACHE_LOG="$LOG_DIR/apache_error.log"
 ##save old LOGs
 LOGS_SAVED="$LOG_DIR/logs_saved"
 ##Success FLAG
-SUCCESSMSG="with property loggingRoot ="
+SUCCESSMSG="Started SelectChannelConnector@"
 
 TIMESTAMP=`date +%Y_%m_%d_%H_%M`
 
