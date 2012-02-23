@@ -9,9 +9,16 @@
 			http://roma.alibaba.com/schema http://roma.alibaba.com/schema/roma-component.xsd
 			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
-			default-autowire="byName">
+	default-autowire="byName">
 
+
+	<bean id="cacheClient" class="com.ssnn.dujiaok.service.cache.impl.JvmCacheClient" />
+
+	<bean id="frontConfigCache" class="com.ssnn.dujiaok.service.impl.PlainCacheTemplate">
+		<property name="regionName" value="FRONT_CONFIG" />
+	</bean>
 	
-	<bean id="cacheClient" class="com.ssnn.dujiaok.service.cache.impl.JvmCacheClient"/>
-	
+	<bean id="frontViewCache" class="com.ssnn.dujiaok.service.impl.PlainCacheTemplate">
+		<property name="regionName" value="FRONT_VIEW" />
+	</bean>
 </beans>

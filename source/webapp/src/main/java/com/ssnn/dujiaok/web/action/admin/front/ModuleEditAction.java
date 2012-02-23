@@ -3,45 +3,37 @@ package com.ssnn.dujiaok.web.action.admin.front;
 import java.util.List;
 import java.util.Map;
 
+import com.ssnn.dujiaok.biz.BO.FrontViewBO;
 import com.ssnn.dujiaok.constant.IndexChannelConstants;
 import com.ssnn.dujiaok.model.FrontViewDO;
-import com.ssnn.dujiaok.service.FrontViewManageService;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 public class ModuleEditAction extends BasicAction {
 
-    private FrontViewManageService         indexFrontViewManageService;
-    private Map<String, List<FrontViewDO>> frontViewMap;
-    private IndexChannelConstants          constants = new IndexChannelConstants();
+	private FrontViewBO frontViewManageService;
+	private List<FrontViewDO> frontViews;
 
-    
-    // 参数
-    private String moduleKey;
-    @Override
-    public String execute() throws Exception {
-        frontViewMap = indexFrontViewManageService.getFrontViewsMap();
-        return SUCCESS;
-    }
+	// 参数
+	private String moduleKey;
 
-    public Map<String, List<FrontViewDO>> getFrontViewMap() {
-        return frontViewMap;
-    }
+	@Override
+	public String execute() throws Exception {
+		// frontViewMap = indexFrontViewManageService.getFrontViewsMap();
+		return SUCCESS;
+	}
 
-    public void setFrontViewMap(Map<String, List<FrontViewDO>> frontViewMap) {
-        this.frontViewMap = frontViewMap;
-    }
+	public List<FrontViewDO> getFrontViews() {
+		return frontViews;
+	}
 
-    public void setIndexFrontViewManageService(FrontViewManageService indexFrontViewManageService) {
-        this.indexFrontViewManageService = indexFrontViewManageService;
-    }
+	public void setFrontViews(List<FrontViewDO> frontViews) {
+		this.frontViews = frontViews;
+	}
 
-    public IndexChannelConstants getConstants() {
-        return constants;
-    }
-
-    public void setConstants(IndexChannelConstants constants) {
-        this.constants = constants;
-    }
+	public void setFrontViewManageService(
+			FrontViewBO frontViewManageService) {
+		this.frontViewManageService = frontViewManageService;
+	}
 
 	public String getModuleKey() {
 		return moduleKey;

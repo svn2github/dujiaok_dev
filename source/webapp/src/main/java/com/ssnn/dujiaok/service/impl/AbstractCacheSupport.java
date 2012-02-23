@@ -13,24 +13,24 @@ import com.ssnn.dujiaok.service.cache.CacheClient;
  */
 public abstract class AbstractCacheSupport implements InitializingBean {
 
-    protected static final int ONE_YEAR_MILLISECONDS = 3600 * 1000 * 24 * 365; // 1��
+	public static final int ONE_YEAR_MILLISECONDS = 3600 * 1000 * 24 * 365; // 1年
 
-    protected static final int ONE_HOUR_MILLISECONDS = 3600 * 1000;           // 1Сʱ
+	public static final int ONE_HOUR_MILLISECONDS = 3600 * 1000;           // 1小时
 
-    protected static final int ONE_DAY_MILLISECONDS  = 3600 * 1000 * 24;      // 1��
+	public static final int ONE_DAY_MILLISECONDS  = 3600 * 1000 * 24;      // 1天
 
     /**
      * Cache RegionName
      */
     private String             regionName;
 
-    protected <T> boolean putValue(String key, T value) {
+    public <T> boolean putValue(String key, T value) {
         InternalStoreItem item = new InternalStoreItem();
         item.setItem(value);
         return cacheClient.put(buildCacheKey(key), item);
     }
 
-    protected <T> T getValue(String key) {
+    public <T> T getValue(String key) {
         InternalStoreItem item = cacheClient.get(buildCacheKey(key));
         if (item == null) {
             return null;

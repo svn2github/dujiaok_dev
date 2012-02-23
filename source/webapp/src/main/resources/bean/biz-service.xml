@@ -23,4 +23,5 @@
 	<bean id="productDetailService" class="com.ssnn.dujiaok.biz.service.product.impl.ProductDetailServiceImpl"></bean>
 	<bean id="frontConfigService" class="com.ssnn.dujiaok.biz.service.impl.FrontConfigServiceImpl"></bean>
 	<bean id="frontViewService" class="com.ssnn.dujiaok.biz.service.impl.FrontViewServiceImpl"></bean>
+	
 </beans>
