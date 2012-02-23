@@ -1,5 +1,7 @@
 package com.ssnn.dujiaok.web.velocity.toolbox;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.ssnn.dujiaok.constant.Constant;
 import com.ssnn.dujiaok.model.AdminDO;
 import com.ssnn.dujiaok.model.MemberDO;
@@ -21,6 +23,12 @@ public class EnvPropertiesToolbox {
 	
 	private static String rootPath = null ;
 	
+	private static String contextPath = "" ;
+	
+	public static void setContextPath(String context){
+		contextPath = context ;
+	}
+	
 	/**
 	 * getProperty
 	 * @param key
@@ -36,7 +44,9 @@ public class EnvPropertiesToolbox {
 		}
 		String port = getProperty(KEY_DUJIAOK_PORT) ;
 		rootPath = makeUrl(Constant.PROTOCOL , getProperty(KEY_DUJIAOK_DOMAIN_NAME) , port) ;
-		rootPath = rootPath + "/dujiaok" ;
+		if(StringUtils.isNotBlank(contextPath) && !"/".equals(contextPath)){
+			rootPath = rootPath + contextPath ;
+		}
 		return rootPath ;
 	}
 	
