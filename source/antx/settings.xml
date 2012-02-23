@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- ======================================================================== -->
+<!-- settings.xml for maven users -->
+<!-- Version: 2 -->
+<!-- Auhtor: Shawn.Qian -->
+<!-- $Id$ -->
+<!-- ======================================================================== -->
+
+<settings>
+
+
+	<!-- ======================================================================== -->
+	<!-- Profiles -->
+	<!-- ======================================================================== -->
+	<profiles>
+		<profile>
+			<!-- ======================================================================== -->
+			<!-- Managed Repositories for Alibaba Dev -->
+			<!-- ======================================================================== -->
+			<id>b2b</id>
+			<repositories>
+
+				<!-- internal standard maven libs, just plugins and parent poms. No biz 
+					libs! -->
+				<repository>
+					<id>maven-central</id>
+					<name>maven central</name>
+					<url>http://repo1.maven.org/maven2/</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</repository>
+
+
+				<repository>
+					<id>Doucome-internal-release</id>
+					<name>doucome-internal-release</name>
+					<url>http://www.dujiaok.com:8081/nexus/content/repositories/releases
+					</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+
+				</repository>
+			</repositories>
+
+			<!-- ======================================================================== -->
+			<!-- Repositories for maven plugins -->
+			<!-- ======================================================================== -->
+			<pluginRepositories>
+				<pluginRepository>
+
+					<id>Doucome-internal-release</id>
+					<name>doucome-internal-release</name>
+					<url>http://www.dujiaok.com:8081/nexus/content/repositories/releases
+					</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+
+	</profiles>
+
+
+</settings>
