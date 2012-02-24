@@ -23,7 +23,6 @@
 			<artifactId>dujiaok.webapp</artifactId>
 			<scope>runtime</scope>
 			<version>${pom.version}</version>
-			<type>war</type>
 		</dependency>
 	</dependencies>
 
