@@ -16,7 +16,9 @@ import com.ssnn.dujiaok.model.FrontViewDO;
  */
 public class IBatisFrontViewDAO extends SqlMapClientDaoSupport implements FrontViewDAO {
 
-    private static final String QUERY_FRONT_VIEWS = "frontView.queryFrontViews";
+    private static final String QUERY_FRONT_VIEWS  = "frontView.queryFrontViews";
+    private static final String INSERT_FRONT_VIEWS = "frontView.insertFrontView";
+    private static final String UPDATE_FRONT_VIEWS = "frontView.updateFrontView";
 
     /*
      * (non-Javadoc)
@@ -28,6 +30,29 @@ public class IBatisFrontViewDAO extends SqlMapClientDaoSupport implements FrontV
         map.put("moduleKey", moduleKey);
         map.put("displayNum", displayNum);
         return getSqlMapClientTemplate().queryForList(QUERY_FRONT_VIEWS, map);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.ssnn.dujiaok.biz.dal.FrontViewDAO#insertFrontView(com.ssnn.dujiaok.model.FrontViewDO)
+     */
+    @Override
+    public void insertFrontView(FrontViewDO frontViewDO) {
+        if (frontViewDO != null) {
+            getSqlMapClientTemplate().insert(INSERT_FRONT_VIEWS, frontViewDO);
+        }
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.ssnn.dujiaok.biz.dal.FrontViewDAO#updateFrontView(com.ssnn.dujiaok.model.FrontViewDO)
+     */
+    @Override
+    public boolean updateFrontView(FrontViewDO frontViewDO) {
+        if (frontViewDO != null) {
+            return getSqlMapClientTemplate().update(UPDATE_FRONT_VIEWS, frontViewDO) > 0;
+        }
+        return false;
     }
 
 }

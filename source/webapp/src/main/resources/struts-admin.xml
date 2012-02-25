@@ -10,10 +10,16 @@
 			<result name="success"  type="velocity">/home/index.vm</result>
 		</action>
 		
-		<action name="editModule" class="com.ssnn.dujiaok.web.action.admin.front.ModuleEditAction">
+		<action name="editFrontModule" class="com.ssnn.dujiaok.web.action.admin.front.ModuleEditAction">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="velocity">/admin/front/editFrontModule.vm</result>
+		</action>
+		
+		<action name="saveFrontModule" class="com.ssnn.dujiaok.web.action.admin.front.ModuleEditAction" method="save">
 			<interceptor-ref name="basicStack" />
 			<interceptor-ref name="adminAuthInterceptor" />
-			<result name="success"  type="velocity">/admin/front/editModule.vm</result>
+			<result name="success"  type="velocity">/admin/front/editFrontModule.vm</result>
 		</action>
 		
 		<action name="index" class="com.ssnn.dujiaok.web.action.admin.IndexAction">

@@ -8,54 +8,74 @@ import com.ssnn.dujiaok.model.FrontViewDO;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 public class ModuleEditAction extends BasicAction {
-	private FrontViewService frontViewService;
-	private FrontConfigService frontConfigService;
-	private List<FrontViewDO> frontViews;
-	private FrontConfigDO frontconfig;
 
-	// 参数
-	private String moduleKey;
+    private FrontViewService   frontViewService;
+    private FrontConfigService frontConfigService;
+    private List<FrontViewDO>  frontViews;
+    private FrontConfigDO      frontconfig;
 
-	@Override
-	public String execute() throws Exception {
-		frontconfig = frontConfigService.getOneFrontConfig(moduleKey);
-		if (frontconfig != null) {
-			frontViews = frontViewService.getFrontViewDOs(moduleKey, frontconfig
-					.getDispalyNum());
-		}
-		return SUCCESS;
-	}
+    // 参数name = frontViews[0].frontViewId
+    private String             moduleKey;
 
-	public List<FrontViewDO> getFrontViews() {
-		return frontViews;
-	}
+    // 返回
+    private String             message;
 
-	public void setFrontViews(List<FrontViewDO> frontViews) {
-		this.frontViews = frontViews;
-	}
+    @Override
+    public String execute() throws Exception {
+        frontconfig = frontConfigService.getOneFrontConfig(moduleKey);
+        if (frontconfig != null) {
+            frontViews = frontViewService.getFrontViewDOs(moduleKey, frontconfig.getDispalyNum());
+        }
+        return SUCCESS;
+    }
 
-	public FrontConfigDO getFrontconfig() {
-		return frontconfig;
-	}
+    public String save() throws Exception {
+        if (frontViews != null && moduleKey != null && frontViewService.saveFrontViews(frontViews, moduleKey)) {
+            message = "saveSuccess";
+        } else {
+            message = "saveFail";
+        }
+        return execute();
+    }
 
-	public void setFrontconfig(FrontConfigDO frontconfig) {
-		this.frontconfig = frontconfig;
-	}
+    public List<FrontViewDO> getFrontViews() {
+        return frontViews;
+    }
 
-	public void setFrontViewService(FrontViewService frontViewService) {
-		this.frontViewService = frontViewService;
-	}
+    public void setFrontViews(List<FrontViewDO> frontViews) {
+        this.frontViews = frontViews;
+    }
 
-	public void setFrontConfigService(FrontConfigService frontConfigService) {
-		this.frontConfigService = frontConfigService;
-	}
+    public FrontConfigDO getFrontconfig() {
+        return frontconfig;
+    }
 
-	public String getModuleKey() {
-		return moduleKey;
-	}
+    public void setFrontconfig(FrontConfigDO frontconfig) {
+        this.frontconfig = frontconfig;
+    }
 
-	public void setModuleKey(String moduleKey) {
-		this.moduleKey = moduleKey;
-	}
+    public void setFrontViewService(FrontViewService frontViewService) {
+        this.frontViewService = frontViewService;
+    }
+
+    public void setFrontConfigService(FrontConfigService frontConfigService) {
+        this.frontConfigService = frontConfigService;
+    }
+
+    public String getModuleKey() {
+        return moduleKey;
+    }
+
+    public void setModuleKey(String moduleKey) {
+        this.moduleKey = moduleKey;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
 }

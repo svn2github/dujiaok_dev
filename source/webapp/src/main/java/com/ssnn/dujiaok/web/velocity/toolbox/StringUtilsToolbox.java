@@ -14,6 +14,10 @@ public class StringUtilsToolbox {
 		return StringUtils.isBlank(str) ;
 	}
 	
+	public boolean isNotBlank(String str){
+        return StringUtils.isNotBlank(str) ;
+    }
+	
 	public String trim(String str){
 		return StringUtils.trim(str) ;
 	}

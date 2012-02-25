@@ -7,6 +7,7 @@ package com.ssnn.dujiaok.constant;
  */
 public abstract class FrontConfigConstants {
 
+    public static final String FRONT_VIEW_ID_PREFIX    = "FV";
     /**
      * 首页频道key
      */

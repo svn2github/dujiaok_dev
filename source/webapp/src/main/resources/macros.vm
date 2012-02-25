@@ -116,6 +116,6 @@
 
 #macro(FRONT_EDIT_BUTTON $module $isEdit)
 	#if($isEdit=="true" && $module)
-	<span><a href="${env.root}/admin/front/editModule.htm?moduleKey=$module">编辑</a></span>
+	<span><a href="${env.root}/admin/editFrontModule.htm?moduleKey=$module">编辑</a></span>
 	#end
 #end

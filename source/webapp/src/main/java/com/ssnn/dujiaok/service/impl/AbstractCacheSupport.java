@@ -39,7 +39,7 @@ public abstract class AbstractCacheSupport implements InitializingBean {
 	}
 
 	public boolean clearKey(String key) {
-		return cacheClient.delete(key);
+		return cacheClient.delete(buildCacheKey(key));
 	}
 
 	/**

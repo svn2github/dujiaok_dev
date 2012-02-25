@@ -1,6 +1,7 @@
 package com.ssnn.dujiaok.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -8,58 +9,58 @@ import java.util.Date;
  * 
  * @author ib 2012-2-12 上午04:27:17
  */
-public class FrontViewDO implements Serializable{
+public class FrontViewDO implements Serializable {
 
     private static final long serialVersionUID = -2499047129674938343L;
-    private int    id;
+    private int               id;
     /**
      * 信息ID
      */
-    private String frontViewId;
+    private String            frontViewId;
     /**
      * 模块key
      */
-    private String moduleKey;
+    private String            moduleKey;
     /**
      * 图片
      */
-    private String photoURL;
+    private String            photoURL;
     /**
      * 链接
      */
-    private String link;
+    private String            link;
     /**
      * 类目
      */
-    private String category;
+    private String            category;
     /**
      * 标题
      */
-    private String title;
+    private String            title;
     /**
      * 详情
      */
-    private String detail;
+    private String            detail;
     /**
      * 现价
      */
-    private String presentPrice;
+    private BigDecimal        presentPrice;
     /**
      * 原价
      */
-    private String originalPrice;
+    private BigDecimal        originalPrice;
     /**
      * 排序关键字
      */
-    private long   orderKey;
+    private long              orderKey;
     /**
      * 创建时间
      */
-    private Date   gmtCreate;
+    private Date              gmtCreate;
     /**
      * 修改时间
      */
-    private Date   gmtModified;
+    private Date              gmtModified;
 
     public int getId() {
         return id;
@@ -100,11 +101,11 @@ public class FrontViewDO implements Serializable{
     public void setLink(String link) {
         this.link = link;
     }
-    
+
     public String getCategory() {
         return category;
     }
-    
+
     public void setCategory(String category) {
         this.category = category;
     }
@@ -125,19 +126,19 @@ public class FrontViewDO implements Serializable{
         this.detail = detail;
     }
 
-    public String getPresentPrice() {
+    public BigDecimal getPresentPrice() {
         return presentPrice;
     }
 
-    public void setPresentPrice(String presentPrice) {
+    public void setPresentPrice(BigDecimal presentPrice) {
         this.presentPrice = presentPrice;
     }
 
-    public String getOriginalPrice() {
+    public BigDecimal getOriginalPrice() {
         return originalPrice;
     }
 
-    public void setOriginalPrice(String originalPrice) {
+    public void setOriginalPrice(BigDecimal originalPrice) {
         this.originalPrice = originalPrice;
     }
 

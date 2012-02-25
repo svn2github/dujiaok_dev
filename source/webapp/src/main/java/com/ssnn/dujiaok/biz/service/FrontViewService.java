@@ -12,4 +12,5 @@ import com.ssnn.dujiaok.model.FrontViewDO;
 public interface FrontViewService {
 
     public List<FrontViewDO> getFrontViewDOs(String moduleKey, int limit);
+    public boolean saveFrontViews(List<FrontViewDO> frontViews, String moduleKey);
 }

@@ -12,5 +12,6 @@ import com.ssnn.dujiaok.model.FrontViewDO;
 public interface FrontViewDAO {
 
     public List<FrontViewDO> queryFrontViews(String moduleKey, int limit);
-    
+    public void insertFrontView(FrontViewDO frontViewDO);
+    public boolean updateFrontView(FrontViewDO frontViewDO);
 }
