@@ -25,9 +25,16 @@
 					#end
                     </ul>
                 </div>
-                <div class="SpecialsAdd">
-                    <a href="http://www.dujiaok.com/diablo/trek/product/product/detail.htm?id=3" target="_blank"><img src="http://ht.dujiaok.com/saas/trek/images/index/index_03-10.png" width="222" height="72" /></a>
-                </div>
+				#FRONT_EDIT_BUTTON(${fontConstants.indexChannel.getmImageAdsA2()}, $isEdit)
+				#if($frontViewMap.get(${fontConstants.indexChannel.getmImageAdsA2()}))
+					#foreach($ts in $frontViewMap.get(${fontConstants.indexChannel.getmImageAdsA2()}))
+						<div class="SpecialsAdd">
+                            <a href="$!ts.link" target="_blank">
+								<img src="$!ts.photoURL" width="222" height="72" />
+    						</a>
+						</div>
+					#end
+				#end
             </div>
             <div class="Hotspot clearFix">
                     <div id="Focus" class="clearFix">

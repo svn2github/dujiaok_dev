@@ -33,9 +33,11 @@
 					#foreach($fv in $!frontViews)
 						#set($count = $velocityCount)
                         #set($count = $count - 1)
+						#set($parity = $count % 2)
 						<input type="hidden" name="frontViews[$count].frontViewId" value="$!fv.frontViewId"/>
-                        <tr>
+                        <tr class="frontviewTr_$parity">
 							<td>
+								No.$!velocityCount&nbsp;&nbsp;&nbsp;
 								#if($!frontconfig.isHasCategory())
 									类目：<input type="text" name="frontViews[$count].category" value="$!fv.category"/>
 								#end
@@ -43,29 +45,29 @@
 									标题：<input type="text" name="frontViews[$count].title" value="$!fv.title" class="titleInput"/>
 								#end
 								#if($!frontconfig.isHasOriginalPrice())
-									原价：¥<input type="text" name="frontViews[$count].originalPrice" value="$!fv.originalPrice"/>
+									原价：¥<input type="text" name="frontViews[$count].originalPrice" value="$!fv.originalPrice" class="priceInput"/>
 								#end
 								#if($!frontconfig.isHasPresentPrice())
-									现价：¥<input type="text" name="frontViews[$count].presentPrice" value="$!fv.presentPrice"/>
+									现价：¥<input type="text" name="frontViews[$count].presentPrice" value="$!fv.presentPrice" class="priceInput"/>
 								#end
 							</td>
                         </tr>
 						#if($!frontconfig.isHasLink())
-    						<tr>
+    						<tr class="frontviewTr_$parity">
     							<td>
     								链接地址：<input type="text" name="frontViews[$count].link" value="$!fv.link" class="linkInput"/>
     							</td>
                             </tr>
 						#end
 						#if($!frontconfig.isHasPhoto())
-    						<tr>
+    						<tr class="frontviewTr_$parity">
     							<td>
     								图片地址：<input type="text" name="frontViews[$count].photoURL" value="$!fv.photoURL" class="linkInput"/>
     							</td>
                             </tr>
 						#end
 						#if($!frontconfig.isHasDetail())
-    						<tr>
+    						<tr class="frontviewTr_$parity">
     							<td>
     								详情：<textarea rows="3" cols="100" name="frontViews[$count].detail">$!fv.detail</textarea>
     							</td>
@@ -77,9 +79,12 @@
 							#set($count=$count+1)
 							
 							#foreach($index in [$!count..$dispalyNum])
+								#set($parity = $index % 2)
         						<input type="hidden" name="frontViews[$index].frontViewId" value=""/>
-                                <tr>
+                                <tr class="frontviewTr_$parity">
         							<td>
+										#set($num=$index + 1)
+										No.$!num&nbsp;&nbsp;&nbsp;
         								#if($!frontconfig.isHasCategory())
         									类目：<input type="text" name="frontViews[$index].category" value=""/>
         								#end
@@ -87,29 +92,29 @@
         									标题：<input type="text" name="frontViews[$count].title" value="" class="titleInput"/>
         								#end
         								#if($!frontconfig.isHasOriginalPrice())
-        									原价：¥<input type="text" name="frontViews[$index].originalPrice" value=""/>
+        									原价：¥<input type="text" name="frontViews[$index].originalPrice" value="" class="priceInput"/>
         								#end
         								#if($!frontconfig.isHasPresentPrice())
-        									现价：¥<input type="text" name="frontViews[$index].presentPrice" value=""/>
+        									现价：¥<input type="text" name="frontViews[$index].presentPrice" value="" class="priceInput"/>
         								#end
         							</td>
                                 </tr>
         						#if($!frontconfig.isHasLink())
-            						<tr>
+            						<tr class="frontviewTr_$parity">
             							<td>
             								链接地址：<input type="text" name="frontViews[$index].link" value="" class="linkInput"/>
             							</td>
                                     </tr>
         						#end
         						#if($!frontconfig.isHasPhoto())
-            						<tr>
+            						<tr class="frontviewTr_$parity">
             							<td>
             								图片地址：<input type="text" name="frontViews[$index].photoURL" value="" class="linkInput"/>
             							</td>
                                     </tr>
         						#end
         						#if($!frontconfig.isHasDetail())
-            						<tr>
+            						<tr class="frontviewTr_$parity">
             							<td>
             								详情：<textarea rows="3" cols="100" name="frontViews[$index].detail"></textarea>
             							</td>
