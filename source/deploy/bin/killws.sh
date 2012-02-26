@@ -14,7 +14,7 @@ DOMAINS=$HOME/domains
 APACHECTL=$BASE_BIN_DIR/httpd
 APACHE_PID_FILE=$OUTPUT_HOME/logs/httpd.pid
 TIMESTAMP=`date +%Y_%m_%d_%H:%M`
-JETTY_PID="$BASE_BIN_DIR/jetty.pid"
+JETTY_PID="$OUTPUT_HOME/logs/jetty.pid"
 
 HOST_NAME=`hostname`
 

@@ -26,7 +26,7 @@ BASE_BIN_DIR=`pwd`
 
 HOST_NAME=`hostname`
 LOG_DIR=$OUTPUT_HOME/logs
-JETTY_PID="$BASE_BIN_DIR/jetty.pid"
+JETTY_PID="$OUTPUT_HOME/logs/jetty.pid"
 ##CHECK LOG
 WLS_CHECK_LOG="$LOG_DIR/admin_server_out.log"
 JETTY_CHECK_LOG="$LOG_DIR/jetty_stdout.log"

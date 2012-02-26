@@ -101,7 +101,7 @@ JETTY_INI="$JETTY_BASE/start.ini"
 RUN_ARGS=(${JAVA_OPTS[@]} -jar $JETTY_START --ini=$JETTY_INI lib=$JAVA_HOME/lib)
 RUN_CMD=("$JAVA_EXE" ${RUN_ARGS[@]})
 
-JETTY_PID="$BASE/bin/jetty.pid"
+JETTY_PID="$OUTPUT_HOME/logs/jetty.pid"
 
 
 have_tty=0
