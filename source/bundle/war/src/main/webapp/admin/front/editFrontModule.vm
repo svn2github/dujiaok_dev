@@ -1,11 +1,8 @@
+#CSS(["admin/front.css"])
 #set($layout="/admin/default.vm")
 #set($title="度假OK - 后台 - 前台资料编辑")
 #set($menu_name = "编辑前台")
-#KISSY_EDITOR_CSS()
-###################################################
 <form name="editModuleForm" id="editModuleForm" method="post" action="${env.root}/admin/saveFrontModule.htm">
-<input name="id"  type="hidden" value="$!id" />
-<input name="productId"  type="hidden" value="$!productId" />
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
             <td height="10"></td>
@@ -43,7 +40,7 @@
 									类目：<input type="text" name="frontViews[$count].category" value="$!fv.category"/>
 								#end
 								#if($!frontconfig.isHasTitle())
-									标题：<input type="text" name="frontViews[$count].title" value="$!fv.title"　style=" width: 180px;"/>
+									标题：<input type="text" name="frontViews[$count].title" value="$!fv.title"　class="titleInput"/>
 								#end
 								#if($!frontconfig.isHasOriginalPrice())
 									原价：¥<input type="text" name="frontViews[$count].originalPrice" value="$!fv.originalPrice"/>
@@ -56,21 +53,21 @@
 						#if($!frontconfig.isHasLink())
     						<tr>
     							<td>
-    								链接地址：<input type="text" name="frontViews[$count].link" value="$!fv.link"/>
+    								链接地址：<input type="text" name="frontViews[$count].link" value="$!fv.link" class="linkInput"/>
     							</td>
                             </tr>
 						#end
 						#if($!frontconfig.isHasPhoto())
     						<tr>
     							<td>
-    								图片地址：<input type="text" name="frontViews[$count].photoURL" value="$!fv.photoURL"/>
+    								图片地址：<input type="text" name="frontViews[$count].photoURL" value="$!fv.photoURL" class="linkInput"/>
     							</td>
                             </tr>
 						#end
 						#if($!frontconfig.isHasDetail())
     						<tr>
     							<td>
-    								详情：<textarea rows="3" cols="80" name="frontViews[$count].detail">$!fv.detail</textarea>
+    								详情：<textarea rows="3" cols="100" name="frontViews[$count].detail">$!fv.detail</textarea>
     							</td>
                             </tr>
 						#end
@@ -87,7 +84,7 @@
         									类目：<input type="text" name="frontViews[$index].category" value=""/>
         								#end
         								#if($!frontconfig.isHasTitle())
-        									标题：<input type="text" name="frontViews[$index].title" value=""/>
+        									标题：<input type="text" name="frontViews[$index].title" value="" class="titleInput"/>
         								#end
         								#if($!frontconfig.isHasOriginalPrice())
         									原价：¥<input type="text" name="frontViews[$index].originalPrice" value=""/>
@@ -100,21 +97,21 @@
         						#if($!frontconfig.isHasLink())
             						<tr>
             							<td>
-            								链接地址：<input type="text" name="frontViews[$index].link" value=""/>
+            								链接地址：<input type="text" name="frontViews[$index].link" value="" class="linkInput"/>
             							</td>
                                     </tr>
         						#end
         						#if($!frontconfig.isHasPhoto())
             						<tr>
             							<td>
-            								图片地址：<input type="text" name="frontViews[$index].photoURL" value=""/>
+            								图片地址：<input type="text" name="frontViews[$index].photoURL" value="" class="linkInput"/>
             							</td>
                                     </tr>
         						#end
         						#if($!frontconfig.isHasDetail())
             						<tr>
             							<td>
-            								详情：<textarea rows="3" cols="80" name="frontViews[$index].detail"></textarea>
+            								详情：<textarea rows="3" cols="100" name="frontViews[$index].detail"></textarea>
             							</td>
                                     </tr>
         						#end

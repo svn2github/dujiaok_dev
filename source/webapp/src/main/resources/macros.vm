@@ -27,14 +27,14 @@
 
 <!--静态文件引入-->
 #macro(STATIC $type $libs)
-   #set($version = $static_version)
+   #set($version = $!static_version)
    #if("CSS" == $type)
 	    #foreach ($key in $libs)
-		<link href="${env.staticroot}//$!key?v=$version" rel="stylesheet"/>
+		<link href="${env.staticroot}//$!key?v=$!version" rel="stylesheet"/>
 		#end
    #else
 	   #foreach ($key in $libs)
-       <script type="text/javascript" src="${env.staticroot}/$!key?v=$version"></script>
+       <script type="text/javascript" src="${env.staticroot}/$!key?v=$!version"></script>
 	   #end
    #end
 #end
@@ -46,9 +46,9 @@
    #end
 #end -->
 #macro(JS $libs)
-   #set($version = $static_version)
+   #set($version = $!static_version)
    #foreach ($key in $libs)
-   <script type="text/javascript" src="${env.staticroot}/js/$!key?v=$version"></script>
+   <script type="text/javascript" src="${env.staticroot}/js/$!key?v=$!version"></script>
    #end
 #end
 
@@ -59,22 +59,22 @@
    #end
 #end-->
 #macro(CSS $libs)
-   #set($version = $static_version)
+   #set($version = $!static_version)
    #foreach ($key in $libs)
-   <link  rel="stylesheet" type="text/css" href="${env.staticroot}/css/$!key?v=$version" />
+   <link  rel="stylesheet" type="text/css" href="${env.staticroot}/css/$!key?v=$!version" />
    #end
 #end
 
 <!-- XUI组件 js 引入 -->
 #macro(XUI_JS $libs)
-   #set($version = $static_version)
+   #set($version = $!static_version)
    #set($compress = false)
    #foreach ($key in $libs)
        #if($compress == true)
 		  #set($length = $key.length() - 3)
-       <script type="text/javascript" src="${env.staticroot}/xui/source/$key.substring(0, $length)-min.js?v=$version" charset="GBK"></script>
+       <script type="text/javascript" src="${env.staticroot}/xui/source/$key.substring(0, $length)-min.js?v=$!version" charset="GBK"></script>
        #else
-       <script type="text/javascript" src="${env.staticroot}/xui/source/$!key?v=$version" charset="GBK"></script>
+       <script type="text/javascript" src="${env.staticroot}/xui/source/$!key?v=$!version" charset="GBK"></script>
        #end
    #end
 #end
@@ -86,9 +86,9 @@
    #end
 #end-->
 #macro(XUI_CSS $libs)
-   #set($version = $static_version)
+   #set($version = $!static_version)
    #foreach ($key in $libs)
-   <link  rel="stylesheet" type="text/css" href="${env.staticroot}/xui/resource/css/$!key?v=$version"/>
+   <link  rel="stylesheet" type="text/css" href="${env.staticroot}/xui/resource/css/$!key?v=$!version"/>
    #end
 #end
 
