@@ -2,92 +2,150 @@
 #################################################
 #XUI_JS(["core/xui-core.js","util/util.js","slide/slide.js"])
 <div id="content">
+		#set($indexChannel= $fontConstants.indexChannel)
     	<div class="Ifirst clearFix">
             <div class="leftSpecials">
-				#FRONT_EDIT_BUTTON(${fontConstants.indexChannel.getmTodaySpecials()}, $isEdit)
+				#FRONT_EDIT_BUTTON($!indexChannel.getmTodaySpecials(), $isEdit)
                 <div class="TodaySpecials">
                     <h2>今日特价</h2>
                     <ul>
-                    #if($frontViewMap.get(${fontConstants.indexChannel.getmTodaySpecials()}))
-						#foreach($ts in $frontViewMap.get(${fontConstants.indexChannel.getmTodaySpecials()}))
+                    #if($!frontViewMap.get($!indexChannel.getmTodaySpecials()).frontViews)
+						#foreach($fv in $!frontViewMap.get($!indexChannel.getmTodaySpecials()).frontViews)
                             <li>
-                            	<a href="$!ts.link" target="_blank">
-                            		<img src="$!ts.photoURL" width="210" height="120" />
+                            	<a href="$!fv.link" target="_blank">
+                            		<img src="$!fv.photoURL" width="210" height="120" />
                             	</a>
                             	<p class="clearFix">
                             		<span>
-                            			<a href="$!ts.link">$!ts.title</a>
+                            			<a href="$!fv.link">$!fv.title</a>
                             		</span>
-                            		<span class="Todayprice">¥$!ts.presentPrice</span>
+                            		<span class="Todayprice">¥$!fv.presentPrice</span>
                             	</p>
                             </li>
 						#end
 					#end
                     </ul>
                 </div>
-				#FRONT_EDIT_BUTTON(${fontConstants.indexChannel.getmImageAdsA2()}, $isEdit)
-				#if($frontViewMap.get(${fontConstants.indexChannel.getmImageAdsA2()}))
-					#foreach($ts in $frontViewMap.get(${fontConstants.indexChannel.getmImageAdsA2()}))
+				#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsA2(), $isEdit)
+				#if($!frontViewMap.get($!indexChannel.getmImageAdsA2()).frontViews)
+					#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsA2()).frontViews)
 						<div class="SpecialsAdd">
-                            <a href="$!ts.link" target="_blank">
-								<img src="$!ts.photoURL" width="222" height="72" />
+                            <a href="$!fv.link" target="_blank">
+								<img src="$!fv.photoURL" width="222" height="72" />
     						</a>
 						</div>
 					#end
 				#end
             </div>
+			
             <div class="Hotspot clearFix">
-                    <div id="Focus" class="clearFix">
+                 <div id="Focus" class="clearFix">
+					#FRONT_EDIT_BUTTON($!indexChannel.getmBanner(), $isEdit)
                         <ul id="Focus_content">
-                            <li class="circularPanel">
-                            <img src="http://ht.dujiaok.com/saas/trek/images/index/index_08.png" width="470" height="250" border="0" />
-                          </li>
-                            <li class="circularPanel">
-                            <img src="http://ht.dujiaok.com/saas/trek/images/index/index_08.png" width="470" height="250" border="0" />
-                          </li>
-                            <li class="circularPanel">
-                            <img src="http://ht.dujiaok.com/saas/trek/images/index/index_08.png" width="470" height="250" border="0" />
-                          </li>
-                            <li class="circularPanel">
-                            <img src="http://ht.dujiaok.com/saas/trek/images/index/index_08.png" width="470" height="250" border="0" />
-                          </li>
-                      </ul>
+							#if($!frontViewMap.get($!indexChannel.getmBanner()).frontViews)
+								#foreach($fv in $!frontViewMap.get($!indexChannel.getmBanner()).frontViews)
+                                    <li class="circularPanel">
+        								<img src="$!fv.photoURL" width="470" height="250" border="0" />
+        							</li>
+								#end
+							#end	
+						</ul>
                     <ul class="trigger">
-                        <li class="circularTrigger">杨梅节专场</li>
-                        <li class="circularTrigger">三亚自由之旅</li>
-                        <li class="circularTrigger">摄影线路专场</li>
-                        <li class="circularTrigger" style="*width:116px;">情迷丽江</li>
+						#if($!frontViewMap.get($!indexChannel.getmBanner()).frontViews)
+							#set($bannerSize= $!frontViewMap.get($!indexChannel.getmBanner()).frontViews.size())
+							#foreach($fv in $!frontViewMap.get($!indexChannel.getmBanner()).frontViews)
+								#if($velocityCount != $bannerSize)
+									<li class="circularTrigger">$!fv.title</li>
+								#else
+									<li class="circularTrigger" style="*width:116px;">$!fv.title</li>
+								#end
+							#end
+						#end	
                     </ul>
-                 </div>
+                </div>
                 <script type="text/javascript">
                 var x = new xui.widgets.Slide();
-                </script>            
+                </script>
               <div class="HotTag clearFix">
                     <ul>
-                        <h2>主题</h2><li><a href="#">漂流</a></li><li>夏季专题</li><li>亲子游</li><li>丽江客栈</li><li>半自助长途</li><li>浙江自由行</li>
+						#FRONT_EDIT_BUTTON($!indexChannel.getmSearchTheme(), $isEdit)
+    					<h2>
+							$!frontViewMap.get($!indexChannel.getmSearchTheme()).config.moduleName
+						</h2>
+						#if($!frontViewMap.get($!indexChannel.getmSearchTheme()).frontViews)
+        					#foreach($fv in $!frontViewMap.get($!indexChannel.getmSearchTheme()).frontViews)
+                                <li><a href="$!fv.link">$!fv.title</a></li>
+        					#end
+						#end
                     </ul>
                     <ul>
-                        <h2>景点</h2><li>上海欢乐谷</li><li>扬州瘦西湖</li><li>苏州乐园</li><li>环球恐龙城</li><li>  江苏天目湖</li>
+                       #FRONT_EDIT_BUTTON($!indexChannel.getmSearchAttractions(), $isEdit)
+    					<h2>
+							$!frontViewMap.get($!indexChannel.getmSearchAttractions()).config.moduleName
+						</h2>
+						#if($!frontViewMap.get($!indexChannel.getmSearchAttractions()).frontViews)
+        					#foreach($fv in $!frontViewMap.get($!indexChannel.getmSearchAttractions()).frontViews)
+                                <li><a href="$!fv.link">$!fv.title</a></li>
+        					#end
+						#end
                     </ul>
                     <ul>
-                        <h2>周边</h2><li>杭州</li><li>乌镇</li><li>苏州</li><li>周庄</li><li>黄山</li><li>普陀山</li><li>雁荡山</li><li>三清山</li>
+                        #FRONT_EDIT_BUTTON($!indexChannel.getmSearchPeriphery(), $isEdit)
+    					<h2>
+							$!frontViewMap.get($!indexChannel.getmSearchPeriphery()).config.moduleName
+						</h2>
+						#if($!frontViewMap.get($!indexChannel.getmSearchPeriphery()).frontViews)
+        					#foreach($fv in $!frontViewMap.get($!indexChannel.getmSearchPeriphery()).frontViews)
+                                <li><a href="$!fv.link">$!fv.title</a></li>
+        					#end
+						#end
                     </ul>
                     <ul>
-                        <h2>价位</h2><li>800元以上</li><li>500-799元</li><li>  300-499元</li><li>100-299元</li>
+                        #FRONT_EDIT_BUTTON($!indexChannel.getmSearchPrice(), $isEdit)
+    					<h2>
+							$!frontViewMap.get($!indexChannel.getmSearchPrice()).config.moduleName
+						</h2>
+						#if($!frontViewMap.get($!indexChannel.getmSearchPrice()).frontViews)
+        					#foreach($fv in $!frontViewMap.get($!indexChannel.getmSearchPrice()).frontViews)
+                                <li><a href="$!fv.link">$!fv.title</a></li>
+        					#end
+						#end
                     </ul>
               </div>
             </div>
             <div class="Login">
-            	<div class="Login_o"><img src="http://ht.dujiaok.com/saas/trek/images/index/index_05.png" width="229" height="40" /></div>
-                <div class="Login_t"><img src="http://ht.dujiaok.com/saas/trek/images/index/index_16.png" width="230" height="230" /></div>
-                <div class="Login_tr"><img src="http://ht.dujiaok.com/saas/trek/images/index/index_22.png" width="230" height="160" /></div>
+            	<div class="Login_o"><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_05.png" width="229" height="40" /></div>
+                <div class="Login_t"><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_16.png" width="230" height="230" /></div>
+				#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsA5(), $isEdit)
+				#if($!frontViewMap.get($!indexChannel.getmImageAdsA5()).frontViews)
+					#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsA5()).frontViews)
+						<div class="Login_tr"><img src="$!fv.photoURL" width="230" height="160" /></div>
+					#end
+				#end
             </div>
         </div>
-        <div class="IBanner clearFix"><img src="http://ht.dujiaok.com/saas/trek/images/index/index_30.png" width="950" height="100" /></div>
+        
+		#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsB(), $isEdit)
+		#if($!frontViewMap.get($!indexChannel.getmImageAdsB()).frontViews)
+			#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsB()).frontViews)
+				<div class="IBanner clearFix">
+					<img src="$!fv.photoURL" width="950" height="100" />
+				</div>
+			#end
+		#end
         <div class="ISecond clearFix">
-        	<div class="ISecondnav clearFix"><span>千岛湖 连云港 普陀山 天目湖 黄山 嵊泗 象山 庐山 乌镇  <a href="#">更多</a></span></div>
+        	<div class="ISecondnav clearFix">
+				<span>
+					#FRONT_EDIT_BUTTON($!indexChannel.getmPeripheryAttractionsRecommend(), $isEdit)
+					#if($!frontViewMap.get($!indexChannel.getmPeripheryAttractionsRecommend()).frontViews)
+            			#foreach($fv in $!frontViewMap.get($!indexChannel.getmPeripheryAttractionsRecommend()).frontViews)
+            				$!fv.title &nbsp;
+            			#end
+            		#end
+				</span>
+			</div>
             <div class="ISecondcontent clearFix">
-            	<div class="selfPeriphery"><img src="http://ht.dujiaok.com/saas/trek/images/index/index_28.png" width="222" height="262" /></div>
+            	<div class="selfPeriphery"><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_28.png" width="222" height="262" /></div>
                 <div class="selfInformation">
                 	<ul>
                     	<li class="selfshowbg"><a href="#"><span><em>双溪皮筏漂流1日游</em>  坐牛车、打水仗,全程无</span></a><span class="selfprice"><i>￥583</i><b>起</b></span></li>
@@ -107,34 +165,34 @@
                         <li>游南通狼山风景区</li>
                     </ul>
                     <div>
-                    	<p><img src="http://ht.dujiaok.com/saas/trek/images/index/index_58-21.png" width="228" height="98" /></p>
-                        <p><img src="http://ht.dujiaok.com/saas/trek/images/index/index_58.png" width="228" height="100" /></p>
+                    	<p><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_58-21.png" width="228" height="98" /></p>
+                        <p><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_58.png" width="228" height="100" /></p>
                     </div>
                 </div>
             </div>
             <div class="selfadd">
             	<ul>
-                	<li><img src="http://ht.dujiaok.com/saas/trek/images/index/index_62.png" width="142" height="142" /></li>
+                	<li><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_62.png" width="142" height="142" /></li>
                     <li><span><em>￥159.00</em>   <i>￥159.00</i></span><span>畅游何园、住四星扬州人家</span></li>
                 </ul>
             	<ul>
-                	<li><img src="http://ht.dujiaok.com/saas/trek/images/index/index_64.png" width="142" height="142" /></li>
+                	<li><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_64.png" width="142" height="142" /></li>
                     <li><span><em>￥159.00</em>   <i>￥159.00</i></span><span>畅游何园、住四星扬州人家</span></li>
                 </ul>
             	<ul>
-                	<li><img src="http://ht.dujiaok.com/saas/trek/images/index/index_65.png" width="142" height="142" /></li>
+                	<li><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_65.png" width="142" height="142" /></li>
                     <li><span><em>￥159.00</em>   <i>￥159.00</i></span><span>畅游何园、住四星扬州人家</span></li>
                 </ul>
             	<ul>
-                	<li><img src="http://ht.dujiaok.com/saas/trek/images/index/index_66-29.png" width="142" height="142" /></li>
+                	<li><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_66-29.png" width="142" height="142" /></li>
                     <li><span><em>￥159.00</em>   <i>￥159.00</i></span><span>畅游何园、住四星扬州人家</span></li>
                 </ul>
             	<ul>
-                	<li><img src="http://ht.dujiaok.com/saas/trek/images/index/index_66.png" width="142" height="142" /></li>
+                	<li><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_66.png" width="142" height="142" /></li>
                     <li><span><em>￥159.00</em>   <i>￥159.00</i></span><span>畅游何园、住四星扬州人家</span></li>
                 </ul>
             	<ul style=" margin:0;">
-                	<li><img src="http://ht.dujiaok.com/saas/trek/images/index/index_67.png" width="142" height="142" /></li>
+                	<li><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_67.png" width="142" height="142" /></li>
                     <li><span><em>￥159.00</em>   <i>￥159.00</i></span><span>畅游何园、住四星扬州人家</span></li>
                 </ul>
             </div>
@@ -142,7 +200,7 @@
         <div class="ISecond clearFix">
         	<div class="ISecondnav ISecondnav2 clearFix"><span>三亚 丽江 厦门 北京 青岛 大连 张家界 西安 五台山  <a href="#">更多</a></span></div>
             <div class="ISecondcontent clearFix">
-            	<div class="selfPeriphery"><img src="http://ht.dujiaok.com/saas/trek/images/index/index_28.png" width="222" height="262" /></div>
+            	<div class="selfPeriphery"><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_28.png" width="222" height="262" /></div>
                 <div class="selfInformation">
                 	<ul class="selfInformation2">
                     	<li class="selfshowbg"><a href="#"><span><em>双溪皮筏漂流1日游</em>  坐牛车、打水仗,全程无</span></a><span class="selfprice"><i>￥583</i><b>起</b></span></li>
@@ -162,34 +220,34 @@
                         <li>游南通狼山风景区</li>
                     </ul>
                     <div>
-                    	<p><img src="http://ht.dujiaok.com/saas/trek/images/index/index_58-21.png" width="228" height="98" /></p>
-                        <p><img src="http://ht.dujiaok.com/saas/trek/images/index/index_58.png" width="228" height="100" /></p>
+                    	<p><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_58-21.png" width="228" height="98" /></p>
+                        <p><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_58.png" width="228" height="100" /></p>
                     </div>
                 </div>
             </div>
             <div class="selfadd">
             	<ul>
-                	<li><img src="http://ht.dujiaok.com/saas/trek/images/index/index_62.png" width="142" height="142" /></li>
+                	<li><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_62.png" width="142" height="142" /></li>
                     <li><span><em>￥159.00</em>   <i>￥159.00</i></span><span>畅游何园、住四星扬州人家</span></li>
                 </ul>
             	<ul>
-                	<li><img src="http://ht.dujiaok.com/saas/trek/images/index/index_64.png" width="142" height="142" /></li>
+                	<li><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_64.png" width="142" height="142" /></li>
                     <li><span><em>￥159.00</em>   <i>￥159.00</i></span><span>畅游何园、住四星扬州人家</span></li>
                 </ul>
             	<ul>
-                	<li><img src="http://ht.dujiaok.com/saas/trek/images/index/index_65.png" width="142" height="142" /></li>
+                	<li><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_65.png" width="142" height="142" /></li>
                     <li><span><em>￥159.00</em>   <i>￥159.00</i></span><span>畅游何园、住四星扬州人家</span></li>
                 </ul>
             	<ul>
-                	<li><img src="http://ht.dujiaok.com/saas/trek/images/index/index_66-29.png" width="142" height="142" /></li>
+                	<li><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_66-29.png" width="142" height="142" /></li>
                     <li><span><em>￥159.00</em>   <i>￥159.00</i></span><span>畅游何园、住四星扬州人家</span></li>
                 </ul>
             	<ul>
-                	<li><img src="http://ht.dujiaok.com/saas/trek/images/index/index_66.png" width="142" height="142" /></li>
+                	<li><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_66.png" width="142" height="142" /></li>
                     <li><span><em>￥159.00</em>   <i>￥159.00</i></span><span>畅游何园、住四星扬州人家</span></li>
                 </ul>
             	<ul style=" margin:0;">
-                	<li><img src="http://ht.dujiaok.com/saas/trek/images/index/index_67.png" width="142" height="142" /></li>
+                	<li><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_67.png" width="142" height="142" /></li>
                     <li><span><em>￥159.00</em>   <i>￥159.00</i></span><span>畅游何园、住四星扬州人家</span></li>
                 </ul>
             </div>
@@ -199,7 +257,7 @@
             	<div class="IthirdDynamic">
                 	<h2>度假OK动态</h2>
                     <ul class="IthirdDynamictop clearFix">
-                    	<li><img src="http://ht.dujiaok.com/saas/trek/images/index/index_66-29.png" width="142" height="91" /></li>
+                    	<li><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_66-29.png" width="142" height="91" /></li>
                         <li><p>度假OK创始人的文艺品牌电商新势力访谈：度假OK创始人文艺品牌...</p><p><a href="#">阅读更多</a></p></li>
                     </ul>
                     <ul class="IthirdDynamicbottom clearFix">
@@ -216,21 +274,21 @@
                 	<h2>驴友热议</h2>
                     <div class="IthirdHotcontent">
                     	<ul class="IthirdHotlist clearFix">
-                        	<li><img src="http://ht.dujiaok.com/saas/trek/images/index/index_69-30.png" width="45" height="45" /></li>
+                        	<li><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_69-30.png" width="45" height="45" /></li>
                             <li>
                                 <h3>[杭州]<span> 双溪竹海漂流景区 </span></h3>
                                 <p>十一游玩有些凉了，水好景色好，景区服务也好。景区用不了半天就可游览完，所以没有用餐和住宿。总体来说是个避暑的好地方！</p>
                             </li>
                          </ul>
                     	<ul class="IthirdHotlist clearFix">
-                        	<li><img src="http://ht.dujiaok.com/saas/trek/images/index/index_73.png" width="45" height="45" /></li>
+                        	<li><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_73.png" width="45" height="45" /></li>
                             <li>
                                 <h3>[杭州]<span> 双溪竹海漂流景区 </span></h3>
                                 <p>十一游玩有些凉了，水好景色好，景区服务也好。景区用不了半天就可游览完，所以没有用餐和住宿。总体来说是个避暑的好地方！</p>
                             </li>
                          </ul>
                     	<ul class="IthirdHotlist clearFix">
-                        	<li><img src="http://ht.dujiaok.com/saas/trek/images/index/index_75.png" width="45" height="45" /></li>
+                        	<li><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_75.png" width="45" height="45" /></li>
                             <li>
                                 <h3>[杭州]<span> 双溪竹海漂流景区 </span></h3>
                                 <p>十一游玩有些凉了，水好景色好，景区服务也好。景区用不了半天就可游览完，所以没有用餐和住宿。总体来说是个避暑的好地方！</p>

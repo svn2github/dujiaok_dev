@@ -1,19 +1,16 @@
 package com.ssnn.dujiaok.web.action.home;
 
-import java.util.List;
 import java.util.Map;
-
 import com.ssnn.dujiaok.biz.BO.FrontViewBO;
 import com.ssnn.dujiaok.constant.FrontConfigConstants;
-import com.ssnn.dujiaok.constant.IndexChannelConstants;
-import com.ssnn.dujiaok.model.FrontViewDO;
+import com.ssnn.dujiaok.model.VO.FrontViewVO;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 public class IndexAction extends BasicAction {
 
 	private FrontViewBO frontViewBO;
-	private Map<String, List<FrontViewDO>> frontViewMap;
-
+	private Map<String, FrontViewVO> frontViewMap;
+	
 	@Override
 	public String execute() throws Exception {
 		frontViewMap = frontViewBO
@@ -21,12 +18,8 @@ public class IndexAction extends BasicAction {
 		return SUCCESS;
 	}
 
-	public Map<String, List<FrontViewDO>> getFrontViewMap() {
+	public Map<String, FrontViewVO> getFrontViewMap() {
 		return frontViewMap;
-	}
-
-	public void setFrontViewMap(Map<String, List<FrontViewDO>> frontViewMap) {
-		this.frontViewMap = frontViewMap;
 	}
 
 	public void setFrontViewBO(FrontViewBO frontViewBO) {

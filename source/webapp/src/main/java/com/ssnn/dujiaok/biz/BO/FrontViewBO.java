@@ -8,6 +8,7 @@ import com.ssnn.dujiaok.biz.service.FrontConfigService;
 import com.ssnn.dujiaok.biz.service.FrontViewService;
 import com.ssnn.dujiaok.model.FrontConfigDO;
 import com.ssnn.dujiaok.model.FrontViewDO;
+import com.ssnn.dujiaok.model.VO.FrontViewVO;
 
 /**
  * 类DefaultFrontViewManageService.java的实现描述：模块管理service
@@ -19,14 +20,14 @@ public class FrontViewBO {
 	private FrontViewService frontViewService;
 	private FrontConfigService frontConfigService;
 
-	public Map<String, List<FrontViewDO>> getFrontViewsMap(String channelKey) {
+	public Map<String, FrontViewVO> getFrontViewsMap(String channelKey) {
 		List<FrontConfigDO> configs = (List<FrontConfigDO>) frontConfigService
 				.getFrontConfigs(channelKey);
 		if (configs == null) {
 			return null;
 		}
 
-		Map<String, List<FrontViewDO>> resultMap = new HashMap<String, List<FrontViewDO>>();
+		Map<String, FrontViewVO> resultMap = new HashMap<String, FrontViewVO>();
 		String moduleKey;
 		// 获取所有的moduleKey
 		for (FrontConfigDO frontConfigDO : configs) {
@@ -35,7 +36,10 @@ public class FrontViewBO {
 				List<FrontViewDO> frontViews = (List<FrontViewDO>) frontViewService
 						.getFrontViewDOs(moduleKey, frontConfigDO
 								.getDispalyNum());
-				resultMap.put(moduleKey, frontViews);
+				FrontViewVO viewVO=new FrontViewVO();
+				viewVO.setConfig(frontConfigDO);
+				viewVO.setFrontViews(frontViews);
+				resultMap.put(moduleKey, viewVO);
 			}
 		}
 		return resultMap;
