@@ -6,7 +6,7 @@
 -->
 <config description="自动配置">
 	<group name="common config">
-		<property name="doucome.output" description="应用程序的输出目录"  defaultValue="/home/admin/output"/>
+		<property name="doucome.output" description="应用程序的输出目录"  defaultValue="/home/${corner_unix_user}/output"/>
 		<property name="doucome.production" description="生产模式"  defaultValue="false">
 			<validator name="choice" choice="true,false"/>
 		</property>

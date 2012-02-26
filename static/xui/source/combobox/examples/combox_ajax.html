@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>combox Demo</title>
+<link rel="stylesheet" type="text/css" href="../../public/style/default/css/public.css" />
+
+<script type="text/javascript" src="../../core/xui-core.js"></script>
+<link rel="stylesheet" type="text/css" href="../../external/ext-2.2/resources/css/ext-all.css" />
+<script type="text/javascript" src="../../external/ext-2.2/adapter/ext/ext-base.js"></script>
+<script type="text/javascript" src="../../external/ext-2.2/ext-all-debug.js"></script>
+<script src="../../external/ext-2.2/source/locale/ext-lang-zh_CN.js" type="text/javascript"></script>  
+<script type="text/javascript" src="../xui-combobox.js"></script>
+<script type="text/javascript" src="../../util/xui-json-util.js"></script>
+
+</head>
+
+<body>
+
+<input type="text" id="c1" name="c1" />
+<script>
+
+//从后台读取数据combox
+var schema =  ['sex', 'birthday','abc'];
+alert(xui.util.JsonUtil.encode(schema))
+//label小时schema中哪个字段是显示的，value为哪个字段是传的值，transform表示是不是渲染模式
+var c1   = new xui.widgets.ComboBox('c1',{width:600,'label':'sex','value':'birthday','transform':false,'editable':true},schema);
+//传获取数据地址，数据格式和grid的一样
+c1.init('data.jsp');
+
+function c(){
+	alert(c1.getValue());
+}
+//挂选中时候的函数，回调函数的参数如下
+//( Ext.form.ComboBox combo, Ext.data.Record record, Number index ) 
+//c1.on('select',test);
+function test(combo,record,index){
+	alert(record.get('age'))
+	alert(record.get('birthday'))
+}
+//c1.on('beforeselect',function(){alert('beforeselect ')});
+
+</script>
+
+<input name="" type="button" value="获取选中的值"  onclick="c1.combox.select(2);"/>
+</body>
+</html>

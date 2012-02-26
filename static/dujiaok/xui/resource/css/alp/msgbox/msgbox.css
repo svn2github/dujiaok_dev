@@ -1,0 +1,21 @@
+.xui-msgbox{ width:360px; overflow:hidden; border:3px solid #14a9d6; background:#f5fcfe url(../../../images/saas/msgbox/bg.png) repeat-x;}
+.xui-msgbox-in{overflow:hidden; padding:30px 10px 20px 10px; font-size:13px; text-align:center}
+.xui-msgbox-submit{
+	border-top:1px solid #d5e9ef;
+	-moz-border-top-colors:#d5e9ef #fff;
+	padding-top:10px;
+	margin-top:20px;
+	font-size:12px;
+}
+.xui-msgbox-btn {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	border:1px solid #14a9d6;
+	color:#fff;
+	font-weight:bold;
+	padding:5px 10px;
+	margin-right:10px;
+	cursor:pointer;
+	background:#14a9d6;
+}

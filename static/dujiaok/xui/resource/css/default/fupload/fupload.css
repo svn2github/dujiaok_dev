@@ -1,0 +1,94 @@
+.xui-fupload-progress{
+	width:200px;
+	overflow:hidden;
+	padding:4px;
+	margin:2px;
+	float:left;
+}
+.xui-fupload-progressError{
+	border:1px solid #CEE2F2;
+}
+.xui-fupload-btn{
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	border:0 ;
+	cursor:pointer;
+	width:14px;
+	height:16px;
+	margin-left:5px;
+	margin-top:3px;
+	background: url(../../../images/default/fupload/cancelbutton.gif) no-repeat;
+
+}
+.xui-fupload-progressDetail{
+	width:200px;
+}
+
+.xui-fupload-file{
+	display:block;
+	width:16px;
+	height:16px;
+	background: url(../../../images/default/fupload/fupload.gif)  no-repeat;
+	float:left;
+	margin:0 5px 0 0;
+}
+.xui-fupload-file-xlsS{
+	background-position:-32px 0px;
+}
+.xui-fupload-file-txtS{
+	background-position:-32px -32px;
+}
+.xui-fupload-file-gifS{
+	background-position:-32px -64px;
+}
+.xui-fupload-file-jpgS{
+	background-position:-32px -64px;
+}
+.xui-fupload-file-pngS{
+	background-position:-32px -64px;
+}
+.xui-fupload-file-bmpS{
+	background-position:-32px -64px;
+}
+.xui-fupload-file-pptS{
+	background-position:-32px -96px;
+}
+.xui-fupload-file-pdfS{
+	background-position:-32px -131px;
+}
+.xui-fupload-file-zipS{
+	background-position:-32px -165px;
+}
+.xui-fupload-file-docS{
+	background-position:-32px -193px;
+}
+.xui-fupload-file-emlS{
+	background-position:-32px -224px;
+}
+.xui-fupload-file-defaultIconS{
+	background-position:-32px -257px;
+}
+.xui-fupload-progressFileName{
+	width:80px;
+	float:left;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+	overflow:hidden;
+	font-size:13px;
+}
+.xui-fupload-progressSize{
+	float:left;
+}
+.xui-fupload-progressBarInProgress{
+	background-color:#6787E3;
+	margin-top:3px;
+	font-size:1px;
+	height:3px;
+	clear:both;
+}
+.xui-fupload-progressErrorMessage{
+	font-size:12px;
+	color:#F00;
+}

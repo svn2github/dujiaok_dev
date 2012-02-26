@@ -1,0 +1,92 @@
+/*-------------------------------------@global--------------------------------------*/
+html, body, ul, ol, li, dl, dt, dd, p, h1, h2, h3, h4, h5, h6, a,img, th,td,form, fieldset, iframe, object, pre, code, legend, blockquote,table{margin:0; padding:0; border:0; outline:0}
+ol, ul{list-style:none}
+:focus{outline:0}
+strong{font-weight:bold}
+address, caption, cite, code, dfn, em, th, var {font-style:normal;font-weight:normal;}
+h1, h2, h3, h4, h5, h6{font-weight:normal; font-size:100%}
+/*form*/
+form label{cursor:pointer}
+input, button, textarea, select {
+	font-family:inherit;
+	font-size:inherit;
+	font-weight:inherit;
+}
+input, button, textarea, select {
+	-x-system-font:none;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:100%;
+	font-size-adjust:none;
+	font-stretch:normal;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:normal;
+}
+
+
+/*table*/
+table{border-collapse:separate;}
+caption, th, td{/*text-align:left; */font-weight:normal}
+
+/*---------------------------------------@layout-------------------------------------*/
+.header:after,.header_1:after,.footer:after,.section:after,.nav:after,.main:after,.box:after
+{content:"\0020"; display:block; height:0; clear:both}
+.header,.header_1,.footer,.section,.nav,.main,.box
+{zoom:1}
+.section,.main,.header,.header_1
+{margin:0 auto; width:950px;}
+.clear{ clear:both;}
+.content, .aside,.col
+{display:inline; overflow:hidden}
+.aside{ width:230px; float:left;}
+.content{ width: 710px;float:left;}
+
+.clearFix{zoom:1}
+.clearFix:after{content:"\0020"; display:block; height:0; clear:both}
+
+/*---------------------------------------@font -------------------------------------*/
+a{ color:#0066cc; text-decoration:none;} /*blue*/ 
+a:hover{ color:#ff6600; text-decoration:underline;}
+/* font-weight */
+.B{ font-weight:bold;}
+.N{font-weight:normal;}
+
+/* font-size */
+.FS11{font-size:11px;}
+.FS12{font-size:12px;}
+.FS13{font-size:13px;}
+.FS14{font-size:14px;}
+.FS16{font-size:16px;}
+.FS18{font-size:18px;}
+.FS20{font-size:18px;}
+.FS24{font-size:24px;}
+/* color */
+.F1{color:#fff;} /*white*/
+.F2{color:#666;} /*black*/
+.F3{color:#999;} /*gray*/
+.F4{color:#ff6600;} /*orange*/
+.F5{color:#0066cc;} /*blue*/ 
+.F7{color:#42b10e;} /*green*/ 
+.F8{color:#c27608;} /*brown*/ 
+.F9{color:#e8004c;} /*red*/ 
+.F10{ color:#333;}
+
+.off{visibility:hidden;}
+.hid{ display:none;}
+
+
+.rim{ border:1px solid #dcdcdc;}
+#wrap{ width:950px; margin:0 auto; font-family:Arial, Helvetica, sans-serif;}
+#header{ width:100%; height:84px; margin-top:0; padding:18px 0 18px 0;}
+#header .header_1{ float:left;}
+#header .header_1 .logo{ float:left; width:151px; height:75px;}
+#header .header_1 .logo a{ display:block; width:151px; height:75px;}
+#header .header_1 .addConcern{ float:right; height:36px; width:175px; padding-top:22px;}
+#header .header_1 .addConcern .p1{ float:left; padding-top:7px; padding-right:8px;}
+#header .header_1 .addConcern .b1{ float:right;}
+/*step*/
+.step-box{ margin-top:10px; padding:25px 92px; width:764px; border:1px #cfe882 solid; background:#fdfefb;}
+.step-box .step-1,.step-box .step-2,.step-box .step-3{ background:url(../images/step.png) no-repeat; width:764px; height:30px;}
+.step-box .step-2{ background-position:left -30px;}
+.step-box .step-3{ background-position:left -60px;}

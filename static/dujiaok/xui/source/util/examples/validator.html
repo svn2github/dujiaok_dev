@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>无标题文档</title>
+<link href="../../../resource/css/common/reset.css" rel="stylesheet" type="text/css" />
+<link href="../../../resource/css/default/tip/tip.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="../../core/xui-core-min.js"></script>
+<script type="text/javascript" src="../../tip/xui-tip-min.js"></script>
+<script type="text/javascript" src="../util.js"></script>
+
+<script>
+var oo = 100000000.5
+//alert(xui.util.NumberUtil.formatMoney(oo,'"#,###.##',true));
+function log(s,is){
+	$('ttt').value += (s+'='+is)+'\n';
+}
+
+function check(name,str,p){	
+    var s = 'xui.util.Validator.'+name+'(\''+str+'\','+p+')';
+	log(s, eval(s));
+}
+
+function checkByHandy(){
+	check('isEnglish','dwere\"');
+	check('isNumOrEng','dwere1210');
+	check('isIP','255.255.255.255');
+	check('isIP','0.0.0.0');
+	check('isIP','+0.255.255.255');	
+	check('isIP','',true);	
+}
+
+function checkByConfig(){
+	//动态配置校验规则：先检查是否为空，再检查是否制定格式的数字
+	xui.util.Validator.setExpress('text1','[{check:"isFormatNumber",format:"5.3"}]');
+	var is = xui.util.Validator.checkInput('text1',function(id,rule,value){
+		if(rule.check=='isFormatNumber') xui.widgets.Tip.show(id,'请输入数字，格式：5.3');
+	})
+	log($('text1').getAttribute('validate'), is);
+	
+	//静态配置规则,在HTML的结点上有自定义的属性
+	var is = xui.util.Validator.checkInput('text2',function(id,rule,value){
+		xui.widgets.Tip.show(id,'请输入正确的IP');
+	})
+	log($('text2').getAttribute('validate'), is);	
+}
+
+function checkForm(){
+	xui.util.Validator.checkForm('form1',function(id,rule,value){
+		var text;
+		switch(rule.check){
+			case 'isNotEmpty': text='请输入内容';break;
+			case 'isFormatNumber': text='请输入数字:格式为<'+rule.format+'>';break;
+			case 'isIP': text='请输入IP';break;
+		}
+		xui.widgets.Tip.show(id,text);
+	});
+}
+xui.util.Vobot.onError = xui.widgets.Tip.show;
+
+xui.util.Vobot.addTemplate('isIP','?的IP地址错误，请重新输入！');
+xui.util.Vobot.addTemplate('isNotEmpty','?的内容为空，请重新输入！');
+xui.util.Vobot.addTemplate('isFormatNumber','?的整数位不能超过?位，小数位不能超过?位，请重新输入！');
+xui.util.Vobot.addTemplate('isFullChinese','?的内容不是中文，请重新输入！');
+xui.util.Vobot.addTemplate('isTextByteLength','?允许输入不超过?个字，请重新输入。');
+
+function checkByVobot(){
+	xui.util.Vobot.setExpress('text1',"[{check:'isFullChinese'},{check:'isTextByteLength',format:4}]",'姓名');
+	
+	alert(xui.util.Vobot.checkInput('text1',true));
+	//xui.util.Vobot.checkForm('form1');
+}
+
+/**
+ * 自定义校验
+ */
+function checkByVobotWithCustom(){
+	/**
+	 * 扩展Validator校验函数：检查后四位是否是数字
+	 * @param {String} s
+	 */
+	xui.util.Validator.isMyCheck=function(s){
+		if(!s || s.length<4) return false;
+		
+		var n = s.slice(s.length-4);
+		return xui.util.Validator.isFullNumber(n);
+	}
+	/** 定义文案模板 */
+	xui.util.Vobot.addTemplate('isMyCheck','输入的最后四位不是数字，请重新输入。');
+
+	/** 开始使用自定义校验函数 */
+	xui.util.Vobot.setExpress('text1',"[{check:'isMyCheck'}]");
+	xui.util.Vobot.checkInput('text1');	
+}
+</script>
+</head>
+<body>
+<br /><br /><br /><br />
+<form id="form1">
+text1:<input type="text" id='text1' value=""/><br><br>
+text2:<input type="text" id='text2' value="" label="" validate="[{check:'isIP'}]"/><br><br>
+text3:<input type="text" id='text3' value="" label="销售额" validate="[{check:'isNotEmpty'},{check:'isFormatNumber',format:'.2'}]"/>
+<br><br>
+<input type="button" onclick='checkByConfig()' value="checkByConfig"/>
+<input type="button" onclick='checkByHandy()' value="checkByHandy"/>
+<input type="button" onclick='checkForm()' value="checkForm"/>
+<input type="button" onclick='checkByVobot()' value="checkByVobot"/>
+<input type="button" onclick='checkByVobotWithCustom()' value="checkByVobotWithCustom"/>
+</form>
+<textarea id=ttt cols="100" style="height:300px">
+</textarea>
+
+<input type="text" id='text4' onblur="xui.util.Vobot.checkInput(this)" value="" label="姓名" validate="[{check:'isFullChinese'}]"/>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>xui-JsonUtil</title>
+		<link rel="stylesheet" type="text/css" href="../../external/yui-2.6/logger/assets/skins/sam/logger.css" />
+        <link rel="stylesheet" type="text/css" href="../../external/yui-2.6/fonts/fonts-min.css" />
+        <link rel="stylesheet" type="text/css" href="../../external/yui-2.6/yuitest/assets/skins/sam/yuitest.css" />
+        <script type="text/javascript" src="../../external/yui-2.6/yahoo-dom-event/yahoo-dom-event.js"></script>
+        <script type="text/javascript" src="../../external/yui-2.6/logger/logger-min.js"></script>
+        <script type="text/javascript" src="../../external/yui-2.6/yuitest/yuitest-min.js"></script>
+		
+		<script type="text/javascript" src="../../core/xui-core.js"></script>
+		<script type="text/javascript" src="../xui-json-util.js"></script>
+    </head>
+    <body class="yui-skin-sam">
+    <script type="text/javascript">            
+            xuitest = {};
+			xuitest.util = {};
+			var XJ  = xui.util.JsonUtil ;
+            xuitest.util.JsonUtilTest = new YAHOO.tool.TestCase({
+                //---------------------------------------------------------------------
+                // setUp and tearDown methods - optional
+                //---------------------------------------------------------------------
+                
+                /*
+                 * Sets up data that is needed by each test.
+                 */
+                setUp: function(){
+                    this.Assert = YAHOO.util.Assert;
+                },
+                
+                /*
+                 * Cleans up everything that was created by setUp().
+                 */
+                tearDown: function(){
+					  delete this.Assert;
+                },
+                
+                //---------------------------------------------------------------------
+                // Test methods - names must begin with "test"
+                //---------------------------------------------------------------------               
+                test1: function(){		
+           			this.Assert.areEqual(1,XJ.decode("{a:1,b:2}").a);
+					this.Assert.areEqual(2,XJ.decode("{a:1,b:2}").b);
+                },
+                test2: function(){		
+           			this.Assert.areEqual('{"a":1,"b":2}',XJ.encode({a:1,b:2}));
+           			this.Assert.areEqual('["a","b"]',XJ.encode(["a","b"]));
+           			this.Assert.areEqual('true',XJ.encode(true));
+           			this.Assert.areEqual('123',XJ.encode(123));
+           			this.Assert.areEqual('"2006-01-12T22:19:35"',XJ.encode(new Date("January 12,2006 22:19:35")));
+                }            
+			});            
+            
+            xuitest.util.JsonUtilSuite = new YAHOO.tool.TestSuite("JsonUtil  Suite");
+            xuitest.util.JsonUtilSuite.add(xuitest.util.JsonUtilTest);
+            
+            YAHOO.util.Event.onDOMReady(function(){
+                //create the logger
+                var logger = new YAHOO.tool.TestLogger("testLogger");
+                YAHOO.tool.TestRunner.add(xuitest.util.JsonUtilTest);
+                
+                //run the tests
+                YAHOO.tool.TestRunner.run();
+            });
+            
+        </script>
+    </body>
+</html>

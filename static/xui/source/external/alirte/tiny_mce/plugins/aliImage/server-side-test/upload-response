@@ -1,0 +1,11 @@
+<script>
+var data = {"errorCode":"","filePath":"2009/09/21/3539786bb28e43d1859fc60aba719fb1","markedFilePath":"2009/09/21/e4d9f251d4b845bba4e5bb134c550ff6","message":"Upload File Successfully.","success":true} ;
+var url = "";
+for(var each in data){
+	url += each+"="+escape(data[each]);
+}
+url = "URL-FROM-POST?"+url;
+alert(url);
+</script>
+
+b.html?success=true

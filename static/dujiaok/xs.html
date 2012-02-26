@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="GB2312B" xml:lang="GB2312">
+<head>
+	<TITLE>泥泥的彩虹计划</TITLE>
+	<link href="http://img.t.sinajs.cn/t4/style/css/module/base/frame.css?version=1329148768" type="text/css" rel="stylesheet" charset="utf-8" />
+	<link 	href="http://img.t.sinajs.cn/t4/style/css/patch/narrow/index.css?version=1329148768"  type="text/css" rel="stylesheet" charset="utf-8" />
+	<link 	href="http://img.t.sinajs.cn/t4/style/css/module/combination/A_index.css?version=1329148768" includes="style/css/module/combination/A_feed_function.css?version=1329148768|style/css/module/combination/A_layer_send_weibo.css?version=1329148768|style/css/module/layer/layer_verifycode.css?version=1329148768|style/css/module/global/person_info.css?version=1329148768|style/css/module/global/person_count.css?version=1329148768|style/css/module/combination/A_mood.css?version=1329148768|style/css/module/layer/layer_honour.css?version=1329148768|style/css/module/nav/left_nav.css?version=1329148768|style/css/module/global/right_module.css?version=1329148768|style/css/module/list/topic_list.css?version=1329148768|style/css/module/list/person_connect.css?version=1329148768|style/css/module/global/loading_line.css?version=1329148768|style/css/module/list/topic_block.css?version=1329148768|style/css/module/layer/layer_add_tags.css?version=1329148768|style/css/module/layer/layer_tips_version.css?version=1329148768|style/css/module/layer/layer_hot.css?version=1329148768|style/css/module/layer/layer_send_img.css?version=1329148768|style/css/module/layer/layer_load_face.css?version=1329148768|style/css/module/layer/layer_attention_choose.css?version=1329148768|style/css/module/layer/layer_intrs_maybe.css?version=1329148768|style/css/module/global/tips_player.css?version=1329148768|style/css/module/list/activities_list.css?version=1329148768|style/css/module/layer/layer_version_upgrade.css?version=1329148768|style/css/module/layer/layer_comments_list.css?version=1329148768" btype="text/css" rel="stylesheet" charset="utf-8" />
+
+
+
+	<style>
+				
+				
+				
+												
+						a.pd_next_photo,
+						a.pd_loading{
+							z-index:999999;
+							cursor:pointer;
+							border:1px solid #aaa;
+							width:50px;
+							height:50px;
+							position:absolute;
+							top:50%;
+							left:50%;
+							opacity:0.8;
+							margin:-25px 0px 0px -25px;
+							-moz-border-radius:8px;
+							-webkit-border-radius:8px;
+							border-radius:8px;
+						}
+						a.pd_loading{
+							display:none;
+							background:#B8B8B8 url(http://tympanus.net/Development/images/loading.gif) no-repeat 50% 50%;
+						}
+						a.pd_next_photo{
+							background:#B8B8B8 url(http://tympanus.net/images/next.png) no-repeat 50% 50%;
+						}
+						a.pd_next_photo:hover,
+						a.pd_loading:hover{
+							opacity:1.0;
+						}
+						.pd_options_bar a.viewall,
+						.pd_options_bar a.shuffle,
+						.pd_options_bar a.backdesk
+						{
+							outline:none;
+							padding:0px 15px 0px 50px;
+							line-height:47px;
+							text-decoration:none;
+							font-size:24px;
+							color:#333;
+							text-shadow:1px 1px 1px #f0f0f0;
+							height:50px;
+							float:right;
+							margin:5px 10px 0px 0px;
+							-moz-box-shadow:1px 1px 2px #666;
+							-webkit-box-shadow:1px 1px 2px #666;
+							box-shadow:1px 1px 2px #666;
+							opacity:0.8;
+							-moz-border-radius:8px;
+							-webkit-border-radius:8px;
+							border-radius:8px;
+						}
+						.pd_options_bar a.viewall{
+							background:#B8B8B8 url(../images/viewall.png) no-repeat 10px 50%;
+						}
+						.pd_options_bar a.shuffle{
+							background:#B8B8B8 url(../images/shuffle.png) no-repeat 10px 50%;
+						}
+						.pd_options_bar a.backdesk{
+							background:#B8B8B8 url(../images/backdesk.png) no-repeat 10px 50%;
+						}
+						.pd_options_bar a.viewall:hover,
+						.pd_options_bar a.shuffle:hover,
+						.pd_options_bar a.backdesk:hover
+						{
+							opacity:1.0;
+							text-shadow:1px 1px 1px #fff;
+							-moz-box-shadow:1px 1px 2px #fff;
+							-webkit-box-shadow:1px 1px 2px #fff;
+							box-shadow:1px 1px 2px #fff;
+						}
+						.pd_container{
+							position:absolute;
+							top:50px;
+							bottom:50px;
+							right:50px;
+							left:50px;
+						}
+						.pd_photo{
+							position:absolute;
+							z-index:10;
+							border:7px solid #f9f9f9;
+							border-bottom:28px solid #f9f9f9;
+							width:170px;
+							height:170px;
+							top:0px;
+							left:0px;
+							display:none;
+							-moz-box-shadow:1px 1px 5px #555;
+							-webkit-box-shadow:1px 1px 5px #555;
+							box-shadow:1px 1px 5px #555;
+							-moz-border-radius:4px;
+							-webkit-border-radius:4px;
+							border-radius:4px;
+						}
+						.pd_photo img{
+							width:170px;
+							height:170px;
+						}
+						.pd_photo span.delete{
+							position:absolute;
+							width:16px;
+							height:16px;
+							right:-16px;
+							top:2px;
+							cursor:pointer;
+							background:#fff url(http://tympanus.net/Development/PhotoDesk/images/close.png) no-repeat center center;
+							-moz-border-radius:0px 8px 8px 0px;
+							-webkit-border-top-right-radius:8px;
+							-webkit-border-bottom-right-radius:8px;
+							border-top-right-radius:8px;
+							border-bottom-right-radius:8px;
+							-moz-box-shadow:1px 1px 5px #555;
+							-webkit-box-shadow:1px 1px 5px #555;
+							box-shadow:1px 1px 5px #555;
+						}
+						.pd_paperball{
+							background:transparent url(../images/paperball.png) no-repeat center center;
+							position:absolute;
+						}
+				
+		</style>
+		
+		
+</head>
+<body style="width: 100%;background-image: url('http://www.dujiaok.com:801/dujiaok/tmp/xsback.jpg');">
+
+	<div id="lbk" style="z-index:100;width:100%;height:2048px;float:left;background-image:url('http://www.dujiaok.com:801/dujiaok/tmp/NNBK.JPG');"></div>
+	
+	
+	<div class="global_header">
+ <div class="header clearfix">
+ <div class="logo"><a href="/"></a></div>
+
+ <ul class="list">
+ <li><a node-type="home" class="link" bpfilter="main" href="/caoshenjia" tabindex="4">首页</a></li>
+ <li node-type="plaza"><a class="link" href="http://plaza.weibo.com?topnav=1&amp;wvr=3.6" tabindex="4">广场<span class="W_arr_d"><em class="b1"></em><em class="b2"></em><em class="b3"></em></span> </a>
+ <div node-type="layerPlaza" style="width: 135px; display: none;" class="layer_topmenu_list layer_topmenu_list_yy">
+ <div class="func">
+ <span><a href="/jx/pic.php?topnav=1&amp;wvr=3.6">微博精选</a></span>广场
+ </div>
+
+ <div node-type="plazaContent"></div>
+ <div class="func func_up">
+ <span><a class="more" href="http://plaza.weibo.com?topnav=1&amp;wvr=3.6">查看更多有趣内容</a></span>
+ </div>
+ </div>
+ </li>
+ 
+ <li node-type="group"><a class="link" href="http://q.weibo.com?topnav=1&amp;wvr=3.6" tabindex="4">微群<span class="W_arr_d"><em class="b1"></em><em class="b2"></em><em class="b3"></em></span></a>
+  <div class="layer_topmenu_list layer_topmenu_list_yy" style="width: 270px; display: none;" node-type="layerGroup">
+
+  <div class="func"><span><a href="http://q.weibo.com?topnav=1" class="more">发现微群</a></span>我的微群</div>
+  <div node-type="groupContent"></div>
+  <div class="func func_up"><span><a href="http://q.weibo.com/profile?topnav=1" class="more">管理/查看更多微群</a></span></div>
+  </div>
+ </li>
+ <li node-type="app"><a class="link W_no_outline" href="/app?topnav=1&amp;wvr=3.6" tabindex="4">应用<span class="W_arr_d"><em class="b1"></em><em class="b2"></em><em class="b3"></em></span></a>
+  <div style="position:absolute; top:33px; left:-329px;display:none;" node-type="layerApp" class="layer_topmenu_list layer_topmenu_list_app">
+
+  <div class="border clearfix" node-type="appContent">
+  </div>
+  </div>
+ </li>
+ <li node-type="game"><a class="link W_no_outline" href="http://game.weibo.com?origin=2303&amp;topnav=1&amp;wvr=3.6" tabindex="4">游戏<span class="W_arr_d"><em class="b1"></em><em class="b2"></em><em class="b3"></em></span></a>
+  <div node-type="layerGame" class="layer_topmenu_list layer_topmenu_list_yy" style="display: none;">
+  <div class="func"><span><a href="http://game.weibo.com/home/recommend/game?origin=2304" class="more">浏览热门游戏</a></span>常用游戏</div>
+
+  <div node-type="gameContent"></div>
+  <div class="func func_up"><span><a href="http://game.weibo.com/home/game/my?origin=2002 " class="more">查看我的游戏</a></span></div>
+  </div>
+ </li>
+ </ul>
+ <div class="search">
+  <input type="text" maxlength="40" value="" class="input W_no_outline" node-type="searchInput" title="搜索文本框" tabindex="4" name="132915128371822"><a node-type="searchSubmit" class="btn" onclick="return false" href="javascript:void(0)" title="搜索按钮" tabindex="4"></a>
+  <div node-type="searchSuggest" style="top: 27px; left: 0px; display: none; " class="W_layer_suggest">
+
+  <div node-type="basic"></div>
+  <div node-type="plus"></div>
+  </div>
+ </div>
+ <div class="right">
+ <ul class="person">
+	<li node-type="account">
+  <a class="link W_no_outline" href="javascript:void(0)" tabindex="4">帐号<span class="W_arr_d"><em class="b1"></em><em class="b2"></em><em class="b3"></em></span></a>
+
+  <div style="display:none" node-type="layerAccount" class="layer_topmenu_list">
+  <dl class="person_infos">
+ <dt><img height="30" width="30" src="http://tp3.sinaimg.cn/1916253274/50/5617370580/1" alt="浪奔浪楼"></dt>
+ <dd><a href="/caoshenjia/profile?topnav=1&amp;wvr=3.6">浪奔浪楼</a></dd>
+  </dl>
+  <ul>
+ <li class="line"></li>
+ <li><a href="http://account.weibo.com/settings/index?topnav"><img height="16" width="16" class="ico_account" alt="帐号设置" src="http://img.t.sinajs.cn/t4//style/images/common/transparent.gif">帐号设置</a></li>
+
+ <li><a href="/home?skinId=setskin&amp;topnav=1&amp;wvr=3.6"><img height="16" width="16" class="ico_template" alt="模板设置" src="http://img.t.sinajs.cn/t4//style/images/common/transparent.gif">模板设置</a></li>
+	<li><a href="http://account.weibo.com/settings/version?topnav"><img height="16" width="16" class="ico_versionchoice" alt="版本选择" src="http://img.t.sinajs.cn/t4//style/images/common/transparent.gif">版本选择</a></li>
+	<li class="line"></li>
+ <li><a href="http://credits.weibo.com?topnav=1&amp;wvr=3.6"><img height="16" width="16" class="ico_credits" alt="我的微币" src="http://img.t.sinajs.cn/t4//style/images/common/transparent.gif">我的微币</a></li>
+	<li><a href="http://hao.weibo.com/show?entry=account&amp;wvr=3.6"><img height="16" width="16" class="ico_hao" alt="我的微号" src="http://img.t.sinajs.cn/t4//style/images/common/transparent.gif">我的微号</a></li>
+ <li><a href="/tool?topnav=1&amp;wvr=3.6"><img height="16" width="16" class="ico_toolset" alt="我的工具" src="http://img.t.sinajs.cn/t4//style/images/common/transparent.gif">我的工具</a></li>
+
+ <li class="line"></li>
+ <li><a href="http://weibo.com/logout.php?backurl=/" node-type="exit">退出</a></li>
+  </ul>
+  </div>
+  </li>
+  
+  <li node-type="notice">
+  <a class="link W_no_outline" href="javascript:void(0)" tabindex="4">消息<span class="W_arr_d"><em class="b1"></em><em class="b2"></em><em class="b3"></em></span></a>
+  <div style="width:190px;display:none;" node-type="layerNotice" class="layer_topmenu_list">
+
+  <div node-type="noticeContent"><ul><!--tip start--><li><a href="http://weibo.com/comment/inbox?f=1&amp;topnav=1&amp;wvr=3.6" bpfilter="main" action-data="hide=true" action-type="bp-link" target="_top">查看评论</a></li><li><a href="http://weibo.com/1916253274/fans?topnav=1&amp;wvr=3.6" target="_top">查看粉丝</a></li><li><a href="http://weibo.com/messages?topnav=1&amp;wvr=3.6" bpfilter="main" action-data="hide=true" action-type="bp-link" target="_top">查看私信</a></li><li><a href="http://weibo.com/at/weibo?topnav=1&amp;wvr=3.6" bpfilter="main" action-data="hide=true" action-type="bp-link" target="_top">查看@我</a></li><li><a href="http://q.weibo.com/message/proxJump.php?topnav=1&amp;wvr=3.6" target="_top">查看群内消息</a></li><li><a href="http://photo.weibo.com/messages/index?topnav=1&amp;wvr=3.6" target="_top">查看相册消息</a></li><li><a href="http://weibo.com/systemnotice?topnav=1&amp;wvr=3.6" target="_top">查看通知</a></li><li><a href="http://weibo.com/invite/recv.php?topnav=1&amp;wvr=3.6" target="_top">查看邀请</a></li><!--tip end--></ul></div>
+  </div>
+  </li>
+	<li node-type="find"><a class="link" href="/f/find?topnav=1&amp;wvr=3.6" tabindex="4">找人</a></li>
+
+  <li node-type="phone"><a class="link" href="http://m.weibo.com/web/cellphone.php?topnav=1&amp;wvr=3.6" tabindex="4">手机</a></li>
+  <li><a class="link" href="/caoshenjia/profile?topnav=1&amp;wvr=3.6" tabindex="4">我愿意</a></li>
+ </ul>
+ </div>
+ <div style="display:none;" class="layer_message_box"><ul></ul><a action-type="closeTip" href="javascript:void(0);" class="W_close_color"></a></div></div>
+</div>
+	
+	<div style="height:10px;"></div>
+	
+	<div id="pd_container" class="pd_container">
+			<div class="pd_photo">
+				<div class="pd_hold">
+					<img src="http://www.dujiaok.com:801/dujiaok/tmp/NN1.JPG" alt="" />
+				</div>
+
+				<span class="delete"></span>
+			</div>
+			<div class="pd_photo">
+				<div class="pd_hold">
+					<img src="http://www.dujiaok.com:801/dujiaok/tmp/NN2.jpg" alt=""/>
+				</div>
+				<span class="delete"></span>
+			</div>
+			<div class="pd_photo">
+
+				<div class="pd_hold">
+					<img src="http://www.dujiaok.com:801/dujiaok/tmp/NN3.jpg" alt=""/>
+				</div>
+				<span class="delete"></span>
+			</div>
+			<div class="pd_photo">
+				<div class="pd_hold">
+					<img src="http://www.dujiaok.com:801/dujiaok/tmp/NN4.jpg" alt=""/>
+				</div>
+
+				<span class="delete"></span>
+			</div>
+			<div class="pd_photo">
+				<div class="pd_hold">
+					<img src="http://www.dujiaok.com:801/dujiaok/tmp/NN5.JPG" alt=""/>
+				</div>
+
+				<span class="delete"></span>
+			</div>
+			
+			<div class="pd_photo">
+				<div class="pd_hold">
+					<img src="http://www.dujiaok.com:801/dujiaok/tmp/NINI6.JPG" alt=""/>
+				</div>
+
+				<span class="delete"></span>
+			</div>
+			
+		</div>
+
+	<!--  -->
+
+	<div style="width:1280px ;margin:0 auto; text-align:center;height:100%;;">
+		<div style="height:20px;">&nbsp;</div>
+		
+			<table>
+				<tr>
+					<td width="740" valign="top">
+							<div style="height:10px;">&nbsp;</div>
+							<!--
+							<img src="http://wbdr.sinaapp.com/img/aa2.jpg"></img>
+									-->	
+					</td>
+					<td width="390" valign="top">
+						<div style="margin:10px 0 ;"></div>
+														
+							<iframe width="100%" height="500"  frameborder="0" scrolling="no" src="http://widget.weibo.com/livestream/listlive.php?language=zh_cn&width=0&height=500&uid=1916253274&skin=1&refer=1&pic=1&titlebar=1&border=1&publish=1&atalk=1&recomm=0&at=0&atopic=%E5%BD%A9%E8%99%B9%E8%AE%A1%E5%88%92&ptopic=%E5%BD%A9%E8%99%B9%E8%AE%A1%E5%88%92&dpc=1"></iframe>
+							
+					</td>
+				</tr>
+
+			</table>
+		
+		
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+			<!-- The JavaScript -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
+		<script src="http://tympanus.net/Development/PhotoDesk/jquery.transform-0.6.2.min.js"></script>
+		<script src="http://tympanus.net/Development/PhotoDesk/jquery.animate-shadow-min.js"></script>
+		<script type="text/javascript">
+					$(function(){var idx,idxLarge=-1;var mouseup=false;var photoW=184;var photoH=205;var $container=$('#pd_container');var $options=$('#pd_options_bar');var photosSize=$container.find('.pd_photo').length;var navPage=0;var ie=false;if($.browser.msie){ie=true}start();function start(){$('#pd_loading').show();var tableW=$container.width();var tableH=$container.height();var horizontalMax=tableW-photoW;var verticalMax=tableH-photoH;$('<img />').attr('src','images/paperball.png');var cntPhotos=0;$container.find('.pd_photo').each(function(i){var $photo=$(this);$('<img />').load(function(){++cntPhotos;var $image=$(this);var r=Math.floor(Math.random()*201)-100;var maxzidx=parseInt(findHighestZIndex())+1;var param={'top':Math.floor(Math.random()*verticalMax)+'px','left':Math.floor(Math.random()*horizontalMax)+'px','z-index':maxzidx};$photo.css(param);if(!ie)$photo.transform({'rotate':r+'deg'});$photo.show();if(cntPhotos==photosSize){bindEvents();$('#pd_loading').hide()}}).attr('src',$photo.find('img').attr('src'))})}function mouseDown($photo){mouseup=true;idx=$photo.index()+1;var maxzidx=parseInt(findHighestZIndex())+1;$photo.css('z-index',maxzidx);if(ie)var param={'width':'+=40px','height':'+=40px'};else var param={'width':'+=40px','height':'+=40px','rotate':'0deg','shadow':'5px 5px 15px #222'};$photo.stop(true,true).animate(param,100).find('img').stop(true,true).animate({'width':'+=40px','height':'+=40px'},100)}$(document).bind('mouseup',function(e){if(mouseup){mouseup=false;var $photo=$container.find('.pd_photo:nth-child('+idx+')');var r=Math.floor(Math.random()*101)-50;var $photoT=parseFloat($photo.css('top'),10);var $photoL=parseFloat($photo.css('left'),10);var newTop=$photoT+r;var newLeft=$photoL+r;if(ie)var param={'width':'-=40px','height':'-=40px','top':newTop+'px','left':newLeft+'px'};else var param={'width':'-=40px','height':'-=40px','top':newTop+'px','left':newLeft+'px','rotate':r+'deg','shadow':'0 0 5px #000'};$photo.stop(true,true).animate(param,200).find('img').stop(true,true).animate({'width':'-=40px','height':'-=40px'},200)}e.preventDefault()});$container.find('.delete').bind('click',function(){var $photo=$(this).parent();var $photoT=parseFloat($photo.css('top'),10);var $photoL=parseFloat($photo.css('left'),10);var $photoZIndex=$photo.css('z-index');var $trash=$('<div />',{'className':'pd_paperball','style':'top:'+parseInt($photoT+photoH/2)+'px;left:'+parseInt($photoL+photoW/2)+'px;width:0px;height:0px;z-index:'+$photoZIndex}).appendTo($container);$trash.animate({'width':photoW+'px','height':photoH+'px','top':$photoT+'px','left':$photoL+'px'},100,function(){var $this=$(this);setTimeout(function(){$this.remove()},800)});$photo.animate({'width':'0px','height':'0px','top':$photoT+photoH/2+'px','left':$photoL+photoW/2+'px'},200,function(){--photosSize;$(this).remove()})});function stack(){navPage=0;var cnt_photos=0;var windowsW=$(window).width();var windowsH=$(window).height();$container.find('.pd_photo').each(function(i){var $photo=$(this);$photo.css('z-index',parseInt(findHighestZIndex())+1000+i).stop(true).animate({'top':parseInt((windowsH-100)/2-photoH/2)+'px','left':parseInt((windowsW-100)/2-photoW/2)+'px'},800,function(){$options.find('.backdesk').show();var $photo=$(this);$photo.unbind('mousemove');++cnt_photos;var $nav=$('<a class="pd_next_photo" style="display:none;"></a>');$nav.bind('click',function(){$(this).remove();navigate()});$photo.prepend($nav);$photo.draggable('destroy').find('.delete').hide().andSelf().find('.pd_hold').unbind('mousedown').bind('mousedown',function(){return false});$options.find('.shuffle,.viewall').unbind('click');if(cnt_photos==photosSize)enlarge(findElementHighestZIndex())})})}function enlarge($photo){var windowsW=$(window).width();var windowsH=$(window).height();if(ie)var param={'width':'+=200px','height':'+=200px','top':parseInt((windowsH-100)/2-(photoH+200)/2)+'px','left':parseInt((windowsW-100)/2-(photoW+200)/2)+'px'};else var param={'width':'+=200px','height':'+=200px','top':parseInt((windowsH-100)/2-(photoH+200)/2)+'px','left':parseInt((windowsW-100)/2-(photoW+200)/2)+'px','rotate':'0deg','shadow':'5px 5px 15px #222'};$photo.animate(param,500,function(){idxLarge=$(this).index();var $photo=$(this);$photo.unbind('mousemove').bind('mousemove',function(){$(this).find('.pd_next_photo').show()}).unbind('mouseleave').bind('mouseleave',function(){$(this).find('.pd_next_photo').hide()})}).find('img').animate({'width':'+=200px','height':'+=200px'},500)}function disperse(){var windowsW=$(window).width();var windowsH=$(window).height();$container.find('.pd_photo').each(function(i){var $photo=$(this);if($photo.index()==idxLarge){if(ie)var param={'top':parseInt((windowsH-100)/2-photoH/2)+'px','left':parseInt((windowsW-100)/2-photoW/2)+'px','width':'170px','height':'170px'};else var param={'top':parseInt((windowsH-100)/2-photoH/2)+'px','left':parseInt((windowsW-100)/2-photoW/2)+'px','width':'170px','height':'170px','shadow':'1px 1px 5px #555'};$photo.stop(true).animate(param,500,function(){shuffle();$options.find('.viewall').show()}).find('img').animate({'width':'170px','height':'170px'},500)}});$container.find('.pd_next_photo').remove();bindEvents()}function bindEvents(){$options.find('.shuffle').unbind('click').bind('click',function(e){if(photosSize==0)return;shuffle();e.preventDefault()}).andSelf().find('.viewall').unbind('click').bind('click',function(e){var $this=$(this);if(photosSize==0)return;stack();$this.hide();e.preventDefault()}).andSelf().find('.backdesk').unbind('click').bind('click',function(e){var $this=$(this);if(photosSize==0)return;disperse();$this.hide();e.preventDefault()});$container.find('.pd_photo').each(function(i){var $photo=$(this);$photo.draggable({containment:'#pd_container'}).find('.delete').show()}).find('.pd_hold').unbind('mousedown').bind('mousedown',function(e){var $photo=$(this).parent();mouseDown($photo);e.preventDefault()})}function navigate(){if(photosSize==0)return;var tableW=$container.width();var tableH=$container.height();var horizontalMax=tableW-photoW;var verticalMax=tableH-photoH;var $photo=$container.find('.pd_photo:nth-child('+parseInt(idxLarge+1)+')');var r=Math.floor(Math.random()*201)-100;if(ie)var param={'top':Math.floor(Math.random()*verticalMax)+'px','left':Math.floor(Math.random()*horizontalMax)+'px','width':'170px','height':'170px'};else var param={'top':Math.floor(Math.random()*verticalMax)+'px','left':Math.floor(Math.random()*horizontalMax)+'px','width':'170px','height':'170px','rotate':r+'deg','shadow':'1px 1px 5px #555'};$photo.stop(true).animate(param,500,function(){++navPage;var $photo=$(this);$container.append($photo.css('z-index',1));if(navPage<photosSize)enlarge(findElementHighestZIndex());else{$options.find('.backdesk').hide();$options.find('.viewall').show();bindEvents()}}).find('img').animate({'width':'170px','height':'170px'},500)}function shuffle(){var tableW=$container.width();var tableH=$container.height();var horizontalMax=tableW-photoW;var verticalMax=tableH-photoH;$container.find('.pd_photo').each(function(i){var $photo=$(this);var r=Math.floor(Math.random()*301)-100;if(ie)var param={'top':Math.floor(Math.random()*verticalMax)+'px','left':Math.floor(Math.random()*horizontalMax)+'px'};else var param={'top':Math.floor(Math.random()*verticalMax)+'px','left':Math.floor(Math.random()*horizontalMax)+'px','rotate':r+'deg'};$photo.animate(param,800)})}function findHighestZIndex(){var photos=$container.find('.pd_photo');var highest=0;photos.each(function(){var $photo=$(this);var zindex=$photo.css('z-index');if(parseInt(zindex)>highest){highest=zindex}});return highest}function findElementHighestZIndex(){var photos=$container.find('.pd_photo');var highest=0;var $elem;photos.each(function(){var $photo=$(this);var zindex=$photo.css('z-index');if(parseInt(zindex)>highest){highest=zindex;$elem=$photo}});return $elem}Array.prototype.remove=function(from,to){var rest=this.slice((to||from)+1||this.length);this.length=from<0?this.length+from:from;return this.push.apply(this,rest)}});
+							var ADPACKSSTYLE = "lightVerticalBottom";
+		</script>
+		<script>
+		setTimeout(function(){
+			document.getElementById('lbk').style.display='none' ;
+		} , 1000) ;
+		
+		</script>
+</body>
+</html>

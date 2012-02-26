@@ -1,0 +1,56 @@
+/* CSS file for table dialog in the table plugin */
+
+.panel_wrapper div.current {
+	height: auto;
+}
+
+.advfield {
+	width: 200px;
+}
+
+#class {
+	width: 150px;
+}
+
+th {
+	background: #e0e0e0;
+}
+
+tr.no-bor td {
+	text-align: center;
+	border-right: none;
+	border-bottom: none;
+	border-left: none;
+}
+
+th.no-bor, td.no-bor {
+	text-align: center;
+	border-top: none;
+	border-right: none;
+	border-bottom: none;
+}
+
+table.no-bor td, table.no-bor .th{border: 1px dashed #BBBBBB}
+table.aliRTE-table-bor1{border-width:1px 1px 0 0;border-style:solid;border-color:#606060;}
+table.aliRTE-table-bor1 td, table.aliRTE-table-bor1 th{border-width:0 0 1px 1px;border-style:solid;border-color:#606060;}
+table.aliRTE-table-bor2{border:1px solid #606060;}
+table.aliRTE-table-bor2 td, table.aliRTE-table-bor2 th{border:1px solid #606060;}
+table.aliRTE-table-bor3{border-width:3px 3px 0 0;border-style:solid;border-color:#606060;}
+table.aliRTE-table-bor3 td, table.aliRTE-table-bor3 th{border-width:0 0 3px 3px;border-style:solid;border-color:#606060;}
+table.aliRTE-table-bor4{border:2px solid #606060;}
+table.aliRTE-table-bor4 td, table.aliRTE-table-bor4 th{border:2px solid #606060;}
+table.aliRTE-table-bor5{border-width:5px 5px 0 0;border-style:solid;border-color:#606060;}
+table.aliRTE-table-bor5 td, table.aliRTE-table-bor5 th{border-width:0 0 5px 5px;border-style:solid;border-color:#606060;}
+table.aliRTE-table-bor6{border:3px solid #606060;}
+table.aliRTE-table-bor6 td, table.aliRTE-table-bor6 th{border:3px solid #606060;}
+
+div.virtualInput{height:14px;width:40px;padding:1px;border:1px solid #a7a6aa;position:relative;overflow:hidden;_padding:0 1px 1px;}
+div.virtualInput input{border:0;margin:0;padding:1px 0;}
+div.virtualInput span{position:absolute;top:0px;right:0px;display:block;width:14px;height:8px;text-indent:-200px;overflow:hidden;cursor:pointer;background:url(../img/icon-add-sub.gif) no-repeat;}
+div.virtualInput span#btn_sub_col, div.virtualInput span#btn_sub_row, div.virtualInput span#btn_sub_bor{top:8px;background-position:0 -8px;}
+div.virtualInput span#btn_add_col.disabled{background-position:100% 0;}
+div.virtualInput span#btn_sub_col.disabled{background-position:100% -8px;}
+div.virtualInput span#btn_add_row.disabled{background-position:100% 0;}
+div.virtualInput span#btn_sub_row.disabled{background-position:100% -8px;}
+div.virtualInput span#btn_add_bor.disabled{background-position:100% 0;}
+div.virtualInput span#btn_sub_bor.disabled{background-position:100% -8px;}

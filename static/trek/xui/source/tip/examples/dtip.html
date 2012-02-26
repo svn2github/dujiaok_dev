@@ -1,0 +1,181 @@
+;<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>关键词参考</title>
+<link href="../../../resource/css/common/reset.css" rel="stylesheet" type="text/css" />
+<link href="../../../resource/css/default/tip/dtip.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../core/xui-core-min.js" ></script>
+<script type="text/javascript" src="../../util/util-min.js" ></script>
+<script type="text/javascript" src="../xui-dtip.js"></script>
+<style type="text/css">
+a{color:#1e93cc;}
+.light{padding-left:25px; background:url(images/iknow.png) 0 -16px no-repeat;}
+.Fad672c{color:#ad672c;}
+td{padding:10px;}
+.ulinfor{margin-top:180px; line-height:2; padding:0 20px;}
+.ulinfor li{list-style:inside decimal; margin-top:10px;}
+.ulinfor h1{font-weight:bold;}
+.ulinfor textarea{border:1px solid #c1c1c1; background:#fbf1f7; width:80%; color:#666; line-height:2;}
+</style>
+</head>
+<body>
+8中状态合体示意图：
+<div class="xui-dtip">
+	<div class="xui-dtip-con">
+	<div class="light">
+    	<h1 class="Fad672c font_b">网店版为您提供：</h1>
+        <div>一周热搜关键词和同类卖家的热卖宝贝，您可以参考优化宝贝名称</div>
+    </div>
+    <div class="textright"><a href="#" id="fuckme">我知道了</a></div>
+	</div>
+    <a href="#" class="xui-dtip-closebtn"></a>
+    <span class="xui-dtip-arr1"></span>
+	<span class="xui-dtip-arr2"></span>
+	<span class="xui-dtip-arr3"></span>
+	<span class="xui-dtip-arr4"></span>
+	<span class="xui-dtip-arr5"></span>
+	<span class="xui-dtip-arr6"></span>
+	<span class="xui-dtip-arr7"></span>
+	<span class="xui-dtip-arr8"></span>
+</div>
+
+<ul class="ulinfor">
+<li>
+	<h1 id="ex1">简单实例：</h1>
+	<textarea style="height:30px;">var fd = new  xui.widgets.Dtip('kao');</textarea>
+	<button onclick="exec1()">运行代码</button>
+</li>
+<li>
+	<h1 id="ex2">在某个节点处显示：</h1>
+	<textarea style="height:30px;">var fd = new  xui.widgets.Dtip('在某个节点处显示','ex1');</textarea>
+	<button onclick="exec2()">运行代码</button>
+</li>
+<li>
+	<h1>配置型实例:传入一个Object</h1>
+	<textarea style="height:30px;">var fd = new  xui.widgets.Dtip({msg:'配置型实例',id:'ex2'});</textarea>
+	<button onclick="exec3()">运行代码</button>
+</li>
+<li>
+	<h1>在某个地方显示：</h1>
+	<textarea style="height:30px;">var fd = new  xui.widgets.Dtip({msg:'在某个地方显示',top:'350',left:'150',retop:'350',releft:'150'});</textarea>
+	<button onclick="exec4()">运行代码</button>
+</li>
+<li>
+	<h1>配置属性说明：</h1>
+	1：msg:要显示的信息 可以是HTML<br/>
+	2：id:在某个节点处显示时节点的ID<br/>
+	3：width:Dtip的宽度<br/>
+	4：height:Dtip的高度<br/>
+	5：classname:Dtip的样式 共有8中状态:<br/>
+	classname:'topleft'或classname:1
+	<div class="xui-dtip" style="position:relative; top:0px; left:20px;">
+	<div class="xui-dtip-con">
+    <div class="textright"><a href="#" id="fuckme">我知道了</a></div>
+	classname:'topleft'或classname:1
+	</div>
+    <a href="#" class="xui-dtip-closebtn"></a>
+    <span class="xui-dtip-arr1"></span>
+	</div> 
+	classname:'topright'或classname:2
+	<div class="xui-dtip" style="position:relative; top:0px; left:20px;">
+	<div class="xui-dtip-con">
+    <div class="textright"><a href="#" id="fuckme">我知道了</a></div>
+	classname:'topright'或classname:2
+	</div>
+    <a href="#" class="xui-dtip-closebtn"></a>
+    <span class="xui-dtip-arr2"></span>
+	</div>
+	classname:'righttop'或classname:3
+	<div class="xui-dtip" style="position:relative; top:0px; left:20px;">
+	<div class="xui-dtip-con">
+    <div class="textright"><a href="#" id="fuckme">我知道了</a></div>
+	classname:'righttop'或classname:3
+	</div>
+    <a href="#" class="xui-dtip-closebtn"></a>
+    <span class="xui-dtip-arr3"></span>
+	</div>
+	classname:'rightbottom'或classname:4
+	<div class="xui-dtip" style="position:relative; top:0px; left:20px;">
+	<div class="xui-dtip-con">
+    <div class="textright"><a href="#" id="fuckme">我知道了</a></div>
+	classname:'rightbottom'或classname:4
+	</div>
+    <a href="#" class="xui-dtip-closebtn"></a>
+    <span class="xui-dtip-arr4"></span>
+	</div>
+	classname:'bottomright'或classname:5
+	<div class="xui-dtip" style="position:relative; top:0px; left:20px;">
+	<div class="xui-dtip-con">
+    <div class="textright"><a href="#" id="fuckme">我知道了</a></div>
+	classname:'bottomright'或classname:5
+	</div>
+    <a href="#" class="xui-dtip-closebtn"></a>
+    <span class="xui-dtip-arr5"></span>
+	</div>
+	classname:'bottomleft'或classname:6
+	<div class="xui-dtip" style="position:relative; top:0px; left:20px;">
+	<div class="xui-dtip-con">
+    <div class="textright"><a href="#" id="fuckme">我知道了</a></div>
+	classname:'bottomleft'或classname:6
+	</div>
+    <a href="#" class="xui-dtip-closebtn"></a>
+    <span class="xui-dtip-arr6"></span>
+	</div>
+	classname:'leftbottom'或classname:7
+	<div class="xui-dtip" style="position:relative; top:0px; left:20px;">
+	<div class="xui-dtip-con">
+    <div class="textright"><a href="#" id="fuckme">我知道了</a></div>
+	classname:'leftbottom'或classname:7
+	</div>
+    <a href="#" class="xui-dtip-closebtn"></a>
+    <span class="xui-dtip-arr7"></span>
+	</div>
+	classname:'lefttop'或classname:8
+	<div class="xui-dtip" style="position:relative; top:0px; left:20px;">
+	<div class="xui-dtip-con">
+    <div class="textright"><a href="#" id="fuckme">我知道了</a></div>
+	classname:'lefttop'或classname:8
+	</div>
+    <a href="#" class="xui-dtip-closebtn"></a>
+    <span class="xui-dtip-arr8"></span>
+	</div>
+	6：before:打开时回调的事件<br/>
+	7：close:关闭时回调的事件<br/>
+	8：timeout:自动关闭时间<br/>
+	9：closeBar:Dtip的关闭按钮是否显示 Boolean型参数值 默认为true（显示） 不显示为:false<br/>
+	<button onclick="exec5()" id="FK">before and close</button>
+</li>
+</ul>
+
+
+
+
+<script type="text/javascript">
+	function exec1(){
+		var fd = new  xui.widgets.Dtip('kao');
+	}
+	function exec2(){
+		var fd1 = new  xui.widgets.Dtip('在某个节点处显示','ex1');
+	}
+	function exec3(){
+		var fd2 = new  xui.widgets.Dtip({msg:'配置型实例',id:'ex2'});
+	}
+	function exec4(){
+		var fd3 = new  xui.widgets.Dtip({msg:'在某个地方显示',top:'350',left:'150',retop:'350',releft:'150',classname:'3'});
+		fd3.setArrt({retop:'-300'});
+		fd3.show();
+	}
+	function exec5(){
+		var fd4 = new  xui.widgets.Dtip({msg:'在某个地方显示sdsdsd',id:'FK',before:beforeFun,close:closeFun});
+	}
+	function beforeFun(){
+		alert('before');
+	}
+	function closeFun(){
+		alert('closeed');
+	}
+</script>
+
+</body>
+</html>

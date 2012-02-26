@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="../../resource/css/common/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../resource/css/eshop/simple-date/xui-simple-datepicker.css"/>
+<style type="text/css">
+body{ font-size:12px;}
+</style>
+<script type="text/javascript" src="../core/xui-core.js"></script>
+<script type="text/javascript"  src="../util/util-min.js"></script>
+<script type="text/javascript" src="xui-simple-datepicker.js"></script>
+</head>
+<body>
+
+<input type="text" value="" style="width:110px;" id="tim" />
+至
+<input type="text" value="" style="width:110px;" id="tims" />
+
+<form target="_blank" action="http://www.google.com" id="xxx"></form>
+</body>
+</html>
+<script type="text/javascript">
+var b = new Date();
+b.setDate(b.getDate()-1);
+var fs = new Date();
+fs.setDate(fs.getDate()-7);
+var fs1 = new Date();
+fs1.setDate(fs1.getDate()-7);
+var f = new xui.widgets.simpleDatePicker('tim','YYYY-MM-DD',b,{selectModel:'week'});
+
+var f2 = new xui.widgets.simpleDatePicker('tims','YYYY-MM-DD');
+//f.setModel({tms:'false',closeModel:'true',initvalue:'请选择'});
+f.setModel({closeModel:'true',tms:'false',distime:['1000-10-01','2009-11-16','2011-12-01','9999-12-28'],'selectBefore':function(dates){
+	$('xxx').submit();
+}});
+f2.setModel({distime:['1000-10-01',fs1,new Date(),'9999-12-28']});
+
+//f2.setModel({tms:'false',closeModel:'true',initvalue:'请选择2'});
+/*
+*var f = new xui.widgets.simpleDatePicker('tim');
+*var f = new xui.widgets.simpleDatePicker('tim','YYYY-MM-DD','2007-05-09 15:54');
+*var f = new xui.widgets.simpleDatePicker('tim');
+*/
+function resetdata(){
+	f2.reset('2010-08-08');
+}
+
+</script>
+<br/>
+<br/>
+<br/>
+<a href="#" onclick="resetdata()">reset</a>
+<br/>
+
+<div>asfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasf<a href="#" id="wwwww" style="width:100px;margin-left:200px; float:right">ssssss</a></div>
+
+
+<script type="text/javascript">
+var noinner = new xui.widgets.simpleDatePicker('wwwww');
+noinner.setModel({'inconver':'true','selectBefore':function(s){alert(s)}});
+//noinner.DATE;
+
+</script>

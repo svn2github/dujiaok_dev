@@ -1,0 +1,33 @@
+/* andrewfang for edittip*/
+.xui-msgbox{ 
+	width:360px;
+	background:url(../../../images/efax/msgbox/bg.png);
+	-moz-border-radius:3px;-webkit-border-radius:3px; border-radius:3px;
+	padding:11px;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../../../resource/images/efax/msgbox/bg.png');
+	_ background-image: none;
+}
+.xui-msgbox-in{
+	background:#fff;
+	text-align:center;
+	position:relative;
+	overflow:hidden;
+	display:inline;
+}
+.xui-msgbox-in .xui-msg{ font-size:14px; padding:30px 0 0; margin:0 auto; color:#000000; display:block; background:#fff; text-align:center; }
+.xui-msgbox-submit{padding:20px 0;font-size:12px; background:#fff; text-align:center;}
+
+.xui-msgbox-btn
+{ background:none;margin:5px 5px; border:0; padding:0; cursor:pointer;
+	*margin:5px -10px;}
+
+
+.xui-msgbox-icon-confirm,.xui-msgbox-icon-cancel
+{background:url(../../../images/efax/msgbox/btn.png); display:block; text-indent:-9999px;}
+.xui-msgbox-icon-confirm{width:82px;height:31px;background-position:0 0;}
+.xui-msgbox-icon-confirm:hover{background-position:-102px 0;}
+
+.xui-msgbox-icon-cancel{width:82px;height:31px;background-position:0 -40px;}
+.xui-msgbox-icon-cancel:hover{background-position:-100px -40px;}
+
+

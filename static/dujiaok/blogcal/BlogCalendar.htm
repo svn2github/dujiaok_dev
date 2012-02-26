@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>blog式日历控件</title>
+<script type="text/javascript" src="blogcalendar.js"></script>
+<link type="text/css" rel="stylesheet" href="blogcalendar.css" />
+</head>
+<body>
+<div class="Calendar">
+  <div id="idCalendarPre">上一月</div>
+  <div id="idCalendarNext">下一月</div>
+  <span id="idCalendarYear"></span>年 <span id="idCalendarMonth"></span>月
+  <table cellspacing="0">
+    <thead>
+      <tr>
+        <td>日</td>
+        <td>一</td>
+        <td>二</td>
+        <td>三</td>
+        <td>四</td>
+        <td>五</td>
+        <td>六</td>
+      </tr>
+    </thead>
+    <tbody id="idCalendar">
+    </tbody>
+  </table>
+</div>
+
+<input id="idCalendarPreYear" type="button" value="上一年" />
+<input id="idCalendarNow" type="button" value="当前月" />
+<input id="idCalendarNextYear" type="button" value="下一年" />
+
+<script language="JavaScript">
+
+var cale = new Calendar("idCalendar", {
+	SelectDay: new Date().setDate(10),
+	onSelectDay: function(o){ o.className = "onSelect"; },
+	onToday: function(o){ o.className = "onToday"; },
+	onFinish: function(){
+		var self = this;
+		$("idCalendarYear").innerHTML = this.Year; $("idCalendarMonth").innerHTML = this.Month;
+		var flag = [{severtime:"2012-01",data:[{id:10,name:"250元"},{id:15,name:"250"},{id:16,name:"250"}]},{severtime:"2012-02",data:[{id:12,name:"250元"},{id:14,name:"250"},{id:16,name:"250"}]}];
+		for(var i = 0, len = flag.length; i < len; i++){
+			var timer = flag[i].severtime.split("-");
+			var b = self.Year == timer[0] && self.Month == timer[1]?true:false;
+			if(b){
+				var pricredate = flag[i].data;
+				for(var i = 0; i<pricredate.length; i++){
+					self.Days[pricredate[i].id].innerHTML = "<a href='javascript:void(0);' onclick=\"alert('日期是:"+self.Year+"/"+self.Month+"/"+pricredate[i].id+"');return false;\">" + pricredate[i].id + "</a><br>"+pricredate[i].name+"";
+		}
+				}
+				
+			}
+			
+	}
+});
+
+$("idCalendarPre").onclick = function(){ cale.PreMonth(); }
+$("idCalendarNext").onclick = function(){ cale.NextMonth(); }
+$("idCalendarPreYear").onclick = function(){ cale.PreYear(); }
+$("idCalendarNextYear").onclick = function(){ cale.NextYear(); }
+
+$("idCalendarNow").onclick = function(){ cale.NowMonth(); }
+
+</script>
+</body>
+</html>

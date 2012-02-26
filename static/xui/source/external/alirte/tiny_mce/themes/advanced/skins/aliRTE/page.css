@@ -1,0 +1,14 @@
+table.aliRTE-table th{background: #e0e0e0;font-size: 13px;}
+table.no-bor td, table.no-bor .th{border: 1px dashed #BBBBBB}
+table.aliRTE-table-bor1{border-width:1px 1px 0 0;border-style:solid;border-color:#606060;}
+table.aliRTE-table-bor1 td, table.aliRTE-table-bor1 th{border-width:0 0 1px 1px;border-style:solid;border-color:#606060;}
+table.aliRTE-table-bor2{border:1px solid #606060;}
+table.aliRTE-table-bor2 td, table.aliRTE-table-bor2 th{border:1px solid #606060;}
+table.aliRTE-table-bor3{border-width:3px 3px 0 0;border-style:solid;border-color:#606060;}
+table.aliRTE-table-bor3 td, table.aliRTE-table-bor3 th{border-width:0 0 3px 3px;border-style:solid;border-color:#606060;}
+table.aliRTE-table-bor4{border:2px solid #606060;}
+table.aliRTE-table-bor4 td, table.aliRTE-table-bor4 th{border:2px solid #606060;}
+table.aliRTE-table-bor5{border-width:5px 5px 0 0;border-style:solid;border-color:#606060;}
+table.aliRTE-table-bor5 td, table.aliRTE-table-bor5 th{border-width:0 0 5px 5px;border-style:solid;border-color:#606060;}
+table.aliRTE-table-bor6{border:3px solid #606060;}
+table.aliRTE-table-bor6 td, table.aliRTE-table-bor6 th{border:3px solid #606060;}

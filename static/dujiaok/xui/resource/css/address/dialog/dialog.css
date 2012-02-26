@@ -1,0 +1,69 @@
+.xui-dialog-bg{
+	width:315px;
+	background: #cfdceb;
+	overflow:hidden;
+	background:url(../../../images/address/dialog/bg.png) repeat bottom; 
+	margin-top:70px;
+	-moz-border-radius:3px;-webkit-border-radius:3px; border-radius:3px;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../../../resource/images/address/dialog/bg.png');
+	_ background-image: none;
+	border:1px solid #c0c7cc;
+
+}
+
+.xui-dialog-border{
+	position:relative;
+	overflow:hidden;
+	float:left;
+	display:inline;
+	margin:0px 0px 18px;
+}
+.xui-dialog-content-border{
+	border:10px solid #fff;
+}
+.xui-dialog-bg .xui-dialog-titlebar{
+	overflow:hidden;
+	zoom:1;
+	background:#fff;
+	-moz-border-radius:3px 3px 0 0;-webkit-border-radius:3px 3px 0 0;border-radius:3px 3px 0 0;
+}
+
+.xui-dialog-titlebar label{
+	float:left;
+	font-size:14px;
+	line-height:30px;
+	font-weight:bold;
+	color:#333;
+	padding-left:10px;
+	text-indent:0.3em;
+}
+
+.xui-dialog-titlebar-button{
+	float:right;
+	overflow:hidden;
+	margin:5px 3px 0 0;
+}
+
+.xui-dialog-titlebar-minimize{
+	background: url(../../../images/default/dialog/dialog_button.png) no-repeat 0 0;
+}
+
+.xui-dialog-titlebar-close{
+	background: url(../../../images/address/dialog/close.png) no-repeat 0 0;
+	border:0px;
+	display:inline-block;
+	float:right;
+	width:18px;
+	height:18px;
+	margin-right:3px;
+	cursor:pointer;
+}
+
+.xui-dialog-content{
+	width:100%;
+	overflow:hidden;
+	-moz-border-radius:0 0 3px 3px;-webkit-border-radius:0 0 3px 3px;border-radius:0 0 3px 3px;
+	background:#fff;
+}
+
+

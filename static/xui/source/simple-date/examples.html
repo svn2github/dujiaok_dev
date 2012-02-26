@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="../../resource/css/default/simple-date/xui-simple-datepicker.css" />
+<script type="text/javascript" src="../core/xui-core.js"></script>
+<script type="text/javascript" src="xui-simple-datepicker.js"></script>
+</head>
+<body>
+
+<input type="text" value="2005-06-15 15:15:25" style="width:140px;" id="tim" />
+至
+<input type="text" value="2005-10-15 15:15:25" style="width:140px;" id="tims" />
+
+</body>
+</html>
+<script type="text/javascript">
+var f = new xui.widgets.simpleDatePicker('tim','YYYY-MM-DD');
+var f2 = new xui.widgets.simpleDatePicker('tims','YYYY-MM-DD');
+//f.setModel({tms:'false',closeModel:'true',initvalue:'请选择'});
+//f2.setModel({tms:'false',closeModel:'true',initvalue:'请选择2'});
+/*
+*var f = new xui.widgets.simpleDatePicker('tim');
+*var f = new xui.widgets.simpleDatePicker('tim','YYYY-MM-DD','2007-05-09 15:54');
+*var f = new xui.widgets.simpleDatePicker('tim');
+*/
+</script>

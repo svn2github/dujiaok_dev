@@ -1,0 +1,57 @@
+html, body, ul, ol, li, dl, dt, dd, p, h1, h2, h3, h4, h5, h6, a,img, th,td,form, fieldset, iframe, object, pre, code, legend, blockquote,table,button{margin:0; padding:0; border:0; outline:0}
+ol, ul{list-style:none}
+:focus{outline:0}
+strong{font-weight:bold}
+address, caption, cite, code, dfn, em, th, var {font-style:normal;font-weight:normal;}
+h1, h2, h3, h4, h5, h6{font-weight:normal; font-size:100%}
+.clearFix{zoom:1}
+.clearFix:after{content:"\0020"; display:block; height:0; clear:both}
+
+body{ margin:0; padding:0;}
+.errorMsg{color:#f60;padding:0 8px; font-size:12px ;}
+#wrap{ width:950px; margin:0 auto; padding:0; color:#666;}
+#wrap img{ margin:0; padding:0;}
+#content{background:url(../images/reg_06.png) repeat-x; width:100%; height:420px; }
+
+#content .reg_nav{ background:url(../images/reg_04.png) left no-repeat; height:32px; width:100%;}
+#content .reg_nav h2{ float:left; margin-left:18px; font-weight:bold; height:32px; line-height:32px; font-size:14px; color:#fff;}
+#content .reg_nav .reg_nav_right{ float:right; padding-right:16px; font-size:12px; color:#FFF; height:32px; line-height:32px;background:url(../images/reg_08/reg_06.png) right no-repeat;}
+#content .reg_nav .reg_nav_right a{ color:#FFF; text-decoration:none;}
+#content .reg_nav .reg_nav_right a:hover{ color:#FFF; text-decoration:underline;}
+#content .reg_content{border:2px #639b01 solid; border-top:none; height:400px;}
+#content .reg_content ul{width:380px; margin:0 auto; display:block;padding:15px 0; color:#666;}
+#content .reg_content ul li{ margin-top:20px;zoom:1}
+#content .reg_content ul li:after{content:"\0020"; display:block; height:0; clear:both}
+#content .reg_content ul li span{width:60px;}
+#content .reg_content ul li span,#content .reg_content ul li input{ float:left; font-size:14px; height:22px ; line-height:24px;}
+#content .reg_content ul li input{width:210px; border:2px #dcdcdc solid; margin-left:15px; }
+#content .reg_content ul li button{ padding:0 15px; height:40px; background:url(../images/reg_03.png) #ffa024 left repeat-x; color:#FFF; *margin:0; *padding:0;}
+#content .reg_content ul li button span{ float:none; font-size:14px; font-weight:bold;margin:0; padding:0; }
+#content .reg_content ul li button span.reg_agree{ font-size:12px; padding-right:10px;font-weight:normal;}
+#content .reg_content ul li.reg_xy{ margin:0; margin-top:5px;}
+.reg_xy a{ font-size:12px; text-decoration:none; color:#0066cc; font-weight:normal;}
+
+
+
+#content .login_nav{ background:url(../images/reg_04.png) left no-repeat; height:32px; width:100%;}
+#content .login_nav h2{ float:left; margin-left:18px; font-weight:bold; height:32px; line-height:32px; font-size:14px; color:#fff;}
+#content .login_nav .login_nav_right{ float:right; padding-right:16px; font-size:12px; color:#FFF; height:32px; line-height:32px;background:url(../images/reg_08.png) right no-repeat;}
+#content .login_content{border:2px #639b01 solid; border-top:none; padding:20px 0;}
+#content .login_content .login_content_left ,#content .login_content .login_content_right{ float:left; font-size:12px;}
+#content .login_content .login_content_left{ width:478px; height:90%; padding-left:60px; border-right:1px #dcdcdc solid;}
+#content .login_content .login_content_right{ width:380px; padding-top:40px}
+#content .login_content .login_content_right h2{ font-weight:bold; color:#666666;font-size:14px;line-height:30px;}
+#content .login_content .login_content_right h2,#content .login_content .login_content_right p{ padding-left:20px; line-height:24px;}
+#content .login_content .login_content_right{ color:#999;}
+#content .login_content ul{width:300px;padding:15px 0; color:#666;}
+#content .login_content ul li{ margin-top:35px;zoom:1}
+#content .login_content ul li:after{content:"\0020"; display:block; height:0; clear:both}
+#content .login_content ul li span,#content .login_content ul li input{ float:left; font-size:14px; height:22px ; line-height:24px;}
+#content .login_content ul li input{width:210px; border:2px #dcdcdc solid; margin-left:15px; }
+#content .login_content ul li input.login_cheak{ width:20px;}
+#content .login_content ul li span{ text-align:left;}
+#content .login_content ul li button{ float:left; padding:0 15px; height:40px; background:url(../images/reg_03.png) #ffa024 left repeat-x; color:#FFF; *margin:0; *padding:0; font-weight:bold;}
+#content .login_content .login_content_right a{background:url(../images/reglink.png) no-repeat; margin:40px auto; width:168px; height:46px; display:block;}
+
+		
+		
