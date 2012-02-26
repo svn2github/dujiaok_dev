@@ -40,7 +40,7 @@
 									类目：<input type="text" name="frontViews[$count].category" value="$!fv.category"/>
 								#end
 								#if($!frontconfig.isHasTitle())
-									标题：<input type="text" name="frontViews[$count].title" value="$!fv.title"　class="titleInput"/>
+									标题：<input type="text" name="frontViews[$count].title" value="$!fv.title" class="titleInput"/>
 								#end
 								#if($!frontconfig.isHasOriginalPrice())
 									原价：¥<input type="text" name="frontViews[$count].originalPrice" value="$!fv.originalPrice"/>
@@ -84,7 +84,7 @@
         									类目：<input type="text" name="frontViews[$index].category" value=""/>
         								#end
         								#if($!frontconfig.isHasTitle())
-        									标题：<input type="text" name="frontViews[$index].title" value="" class="titleInput"/>
+        									标题：<input type="text" name="frontViews[$count].title" value="" class="titleInput"/>
         								#end
         								#if($!frontconfig.isHasOriginalPrice())
         									原价：¥<input type="text" name="frontViews[$index].originalPrice" value=""/>
