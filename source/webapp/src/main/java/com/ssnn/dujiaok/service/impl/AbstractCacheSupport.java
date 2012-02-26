@@ -23,6 +23,10 @@ public abstract class AbstractCacheSupport implements InitializingBean {
 	 * Cache RegionName
 	 */
 	private String regionName;
+	   /**
+     * Cache Client
+     */
+    private CacheClient cacheClient;
 
 	public <T> boolean putValue(String key, T value) {
 		InternalStoreItem item = new InternalStoreItem();
@@ -41,11 +45,6 @@ public abstract class AbstractCacheSupport implements InitializingBean {
 	public boolean clearKey(String key) {
 		return cacheClient.delete(buildCacheKey(key));
 	}
-
-	/**
-	 * Cache Client
-	 */
-	private CacheClient cacheClient;
 
 	private String buildCacheKey(String key) {
 		return regionName + "_" + key;

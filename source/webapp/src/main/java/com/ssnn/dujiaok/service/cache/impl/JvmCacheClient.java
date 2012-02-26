@@ -2,6 +2,7 @@ package com.ssnn.dujiaok.service.cache.impl;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Future;
@@ -16,6 +17,13 @@ public class JvmCacheClient implements CacheClient {
 
     private static Map<String, Object> data = new ConcurrentHashMap<String, Object>();
 
+    public void clearCache(){
+        for (Iterator iterator = data.keySet().iterator(); iterator.hasNext();) {
+            String key = (String) iterator.next();
+            data.remove(key);
+        }
+    }
+    
     /*
      * (non-Javadoc)
      * @see com.ssnn.dujiaok.service.cache.CacheClient#put(java.lang.String, java.io.Serializable)

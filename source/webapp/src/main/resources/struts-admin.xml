@@ -4,6 +4,12 @@
 
 <struts>
 	<package name="admin" namespace="/admin" extends="default">
+		<action name="clearCache" class="com.ssnn.dujiaok.web.action.admin.front.CacheAction">
+			<interceptor-ref name="basicStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="velocity">/home/index.vm</result>
+		</action>
+	
 		<action name="editIndex" class="com.ssnn.dujiaok.web.action.admin.front.IndexAction">
 			<interceptor-ref name="basicStack" />
 			<interceptor-ref name="adminAuthInterceptor" />

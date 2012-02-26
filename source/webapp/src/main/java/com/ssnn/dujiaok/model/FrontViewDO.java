@@ -28,7 +28,7 @@ public class FrontViewDO implements Serializable {
     /**
      * 链接
      */
-    private String            link;
+    private String            link = "#";
     /**
      * 类目
      */
