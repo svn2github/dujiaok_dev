@@ -32,11 +32,11 @@ public class IndexChannelConstants {
     /**
      * A4搜索景点模块key
      */
-    public static final String M_SEARCH_ATTRACTIONS              = "index.search.attractions.module";
+    public static final String M_SEARCH_ATTRACTIONS              = "index.search.attract.module";
     /**
      * A4搜索周边模块key
      */
-    public static final String M_SEARCH_PERIPHERY                = "index.search.periphery.module";
+    public static final String M_SEARCH_PERIPHERY                = "index.search.peripry.module";
     /**
      * A4搜索价位模块key
      */
@@ -59,7 +59,7 @@ public class IndexChannelConstants {
     /**
      * C2周边自助文字推荐
      */
-    public static final String M_PERIPHERY_TEXT_RECOMMEND        = "index.periphery.text.recommend.module";
+    public static final String M_PERIPHERY_TEXT_RECOMMEND        = "index.peripry.text.recmd.module";
 
     /**
      * C3.1广告有模块key（周边自助右上角，游秦淮）
@@ -72,11 +72,11 @@ public class IndexChannelConstants {
     /**
      * C4周边自助图片推荐
      */
-    public static final String M_PERIPHERY_IMAGE_RECOMMEND       = "index.periphery.image.recommend.module";
+    public static final String M_PERIPHERY_IMAGE_RECOMMEND       = "index.peripry.image.recmd.module";
     /**
      * C5周边自助景点推荐
      */
-    public static final String M_PERIPHERY_ATTRACTIONS_RECOMMEND = "index.periphery.attractions.recommend.module";
+    public static final String M_PERIPHERY_ATTRACTIONS_RECOMMEND = "index.peripry.attract.recmd.module";
 
     /**
      * D1广告有模块key（周边自助左上角，千岛碧水）
@@ -86,7 +86,7 @@ public class IndexChannelConstants {
     /**
      * D2周边自助文字推荐
      */
-    public static final String M_LONG_TERM_TEXT_RECOMMEND        = "index.long-term.text.recommend.module";
+    public static final String M_LONG_TERM_TEXT_RECOMMEND        = "index.l-term.text.recmd.module";
 
     /**
      * D2.1广告有模块key（周边自助右上角，游秦淮）
@@ -99,11 +99,11 @@ public class IndexChannelConstants {
     /**
      * D4周边自助图片推荐
      */
-    public static final String M_LONG_TERM_IMAGE_RECOMMEND       = "index.long-term.image.recommend.module";
+    public static final String M_LONG_TERM_IMAGE_RECOMMEND       = "index.l-term.image.recmd.module";
     /**
      * D5周边自助景点推荐
      */
-    public static final String M_LONG_TERM_ATTRACTIONS_RECOMMEND = "index.long-term.attractions.recommend.module";
+    public static final String M_LONG_TERM_ATTRACTIONS_RECOMMEND = "index.l-term.attract.recmd.module";
 
     /**
      * E1.1度假ok动态top
