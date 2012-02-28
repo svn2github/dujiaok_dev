@@ -2,7 +2,6 @@
 <IfModule mod_proxy.c>
 	ProxyRequests Off
 	ProxyPreserveHost On	
-		
-	ProxyPassMatch ^(/|/(home|zhe|member|ajax)/(.*))$ http://localhost:${app_port} min=5 smax=16 max=64 ttl=600 timeout=30
+	ProxyPassMatch ^(/|/(home|zhe|member|ajax|admin|validator)/(.*))$ http://localhost:${app_port} min=5 smax=16 max=64 ttl=600 timeout=30
 	
 </IfModule>
