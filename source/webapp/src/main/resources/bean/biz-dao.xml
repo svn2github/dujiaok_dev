@@ -31,4 +31,7 @@
 	<bean id="tourDao" class="com.ssnn.dujiaok.biz.dal.tour.impl.TourDaoImpl"></bean>
 	
 	<bean id="orderDao" class="com.ssnn.dujiaok.biz.dal.order.impl.OrderDaoImpl"></bean>	
+	
+	
+	<bean id="searchDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisSearchDAO"></bean>
 </beans>

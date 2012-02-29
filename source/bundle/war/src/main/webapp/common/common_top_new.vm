@@ -1,0 +1,178 @@
+<div class="userBar">
+	<div class="w950">
+		<span>欢迎您：SUNPEA</span>　<a href="#" class="myOrder" id="myOrder">我的订单<div class="pop" id="orderPop"></div></a>　<a href="#" class="rank">12</a>　<a href="#">退出</a> | <a href="#">帮助</a>
+	</div>
+</div>
+<div class="w950 head">
+	<div class="top">
+		<h1><a href="#">度假OK</a></h1>
+		<div class="schForm">
+			
+			<input type="text" id="schIpt" placeholder="我想去的地方"   class="gray"/><a href="javascript:void(0);" onclick="return _search();">ok</a>
+		</div>
+		<div class="serviceTel">400 800 3456</div>
+	</div>
+	<div class="menu">
+		<!-- 热门目的地开始 -->
+		<div href="#" class="hotPurpose" id="hotPurpose">
+			<h2>热门目的地</h2>
+			<ul>
+				<li class="current first">
+					<h3><span>当季精选旅游地</span></h3>
+					<div class="outer">
+						<div class="L">
+							<dl><dt>上海1</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+						</div>
+						<div class="R">
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">非常旅行</a></dd></dl>
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">特价旅游团购</a></dd></dl>
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">旅游专题</a></dd></dl>
+						</div>
+						<a href="#" title="关闭" class="close"></a>
+					</div>
+				</li>
+				<li>
+					<h3><span>当季精选旅游地</span></h3>
+					<div class="outer">
+						<div class="L">
+							<dl><dt>上海2</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+						</div>
+						<div class="R">
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">非常旅行</a></dd></dl>
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">特价旅游团购</a></dd></dl>
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">旅游专题</a></dd></dl>
+						</div>
+						<a href="#" title="关闭" class="close"></a>
+					</div>
+				</li>
+				<li>
+					<h3><span>当季精选旅游地</span></h3>
+					<div class="outer">
+						<div class="L">
+							<dl><dt>上海3</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+						</div>
+						<div class="R">
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">非常旅行</a></dd></dl>
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">特价旅游团购</a></dd></dl>
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">旅游专题</a></dd></dl>
+						</div>
+						<a href="#" title="关闭" class="close"></a>
+					</div>
+				</li>
+				<li>
+					<h3><span>当季精选旅游地</span></h3>
+					<div class="outer">
+						<div class="L">
+							<dl><dt>上海4</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+						</div>
+						<div class="R">
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">非常旅行</a></dd></dl>
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">特价旅游团购</a></dd></dl>
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">旅游专题</a></dd></dl>
+						</div>
+						<a href="#" title="关闭" class="close"></a>
+					</div>
+				</li>
+				<li>
+					<h3><span>当季精选旅游地</span></h3>
+					<div class="outer">
+						<div class="L">
+							<dl><dt>上海5</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+						</div>
+						<div class="R">
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">非常旅行</a></dd></dl>
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">特价旅游团购</a></dd></dl>
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">旅游专题</a></dd></dl>
+						</div>
+						<a href="#" title="关闭" class="close"></a>
+					</div>
+				</li>
+				<li>
+					<h3><span>当季精选旅游地</span></h3>
+					<div class="outer">
+						<div class="L">
+							<dl><dt>上海6</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
+						</div>
+						<div class="R">
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">非常旅行</a></dd></dl>
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">特价旅游团购</a></dd></dl>
+							<dl><dt>独有品牌</dt><dd><a href="#">开心驴行</a></dd><dd><a href="#">童心同乐</a></dd><dd><a href="#">旅游专题</a></dd></dl>
+						</div>
+						<a href="#" title="关闭" class="close"></a>
+					</div>
+				</li>
+				<li class="last">
+					<h3><span>全国目的地</span></h3>
+				</li>
+			</ul>
+		</div>
+		<!-- 热门目的地结束 -->
+		<ul class="mainMenu">
+			<li><a href="#" class="current">首页</a></li>
+			<li><a href="#">周边自驾</a></li>
+			<li><a href="#">长线自助</a></li>
+			<li><a href="#">度假酒店</a></li>
+			<li><a href="#">打折门票</a></li>
+		</ul>
+		<p class="subMenu"><a href="#">旅游攻略</a>|<a href="#">景点大全</a>|<a href="#">订购指南</a></p>
+	</div>
+</div>
+	
+<script>
+	var _search = function(){
+		var t = document.getElementById('schIpt').value;
+		if(t == '' || typeof(t)=='undefined'){
+			alert('请输入搜索关键字');
+			return false ;
+		}
+		window.location.href='${env.root}/search/global.htm?keyword=' + encodeURI(t); 
+	}
+</script>

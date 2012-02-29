@@ -17,7 +17,9 @@ public class QueryResult<T> {
 		this.items = items;
 		this.pagination = pagination;
 	}
-
+	/**
+	 * 查询记录结果
+	 */
 	private List<T> items ;
 	
 	private Pagination pagination ;

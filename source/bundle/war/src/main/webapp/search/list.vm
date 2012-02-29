@@ -1,0 +1,122 @@
+#set($layout="/front/default_new.vm")
+
+#set($title = $!keyword)
+<form action="${env.root}/search/global.htm" method="get" name="searchForm">
+	<input type="hidden" name="keyword" value="$!keyword"/>
+	<input type="hidden" name="start" id="start" value="1"/>
+	<input type="hidden" name="size" id="size" value="$!size"/>
+<div class="w950 main search">
+	<div class="crumb">您搜索的关键词是“<span class="orange">$!keyword</span>”，我们为您找到了<span class="orange">$!totalCount</span>个相关的产品！</div>
+	<!-- schL开始 -->
+	<div class="L mgr10 searchL">
+		<!-- schL1开始 -->
+		<div class="schFactor schL1">
+			<div class="ttl">
+				<strong class="L">搜索 - “$!keyword”</strong>
+				<a href="#" class="R">重置筛选条件</a>
+			</div>
+			<table class="cnt">
+				<tr>
+					<th>产品类型：</th><td><p><a href="#" class="current">全部</a><a href="#">打折门票</a><a href="#">自由行</a><a href="#">跟团游</a><a href="#">酒店</a></p></td>
+				</tr>
+				<tr>
+					<th>起价范围：</th><td><p><a href="#" class="current">全部</a><a href="#">200以下</a><a href="#">200-499</a><a href="#">500-999</a><a href="#">1000-1499</a><a href="#">1500-1999</a><a href="#">2000及以上</a></p></td>
+				</tr>
+				<tr>
+					<th>出游天数：</th><td><p><a href="#" class="current">全部</a><a href="#">1天</a><a href="#">2天</a><a href="#">3天</a><a href="#">4天</a><a href="#">5天以上</a></p></td>
+				</tr>
+				<tr>
+					<th>优惠方式：</th><td><p><a href="#" class="current">全部</a><a href="#">可用优惠券</a><a href="#">可返奖金</a><a href="#">可用优惠券</a><a href="#">可返奖金</a><a href="#">可用优惠券</a><a href="#">可返奖金</a><a href="#">可用优惠券</a><a href="#">可返奖金</a></p></td>
+				</tr>
+			</table>
+		</div>
+		<!-- schL1结束 -->
+		<!-- schL2开始 -->
+		
+		<div class="mgt10 schOut schL2">
+			#if($collectionUtils.isEmpty($result.items))
+				很抱歉，没有搜索到与“<span class="orange">$!keyword</span>”相关的产品
+			#else
+			<div class="ttl">
+				<div class="L"><span>排序：</span><a href="#" class="current">推荐</a><a href="#">价格</a><a href="#">人气</a></div>
+				<div class="R">
+					#parse("/common/common_pagination_simple.vm")
+				</div>
+			</div>
+			<ul class="cnt">
+				
+					#foreach($item in $result.items)
+					<li>
+    					<div class="L">
+    						<a href="${env.root}/product/detail.htm?productId=$!item.productId"><img src="$!item.firstImage" alt="" class="pad3"  onerror="this.src='${env.staticroot}/images/no_img.jpg'"/></a>
+    						<span class="txt">
+    							<a href="${env.root}/product/detail.htm?productId=$!item.productId" target="_blank"><strong class="t1">$!item.name</strong></a>
+    							<span class="t2">区域：$!item.destProvince$!item.destCity$!item.destArea</span>
+    							<span class="t2">地址：$!item.destAddr</span>
+    						</span>
+    					</div>
+    					<div class="R">
+							#if($item.marketPrice)
+    						<span class="price">
+    							<span class="p1">门市价：<span class="through">$!item.marketPrice</span>元</span>
+								<span class="p2"><strong><em>￥</em>158</strong>起</span>
+    						</span>
+    						<a href="#" class="order">订购</a>
+							#end
+    					</div>
+    				</li>
+					#end
+				
+			</ul>
+			#parse("common/common_pagination.vm")
+				
+			#end
+		</div>
+		<!-- schL2结束 -->
+	</div>
+	<!-- schL结束 -->
+	<!-- searchR开始 -->
+	<div class="R searchR">
+		<div class="box230 schR1">
+			<div class="ttl"><h2>推荐景点</h2></div>
+			<ol class="orderList">
+				<li class="li123"><i>1</i><a href="#"><span class="sp1">苏州天颐温泉成</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
+				<li class="li123"><i>2</i><a href="#"><span class="sp1">南京颐尚温泉门票</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
+				<li class="li123"><i>3</i><a href="#"><span class="sp1">宁海森林温泉门票</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
+				<li><i>4</i><a href="#"><span class="sp1">黄山醉温泉普通</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
+				<li><i>5</i><a href="#"><span class="sp1">苏州天颐温泉成</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
+				<li><i>6</i><a href="#"><span class="sp1">苏州天颐温泉成</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
+				<li><i>7</i><a href="#"><span class="sp1">苏州天颐温泉成</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
+				<li><i>8</i><a href="#"><span class="sp1">黄山醉温泉普通</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
+				<li><i>9</i><a href="#"><span class="sp1">苏州天颐温泉成</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
+				<li><i>10</i><a href="#"><span class="sp1">黄山醉温泉普通</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
+			</ol>
+		</div>
+		<div class="mgt10 schR2">
+			<a href="#"><img src="images/228_98_1.jpg" alt="" /></a>
+			<a href="#"><img src="images/228_98_2.jpg" alt="" class="sR2Ad" /></a>
+		</div>
+	</div>
+	<!-- searchR结束 -->
+</div>
+</form>
+	
+<script>
+	var toPage = function(pages , size){
+		if(isNaN(pages)){
+			alert('请输入数字') ;
+			return false ;
+		}
+		var totalPages = $totalPages
+		if(pages > totalPages){
+			pages = totalPages ;
+		}
+		if(pages < 1){
+			pages = 1 ;
+		}
+        var start = (pages-1) * size + 1;
+        document.getElementById('start').value = start ;
+        document.getElementById('size').value = size ;
+        document.forms[0].submit() ;
+    }
+</script>

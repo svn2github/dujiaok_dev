@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="search">
+	<typeAlias alias="TA-Search" type="com.ssnn.dujiaok.model.SearchDO"/>
+	
+	<resultMap id="RM-Search" class="TA-Search" >
+		<result property="productId" column="PRODUCT_ID" jdbcType="VARCHAR" />
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="marketPrice" column="MARKET_PRICE" jdbcType="DECIMAL"/>
+		<result property="destAddr" column="DEST_ADDR" jdbcType="VARCHAR"/>
+		<result property="destProvince" column="DEST_PROVINCE" jdbcType="VARCHAR"/>
+		<result property="destCity" column="DEST_CITY" jdbcType="VARCHAR"/>
+		<result property="destArea" column="DEST_AREA" jdbcType="VARCHAR"/>
+		<result property="intro" column="INTRO" jdbcType="VARCHAR"/>
+		<result property="images" column="IMAGES" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="search_ticket">
+		SELECT
+				PRODUCT_ID , NAME , MARKET_PRICE ,IMAGES , DEST_ADDR , DEST_PROVINCE , DEST_CITY , DEST_AREA ,INTRODUCTION AS INTRO , GMT_CREATE , GMT_MODIFIED , GMT_EXPIRE
+			FROM  
+				DJ_TICKET WHERE GMT_EXPIRE > now()
+				<isNotEmpty property="name" prepend="AND">
+				NAME LIKE CONCAT('%', #name#, '%')
+				</isNotEmpty>
+				<isNotEmpty property="destAddr" prepend="AND">
+				DEST_ADDR LIKE CONCAT('%', #destAddr#, '%')
+				</isNotEmpty>
+	</sql>
+	
+	<sql id="search_hotel">
+		SELECT 
+				PRODUCT_ID , NAME , NULL AS MARKET_PRICE ,IMAGES , DEST_ADDR , DEST_PROVINCE , DEST_CITY , DEST_AREA , INTRODUCTION AS INTRO, GMT_CREATE , GMT_MODIFIED , NULL AS GMT_EXPIRE
+			FROM 
+				DJ_HOTEL WHERE 1=1 
+				<isNotEmpty property="name" prepend="AND">
+				NAME LIKE CONCAT('%', #name#, '%') 
+				</isNotEmpty>
+				<isNotEmpty property="destAddr" prepend="AND">
+				DEST_ADDR LIKE CONCAT('%', #destAddr#, '%')
+				</isNotEmpty>
+	</sql>
+	
+	<sql id="search_hotelRoom">
+		SELECT 
+				PRODUCT_ID , NAME , NULL AS MARKET_PRICE ,IMAGES , '' AS DEST_ADDR , '' AS DEST_PROVINCE , '' AS DEST_CITY , '' AS DEST_AREA , INTRODUCTION AS INTRO , GMT_CREATE , GMT_MODIFIED , GMT_EXPIRE
+			FROM 
+				DJ_HOTEL_ROOM WHERE GMT_EXPIRE > now()
+				<isNotEmpty property="name" prepend="AND">
+				NAME LIKE CONCAT('%', #name#, '%')
+				</isNotEmpty>
+				<isNotEmpty property="destAddr" prepend="AND">
+				1=2
+				</isNotEmpty>
+	</sql>
+	
+	<sql id="search_selfDrive">
+		SELECT 
+				PRODUCT_ID , NAME , MARKET_PRICE ,IMAGES , DEST_ADDR , DEST_PROVINCE , DEST_CITY , DEST_AREA , INTRODUCTION AS INTRO , GMT_CREATE , GMT_MODIFIED , GMT_EXPIRE
+			FROM 
+				DJ_SELF_DRIVE WHERE GMT_EXPIRE > now()
+				<isNotEmpty property="name" prepend="AND">
+				NAME LIKE CONCAT('%', #name#, '%')
+				</isNotEmpty>
+				<isNotEmpty property="destAddr" prepend="AND">
+				DEST_ADDR LIKE CONCAT('%', #destAddr#, '%')
+				</isNotEmpty>
+	</sql>
+
+	
+	
+	<select id="globalSearch" resultMap="RM-Search">
+		SELECT TB1.* FROM 
+			<isParameterPresent open="(" close=")" removeFirstPrepend="true">
+				<isPropertyAvailable property="MP" prepend="UNION ALL" >
+					<include refid="search_ticket"/>
+				</isPropertyAvailable>
+				<isPropertyAvailable property="JD" prepend="UNION ALL" >
+					<include refid="search_hotel"/>
+				</isPropertyAvailable>
+				<isPropertyAvailable property="FJ" prepend="UNION ALL" >
+					<include refid="search_hotelRoom"/>
+				</isPropertyAvailable>
+				<isPropertyAvailable property="ZJ" prepend="UNION ALL">
+					<include refid="search_selfDrive"/>
+				</isPropertyAvailable>
+			</isParameterPresent>
+		 TB1 ORDER BY GMT_MODIFIED DESC LIMIT #start# , #size#
+	</select>
+	
+	
+	<select id="countGlobalSearch" resultClass="java.lang.Integer">
+		SELECT COUNT(PRODUCT_ID) FROM 
+			<isParameterPresent open="(" close=")" removeFirstPrepend="true">
+				<isPropertyAvailable property="MP" prepend="UNION ALL">
+					<include refid="search_ticket"/>
+				</isPropertyAvailable>
+				<isPropertyAvailable property="JD" prepend="UNION ALL" >
+					<include refid="search_hotel"/>
+				</isPropertyAvailable>
+				<isPropertyAvailable property="FJ" prepend="UNION ALL">
+					<include refid="search_hotelRoom"/>
+				</isPropertyAvailable>
+				<isPropertyAvailable property="ZJ" prepend="UNION ALL">
+					<include refid="search_selfDrive"/>
+				</isPropertyAvailable>
+			</isParameterPresent>
+	 	TB1 
+	</select>
+	
+	
+	
+</sqlMap>

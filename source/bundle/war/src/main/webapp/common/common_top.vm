@@ -1,0 +1,30 @@
+<div class="header_bg">
+                <div id="header" class="section">
+                    <div class="header_1">
+                        <div class="logo">
+                            <a href="${env.root}/home/index.htm"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header_tab section">
+                    <ul class="FS14 B">
+                        <li #if($navigation=="shouye")class="cur"#end>
+                            <a href="${env.root}/home/index.htm">首页</a>
+                        </li>
+                        <li #if($navigation=="ticket")class="cur"#end>
+                            <a href="${env.root}/trek/user/user/dazhe.htm">打折门票</a>
+                        </li>
+                        <li #if($navigation=="selfdrive")class="cur"#end>
+                            <a href="${env.root}/trek/user/user/zijia.htm">周边自驾</a>
+                        </li>
+                        <li #if($navigation=="hotel")class="cur"#end>
+                            <a href="${env.root}/trek/user/user/dujia.htm">度假酒店</a>
+                        </li>
+                    </ul>
+                    <span class="theme_link">
+                        <a href="#">旅游攻略</a>
+                        &nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">景点大全</a>
+                        &nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">订购指南</a>
+                    </span>
+                </div>
+            </div>

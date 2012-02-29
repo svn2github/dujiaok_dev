@@ -1,0 +1,61 @@
+
+
+#set($start = $start)
+#set($size = $size)
+#set($totalCount = $totalCount)
+#set($totalPages = $totalPages)
+#set($curPage = (($start+$size-1)/$size))
+#if($curPage<1)
+	#set($curPage = 1) 
+#elseif($curPage>$totalPages)
+	#set($curPage = $totalPages)
+#end
+
+#set($rangeStart = 1)
+#set($rangeEnd = $totalPages)
+
+#set($prePage = $curPage - 1)
+#set($nextPage = $curPage + 1)
+
+
+<div id="page" class="page">
+
+	<div class="pL">
+		
+		#if($curPage == 1)
+			<a class="prev die" href="javascript:void(0);">&lt;&lt; 上一页</a>
+        #else
+			<a class="prev" href="javascript:void(0);" onclick="toPage($prePage,$size);">&lt;&lt; 上一页</a>
+        #end
+		#set($toPage = 0 )
+		#foreach($count in [-3..3])
+        	#set($toPage = $curPage + $count)
+        	#if($toPage>=$rangeStart && $toPage<=$rangeEnd) 
+            	#if($toPage == $curPage)
+            		<a class="current" href="javascript:void(0);">$toPage</a>
+            	#else
+                    <a href="javascript:void(0);" onclick="toPage($toPage,$size);">$toPage</a>
+        		#end
+        	#end
+        #end
+	</div>
+	#if($toPage < $totalPages)
+	<div class="pM">...</div>
+	#end
+	<div class="pR">
+		#if($curPage == $totalPages)
+		<a class="next die" href="javascript:void(0);">下一页 &gt;&gt;</a>
+        #else
+		<a class="next" href="javascript:void(0);" onclick="toPage($nextPage,$size);">下一页 &gt;&gt;</a>
+        #end
+	</div>
+	
+	#if($__index)
+    	#set($__index = $__index + 1)
+    #else
+    	#set($__index = 1)
+	#end
+	<div class="pOther">共<em>$!totalPages</em>页，到第<input type="text" size="2" value="$curPage" id="toPages$__index"></input>页<button onclick="return toPage($('toPages$__index').value,$size);">确定</button></div>
+			
+</div>
+

@@ -12,7 +12,7 @@
       - ===============================================
 	-->
     <settings useStatementNamespaces="true" />
-    
+    <sqlMap resource="sqlmap/sqlmap-search.xml" />
   	<sqlMap resource="sqlmap/sqlmap-product.xml" />
   	<sqlMap resource="sqlmap/sqlmap-member.xml" />
 	<sqlMap resource="sqlmap/sqlmap-tour.xml" />

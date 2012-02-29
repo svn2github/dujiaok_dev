@@ -28,20 +28,35 @@ public class IBatisHotelDAOTest extends AbstractBaseJUnit4Test {
 
 	@Test
 	public void test_create() {
-		HotelDO hotel = new HotelDO () ;
-		hotel.setProductId(UniqueIDUtil.buildUniqueId(ProductEnums.HOTEL)) ;
-		hotel.setDestAddr("网上路200很骄傲") ;
-		hotel.setDestArea("滨江");
-		hotel.setDestCity("杭州");
-		hotel.setDestProvince("浙江") ;
-		hotel.setImages("images") ;
-		hotel.setIntroduction("intro") ;
-		hotel.setLocationCode("lc") ;
-		hotel.setMemo("memo") ;
-		hotel.setName("酒店");
-		hotel.setRoomAmount(20) ;
-		hotel.setStarRate(10) ;
-		hotelDAO.insertHotel(hotel) ;
+		
+		
+		for(int i=0 ;i<40;i++){
+			HotelDO hotel = new HotelDO () ;
+			hotel.setProductId(UniqueIDUtil.buildUniqueId(ProductEnums.HOTEL)) ;
+			hotel.setDestAddr("度假搜索测试00" + i) ;
+			hotel.setDestArea("滨江");
+			hotel.setDestCity("杭州");
+			hotel.setDestProvince("浙江") ;
+			hotel.setImages("images") ;
+			hotel.setIntroduction("intro") ;
+			hotel.setLocationCode("lc") ;
+			hotel.setMemo("memo") ;
+			hotel.setName("度假搜索酒店测试00" + i);
+			hotel.setRoomAmount(20) ;
+			hotel.setStarRate(10) ;
+			
+			Calendar c = Calendar.getInstance();
+			c.add(Calendar.MONTH, 10) ;
+			hotel.setGmtExpire(c.getTime()) ;
+			System.out.println(hotel);
+			hotelDAO.insertHotel(hotel) ;
+			try {
+				Thread.sleep(1000) ;
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	
 	}
 

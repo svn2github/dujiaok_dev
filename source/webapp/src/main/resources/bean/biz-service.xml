@@ -24,4 +24,6 @@
 	<bean id="frontConfigService" class="com.ssnn.dujiaok.biz.service.impl.FrontConfigServiceImpl"></bean>
 	<bean id="frontViewService" class="com.ssnn.dujiaok.biz.service.impl.FrontViewServiceImpl"></bean>
 	
+	<bean id="searchService" class="com.ssnn.dujiaok.biz.service.impl.SearchServiceImpl"></bean>
+	
 </beans>
