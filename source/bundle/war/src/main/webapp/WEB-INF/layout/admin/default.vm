@@ -22,7 +22,9 @@
 					 #end
                     <a href="${env.root}/home/index.htm">进入前台首页</a>
                      |  
-					<a href="${env.root}/admin/orderlist.htm" target="_blank">订单后台</a>                
+					<a href="${env.root}/admin/orderlist.htm" target="_blank">订单后台</a>     
+					 | 
+                    <a href="${env.root}/admin/editIndex.htn" target="_blank">编辑前台首页</a>
                 </td>
             </tr>
         </table>
