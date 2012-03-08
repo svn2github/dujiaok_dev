@@ -9,12 +9,15 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import com.ssnn.dujiaok.constant.Constant;
+import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.util.EnvPropertiesUtil;
 import com.ssnn.dujiaok.web.action.BasicAction;
 import com.ssnn.dujiaok.web.context.ContextHolder;
+import com.ssnn.dujiaok.web.context.MemberContext;
 import com.ssnn.dujiaok.web.context.RequestContext;
 import com.ssnn.dujiaok.web.velocity.toolbox.EnvPropertiesToolbox;
 
@@ -29,11 +32,15 @@ public class MemberAuthInterceptor extends AbstractInterceptor {
 	
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
-	
-		String memberId = ContextHolder.getMemberContext().getMemberId() ;
+		String memberId = null;
+		ActionContext context = invocation.getInvocationContext();
+		MemberDO memberDO = (MemberDO) (context.getSession().get("session_member"));
+//		MemberContext context = ContextHolder.getMemberContext();
+		if (memberDO != null) {
+			memberId = memberDO.getMemberId();
+		}
 		//未登录
-		if(StringUtils.isBlank(memberId)){
-					
+		if(StringUtils.isBlank(memberId)){	
 			HttpServletRequest request = ServletActionContext.getRequest() ;
 			String toUrl = request.getRequestURL().toString() ;
 			String requestQueryString = request.getQueryString() ;

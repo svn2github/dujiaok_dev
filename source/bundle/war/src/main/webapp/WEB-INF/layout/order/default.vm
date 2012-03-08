@@ -1,63 +1,34 @@
-#####前台页面默认的Layout
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-        <title>#if ($title)$!title #else 度假OK #end</title>
-        #CSS(["base.css","General.css","dialog.css","msgbox.css", "tip.css"])
-        #XUI_JS(["core/xui-core-min.js","dialog/xui-dialog-min.js","msgbox/xui-msgbox-min.js","tip/xui-tip.js","util/util-min.js","slide/slide.js"])
-        <style type="text/css">
-        .xui-msgbox{
-			_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='http://ht.dujiaok.com/saas/xui/resource//images/efax/msgbox/bg.png');
-		}
-		.xui-dialog-bg{
-		    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='http://ht.dujiaok.com/saas/xui/resource//images/efax/dialog/bg.png');
-		}
-        </style>
-</head>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>度假OK</title>
+#CSS(["base.css","General.css","main.css"])
+#XUI_JS(["core/xui-core.js","util/util.js"])
+#JS(["validator.js"])
 <body>
-    <div class="navbar">
-        <div class="navbar_com FS12">
-		#if(${env.member})
-			欢迎您：$!env.member.nickname &nbsp;&nbsp;&nbsp;&nbsp;<a href="${env.root}/member/orderlist.htm">我的订单</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${env.root}/member/modify.htm">修改个人资料</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${env.root}/member/logout.htm">退出</a>&nbsp;&nbsp;
-        #else
-        	<a href="${env.root}/member/login.htm">登录</a>  &nbsp;&nbsp;&nbsp;&nbsp; <a href="${env.root}/member/register.htm">注册</a>
-        #end
-		</div>
-    </div>
-    <div class="page_bg">
-        <div id="wrap" class="FS12 F2">
-            <div class="header_bg">
+	<div class="navbar">
+    	<div class="navbar_com FS12">欢迎您：SUNPEA张博童鞋&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">我的订单</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">修改个人资料</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">退出</a>&nbsp;&nbsp;</div>
+   		</div>
+        <div class="page_bg">
+            <div id="wrap" class="FS12 F2">
+            <div class="header_bg"> 
                 <div id="header" class="section">
                     <div class="header_1">
-                        <div class="logo">
-                            <a href="${env.root}/home/index.htm"></a>
-                        </div>
+                        <div class="logo"></div>
                     </div>
                 </div>
                 <div class="header_tab section">
-                    <ul class="FS14 B">
-                        <li #if($navigation=="shouye")class="cur"#end>
-                            <a href="${env.root}/home/index.htm">首页</a>
-                        </li>
-                        <li #if($navigation=="ticket")class="cur"#end>
-                            <a href="${env.root}/trek/user/user/dazhe.htm">打折门票</a>
-                        </li>
-                        <li #if($navigation=="selfdrive")class="cur"#end>
-                            <a href="${env.root}/trek/user/user/zijia.htm">周边自驾</a>
-                        </li>
-                        <li #if($navigation=="hotel")class="cur"#end>
-                            <a href="${env.root}/trek/user/user/dujia.htm">度假酒店</a>
-                        </li>
+                	<ul class="FS14 B">
+                    	<li class="cur"><a href="#">首页</a></li>
+                        <li><a href="#">周边自驾</a></li>
+                        <li><a href="#">度假酒店</a></li>
+                        <li><a href="#">打着门票</a></li>
                     </ul>
-                    <span class="theme_link">
-                        <a href="#">旅游攻略</a>
-                        &nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">景点大全</a>
-                        &nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">订购指南</a>
-                    </span>
+                    <span class="theme_link"><a href="#">旅游攻略</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">景点大全</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">订购指南</a></span>
                 </div>
-            </div>
+             </div>
             $screen_content
         </div>
     </div>

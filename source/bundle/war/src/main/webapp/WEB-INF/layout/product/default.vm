@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
         <title>#if ($title)$!title #else 度假OK #end</title>
-        #CSS(["base.css","General.css", "dialog.css", "msgbox.css", "tip.css", "intro/productintro.css"])
+        #CSS(["base.css","General.css", "intro/productintro.css"])
 </head>
 <body>
     <div class="navbar">

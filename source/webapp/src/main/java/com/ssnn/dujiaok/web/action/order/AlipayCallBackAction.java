@@ -3,6 +3,7 @@ package com.ssnn.dujiaok.web.action.order;
 import com.ssnn.dujiaok.biz.service.order.OrderService;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
+@SuppressWarnings("serial")
 public class AlipayCallBackAction extends BasicAction {
 	private String is_success;
 	private String out_trade_no;

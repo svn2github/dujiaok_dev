@@ -66,7 +66,6 @@
 				                <li class="cur"><a href="#introduction">产品介绍</a></li>
 				                <li><a href="#attention">注意事项</a></li>
 				                <li><a href="#feedesc">费用说明</a></li>
-				                <li><a href="#remark">备注</a></li>
 				            </ul>
         				</div>
 	        			<h2 id="introduction">产品介绍</h2>
@@ -78,10 +77,6 @@
 				        <h2 id="feedesc">费用说明</h2>
 				        <div class="pro_intro_list2">
 							<p>$!product.feedesc</p>
-				        </div>
-				        <h2 id="remark">备注</h2>
-				        <div class="pro_intro_list2">
-							<p>$!product.memo</p>
 				        </div>
 	    			</div>
             	</div>
@@ -101,26 +96,28 @@
                 </table>
             </div>
             <div class="order">
-            	<form id="orderForm" method="post" action="${env.root}/order/makeorder.htm">
-            		#if(!$collectionUtils.isEmpty($product.details))
+            	#if(!$collectionUtils.isEmpty($product.details))
+            	<form id="orderForm" action="${env.root}/order/bookticket.htm">
                 	<ul>
                     	<li>使用日期：
-                   	    	<select name="productDetailId" id="productDetailId" onchange="changePrice()">
-								#foreach($ticket in $product.details)
-                                  #foreach($ticketDay in $ticket.startDates)
-                                    <option value=$ticket.id>$ticketDay</option>
+                   	    	<select name="productDetailId" id="productDetailId" onchange="changeUseDate()">
+								#set($i=1)
+								#foreach($ticketDetail in $!product.details)
+                                  #foreach($ticketDay in $ticketDetail.startDates)
+                                    <option value=$ticketDetail.id #if($i==1) selected=true #end>$dateUtils.format($ticketDay,'yyyy-MM-dd')</option>
+                                    #set($i=1+$i)
                                   #end
 								#end
                   	        </select>
                   	     </li>
-                  	     ###<input type="hidden" id="useDate" name="useDate" value="$!product.details.get(0).startDates.get(0)" />
-                         <li>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：<span id='price'>$product.details.get(0).price</span>元</li>
-                         <li>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：&nbsp;<input type="text" name="ticketCount" id="ticketCount"></li>
+                  	     <input type="hidden" id="useDate" name="gmtOrderStart" value="$dateUtils.format($!product.details.get(0).startDates.get(0),'yyyy-MM-dd')"/>
+                         <li>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：<span id='price'>$!product.details.get(0).price</span>元</li>
+                         <li>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：&nbsp;<input type="text" name="ticketNum" id="ticketNum"></li>
                     </ul>
                 	<button type="submit">&nbsp;&nbsp;&nbsp;</button>
 					<input type="hidden" id="productId" name="productId" value="$product.productId" />
-					#end
                 </form>
+                #end
                 <p class="F3">拨打电话预定 400 666 5599</p>
             </div>
         </div>
@@ -143,7 +140,7 @@
 	]
 	
 	
-    function changePrice(){
+    function changeUseDate(){
         var temp = document.getElementById('productDetailId');
         var ticketId = temp.value;
     	var price = document.getElementById('price');

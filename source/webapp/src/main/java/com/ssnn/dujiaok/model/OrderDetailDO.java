@@ -25,7 +25,7 @@ public class OrderDetailDO {
 	
 	private BigDecimal insurePrice ;
 	
-	private int insureCount ;
+	private int insureCount;
 	
 	private String alipayId ;
 	

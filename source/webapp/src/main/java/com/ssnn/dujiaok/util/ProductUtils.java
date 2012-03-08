@@ -119,6 +119,11 @@ public class ProductUtils {
 		}
 	}
 	
+	
+	public static void filteProductDetail(List<ProductDetailDO> detailDOs, Date beginDate, Date endDate) {
+		
+	}
+	
 	public static List<String> formatDate(List<Date> dates, String format) {
 		DateFormat dateFormat = new SimpleDateFormat(format);
 		List<String> result = new ArrayList<String>();
@@ -129,6 +134,5 @@ public class ProductUtils {
 		}
 		return result;
 	}
-
 }
 

@@ -7,8 +7,55 @@
 		<action name="detail" class="com.ssnn.dujiaok.web.action.product.DetailAction">
 			<interceptor-ref name="defaultStack" />
 			<result name="ticket" type="velocity">/product/ticketdetail.vm</result>
-			<result name="selfDrive" type="velocity">/product/selfdrivedetail.vm</result>
+			<result name="selfdrive" type="velocity">/product/selfdrivedetail.vm</result>
 			<result name="room" type="velocity">/product/hotelroomdetail.vm</result>
+			<result name="error" type="velocity">/error.vm</result>
+		</action>
+	</package>
+	
+	<package name="order" namespace="/order" extends="default">
+		<action name="bookselfdrive" class="com.ssnn.dujiaok.web.action.order.OrderAction" method="bookSelfDrive">
+			<interceptor-ref name="memberAuthInterceptor" />
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/bookselfdrive.vm</result>
+			<result name="error"  type="velocity">/error.vm</result>
+			<result name="not_exist"  type="velocity">/order/notexist.vm</result>
+		</action>
+		<action name="bookticket" class="com.ssnn.dujiaok.web.action.order.OrderAction" method="bookTicket">
+		    <interceptor-ref name="memberAuthInterceptor" />
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/bookticket.vm</result>
+			<result name="error"  type="velocity">/error.vm</result>
+			<result name="not_exist"  type="velocity">/order/notexist.vm</result>
+		</action>
+		<action name="bookhotelroom" class="com.ssnn.dujiaok.web.action.order.OrderAction" method="bookHotelRoom">
+		    <interceptor-ref name="memberAuthInterceptor" />
+		    <interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/bookhotelroom.vm</result>
+			<result name="error"  type="velocity">/error.vm</result>
+			<result name="not_exist"  type="velocity">/order/notexist.vm</result>
+		</action>
+		<action name="makeorder" class="com.ssnn.dujiaok.web.action.order.MakeOrderAction" method="makeOrder">
+		    <interceptor-ref name="memberAuthInterceptor" />
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/orderdetail.vm</result>
+		</action>
+		<action name="orderdetail" class="com.ssnn.dujiaok.web.action.order.OrderDetailAction" method="orderDetail">
+		    <interceptor-ref name="memberAuthInterceptor" />
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/orderdetail.vm</result>
+		</action>
+		<action name="paydetail" class="com.ssnn.dujiaok.web.action.order.PayDetailAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/paydetail.vm</result>
+		</action>
+		<action name="alipayorder" class="com.ssnn.dujiaok.web.action.order.AlipayOrderAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/alipayorder.vm</result>
+		</action>
+		<action name="paysuccess" class="com.ssnn.dujiaok.web.action.order.AlipayCallBackAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="success"  type="velocity">/order/paysuccess.vm</result>
 		</action>
 	</package>
 </struts>

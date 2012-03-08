@@ -1,0 +1,293 @@
+#set($layout="/order/default.vm")
+<form id="orderForm" method="post" action="${env.root}/order/makeorder.htm"  onSubmit="return Validator.Validate(this,3)" >
+    <input type="hidden" value="$!product.marketPrice" id="marketPrice">
+	<!-- 内容开始 -->
+    <div id="wrap">
+		<div class="section urhere" style="margin:15px 0 13px 0; width:950px;">
+        	<p class="F3">您当前的位置： 浙江 > 嘉兴 > 桐乡乌镇</p>
+            <span class="F3">分享到： 新浪微博 </span>
+        </div>
+        <div id="dingdan" class="section">
+        	<div class="d_left">
+        		<h2 class="d_title yuding01"><span class="order-nav">【自驾游】</span>$!product.name</h2>
+        		<h3 class="dingdanhead">订购产品</h3>
+                <table class="d_dgcp"  cellpadding="0" cellspacing="0">
+                	<tr>
+                    	<th>编号</th>
+                        <th>景点名称</th>
+                        <th>使用时间</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                    	<td>$!product.productId</td>
+                        <td>$!product.name</td>
+                        <td class="F10">
+                        	$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd') &nbsp;&nbsp至<br />$dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')
+                        </td>
+                        <td class="F10">
+                        	成人 <input type="text" name="count" id="adultNum" maxlength="6" class="wpx34" value="$!orderDO.count" dataType="Integer"/>
+                        	<span class="F2">（单人价：￥<span id="singlePrice" style="color:red">$!product.details.get(0).price</span>
+                        	元　双人价：￥<span id="doublePrice" style="color:red">$!product.details.get(0).doublePrice</span>元）</span><br />
+							#if($!productDetail.childPrice!='')
+								儿童 <input type="text" name="secondaryCount" id="childNum" maxlength="6" class="wpx34" value="$!orderDO.secondaryCount"/>
+								<span class="F2">（儿童价：￥<span id="childPrice"  style="color:red">$!product.details.get(0).childPrice</span>元）</span>
+							#else
+								<input type="hidden" name="secondaryCount" id="childNum" value="$!orderDO.secondaryCount"/>
+								<span id="childPrice" style="display:none">0</span>
+							#end
+						</td>
+                    </tr>
+                </table>
+                <h3 class="dingdanhead" >附加产品&nbsp;&nbsp;&nbsp;&nbsp;
+                	<span style="color:red;font-size:12px;font-weight:normal;">备注：16岁以下儿童不含保险</span>
+                </h3>
+                <table class="d_dgcp" boder="0" cellpadding="0" cellspacing="0">
+            		<tr>
+                		<th>使用日期</th>
+                    	<th>名称</th>
+                        <th>现售价</th>
+                        <th>数量</th>
+            		</tr>
+            		<tr>
+                		<td class="F10">$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd')&nbsp;&nbsp至$dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')</td>
+                        <td>$!product.name</td>
+                        <td>￥<span style="color:red">20</span>人/天</td>
+                        <td><input type="text" name="insureNum" id="insureNum" maxlength="3" class="wpx34" value="$!orderDO.count"/></td>
+            		</tr>
+                </table>
+                <h3 class="dingdanhead">游玩人信息</h3>
+                <div id="personInfos">
+                	<div id="personInfo0">
+		                <table class="d_ywrxx"  cellpadding="0" cellspacing="0">
+		                	<tr>
+		                		<th ><strong>主联系人信息</strong></th>
+		                    	<th><i>*</i> 主联系人姓名：</th>
+		                        <td><input type="text" name="contacts[0].name" id="name0" class="wpx184" value="$!orderDO.contacts.get(0).name"/></td>
+		                    </tr>
+		                    <tr>
+		                    	<th></th>
+		                    	<th><i>*</i> 主联系人手机：</th>
+		                        <td><input type="text" name="contacts[0].mobile" maxlength=11 id="mobile0" class="wpx184" value="$!orderDO.contacts.get(0).mobile" /></td>
+		                    </tr>
+		                    <tr>
+		                    	<th></th>
+		                    	<th><i>*</i> 证件类型：</th>
+		                        <td>
+		                          <select name="contacts[0].certificateType" id="certificateType0" value="" style="width: 184px;">
+		                            <option value="ID">身份证</option>
+		                            <option value="PASSPORT">护照</option>
+		                            <option value="OFFICERPORT">军官证</option>
+									<option value="OTHER">其它</option>
+		                          </select>
+		                        </td>
+		                    </tr>
+		                    <tr>
+		                    	<th></th>
+		                    	<th><i>*</i> 证件号码：</th>
+		                        <td><input type="text" name="contacts[0].certificateNumber" id="certificateNumber0" class="wpx184" dataType="IdCard" msg="身份证号错误"/></td>
+		                    </tr>
+		                    <tr>
+		                    	<th></th>
+		                    	<th>E-mail：</th>
+		                        <td><input type="text" name="contacts[0].email" id="email0" class="wpx1843" style="width: 184px;" value="$!orderDO.contacts.get(0).email"/></td>
+		                    </tr>
+		                    <tr style="display: none;">
+		                    	<th></th>
+		                    	<th></th>
+		                        <td><input type="text" name="contacts[0].isMain" id="isMain0" value="Y"/></td>
+		                    </tr>
+		                    <tr>
+		                    	<th></th>
+		                    	<td></td>
+		                    	<td align="right"><a href="javascript:addPersonInfo()" id="addPersonInfo" class="addPersonInfo">+ 添加游玩人</a></td>
+		                    </tr>
+		                </table>
+	                </div>
+	            </div>
+				<div>
+					<table>
+						<tr valign="top">
+						    <td><strong>订单备注</strong></td>
+						    <td><textarea rows="10" id="memo" name="memo" style="width:500px; margin:8px 0 0 50px;"></textarea></td>
+						</tr>
+					</table>
+	            </div>
+				<div style="clear:both;"></div>
+                <div class="d_qrxd" >
+                	<button type="submit" id="submit">&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                </div>
+                <div class="d_ydxx">
+                	<input name="" type="checkbox" checked />同意度假OK预订协议</p>
+                	<textarea rows="10" id="textarea" readonly="true" name="textarea">sdfsdfsdfsdfsdfsdfsd</textarea>
+                </div>
+            </div>
+            
+            <div class="d_right">
+            	<h3>订单金额总计</h3>
+                <div class="information"> 
+                    <table  cellpadding="0" cellspacing="0">
+                    	<tr><th>市 场 价：</th><td><span id="orderMarketPrice"></span>元</td></tr>
+                    	<tr><th>ok价：</th><td><span id="orderOkPrice"></span>元</td></tr>
+                        <tr><th>保险费用：</th><td><span id="orderInsPrice"></span>元</td></tr>
+                        <tr><th>累计节省：</th><td><span id="orderSavePrice"></span>元</td></tr>
+                    </table>
+                    <p class="Settlement_amount">订单结算金额<br /><b>￥<span id="orderPrice"></span></b></p>
+                </div> 
+            </div>
+        </div>
+   	</div>
+   	<input type="hidden" name="orderId" id="orderId" value="$!orderDO.orderId" />
+	<input type="hidden" name="productId" id="productId" value="$!orderDO.productId" />
+	<input type="hidden" name="productDetailId" id="productDetailId" value="$!orderDO.productDetailId" />
+	<input type="hidden" name="gmtOrderStart" id="departDate" value="$dateUtil.format($!orderDO.gmtOrderStart)" />
+	<input type="hidden" name="dayNum" id="dayNum" value="$!product.days">
+	<input type="hidden" name="productType" id="productType" value="SELFDRIVE" />
+</form>	
+#XUI_JS(["core/xui-core-min.js"])
+<script>
+	
+	var personInfoCount = 1;
+	
+	function submitForm(){
+		var orderForm = document.getElementById('orderForm');
+		orderForm.action = $('webUrl').value + 'trek/order/order/saveorder.htm';
+		
+		$('amount').value = $('Order_Total').innerHTML;
+		$('adultNumber').value = $('adultNum').value;
+		$('countChild').value = $('childNum').value;
+		if($('Accident_Insurance').checked){
+			$('isNeedRiskInput').value = "y";
+		}
+		orderForm.submit();
+	}
+	
+	function addPersonInfo(){
+	    var index = personInfoCount;
+		var personInfo = document.createElement('div');
+		personInfo.id = 'personInfo' + index;
+		var Contact = [];
+		Contact.push('<table class="d_ywrxx"  cellpadding="0" cellspacing="0">');
+		Contact.push('<tr><th><strong>游玩人信息</strong></th><th><i>*</i> 游玩人姓名：</th>');
+		  Contact.push('<td><input type="text" name="contacts['+ index + '].name" id="name' + index + '" class="wpx184"/></td></tr>');
+		Contact.push('<tr><th></th><th><i>*</i> 游玩人手机：</th>');
+		  Contact.push('<td><input type="text" name="contacts[' + index + '].mobile" id="mobile' + index + '" class="wpx184" /></td></tr>');
+		Contact.push('<tr><th></th><th><i>*</i> 证件类型：</th>');
+		  Contact.push('<td><select name="contacts[' + index + '].certificateType" id="certificateType' + index + '" style="width: 184px;">');
+		  Contact.push('<option value="ID">身份证</option><option value="PASSPORT">护照</option><option value="OFFICERPORT">军官证</option><option value="OTHER">其它</option></select></td></tr>');
+		Contact.push('<tr><th></th><th><i>*</i> 证件号码：</th>');
+		  Contact.push('<td><input type="text" name="contacts[' + index + '].certificateNumber" id="certificateNumber' + index + '" class="wpx184" /></td></tr>');
+		Contact.push('<tr><th></th><th>E-mail：</th>');
+		  Contact.push('<td><input type="text" name="contacts[' + index + '].email" id="email' + index + '" class="wpx1843" style="width: 184px;"/></td></tr>');
+		Contact.push('<tr><th></th><th><a href="javascript:removePersonInfo(' + index + ')" id="removePersonInfo" class="removePersonInfo">- 删除游玩人</a></th>');
+		  Contact.push('<td align="right"><a href="javascript:addPersonInfo()" id="addPersonInfo" class="addPersonInfo">+ 添加游玩人</a></td></tr>');
+		Contact.push('</table>');
+		
+		personInfo.innerHTML = Contact.join('');
+		$('personInfos').appendChild(personInfo);
+		personInfoCount++;
+	}
+	
+	function removePersonInfo(index) {
+		var personInfoId = 'personInfo' + index;
+		var personInfo = $(personInfoId);
+		$('personInfos').removeChild(personInfo);
+	}
+
+var EV = xui.util.Event,
+	DOM = xui.util.Dom;
+var Totalorders = function(){};
+					   
+EV.onDOMReady(function(){
+	var b = new Totalorders();
+	b.bind();
+});
+
+Totalorders.prototype = {
+	bind:function(){
+		var SELF = this;
+		SELF.calculatePrice();
+		EV.on($('adultNum'),'blur',function(){
+			SELF.calculatePrice();
+			xui.widgets.Tip.clear();
+		})
+		EV.on($('childNum'),'blur',function(){
+			SELF.calculatePrice();
+		})
+		EV.on($('insureNum'),'blur',function(){								   
+			SELF.calculatePrice();
+		})
+		EV.on($('submit'),'click',function(){
+				SELF.checkForm();
+		})
+		EV.on(DOM.getElementsByClassName('wpx184'),'keyup',function(){
+			if(this.value == ""){
+				xui.widgets.Tip.show(this.id,'带*号为必填项,请重新输入。');
+			}else{
+				xui.widgets.Tip._close(this.id+'china');
+			}
+		})
+		EV.on(DOM.getElementsByClassName('wpx184'),'blur',function(){
+			if(this.value == ""){
+				xui.widgets.Tip.show(this.id,'带*号为必填项,请重新输入。');
+			}else{
+				xui.widgets.Tip._close(this.id+'china');
+			}
+		})
+	},
+	/**
+	*订单金额总计数据
+	*/
+	calculatePrice:function(){
+	    var childInputObj = $('childNum'),
+	        childPriceObj = $('childPrice');
+	    var childNum = this.defaultValue(childInputObj == null ? 0 : parseInt(childInputObj.value), 0),
+			childPrice = this.defaultValue(childPriceObj == null ? 0 : Number(childPriceObj.innerHTML), 0);
+			childInputObj.value = childNum;
+		var adultNum = this.defaultValue(parseInt($('adultNum').value), 0),
+			singlePrice = this.defaultValue(Number($('singlePrice').innerHTML), 0),
+			doublePrice = this.defaultValue(Number($('doublePrice').innerHTML), 0),
+			marketPrice = this.defaultValue(Number($('marketPrice').value), 0),
+			insureNum = this.defaultValue(parseInt($('insureNum').value), 0),
+			dayNum = this.defaultValue(parseInt($('dayNum').value), 0);
+			insurancePrice = 20;
+		$('adultNum').value = adultNum;
+		$('childNum').value = childNum;
+		$('insureNum').value = insureNum;
+		var insurancePrice = insurancePrice * (insureNum) * dayNum;
+		var okPrice = Math.floor(adultNum/2) * doublePrice + adultNum%2 * singlePrice + childNum * childPrice;
+		var marketPrice = (adultNum + childNum) * marketPrice + insurancePrice;
+		this.initOrderPriceInfo(okPrice, insurancePrice, marketPrice);
+	},
+	initOrderPriceInfo:function(okPrice, insPrice, marketPrice){
+		$('orderOkPrice').innerHTML = okPrice;
+		$('orderMarketPrice').innerHTML = marketPrice;
+		$('orderInsPrice').innerHTML = insPrice;
+		$('orderSavePrice').innerHTML = marketPrice - okPrice;
+		$('orderPrice').innerHTML = insPrice + okPrice;
+	},
+	defaultValue: function(obj, value) {
+	    if ((obj == null) || (typeof(obj) == 'undefined') || isNaN(obj)) {
+	      return value;
+	    }
+	    return obj;
+	},
+	checkForm:function(){
+		var SELF = this;
+		var EL = DOM.getElementsByClassName('wpx184');
+		xui.widgets.Tip.clear();
+		for (i=0; i<EL.length; i++){
+			if(EL[i].value==""){
+				xui.widgets.Tip.show(EL[i].id,'带*号为必填项,不能为空!请重新输入。');
+				return;
+			}else if(EL[i] == $("erh_Tel0")&!xui.util.NumberUtil.isNumber(EL[i].value)){
+				xui.widgets.Tip.show(EL[i].id,'手机号码必须为11位数字。');
+				return;
+			}else if(EL[i] == $("erh_Tel0")&EL[i].value.length!==11){
+				xui.widgets.Tip.show(EL[i].id,'手机号码必须为11位数字。');
+				return;
+			}
+		}
+		SELF.postData();
+	}
+};
+</script>

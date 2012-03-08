@@ -22,7 +22,7 @@ public class OrderContactDO {
 	/**
 	 * 是否主联系人
 	 */
-	private String isMain ;
+	private String isMain = "N";
 	
 	/**
 	 * 证件类型
@@ -34,7 +34,7 @@ public class OrderContactDO {
 	 */
 	private String certificateNumber ;
 	
-	private Date gmtCreate ;
+	private Date gmtCreate = new Date();
 
 	
 	

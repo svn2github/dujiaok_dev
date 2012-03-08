@@ -69,6 +69,8 @@ public abstract class AbstractProduct {
 	 * 
 	 */
 	private List<ProductDetailDO> details;
+	
+	private String payTypes;
 
 	protected BigDecimal cheapestPrice;
 	
@@ -162,6 +164,14 @@ public abstract class AbstractProduct {
 	
 	public void setCheapestPrice(BigDecimal cheapestPrice) {
 		this.cheapestPrice = cheapestPrice;
+	}
+
+	public String getPayTypes() {
+		return payTypes;
+	}
+
+	public void setPayTypes(String payTypes) {
+		this.payTypes = payTypes;
 	}
 	
 	@Override

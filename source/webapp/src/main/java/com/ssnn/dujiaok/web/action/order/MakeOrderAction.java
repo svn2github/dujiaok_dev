@@ -1,275 +1,133 @@
 package com.ssnn.dujiaok.web.action.order;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
+import java.math.BigDecimal;
 
+import com.opensymphony.xwork2.ModelDriven;
+import com.ssnn.dujiaok.biz.log.DujiaokLogger;
 import com.ssnn.dujiaok.biz.service.HotelRoomService;
-import com.ssnn.dujiaok.biz.service.HotelService;
-import com.ssnn.dujiaok.biz.service.MemberService;
+import com.ssnn.dujiaok.biz.service.OrderService;
 import com.ssnn.dujiaok.biz.service.SelfDriveService;
 import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.biz.service.product.ProductDetailService;
+import com.ssnn.dujiaok.constant.ProductConstant;
+import com.ssnn.dujiaok.model.AbstractProduct;
 import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.model.OrderDO;
 import com.ssnn.dujiaok.model.ProductDetailDO;
 import com.ssnn.dujiaok.model.SelfDriveDO;
-import com.ssnn.dujiaok.model.TicketDO;
 import com.ssnn.dujiaok.util.order.OrderUtils;
+import com.ssnn.dujiaok.util.string.StringUtil;
 import com.ssnn.dujiaok.web.action.BasicAction;
+import com.ssnn.dujiaok.web.context.SessionUtil;
 
-public class MakeOrderAction extends BasicAction {
-	/**
-	 * 产品id
-	 */
-	private String productId;
-	/**
-	 * 产品详单id.
-	 */
-	private String productDetailId;
-	/**
-	 * 自驾成人数.
-	 */
-	private Integer adultNum;
-	/**
-	 * 自驾孩童数.
-	 */
-	private Integer childNum;
-	/**
-	 * 自驾出行日期.
-	 */
-	private Date departDate;
+@SuppressWarnings("serial")
+public class MakeOrderAction extends BasicAction implements ModelDriven<OrderDO> {
+	private OrderDO orderDO = new OrderDO();
 	
-	/**
-	 * 入住日期.酒店.
-	 */
-	private Date checkinDate;
-	/**
-	 * 离店日期.酒店
-	 */
-	private Date checkoutDate;
-	/**
-	 * 门票数量.
-	 */
-	private Integer ticketNum;
-	
-//	private TourService tourService;
-//	private ProductService productService;
-	
+	private OrderService orderService;
 	private SelfDriveService selfDriveService;
-	private HotelService hotelService;
 	private HotelRoomService hotelRoomService;
 	private TicketService ticketService;
 	private ProductDetailService productDetailService;
-	private MemberService memberService;
 	
-	@Override
-	public String execute() throws Exception  {
-//        int countTotal = this.adultNum + this.childNum;
-//
-//        Tour tour = tourService.getTourById(new Integer(productDetailId));
-//
-//        if (tour == null || tour.getStartDate() == null) {
-//            return SUCCESS;
-//        }
-//
-//        if (tour.getChildPrice() == null) {
-//        	getHttpSession().setAttribute("childPrice", 0);
-//        } else {
-//        	getHttpSession().setAttribute("childPrice", tour.getChildPrice());
-//        }
-//
-//        if (tour.getDoublePrice() == null) {
-//        	getHttpSession().setAttribute("doublePrice", 0);
-//        } else {
-//        	getHttpSession().setAttribute("doublePrice", tour.getDoublePrice());
-//        }
-//
-//        if (tour.getSinglePrice() == null) {
-//        	getHttpSession().setAttribute("singlePrice", 0);
-//        } else {
-//        	getHttpSession().setAttribute("singlePrice", tour.getSinglePrice());
-//        }
-//        
-//        if (tour.getComboPrice() == null) {
-//            getHttpSession().setAttribute("comboPrice", 0);
-//        } else {
-//        	getHttpSession().setAttribute("comboPrice", tour.getComboPrice());
-//        }
-//        
-//        Product product = productService.getProductById(new Integer(productId));
-//        if(product != null){
-//        	getHttpSession().setAttribute("product", product);
-//        }
-//
-//        getHttpSession().setAttribute("day", tour.getStartDate());
-//        getHttpSession().setAttribute("dest", product.getDest());
-//        getHttpSession().setAttribute("countPerson", this.adultNum);
-//        getHttpSession().setAttribute("countChild", this.childNum);
-//        getHttpSession().setAttribute("countTotal", countTotal);
-//        getHttpSession().setAttribute("productId", productId);
-        return SUCCESS;
-	}
+	private static final DujiaokLogger LOGGER = DujiaokLogger.getLogger(OrderDetailAction.class);
 	
-	public String makeSelfDriveOrder() {
-		OrderDO orderDO = new OrderDO();
-		//TODO
-		orderDO.setProductType("1");
-		orderDO.setProductId(this.productId);
-		//TODO
-		orderDO.setProductDetailId(this.productDetailId);
-		//TODO
-		orderDO.setMemberId("hello1235");
-		orderDO.setCount(this.adultNum == null? 0: this.adultNum);
-		orderDO.setSecondaryCount(this.childNum == null ? 0 : this.childNum);
-		orderDO.setGmtOrderStart(this.departDate);
-		SelfDriveDO selfDriveDO = this.selfDriveService.getSelfDrive(this.productId);
-		if (selfDriveDO == null) {
-			//TODO log no detail product error
+	/**
+	 * 生成自驾订单.
+	 * @return .
+	 */
+	public String makeOrder() {
+		MemberDO memberDO = SessionUtil.getLoginMemberDO(getHttpSession());
+		orderDO.setMemberId(memberDO.getMemberId());
+		
+		if (!OrderUtils.checkOrderKeyInfo(orderDO)) {
+			LOGGER.error("Order info error:" + this.orderDO.toString());
+			this.getHttpSession().setAttribute("message", "订单信息有误。");
 			return ERROR;
 		}
-		ProductDetailDO detailDO = this.productDetailService.getProductDetail(this.productId, this.productDetailId);
+		
+		AbstractProduct productDo = this.getProduct(orderDO.getProductId(), orderDO.getProductType());
+		if (productDo == null) {
+			LOGGER.error(StringUtil.concat("makeSelfDriveOrder(productId:", this.orderDO.getProductId(),
+					"): product not Exist"));
+			this.getHttpSession().setAttribute("message", "非常抱歉，您选择的产品不再销售。");
+			return ProductConstant.NOT_EXIST;
+		}
+		orderDO.setName(productDo.getName() + "-订单");
+		orderDO.setPayType(productDo.getPayTypes());
+		setOrderGmtStartAndEnd(this.orderDO, productDo);
+		
+		ProductDetailDO detailDO = this.productDetailService.getProductDetail(this.orderDO.getProductId(),
+				this.orderDO.getProductDetailId());
 		if (detailDO == null) {
-			//TODO log no detail product error
-			return ERROR;
+			LOGGER.error(StringUtil.concat("makeSelfDriveOrder(productId:", this.orderDO.getProductId(),
+					",productDetailId:", this.orderDO.getProductDetailId(),") product not exist."));
+			return ProductConstant.NOT_EXIST;
 		}
-		if (this.departDate.before(detailDO.getGmtStart()) || this.departDate.after(detailDO.getGmtEnd())) {
-			//TODO log depart date out of the range error
-			return ERROR;
-		}
-		OrderUtils.setSelfDriveOrderStartEndDate(orderDO, selfDriveDO.getDays());
-		selfDriveDO.setDetails(Arrays.asList(detailDO));
-		MemberDO memberDO = this.memberService.queryMember(orderDO.getMemberId());
-		if (memberDO == null) {
-			//TODO LOG can't find operated member error
-			return ERROR;
-		}
-		memberDO.setPassword(null);
-		memberDO.setMemberId(null);
-		String startDate = new SimpleDateFormat("yyyy-MM-dd").format(orderDO.getGmtOrderStart());
-		String endDate = new SimpleDateFormat("yyyy-MM-dd").format(orderDO.getGmtOrderEnd());
-		this.getHttpSession().setAttribute("startDate", startDate);
-		this.getHttpSession().setAttribute("endDate", endDate);
-		this.getHttpSession().setAttribute("member", memberDO);
-		getHttpSession().setAttribute("product", selfDriveDO);
-		getHttpSession().setAttribute("order", orderDO);
-		return SUCCESS;
-	}
-	
-	public String makeHotelOrder() {
+		orderDO.setPrice(getOrderPrice(this.orderDO, detailDO, productDo));
 		
-		return SUCCESS;
-	}
-	
-	public String makeHotelRoomOrder() {
+		OrderUtils.setOrderDefaultValue(orderDO);
 		
-		return SUCCESS;
-	}
-	
-	public String makeTicketOrder() {
-		OrderDO orderDO = new OrderDO();
-		orderDO.setProductType("4");
-		orderDO.setProductId(this.productId);
-		orderDO.setProductDetailId(this.productDetailId);
-		
-		TicketDO ticketDO = this.ticketService.getTicket(orderDO.getProductId());
-		if(ticketDO == null) {
-			//TODO log ticket product not exist error
-			return ERROR;
+		if(StringUtil.isEmpty(orderDO.getOrderId())) {
+			try {
+				this.orderService.createOrderAndDetailContact(orderDO);
+			} catch (Exception e) {
+				LOGGER.error("unknow exception", e);
+				this.getHttpSession().setAttribute("message", "系统发生未知异常！");
+				return ERROR;
+			}
 		}
-		ProductDetailDO detailDO = this.productDetailService.getProductDetail(this.productId, this.productDetailId);
-		if (detailDO == null) {
-			//TODO log ticket detail error;
-			return ERROR;
-		}
-		ticketDO.setDetails(Arrays.asList(detailDO));
-		this.getHttpSession().setAttribute("product", ticketDO);
 		this.getHttpSession().setAttribute("order", orderDO);
+		this.getHttpSession().setAttribute("productName", productDo.getName());
+		this.getHttpSession().setAttribute("orderDesc", OrderUtils.getOrderInfoDesc(orderDO));
 		return SUCCESS;
 	}
 	
-	public String getProductId() {
-		return productId;
-	}
-	public void setProductId(String productId) {
-		this.productId = productId;
-	}
-	public String getProductDetailId() {
-		return productDetailId;
-	}
-
-	public void setProductDetailId(String productDetailId) {
-		this.productDetailId = productDetailId;
-	}
-
-	public Integer getAdultNum() {
-		return adultNum;
+	private AbstractProduct getProduct(String productId, String productType) {
+		if (productId.startsWith("ZJ")) {
+			return this.selfDriveService.getSelfDrive(productId);
+		} else if (productId.startsWith("MP")) {
+			return this.ticketService.getTicket(productId);
+		} else if (productId.startsWith("FJ")) {
+			return this.hotelRoomService.getRoom(productId);
+		} else {
+			if ("SELFDRIVE".equals(productType)) {
+				return this.selfDriveService.getSelfDrive(productId);
+			} else if ("TICKET".equals(productType)) {
+				return this.ticketService.getTicket(productId);
+			} else if ("HOTELROOM".equals(productType)) {
+				return this.hotelRoomService.getRoom(productId);
+			}
+		}
+		return null;
 	}
 	
-	public void setAdultNum(String adultNum) {
-		try {
-			this.adultNum = Integer.valueOf(adultNum);
-		} catch(Exception e) {
-			this.adultNum = 0;
+	private void setOrderGmtStartAndEnd(OrderDO order, AbstractProduct productDO) {
+		if (productDO.getProductId().startsWith("ZJ")) {
+			OrderUtils.setSelfDriveOrderStartEndDate(orderDO, ((SelfDriveDO) productDO).getDays());
+		} else if (productDO.getProductId().startsWith("MP")) {
+			OrderUtils.setSelfDriveOrderStartEndDate(orderDO, 1);
 		}
-	}
-
-	public Integer getChildNum() {
-		return childNum;
-	}
-
-	public void setChildNum(String childNum) {
-		try {
-			this.childNum = Integer.valueOf(childNum);
-		} catch(Exception e) {
-			this.childNum = 0;
-		}
-	}
-
-	public Date getDepartDate() {
-		return departDate;
-	}
-
-	public void setDepartDate(String departDate) {
-		DateFormat tempFormat = new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			this.departDate = tempFormat.parse(departDate);
-		} catch (Exception e) {
-			this.departDate = null;
-		}
-	}
-
-	public Date getCheckinDate() {
-		return checkinDate;
-	}
-
-	public void setCheckinDate(Date checkinDate) {
-		this.checkinDate = checkinDate;
-	}
-
-	public Date getCheckoutDate() {
-		return checkoutDate;
-	}
-
-	public void setCheckoutDate(Date checkoutDate) {
-		this.checkoutDate = checkoutDate;
 	}
 	
-	public Integer getTicketNum() {
-		return ticketNum;
+	private BigDecimal getOrderPrice(OrderDO order, ProductDetailDO detailDO, AbstractProduct productDO) {
+		if (order.getProductId().startsWith("ZJ")) {
+			int doubleNum = this.orderDO.getCount()/2;
+			int days = ((SelfDriveDO) productDO).getDays();
+			return detailDO.getDoublePrice().multiply(new BigDecimal(doubleNum)).add(
+					detailDO.getPrice().multiply(new BigDecimal(this.orderDO.getCount() % 2))).add(
+				    detailDO.getChildPrice().multiply(new BigDecimal(this.orderDO.getSecondaryCount()))).add(
+				    new BigDecimal(order.getInsureNum() * 20 * days));
+		}
+		return detailDO.getPrice().multiply(new BigDecimal(order.getCount()));
 	}
-	
-	public void setTicketNum(Integer ticketNum) {
-		this.ticketNum = ticketNum;
+
+	public void setOrderService(OrderService orderService) {
+		this.orderService = orderService;
 	}
 
 	public void setSelfDriveService(SelfDriveService selfDriveService) {
 		this.selfDriveService = selfDriveService;
-	}
-
-	public void setHotelService(HotelService hotelService) {
-		this.hotelService = hotelService;
 	}
 
 	public void setHotelRoomService(HotelRoomService hotelRoomService) {
@@ -284,11 +142,16 @@ public class MakeOrderAction extends BasicAction {
 		this.productDetailService = productDetailService;
 	}
 
-	public MemberService getMemberService() {
-		return memberService;
+	@Override
+	public OrderDO getModel() {
+		return this.orderDO;
 	}
 
-	public void setMemberService(MemberService memberService) {
-		this.memberService = memberService;
+	public OrderDO getOrderDO() {
+		return orderDO;
+	}
+
+	public void setOrderDO(OrderDO orderDO) {
+		this.orderDO = orderDO;
 	}
 }

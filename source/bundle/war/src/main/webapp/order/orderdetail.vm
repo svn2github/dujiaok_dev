@@ -1,118 +1,91 @@
 #set($layout="/order/default.vm")
 <form id='changeStatus' action='${env.root}/order/paydetail.htm' method='post'>
 <!--内容开始 -->
-        <div id="wrap">
-		<div class="step-box"><div class="step-3"></div></div>
+    <div id="wrap">
+	    <div class="step-box"><div class="step-3"></div></div>
             <div class="section urhere">
                 <!--span class="F3">分享到： 新浪微博 </span-->
             </div>
             
             <div id="order_confirm" class="section">
-            		<h2 class="d_title"><span class="order-nav">预订：</span>$product.name</h2>
-                    #if ($product.typeId == 0)
-                    <table class="d_dgcp"  cellpadding="0" cellspacing="0">
-                    	<tr>
-                        	<th>编号</th>
-                            <th>线路名称</th>
-                            <th>出发信息</th>
-                            <th>人数</th>
-                        </tr>
-                        <tr>
-                        	<td>$!product.id</td>
-                            <td>$!product.name</td>
-                            <td>$!product.dest<br />$!order.startDate</td>
-                            <td>成人 <strong>$!order.adultNumber</strong> <br />#if($order.childNumber!=0)儿童 <strong>$!order.childNumber</strong>#end </td>
-                        </tr>
-                    </table>
-                    #if($order.insure!=0)
-                    <h3 class="dingdanhead">附加产品</h3>
-                    <p>自由行-平安国内短途2日游意外险&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;市场价：20元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok价：10元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>$!order.insure</strong> 份</p>
-                    #end
-                    <!--h3 class="dingdanhead">游玩人信息</h3>-->
-                    #end
-                    #if ($product.typeId == 1)
-                    <table class="d_dgcp"  cellpadding="0" cellspacing="0">
-                    	<tr>
-                        	<th>编号</th>
-                            <th>线路名称</th>
-                            <th>出发信息</th>
-                            <th>份数</th>
-                        </tr>
-                        <tr>
-                        	<td>$!product.id</td>
-                            <td>$!product.name</td>
-                            <td>$!product.dest<br />$!order.startDate</td>
-                            <td>份数<strong>$!order.comboNumber</strong> </td>
-                        </tr>
-                    </table>
-                    #end
-                    #if ($product.typeId == 2)
-                    <table class="d_dgcp"  cellpadding="0" cellspacing="0">
-                    	<tr>
-                        	<th>编号</th>
-                            <th>产品名称</th>
-                            <th>酒店信息</th>
-                            <th>房间数</th>
-                        </tr>
-                        <tr>
-                        	<td>$!product.id</td>
-                            <td>$!product.name</td>
-                            <td>
-								#foreach($tour in $tourList)
-                        	    $!tour.startDate &nbsp;&nbsp; $!tour.hotelPrice元 <br />
-								#end
-								<!--$order.endDate-->
-							</td>
-                            <td>房间数<strong>$!order.hotelNumber</strong><br />天数：$!order.hotelDay</td>
-                        </tr>
-                    </table>
-					#end
-					
-					<input type="hidden" value="$!order.personInfo" id="personInfo" />
-                    <div id="dingdan">
-                    <div class="d_left">
-                    <div id="personInfo_view"></div>
-                    </div>
-                    </div>
-					<div style="clear:both;"></div>
-                    <h3 class="dingdanhead">金额总计</h3>
+            	<h2 class="d_title"><span class="order-nav">预订：</span>$!productName</h2>
+                <table class="d_dgcp"  cellpadding="0" cellspacing="0">
+                	<tr>
+                    	<th align="left">订单编号</th>
+                        <th align="left">产品名称</th>
+                        <th align="left">出发信息</th>
+                        <th align="left">订单信息</th>
+                    </tr>
+                    <tr>
+                    	<td>$!order.orderId</td>
+                        <td>$!order.name</td>
+                        <td>$!order.desc<br />$dateUtils.format($!order.gmtOrderStart, 'yyyy-MM-dd')</td>
+                        <td>$!orderDesc</td>
+                    </tr>
+                </table>
+                #if($order.insureNum > 0)
+	                <h3 class="dingdanhead">附加产品</h3>
+	                <p>自由行-平安国内短途2日游意外险&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;市场价：￥20人/天<strong>$!order.insure</strong> 份</p>
+                #end
+                <h3 class="dingdanhead">游玩人信息</h3>
+                <div>
+                	#foreach ($personInfo in $!order.contacts)
+                	  <table class="d_ywrxx"  cellpadding="0" cellspacing="0">
+		                	<tr>
+		                		<th ><strong>主联系人信息</strong></th>
+		                    	<th>主联系人姓名：</th>
+		                        <td>$personInfo.name</td>
+		                    </tr>
+		                    <tr>
+		                    	<th></th>
+		                    	<th>主联系人手机：</th>
+		                        <td>$personInfo.mobile</td>
+		                    </tr>
+		                    <tr>
+		                    	<th></th>
+		                    	<th>证件类型：</th>
+		                        <td>
+		                        	#if($personInfo.certificateType=='ID')
+		                        	  身份证
+		                            #elseif($personInfo.certificateType=='PASSPORT')
+		                              护照
+		                            #elseif($personInfo.certificateType=='OFFICERPORT')
+		                              军官证
+		                            #else
+		                              其他
+		                            #end
+		                        </td>
+		                    </tr>
+		                    <tr>
+		                    	<th></th>
+		                    	<th>证件号码：</th>
+		                        <td>$personInfo.certificateNumber</td>
+		                    </tr>
+		                    <tr>
+		                    	<th></th>
+		                    	<th>E-mail：</th>
+		                        <td>$personInfo.email</td>
+		                    </tr>
+		                </table>
+                	#end
+                </div>
+                #if($!order.memo != '')
+                	<h3 class="dingdanhead">金额总计</h3>
+                	<textarea rows="10" id="memo" name="memo" style="width:500px; margin:8px 0 0 50px;"></textarea>
+                #end
+                <h3 class="dingdanhead">金额总计</h3>
 
-					<p class="Settlement_amount">订单结算金额&nbsp;&nbsp;&nbsp;<b>￥$!order.totalPrice元</b></p>
-                    <div class="d_qrxd">
-						#if("待付款"==$order.status)
-							<button type="submit" id="submit">&nbsp;&nbsp;&nbsp;&nbsp;</button>
-						#end
-						<a style="cursor:pointer;" onclick="returnPage()">&nbsp;&nbsp;返回</a>
-                    </div>
-					
-              </div>
-       </div>    
-		#if("y"==$isAdmin)
-		   <select name="changeStatus" id="changeStatus">
-    	      <option value="0">待付款</option>
-    	      <option value="1">等待预定确认</option>
-    	      <option value="2">预订成功</option>
-    	      <option value="4">订单关闭（超时未付款）</option>
-    	      <option value="5">订单关闭（预定不成功）</option>
-    	      <option value="6">订单关闭（客户需退款）</option>
-    	      <option value="7">已退款</option>
-  	        </select>
-			<p></p>
-			<input name="comment" id="comment" value="$!order.comment" />
-			<p></p>
-			<button type="submit" onclick="changeStatus()">变更状态</button><a href="$env.getWebURL('')/trek/manage/manage/listAllOrder.htm">返回订单查询</a>
-			
-		#end
-            <!-- 内容结束 -->
-	
-	<input type="hidden" id="webUrl" name="webUrl" value="$uribroker.rootContext.setTarget('/')" />
-	
-	<input type="hidden" id="orderId" name="orderId" value="$order.id" />
-	<input type="hidden" id="productId" name="productId" value="$product.id" />
-	<input type="hidden" id="amount" name="amount" value="$order.totalPrice" />
-	<input type="hidden" id="status" name="status"  />
-	
-	
+			    <p class="Settlement_amount">订单结算金额&nbsp;&nbsp;&nbsp;<b>￥$!order.price元</b></p>
+                <div class="d_qrxd">
+					#if("UNPAY"==$!order.payStatus)
+						<button type="submit" id="submit">&nbsp;&nbsp;&nbsp;&nbsp;</button>
+					#end
+					<a style="cursor:pointer;" onclick="returnPage()">&nbsp;&nbsp;返回</a>
+                </div>
+            </div>
+        </div>
+	</div>
+	<input type="hidden" id="orderId" name="orderId" value="$!order.orderId" />
 <script type="text/javascript">
 var EV = xui.util.Event,
 DOM = xui.util.Dom;

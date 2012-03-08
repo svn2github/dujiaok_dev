@@ -76,8 +76,8 @@ public class OrderServiceImpl implements OrderService {
 		if(order != null){
 			List<OrderContactDO> contacts = orderDAO.queryOrderContactsByOrder(orderId) ; 
 			order.setContacts(contacts) ;
-			OrderDetailDO detail = orderDAO.queryOrderDetailByOrder(orderId) ; 
-			order.setDetail(detail) ;
+//			OrderDetailDO detail = orderDAO.queryOrderDetailByOrder(orderId) ; 
+//			order.setDetail(detail) ;
 		}
 		return order ;
 	}

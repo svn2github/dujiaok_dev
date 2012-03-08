@@ -6,11 +6,9 @@ import java.util.Map;
 import com.ssnn.dujiaok.biz.service.order.AlipayService;
 import com.ssnn.dujiaok.biz.service.OrderService;
 import com.ssnn.dujiaok.model.OrderDO;
-import com.ssnn.dujiaok.model.order.Order;
-import com.ssnn.dujiaok.model.product.Product;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
-
+@SuppressWarnings("serial")
 public class AlipayOrderAction extends BasicAction {
 	private String orderId;
 	
@@ -40,8 +38,6 @@ public class AlipayOrderAction extends BasicAction {
 	}
 	
 	private String buildAlipayForm(String subject, String orderId, Double amount) {
-        AlipayService service = new AlipayService();
-
         Map<String, String> sParaTemp = new HashMap<String, String>();
         sParaTemp.put("subject", "（度假OK 订单 www.dujiaok.com）" + subject);
         sParaTemp.put("out_trade_no", orderId + "");
@@ -49,7 +45,7 @@ public class AlipayOrderAction extends BasicAction {
 //        sParaTemp.put("total_fee", amount + "");
         sParaTemp.put("total_fee", "0.01");
 
-        String result = service.create_direct_pay_by_user(sParaTemp);
+        String result = AlipayService.create_direct_pay_by_user(sParaTemp);
         return result;
     }
 

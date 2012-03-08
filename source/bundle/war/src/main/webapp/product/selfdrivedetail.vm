@@ -1,33 +1,55 @@
 #set($layout="/product/default.vm")
 
-    
+#STATIC("CSS",["/blogcal/blogcalendar.css"])
 <!-- 内容开始 -->
 <div id="wrap">
     <div class="section urhere">
-    	<p class="F3">您当前的位置： 自驾游  - $product.name</p>
-        <!--span class="F3">分享到： 新浪微博 </span-->
+    	<p class="F3">您当前的位置： 自驾游  - $!product.name</p>
     </div>
     
     <div id="detail" class="section">
     	<div class="d_left">
         	<h2 class="d_title">$!product.name</h2>
-                <div id="Focus">
-                    <ul id="Focus_content">
-                        #foreach($!pictureUrl in $!product.pictureUrls)
-                          <li class="circularPanel">
-                            <img src=$!pictureUrl width="710" height="250" />
-                            <h2></h2>
-                          </li>
-                        #end
-                    </ul>
-                <ul class="trigger">
+            <div id="Focus">
+                <ul id="Focus_content">
                     #foreach($!pictureUrl in $!product.pictureUrls)
-                      <li class="circularTrigger"></li>
+                      <li class="circularPanel">
+                        <img src=$!pictureUrl width="710" height="250" />
+                        <h2></h2>
+                      </li>
                     #end
                 </ul>
-                </div>
-				
+	            <ul class="trigger">
+	                #foreach($!pictureUrl in $!product.pictureUrls)
+	                  <li class="circularTrigger"></li>
+	                #end
+	            </ul>
+            </div>
+            <div class="Calendar">
+				<div id="idCalendarPre">上一月</div>
+				<div id="idCalendarNext">下一月</div>
             
+				<span id="idCalendarYear"></span>年 <span id="idCalendarMonth"></span>月
+				<table cellspacing="0">
+					<thead>
+						<tr>
+                            <td>日</td>
+                            <td>一</td>
+                            <td>二</td>
+                            <td>三</td>
+                            <td>四</td>
+                            <td>五</td>
+                            <td>六</td>
+						</tr>
+					</thead>
+					<tbody id="idCalendar">
+					</tbody>
+				</table>
+				
+				<!--
+                <input id="idCalendarNow" type="button" value="当前月" />
+                -->
+			</div>
             <div style="padding-top:10px;">
             	<div id="frame_content" width="710">
             		<div id="pro_intro" class="FS12 F2">
@@ -36,7 +58,6 @@
 				                <li class="cur"><a href="#introduction">产品介绍</a></li>
 				                <li><a href="#jouney">行程</a></li>
 				                <li><a href="#feedesc">费用说明</a></li>
-				                <li><a href="#remark">备注</a></li>
 				            </ul>
         				</div>
 	        			<h2 id="introduction">产品介绍</h2>
@@ -48,10 +69,6 @@
 				        <h2 id="feedesc">费用说明</h2>
 				        <div class="pro_intro_list2">
 					        <p>#ESCAPE_HTML($!product.feeDesc)</p>
-				        </div>
-				        <h2 id="remark">备注</h2>
-				        <div class="pro_intro_list3">
-				          <p>#ESCAPE_HTML($!product.memo)</p>
 				        </div>
 	    			</div>
             	</div>
@@ -65,27 +82,35 @@
                 	<tr><th><strong>市场价</strong>：</th><td>$!product.marketPrice元</td></tr>
                     <tr><th><strong>商品编号</strong>：</th><td>$!product.productId</td></tr>
                     <tr><th><strong>支付方式</strong>：</th><td>$!product.payTypes</td></tr>
-                    <tr><th><strong>产品类别</strong>：</th><td>$product.productTypes</td></tr>
+                    <tr><th><strong>产品类别</strong>：</th><td>$!product.productTypes</td></tr>
                     <tr><th><strong>附加产品</strong>：</th><td>#if($product.addProducts=='') 无 #else $!product.addProducts #end</td></tr>
                     <tr><th><strong>游玩天数</strong>：</th><td>$!product.days天</td></tr>
                 </table>
             </div>
             <div class="order">
-            	#if ($product.details.size() > 0)
-            	<form id="orderForm" method="post" action="${env.root}/order/makeselfdriveorder.htm">
+            	#if(!$collectionUtils.isEmpty($product.details))
+            	<form id="orderForm" method="get" action="${env.root}/order/bookselfdrive.htm">
                 	<ul>
                     	<li>游玩日期：
-                   	    	<select name="productDetailId" id="productDetailId" onchange="changePrice()">
-								#foreach($detail in $product.details)
-                                  #foreach($day in $detail.startDates)
-                                    <option value="$detail.id">$day</option>
+                   	    	<select name="productDetailId" id="productDetailId" onchange="changeDepartDate()">
+                   	    		#set($i=1)
+								#foreach($detail in $!product.details)
+                                  #foreach($day in $!detail.startDates)
+                                    <option value="$detail.id" #if($i==1) selected=true #end>$dateUtils.format($day, 'yyyy-MM-dd')</option>
+                                    #set($i=1+$i)
                                   #end
 								#end
                   	        </select>
                   	     </li>
-                  	     <input type="hidden" id="departDate" name="departDate" value="$!product.details.get(0).startDates.get(0)" />
-                         <li>单人<span id='singlePrice'>$!product.details.get(0).price</span>元&nbsp;&nbsp;双人<span id='doublePrice'>$!product.details.get(0).doublePrice</span>元&nbsp;&nbsp;#if($product.details.get(0).childPrice!=0)儿童<span id='childPrice'>$!product.details.get(0).childPrice</span> 元#end </li>
-                         <li>成人数&nbsp;<input type="text" name="adultNum" id="adultNum">&nbsp;&nbsp;&nbsp;&nbsp;#if($!product.details.childPrice!=0)儿童数&nbsp;<input type="text" name="childNum" id="childNum">&nbsp;&nbsp;&nbsp;&nbsp;#else <input type="hidden" id="countChild" value="0"> #end </li>
+                  	     <input type="hidden" id="departDate" name="gmtOrderStart" value="$dateUtils.format($!product.details.get(0).startDates.get(0), 'yyyy-MM-dd')" />
+                         <li>单人：<span id='singlePrice'>$!product.details.get(0).price</span>元&nbsp;&nbsp;双人：<span id='doublePrice'>$!product.details.get(0).doublePrice</span>元&nbsp;&nbsp;#if($product.details.get(0).childPrice!=0)<br>儿童：<span id='childPrice'>$!product.details.get(0).childPrice</span> 元#end </li>
+                         <li>成人数&nbsp;<input type="text" name="count" width="6" id="adultNum">&nbsp;&nbsp;&nbsp;&nbsp;
+                             #if($!product.details.childPrice!=0)
+                             	儿童数&nbsp;<input type="text" name="secondaryCount" id="childNum">&nbsp;&nbsp;&nbsp;&nbsp;
+                             #else
+                                <input type="hidden" name="secondaryCount" id="countChild" value="0">
+                             #end
+                         </li>
                     </ul>
                 	<button type="submit">&nbsp;&nbsp;&nbsp;</button>
 					<input type="hidden" id="productId" name="productId" value="$!product.productId" />
@@ -95,12 +120,9 @@
             </div>
         </div>
     </div>
-</div>    
-<!-- 内容结束 -->
+</div>
 
-
-
-
+#STATIC("JS",["/blogcal/blogcalendar.js"])
 <script>
 
     var x = new xui.widgets.Slide();
@@ -115,7 +137,7 @@
   	  #end
 	]
 	
-    function changePrice(){
+    function changeDepartDate(){
         var selfDriveId = document.getElementById('productDetailId').value;
         var dayOptions = document.getElementById('productDetailId');
         var departDay = dayOptions.options[dayOptions.selectedIndex].text;
@@ -131,6 +153,56 @@
           }
         }
     }
+    
+    //calendar
+    //初始化Calendar
+    var url = '${env.root}/ajax/priceCalendar.htm?productId=$!product.productId' ;
+    
+    var cale = new Calendar("idCalendar", {
+    	SelectDay: new Date().setDate(10),
+    	onSelectDay: function(o){ o.className = "onSelect"; },
+    	onToday: function(o){ o.className = "onToday"; },
+    	onFinish: function(){
+    		var self = this;
+    		
+    		xui.util.Ajax.asyncGET(url , 
+    				function(data){
+            			try{
+            				var obj = eval('('+data+')') ;
+            				var calendar = obj.calendar ;
+    						
+    						$("idCalendarYear").innerHTML = this.Year; $("idCalendarMonth").innerHTML = this.Month;
+    						var flag = calendar  ;
+                    		// var flag = [{severtime:"2012-01",data:[{id:10,name:"250元"},{id:15,name:"250"},{id:16,name:"250"}]},{severtime:"2012-02",data:[{id:12,name:"250元"},{id:14,name:"250"},{id:16,name:"250"}]}];
+                    		for(var i = 0, len = flag.length; i < len; i++){
+                    			var timer = flag[i].severtime.split("-");
+                    			var b = self.Year == timer[0] && self.Month == timer[1]?true:false;
+                    			if(b){
+                    				var pricredate = flag[i].data;
+                    				for(var i = 0; i<pricredate.length; i++){
+                    					self.Days[pricredate[i].id].innerHTML = "<a href='javascript:void(0);' onclick=\"alert('日期是:"+self.Year+"/"+self.Month+"/"+pricredate[i].id+"');return false;\">" + pricredate[i].id + "</a><br>"+pricredate[i].name+"";
+                    				}
+                    			}
+                    		}
+    						
+    						
+            			}catch(e){
+            				alert('初始化日历失败！');
+            			}
+            		} , 
+            		function(data){
+            			alert("get data error!") ;
+            		}
+            ) ;
+    	}
+    });
+
+    
+    $("idCalendarPre").onclick = function(){ cale.PreMonth(); }
+    $("idCalendarNext").onclick = function(){ cale.NextMonth(); }
+    //$("idCalendarPreYear").onclick = function(){ cale.PreYear(); }
+    //$("idCalendarNextYear").onclick = function(){ cale.NextYear(); }
+    //$("idCalendarNow").onclick = function(){ cale.NowMonth(); }
 
 </script>
 

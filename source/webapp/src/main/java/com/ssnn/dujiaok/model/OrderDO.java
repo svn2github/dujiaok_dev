@@ -92,23 +92,13 @@ public class OrderDO {
 	private Date gmtOrderEnd ;
 	
 	private Date gmtModified ;
-	
+	private int insureNum;
 	/**
 	 * 付款时间
 	 */
 	private Date gmtPaid ;
-
-	private OrderDetailDO detail ;
 	
 	private List<OrderContactDO> contacts ;
-	
-	public OrderDetailDO getDetail() {
-		return detail;
-	}
-
-	public void setDetail(OrderDetailDO detail) {
-		this.detail = detail;
-	}
 
 	public List<OrderContactDO> getContacts() {
 		return contacts;
@@ -284,5 +274,13 @@ public class OrderDO {
 
 	public void setGmtModified(Date gmtModified) {
 		this.gmtModified = gmtModified;
+	}
+
+	public int getInsureNum() {
+		return insureNum;
+	}
+
+	public void setInsureNum(int insureNum) {
+		this.insureNum = insureNum;
 	}
 }

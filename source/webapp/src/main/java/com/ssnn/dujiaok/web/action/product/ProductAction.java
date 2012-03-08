@@ -1,13 +1,12 @@
 package com.ssnn.dujiaok.web.action.product;
 
-import org.springframework.util.StringUtils;
-
 import com.ssnn.dujiaok.biz.log.DujiaokLogger;
 import com.ssnn.dujiaok.biz.service.HotelRoomService;
+import com.ssnn.dujiaok.biz.service.HotelService;
 import com.ssnn.dujiaok.biz.service.SelfDriveService;
 import com.ssnn.dujiaok.biz.service.TicketService;
-import com.ssnn.dujiaok.constant.Constant;
 import com.ssnn.dujiaok.constant.ProductConstant;
+import com.ssnn.dujiaok.model.HotelDO;
 import com.ssnn.dujiaok.model.HotelRoomDO;
 import com.ssnn.dujiaok.model.SelfDriveDO;
 import com.ssnn.dujiaok.model.TicketDO;
@@ -15,37 +14,17 @@ import com.ssnn.dujiaok.util.ProductUtils;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 @SuppressWarnings("serial")
-public class DetailAction extends BasicAction {
-
-	private Object product;
-
+public class ProductAction extends BasicAction {
 	private String productId;
 	
-	private HotelRoomService hotelRoomService ;
-	
+	private SelfDriveService selfDriveService;
+	private HotelService hotelService;
+	private HotelRoomService hotelRoomService;
 	private TicketService ticketService;
 	
-	private SelfDriveService selfDriveService ;
+	private static final DujiaokLogger LOGGER = DujiaokLogger.getLogger(ProductAction.class);
 
-	private static final DujiaokLogger LOGGER = DujiaokLogger.getLogger(DetailAction.class);
-	@Override
-	public String execute() throws Exception {
-		
-		if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_HOTELROOM)){
-			//房间
-			return getHotelRoomProductDetail();
-		}else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_TICKET)){
-			//门票
-			return getTicketProductDetail();
-		}else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_SELFDRIVE)){
-			//自驾
-			return getSelfDriveProductDetail();
-		}
-		
-		return ProductConstant.NOT_EXIST;
-	}
-
-	private String getSelfDriveProductDetail() {
+	public String getSelfDriveProductDetail() {
 		try {
 			SelfDriveDO param = new SelfDriveDO();
 			param.setProductId(this.productId);
@@ -58,14 +37,33 @@ public class DetailAction extends BasicAction {
 			}
 			ProductUtils.filteInvalideProductDetail(product.getDetails());
 			this.getHttpSession().setAttribute("product", product);
-			return ProductConstant.SELF_DRIVE;
+			return SUCCESS;
 		} catch (Exception e) {
 			LOGGER.error("Get SelfDriveProduct[" + this.productId + "] error", e);
 			return ERROR;
 		}
 	}
 	
-	private String getHotelRoomProductDetail() {
+	public String getHotelProductDetail() {
+		try {
+			HotelDO param = new HotelDO();
+//			param.setProductId(this.productId);
+			param.setProductId("JD1201171609535427");
+			HotelDO product = this.hotelService.getHotel(param.getProductId());
+			if (product == null) {
+				LOGGER.error("HotelProduct[" + this.productId + "] not exist", null);
+				this.getHttpSession().setAttribute("message", "非常抱歉，您选择的产品不再销售。");
+				return ProductConstant.NOT_EXIST;
+			}
+			this.getHttpSession().setAttribute("product", product);
+			return SUCCESS;
+		} catch (Exception e) {
+			LOGGER.error("Get HotelProduct[" + this.productId + "] error", e);
+			return ERROR;
+		}
+	}
+	
+	public String getHotelRoomProductDetail() {
 		try {
 			HotelRoomDO param = new HotelRoomDO();
 			//param.setProductId(this.productId);
@@ -78,18 +76,18 @@ public class DetailAction extends BasicAction {
 			}
 			ProductUtils.filteInvalideProductDetail(product.getDetails());
 			this.getHttpSession().setAttribute("product", product);
-			return ProductConstant.ROOM;
+			return SUCCESS;
 		} catch (Exception e) {
 			LOGGER.error("Get HotelRoomProduct[" + this.productId + "] error", e);
 			return ERROR;
 		}
 	}
 	
-	private String getTicketProductDetail() {
+	public String getTicketProductDetail() {
 		try {
 			TicketDO param = new TicketDO();
-			param.setProductId(this.productId);
-//			param.setProductId("MP1202120411482768");
+			//param.setProductId(this.productId);
+			param.setProductId("MP1202120411482768");
 			TicketDO product = this.ticketService.getTicketWithDetails(param.getProductId());
 			if (product == null) {
 				LOGGER.error("TicketProduct[" + this.productId + "] not exist", null);
@@ -98,28 +96,27 @@ public class DetailAction extends BasicAction {
 			}
 			ProductUtils.filteInvalideProductDetail(product.getDetails());
 			this.getHttpSession().setAttribute("product", product);
-			return ProductConstant.TICKET;
+			return SUCCESS;
 		} catch (Exception e) {
 			LOGGER.error("Get TicketProduct[" + this.productId + "] error", e);
 			return ERROR;
 		}
 	}
 	
-
 	public String getProductId() {
-		return productId;
-	}
-
-	public Object getProduct() {
-		return product;
-	}
-
-	public void setProduct(Object product) {
-		this.product = product;
+		return productId.toString();
 	}
 
 	public void setProductId(String productId) {
 		this.productId = productId;
+	}
+
+	public void setSelfDriveService(SelfDriveService selfDriveService) {
+		this.selfDriveService = selfDriveService;
+	}
+
+	public void setHotelService(HotelService hotelService) {
+		this.hotelService = hotelService;
 	}
 
 	public void setHotelRoomService(HotelRoomService hotelRoomService) {
@@ -129,8 +126,4 @@ public class DetailAction extends BasicAction {
 	public void setTicketService(TicketService ticketService) {
 		this.ticketService = ticketService;
 	}
-
-	public void setSelfDriveService(SelfDriveService selfDriveService) {
-		this.selfDriveService = selfDriveService;
-	}	
 }

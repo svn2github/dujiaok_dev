@@ -2,9 +2,9 @@ package com.ssnn.dujiaok.web.action.order;
 
 import com.ssnn.dujiaok.biz.service.OrderService;
 import com.ssnn.dujiaok.model.OrderDO;
-import com.ssnn.dujiaok.model.product.Product;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
+@SuppressWarnings("serial")
 public class PayDetailAction extends BasicAction {
 	private String orderId;
 	private OrderService orderService;

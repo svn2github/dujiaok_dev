@@ -113,14 +113,6 @@ public class SelfDriveDO extends AbstractProduct {
 		this.days = days;
 	}
 
-	public String getPayTypes() {
-		return payTypes;
-	}
-
-	public void setPayTypes(String payTypes) {
-		this.payTypes = payTypes;
-	}
-
 	public String getRecommend() {
 		return recommend;
 	}

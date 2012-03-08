@@ -150,8 +150,8 @@ public class ProductDetailDO implements Comparable<ProductDetailDO> {
 		this.gmtCreate = gmtCreate;
 	}
 
-	public List<String> getStartDates() {
-		return ProductUtils.formatDate(startDates, "yyyy-MM-dd");
+	public List<Date> getStartDates() {
+		return this.startDates;
 	}
 
 	public void setStartDates(List<Date> startDates) {

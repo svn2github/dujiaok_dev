@@ -1,6 +1,62 @@
-#set($layout="/front/default.vm")
+#set($layout="/order/default.vm")
 #set($title="度假OK - 我的订单")
-
-################################################################
-
-订单中心
+            
+    <!-- 内容开始 -->
+    <div class="ucenter section">
+    	<div class="ucenter_left">
+        	<h3 class="B ">我的度假OK</h3>
+            <ul>
+            	<h4>我的订单</h4>
+            	<li><a href="#">订单中心</a></li>
+            </ul>
+            <ul>
+            	<h4>个人信息</h4>
+            	<li class="cur"><a href="#">个人资料</a></li>
+                <li><a href="#">修改密码</a></li>
+            </ul>
+        </div>
+        <div class="ucenter_right">
+        	<div class="ucenter_profile">
+            	<span class="ucenter_profile_left"><p>欢迎您&nbsp;&nbsp;<b>$!member.nickname</b></p><p>账户余额：<b>￥0.00</b></p><p>完成订单：<b>12</b>个</p></span>
+                <span class="ucenter_profile_right">上次登录：$dateUtils.format($!member.gmtModified, 'yyyy-MM-dd')</span>
+            </div>
+            <h2 class="B FS14">个人资料</h2>
+            <table class="us02" cellpadding="0" cellspacing="0">
+            	<tr>
+                	<th>编号</th>
+                    <th>商品</th>
+                    <th>下单时间</th>
+                    <th>订单金额</th>
+                    <th>订单状态</th>
+                    <th>操作</th>
+                </tr>
+                #if(!$collectionUtils.isEmpty($!orderList))
+	                #foreach($order in $!orderList)
+		                <tr>
+		                	<td class="tb01">$!order.orderId</td>
+		                    <td class="tb02"><p><a></a></p><p>成人（<b>3</b>）&nbsp;&nbsp;&nbsp;&nbsp;儿童（<b>3</b>）</p></td>
+		                    <td class="tb03">$dateUtils.format($!order.gmtCreate, 'yyyy-MM-dd')</td>
+		                    <td class="tb04">￥$!order.price</td>
+		                    <td class="tb05">
+		                    	<p class="F7">
+		                    		#if($!order.status=='SUCCESS')
+		                    			已完成
+		                    		#elseif($!order.status=='CLOSED')
+		                    		    已关闭
+		                    		#elseif($!order.status=='UNPAID')
+		                    		    未付款
+		                    		#elseif($!order.status=='DRAWBACK')
+		                    		    已退款
+		                    		#end
+		                    	</p>
+		                    	<p><a href="${env.root}/order/orderdetail.htm?orderId=$!order.orderId" target="_blank">订单详情</a></p></td>
+		                    <td class="tb06"><button>付款</button><p><a href="#">关闭</a></p></td>
+		                </tr>
+	                #end
+	            #end
+	            <tr>
+                	<td colspan="6"  class="tb07">等待付款：0&nbsp;&nbsp;&nbsp;&nbsp;未完成：0&nbsp;&nbsp;&nbsp;&nbsp;已完成：9&nbsp;&nbsp;&nbsp;&nbsp;已取消：3&nbsp;&nbsp;&nbsp;&nbsp;订单总数：12</td>
+                </tr>
+            </table>
+        </div>
+    </div>
