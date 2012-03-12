@@ -1,4 +1,5 @@
 #set($layout="/product/default.vm")
+#STATIC("CSS",["/blogcal/blogcalendar.css"])
 <div id="wrap">
     <div class="section urhere">
     	<p class="F3">您当前的位置： 酒店房间 -> $product.name</p>
@@ -8,26 +9,42 @@
     <div id="detail" class="section">
     	<div class="d_left">
         	<h2 class="d_title">$!product.name</h2>
-                <div id="Focus">
-                    <ul id="Focus_content">
-                        #foreach($pictureUrl in $product.pictureUrls)
-                          <li class="circularPanel">
-                            <img src=$!pictureUrl width="710" height="250" />
-                            <h2></h2>
-                          </li>
-                        #end
-                    </ul>
+            <div id="Focus">
+                <ul id="Focus_content">
+                    #foreach($pictureUrl in $product.pictureUrls)
+                      <li class="circularPanel">
+                        <img src=$!pictureUrl width="710" height="250" />
+                        <h2></h2>
+                      </li>
+                    #end
+                </ul>
                 <ul class="trigger">
                     #foreach($pictureUrl in $product.pictureUrls)
                       <li class="circularTrigger"></li>
                     #end
                 </ul>
-                </div>
-				<script type="text/javascript">
-                var x = new xui.widgets.Slide();
-                </script>
-            <!--价格日历-->
-            #parse("product/pricecalendar.vm")
+            </div>
+            <div class="Calendar">
+				<div id="idCalendarPre">上一月</div>
+				<div id="idCalendarNext">下一月</div>
+            
+				<span id="idCalendarYear"></span>年 <span id="idCalendarMonth"></span>月
+				<table cellspacing="0">
+					<thead>
+						<tr>
+                            <td>日</td>
+                            <td>一</td>
+                            <td>二</td>
+                            <td>三</td>
+                            <td>四</td>
+                            <td>五</td>
+                            <td>六</td>
+						</tr>
+					</thead>
+					<tbody id="idCalendar">
+					</tbody>
+				</table>
+			</div>
             <div style="padding-top:10px;">
             	<div id="frame_content" width="710">
             		<div id="pro_intro" class="FS12 F2">
@@ -53,6 +70,7 @@
         	<div class="information">
             	<h3><i>特惠价</i> ￥<b><span id='tehui'>$!product.cheapestPrice</span></b>元/人起</h3>
                 <table>
+                	<tr><th><strong>酒店名称</strong>：</th><td><a href="${env.root}/product/detail.htm?productId=$!product.hotelId" target="hotel">$!hotelName</td></tr>
                 	<tr><th><strong>市场价</strong>：</th><td>$!product.marketPrice元</td></tr>
                     <tr><th><strong>商品编号</strong>：</th><td>$!product.productId</td></tr>
                     <tr><th><strong>支付方式</strong>：</th><td>$!product.payTypes</td></tr>
@@ -117,9 +135,9 @@
             </div>
         </div>
     </div>
-</div>    
-<!-- 内容结束 -->
-
+</div>
+#STATIC("JS",["/blogcal/blogcalendar.js"])
+#XUI_JS(["core/xui-core.js","util/util-min.js","slide/slide.js"])
 <script>
 	var roomInfos = [
 	  #foreach($detail in $product.details) 
@@ -154,5 +172,54 @@ function changeCheckoutDate(){
     var checkoutObj = document.getElementById('checkoutDateOpt');
     document.getElementById('checkoutDate').value = checkoutObj.options[checkoutObj.selectedIndex].text;
 }
+//calendar
+    //初始化Calendar
+    var url = '${env.root}/ajax/priceCalendar.htm?productId=$!product.productId' ;
+    
+    var cale = new Calendar("idCalendar", {
+    	SelectDay: new Date().setDate(10),
+    	onSelectDay: function(o){ o.className = "onSelect"; },
+    	onToday: function(o){ o.className = "onToday"; },
+    	onFinish: function(){
+    		var self = this;
+    		
+    		xui.util.Ajax.asyncGET(url , 
+    				function(data){
+            			try{
+            				var obj = eval('('+data+')') ;
+            				var calendar = obj.calendar ;
+    						
+    						$("idCalendarYear").innerHTML = this.Year; $("idCalendarMonth").innerHTML = this.Month;
+    						var flag = calendar  ;
+                    		// var flag = [{severtime:"2012-01",data:[{id:10,name:"250元"},{id:15,name:"250"},{id:16,name:"250"}]},{severtime:"2012-02",data:[{id:12,name:"250元"},{id:14,name:"250"},{id:16,name:"250"}]}];
+                    		for(var i = 0, len = flag.length; i < len; i++){
+                    			var timer = flag[i].severtime.split("-");
+                    			var b = self.Year == timer[0] && self.Month == timer[1]?true:false;
+                    			if(b){
+                    				var pricredate = flag[i].data;
+                    				for(var i = 0; i<pricredate.length; i++){
+                    					self.Days[pricredate[i].id].innerHTML = "<a href='javascript:void(0);' onclick=\"alert('日期是:"+self.Year+"/"+self.Month+"/"+pricredate[i].id+"');return false;\">" + pricredate[i].id + "</a><br>"+pricredate[i].name+"";
+                    				}
+                    			}
+                    		}
+    						
+    						
+            			}catch(e){
+            				alert('初始化日历失败！');
+            			}
+            		} , 
+            		function(data){
+            			alert("get data error!") ;
+            		}
+            ) ;
+    	}
+    });
+
+    
+    $("idCalendarPre").onclick = function(){ cale.PreMonth(); }
+    $("idCalendarNext").onclick = function(){ cale.NextMonth(); }
+    //$("idCalendarPreYear").onclick = function(){ cale.PreYear(); }
+    //$("idCalendarNextYear").onclick = function(){ cale.NextYear(); }
+    //$("idCalendarNow").onclick = function(){ cale.NowMonth(); }
 </script>
 

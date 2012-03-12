@@ -1,7 +1,5 @@
 #set($layout="/product/default.vm")
-<style>
 
-</style>
 #STATIC("CSS",["/blogcal/blogcalendar.css"])
 
 

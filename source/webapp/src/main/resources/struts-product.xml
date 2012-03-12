@@ -9,6 +9,7 @@
 			<result name="ticket" type="velocity">/product/ticketdetail.vm</result>
 			<result name="selfdrive" type="velocity">/product/selfdrivedetail.vm</result>
 			<result name="room" type="velocity">/product/hotelroomdetail.vm</result>
+			<result name="hotel" type="velocity">/product/hoteldetail.vm</result>
 			<result name="error" type="velocity">/error.vm</result>
 		</action>
 	</package>

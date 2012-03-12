@@ -45,10 +45,6 @@
 					<tbody id="idCalendar">
 					</tbody>
 				</table>
-				
-				<!--
-                <input id="idCalendarNow" type="button" value="当前月" />
-                -->
 			</div>
             <div style="padding-top:10px;">
             	<div id="frame_content" width="710">
@@ -123,6 +119,7 @@
 </div>
 
 #STATIC("JS",["/blogcal/blogcalendar.js"])
+#XUI_JS(["core/xui-core.js","util/util-min.js","slide/slide.js"])
 <script>
 
     var x = new xui.widgets.Slide();

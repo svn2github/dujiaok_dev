@@ -4,10 +4,12 @@ import org.springframework.util.StringUtils;
 
 import com.ssnn.dujiaok.biz.log.DujiaokLogger;
 import com.ssnn.dujiaok.biz.service.HotelRoomService;
+import com.ssnn.dujiaok.biz.service.HotelService;
 import com.ssnn.dujiaok.biz.service.SelfDriveService;
 import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.constant.Constant;
 import com.ssnn.dujiaok.constant.ProductConstant;
+import com.ssnn.dujiaok.model.HotelDO;
 import com.ssnn.dujiaok.model.HotelRoomDO;
 import com.ssnn.dujiaok.model.SelfDriveDO;
 import com.ssnn.dujiaok.model.TicketDO;
@@ -17,8 +19,6 @@ import com.ssnn.dujiaok.web.action.BasicAction;
 @SuppressWarnings("serial")
 public class DetailAction extends BasicAction {
 
-	private Object product;
-
 	private String productId;
 	
 	private HotelRoomService hotelRoomService ;
@@ -26,6 +26,8 @@ public class DetailAction extends BasicAction {
 	private TicketService ticketService;
 	
 	private SelfDriveService selfDriveService ;
+	
+	private HotelService hotelService;
 
 	private static final DujiaokLogger LOGGER = DujiaokLogger.getLogger(DetailAction.class);
 	@Override
@@ -34,27 +36,27 @@ public class DetailAction extends BasicAction {
 		if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_HOTELROOM)){
 			//房间
 			return getHotelRoomProductDetail();
-		}else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_TICKET)){
+		} else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_TICKET)){
 			//门票
 			return getTicketProductDetail();
-		}else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_SELFDRIVE)){
+		} else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_SELFDRIVE)){
 			//自驾
 			return getSelfDriveProductDetail();
+		} else if (StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_HOTEL)) {
+			return getHotelProductDetail();
+		} else {
+			
 		}
-		
-		return ProductConstant.NOT_EXIST;
+		return productNotExist();
 	}
 
 	private String getSelfDriveProductDetail() {
 		try {
 			SelfDriveDO param = new SelfDriveDO();
 			param.setProductId(this.productId);
-//			param.setProductId("ZJ1201201447352717");
 			SelfDriveDO product = this.selfDriveService.getSelfDriveWithDetails(param.getProductId());
 			if (product == null) {
-				LOGGER.error("SelfDriveProduct[" + this.productId + "] not exist", null);
-				this.getHttpSession().setAttribute("message", "非常抱歉，您选择的产品不再销售。");
-				return ProductConstant.NOT_EXIST;
+				return productNotExist();
 			}
 			ProductUtils.filteInvalideProductDetail(product.getDetails());
 			this.getHttpSession().setAttribute("product", product);
@@ -68,16 +70,16 @@ public class DetailAction extends BasicAction {
 	private String getHotelRoomProductDetail() {
 		try {
 			HotelRoomDO param = new HotelRoomDO();
-			//param.setProductId(this.productId);
-			param.setProductId("FJ1201181530466890");
+			param.setProductId(this.productId);
 			HotelRoomDO product = this.hotelRoomService.getRoomWithDetails(param.getProductId());
 			if (product == null) {
-				LOGGER.error("HotelRoomProduct[" + this.productId + "] not exist", null);
-				this.getHttpSession().setAttribute("message", "非常抱歉，您选择的产品不再销售。");
-				return ProductConstant.NOT_EXIST;
+				return productNotExist();
 			}
 			ProductUtils.filteInvalideProductDetail(product.getDetails());
+			HotelDO hotelDO = hotelService.getHotel(product.getHotelId());
+			String hotelName = (hotelDO == null) ? null : hotelDO.getName();
 			this.getHttpSession().setAttribute("product", product);
+			this.getHttpSession().setAttribute("hotelName", hotelName);
 			return ProductConstant.ROOM;
 		} catch (Exception e) {
 			LOGGER.error("Get HotelRoomProduct[" + this.productId + "] error", e);
@@ -89,12 +91,9 @@ public class DetailAction extends BasicAction {
 		try {
 			TicketDO param = new TicketDO();
 			param.setProductId(this.productId);
-//			param.setProductId("MP1202120411482768");
 			TicketDO product = this.ticketService.getTicketWithDetails(param.getProductId());
 			if (product == null) {
-				LOGGER.error("TicketProduct[" + this.productId + "] not exist", null);
-				this.getHttpSession().setAttribute("message", "非常抱歉，您选择的产品不再销售。");
-				return ProductConstant.NOT_EXIST;
+				return productNotExist();
 			}
 			ProductUtils.filteInvalideProductDetail(product.getDetails());
 			this.getHttpSession().setAttribute("product", product);
@@ -105,17 +104,28 @@ public class DetailAction extends BasicAction {
 		}
 	}
 	
-
+	private String getHotelProductDetail() {
+		try {
+			HotelDO hotelDO = this.hotelService.getHotel(this.productId);
+			if (hotelDO == null) {
+				return productNotExist();
+			}
+			this.getHttpSession().setAttribute("product", hotelDO);
+			return ProductConstant.HOTEL;
+		} catch(Exception e) {
+			LOGGER.error(e);
+			return ERROR;
+		}
+	}
+	
+	private String productNotExist() {
+		LOGGER.error("TicketProduct[" + this.productId + "] not exist", null);
+		this.getHttpSession().setAttribute("message", "非常抱歉，您选择的产品不再销售。");
+		return ProductConstant.NOT_EXIST;
+	}
+	
 	public String getProductId() {
 		return productId;
-	}
-
-	public Object getProduct() {
-		return product;
-	}
-
-	public void setProduct(Object product) {
-		this.product = product;
 	}
 
 	public void setProductId(String productId) {
@@ -132,5 +142,13 @@ public class DetailAction extends BasicAction {
 
 	public void setSelfDriveService(SelfDriveService selfDriveService) {
 		this.selfDriveService = selfDriveService;
-	}	
+	}
+
+	public HotelService getHotelService() {
+		return hotelService;
+	}
+
+	public void setHotelService(HotelService hotelService) {
+		this.hotelService = hotelService;
+	}
 }
