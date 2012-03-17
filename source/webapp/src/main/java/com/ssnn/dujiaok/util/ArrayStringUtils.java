@@ -11,7 +11,7 @@ import org.apache.commons.lang.StringUtils;
  * @author shenjia.caosj 2012-1-13
  * 
  */
-public class StringListConventUtil {
+public class ArrayStringUtils {
 
 	/**
 	 * 将List转为String， ","分隔
@@ -41,6 +41,7 @@ public class StringListConventUtil {
 	 * @return
 	 */
 	public static List<String> toList(String listString){
+		if(StringUtils.isBlank(listString)) ;
 		String[] arr = StringUtils.split(listString,",") ;
 		if(arr == null){
 			return null ;

@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
-import com.ssnn.dujiaok.util.StringListConventUtil;
+import com.ssnn.dujiaok.util.ArrayStringUtils;
 
 /**
  * 搜索
@@ -47,7 +47,7 @@ public class SearchDO {
 		if(StringUtils.isBlank(images)){
 			return images;
 		}
-		List<String> imagesArray = StringListConventUtil.toList(images) ;
+		List<String> imagesArray = ArrayStringUtils.toList(images) ;
 		return imagesArray.iterator().next() ;
 	}
 	

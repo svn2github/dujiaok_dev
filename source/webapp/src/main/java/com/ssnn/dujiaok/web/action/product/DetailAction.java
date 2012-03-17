@@ -13,7 +13,7 @@ import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.constant.Constant;
 import com.ssnn.dujiaok.constant.ProductConstant;
 import com.ssnn.dujiaok.model.AbstractProduct;
-import com.ssnn.dujiaok.model.ProductDetailDO;
+import com.ssnn.dujiaok.util.ArrayStringUtils;
 import com.ssnn.dujiaok.util.ProductUtils;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
@@ -31,33 +31,27 @@ public class DetailAction extends BasicAction {
 	private SelfDriveService selfDriveService ;
 	
 	private HotelService hotelService ;
+	
+	private List<String> imageList ;
 
 	private static final Log  LOGGER = LogFactory.getLog(DetailAction.class);
 	@Override
 	public String execute() throws Exception {
 		
+		String result = ProductConstant.NOT_EXIST;
+		
 		if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_HOTELROOM)){
 			//房间
 			product = hotelRoomService.getRoomWithDetails(productId);
-			filteInvalideProductDetail(product) ;
-			if(product != null){
-				return ProductConstant.ROOM ;
-			}
+			result = ProductConstant.ROOM ;
 		}else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_TICKET)){
 			//门票
 			product =  ticketService.getTicketWithDetails(productId);
-			filteInvalideProductDetail(product) ;
-			if(product != null){
-				return ProductConstant.TICKET ;
-			}
+			result = ProductConstant.TICKET ;			
 		}else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_SELFDRIVE)){
 			//自驾
 			product = selfDriveService.getSelfDriveWithDetails(productId);
-			filteInvalideProductDetail(product) ;
-			if(product != null){
-				return ProductConstant.SELF_DRIVE ;
-			}
-			return ProductConstant.SELF_DRIVE ;
+			result = ProductConstant.SELF_DRIVE ;
 		}
 //		else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_HOTEL)){
 //			if(product != null){
@@ -65,20 +59,26 @@ public class DetailAction extends BasicAction {
 //			}
 //			return ProductConstant.HOTEL ;
 //		}
+		
+		if(product != null && product instanceof AbstractProduct){
+			AbstractProduct aProduct = (AbstractProduct)product ;
+			imageList = ArrayStringUtils.toList(aProduct.getImages()) ;
+			ProductUtils.filteInvalideProductDetail(aProduct.getDetails()) ;
+			return result ;
+		}
 				
 		return ProductConstant.NOT_EXIST;
 	}
 	
-	private void filteInvalideProductDetail(Object o){
-		if(o == null){
-			return  ;
-		}
-		if(o instanceof AbstractProduct){
-			List<ProductDetailDO> list = ((AbstractProduct)o).getDetails() ;
-			ProductUtils.filteInvalideProductDetail(list) ;
-		}
-	}
+	
+	/**
+	 * ----------------------------------------------------------------------------
+	 * @return
+	 */
 
+	public List<String> getImageList() {
+		return imageList;
+	}
 
 	public String getProductId() {
 		return productId;

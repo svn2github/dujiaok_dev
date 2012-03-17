@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import com.opensymphony.xwork2.ModelDriven;
 import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.model.TicketDO;
-import com.ssnn.dujiaok.util.StringListConventUtil;
+import com.ssnn.dujiaok.util.ArrayStringUtils;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 @SuppressWarnings("serial")
@@ -26,9 +26,9 @@ public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
 		if(ticket!=null && StringUtils.isNotBlank(ticket.getProductId())){
 			ticket = ticketService.getTicketWithDetails(ticket.getProductId()) ;
 			if(ticket != null){
-				payTypesList = StringListConventUtil.toList(ticket.getPayTypes()) ;
-				productTypesList = StringListConventUtil.toList(ticket.getProductTypes()) ;
-				imagesList = StringListConventUtil.toList(ticket.getImages()) ;
+				payTypesList = ArrayStringUtils.toList(ticket.getPayTypes()) ;
+				productTypesList = ArrayStringUtils.toList(ticket.getProductTypes()) ;
+				imagesList = ArrayStringUtils.toList(ticket.getImages()) ;
 				
 			}
 		}
@@ -42,9 +42,9 @@ public class TicketAction extends BasicAction implements ModelDriven<TicketDO>{
 	 */
 	public String create() throws Exception {
 		
-		ticket.setImages(StringListConventUtil.toString(imagesList)) ;
-		ticket.setPayTypes(StringListConventUtil.toString(payTypesList)) ;
-		ticket.setProductTypes(StringListConventUtil.toString(productTypesList)) ;
+		ticket.setImages(ArrayStringUtils.toString(imagesList)) ;
+		ticket.setPayTypes(ArrayStringUtils.toString(payTypesList)) ;
+		ticket.setProductTypes(ArrayStringUtils.toString(productTypesList)) ;
 		if(StringUtils.isBlank(ticket.getProductId())){
 			ticket = ticketService.createTicketAndDetails(ticket) ;
 		}else{

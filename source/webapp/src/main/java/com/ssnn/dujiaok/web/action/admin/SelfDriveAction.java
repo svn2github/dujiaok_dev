@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import com.opensymphony.xwork2.ModelDriven;
 import com.ssnn.dujiaok.biz.service.SelfDriveService;
 import com.ssnn.dujiaok.model.SelfDriveDO;
-import com.ssnn.dujiaok.util.StringListConventUtil;
+import com.ssnn.dujiaok.util.ArrayStringUtils;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 /**
@@ -34,10 +34,10 @@ public class SelfDriveAction extends BasicAction implements ModelDriven<SelfDriv
 		if(selfDrive!=null && StringUtils.isNotBlank(selfDrive.getProductId())){
 			selfDrive = selfDriveService.getSelfDriveWithDetails(selfDrive.getProductId()) ;
 			if(selfDrive != null){
-				payTypesList = StringListConventUtil.toList(selfDrive.getPayTypes()) ;
-				productTypesList = StringListConventUtil.toList(selfDrive.getProductTypes()) ;
-				imagesList = StringListConventUtil.toList(selfDrive.getImages()) ;
-				addProductsList = StringListConventUtil.toList(selfDrive.getAddProducts()) ;
+				payTypesList = ArrayStringUtils.toList(selfDrive.getPayTypes()) ;
+				productTypesList = ArrayStringUtils.toList(selfDrive.getProductTypes()) ;
+				imagesList = ArrayStringUtils.toList(selfDrive.getImages()) ;
+				addProductsList = ArrayStringUtils.toList(selfDrive.getAddProducts()) ;
 			}
 		}
 		return SUCCESS ;
@@ -50,10 +50,10 @@ public class SelfDriveAction extends BasicAction implements ModelDriven<SelfDriv
 	 */
 	public String create() throws Exception {
 		
-		selfDrive.setImages(StringListConventUtil.toString(imagesList)) ;
-		selfDrive.setPayTypes(StringListConventUtil.toString(payTypesList)) ;
-		selfDrive.setProductTypes(StringListConventUtil.toString(productTypesList)) ;
-		selfDrive.setAddProducts(StringListConventUtil.toString(addProductsList)) ;
+		selfDrive.setImages(ArrayStringUtils.toString(imagesList)) ;
+		selfDrive.setPayTypes(ArrayStringUtils.toString(payTypesList)) ;
+		selfDrive.setProductTypes(ArrayStringUtils.toString(productTypesList)) ;
+		selfDrive.setAddProducts(ArrayStringUtils.toString(addProductsList)) ;
 		if(StringUtils.isBlank(selfDrive.getProductId())){
 			selfDrive = selfDriveService.createSelfDriveAndDetails(selfDrive) ;
 		}else{

@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import com.opensymphony.xwork2.ModelDriven;
 import com.ssnn.dujiaok.biz.service.HotelRoomService;
 import com.ssnn.dujiaok.model.HotelRoomDO;
-import com.ssnn.dujiaok.util.StringListConventUtil;
+import com.ssnn.dujiaok.util.ArrayStringUtils;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 /**
@@ -31,9 +31,9 @@ public class HotelRoomAction extends BasicAction implements ModelDriven<HotelRoo
 		if(room!=null && StringUtils.isNotBlank(room.getProductId())){
 			room = hotelRoomService.getRoomWithDetails(room.getProductId()) ;
 			if(room != null){
-				payTypesList = StringListConventUtil.toList(room.getPayTypes()) ;
-				imagesList = StringListConventUtil.toList(room.getImages()) ;
-				roomFacilitiesList = StringListConventUtil.toList(room.getRoomFacilities()) ;
+				payTypesList = ArrayStringUtils.toList(room.getPayTypes()) ;
+				imagesList = ArrayStringUtils.toList(room.getImages()) ;
+				roomFacilitiesList = ArrayStringUtils.toList(room.getRoomFacilities()) ;
 			}
 		}
 		return SUCCESS ;
@@ -46,9 +46,9 @@ public class HotelRoomAction extends BasicAction implements ModelDriven<HotelRoo
 	 */
 	public String create() throws Exception {
 		
-		room.setImages(StringListConventUtil.toString(imagesList)) ;
-		room.setRoomFacilities(StringListConventUtil.toString(roomFacilitiesList)) ;
-		room.setPayTypes(StringListConventUtil.toString(payTypesList)) ;
+		room.setImages(ArrayStringUtils.toString(imagesList)) ;
+		room.setRoomFacilities(ArrayStringUtils.toString(roomFacilitiesList)) ;
+		room.setPayTypes(ArrayStringUtils.toString(payTypesList)) ;
 		
 		if(StringUtils.isBlank(room.getProductId())){
 			room = hotelRoomService.createRoomAndDetails(room) ;

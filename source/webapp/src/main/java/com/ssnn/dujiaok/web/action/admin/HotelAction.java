@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import com.opensymphony.xwork2.ModelDriven;
 import com.ssnn.dujiaok.biz.service.HotelService;
 import com.ssnn.dujiaok.model.HotelDO;
-import com.ssnn.dujiaok.util.StringListConventUtil;
+import com.ssnn.dujiaok.util.ArrayStringUtils;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 /**
@@ -29,7 +29,7 @@ public class HotelAction extends BasicAction implements ModelDriven<HotelDO>{
 		if(hotel!=null && StringUtils.isNotBlank(hotel.getProductId())){
 			hotel = hotelService.getHotel(hotel.getProductId()) ;
 			if(hotel != null){
-				imagesList = StringListConventUtil.toList(hotel.getImages()) ;
+				imagesList = ArrayStringUtils.toList(hotel.getImages()) ;
 			}
 		}
 		return SUCCESS ;
@@ -41,7 +41,7 @@ public class HotelAction extends BasicAction implements ModelDriven<HotelDO>{
 	 * @throws Exception
 	 */
 	public String create() throws Exception {
-		hotel.setImages(StringListConventUtil.toString(imagesList)) ;
+		hotel.setImages(ArrayStringUtils.toString(imagesList)) ;
 		if(StringUtils.isBlank(hotel.getProductId())){
 			hotel = hotelService.createHotel(hotel) ;
 		}else{

@@ -11,7 +11,7 @@
             <div id="Focus">
                 <ul id="Focus_content">
                     <li class="circularPanel">
-                        <img src=$!product.images width="710" height="250" />
+                        <img src=$!product.imageList[0] width="710" height="250" />
                         <h2></h2>
                     </li>
                 </ul>
