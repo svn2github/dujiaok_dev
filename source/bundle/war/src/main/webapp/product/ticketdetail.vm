@@ -108,8 +108,8 @@
 								#end
                   	        </select>
                   	     </li>
-                  	     <input type="hidden" id="useDate" name="gmtOrderStart" value="$dateUtils.format($!product.details.get(0).startDates.get(0),'yyyy-MM-dd')"/>
-                         <li>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：<span id='price'>$!product.details.get(0).price</span>元</li>
+                  	     <input type="hidden" id="useDate" name="gmtOrderStart" value="$dateUtils.format($!product.details[0].startDates[0],'yyyy-MM-dd')"/>
+                         <li>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：<span id='price'>$!product.details[0].price</span>元</li>
                          <li>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：&nbsp;<input type="text" name="ticketNum" id="ticketNum"></li>
                     </ul>
                 	<button type="submit">&nbsp;&nbsp;&nbsp;</button>
