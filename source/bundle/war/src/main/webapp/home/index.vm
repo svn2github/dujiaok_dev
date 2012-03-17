@@ -1,6 +1,7 @@
 #set($layout="/front/default_new.vm")
 #################################################
 
+#set($title = "首页")
 <!-- main开始 -->
 <div class="w950 main index">
 

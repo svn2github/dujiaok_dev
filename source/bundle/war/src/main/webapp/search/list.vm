@@ -1,5 +1,4 @@
 #set($layout="/front/default_new.vm")
-
 #set($title = $!keyword)
 <form action="${env.root}/search/global.htm" method="get" name="searchForm">
 	<input type="hidden" name="keyword" value="$!keyword"/>
