@@ -1,0 +1,315 @@
+#set($layout="/front/default.vm")
+#################################################
+#XUI_JS(["core/xui-core.js","util/util.js","slide/slide.js"])
+<div id="content">
+		#set($indexChannel= $fontConstants.indexChannel)
+    	<div class="Ifirst clearFix">
+            <div class="leftSpecials">
+				#FRONT_EDIT_BUTTON($!indexChannel.getmTodaySpecials(), $isEdit)
+                <div class="TodaySpecials">
+                    <h2>$!frontViewMap.get($!indexChannel.getmTodaySpecials()).config.moduleName</h2>
+                    <ul>
+                    #if($!frontViewMap.get($!indexChannel.getmTodaySpecials()).frontViews)
+						#foreach($fv in $!frontViewMap.get($!indexChannel.getmTodaySpecials()).frontViews)
+                            <li>
+                            	<a href="$!fv.link" target="_blank">
+                            		<img src="$!fv.photoURL" width="210" height="120" />
+                            	</a>
+                            	<p class="clearFix">
+                            		<span>
+                            			<a href="$!fv.link">$!fv.title</a>
+                            		</span>
+                            		<span class="Todayprice">¥$!fv.presentPrice</span>
+                            	</p>
+                            </li>
+						#end
+					#end
+                    </ul>
+                </div>
+				#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsA2(), $isEdit)
+				#if($!frontViewMap.get($!indexChannel.getmImageAdsA2()).frontViews)
+					#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsA2()).frontViews)
+						<div class="SpecialsAdd">
+                            <a href="$!fv.link" target="_blank">
+								<img src="$!fv.photoURL" width="222" height="72" />
+    						</a>
+						</div>
+					#end
+				#end
+            </div>
+			
+            <div class="Hotspot clearFix">
+                 <div id="Focus" class="clearFix">
+					#FRONT_EDIT_BUTTON($!indexChannel.getmBanner(), $isEdit)
+                        <ul id="Focus_content">
+							#if($!frontViewMap.get($!indexChannel.getmBanner()).frontViews)
+								#foreach($fv in $!frontViewMap.get($!indexChannel.getmBanner()).frontViews)
+                                    <li class="circularPanel">
+        								<img src="$!fv.photoURL" width="470" height="250" border="0" />
+        							</li>
+								#end
+							#end	
+						</ul>
+                    <ul class="trigger">
+						#if($!frontViewMap.get($!indexChannel.getmBanner()).frontViews)
+							#set($bannerSize= $!frontViewMap.get($!indexChannel.getmBanner()).frontViews.size())
+							#foreach($fv in $!frontViewMap.get($!indexChannel.getmBanner()).frontViews)
+								#if($velocityCount != $bannerSize)
+									<li class="circularTrigger">$!fv.title</li>
+								#else
+									<li class="circularTrigger" style="*width:116px;">$!fv.title</li>
+								#end
+							#end
+						#end	
+                    </ul>
+                </div>
+                <script type="text/javascript">
+                var x = new xui.widgets.Slide();
+                </script>
+              <div class="HotTag clearFix">
+                    <ul>
+						#FRONT_EDIT_BUTTON($!indexChannel.getmSearchTheme(), $isEdit)
+    					<h2>
+							$!frontViewMap.get($!indexChannel.getmSearchTheme()).config.moduleName
+						</h2>
+						#if($!frontViewMap.get($!indexChannel.getmSearchTheme()).frontViews)
+        					#foreach($fv in $!frontViewMap.get($!indexChannel.getmSearchTheme()).frontViews)
+                                <li><a href="$!fv.link">$!fv.title</a></li>
+        					#end
+						#end
+                    </ul>
+                    <ul>
+                       #FRONT_EDIT_BUTTON($!indexChannel.getmSearchAttractions(), $isEdit)
+    					<h2>
+							$!frontViewMap.get($!indexChannel.getmSearchAttractions()).config.moduleName
+						</h2>
+						#if($!frontViewMap.get($!indexChannel.getmSearchAttractions()).frontViews)
+        					#foreach($fv in $!frontViewMap.get($!indexChannel.getmSearchAttractions()).frontViews)
+                                <li><a href="$!fv.link">$!fv.title</a></li>
+        					#end
+						#end
+                    </ul>
+                    <ul>
+                        #FRONT_EDIT_BUTTON($!indexChannel.getmSearchPeriphery(), $isEdit)
+    					<h2>
+							$!frontViewMap.get($!indexChannel.getmSearchPeriphery()).config.moduleName
+						</h2>
+						#if($!frontViewMap.get($!indexChannel.getmSearchPeriphery()).frontViews)
+        					#foreach($fv in $!frontViewMap.get($!indexChannel.getmSearchPeriphery()).frontViews)
+                                <li><a href="$!fv.link">$!fv.title</a></li>
+        					#end
+						#end
+                    </ul>
+                    <ul>
+                        #FRONT_EDIT_BUTTON($!indexChannel.getmSearchPrice(), $isEdit)
+    					<h2>
+							$!frontViewMap.get($!indexChannel.getmSearchPrice()).config.moduleName
+						</h2>
+						#if($!frontViewMap.get($!indexChannel.getmSearchPrice()).frontViews)
+        					#foreach($fv in $!frontViewMap.get($!indexChannel.getmSearchPrice()).frontViews)
+                                <li><a href="$!fv.link">$!fv.title</a></li>
+        					#end
+						#end
+                    </ul>
+              </div>
+            </div>
+            <div class="Login">
+            	<div class="Login_o"><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_05.png" width="229" height="40" /></div>
+                <div class="Login_t"><img src="http://www.ht.dujiaok.com:801/dujiaok/images/index/index_16.png" width="230" height="230" /></div>
+				#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsA5(), $isEdit)
+				#if($!frontViewMap.get($!indexChannel.getmImageAdsA5()).frontViews)
+					#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsA5()).frontViews)
+						<div class="Login_tr"><img src="$!fv.photoURL" width="230" height="160" /></div>
+					#end
+				#end
+            </div>
+        </div>
+        
+		#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsB(), $isEdit)
+		#if($!frontViewMap.get($!indexChannel.getmImageAdsB()).frontViews)
+			#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsB()).frontViews)
+				<div class="IBanner clearFix">
+					<img src="$!fv.photoURL" width="950" height="100" />
+				</div>
+			#end
+		#end
+        <div class="ISecond clearFix">
+        	<div class="ISecondnav clearFix">
+				<span>
+					#FRONT_EDIT_BUTTON($!indexChannel.getmPeripheryAttractionsRecommend(), $isEdit)
+					#if($!frontViewMap.get($!indexChannel.getmPeripheryAttractionsRecommend()).frontViews)
+            			#foreach($fv in $!frontViewMap.get($!indexChannel.getmPeripheryAttractionsRecommend()).frontViews)
+            				$!fv.title &nbsp;
+            			#end
+            		#end
+				</span>
+			</div>
+            <div class="ISecondcontent clearFix">
+				#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsC1(), $isEdit)
+				#if($!frontViewMap.get($!indexChannel.getmImageAdsC1()).frontViews)
+            		#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsC1()).frontViews)
+            			<div class="selfPeriphery">
+        					<img src="$!fv.photoURL" width="222" height="262" />
+        				</div>
+            		#end
+            	#end
+                <div class="selfInformation">
+                	<ul>
+						#FRONT_EDIT_BUTTON($!indexChannel.getmPeripheryTextRecommend(), $isEdit)
+    					#if($!frontViewMap.get($!indexChannel.getmPeripheryTextRecommend()).frontViews)
+                			#foreach($fv in $!frontViewMap.get($!indexChannel.getmPeripheryTextRecommend()).frontViews)
+                				<li #if($velocityCount == 1)class="selfshowbg"#end>
+        							<a href="$!fv.link"><span><em>$!fv.title</em>$!fv.detail</span></a>
+        							<span class="selfprice"><i>￥$!fv.presentPrice</i><b>起</b></span>
+    							</li>
+                			#end
+                		#end
+                    </ul>
+                </div>
+                <div class="selfPackage">
+                	<ul>
+						#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsC31(), $isEdit)
+    					#if($!frontViewMap.get($!indexChannel.getmImageAdsC31()).frontViews)
+                			#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsC31()).frontViews)
+                				<li>$!fv.title</li>
+                			#end
+                		#end
+                    </ul>
+                    <div>
+						#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsC32(), $isEdit)
+    					#if($!frontViewMap.get($!indexChannel.getmImageAdsC32()).frontViews)
+                			#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsC32()).frontViews)
+                				<p><img src="$!fv.photoURL" width="228" height="98" /></p>
+                			#end
+                		#end
+                    </div>
+                </div>
+            </div>
+			#FRONT_EDIT_BUTTON($!indexChannel.getmPeripheryImageRecommend(), $isEdit)
+            <div class="selfadd">
+    			#if($!frontViewMap.get($!indexChannel.getmPeripheryImageRecommend()).frontViews)
+					#set($periImageSize= $!frontViewMap.get($!indexChannel.getmPeripheryImageRecommend()).frontViews.size())
+                	#foreach($fv in $!frontViewMap.get($!indexChannel.getmPeripheryImageRecommend()).frontViews)
+						<ul #if($periImageSize == $velocityCount)style="margin:0;"#end>
+                        	<li><img src="$!fv.photoURL" width="142" height="142" /></li>
+                            <li><span><em>￥$!fv.presentPrice</em>   <i>￥$!fv.originalPrice</i></span>
+								<span>$!fv.title</span>
+							</li>
+                        </ul>
+                	#end
+                #end
+            </div>
+        </div>
+        <div class="ISecond clearFix">
+        	<div class="ISecondnav ISecondnav2 clearFix">
+				<span>
+					#FRONT_EDIT_BUTTON($!indexChannel.getmLongTermAttractionsRecommend(), $isEdit)
+					#if($!frontViewMap.get($!indexChannel.getmLongTermAttractionsRecommend()).frontViews)
+            			#foreach($fv in $!frontViewMap.get($!indexChannel.getmLongTermAttractionsRecommend()).frontViews)
+            				$!fv.title &nbsp;
+            			#end
+            		#end
+				</span>
+			</div>
+            <div class="ISecondcontent clearFix">
+				#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsD1(), $isEdit)
+				#if($!frontViewMap.get($!indexChannel.getmImageAdsD1()).frontViews)
+            		#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsD1()).frontViews)
+            			<div class="selfPeriphery">
+        					<img src="$!fv.photoURL" width="222" height="262" />
+        				</div>
+            		#end
+				#end
+				<div class="selfInformation">
+                	<ul class="selfInformation2">
+						#FRONT_EDIT_BUTTON($!indexChannel.getmLongTermTextRecommend(), $isEdit)
+    					#if($!frontViewMap.get($!indexChannel.getmLongTermTextRecommend()).frontViews)
+                			#foreach($fv in $!frontViewMap.get($!indexChannel.getmLongTermTextRecommend()).frontViews)
+                				<li #if($velocityCount == 1)class="selfshowbg"#end>
+        							<a href="$!fv.link"><span><em>$!fv.title</em>$!fv.detail</span></a>
+        							<span class="selfprice"><i>￥$!fv.presentPrice</i><b>起</b></span>
+    							</li>
+                			#end
+                		#end
+                    </ul>
+                </div>
+                <div class="selfPackage">
+                	<ul>
+						#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsD31(), $isEdit)
+    					#if($!frontViewMap.get($!indexChannel.getmImageAdsD31()).frontViews)
+                			#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsD31()).frontViews)
+                				<li>$!fv.title</li>
+                			#end
+                		#end
+                    </ul>
+                    <div>
+						#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsD32(), $isEdit)
+    					#if($!frontViewMap.get($!indexChannel.getmImageAdsD32()).frontViews)
+                			#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsD32()).frontViews)
+                				<p><img src="$!fv.photoURL" width="228" height="98" /></p>
+                			#end
+                		#end
+                    </div>
+                </div>
+            </div>
+			#FRONT_EDIT_BUTTON($!indexChannel.getmLongTermImageRecommend(), $isEdit)
+            <div class="selfadd">
+    			#if($!frontViewMap.get($!indexChannel.getmLongTermImageRecommend()).frontViews)
+					#set($l_termImageSize= $!frontViewMap.get($!indexChannel.getmLongTermImageRecommend()).frontViews.size())
+                	#foreach($fv in $!frontViewMap.get($!indexChannel.getmLongTermImageRecommend()).frontViews)
+						<ul #if($l_termImageSize == $velocityCount)style="margin:0;"#end>
+                        	<li><img src="$!fv.photoURL" width="142" height="142" /></li>
+                            <li><span><em>￥$!fv.presentPrice</em>   <i>￥$!fv.originalPrice</i></span>
+								<span>$!fv.title</span>
+							</li>
+                        </ul>
+                	#end
+				#end
+			</div>
+        </div> 
+        <div class="Ithird clearFix">
+        	<div class="Ithird_left">
+            	<div class="IthirdDynamic">
+					#FRONT_EDIT_BUTTON($!indexChannel.getmDujiaokDynamicTop(), $isEdit)
+					<h2>$!frontViewMap.get($!indexChannel.getmDujiaokDynamicTop()).config.moduleName</h2>
+						#if($!frontViewMap.get($!indexChannel.getmDujiaokDynamicTop()).frontViews)
+                    		#foreach($fv in $!frontViewMap.get($!indexChannel.getmDujiaokDynamicTop()).frontViews)
+    							<ul class="IthirdDynamictop clearFix">
+                                	<li><img src="$!fv.photoURL" width="142" height="91" /></li>
+                                    <li><p>$!fv.detail</p><p><a href="$!fv.link">阅读更多</a></p></li>
+    							</ul>
+                    		#end
+                    	#end
+                    <ul class="IthirdDynamicbottom clearFix">
+						#FRONT_EDIT_BUTTON($!indexChannel.getmDujiaokDynamic(), $isEdit)
+    					#if($!frontViewMap.get($!indexChannel.getmDujiaokDynamic()).frontViews)
+                			#foreach($fv in $!frontViewMap.get($!indexChannel.getmDujiaokDynamic()).frontViews)
+                				<li>$!fv.title</li>
+                			#end
+                		#end
+                    </ul>
+                </div>
+                <div class="IthirdHot">
+					#FRONT_EDIT_BUTTON($!indexChannel.getmTravelMateDynamic(), $isEdit)
+                	<h2>$!frontViewMap.get($!indexChannel.getmTravelMateDynamic()).config.moduleName</h2>
+                    <div class="IthirdHotcontent">
+						#if($!frontViewMap.get($!indexChannel.getmTravelMateDynamic()).frontViews)
+                			#foreach($fv in $!frontViewMap.get($!indexChannel.getmTravelMateDynamic()).frontViews)
+                				<ul class="IthirdHotlist clearFix">
+                                	<li><img src="$!fv.photoURL" width="45" height="45" /></li>
+                                    <li>
+                                        <h3>[$!fv.category]<span>$!fv.title </span></h3>
+                                        <p>$!fv.detail</p>
+                                    </li>
+                                 </ul>
+                			#end
+                		#end
+                    </div>
+                </div>
+            </div>
+            <div class="Ithird_right">
+                <iframe width="230" height="350" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=230&height=350&fansRow=2&ptype=1&speed=0&skin=2&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2166116724&verifier=5c007fea&dpc=1"></iframe>
+            </div>
+        </div>
+               
+    </div>
