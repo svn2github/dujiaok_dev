@@ -17,7 +17,7 @@
 			</div>
 			<table class="cnt">
 				<tr>
-					<th>产品类型：</th><td><p><a href="#" class="current">全部</a><a href="#">打折门票</a><a href="#">自由行</a><a href="#">跟团游</a><a href="#">酒店</a></p></td>
+					<th>产品类型：</th><td><p><a href="javascript:;" class="current">全部</a><a href="javascript:;">打折门票</a><a href="javascript:;">自由行</a><a href="javascript:;">跟团游</a><a href="javascript:;">酒店</a></p></td>
 				</tr>
 				<tr>
 					<th>起价范围：</th><td><p><a href="#" class="current">全部</a><a href="#">200以下</a><a href="#">200-499</a><a href="#">500-999</a><a href="#">1000-1499</a><a href="#">1500-1999</a><a href="#">2000及以上</a></p></td>
@@ -50,17 +50,22 @@
     					<div class="L">
     						<a href="${env.root}/product/detail.htm?productId=$!item.productId"><img src="$!item.firstImage" alt="" class="pad3"  onerror="this.src='${env.staticroot}/images/no_img.jpg'"/></a>
     						<span class="txt">
-    							<a href="${env.root}/product/detail.htm?productId=$!item.productId" target="_blank"><strong class="t1">$!item.name</strong></a>
+    							<a href="${env.root}/product/detail.htm?productId=$!item.productId" target="_blank"><strong class="t1">#HIGHRIGHT_OUTPUT($!item.name)</strong></a>
     							<span class="t2">区域：$!item.destProvince$!item.destCity$!item.destArea</span>
     							<span class="t2">地址：$!item.destAddr</span>
     						</span>
     					</div>
     					<div class="R">
-							#if($item.marketPrice)
+							
     						<span class="price">
-    							<span class="p1">门市价：<span class="through">$!item.marketPrice</span>元</span>
-								<span class="p2"><strong><em>￥</em>158</strong>起</span>
+								#if($item.marketPrice)
+								<span class="p1">门市价：<span class="through">$!item.marketPrice</span>元</span>
+								#end
+								#if($item.price)
+								<span class="p2"><strong><em>￥</em>$!item.price</strong>起</span>
+								#end
     						</span>
+							#if($item.price)
     						<a href="#" class="order">订购</a>
 							#end
     					</div>

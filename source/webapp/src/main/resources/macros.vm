@@ -119,3 +119,9 @@
 	<div><a href="${env.root}/admin/editFrontModule.htm?moduleKey=$module" target="_blank">编辑</a></div>
 	#end
 #end
+
+#macro(HIGHRIGHT_OUTPUT $text $keyword)
+	#set ($highlightKeyword = "<span class='orange'>" + $keyword + "</span>")
+	#set ($str = $stringUtils.replace($text , $keyword ,$highlightKeyword))
+	$str
+#end

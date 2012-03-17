@@ -33,6 +33,13 @@ public interface ProductDetailDAO {
 	void insertDetail(ProductDetailDO detail) ;
 	
 	/**
+	 * 查询当前的detailDO
+	 * @param productId
+	 * @return
+	 */
+	ProductDetailDO queryTodayDetailByProduct(String productId) ;
+	
+	/**
 	 * 删除 Detail
 	 * @param roomId
 	 */

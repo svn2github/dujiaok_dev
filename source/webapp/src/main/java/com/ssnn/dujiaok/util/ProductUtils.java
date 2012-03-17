@@ -37,7 +37,7 @@ public class ProductUtils {
 		if(CollectionUtils.isNotEmpty(details)){
 			for(ProductDetailDO detail : details){
 				List<Date> dates = findDays(detail) ;
-				String price = "￥" + getChpestPrice(detail).toString() ;
+				String price = "￥" + getBottomPrice(detail);
 				for(Date date : dates){
 					String key = df.format(date) ;
 					PriceCalendarDO cal = getCalendar(list, key) ;
@@ -89,7 +89,7 @@ public class ProductUtils {
 		return dateList ;
 	}
 	
-	public static BigDecimal getChpestPrice(ProductDetailDO detail){
+	public static BigDecimal getBottomPrice(ProductDetailDO detail){
 		if(detail.getDoublePrice() == null){
 			return detail.getPrice() ;
 		}

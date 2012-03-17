@@ -29,4 +29,8 @@ public class StringUtilsToolbox {
 	public String escapeJS(String str){
 		return StringEscapeUtils.escapeJavaScript(str) ;
 	}
+	
+	public String replace(String text , String searchString , String replacement){
+		return StringUtils.replace(text, searchString, replacement) ;
+	}
 }

@@ -35,6 +35,13 @@
 		  where PRODUCT_ID = #productId# AND ID=#productDetailId#
 	</select>
 	
+	<select id="queryTodayDetailByProduct" resultMap="RM-ProductDetail">
+		<![CDATA[
+		select * from DJ_PRODUCT_DETAIL 
+			where GMT_START <= now() and GMT_END >= now() and PRODUCT_ID = #productId# limit 0 , 1
+			]]> 
+	</select>
+	
 	<select id="queryValidDetails" resultMap="RM-ProductDetail">
 		<![CDATA[
 		select * from DJ_PRODUCT_DETAIL

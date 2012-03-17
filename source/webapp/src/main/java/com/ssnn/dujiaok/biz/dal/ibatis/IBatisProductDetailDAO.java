@@ -46,4 +46,9 @@ public class IBatisProductDetailDAO extends SqlMapClientDaoSupport implements Pr
 		getSqlMapClientTemplate().delete("product.deleteProductDetails" , productId) ;
 	}
 
+	@Override
+	public ProductDetailDO queryTodayDetailByProduct(String productId) {
+		return (ProductDetailDO)getSqlMapClientTemplate().queryForObject("product.queryTodayDetailByProduct" , productId) ;
+	}
+
 }

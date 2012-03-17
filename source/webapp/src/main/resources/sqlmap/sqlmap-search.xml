@@ -23,8 +23,10 @@
 				<isNotEmpty property="name" prepend="AND">
 				NAME LIKE CONCAT('%', #name#, '%')
 				</isNotEmpty>
-				<isNotEmpty property="destAddr" prepend="AND">
-				DEST_ADDR LIKE CONCAT('%', #destAddr#, '%')
+				<isNotEmpty property="place" prepend="AND">
+				DEST_ADDR LIKE CONCAT('%', #place#, '%') OR
+				DEST_PROVINCE = #place# OR
+				DEST_CITY = #place#
 				</isNotEmpty>
 	</sql>
 	
@@ -36,8 +38,10 @@
 				<isNotEmpty property="name" prepend="AND">
 				NAME LIKE CONCAT('%', #name#, '%') 
 				</isNotEmpty>
-				<isNotEmpty property="destAddr" prepend="AND">
-				DEST_ADDR LIKE CONCAT('%', #destAddr#, '%')
+				<isNotEmpty property="place" prepend="AND">
+				DEST_ADDR LIKE CONCAT('%', #place#, '%') OR
+				DEST_PROVINCE = #place# OR
+				DEST_CITY = #place#
 				</isNotEmpty>
 	</sql>
 	
@@ -49,7 +53,7 @@
 				<isNotEmpty property="name" prepend="AND">
 				NAME LIKE CONCAT('%', #name#, '%')
 				</isNotEmpty>
-				<isNotEmpty property="destAddr" prepend="AND">
+				<isNotEmpty property="place" prepend="AND">
 				1=2
 				</isNotEmpty>
 	</sql>
@@ -62,8 +66,10 @@
 				<isNotEmpty property="name" prepend="AND">
 				NAME LIKE CONCAT('%', #name#, '%')
 				</isNotEmpty>
-				<isNotEmpty property="destAddr" prepend="AND">
-				DEST_ADDR LIKE CONCAT('%', #destAddr#, '%')
+				<isNotEmpty property="place" prepend="AND">
+				DEST_ADDR LIKE CONCAT('%', #place#, '%') OR
+				DEST_PROVINCE = #place# OR
+				DEST_CITY = #place#
 				</isNotEmpty>
 	</sql>
 
