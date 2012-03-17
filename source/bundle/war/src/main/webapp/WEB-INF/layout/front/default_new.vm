@@ -13,7 +13,7 @@
     <!-- bottom开始 -->
 	#parse("/common/common_bottom_new.vm")
 	<!-- bottom结束 -->
-	#JS(["jquery-1.6.2.min.js" ,"common.js" , "search.js"])
+	#JS(["jquery-1.6.2.min.js" ,"common.js" , "search.js","index.js"])
 
 </body>
 </html>
