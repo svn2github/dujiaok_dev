@@ -1,5 +1,7 @@
 package com.ssnn.dujiaok.web.action.product;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.StringUtils;
@@ -10,6 +12,9 @@ import com.ssnn.dujiaok.biz.service.SelfDriveService;
 import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.constant.Constant;
 import com.ssnn.dujiaok.constant.ProductConstant;
+import com.ssnn.dujiaok.model.AbstractProduct;
+import com.ssnn.dujiaok.model.ProductDetailDO;
+import com.ssnn.dujiaok.util.ProductUtils;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 @SuppressWarnings("serial")
@@ -34,16 +39,21 @@ public class DetailAction extends BasicAction {
 		if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_HOTELROOM)){
 			//房间
 			product = hotelRoomService.getRoomWithDetails(productId);
-			return ProductConstant.ROOM ;
+			filteInvalideProductDetail(product) ;
+			if(product != null){
+				return ProductConstant.ROOM ;
+			}
 		}else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_TICKET)){
 			//门票
 			product =  ticketService.getTicketWithDetails(productId);
+			filteInvalideProductDetail(product) ;
 			if(product != null){
 				return ProductConstant.TICKET ;
 			}
 		}else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_SELFDRIVE)){
 			//自驾
 			product = selfDriveService.getSelfDriveWithDetails(productId);
+			filteInvalideProductDetail(product) ;
 			if(product != null){
 				return ProductConstant.SELF_DRIVE ;
 			}
@@ -57,6 +67,16 @@ public class DetailAction extends BasicAction {
 //		}
 				
 		return ProductConstant.NOT_EXIST;
+	}
+	
+	private void filteInvalideProductDetail(Object o){
+		if(o == null){
+			return  ;
+		}
+		if(o instanceof AbstractProduct){
+			List<ProductDetailDO> list = ((AbstractProduct)o).getDetails() ;
+			ProductUtils.filteInvalideProductDetail(list) ;
+		}
 	}
 
 
