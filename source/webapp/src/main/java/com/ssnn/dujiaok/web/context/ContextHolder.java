@@ -11,7 +11,12 @@ public class ContextHolder {
 	}
 	
 	public static MemberContext getMemberContext(){
-		return memberContextHolder.get() ;
+		MemberContext c = memberContextHolder.get() ;
+		if(c == null){
+			setMemberContext(new MemberContext()) ;
+			return memberContextHolder.get() ;
+		}
+		return c ;
 	}
 
 	public static void setRequestContext(RequestContext context){
@@ -19,7 +24,11 @@ public class ContextHolder {
 	}
 	
 	public static RequestContext getRequestContext(){
-		return requestContextHolder.get() ;
+		RequestContext c = requestContextHolder.get() ;
+		if(c == null){
+			return new RequestContext();
+		}
+		return c ;
 	}
 	
 	

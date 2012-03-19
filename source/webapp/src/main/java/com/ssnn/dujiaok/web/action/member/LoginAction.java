@@ -71,7 +71,7 @@ public class LoginAction extends BasicAction implements ValidationAware {
 			// 登陆成功
 			SessionManager.setSession(getHttpSession(),
 					SessionConstant.SESSION_MEMBER, m);
-
+			
 			if (StringUtils.isBlank(Done)
 					|| !WhitelistUtils.isWhitelistUrl(Done)) {
 				return SUCCESS;

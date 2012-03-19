@@ -7,10 +7,16 @@
 		<default-action-ref name="index" />
 		<action name="index" class="com.ssnn.dujiaok.web.action.home.IndexAction">
 			<interceptor-ref name="basicStack" />
+			<interceptor-ref name="memberAuthInterceptor">
+				<param name="auth">false</param>
+			</interceptor-ref>
 			<result name="success"  type="velocity">/home/index.vm</result>
 		</action>
 		<action name="test" class="com.ssnn.dujiaok.web.action.home.IndexAction">
 			<interceptor-ref name="basicStack" />
+			<interceptor-ref name="memberAuthInterceptor">
+				<param name="auth">false</param>
+			</interceptor-ref>
 			<result name="success" type="velocity">/home/test.vm</result>
 		</action>
 	</package>

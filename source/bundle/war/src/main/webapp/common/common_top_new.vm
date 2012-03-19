@@ -1,11 +1,20 @@
 <div class="userBar">
 	<div class="w950">
-		<span>欢迎您：SUNPEA</span>　<a href="#" class="myOrder" id="myOrder">我的订单<div class="pop" id="orderPop"></div></a>　<a href="#" class="rank">12</a>　<a href="#">退出</a> | <a href="#">帮助</a>
+		#if(${env.member})
+		<span>欢迎您：$!env.member.nickname</span>　
+		<a href="${env.root}/member/orderlist.htm" id="myOrder">我的订单<div class="pop" id="orderPop"></div></a>　
+		<a href="${env.root}/member/modify.htm">修改资料</a>　
+		<a href="${env.root}/member/logout.htm">退出</a> | 
+		<a href="#">帮助</a>
+		#else
+		<a href="${env.root}/member/login.htm">登录</a>  
+		<a href="${env.root}/member/register.htm">注册</a>
+		#end
 	</div>
 </div>
 <div class="w950 head">
 	<div class="top">
-		<h1><a href="#">度假OK</a></h1>
+		<h1><a href="${env.root}/home/index.htm">度假OK</a></h1>
 		<div class="schForm">
 			
 			<input type="text" id="schIpt" placeholder="我想去的地方"   class="gray"/><a href="javascript:void(0);" onclick="return _search();">ok</a>

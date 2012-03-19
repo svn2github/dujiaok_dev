@@ -1,4 +1,4 @@
-/* 公用样式 */
+/* 式 */
 body,ul,ol,li,p,h1,h2,h3,input,dl,dt,dd,td,th{ margin:0; padding:0; list-style:none; font-family:simsun; font-size:12px;}
 body{padding-bottom:100px;background:url(../images/body.png) repeat-x 0 151px;color:#999;}
 table{ border-collapse:collapse;}
@@ -99,6 +99,7 @@ h1 a{text-indent:-9999px;}
 /* box230 */
 .box230{width:228px;border:1px solid #dcdcdc;}
 .box230 .ttl{padding-left:15px;height:29px; line-height:29px;border-bottom:1px solid #dcdcdc;background-position:0 -67px;}
+.box710{width:708px;}
 /* orderList */
 .orderList{margin:20px 0 5px 15px;overflow:hidden;}
 .orderList li{margin-bottom:13px;height:17px;line-height:17px;line-height:18px\9;overflow:hidden;}
