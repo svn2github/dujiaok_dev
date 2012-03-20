@@ -129,7 +129,7 @@
 				</property>
 			</activation>
 			<properties>
-				<release_directory>${project.build.directory}/dev</release_directory>
+				<release_directory>${project.build.directory}</release_directory>
 			</properties>
 			<build>
 				<plugins>
