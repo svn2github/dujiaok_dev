@@ -119,6 +119,7 @@
     </div>
 </div>
 
+#JS(["validator.js"])
 #STATIC("JS",["/blogcal/blogcalendar.js"])
 #XUI_JS(["core/xui-core.js","util/util-min.js","slide/slide.js"])
 <script>
@@ -154,7 +155,7 @@
     
     //calendar
     //初始化Calendar
-    var url = '${env.root}/ajax/priceCalendar.htm?productId=$!product.productId' ;
+    var url = 'http://www.dujiaok.com:8080/dujiaok/ajax/priceCalendar.htm?productId=$!product.productId' ;
     
     var cale = new Calendar("idCalendar", {
 		

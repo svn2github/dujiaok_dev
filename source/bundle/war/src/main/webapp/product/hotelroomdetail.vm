@@ -175,7 +175,7 @@ function changeCheckoutDate(){
 }
 //calendar
     //初始化Calendar
-    var url = '${env.root}/ajax/priceCalendar.htm?productId=$!product.productId' ;
+    var url = 'http://www.dujiaok.com:8080/dujiaok/ajax/priceCalendar.htm?productId=$!product.productId' ;
     
     var cale = new Calendar("idCalendar", {
     	SelectDay: new Date().setDate(10),
