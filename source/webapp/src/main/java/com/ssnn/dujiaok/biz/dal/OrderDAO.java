@@ -41,12 +41,6 @@ public interface OrderDAO {
 	 * @param gmtPaid
 	 */
 	void updatePayStatus(String payStatus , Date gmtPaid ,String orderId) ;
-	
-	/**
-	 * 更新支付宝状态
-	 * @param alipayId
-	 */
-	void updateAlipayStatus(String alipayId,String orderId) ;
 	/**
 	 * 查询订单
 	 * @param orderId
@@ -101,5 +95,13 @@ public interface OrderDAO {
 	 * @return
 	 */
 	OrderDetailDO queryOrderDetailByOrder(String orderId) ;
-	
+	/**
+	 * 
+	 * @param orderId
+	 * @param alipayId
+	 * @param alipayStatus
+	 * @return
+	 */
+	 int updateAlipayStatus(String orderId, String alipayId,
+			 String alipayStatus, String orderStatus);
 }

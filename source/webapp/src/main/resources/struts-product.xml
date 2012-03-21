@@ -48,6 +48,7 @@
 		<action name="makeorder" class="com.ssnn.dujiaok.web.action.order.MakeOrderAction" method="makeOrder">
 		    <interceptor-ref name="memberAuthInterceptor" />
 			<interceptor-ref name="defaultStack" />
+			<result name="error"  type="velocity">/error.vm</result>
 			<result name="success"  type="velocity">/order/orderdetail.vm</result>
 		</action>
 		<action name="orderdetail" class="com.ssnn.dujiaok.web.action.order.OrderDetailAction" method="orderDetail">

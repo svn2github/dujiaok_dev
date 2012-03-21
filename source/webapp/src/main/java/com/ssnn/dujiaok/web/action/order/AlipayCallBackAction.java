@@ -1,6 +1,12 @@
 package com.ssnn.dujiaok.web.action.order;
 
-import com.ssnn.dujiaok.biz.service.order.OrderService;
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+import com.ssnn.dujiaok.biz.service.OrderService;
+import com.ssnn.dujiaok.biz.service.order.util.AlipayNotify;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 @SuppressWarnings("serial")
@@ -17,10 +23,30 @@ public class AlipayCallBackAction extends BasicAction {
 	
 	@Override
 	public String execute() {
-		if ("T".equals(is_success)) {
+		Map<String,String> params = new HashMap<String,String>();
+		Map<String, Object> requestParams = getParameters();
+		for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
+			String name = iter.next();
+			String[] values = (String[]) requestParams.get(name);
+			String valueStr = "";
+			for (int i = 0; i < values.length; i++) {
+				valueStr = (i == values.length - 1) ? valueStr + values[i]
+						: valueStr + values[i] + ",";
+			}
+			//乱码解决，这段代码在出现乱码时使用。如果mysign和sign不相等也可以使用这段代码转化
+//			try {
+//				valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
+//			} catch (UnsupportedEncodingException e) {
+//				e.printStackTrace();
+//			}
+			params.put(name, valueStr);
+		}
+		if (AlipayNotify.verify(params)) {
 //            logger.info("alipayReturn ::: out_trade_no=" + out_trade_no + ", trade_no=" + trade_no + ", trade_status="
 //                        + trade_status + "pensonId=" + this.getLoginUser().getPersonId());
-            orderService.updateAlipayIdAndStatus(new Integer(out_trade_no), trade_no, trade_status);
+            orderService.updateAlipayStatus(out_trade_no, trade_no, trade_status);
+        } else {
+        	//TODO log
         }
 		
 		return SUCCESS;

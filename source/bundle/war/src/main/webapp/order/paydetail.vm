@@ -1,4 +1,4 @@
-#set($layout="/order/default.vm")
+#set($layout="/product/default.vm")
 	
 <form id="orderForm" method="post" action='${env.root}/order/alipayorder.htm'>
 		
@@ -16,7 +16,7 @@
                 <div class="bank section">
                 	<span>支付平台：</span>
                     <ul>
-                    	<li><input name="" type="radio" value="" checked /><img src="$env.getStaticURL('/trek/images/temp02.gif')"></li>
+                    	<li><input name="" type="radio" value="" checked /><img src="../images/temp02.gif')"></li>
                     </ul>
                 </div>
                 <!--div class="bank section">

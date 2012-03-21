@@ -45,14 +45,6 @@ public class IBatisOrderDAO extends SqlMapClientDaoSupport implements OrderDAO {
 	}
 
 	@Override
-	public void updateAlipayStatus(String alipayId,String orderId) {
-		Map<String,Object> m = new HashMap<String,Object>() ;
-		m.put("alipayId" , alipayId) ;
-		m.put("orderId" ,orderId) ;
-		getSqlMapClientTemplate().update("order.updateAlipayStatus" , m) ;
-	}
-
-	@Override
 	public OrderDO queryOrder(String orderId) {
 		return (OrderDO)getSqlMapClientTemplate().queryForObject("order.queryOrder" , orderId) ;
 	}
@@ -96,7 +88,16 @@ public class IBatisOrderDAO extends SqlMapClientDaoSupport implements OrderDAO {
 	public OrderDetailDO queryOrderDetailByOrder(String orderId) {
 		return (OrderDetailDO)getSqlMapClientTemplate().queryForObject("order.queryOrderDetailByOrder" , orderId) ;
 	}
-
 	
-
+	@Override
+	public int updateAlipayStatus(String orderId, String alipayId,
+			String alipayStatus, String orderStatus) {
+	    Map<String, Object> condition = new HashMap<String, Object>();
+        condition.put("orderId", orderId);
+        condition.put("alipayId", alipayId);
+        condition.put("status", orderStatus);
+        condition.put("alipayStatus", alipayStatus);
+        
+        return (Integer)getSqlMapClientTemplate().update("order.updateAlipayIdAndStatus", condition);
+	}
 }

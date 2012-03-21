@@ -7,11 +7,12 @@ public class Constant {
 	/**
      * 支付宝交易未付款
      */
-    public static final String ALIPAY_INIT = "init";
+    public static final String ALIPAY_INIT = "INIT";
     /**
      * 支付宝交易成功状态
      */
     public static final String ALIPAY_SUCCESS      = "TRADE_SUCCESS";
+    public static final String ALIPAY_FINISHED     = "TRADE_FINISHED";
 	public static final String ENCODING = "UTF-8" ;
 	
 	public static final String REDIRECT_KEY = "Done" ;

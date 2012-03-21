@@ -11,10 +11,10 @@ import com.ssnn.dujiaok.biz.dal.OrderDAO;
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.service.OrderService;
+import com.ssnn.dujiaok.constant.PayStatus;
 import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.model.OrderContactDO;
 import com.ssnn.dujiaok.model.OrderDO;
-import com.ssnn.dujiaok.model.OrderDetailDO;
 import com.ssnn.dujiaok.util.UniqueIDUtil;
 
 public class OrderServiceImpl implements OrderService {
@@ -30,9 +30,9 @@ public class OrderServiceImpl implements OrderService {
 	public void setMemberDAO(MemberDAO memberDAO) {
 		this.memberDAO = memberDAO;
 	}
-
+	
 	@Override
-	public OrderDO createOrderAndDetailContact(OrderDO order) {
+	public OrderDO insertOrderAndDetailContact(OrderDO order) {
 //		if(order.getDetail() == null){
 //			throw new IllegalArgumentException("detail cant be null") ;
 //		}
@@ -55,19 +55,11 @@ public class OrderServiceImpl implements OrderService {
 		return order ;
 	}
 
+	
+	
 	@Override
 	public void updateOrderStatus(String status, String statusDetail, String orderId) {
 		orderDAO.updateOrderStatus(status, statusDetail, orderId) ;
-	}
-
-	@Override
-	public void updatePayStatus(String payStatus, Date gmtPaid, String orderId) {
-		orderDAO.updatePayStatus(payStatus, gmtPaid, orderId) ;
-	}
-
-	@Override
-	public void updateAlipayStatus(String alipayId, String orderId) {
-		orderDAO.updateAlipayStatus(alipayId, orderId) ;
 	}
 
 	@Override
@@ -94,5 +86,11 @@ public class OrderServiceImpl implements OrderService {
 		List<OrderDO> items = orderDAO.queryOrders(condition, pagination) ;
 		return new QueryResult<OrderDO>(items, pagination) ;
 	}
-
+	
+	@Override
+	public int updateAlipayStatus(String orderId, String alipayId, String alipayStatus) {
+		PayStatus payStatus = PayStatus.getStatus(alipayStatus);
+        return orderDAO.updateAlipayStatus(orderId, alipayId,
+        		alipayStatus, payStatus.getOrderStatus().toString());
+    }
 }

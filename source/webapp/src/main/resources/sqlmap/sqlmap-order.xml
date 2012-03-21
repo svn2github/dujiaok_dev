@@ -185,4 +185,14 @@
 		SELECT * FROM DJ_ORDER_DETAIL WHERE ORDER_ID = #orderId#
 	</select>
 	
+	<update id="updateAlipayIdAndStatus">
+		<![CDATA[
+		UPDATE DJ_ORDER
+		set ALIPAY_ID = #alipayId#,
+			PAY_STATUS = #alipayStatus#,
+			STATUS = #status#,
+			GMT_MODIFIED = now()
+		where ORDER_ID = #orderId#
+		]]>
+	</update>
 </sqlMap>

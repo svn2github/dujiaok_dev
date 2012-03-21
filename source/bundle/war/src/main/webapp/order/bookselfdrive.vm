@@ -1,4 +1,4 @@
-#set($layout="/order/default.vm")
+#set($layout="/product/default.vm")
 <form id="orderForm" method="post" action="${env.root}/order/makeorder.htm"  onSubmit="return Validator.Validate(this,3)" >
     <input type="hidden" value="$!product.marketPrice" id="marketPrice">
 	<!-- 内容开始 -->

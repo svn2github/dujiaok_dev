@@ -3,8 +3,9 @@ package com.ssnn.dujiaok.util.order;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
+import com.ssnn.dujiaok.constant.OrderStatus;
+import com.ssnn.dujiaok.constant.PayStatus;
 import com.ssnn.dujiaok.model.OrderDO;
 
 public final class OrderUtils {
@@ -28,21 +29,8 @@ public final class OrderUtils {
 	}
 	
 	public static void setOrderDefaultValue(OrderDO orderDO) {
-		if (orderDO.getGmtCreate() == null) {
-			orderDO.setGmtCreate(new Date());
-		}
-		if (orderDO.getGmtModified() == null) {
-			orderDO.setGmtModified(new Date());
-		}
-		if (orderDO.getStatus() == null) {
-			orderDO.setStatus("待付款");
-		}
-		if (orderDO.getStatusDetail() == null) {
-			orderDO.setStatusDetail("下单待付款");
-		}
-		if (orderDO.getPayStatus() == null) {
-			orderDO.setPayStatus("UNPAY");
-		}
+		orderDO.setStatus(OrderStatus.UNPAY.toString());
+		orderDO.setPayStatus(PayStatus.TRADE_UNPAY.toString());
 	}
 	
 	public static String getOrderInfoDesc(OrderDO order) {

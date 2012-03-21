@@ -32,10 +32,6 @@ public class MakeOrderAction extends BasicAction implements ModelDriven<OrderDO>
 	
 	private static final DujiaokLogger LOGGER = DujiaokLogger.getLogger(OrderDetailAction.class);
 	
-	/**
-	 * 生成自驾订单.
-	 * @return .
-	 */
 	public String makeOrder() {
 		MemberDO memberDO = SessionUtil.getLoginMemberDO(getHttpSession());
 		orderDO.setMemberId(memberDO.getMemberId());
@@ -70,7 +66,7 @@ public class MakeOrderAction extends BasicAction implements ModelDriven<OrderDO>
 		
 		if(StringUtil.isEmpty(orderDO.getOrderId())) {
 			try {
-				this.orderService.createOrderAndDetailContact(orderDO);
+				this.orderService.insertOrderAndDetailContact(orderDO);
 			} catch (Exception e) {
 				LOGGER.error("unknow exception", e);
 				this.getHttpSession().setAttribute("message", "系统发生未知异常！");

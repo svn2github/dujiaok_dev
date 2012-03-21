@@ -11,6 +11,7 @@ import com.ssnn.dujiaok.web.context.SessionUtil;
 
 @SuppressWarnings("serial")
 public class OrderListAction extends BasicAction {
+	private List<OrderDO> orderList;
 	private OrderService orderService;
 	
 	@Override
@@ -20,7 +21,6 @@ public class OrderListAction extends BasicAction {
 			getHttpSession().setAttribute("message", "无法获取用户信息，请重新登录。");
 			return ERROR;
 		}
-		List<OrderDO> orderList = null;
 		try {
 			orderList = orderService.getOrdersByMember(memberDO.getMemberId());
 		} catch (Exception e) {
@@ -39,5 +39,9 @@ public class OrderListAction extends BasicAction {
 
 	public void setOrderService(OrderService orderService) {
 		this.orderService = orderService;
+	}
+	
+	public List<OrderDO> getOrderList() {
+		return this.orderList;
 	}
 }

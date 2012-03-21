@@ -22,11 +22,7 @@ public class OrderDetailAction extends BasicAction {
 	private TicketService ticketService;
 	
 	private static final DujiaokLogger LOGGER = DujiaokLogger.getLogger(OrderDetailAction.class);
-	
-	/**
-	 * 生成自驾订单.
-	 * @return .
-	 */
+
 	public String orderDetail() {
 		if (StringUtil.isEmpty(this.orderId)) {
 			return notExistError();

@@ -1,4 +1,4 @@
-#set($layout="/order/default.vm")
+#set($layout="/product/default.vm")
 <form id='changeStatus' action='${env.root}/order/paydetail.htm' method='post'>
 <!--内容开始 -->
     <div id="wrap">
@@ -25,7 +25,7 @@
                 </table>
                 #if($order.insureNum > 0)
 	                <h3 class="dingdanhead">附加产品</h3>
-	                <p>自由行-平安国内短途2日游意外险&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;市场价：￥20人/天<strong>$!order.insure</strong> 份</p>
+	                <p>自由行-平安国内短途2日游意外险&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;市场价：￥20人/天<strong>$!order.insureNum</strong> 份</p>
                 #end
                 <h3 class="dingdanhead">游玩人信息</h3>
                 <div>
@@ -70,14 +70,14 @@
                 	#end
                 </div>
                 #if($!order.memo != '')
-                	<h3 class="dingdanhead">金额总计</h3>
-                	<textarea rows="10" id="memo" name="memo" style="width:500px; margin:8px 0 0 50px;"></textarea>
+                	<h3 class="dingdanhead">备注</h3>
+                	<textarea rows="10" id="memo" name="memo" value="$!order.memo" style="width:500px; margin:8px 0 0 50px;"></textarea>
                 #end
                 <h3 class="dingdanhead">金额总计</h3>
 
 			    <p class="Settlement_amount">订单结算金额&nbsp;&nbsp;&nbsp;<b>￥$!order.price元</b></p>
                 <div class="d_qrxd">
-					#if("UNPAY"==$!order.payStatus)
+					#if("UNPAY"==$!order.status)
 						<button type="submit" id="submit">&nbsp;&nbsp;&nbsp;&nbsp;</button>
 					#end
 					<a style="cursor:pointer;" onclick="returnPage()">&nbsp;&nbsp;返回</a>

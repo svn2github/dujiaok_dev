@@ -39,11 +39,11 @@ public class AlipayConfig {
     
     // 支付宝服务器通知的页面 要用 http://格式的完整路径，不允许加?id=123这类自定义参数
     // 必须保证其地址能够在互联网中访问的到
-    public static String notify_url ;
+    public static String notify_url = "http://www.dujiaok.com:8080/dujiaok/order/paysuccess.htm";
     
     // 当前页面跳转后的页面 要用 http://格式的完整路径，不允许加?id=123这类自定义参数
     // 域名不能写成http://localhost/create_direct_pay_by_user_jsp_utf8/return_url.jsp ，否则会导致return_url执行无效
-    public static String return_url ;
+    public static String return_url = "http://www.dujiaok.com:8080/dujiaok/order/paysuccess.htm";
 
     //↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     
@@ -59,7 +59,7 @@ public class AlipayConfig {
     
     //访问模式,根据自己的服务器是否支持ssl访问，若支持请选择https；若不支持请选择http
     public static String transport = Constant.PROTOCOL;
-    
+    /**
     static {
     	String urlPrefix = EnvPropertiesToolbox.makeUrl(Constant.PROTOCOL, 
     			EnvPropertiesUtil.getProperty("dujiaok.domainName"), 
@@ -69,5 +69,6 @@ public class AlipayConfig {
     	
     	return_url	= urlPrefix + "order/alipayReturn.htm" ;
     }
+    **/
 
 }

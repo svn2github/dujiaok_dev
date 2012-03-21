@@ -20,7 +20,7 @@ public interface OrderService {
 	 * @param order
 	 * @return
 	 */
-	OrderDO createOrderAndDetailContact(OrderDO order) ;
+	OrderDO insertOrderAndDetailContact(OrderDO order) ;
 	 
 	/**
 	 * 
@@ -29,21 +29,6 @@ public interface OrderService {
 	 * @param orderId
 	 */
 	void updateOrderStatus(String status , String statusDetail ,String orderId) ;
-	
-	/**
-	 * 
-	 * @param payStatus
-	 * @param gmtPaid
-	 * @param orderId
-	 */
-	void updatePayStatus(String payStatus , Date gmtPaid ,String orderId) ;
-	
-	/**
-	 * 
-	 * @param alipayId
-	 * @param orderId
-	 */
-	void updateAlipayStatus(String alipayId,String orderId) ;
 	
 	/**
 	 * 
@@ -66,4 +51,12 @@ public interface OrderService {
 	 * @return
 	 */
 	QueryResult<OrderDO> getOrders(Map<String,Object> condition , Pagination pagination) ;
+	/**
+	 * 
+	 * @param orderId
+	 * @param alipayId
+	 * @param alipayStatus
+	 * @return
+	 */
+	int updateAlipayStatus(String orderId, String alipayId, String alipayStatus);
 }
