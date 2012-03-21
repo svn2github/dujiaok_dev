@@ -22,7 +22,7 @@
                     	<td>$!product.productId</td>
                         <td>$!product.name</td>
                         <td>
-                        	￥<span id="price" style="color: red;">$!product.details.get(0).price</span>
+                        	￥<span id="price" style="color: red;">$!product.details[0].price</span>
                         	(市场价：<span style="text-decoration: line-through;">￥<span id="marketPrice">$!product.marketPrice</span></span>)
                         </td>
                         <td class="F10">$dateUtil.format($!orderDO.gmtOrderStart)</td>
@@ -38,7 +38,7 @@
 		                	<tr>
 		                		<th ><strong>主联系人信息</strong></th>
 		                    	<th><i>*</i> 主联系人姓名：</th>
-		                        <td><input type="text" name="contacts[0].name" id="name0" class="wpx184" value="$!orderDO.contacts.get(0).name"/></td>
+		                        <td><input type="text" name="contacts[0].name" id="name0" class="wpx184" value="$!orderDO.contacts[0].name"/></td>
 		                    </tr>
 		                    <tr>
 		                    	<th></th>

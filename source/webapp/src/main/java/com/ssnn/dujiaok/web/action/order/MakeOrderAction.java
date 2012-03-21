@@ -104,9 +104,9 @@ public class MakeOrderAction extends BasicAction implements ModelDriven<OrderDO>
 	
 	private void setOrderGmtStartAndEnd(OrderDO order, AbstractProduct productDO) {
 		if (productDO.getProductId().startsWith("ZJ")) {
-			OrderUtils.setSelfDriveOrderStartEndDate(orderDO, ((SelfDriveDO) productDO).getDays());
+			OrderUtils.setSelfDriveOrderEndDateWithStart(orderDO, ((SelfDriveDO) productDO).getDays());
 		} else if (productDO.getProductId().startsWith("MP")) {
-			OrderUtils.setSelfDriveOrderStartEndDate(orderDO, 1);
+			OrderUtils.setSelfDriveOrderEndDateWithStart(orderDO, 1);
 		}
 	}
 	

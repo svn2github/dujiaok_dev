@@ -9,7 +9,7 @@ import com.ssnn.dujiaok.model.OrderDO;
 
 public final class OrderUtils {
 	
-	public static void setSelfDriveOrderStartEndDate(OrderDO orderDO, int tourDays) {
+	public static void setSelfDriveOrderEndDateWithStart(OrderDO orderDO, int tourDays) {
 		Calendar tempCalendar = Calendar.getInstance();
 		tempCalendar.setTime(orderDO.getGmtOrderStart());
 		tempCalendar.set(Calendar.HOUR, 0);

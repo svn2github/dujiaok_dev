@@ -80,7 +80,7 @@
             </div>
             <div class="order">
             	#if(!$collectionUtils.isEmpty($product.details))
-            	<form id="orderForm" action="${env.root}/order/bookhotelroom.htm">
+            	<form id="orderForm" action="${env.root}/order/book.htm" method="POST">
                 	<ul>
                 		<li><strong>价格</strong>:&nbsp;<span id="price">$!product.details.get(0).price</span>元 </li>
                     	<li><strong>入住日期</strong>：
@@ -128,7 +128,8 @@
                       #if ($i == 2)
                         #break;
                       #end
-          	        #end
+					#end
+					<input type="hidden" id="productType" name="productType" value="FJ" />
                 </form>
                 #end>
                 <p class="F3">拨打电话预定 400 666 5599</p>

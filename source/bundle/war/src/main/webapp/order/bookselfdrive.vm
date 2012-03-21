@@ -26,11 +26,11 @@
                         </td>
                         <td class="F10">
                         	成人 <input type="text" name="count" id="adultNum" maxlength="6" class="wpx34" value="$!orderDO.count" dataType="Integer"/>
-                        	<span class="F2">（单人价：￥<span id="singlePrice" style="color:red">$!product.details.get(0).price</span>
-                        	元　双人价：￥<span id="doublePrice" style="color:red">$!product.details.get(0).doublePrice</span>元）</span><br />
+                        	<span class="F2">（单人价：￥<span id="singlePrice" style="color:red">$!product.details[0].price</span>
+                        	元　双人价：￥<span id="doublePrice" style="color:red">$!product.details[0].doublePrice</span>元）</span><br />
 							#if($!productDetail.childPrice!='')
 								儿童 <input type="text" name="secondaryCount" id="childNum" maxlength="6" class="wpx34" value="$!orderDO.secondaryCount"/>
-								<span class="F2">（儿童价：￥<span id="childPrice"  style="color:red">$!product.details.get(0).childPrice</span>元）</span>
+								<span class="F2">（儿童价：￥<span id="childPrice"  style="color:red">$!product.details[0].childPrice</span>元）</span>
 							#else
 								<input type="hidden" name="secondaryCount" id="childNum" value="$!orderDO.secondaryCount"/>
 								<span id="childPrice" style="display:none">0</span>

@@ -6,69 +6,70 @@ import java.util.List;
 
 /**
  * 订单
+ * 
  * @author shenjia.caosj 2012-2-2
- *
+ * 
  */
 public class OrderDO {
 
 	/**
 	 * pk
 	 */
-	private int id ;
-	
+	private int id;
+
 	/**
 	 * 规则生成的ID
 	 */
-	private String orderId ;
-	
+	private String orderId;
+
 	/**
 	 * 会员
 	 */
-	private String memberId ;
-	
+	private String memberId;
+
 	/**
 	 * 名称
 	 */
-	private String name ;
-	
+	private String name;
+
 	/**
 	 * 酒店为x晚，门票为x张，自驾为x成人
 	 */
-	private int count ;
-		
+	private int count;
+
 	/**
 	 * 门票为儿童x张
 	 */
-	private int secondaryCount ;
-	
+	private int secondaryCount;
+
 	/**
 	 * 订购产品类型
 	 */
-	private String productType ;
+	private String productType;
 	/**
 	 * 订购产品ID
 	 */
-	private String productId ;
+	private String productId;
 	/**
 	 * 
 	 */
 	private String productDetailId;
-	
+
 	/**
 	 * 订单总价
 	 */
-	private BigDecimal price ;
-	
+	private BigDecimal price;
+
 	/**
-	 * 订单状态  等待付款，付款成功，关闭，退款 OrderStatusEnums
+	 * 订单状态 等待付款，付款成功，关闭，退款 OrderStatusEnums
 	 */
-	private String status ;
-	
+	private String status;
+
 	/**
-	 * 状态详细说明（如订单关闭原因） 
+	 * 状态详细说明（如订单关闭原因）
 	 */
-	private String statusDetail ;
-	
+	private String statusDetail;
+
 	/**
 	 * 付款方式
 	 */
@@ -76,29 +77,29 @@ public class OrderDO {
 	/**
 	 * 付款状态：已经付款，未付款 PayStatusEnums
 	 */
-	private String payStatus ;
-	
+	private String payStatus;
+
 	/**
 	 * 支付宝ID
 	 */
-	private String alipayId ;
-	
-	private String memo ;
-	
-	private Date gmtCreate ;
-	
-	private Date gmtOrderStart ;
-	
-	private Date gmtOrderEnd ;
-	
-	private Date gmtModified ;
+	private String alipayId;
+
+	private String memo;
+
+	private Date gmtCreate;
+
+	private Date gmtOrderStart;
+
+	private Date gmtOrderEnd;
+
+	private Date gmtModified;
 	private int insureNum;
 	/**
 	 * 付款时间
 	 */
-	private Date gmtPaid ;
-	
-	private List<OrderContactDO> contacts ;
+	private Date gmtPaid;
+
+	private List<OrderContactDO> contacts;
 
 	public List<OrderContactDO> getContacts() {
 		return contacts;
@@ -235,7 +236,7 @@ public class OrderDO {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
- 
+
 	public String getStatus() {
 		return status;
 	}

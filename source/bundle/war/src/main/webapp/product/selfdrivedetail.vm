@@ -85,7 +85,7 @@
             </div>
             <div class="order">
             	#if(!$collectionUtils.isEmpty($product.details))
-            	<form id="orderForm" method="get" action="${env.root}/order/bookselfdrive.htm">
+            	<form id="orderForm" method="get" action="${env.root}/order/book.htm" method="POST">
                 	<ul>
                     	<li>游玩日期：
                    	    	<select name="productDetailId" id="productDetailId" onchange="changeDepartDate()">
@@ -110,6 +110,7 @@
                     </ul>
                 	<button type="submit">&nbsp;&nbsp;&nbsp;</button>
 					<input type="hidden" id="productId" name="productId" value="$!product.productId" />
+					<input type="hidden" id="productType" name="productType" value="ZJ" />
                 </form>
                 #end
                 <p class="F3">拨打电话预定 400 666 5599</p>

@@ -16,6 +16,14 @@
 	</package>
 	
 	<package name="order" namespace="/order" extends="default">
+		<action name="book" class="com.ssnn.dujiaok.web.action.order.OrderAction" method="book">
+			<interceptor-ref name="memberAuthInterceptor" />
+			<interceptor-ref name="defaultStack" />
+			<result name="ticket"  type="velocity">/order/bookticket.vm</result>
+			<result name="room"  type="velocity">/order/bookhotelroom.vm</result>
+			<result name="selfdrive"  type="velocity">/order/bookselfdrive.vm</result>
+			<result name="not_exist"  type="velocity">/order/notexist.vm</result>
+		</action>
 		<action name="bookselfdrive" class="com.ssnn.dujiaok.web.action.order.OrderAction" method="bookSelfDrive">
 			<interceptor-ref name="memberAuthInterceptor" />
 			<interceptor-ref name="defaultStack" />

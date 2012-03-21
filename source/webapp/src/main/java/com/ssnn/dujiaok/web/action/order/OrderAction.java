@@ -2,152 +2,106 @@ package com.ssnn.dujiaok.web.action.order;
 
 import java.util.Arrays;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.opensymphony.xwork2.ModelDriven;
-import com.ssnn.dujiaok.biz.log.DujiaokLogger;
 import com.ssnn.dujiaok.biz.service.HotelRoomService;
 import com.ssnn.dujiaok.biz.service.MemberService;
 import com.ssnn.dujiaok.biz.service.SelfDriveService;
 import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.biz.service.product.ProductDetailService;
 import com.ssnn.dujiaok.constant.ProductConstant;
-import com.ssnn.dujiaok.model.HotelRoomDO;
+import com.ssnn.dujiaok.model.AbstractProduct;
 import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.model.OrderContactDO;
 import com.ssnn.dujiaok.model.OrderDO;
 import com.ssnn.dujiaok.model.ProductDetailDO;
 import com.ssnn.dujiaok.model.SelfDriveDO;
-import com.ssnn.dujiaok.model.TicketDO;
-import com.ssnn.dujiaok.util.ProductUtils;
+import com.ssnn.dujiaok.util.enums.ProductEnums;
 import com.ssnn.dujiaok.util.order.OrderUtils;
-import com.ssnn.dujiaok.util.string.StringUtil;
 import com.ssnn.dujiaok.web.action.BasicAction;
-import com.ssnn.dujiaok.web.context.SessionUtil;
+import com.ssnn.dujiaok.web.context.ContextHolder;
 
 @SuppressWarnings("serial")
 public class OrderAction extends BasicAction implements ModelDriven<OrderDO> {
 	private OrderDO orderDO = new OrderDO();
 	
+	private AbstractProduct product ;
+	
+		
 	private SelfDriveService selfDriveService;
 	private HotelRoomService hotelRoomService;
 	private TicketService ticketService;
 	private ProductDetailService productDetailService;
 	private MemberService memberService;
 	
-	private static final DujiaokLogger LOGGER = DujiaokLogger.getLogger(OrderAction.class);
+	private static final Log LOGGER = LogFactory.getLog(OrderAction.class);
 	
-	public String bookSelfDrive() {
-		orderDO.setProductType("SELFDRIVE");
-		orderDO.setMemberId(SessionUtil.getLoginMemberDO(getHttpSession()).getMemberId());
-		if (orderDO.getGmtOrderStart() == null) {
-			LOGGER.error(StringUtil.concat("makeSelfDriveOrder[departDate = null]: wrong date info"));
-			this.getHttpSession().setAttribute("message", "非常抱歉，您选择的日期有误。");
-			return ERROR;
-		}
-		SelfDriveDO selfDriveDO = this.selfDriveService.getSelfDrive(orderDO.getProductId());
-		if (selfDriveDO == null) {
-			LOGGER.error(StringUtil.concat("makeSelfDriveOrder[", orderDO.getProductId(), "]: product not Exist"));
-			this.getHttpSession().setAttribute("message", "非常抱歉，您选择的产品不再销售。");
-			return ProductConstant.NOT_EXIST;
-		}
-		ProductDetailDO detailDO = this.productDetailService.getProductDetail(orderDO.getProductId(), orderDO.getProductDetailId());
-		if (detailDO == null) {
-			LOGGER.error(StringUtil.concat("makeSelfDriveOrder[", orderDO.getProductId(), "." + orderDO.getProductDetailId(),
-										"]: product not Exist"));
-			this.getHttpSession().setAttribute("message", "非常抱歉，您选择的产品不再销售。");
-			return ProductConstant.NOT_EXIST;
-		}
-		if (orderDO.getGmtOrderStart().before(detailDO.getGmtStart()) || orderDO.getGmtOrderStart().after(detailDO.getGmtEnd())) {
-			LOGGER.error(StringUtil.concat("makeSelfDriveOrder[", orderDO.getProductId(), ".", orderDO.getProductDetailId(),
-								".", orderDO.getGmtOrderStart(), "]: depart date error"));
-			this.getHttpSession().setAttribute("message", "订单信息有误：出行日期无效。");
-			return ERROR;
-		}
-		OrderUtils.setSelfDriveOrderStartEndDate(orderDO, selfDriveDO.getDays());
-		selfDriveDO.setDetails(Arrays.asList(detailDO));
+	public String book(){
+		AbstractProduct product = null ;
 		
-		MemberDO memberDO = this.memberService.queryMember(orderDO.getMemberId());
-		OrderContactDO contactor = getDefaultContactor(memberDO);
+		String memberId = ContextHolder.getMemberContext().getMemberId() ;
+		
+		ProductEnums type = ProductEnums.fromValue(orderDO.getProductType()) ;
+		String productId = orderDO.getProductId() ;
+		if(type == ProductEnums.SELFDRIVE){
+			product = selfDriveService.getSelfDriveWithDetails(productId) ;
+		}else if(type == ProductEnums.HOTEL_ROOM){
+			product = hotelRoomService.getRoomWithDetails(productId) ;
+		}else if(type == ProductEnums.TICKET){
+			product = ticketService.getTicketWithDetails(productId) ;
+		}
+		if(product == null){
+			return ProductConstant.NOT_EXIST ;
+		}
+		String detailId = orderDO.getProductDetailId() ;
+		ProductDetailDO detail = productDetailService.getProductDetail(productId , detailId);
+		if(detail == null){
+			return ProductConstant.NOT_EXIST ;
+		}
+		
+		//gmtStart 有问题
+		if (orderDO.getGmtOrderStart()==null || orderDO.getGmtOrderStart().before(detail.getGmtStart()) || orderDO.getGmtOrderStart().after(detail.getGmtEnd())) {
+			return ProductConstant.NOT_EXIST;
+		}
+		//设置自驾时间
+		if(ProductEnums.SELFDRIVE == type){
+			SelfDriveDO s = (SelfDriveDO)product ;
+			OrderUtils.setSelfDriveOrderEndDateWithStart(orderDO, s.getDays());
+		}
+		
+		//设置首要联系人
+		MemberDO member = memberService.queryMember(memberId) ;
+		OrderContactDO contactor = getDefaultContactor(member);
 		orderDO.setContacts(Arrays.asList(contactor));
 		
-		getHttpSession().setAttribute("product", selfDriveDO);
-		getHttpSession().setAttribute("orderDO", orderDO);
-		return SUCCESS;
+		//计算价格
+		this.product = product ;
+		
+		if(type == ProductEnums.SELFDRIVE){
+			return ProductConstant.SELF_DRIVE ;
+		}else if(type == ProductEnums.HOTEL_ROOM){
+			return ProductConstant.ROOM ;
+		}else if(type == ProductEnums.TICKET){
+			return ProductConstant.TICKET ;
+		}
+		return ProductConstant.NOT_EXIST ;
 	}
 	
+	
 	private OrderContactDO getDefaultContactor(MemberDO memberDO) {
+		if(memberDO == null){
+			return null ;
+		}
 		OrderContactDO contactor = new OrderContactDO();
 		contactor.setName(memberDO.getNickname());
 		contactor.setMobile(memberDO.getMobileNo());
 		contactor.setEmail(memberDO.getEmail());
-		contactor.setIsMain("Y");
+		contactor.setIsMain("T");
 		return contactor;
 	}
 	
-	public String bookHotelRoom() {
-		MemberDO memberDO = SessionUtil.getLoginMemberDO(getHttpSession());
-		orderDO.setProductType("HOTELROOM");
-		orderDO.setMemberId(memberDO.getMemberId());
-		if (orderDO.getGmtOrderStart() == null || orderDO.getGmtOrderEnd() == null) {
-			LOGGER.error(StringUtil.concat("makeHotelRoomOrder[checkinDate = null, checkoutDate = null]: wrong date info"));
-			this.getHttpSession().setAttribute("message", "非常抱歉，您选择的日期有误。");
-			return ProductConstant.NOT_EXIST;
-		}
-		HotelRoomDO roomDO = this.hotelRoomService.getRoomWithDetails(orderDO.getProductId());
-		if (roomDO == null) {
-			LOGGER.error(StringUtil.concat("makeHotelRoomOrder[", orderDO.getProductId(), "]: product not Exist"));
-			this.getHttpSession().setAttribute("message", "非常抱歉，您选择的产品不再销售。");
-			return ProductConstant.NOT_EXIST;
-		}
-		ProductUtils.filteProductDetail(roomDO.getDetails(), orderDO.getGmtOrderStart(), orderDO.getGmtOrderEnd());
-		if (roomDO.getDetails().size() == 0) {
-			LOGGER.error(StringUtil.concat("makeHotelRoomOrder[", orderDO.getProductId(), "]: wrong date info"));
-			this.getHttpSession().setAttribute("message", "非常抱歉，您选择的日期有误。");
-			return ProductConstant.NOT_EXIST;
-		}
-		OrderContactDO contactor = getDefaultContactor(memberDO);
-		orderDO.setContacts(Arrays.asList(contactor));
-		
-		getHttpSession().setAttribute("product", roomDO);
-		getHttpSession().setAttribute("orderDO", orderDO);
-		return SUCCESS;
-	}
-	
-	
-	public String bookTicket() {
-		MemberDO memberDO = SessionUtil.getLoginMemberDO(getHttpSession());
-		OrderDO orderDO = new OrderDO();
-		orderDO.setProductType("TICKET");
-		orderDO.setMemberId(memberDO.getMemberId());
-		TicketDO ticketDO = this.ticketService.getTicket(orderDO.getProductId());
-		if(ticketDO == null) {
-			LOGGER.error("makeTicketOrder[" + orderDO.getProductId() + "]: produc not Exist");
-			this.getHttpSession().setAttribute("message", "非常抱歉，您选择的产品不再销售。");
-			return ProductConstant.NOT_EXIST;
-		}
-		ProductDetailDO detailDO = this.productDetailService.getProductDetail(orderDO.getProductId(), orderDO.getProductDetailId());
-		if (detailDO == null) {
-			LOGGER.error(StringUtil.concat("makeTicketOrder[", orderDO.getProductId(), "." + orderDO.getProductDetailId(),
-					"]: product not Exist"));
-			this.getHttpSession().setAttribute("message", "非常抱歉，您选择的产品不再销售。");
-			return ProductConstant.NOT_EXIST;
-		}
-		if (orderDO.getGmtOrderStart().before(detailDO.getGmtStart()) || orderDO.getGmtOrderStart().after(detailDO.getGmtEnd())) {
-			LOGGER.error(StringUtil.concat("makeHotelRoomOrder[", orderDO.getProductId(), "useDate:",
-					orderDO.getGmtOrderStart(), "]: wrong date useDate"));
-			this.getHttpSession().setAttribute("message", "非常抱歉，您选择的日期有误。");
-			return ProductConstant.NOT_EXIST;
-		}
-		ticketDO.setDetails(Arrays.asList(detailDO));
-		
-//		MemberDO memberDO = this.memberService.queryMember(orderDO.getMemberId());
-		OrderContactDO contactor = getDefaultContactor(memberDO);
-		orderDO.setContacts(Arrays.asList(contactor));
-		
-		this.getHttpSession().setAttribute("product", ticketDO);
-		this.getHttpSession().setAttribute("orderDO", orderDO);
-		return SUCCESS;
-	}
-
 	public void setSelfDriveService(SelfDriveService selfDriveService) {
 		this.selfDriveService = selfDriveService;
 	}
@@ -179,6 +133,16 @@ public class OrderAction extends BasicAction implements ModelDriven<OrderDO> {
 	public OrderDO getOrderDO() {
 		return orderDO;
 	}
+
+	public AbstractProduct getProduct() {
+		return product;
+	}
+
+
+	public void setProduct(AbstractProduct product) {
+		this.product = product;
+	}
+
 
 	public void setOrderDO(OrderDO orderDO) {
 		this.orderDO = orderDO;
