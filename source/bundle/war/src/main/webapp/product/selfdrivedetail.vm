@@ -85,7 +85,7 @@
             </div>
             <div class="order">
             	#if(!$collectionUtils.isEmpty($product.details))
-            	<form id="orderForm" method="get" action="${env.root}/order/book.htm" method="POST">
+            	<form id="orderForm" method="get" action="${env.root}/order/book.htm" method="get">
                 	<ul>
                     	<li>游玩日期：
                    	    	<select name="productDetailId" id="productDetailId" onchange="changeDepartDate()">
@@ -98,8 +98,8 @@
 								#end
                   	        </select>
                   	     </li>
-                  	     <input type="hidden" id="departDate" name="gmtOrderStart" value="$dateUtils.format($!product.details.get(0).startDates.get(0), 'yyyy-MM-dd')" />
-                         <li>单人：<span id='singlePrice'>$!product.details.get(0).price</span>元&nbsp;&nbsp;双人：<span id='doublePrice'>$!product.details.get(0).doublePrice</span>元&nbsp;&nbsp;#if($product.details.get(0).childPrice!=0)<br>儿童：<span id='childPrice'>$!product.details.get(0).childPrice</span> 元#end </li>
+                  	     <input type="hidden" id="departDate" name="gmtOrderStart" value="$dateUtils.format($!product.details[0].startDates[0], 'yyyy-MM-dd')" />
+                         <li>单人：<span id='singlePrice'>$!product.details.get(0).price</span>元&nbsp;&nbsp;双人：<span id='doublePrice'>$!product.details[0].doublePrice</span>元&nbsp;&nbsp;#if($product.details.get(0).childPrice!=0)<br>儿童：<span id='childPrice'>$!product.details.get(0).childPrice</span> 元#end </li>
                          <li>成人数&nbsp;<input type="text" name="count" width="6" id="adultNum">&nbsp;&nbsp;&nbsp;&nbsp;
                              #if($!product.details.childPrice!=0)
                              	儿童数&nbsp;<input type="text" name="secondaryCount" id="childNum">&nbsp;&nbsp;&nbsp;&nbsp;

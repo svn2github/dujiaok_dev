@@ -80,7 +80,7 @@
             </div>
             <div class="order">
             	#if(!$collectionUtils.isEmpty($product.details))
-            	<form id="orderForm" action="${env.root}/order/book.htm" method="POST">
+            	<form id="orderForm" action="${env.root}/order/book.htm" method="get">
                 	<ul>
                 		<li><strong>价格</strong>:&nbsp;<span id="price">$!product.details.get(0).price</span>元 </li>
                     	<li><strong>入住日期</strong>：
@@ -115,7 +115,7 @@
                     </ul>
                 	<button onclick="makeOrder()">&nbsp;&nbsp;&nbsp;</button>
 					<input type="hidden" id="productId" name="productId" value="$product.productId" />
-					<input type="hidden" id="checkinDate" name="gmtOrderStart" value="$dateUtils.format($!product.details.get(0).startDates.get(0),'yyyy-MM-dd')"/>
+					<input type="hidden" id="checkinDate" name="gmtOrderStart" value="$dateUtils.format($!product.details[0].startDates[0],'yyyy-MM-dd')"/>
 					#set($i=1)
 					#foreach($detail in $!product.details)
                       #foreach($checkoutDate in $!detail.startDates)

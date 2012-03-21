@@ -95,7 +95,7 @@
             </div>
             <div class="order">
             	#if(!$collectionUtils.isEmpty($product.details))
-            	<form id="orderForm" action="${env.root}/order/book.htm" method="POST">
+            	<form id="orderForm" action="${env.root}/order/book.htm" method="get">
                 	<ul>
                     	<li>使用日期：
                    	    	<select name="productDetailId" id="productDetailId" onchange="changeUseDate()">

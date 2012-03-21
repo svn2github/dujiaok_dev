@@ -65,7 +65,7 @@
 		                    <tr>
 		                    	<th></th>
 		                    	<th>E-mail：</th>
-		                        <td><input type="text" name="contacts[0].email" id="email0" class="wpx1843" style="width: 184px;" value="$!orderDO.contacts.get(0).email"/></td>
+		                        <td><input type="text" name="contacts[0].email" id="email0" class="wpx1843" style="width: 184px;" value="$!orderDO.contacts[0].email"/></td>
 		                    </tr>
 		                    <tr style="display: none;">
 		                    	<th></th>
@@ -102,7 +102,7 @@
             	<h3>订单金额总计</h3>
                 <div class="information"> 
                     <table  cellpadding="0" cellspacing="0">
-                    	<tr><th>市 场 价：￥</th><td><span id="orderMarketPrice"></span>元</td></tr>
+                    	<tr><th>市 场 价：￥</th><td><span id="orderMarketPrice">$product.marketPrice</span>元</td></tr>
                     	<tr><th>ok价：￥</th><td><span id="orderOkPrice"></span>元</td></tr>
                         <tr><th>累计节省：￥</th><td><span id="orderSavePrice"></span>元</td></tr>
                     </table>
