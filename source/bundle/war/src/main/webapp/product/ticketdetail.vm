@@ -88,7 +88,7 @@
                 <table>
                 	<tr><th>市场价：</th><td>￥$!product.marketPrice </td></tr>
                     <tr><th>商品编号：</th><td>$!product.productId</td></tr>
-                    <tr><th>支付方式：</th><td>$!product.payTypes</td></tr>
+                    <tr><th>支付方式：</th><td>$enumUtils.toPayTypeEnumDescs($!product.payTypes)</td></tr>
                     <tr><th>产品类别：</th><td>$!product.productTypes</td></tr>
                     <tr><th>景点地址：</th><td>$!product.destAddr</td></tr>
                 </table>
@@ -125,7 +125,7 @@
 
 #STATIC("JS",["/blogcal/blogcalendar.js"])
 #XUI_JS(["core/xui-core.js","util/util-min.js","slide/slide.js"])
-<script>
+<script type="text/javascript">
 	
 	var x = new xui.widgets.Slide();
 
@@ -159,6 +159,7 @@
     var url = '${env.root}/ajax/priceCalendar.htm?productId=$!product.productId' ;
     
     var cale = new Calendar("idCalendar", {
+		
     	SelectDay: new Date().setDate(10),
     	onSelectDay: function(o){ o.className = "onSelect"; },
     	onToday: function(o){ o.className = "onToday"; },
@@ -171,7 +172,8 @@
             				var obj = eval('('+data+')') ;
             				var calendar = obj.calendar ;
     						
-    						$("idCalendarYear").innerHTML = this.Year; $("idCalendarMonth").innerHTML = this.Month;
+    						$("idCalendarYear").innerHTML = cale.Year; 
+							$("idCalendarMonth").innerHTML = cale.Month;
     						var flag = calendar  ;
                     		// var flag = [{severtime:"2012-01",data:[{id:10,name:"250元"},{id:15,name:"250"},{id:16,name:"250"}]},{severtime:"2012-02",data:[{id:12,name:"250元"},{id:14,name:"250"},{id:16,name:"250"}]}];
                     		for(var i = 0, len = flag.length; i < len; i++){

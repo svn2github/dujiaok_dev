@@ -73,7 +73,7 @@
                 	<tr><th><strong>酒店名称</strong>：</th><td><a href="${env.root}/product/detail.htm?productId=$!product.hotelId" target="hotel">$!hotelName</td></tr>
                 	<tr><th><strong>市场价</strong>：</th><td>$!product.marketPrice元</td></tr>
                     <tr><th><strong>商品编号</strong>：</th><td>$!product.productId</td></tr>
-                    <tr><th><strong>支付方式</strong>：</th><td>$!product.payTypes</td></tr>
+                    <tr><th><strong>支付方式</strong>：</th><td>$enumUtils.toPayTypeEnumDescs($!product.productTypes)</td></tr>
                     <tr><th><strong>房间信息</strong>：</th><td><span>$!product.roomArea</span>平米 &nbsp;&nbsp<span>$!product.bed</span></td></tr>
                     <tr><th></th><td>$!product.roomFacilities</td></tr>
                 </table>
@@ -189,7 +189,8 @@ function changeCheckoutDate(){
             				var obj = eval('('+data+')') ;
             				var calendar = obj.calendar ;
     						
-    						$("idCalendarYear").innerHTML = this.Year; $("idCalendarMonth").innerHTML = this.Month;
+    						$("idCalendarYear").innerHTML = cale.Year; 
+							$("idCalendarMonth").innerHTML = cale.Month;
     						var flag = calendar  ;
                     		// var flag = [{severtime:"2012-01",data:[{id:10,name:"250元"},{id:15,name:"250"},{id:16,name:"250"}]},{severtime:"2012-02",data:[{id:12,name:"250元"},{id:14,name:"250"},{id:16,name:"250"}]}];
                     		for(var i = 0, len = flag.length; i < len; i++){

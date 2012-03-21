@@ -70,7 +70,7 @@
                 <td class="border_top_line">$!hotel.productId</td>
 				<td class="border_top_line"></td>
                 <td class="border_top_line">
-                    <a href="#"><b>$!hotel.name</b></a> #if(!$stringUtils.isBlank($hotel.memo))<img height="14" width="14" title="#ESC_HTML($hotel.memo)" src="${env.staticroot}/images/bz_icon.png">#end
+                    <a href="${env.root}/product/detail.htm?productId=$!hotel.productId" target="_blank"><b>$!hotel.name</b></a> #if(!$stringUtils.isBlank($hotel.memo))<img height="14" width="14" title="#ESC_HTML($hotel.memo)" src="${env.staticroot}/images/bz_icon.png">#end
                 </td>
                 <td class="border_top_line">$!hotel.destProvince $!hotel.destCity</td>
                 <td class="border_top_line"></td>

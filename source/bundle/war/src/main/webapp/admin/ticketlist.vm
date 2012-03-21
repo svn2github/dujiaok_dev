@@ -66,7 +66,7 @@
             <tr>
                 <td>$!ticket.productId</td>
                 <td>
-                    <a href="#">$!ticket.name</a> #if(!$stringUtils.isBlank($ticket.memo))<img height="14" width="14" title="#ESC_HTML($ticket.memo)" src="${env.staticroot}/images/bz_icon.png">#end
+                    <a href="${env.root}/product/detail.htm?productId=${ticket.productId}" target="_blank">$!ticket.name</a> #if(!$stringUtils.isBlank($ticket.memo))<img height="14" width="14" title="#ESC_HTML($ticket.memo)" src="${env.staticroot}/images/bz_icon.png">#end
                 </td>
                 <td>$!ticket.destProvince $!ticket.destCity</td>
                 <td class="F9">#AUTOCHECK_TIME($!ticket.gmtExpire,'yyyy-MM-dd')</td>
