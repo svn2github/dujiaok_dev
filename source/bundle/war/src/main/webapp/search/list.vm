@@ -1,9 +1,7 @@
 #set($layout="/front/default_new.vm")
 #set($title = $!keyword)
-<form action="${env.root}/search/global.htm" method="get" name="searchForm">
-	<input type="hidden" name="keyword" value="$!keyword"/>
-	<input type="hidden" name="start" id="start" value="1"/>
-	<input type="hidden" name="size" id="size" value="$!size"/>
+
+	
 <div class="w950 main search">
 	<div class="crumb">您搜索的关键词是“<span class="orange">$!keyword</span>”，我们为您找到了<span class="orange">$!totalCount</span>个相关的产品！</div>
 	<!-- schL开始 -->
@@ -110,12 +108,12 @@
 </form>
 	
 <script>
-	var toPage = function(pages , size){
+	var toPage = function(pages,size){
 		if(isNaN(pages)){
 			alert('请输入数字') ;
 			return false ;
 		}
-		var totalPages = $totalPages
+		var totalPages = $totalPages ;
 		if(pages > totalPages){
 			pages = totalPages ;
 		}
