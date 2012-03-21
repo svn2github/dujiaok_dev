@@ -18,64 +18,70 @@ import com.ssnn.dujiaok.web.action.BasicAction;
 /**
  * 
  * @author shenjia.caosj 2012-2-29
- *
+ * 
  */
 @SuppressWarnings("serial")
-public class SearchAction extends BasicAction implements ModelDriven<Pagination>{
+public class SearchAction extends BasicAction implements
+		ModelDriven<Pagination> {
 
 	/**
 	 * 关键字
 	 */
-	private String keyword ;
-	
+	private String keyword;
+
 	/**
 	 * 产品
 	 */
-	private String product ;
+	private String product;
 	
+	/**
+	 * 出游天数
+	 */
+	private int days ;
+
 	/**
 	 * 地方
 	 */
-	private String place ;
-	
-	private QueryResult<SearchDO> result ;
-	
-	private SearchService searchService ;
-	
-	private ProductDetailService productDetailService ;
-	
-	private Pagination pagination = new Pagination(1) ;
-	
+	private String place;
+
+	private QueryResult<SearchDO> result;
+
+	private SearchService searchService;
+
+	private ProductDetailService productDetailService;
+
+	private Pagination pagination = new Pagination(1);
+
 	@Override
 	public String execute() throws Exception {
-		
-		if(!StringUtils.isBlank(keyword)){
-			GlobalSearchCondition condition = new GlobalSearchCondition() ;
-			condition.setName(keyword) ;
+
+		if (!StringUtils.isBlank(keyword)) {
+			GlobalSearchCondition condition = new GlobalSearchCondition();
+			condition.setName(keyword);
 			condition.setPlace(place);
-			condition.setProduct(product) ;
-			result = searchService.globalSearch(condition, pagination) ;
-			
-			if(CollectionUtils.isNotEmpty(result.getItems())){
-				for(SearchDO item : result.getItems()){
-					String productId = item.getProductId() ;
-					if(StringUtils.startsWith(productId, ProductEnums.HOTEL.getName())){
-						continue ;
+			condition.setProduct(product);
+			result = searchService.globalSearch(condition, pagination);
+
+			if (CollectionUtils.isNotEmpty(result.getItems())) {
+				for (SearchDO item : result.getItems()) {
+					String productId = item.getProductId();
+					if (StringUtils.startsWith(productId,
+							ProductEnums.HOTEL.getName())) {
+						continue;
 					}
-					BigDecimal price = productDetailService.getTodayBottomPrice(productId) ;
-					item.setPrice(price) ;
+					BigDecimal price = productDetailService
+							.getTodayBottomPrice(productId);
+					item.setPrice(price);
 				}
 			}
 		}
-		
-		return SUCCESS ;
+
+		return SUCCESS;
 	}
-	
+
 	/**
 	 * ------------------------------------------------------------------------
 	 */
-	
-	
 
 	public String getKeyword() {
 		return keyword;
@@ -96,8 +102,10 @@ public class SearchAction extends BasicAction implements ModelDriven<Pagination>
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
-	
-	
+
+	public String getProduct() {
+		return product;
+	}
 
 	public String getPlace() {
 		return place;
@@ -107,19 +115,26 @@ public class SearchAction extends BasicAction implements ModelDriven<Pagination>
 		this.place = place;
 	}
 
+	public int getDays() {
+		return days;
+	}
+
+	public void setDays(int days) {
+		this.days = days;
+	}
+
 	@Override
 	public Pagination getModel() {
-		return pagination ;
+		return pagination;
 	}
 
 	public void setPagination(Pagination pagination) {
 		this.pagination = pagination;
 	}
 
-	public void setProductDetailService(ProductDetailService productDetailService) {
+	public void setProductDetailService(
+			ProductDetailService productDetailService) {
 		this.productDetailService = productDetailService;
 	}
 
-	
-	
 }

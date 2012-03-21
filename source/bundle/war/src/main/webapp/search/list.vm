@@ -16,17 +16,21 @@
 			</div>
 			<table class="cnt">
 				<tr>
-					<th>产品类型：</th><td><p><a href="javascript:;" class="current">全部</a><a href="javascript:;">打折门票</a><a href="javascript:;">自由行</a><a href="javascript:;">跟团游</a><a href="javascript:;">酒店</a></p></td>
+					<th>产品类型：</th><td><p><a href="javascript:;" #if($product=="")class="current"#end onclick="return _search_p();">全部</a><a href="javascript:;" onclick="return _search_p('MP');" #if($product=="MP")class="current"#end>打折门票</a><a href="javascript:;" onclick="return _search_p('ZJ');" #if($product=="ZJ")class="current"#end>周边自驾</a><a href="javascript:;" onclick="return _search_p('FJ');" #if($product=="FJ")class="current"#end>酒店房间</a></p></td>
 				</tr>
+				<!--
 				<tr>
 					<th>起价范围：</th><td><p><a href="#" class="current">全部</a><a href="#">200以下</a><a href="#">200-499</a><a href="#">500-999</a><a href="#">1000-1499</a><a href="#">1500-1999</a><a href="#">2000及以上</a></p></td>
 				</tr>
+				-->
 				<tr>
-					<th>出游天数：</th><td><p><a href="#" class="current">全部</a><a href="#">1天</a><a href="#">2天</a><a href="#">3天</a><a href="#">4天</a><a href="#">5天以上</a></p></td>
+					<th>出游天数：</th><td><p><a href="#" #if($days==0)class="current"#end href="javascript:;" onclick="return _search_d();">全部</a><a href="javascript:;" onclick="return _search_d(1);" #if($days==1)class="current"#end>1天</a><a href="javascript:;" onclick="return _search_d(2);" #if($days==2)class="current"#end>2天</a><a href="javascript:;" onclick="return _search_d(3);" #if($days==3)class="current"#end>3天</a><a href="javascript:;" onclick="return _search_d(4);" #if($days==4)class="current"#end>4天</a><a href="javascript:;" onclick="return _search_d(5);" #if($days==5)class="current"#end>5天以上</a></p></td>
 				</tr>
+				<!--
 				<tr>
 					<th>优惠方式：</th><td><p><a href="#" class="current">全部</a><a href="#">可用优惠券</a><a href="#">可返奖金</a><a href="#">可用优惠券</a><a href="#">可返奖金</a><a href="#">可用优惠券</a><a href="#">可返奖金</a><a href="#">可用优惠券</a><a href="#">可返奖金</a></p></td>
 				</tr>
+				-->
 			</table>
 		</div>
 		<!-- schL1结束 -->

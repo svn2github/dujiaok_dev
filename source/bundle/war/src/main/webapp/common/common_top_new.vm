@@ -16,8 +16,11 @@
 	<div class="top">
 		<h1><a href="${env.root}/home/index.htm">度假OK</a></h1>
 		<div class="schForm">
-			
-			<input type="text" id="schIpt" placeholder="我想去的地方"   class="gray"/><a href="javascript:void(0);" onclick="return _search();">ok</a>
+			<form action="${env.root}/search/global.htm" method="get" id="searchForm">
+				<input type="hidden" id="_product" name="product" value="$!product"/>
+				<input type="hidden" id="_days" name="days" value="$!days"/>
+				<input type="text" id="schIpt" name="keyword" placeholder="我想去的地方" value="$!keyword"  class="gray"/><a href="javascript:void(0);" onclick="return _search();">ok</a>
+            </form>
 		</div>
 		<div class="serviceTel">400 800 3456</div>
 	</div>
@@ -176,12 +179,31 @@
 </div>
 	
 <script>
+	
 	var _search = function(){
 		var t = document.getElementById('schIpt').value;
 		if(t == '' || typeof(t)=='undefined'){
 			alert('请输入搜索关键字');
 			return false ;
 		}
-		window.location.href='${env.root}/search/global.htm?keyword=' + encodeURI(t); 
+		document.getElementById("searchForm").submit() ;
+	}
+	
+	var _search_p = function(product){
+		if(product!=null && product!='' && typeof(product)!='undefined'){
+			document.getElementById('_product').value = product ;
+		}else{
+			document.getElementById('_product').value = '' ;
+		}
+		document.getElementById("searchForm").submit() ;
+	}
+	
+	var _search_d = function(days){
+		if(days!=null && typeof(days)!='undefined'){
+			document.getElementById('_days').value = days ;
+		}else{
+			document.getElementById('_days').value = '' ;
+		}
+		document.getElementById("searchForm").submit() ;
 	}
 </script>
