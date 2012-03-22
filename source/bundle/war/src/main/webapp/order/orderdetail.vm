@@ -3,12 +3,9 @@
 <!--内容开始 -->
     <div id="wrap">
 	    <div class="step-box"><div class="step-3"></div></div>
-            <div class="section urhere">
-                <!--span class="F3">分享到： 新浪微博 </span-->
-            </div>
-            
+          
             <div id="order_confirm" class="section">
-            	<h2 class="d_title"><span class="order-nav">预订：</span>$!productName</h2>
+            	<h2 class="d_title"><span class="order-nav">预订：</span>$!product.name</h2>
                 <table class="d_dgcp"  cellpadding="0" cellspacing="0">
                 	<tr>
                     	<th align="left">订单编号</th>
@@ -17,67 +14,69 @@
                         <th align="left">订单信息</th>
                     </tr>
                     <tr>
-                    	<td>$!order.orderId</td>
-                        <td>$!order.name</td>
-                        <td>$!order.desc<br />$dateUtils.format($!order.gmtOrderStart, 'yyyy-MM-dd')</td>
+                    	<td>$!orderDO.orderId</td>
+                        <td>$!orderDO.name</td>
+                        <td>$!orderDO.desc<br />$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd')</td>
                         <td>$!orderDesc</td>
                     </tr>
                 </table>
-                #if($order.insureNum > 0)
+                #if($orderDO.insureNum > 0)
 	                <h3 class="dingdanhead">附加产品</h3>
-	                <p>自由行-平安国内短途2日游意外险&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;市场价：￥20人/天<strong>$!order.insureNum</strong> 份</p>
+	                <p>自由行-平安国内短途2日游意外险&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;市场价：￥20人/天<strong>$!orderDO.insureNum</strong> 份</p>
                 #end
                 <h3 class="dingdanhead">游玩人信息</h3>
                 <div>
-                	#foreach ($personInfo in $!order.contacts)
-                	  <table class="d_ywrxx"  cellpadding="0" cellspacing="0">
-		                	<tr>
-		                		<th ><strong>主联系人信息</strong></th>
-		                    	<th>主联系人姓名：</th>
-		                        <td>$personInfo.name</td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<th>主联系人手机：</th>
-		                        <td>$personInfo.mobile</td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<th>证件类型：</th>
-		                        <td>
-		                        	#if($personInfo.certificateType=='ID')
-		                        	  身份证
-		                            #elseif($personInfo.certificateType=='PASSPORT')
-		                              护照
-		                            #elseif($personInfo.certificateType=='OFFICERPORT')
-		                              军官证
-		                            #else
-		                              其他
-		                            #end
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<th>证件号码：</th>
-		                        <td>$personInfo.certificateNumber</td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<th>E-mail：</th>
-		                        <td>$personInfo.email</td>
-		                    </tr>
-		                </table>
-                	#end
+					#if(!$collectionUtils.isEmpty($orderDO.contacts))
+                    	#foreach ($personInfo in $!orderDO.contacts)
+                    	  <table class="d_ywrxx"  cellpadding="0" cellspacing="0">
+    		                	<tr>
+    		                		<th ><strong>主联系人信息</strong></th>
+    		                    	<th>主联系人姓名：</th>
+    		                        <td>$personInfo.name</td>
+    		                    </tr>
+    		                    <tr>
+    		                    	<th></th>
+    		                    	<th>主联系人手机：</th>
+    		                        <td>$personInfo.mobile</td>
+    		                    </tr>
+    		                    <tr>
+    		                    	<th></th>
+    		                    	<th>证件类型：</th>
+    		                        <td>
+    		                        	#if($personInfo.certificateType=='ID')
+    		                        	  身份证
+    		                            #elseif($personInfo.certificateType=='PASSPORT')
+    									护照
+    		                            #elseif($personInfo.certificateType=='OFFICERPORT')
+    									军官证
+    		                            #else
+    									其他
+    		                            #end
+    		                        </td>
+    		                    </tr>
+    		                    <tr>
+    		                    	<th></th>
+    		                    	<th>证件号码：</th>
+    		                        <td>$personInfo.certificateNumber</td>
+    		                    </tr>
+    		                    <tr>
+    		                    	<th></th>
+    		                    	<th>E-mail：</th>
+    		                        <td>$personInfo.email</td>
+    		                    </tr>
+    		                </table>
+						#end
+					#end
                 </div>
-                #if($!order.memo != '')
+                #if($!orderDO.memo != '')
                 	<h3 class="dingdanhead">备注</h3>
-                	<textarea rows="10" id="memo" name="memo" value="$!order.memo" style="width:500px; margin:8px 0 0 50px;"></textarea>
+                	<textarea rows="10" id="memo" name="memo" value="$!orderDO.memo" style="width:500px; margin:8px 0 0 50px;"></textarea>
                 #end
                 <h3 class="dingdanhead">金额总计</h3>
 
-			    <p class="Settlement_amount">订单结算金额&nbsp;&nbsp;&nbsp;<b>￥$!order.price元</b></p>
+			    <p class="Settlement_amount">订单结算金额&nbsp;&nbsp;&nbsp;<b>￥$!orderDO.price元</b></p>
                 <div class="d_qrxd">
-					#if("UNPAY"==$!order.status)
+					#if("UNPAY"==$!orderDO.status)
 						<button type="submit" id="submit">&nbsp;&nbsp;&nbsp;&nbsp;</button>
 					#end
 					<a style="cursor:pointer;" onclick="returnPage()">&nbsp;&nbsp;返回</a>
@@ -85,7 +84,7 @@
             </div>
         </div>
 	</div>
-	<input type="hidden" id="orderId" name="orderId" value="$!order.orderId" />
+	<input type="hidden" id="orderId" name="orderId" value="$!orderDO.orderId" />
 <script type="text/javascript">
 var EV = xui.util.Event,
 DOM = xui.util.Dom;
@@ -133,11 +132,6 @@ EV.onDOMReady(function(){
 	b.init();
 });  
 
-function pay(){
-	var changeStatus = document.getElementById("changeStatus");
-	changeStatus.action = "http://www.dujiaok.com/diablo/trek/order/order/choose2pay.htm?orderId=" + $("orderId").value + "&productId=" + $("productId").value + "&amount=" + $("amount").value;
-	changeStatus.submit();
-}
 
 function changeStatus(){
 alert(document.getElementById('status').value)

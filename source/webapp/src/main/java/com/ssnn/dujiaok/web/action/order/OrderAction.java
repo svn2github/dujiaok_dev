@@ -1,11 +1,16 @@
 package com.ssnn.dujiaok.web.action.order;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
+import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.opensymphony.xwork2.ModelDriven;
 import com.ssnn.dujiaok.biz.service.HotelRoomService;
 import com.ssnn.dujiaok.biz.service.MemberService;
 import com.ssnn.dujiaok.biz.service.SelfDriveService;
@@ -18,33 +23,51 @@ import com.ssnn.dujiaok.model.OrderContactDO;
 import com.ssnn.dujiaok.model.OrderDO;
 import com.ssnn.dujiaok.model.ProductDetailDO;
 import com.ssnn.dujiaok.model.SelfDriveDO;
+import com.ssnn.dujiaok.util.DateUtils;
 import com.ssnn.dujiaok.util.enums.ProductEnums;
 import com.ssnn.dujiaok.util.order.OrderUtils;
 import com.ssnn.dujiaok.web.action.BasicAction;
 import com.ssnn.dujiaok.web.context.ContextHolder;
 
 @SuppressWarnings("serial")
-public class OrderAction extends BasicAction implements ModelDriven<OrderDO> {
+public class OrderAction extends BasicAction  {
+	
+	private static final Log log = LogFactory.getLog(OrderAction.class) ;
+	private static final String DATEFORMAT = "yyyy-MM-dd" ;
+	/**
+	 * 游玩时间和detailId
+	 * detailId:yyyy-MM-dd
+	 */
+	private String dateAndDetail ;
+	
+	private String endDate ;
+	
+	private int count ;
+	
+	private int secondaryCount ;
+	
+	private String productType ;
+	
+	private String productId ;
+	
 	private OrderDO orderDO = new OrderDO();
 	
 	private AbstractProduct product ;
-	
-		
+			
 	private SelfDriveService selfDriveService;
 	private HotelRoomService hotelRoomService;
 	private TicketService ticketService;
 	private ProductDetailService productDetailService;
 	private MemberService memberService;
 	
-	private static final Log LOGGER = LogFactory.getLog(OrderAction.class);
+	//当前的detail
+	private ProductDetailDO detail ;
 	
 	public String book(){
 		AbstractProduct product = null ;
-		
 		String memberId = ContextHolder.getMemberContext().getMemberId() ;
+		ProductEnums type = ProductEnums.fromValue(productType) ;
 		
-		ProductEnums type = ProductEnums.fromValue(orderDO.getProductType()) ;
-		String productId = orderDO.getProductId() ;
 		if(type == ProductEnums.SELFDRIVE){
 			product = selfDriveService.getSelfDriveWithDetails(productId) ;
 		}else if(type == ProductEnums.HOTEL_ROOM){
@@ -55,29 +78,61 @@ public class OrderAction extends BasicAction implements ModelDriven<OrderDO> {
 		if(product == null){
 			return ProductConstant.NOT_EXIST ;
 		}
-		String detailId = orderDO.getProductDetailId() ;
-		ProductDetailDO detail = productDetailService.getProductDetail(productId , detailId);
+		
+		String[] dateAndDetailArr = StringUtils.split(dateAndDetail,":") ;
+		if(dateAndDetailArr == null || dateAndDetailArr.length != 2){
+			return ProductConstant.NOT_EXIST ;
+		}
+		String detailId = dateAndDetailArr[0] ;
+		Date gmtOrderStart = null ;
+		
+		DateFormat df = new SimpleDateFormat(DATEFORMAT) ;
+		try {
+			gmtOrderStart = df.parse(dateAndDetailArr[1]) ;
+		} catch (ParseException e) {
+			log.error(e.getMessage() , e) ;
+		}
+		
+		this.detail = productDetailService.getProductDetail(productId , detailId);
+		
 		if(detail == null){
 			return ProductConstant.NOT_EXIST ;
 		}
-		
+				
 		//gmtStart 有问题
-		if (orderDO.getGmtOrderStart()==null || orderDO.getGmtOrderStart().before(detail.getGmtStart()) || orderDO.getGmtOrderStart().after(detail.getGmtEnd())) {
+		if (gmtOrderStart==null || gmtOrderStart.before(detail.getGmtStart()) || gmtOrderStart.after(detail.getGmtEnd())) {
 			return ProductConstant.NOT_EXIST;
 		}
 		//设置自驾时间
 		if(ProductEnums.SELFDRIVE == type){
 			SelfDriveDO s = (SelfDriveDO)product ;
-			OrderUtils.setSelfDriveOrderEndDateWithStart(orderDO, s.getDays());
+			Date gmtOrderEnd = org.apache.commons.lang.time.DateUtils.addDays(gmtOrderStart, s.getDays()) ;
+			orderDO.setGmtOrderEnd(gmtOrderEnd) ;
 		}
+		if(endDate != null){
+			try {
+				Date gmtOrderEnd = df.parse(endDate) ;
+				orderDO.setGmtOrderEnd(gmtOrderEnd) ;
+			} catch (ParseException e) {
+				log.error(e.getMessage() , e) ;
+			}
+		}
+		
+		//计算价格
+		this.product = product ;
 		
 		//设置首要联系人
 		MemberDO member = memberService.queryMember(memberId) ;
 		OrderContactDO contactor = getDefaultContactor(member);
 		orderDO.setContacts(Arrays.asList(contactor));
 		
-		//计算价格
-		this.product = product ;
+		
+		//设置Order属性
+		orderDO.setCount(count) ;
+		orderDO.setSecondaryCount(secondaryCount) ;
+		orderDO.setGmtOrderStart(gmtOrderStart) ;
+		orderDO.setProductDetailId(detailId) ;
+		orderDO.setProductId(productId) ;
 		
 		if(type == ProductEnums.SELFDRIVE){
 			return ProductConstant.SELF_DRIVE ;
@@ -102,6 +157,36 @@ public class OrderAction extends BasicAction implements ModelDriven<OrderDO> {
 		return contactor;
 	}
 	
+	public void setProductType(String productType) {
+		this.productType = productType;
+	}
+
+
+	public ProductDetailDO getDetail() {
+		return detail;
+	}
+
+
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
+
+
+	public void setDateAndDetail(String dateAndDetail) {
+		this.dateAndDetail = dateAndDetail;
+	}
+
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+
+	public void setSecondaryCount(int secondaryCount) {
+		this.secondaryCount = secondaryCount;
+	}
+
+
 	public void setSelfDriveService(SelfDriveService selfDriveService) {
 		this.selfDriveService = selfDriveService;
 	}
@@ -125,11 +210,7 @@ public class OrderAction extends BasicAction implements ModelDriven<OrderDO> {
 		this.memberService = memberService;
 	}
 
-	@Override
-	public OrderDO getModel() {
-		return this.orderDO;
-	}
-
+	
 	public OrderDO getOrderDO() {
 		return orderDO;
 	}
@@ -144,7 +225,8 @@ public class OrderAction extends BasicAction implements ModelDriven<OrderDO> {
 	}
 
 
-	public void setOrderDO(OrderDO orderDO) {
-		this.orderDO = orderDO;
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
+
 }

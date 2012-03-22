@@ -4,13 +4,15 @@
 	<!-- 内容开始 -->
     <div id="wrap">
 		<div class="step-box"><div class="step-1"></div></div>
-        <div class="section urhere">
-            <!--span class="F3">分享到： 新浪微博 </span-->
-        </div>
+		<!--
+        <div class="section urhere" style="margin:15px 0 13px 0; width:950px;">
+        	<p class="F3">您当前的位置： $!product.destProvince > $!product.destCity > $!province.destArea</p>
+        </div
+		-->
         <div id="dingdan" class="section">
         	<div class="d_left">
         		<h2 class="d_title">
-        			<span class="order-nav">预订：</span>$!product.name
+        			<h2 class="d_title yuding01"><span class="order-nav">【酒店房间】</span>$!product.name</h2>
         		    <span id="warnInfo" class="warnInfo">$!warnInfo</span>
         		</h2>
                 <table class="d_dgcp"  cellpadding="0" cellspacing="0">
@@ -25,7 +27,7 @@
                     	<td>$!product.productId</td>
                         <td>$!product.name</td>
                         <td>
-                        	￥<span id="price" style="color: red;">$!product.details.get(0).price</span>
+                        	￥<span id="price" style="color: red;">$!detail.price</span>
                         	(市场价：<span style="text-decoration: line-through;">￥<span id="marketPrice">$!product.marketPrice</span></span>)
                         </td>
                         <td class="F10">
@@ -36,60 +38,12 @@
 						</td>
                     </tr>
                 </table>
-                <h3 class="dingdanhead">游玩人信息</h3>
-                <div id="personInfos">
-                	<div id="personInfo0">
-		                <table class="d_ywrxx"  cellpadding="0" cellspacing="0">
-		                	<tr>
-		                		<th ><strong>主联系人信息</strong></th>
-		                    	<th><i>*</i> 主联系人姓名：</th>
-		                        <td><input type="text" name="contacts[0].name" id="name0" class="wpx184" value="$!orderDO.contacts.get(0).name"/></td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<th><i>*</i> 主联系人手机：</th>
-		                        <td><input type="text" name="contacts[0].mobile" maxlength=11 id="mobile0" class="wpx184" value="$!orderDO.contacts.get(0).mobile" /></td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<th><i>*</i> 证件类型：</th>
-		                        <td>
-		                          <select name="contacts[0].certificateType" id="certificateType0" value="" style="width: 184px;">
-		                            <option value="ID">身份证</option>
-		                            <option value="PASSPORT">护照</option>
-		                            <option value="OFFICERPORT">军官证</option>
-									<option value="OTHER">其它</option>
-		                          </select>
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<th><i>*</i> 证件号码：</th>
-		                        <td><input type="text" name="contacts[0].certificateNumber" id="certificateNumber0" class="wpx184" dataType="IdCard" msg="身份证号错误"/></td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<th>E-mail：</th>
-		                        <td><input type="text" name="contacts[0].email" id="email0" class="wpx1843" style="width: 184px;" value="$!orderDO.contacts.get(0).email"/></td>
-		                    </tr>
-		                    <tr style="display: none;">
-		                    	<th></th>
-		                    	<th></th>
-		                        <td><input type="text" name="contacts[0].isMain" id="isMain0" value="Y"/></td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<td></td>
-		                    	<td align="right"><a href="javascript:addPersonInfo()" id="addPersonInfo" class="addPersonInfo">+ 添加游玩人</a></td>
-		                    </tr>
-		                </table>
-	                </div>
-	            </div>
+				<div style="height:20px;">&nbsp;</div>
 				<div>
 					<table>
 						<tr valign="top">
 						    <td><strong>订单备注</strong></td>
-						    <td><textarea rows="10" id="memo" name="memo" style="width:500px; margin:8px 0 0 50px;"></textarea></td>
+						    <td><textarea rows="1" id="memo" name="memo" style="width:500px; margin:8px 0 5 50px;"></textarea></td>
 						</tr>
 					</table>
 	            </div>
@@ -99,7 +53,6 @@
                 </div>
                 <div class="d_ydxx">
                 	<input name="" type="checkbox" checked />同意度假OK预订协议</p>
-                	<textarea rows="10" id="textarea" readonly="true" name="textarea">sdfsdfsdfsdfsdfsdfsd</textarea>
                 </div>
             </div>
             
@@ -109,7 +62,6 @@
                     <table  cellpadding="0" cellspacing="0">
                     	<tr><th>市 场 价：</th><td><span id="orderMarketPrice"></span>元</td></tr>
                     	<tr><th>ok价：</th><td><span id="orderOkPrice"></span>元</td></tr>
-                        <tr><th>保险费用：</th><td><span id="orderInsPrice"></span>元</td></tr>
                         <tr><th>累计节省：</th><td><span id="orderSavePrice"></span>元</td></tr>
                     </table>
                     <p class="Settlement_amount">订单结算金额<br /><b>￥<span id="orderPrice"></span></b></p>

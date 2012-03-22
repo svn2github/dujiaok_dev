@@ -4,8 +4,7 @@
 	<!-- 内容开始 -->
     <div id="wrap">
 		<div class="section urhere" style="margin:15px 0 13px 0; width:950px;">
-        	<p class="F3">您当前的位置： 浙江 > 嘉兴 > 桐乡乌镇</p>
-            <span class="F3">分享到： 新浪微博 </span>
+        	<p class="F3">您当前的位置： $!product.destProvince > $!product.destCity > $!province.destArea</p>
         </div>
         <div id="dingdan" class="section">
         	<div class="d_left">
@@ -22,15 +21,15 @@
                     	<td>$!product.productId</td>
                         <td>$!product.name</td>
                         <td class="F10">
-                        	$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd') &nbsp;&nbsp至<br />$dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')
+                        	$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd') 至 $dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')
                         </td>
                         <td class="F10">
                         	成人 <input type="text" name="count" id="adultNum" maxlength="6" class="wpx34" value="$!orderDO.count" dataType="Integer"/>
-                        	<span class="F2">（单人价：￥<span id="singlePrice" style="color:red">$!product.details[0].price</span>
-                        	元　双人价：￥<span id="doublePrice" style="color:red">$!product.details[0].doublePrice</span>元）</span><br />
-							#if($!productDetail.childPrice!='')
+                        	<span class="F2">（单人价：￥<span id="singlePrice" style="color:red">$!detail.price</span>
+                        	元　双人价：￥<span id="doublePrice" style="color:red">$!detail.doublePrice</span>元）</span><br />
+							#if($detail.childPrice)
 								儿童 <input type="text" name="secondaryCount" id="childNum" maxlength="6" class="wpx34" value="$!orderDO.secondaryCount"/>
-								<span class="F2">（儿童价：￥<span id="childPrice"  style="color:red">$!product.details[0].childPrice</span>元）</span>
+								<span class="F2">（儿童价：￥<span id="childPrice"  style="color:red">$!detail.childPrice</span>元）</span>
 							#else
 								<input type="hidden" name="secondaryCount" id="childNum" value="$!orderDO.secondaryCount"/>
 								<span id="childPrice" style="display:none">0</span>
@@ -49,9 +48,10 @@
                         <th>数量</th>
             		</tr>
             		<tr>
-                		<td class="F10">$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd')&nbsp;&nbsp至$dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')</td>
+                		<td class="F10">$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd') 至 $dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')</td>
                         <td>$!product.name</td>
-                        <td>￥<span style="color:red">20</span>人/天</td>
+						#set($totalCount = $orderDO.count)
+                        <td>￥<span style="color:red">20</span>人/天 x $product.days 天</td>
                         <td><input type="text" name="insureNum" id="insureNum" maxlength="3" class="wpx34" value="$!orderDO.count"/></td>
             		</tr>
                 </table>

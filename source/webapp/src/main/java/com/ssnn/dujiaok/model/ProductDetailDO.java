@@ -1,11 +1,8 @@
 package com.ssnn.dujiaok.model;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import com.ssnn.dujiaok.util.DateUtil;
 import com.ssnn.dujiaok.util.ProductUtils;
 
 public class ProductDetailDO implements Comparable<ProductDetailDO> {
@@ -40,11 +37,8 @@ public class ProductDetailDO implements Comparable<ProductDetailDO> {
 	 * 儿童价
 	 */
 	private BigDecimal childPrice;
-	private BigDecimal cheapestPrice;
-
-	private Date gmtCreate;
 	
-	private List<Date> startDates = new ArrayList<Date>();
+	private Date gmtCreate;
 
 	public int getId() {
 		return id;
@@ -67,18 +61,7 @@ public class ProductDetailDO implements Comparable<ProductDetailDO> {
 	}
 
 	public void setGmtStart(Date gmtStart) {
-		this.gmtStart = (Date) gmtStart.clone();
-		if (this.startDates.size() == 0) {
-			Date temp = new Date();
-			if (!this.gmtStart.before(temp)) {
-				temp = this.gmtStart;
-			}
-			this.startDates.add(temp);
-			return;
-		}
-		Date endDate = this.startDates.get(0);
-		this.startDates.clear();
-		DateUtil.fillDays(this.startDates, this.gmtStart, endDate);
+		this.gmtStart =  gmtStart ;
 	}
 
 	public Date getGmtEnd() {
@@ -86,14 +69,7 @@ public class ProductDetailDO implements Comparable<ProductDetailDO> {
 	}
 
 	public void setGmtEnd(Date gmtEnd) {
-		this.gmtEnd = (Date) gmtEnd.clone();
-		if (this.startDates.size() == 0) {
-			this.startDates.add(this.gmtEnd);
-			return;
-		}
-		Date startDate = this.startDates.get(0);
-		this.startDates.clear();
-		DateUtil.fillDays(this.startDates, startDate, this.gmtEnd);
+		this.gmtEnd = gmtEnd ;
 	}
 
 	public BigDecimal getDoublePrice() {
@@ -102,15 +78,6 @@ public class ProductDetailDO implements Comparable<ProductDetailDO> {
 	
 	public void setDoublePrice(BigDecimal doublePrice) {
 		this.doublePrice = doublePrice;
-		if (this.doublePrice == null) {
-			return;
-		}
-		BigDecimal temp = doublePrice.divide(new BigDecimal("2"));
-		if (this.price == null || temp.compareTo(this.price) < 0) {
-			this.cheapestPrice = temp;
-		} else {
-			this.cheapestPrice = new BigDecimal(this.price.toString());
-		}
 	}
 
 	public BigDecimal getPrice() {
@@ -119,19 +86,6 @@ public class ProductDetailDO implements Comparable<ProductDetailDO> {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
-		if (price == null) {
-			return;
-		}
-		if (this.doublePrice == null) {
-			this.cheapestPrice = new BigDecimal(this.price.toString());
-			return;
-		}
-		BigDecimal temp = this.doublePrice.divide(new BigDecimal("2"));
-		if (temp.compareTo(this.price) >= 0) {
-			this.cheapestPrice = new BigDecimal(this.price.toString());
-		} else {
-			this.cheapestPrice = temp;
-		}
 	}
 
 	public BigDecimal getChildPrice() {
@@ -150,20 +104,17 @@ public class ProductDetailDO implements Comparable<ProductDetailDO> {
 		this.gmtCreate = gmtCreate;
 	}
 
-	public List<Date> getStartDates() {
-		return this.startDates;
-	}
-
-	public void setStartDates(List<Date> startDates) {
-		this.startDates = startDates;
-	}
-	
-	public BigDecimal getCheapestPrice() {
-		return this.cheapestPrice != null ? this.cheapestPrice : new BigDecimal("-1");
-	}
-	
 	@Override
 	public int compareTo(ProductDetailDO o) {
 		return this.getCheapestPrice().compareTo(o.getCheapestPrice());
 	}
+	
+	/**
+	 * extra functions 
+	 */
+	
+	public BigDecimal getCheapestPrice() {
+		return ProductUtils.getBottomPrice(this) ;
+	}
+	
 }

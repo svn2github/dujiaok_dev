@@ -2,14 +2,15 @@ package com.ssnn.dujiaok.web.action.order;
 
 import java.math.BigDecimal;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.opensymphony.xwork2.ModelDriven;
-import com.ssnn.dujiaok.biz.log.DujiaokLogger;
 import com.ssnn.dujiaok.biz.service.HotelRoomService;
 import com.ssnn.dujiaok.biz.service.OrderService;
 import com.ssnn.dujiaok.biz.service.SelfDriveService;
 import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.biz.service.product.ProductDetailService;
-import com.ssnn.dujiaok.constant.ProductConstant;
 import com.ssnn.dujiaok.model.AbstractProduct;
 import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.model.OrderDO;
@@ -18,49 +19,53 @@ import com.ssnn.dujiaok.model.SelfDriveDO;
 import com.ssnn.dujiaok.util.order.OrderUtils;
 import com.ssnn.dujiaok.util.string.StringUtil;
 import com.ssnn.dujiaok.web.action.BasicAction;
+import com.ssnn.dujiaok.web.context.ContextHolder;
 import com.ssnn.dujiaok.web.context.SessionUtil;
 
 @SuppressWarnings("serial")
 public class MakeOrderAction extends BasicAction implements ModelDriven<OrderDO> {
+	
 	private OrderDO orderDO = new OrderDO();
 	
+	private AbstractProduct product ;
+	
 	private OrderService orderService;
+	
 	private SelfDriveService selfDriveService;
+	
 	private HotelRoomService hotelRoomService;
+	
 	private TicketService ticketService;
+	
 	private ProductDetailService productDetailService;
 	
-	private static final DujiaokLogger LOGGER = DujiaokLogger.getLogger(OrderDetailAction.class);
+	private String orderDesc ;
+	
+	private static final Log log = LogFactory.getLog(OrderDetailAction.class);
 	
 	public String makeOrder() {
-		MemberDO memberDO = SessionUtil.getLoginMemberDO(getHttpSession());
-		orderDO.setMemberId(memberDO.getMemberId());
+		String memberId = ContextHolder.getMemberContext().getMemberId() ;
+		
+		orderDO.setMemberId(memberId);
 		
 		if (!OrderUtils.checkOrderKeyInfo(orderDO)) {
-			LOGGER.error("Order info error:" + this.orderDO.toString());
-			this.getHttpSession().setAttribute("message", "订单信息有误。");
-			return ERROR;
+			return INPUT ;
 		}
 		
-		AbstractProduct productDo = this.getProduct(orderDO.getProductId(), orderDO.getProductType());
-		if (productDo == null) {
-			LOGGER.error(StringUtil.concat("makeSelfDriveOrder(productId:", this.orderDO.getProductId(),
-					"): product not Exist"));
-			this.getHttpSession().setAttribute("message", "非常抱歉，您选择的产品不再销售。");
-			return ProductConstant.NOT_EXIST;
+		product = this.getProduct(orderDO.getProductId());
+		if (product == null) {
+			return NOT_EXISTS ;
 		}
-		orderDO.setName(productDo.getName() + "-订单");
-		orderDO.setPayType(productDo.getPayTypes());
-		setOrderGmtStartAndEnd(this.orderDO, productDo);
+		orderDO.setName(product.getName() + "-订单");
+		orderDO.setPayType(product.getPayTypes());
+		setOrderGmtStartAndEnd(this.orderDO, product);
 		
 		ProductDetailDO detailDO = this.productDetailService.getProductDetail(this.orderDO.getProductId(),
 				this.orderDO.getProductDetailId());
-		if (detailDO == null) {
-			LOGGER.error(StringUtil.concat("makeSelfDriveOrder(productId:", this.orderDO.getProductId(),
-					",productDetailId:", this.orderDO.getProductDetailId(),") product not exist."));
-			return ProductConstant.NOT_EXIST;
+		if (detailDO == null) {			
+			return NOT_EXISTS ;
 		}
-		orderDO.setPrice(getOrderPrice(this.orderDO, detailDO, productDo));
+		orderDO.setPrice(getOrderPrice(this.orderDO, detailDO, product));
 		
 		OrderUtils.setOrderDefaultValue(orderDO);
 		
@@ -68,33 +73,24 @@ public class MakeOrderAction extends BasicAction implements ModelDriven<OrderDO>
 			try {
 				this.orderService.insertOrderAndDetailContact(orderDO);
 			} catch (Exception e) {
-				LOGGER.error("unknow exception", e);
-				this.getHttpSession().setAttribute("message", "系统发生未知异常！");
+				log.error(e.getMessage(), e);
 				return ERROR;
 			}
 		}
-		this.getHttpSession().setAttribute("order", orderDO);
-		this.getHttpSession().setAttribute("productName", productDo.getName());
-		this.getHttpSession().setAttribute("orderDesc", OrderUtils.getOrderInfoDesc(orderDO));
+		
+		orderDesc = OrderUtils.getOrderInfoDesc(orderDO) ;
+		
 		return SUCCESS;
 	}
 	
-	private AbstractProduct getProduct(String productId, String productType) {
+	private AbstractProduct getProduct(String productId) {
 		if (productId.startsWith("ZJ")) {
 			return this.selfDriveService.getSelfDrive(productId);
 		} else if (productId.startsWith("MP")) {
 			return this.ticketService.getTicket(productId);
 		} else if (productId.startsWith("FJ")) {
 			return this.hotelRoomService.getRoom(productId);
-		} else {
-			if ("SELFDRIVE".equals(productType)) {
-				return this.selfDriveService.getSelfDrive(productId);
-			} else if ("TICKET".equals(productType)) {
-				return this.ticketService.getTicket(productId);
-			} else if ("HOTELROOM".equals(productType)) {
-				return this.hotelRoomService.getRoom(productId);
-			}
-		}
+		} 
 		return null;
 	}
 	
@@ -136,6 +132,18 @@ public class MakeOrderAction extends BasicAction implements ModelDriven<OrderDO>
 
 	public void setProductDetailService(ProductDetailService productDetailService) {
 		this.productDetailService = productDetailService;
+	}
+
+	public AbstractProduct getProduct() {
+		return product;
+	}
+
+	public void setProduct(AbstractProduct product) {
+		this.product = product;
+	}
+
+	public String getOrderDesc() {
+		return orderDesc;
 	}
 
 	@Override

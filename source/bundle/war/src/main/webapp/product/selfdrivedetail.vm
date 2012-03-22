@@ -12,15 +12,15 @@
         	<h2 class="d_title">$!product.name</h2>
             <div id="Focus">
                 <ul id="Focus_content">
-                    #foreach($!pictureUrl in $!product.pictureUrls)
+                    #foreach($!image in $!product.imageList)
                       <li class="circularPanel">
-                        <img src=$!pictureUrl width="710" height="250" />
+                        <img src=$!image width="710" height="250" />
                         <h2></h2>
                       </li>
                     #end
                 </ul>
 	            <ul class="trigger">
-	                #foreach($!pictureUrl in $!product.pictureUrls)
+	                #foreach($!image in $!product.imageList)
 	                  <li class="circularTrigger"></li>
 	                #end
 	            </ul>
@@ -70,10 +70,10 @@
             	</div>
             </div>
         </div>
-        
+        #set ($detail = $product.todayDetail)
         <div class="d_right">
         	<div class="information">
-            	<h3><i>特惠价</i> ￥<b><span id='tehui'>$!product.cheapestPrice</span></b>元/人起</h3>
+            	<h3><i>特惠价</i> ￥<b><span id='tehui'>$!detail.cheapestPrice</span></b>元/人起</h3>
                 <table>
                 	<tr><th><strong>市场价</strong>：</th><td>$!product.marketPrice元</td></tr>
                     <tr><th><strong>商品编号</strong>：</th><td>$!product.productId</td></tr>
@@ -84,35 +84,38 @@
                 </table>
             </div>
             <div class="order">
-            	#if(!$collectionUtils.isEmpty($product.details))
-            	<form id="orderForm" method="get" action="${env.root}/order/book.htm" method="get">
-                	<ul>
-                    	<li>游玩日期：
-                   	    	<select name="productDetailId" id="productDetailId" onchange="changeDepartDate()">
-                   	    		#set($i=1)
-								#foreach($detail in $!product.details)
-                                  #foreach($day in $!detail.startDates)
-                                    <option value="$detail.id" #if($i==1) selected=true #end>$dateUtils.format($day, 'yyyy-MM-dd')</option>
-                                    #set($i=1+$i)
-                                  #end
-								#end
-                  	        </select>
-                  	     </li>
-                  	     <input type="hidden" id="departDate" name="gmtOrderStart" value="$dateUtils.format($!product.details[0].startDates[0], 'yyyy-MM-dd')" />
-                         <li>单人：<span id='singlePrice'>$!product.details.get(0).price</span>元&nbsp;&nbsp;双人：<span id='doublePrice'>$!product.details[0].doublePrice</span>元&nbsp;&nbsp;#if($product.details.get(0).childPrice!=0)<br>儿童：<span id='childPrice'>$!product.details.get(0).childPrice</span> 元#end </li>
-                         <li>成人数&nbsp;<input type="text" name="count" width="6" id="adultNum">&nbsp;&nbsp;&nbsp;&nbsp;
-                             #if($!product.details.childPrice!=0)
-                             	儿童数&nbsp;<input type="text" name="secondaryCount" id="childNum">&nbsp;&nbsp;&nbsp;&nbsp;
-                             #else
-                                <input type="hidden" name="secondaryCount" id="countChild" value="0">
-                             #end
-                         </li>
-                    </ul>
-                	<button type="submit">&nbsp;&nbsp;&nbsp;</button>
-					<input type="hidden" id="productId" name="productId" value="$!product.productId" />
-					<input type="hidden" id="productType" name="productType" value="ZJ" />
-                </form>
-                #end
+				
+				#if($detail)
+					<form id="orderForm" method="get" action="${env.root}/order/book.htm" method="get">
+                    	<ul>
+                        	<li>游玩日期：
+                       	    	<select name="dateAndDetail" id="productDetailId">
+									#foreach($dt in $!product.defaultDetailItems )
+										#set($index = $velocityCount)
+										<option value="${dt.detailId}:$dateUtils.format($dt.date, 'yyyy-MM-dd')"  #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd') $dt.bottomPrice元 </option>
+									#end
+                      	        </select>
+                      	     </li>
+                      	     
+                             <li>
+								  单人：<span id='singlePrice'>$!detail.price</span>元&nbsp;&nbsp;
+    							  双人：<span id='doublePrice'>$!detail.doublePrice</span>元&nbsp;&nbsp; <br />
+    							  儿童：<span id='childPrice'>$!detail.childPrice</span> 元
+							 </li>
+                             <li>
+								  成人数&nbsp;<input type="text" name="count" width="6" id="adultNum" value="1">&nbsp;&nbsp;&nbsp;&nbsp;
+								  儿童数&nbsp;<input type="text" name="secondaryCount" id="childNum" value="0">&nbsp;&nbsp;&nbsp;&nbsp;
+                             </li>
+                        </ul>
+                    	<button type="submit">&nbsp;&nbsp;&nbsp;</button>
+    					<input type="hidden" id="productId" name="productId" value="$!product.productId" />
+    					<input type="hidden" id="productType" name="productType" value="ZJ" />
+                    </form>
+				#else
+					今日无价格
+				#end
+				
+            	
                 <p class="F3">拨打电话预定 400 666 5599</p>
             </div>
         </div>
@@ -125,33 +128,6 @@
 <script>
 
     var x = new xui.widgets.Slide();
-                
-	var selfDriveInfos = [
-	  #foreach($tour in $product.details) 
-	  	{id: "$!tour.id",
-	  	 singlePrice: "$!tour.price",
-	  	 doublePrice: "$!tour.doublePrice",
-	  	 childPrice: "$!tour.childPrice",
-	  	},	
-  	  #end
-	]
-	
-    function changeDepartDate(){
-        var selfDriveId = document.getElementById('productDetailId').value;
-        var dayOptions = document.getElementById('productDetailId');
-        var departDay = dayOptions.options[dayOptions.selectedIndex].text;
-    	var singlePrice = document.getElementById('singlePrice');
-        var doublePrice = document.getElementById('doublePrice');
-        var childPrice = document.getElementById('childPrice');
-        document.getElementById('departDate').value = departDay;
-        for (var i = 0; i < selfDriveInfos.length; i++) {
-          if (selfDriveId == selfDriveInfos[i].id) {
-              singlePrice.innerHTML = selfDriveInfos[i].singlePrice;
-              doublePrice.innerHTML = selfDriveInfos[i].doublePrice;
-              childPrice.innerHTML = selfDriveInfos[i].childPrice;
-          }
-        }
-    }
     
     //calendar
     //初始化Calendar

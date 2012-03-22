@@ -76,23 +76,23 @@ public class PriceCalendarDO {
 		}
 	}
 	
-	/**
-	 * 排序，检查重复
-	 */
-	public void complete(){
-		if(CollectionUtils.isEmpty(this.data)){
-			return ;
-		}
-		Collections.sort(this.data) ;
-		Item prev = null ;
-		for(Iterator<Item> i = this.data.iterator() ;i.hasNext() ;){
-			Item cur = i.next() ;
-			if(prev != null){
-				if(cur.equals(prev)){
-					i.remove() ;
-				}
-			}
-			prev = cur ;
-		}
-	}
+//	/**
+//	 * 排序，检查重复
+//	 */
+//	public void complete(){
+//		if(CollectionUtils.isEmpty(this.data)){
+//			return ;
+//		}
+//		Collections.sort(this.data) ;
+//		Item prev = null ;
+//		for(Iterator<Item> i = this.data.iterator() ;i.hasNext() ;){
+//			Item cur = i.next() ;
+//			if(prev != null){
+//				if(cur.equals(prev)){
+//					i.remove() ;
+//				}
+//			}
+//			prev = cur ;
+//		}
+//	}
 }

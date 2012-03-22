@@ -98,7 +98,7 @@ public class CopyOfOrderAction extends BasicAction implements ModelDriven<OrderD
 			this.getHttpSession().setAttribute("message", "非常抱歉，您选择的产品不再销售。");
 			return ProductConstant.NOT_EXIST;
 		}
-		ProductUtils.filteProductDetail(roomDO.getDetails(), orderDO.getGmtOrderStart(), orderDO.getGmtOrderEnd());
+		//ProductUtils.filteProductDetail(roomDO.getDetails(), orderDO.getGmtOrderStart(), orderDO.getGmtOrderEnd());
 		if (roomDO.getDetails().size() == 0) {
 			LOGGER.error(StringUtil.concat("makeHotelRoomOrder[", orderDO.getProductId(), "]: wrong date info"));
 			this.getHttpSession().setAttribute("message", "非常抱歉，您选择的日期有误。");

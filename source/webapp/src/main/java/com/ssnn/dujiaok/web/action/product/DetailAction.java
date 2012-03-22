@@ -13,6 +13,8 @@ import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.constant.Constant;
 import com.ssnn.dujiaok.constant.ProductConstant;
 import com.ssnn.dujiaok.model.AbstractProduct;
+import com.ssnn.dujiaok.model.HotelDO;
+import com.ssnn.dujiaok.model.HotelRoomDO;
 import com.ssnn.dujiaok.util.ArrayStringUtils;
 import com.ssnn.dujiaok.util.ProductUtils;
 import com.ssnn.dujiaok.web.action.BasicAction;
@@ -23,6 +25,8 @@ public class DetailAction extends BasicAction {
 	private Object product;
 
 	private String productId;
+	
+	private String hotelName ;
 	
 	private HotelRoomService hotelRoomService ;
 	
@@ -44,6 +48,14 @@ public class DetailAction extends BasicAction {
 			//房间
 			product = hotelRoomService.getRoomWithDetails(productId);
 			result = ProductConstant.ROOM ;
+			if(product != null){
+				HotelRoomDO room = (HotelRoomDO)product ;
+				HotelDO hotel = hotelService.getHotel(room.getHotelId()) ;
+				if(hotel != null){
+					hotelName  = hotel.getName() ;
+				}
+			}
+			
 		}else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_TICKET)){
 			//门票
 			product =  ticketService.getTicketWithDetails(productId);
@@ -107,6 +119,11 @@ public class DetailAction extends BasicAction {
 	public void setSelfDriveService(SelfDriveService selfDriveService) {
 		this.selfDriveService = selfDriveService;
 	}
+
+	public String getHotelName() {
+		return hotelName;
+	}
+
 
 	public void setHotelService(HotelService hotelService) {
 		this.hotelService = hotelService;

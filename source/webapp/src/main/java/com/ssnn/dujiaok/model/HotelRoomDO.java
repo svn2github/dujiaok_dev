@@ -1,9 +1,6 @@
 package com.ssnn.dujiaok.model;
 
-import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 
 /**
  * 
@@ -16,27 +13,12 @@ public class HotelRoomDO extends AbstractProduct{
 	 * PK
 	 */
 	private int id ;
-	
-	/**
-	 * 房间名
-	 */
-	private String name ;
-	
+		
 	/**
 	 * 酒店ID
 	 */
 	private String hotelId ;
-	
-	/**
-	 * 支付方式
-	 */
-	private String payTypes ;
-	
-	/**
-	 * 市场价
-	 */
-	private BigDecimal marketPrice ;
-	
+		
 	/**
 	 * 床型
 	 */
@@ -71,8 +53,7 @@ public class HotelRoomDO extends AbstractProduct{
 	
 	private Date gmtModified ;
 	
-	private List<ProductDetailDO> details;
-
+	
 	public Date getGmtCreate() {
 		return gmtCreate;
 	}
@@ -97,14 +78,6 @@ public class HotelRoomDO extends AbstractProduct{
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getCategoryImage() {
 		return categoryImage;
 	}
@@ -119,26 +92,6 @@ public class HotelRoomDO extends AbstractProduct{
 
 	public void setHotelId(String hotelId) {
 		this.hotelId = hotelId;
-	}
-
-	public String getPayTypes() {
-		return payTypes;
-	}
-
-	public void setPayTypes(String payTypes) {
-		this.payTypes = payTypes;
-	}
-
-	public BigDecimal getMarketPrice() {
-		return marketPrice;
-	}
-
-	public void setMarketPrice(BigDecimal marketPrice) {
-		this.marketPrice = marketPrice;
-	}
-
-	public BigDecimal getCheapestPrice() {
-		return this.cheapestPrice.compareTo(new BigDecimal("-1")) == 0 ? this.marketPrice : this.cheapestPrice;
 	}
 
 	public String getBed() {
@@ -179,19 +132,6 @@ public class HotelRoomDO extends AbstractProduct{
 
 	public void setMemo(String memo) {
 		this.memo = memo;
-	}
-
-	public List<ProductDetailDO> getDetails() {
-		return details;
-	}
-
-	public void setDetails(List<ProductDetailDO> details) {
-		this.details = details;
-		if (this.details == null || this.details.size() == 0) {
-			setCheapestPrice(new BigDecimal("-1"));
-		} else {
-			setCheapestPrice(Collections.min(details).getCheapestPrice());
-		}
 	}
 	
 }

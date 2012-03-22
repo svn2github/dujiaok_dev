@@ -10,7 +10,7 @@
         	<h2 class="d_title">$!product.name</h2>
             <div id="Focus">
                 <ul id="Focus_content">
-                    #foreach($pictureUrl in $product.pictureUrls)
+                    #foreach($pictureUrl in $product.imageList)
                       <li class="circularPanel">
                         <img src=$!pictureUrl width="710" height="250" />
                         <h2></h2>
@@ -18,7 +18,7 @@
                     #end
                 </ul>
                 <ul class="trigger">
-                    #foreach($pictureUrl in $product.pictureUrls)
+                    #foreach($pictureUrl in $product.imageList)
                       <li class="circularTrigger"></li>
                     #end
                 </ul>
@@ -64,74 +64,48 @@
             	</div>
             </div>
         </div>
-        
+        #set ($detail = $product.todayDetail)
         <div class="d_right">
         	<div class="information">
-            	<h3><i>特惠价</i> ￥<b><span id='tehui'>$!product.cheapestPrice</span></b>元/人起</h3>
+            	<h3><i>特惠价</i> ￥<b><span id='tehui'>$!detail.cheapestPrice</span></b>元/人起</h3>
                 <table>
                 	<tr><th><strong>酒店名称</strong>：</th><td><a href="${env.root}/product/detail.htm?productId=$!product.hotelId" target="hotel">$!hotelName</td></tr>
                 	<tr><th><strong>市场价</strong>：</th><td>$!product.marketPrice 元</td></tr>
                     <tr><th><strong>商品编号</strong>：</th><td>$!product.productId</td></tr>
                     <tr><th><strong>支付方式</strong>：</th><td>$enumUtils.toPayTypeEnumDescs($!product.productTypes)</td></tr>
-                    <tr><th><strong>房间信息</strong>：</th><td><span>$!product.roomArea</span>平米 &nbsp;&nbsp<span>$!product.bed</span></td></tr>
-                    <tr><th></th><td>$!product.roomFacilities</td></tr>
+                    <tr><th><strong>房间信息</strong>：</th><td><span>$!product.roomArea</span>平米  <span>$!product.bed</span></td></tr>
+                    <tr><th><strong>配套</strong>:</th><td>$!product.roomFacilities</td></tr>
                 </table>
             </div>
             <div class="order">
-            	#if(!$collectionUtils.isEmpty($product.details))
-            	<form id="orderForm" action="${env.root}/order/book.htm" method="get">
-                	<ul>
-                		<li><strong>价格</strong>:&nbsp;<span id="price">$!product.details[0].price</span>元 </li>
-                    	<li><strong>入住日期</strong>：
-                   	    	<select name="productDetailId" id="checkinDateOpt" onchange="changeCheckinDate()">
-                   	    		#set($i=0)
-                   	    		#set($size=0)
-								#foreach($detail in $!product.details)
-								  #set($size=$size + $!detail.startDates.size())
-                                  #foreach($checkinDay in $!detail.startDates)
-                                  	#if($i != $size - 1)
-                                    <option value=$detail.id #if($i==0) selected=true #end>$dateUtils.format($checkinDay,'yyyy-MM-dd')</option>
-                                    #end
-                                    #set($i=1+$i)
-                                  #end
-								#end
-                  	        </select>
-                  	     </li>
-                         <li><strong>离店日期：</strong>
-                             <select name="productDetailId" id="checkoutDateOpt" onchange="changeCheckoutDate()">
-                   	    	 	 #set($i=1)
-								 #foreach($detail in $!product.details)
-                                   #foreach($checkinDay in $!detail.startDates)
-                                   	 #if($i > 1)
-                                  	   <option value=$detail.id #if($i==2) selected=true #end>$dateUtils.format($checkinDay,'yyyy-MM-dd')</option>
-                                  	 #end;
-                                     #set($i=1+$i)
-                                   #end
-								 #end
-                  	         </select>
-                  	     </li>
-                         <li><strong>预订间数：</strong>&nbsp;<input type="text" name="roomCount" id="roomCount"></li>
-                    </ul>
-                	<button onclick="makeOrder()">&nbsp;&nbsp;&nbsp;</button>
-					<input type="hidden" id="productId" name="productId" value="$!product.productId" />
-					<input type="hidden" id="checkinDate" name="gmtOrderStart" value="$dateUtils.format($!product.details[0].startDates[0],'yyyy-MM-dd')"/>
-					#set($i=1)
-					#foreach($detail in $!product.details)
-                      #foreach($checkoutDate in $!detail.startDates)
-                      	#if($i == 2)
-                      	  <input type="hidden" id="checkoutDate" name="gmtOrderEnd" value="$dateUtils.format($checkoutDate, 'yyyy-MM-dd')"/>
-                      	  #break;
-                      	#end
-                      	#set($i=1+$i)
-                      #end
-                      #if ($i == 2)
-                        #break;
-                      #end
-					#end
-					
-					<input type="hidden" id="productType" name="productType" value="FJ" />
-                </form>
-                #end
+				
+				#if($detail)
+					<form id="orderForm" action="${env.root}/order/book.htm" method="get">
+                    	<ul>
+                    		<li><strong>价格</strong>:&nbsp;<span id="price">$!product.cheapestPrice</span>元 </li>
+                        	<li><strong>入住日期</strong>：
+                       	    	 <select name="dateAndDetail" id="checkoutDateOpt">
+                       	    	 	 #foreach($dt in $!product.defaultDetailItems )
+    									#set($index = $velocityCount)
+    									<option value="$dt.detailId:$dateUtils.format($dt.date, 'yyyy-MM-dd')" #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd')</option>
+    								 #end
+                      	         </select>
+                      	     </li>
+                             <li><strong>离店日期：</strong>
+                                 <select name="endDate" id="checkoutDateOpt" onchange="changeCheckoutDate()">
+                       	    	 	 #foreach($dt in $!product.defaultDetailItems )
+    									#set($index = $velocityCount)
+    									<option value="$dateUtils.format($dt.date, 'yyyy-MM-dd')" #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd') </option>
+    								#end
+                      	         </select>
+                      	     </li>
+                             <li><strong>预订间数：</strong>&nbsp;<input type="text" name="count" id="roomCount" value="1"></li>
+                        </ul>
+                    	<button onclick="makeOrder()">&nbsp;&nbsp;&nbsp;</button>
+    					<input type="hidden" id="productId" name="productId" value="$!product.productId" />
+    					<input type="hidden" id="productType" name="productType" value="FJ" />
+                    </form>
+				#end
                 <p class="F3">拨打电话预定 400 666 5599</p>
             </div>
         </div>
@@ -140,39 +114,9 @@
 #STATIC("JS",["/blogcal/blogcalendar.js"])
 #XUI_JS(["core/xui-core.js","util/util-min.js","slide/slide.js"])
 <script>
-	var roomInfos = [
-	  #foreach($detail in $product.details) 
-	  	{id: "$!detail.id",
-	  	 price: "$!detail.price",
-	  	},	
-  	  #end
-	]
-	
-function changeCheckinDate(){
-    var checkinObj = document.getElementById('checkinDateOpt');
-    var checkoutObj = document.getElementById('checkoutDateOpt');
-    document.getElementById('checkinDate').value = checkinObj.options[checkinObj.selectedIndex].text;
-    for (var i = 0; i < roomInfos.length; i++) {
-        if (checkinObj.value == roomInfos[i].id) {
-            document.getElementById('price').innerHTML = roomInfos[i].price;
-        }
-    }
-    var lastDateOpt = checkoutObj.options[checkoutObj.length - 1];
-    checkoutObj.innerHTML = "";
-    for (var i = checkinObj.selectedIndex; i + 1 < checkinObj.length; i++) {
-        var option = document.createElement("option");
-        option.text = checkinObj[i + 1].text;
-        option.value = checkinObj[i + 1].value;
-        checkoutObj.add(option);
-    }
-    checkoutObj.add(lastDateOpt);
-    document.getElementById('checkoutDate').value = checkoutObj.options[checkoutObj.selectedIndex].text;
-}
 
-function changeCheckoutDate(){
-    var checkoutObj = document.getElementById('checkoutDateOpt');
-    document.getElementById('checkoutDate').value = checkoutObj.options[checkoutObj.selectedIndex].text;
-}
+
+
 //calendar
     //初始化Calendar
     var url = '${env.root}/ajax/priceCalendar.htm?productId=$!product.productId' ;

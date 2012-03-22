@@ -16,6 +16,8 @@ public class BasicAction extends ActionSupport{
 
 	public static final String MEMBER_NOT_LOGIN = "memberLogin" ;
 	
+	public static final String NOT_EXISTS = "not_exists" ;
+	
 	protected HttpServletRequest getRequest() {
         return ServletActionContext.getRequest();  
     }

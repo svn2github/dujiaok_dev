@@ -14,7 +14,7 @@
         	<h2 class="d_title">$!product.name</h2>
                 <div id="Focus">
                     <ul id="Focus_content">
-                        #foreach($pictureUrl in $!product.pictureUrls)
+                        #foreach($pictureUrl in $!product.imageList)
                           <li class="circularPanel">
                             <img src=$!pictureUrl width="710" height="250" />
                             <h2></h2>
@@ -22,7 +22,7 @@
                         #end
                     </ul>
                 <ul class="trigger">
-                    #foreach($pictureUrl in $!product.pictureUrls)
+                    #foreach($pictureUrl in $!product.imageList)
                       <li class="circularTrigger"></li>
                     #end
                 </ul>
@@ -80,11 +80,11 @@
             	</div>
             </div>
         </div>
-        
+        #set ($detail = $product.todayDetail)
         <div class="d_right">
         	<div class="information">
 				
-            	<h3><i>特惠价</i> ￥<b><span id='tehui'>$!product.cheapestPrice</span></b>元/人起</h3>
+            	<h3><i>特惠价</i> ￥<b><span id='tehui'>$!detail.cheapestPrice</span></b>元/人起</h3>
                 <table>
                 	<tr><th>市场价：</th><td>￥$!product.marketPrice </td></tr>
                     <tr><th>商品编号：</th><td>$!product.productId</td></tr>
@@ -94,29 +94,28 @@
                 </table>
             </div>
             <div class="order">
-            	#if(!$collectionUtils.isEmpty($product.details))
+				#set ($detail = $product.todayDetail)
+				#if($detail)
             	<form id="orderForm" action="${env.root}/order/book.htm" method="get">
                 	<ul>
                     	<li>使用日期：
-                   	    	<select name="productDetailId" id="productDetailId" onchange="changeUseDate()">
-								#set($i=1)
-								#foreach($ticketDetail in $!product.details)
-                                  #foreach($ticketDay in $ticketDetail.startDates)
-                                    <option value=$ticketDetail.id #if($i==1) selected=true #end>$dateUtils.format($ticketDay,'yyyy-MM-dd')</option>
-                                    #set($i=1+$i)
-                                  #end
+                   	    	<select name="dateAndDetail" id="productDetailId" >
+								#foreach($dt in $!product.defaultDetailItems )
+									#set($index = $velocityCount)
+									<option value="${dt.detailId}:$dateUtils.format($dt.date, 'yyyy-MM-dd')" #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd') $dt.bottomPrice元 </option>
 								#end
                   	        </select>
                   	     </li>
-                  	     <input type="hidden" id="useDate" name="gmtOrderStart" value="$dateUtils.format($!product.details[0].startDates[0],'yyyy-MM-dd')"/>
-                         <li>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：<span id='price'>$!product.details[0].price</span>元</li>
-                         <li>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：&nbsp;<input type="text" name="ticketNum" id="ticketNum"></li>
+                         <li>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：<span id='price'>$!detail.price</span>元</li>
+                         <li>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：&nbsp;<input type="text" name="count" id="count" value="1"></li>
                     </ul>
                 	<button type="submit">&nbsp;&nbsp;&nbsp;</button>
 					<input type="hidden" id="productId" name="productId" value="$product.productId" />
 					<input type="hidden" id="productType" name="productType" value="MP" />
                 </form>
-                #end
+                #else
+					今日无价格
+				#end
                 <p class="F3">拨打电话预定 400 666 5599</p>
             </div>
         </div>
@@ -129,30 +128,6 @@
 <script type="text/javascript">
 	
 	var x = new xui.widgets.Slide();
-
-	var ticketInfos = [
-	  #foreach($detail in $product.detail) 
-	  	{id: "$!detail.id",
-	  	 price: "$!detail.price"
-	  	},	
-  	  #end
-	]
-	
-	
-    function changeUseDate(){
-        var temp = document.getElementById('productDetailId');
-        var ticketId = temp.value;
-    	var price = document.getElementById('price');
-        var useDay = temp.options[temp.selectedIndex].text;
-    	document.getElementById('useDate').value = useDay;
-        for (var i = 0; i < ticketInfos.length; i++) {
-          if (ticketId == ticketInfos[i].id) {
-              price.innerHTML = ticketInfos[i].price;
-          }
-        }
-    }
-
-	
 
 
 	//calendar

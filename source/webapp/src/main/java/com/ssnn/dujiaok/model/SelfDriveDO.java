@@ -1,11 +1,6 @@
 package com.ssnn.dujiaok.model;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 
 /**
  * 自驾
@@ -19,10 +14,7 @@ public class SelfDriveDO extends AbstractProduct {
 	 */
 	private String addProducts ;
 	
-	/**
-	 * 市场价
-	 */
-	private BigDecimal marketPrice ;
+	
 	
 	/**
 	 * 游玩天数
@@ -34,10 +26,6 @@ public class SelfDriveDO extends AbstractProduct {
 	 */
 	private String recommend ;
 	
-	/**
-	 * 付款方式
-	 */
-	private String payTypes ;
 	
 	/**
 	 * 产品类别
@@ -65,46 +53,7 @@ public class SelfDriveDO extends AbstractProduct {
 	
 	private Date gmtModified ;
 	
-	/**
-	 * 过期时间
-	 */
-	private Date gmtExpire ;
 	
-	private List<ProductDetailDO> details ;
-	
-	public List<ProductDetailDO> getDetails() {
-		return details;
-	}
-
-	public void setDetails(List<ProductDetailDO> details) {
-		this.details = details;
-		if (this.details == null || this.details.size() == 0) {
-			setCheapestPrice(new BigDecimal("-1"));
-		} else {
-			setCheapestPrice(Collections.min(this.details).getCheapestPrice());
-		}
-	}
-
-	public Date getGmtExpire() {
-		return gmtExpire;
-	}
-
-	public void setGmtExpire(Date gmtExpire) {
-		this.gmtExpire = gmtExpire;
-	}
-
-	public BigDecimal getMarketPrice() {
-		return marketPrice;
-	}
-
-	public void setMarketPrice(BigDecimal marketPrice) {
-		this.marketPrice = marketPrice;
-	}
-	
-	public BigDecimal getCheapestPrice() {
-		return this.cheapestPrice.compareTo(new BigDecimal("-1")) == 0 ? this.marketPrice : this.cheapestPrice;
-	}
-
 	public int getDays() {
 		return days;
 	}
@@ -184,6 +133,5 @@ public class SelfDriveDO extends AbstractProduct {
 	public void setAddProducts(String addProducts) {
 		this.addProducts = addProducts;
 	}
-	
-	
+
 }

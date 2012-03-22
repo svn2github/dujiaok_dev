@@ -1,103 +1,61 @@
 package com.ssnn.dujiaok.model;
 
-import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
-
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  * Ticket 门票主表
+ * 
  * @author shenjia.caosj 2012-1-9
- *
+ * 
  */
 public class TicketDO extends AbstractProduct {
-	
-	/**
-	 * 市场价
-	 */
-	private BigDecimal marketPrice ;
-	
+
 	/**
 	 * 推荐指数
 	 */
-	private String recommend ;
-	
+	private String recommend;
+
 	/**
 	 * 门票类型（电子、短信等）
 	 */
-	private String ticketType ;
-	/**
-	 * 支付方式
-	 */
-	private String payTypes ;
+	private String ticketType;
+	
 	/**
 	 * 产品类别
 	 */
-	private String productTypes ;
+	private String productTypes;
 	/**
 	 * 产品简介
 	 */
-	private String introduction ;
+	private String introduction;
 	/**
 	 * 注意事项
 	 */
-	private String notice ;
+	private String notice;
 	/**
 	 * 费用说明
 	 */
-	private String feeDesc ;
+	private String feeDesc;
 	/**
 	 * 备注
 	 */
-	private String memo ;
-	
+	private String memo;
+
 	/**
 	 * 不打折为‘T’
 	 */
-	private String notDiscout ;
-	
-	private Date gmtCreate ;
-	
-	private Date gmtModified ;
-	
-	private Date gmtExpire ;
-	
-	private List<ProductDetailDO> details  ;
+	private String notDiscout;
 
-	
+	private Date gmtCreate;
+
+	private Date gmtModified;
+
 	public String getNotDiscout() {
 		return notDiscout;
 	}
 
 	public void setNotDiscout(String notDiscout) {
 		this.notDiscout = notDiscout;
-	}
-	
-	public List<ProductDetailDO> getDetails() {
-		return details;
-	}
-
-	public void setDetails(List<ProductDetailDO> details) {
-		this.details = details;
-		if (this.details == null || this.details.size() == 0) {
-			setCheapestPrice(new BigDecimal("-1"));
-		} else {
-			setCheapestPrice(Collections.min(details).getCheapestPrice());
-		}
-	}
-
-	public BigDecimal getMarketPrice() {
-		return marketPrice;
-	}
-
-	public void setMarketPrice(BigDecimal marketPrice) {
-		this.marketPrice = marketPrice;
-	}
-	public BigDecimal getCheapestPrice() {
-		return this.cheapestPrice.compareTo(new BigDecimal("-1")) == 0 ? this.marketPrice : this.cheapestPrice;
 	}
 
 	public String getRecommend() {
@@ -114,14 +72,6 @@ public class TicketDO extends AbstractProduct {
 
 	public void setTicketType(String ticketType) {
 		this.ticketType = ticketType;
-	}
-
-	public String getPayTypes() {
-		return payTypes;
-	}
-
-	public void setPayTypes(String payTypes) {
-		this.payTypes = payTypes;
 	}
 
 	public String getProductTypes() {
@@ -180,17 +130,4 @@ public class TicketDO extends AbstractProduct {
 		this.gmtModified = gmtModified;
 	}
 
-	public Date getGmtExpire() {
-		return gmtExpire;
-	}
-
-	public void setGmtExpire(Date gmtExpire) {
-		this.gmtExpire = gmtExpire;
-	}
-	
-	@Override
-	public String toString() {
-		return ReflectionToStringBuilder.toString(this,ToStringStyle.SHORT_PREFIX_STYLE) ;
-	}
-	
 }
