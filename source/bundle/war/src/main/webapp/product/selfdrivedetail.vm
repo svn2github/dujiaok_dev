@@ -57,14 +57,14 @@
 				            </ul>
         				</div>
 	        			<h2 id="introduction">产品介绍</h2>
-							<p>#ESCAPE_HTML($!product.introduction)</p>
+							<p>$!product.introduction</p>
 						<h2 id="jouney">行程</h2>
 				        <div class="pro_intro_list1">
-				            <p>#ESCAPE_HTML($!product.schedule)</p>
+				            <p>$!product.schedule</p>
 				        </div>
 				        <h2 id="feedesc">费用说明</h2>
 				        <div class="pro_intro_list2">
-					        <p>#ESCAPE_HTML($!product.feeDesc)</p>
+					        <p>$!product.feeDesc</p>
 				        </div>
 	    			</div>
             	</div>

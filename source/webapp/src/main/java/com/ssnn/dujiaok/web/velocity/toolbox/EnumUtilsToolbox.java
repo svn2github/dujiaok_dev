@@ -47,6 +47,9 @@ public class EnumUtilsToolbox {
 	public String toPayTypeEnumDescs(String nameListString) {
 		List<String> payTypeEnums = ArrayStringUtils.toList(nameListString) ;
 		String desc = "" ;
+		if(payTypeEnums==null || payTypeEnums.isEmpty()){
+			return "" ;
+		}
 		for(String name : payTypeEnums){
 			desc += PayTypeEnums.fromValue(name).getDesc() + "," ;
 		}

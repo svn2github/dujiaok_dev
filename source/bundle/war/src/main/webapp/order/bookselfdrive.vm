@@ -108,17 +108,17 @@
 					<table>
 						<tr valign="top">
 						    <td><strong>订单备注</strong></td>
-						    <td><textarea rows="10" id="memo" name="memo" style="width:500px; margin:8px 0 0 50px;"></textarea></td>
+						    <td><textarea rows="1" id="memo" name="memo" style="width:500px; margin:8px 0 0 50px;"></textarea></td>
 						</tr>
 					</table>
 	            </div>
 				<div style="clear:both;"></div>
+				<br/><br/>
                 <div class="d_qrxd" >
                 	<button type="submit" id="submit">&nbsp;&nbsp;&nbsp;&nbsp;</button>
                 </div>
                 <div class="d_ydxx">
                 	<input name="" type="checkbox" checked />同意度假OK预订协议</p>
-                	<textarea rows="10" id="textarea" readonly="true" name="textarea">sdfsdfsdfsdfsdfsdfsd</textarea>
                 </div>
             </div>
             
