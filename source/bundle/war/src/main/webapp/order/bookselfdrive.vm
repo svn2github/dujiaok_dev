@@ -1,141 +1,150 @@
-#set($layout="/product/default.vm")
-<form id="orderForm" method="post" action="${env.root}/order/makeorder.htm"  onSubmit="return Validator.Validate(this,3)" >
-    <input type="hidden" value="$!product.marketPrice" id="marketPrice">
-	<!-- 内容开始 -->
-    <div id="wrap">
-		<div class="section urhere" style="margin:15px 0 13px 0; width:950px;">
-        	<p class="F3">您当前的位置： $!product.destProvince > $!product.destCity > $!province.destArea</p>
-        </div>
-        <div id="dingdan" class="section">
-        	<div class="d_left">
-        		<h2 class="d_title yuding01"><span class="order-nav">【自驾游】</span>$!product.name</h2>
-        		<h3 class="dingdanhead">订购产品</h3>
-                <table class="d_dgcp"  cellpadding="0" cellspacing="0">
-                	<tr>
-                    	<th>编号</th>
-                        <th>景点名称</th>
-                        <th>使用时间</th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                    	<td>$!product.productId</td>
-                        <td>$!product.name</td>
-                        <td class="F10">
-                        	$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd') 至 $dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')
-                        </td>
-                        <td class="F10">
-                        	成人 <input type="text" name="count" id="adultNum" maxlength="6" class="wpx34" value="$!orderDO.count" dataType="Integer"/>
+#set($layout="/front/default_new.vm")
+#CSS(["dingdan.css"])
+
+
+<form id="orderForm" method="post" action="${env.root}/order/makeorder.htm"  onSubmit="javascript:return new Totalorders().checkForm();" >
+    
+	
+	
+	<!-- main开始 -->
+    <div class="w950 dingdan">
+    
+    	<!-- dtl1开始 -->
+    	<div class="L">
+    		<div class="crumb">您当前的位置：周边自驾  > $!product.destProvince > $!product.destCity > $!product.destAddr</div>
+    		<div class="odrTtl"><span class="flag">预定</span><span class="greenTtl">【周边自驾】$!product.name</span></div>
+    
+    		<h2 class="banner mgt20"><strong>订购产品</strong></h2>
+    		<table class="mgt10 product">
+    			<thead><tr><td>编号</td><td>路线</td><td>使用日期</td></tr></thead>
+    			<tbody>
+					<tr>
+        				<td>$!product.productId</td>
+        				<td>$!product.name</td>
+                        <td>
+    						成人 <input type="text" name="count" id="adultNum" maxlength="6" class="wpx34" value="$!orderDO.count" dataType="Integer"/>
                         	<span class="F2">（单人价：￥<span id="singlePrice" style="color:red">$!detail.price</span>
                         	元　双人价：￥<span id="doublePrice" style="color:red">$!detail.doublePrice</span>元）</span><br />
-							#if($detail.childPrice)
-								儿童 <input type="text" name="secondaryCount" id="childNum" maxlength="6" class="wpx34" value="$!orderDO.secondaryCount"/>
-								<span class="F2">（儿童价：￥<span id="childPrice"  style="color:red">$!detail.childPrice</span>元）</span>
-							#else
-								<input type="hidden" name="secondaryCount" id="childNum" value="$!orderDO.secondaryCount"/>
-								<span id="childPrice" style="display:none">0</span>
-							#end
-						</td>
-                    </tr>
-                </table>
-                <h3 class="dingdanhead" >附加产品&nbsp;&nbsp;&nbsp;&nbsp;
-                	<span style="color:red;font-size:12px;font-weight:normal;">备注：16岁以下儿童不含保险</span>
-                </h3>
-                <table class="d_dgcp" boder="0" cellpadding="0" cellspacing="0">
-            		<tr>
-                		<th>使用日期</th>
-                    	<th>名称</th>
-                        <th>现售价</th>
-                        <th>数量</th>
-            		</tr>
-            		<tr>
-                		<td class="F10">$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd') 至 $dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')</td>
-                        <td>$!product.name</td>
-						#set($totalCount = $orderDO.count)
-                        <td>￥<span style="color:red">20</span>人/天 x $product.days 天</td>
-                        <td><input type="text" name="insureNum" id="insureNum" maxlength="3" class="wpx34" value="$!orderDO.count"/></td>
-            		</tr>
-                </table>
-                <h3 class="dingdanhead">游玩人信息</h3>
-                <div id="personInfos">
-                	<div id="personInfo0">
-		                <table class="d_ywrxx"  cellpadding="0" cellspacing="0">
-		                	<tr>
-		                		<th ><strong>主联系人信息</strong></th>
-		                    	<th><i>*</i> 主联系人姓名：</th>
-		                        <td><input type="text" name="contacts[0].name" id="name0" class="wpx184" value="$!orderDO.contacts.get(0).name"/></td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<th><i>*</i> 主联系人手机：</th>
-		                        <td><input type="text" name="contacts[0].mobile" maxlength=11 id="mobile0" class="wpx184" value="$!orderDO.contacts.get(0).mobile" /></td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<th><i>*</i> 证件类型：</th>
-		                        <td>
-		                          <select name="contacts[0].certificateType" id="certificateType0" value="" style="width: 184px;">
-		                            <option value="ID">身份证</option>
-		                            <option value="PASSPORT">护照</option>
-		                            <option value="OFFICERPORT">军官证</option>
-									<option value="OTHER">其它</option>
-		                          </select>
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<th><i>*</i> 证件号码：</th>
-		                        <td><input type="text" name="contacts[0].certificateNumber" id="certificateNumber0" class="wpx184" dataType="IdCard" msg="身份证号错误"/></td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<th>E-mail：</th>
-		                        <td><input type="text" name="contacts[0].email" id="email0" class="wpx1843" style="width: 184px;" value="$!orderDO.contacts.get(0).email"/></td>
-		                    </tr>
-		                    <tr style="display: none;">
-		                    	<th></th>
-		                    	<th></th>
-		                        <td><input type="text" name="contacts[0].isMain" id="isMain0" value="Y"/></td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<td></td>
-		                    	<td align="right"><a href="javascript:addPersonInfo()" id="addPersonInfo" class="addPersonInfo">+ 添加游玩人</a></td>
-		                    </tr>
-		                </table>
-	                </div>
-	            </div>
-				<div>
-					<table>
-						<tr valign="top">
-						    <td><strong>订单备注</strong></td>
-						    <td><textarea rows="1" id="memo" name="memo" style="width:500px; margin:8px 0 0 50px;"></textarea></td>
-						</tr>
-					</table>
-	            </div>
-				<div style="clear:both;"></div>
-				<br/><br/>
-                <div class="d_qrxd" >
-                	<button type="submit" id="submit">&nbsp;&nbsp;&nbsp;&nbsp;</button>
+							
+							儿童 <input type="text" name="secondaryCount" id="childNum" maxlength="6" class="wpx34" value="$!orderDO.secondaryCount"/>
+							<span class="F2">（儿童价：￥<span id="childPrice"  style="color:red">$!detail.childPrice</span>元）</span>
+							
+    					</td>
+        			</tr>
+				</tbody>
+    		</table>
+    		<h2 class="banner mgt20"><strong>附加产品</strong> </h2>
+			
+			<table class="mgt10">
+        		<tr>
+            		<th width="160">使用日期</th>
+                	<th width="120">名称</th>
+                    <th width="120">现售价</th>
+                    <th>数量</th>
+        		</tr>
+        		<tr>
+            		<td>$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd') 至 $dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')</td>
+                    <td>平安意外险</td>
+					#set($totalCount = $orderDO.count)
+                    <td>￥<span style="color:red">20</span>人/天 x $product.days 天</td>
+                    <td><input type="text" name="insureNum" id="insureNum" maxlength="3" class="wpx34" value="$!orderDO.count" style="width:40px;"/></td>
+        		</tr>
+				<tr>
+					<td colspan="4"><span style="color:red;font-size:12px;font-weight:normal;">备注：16岁以下儿童不含保险</span></td>
+				</tr>
+            </table>
+			
+						
+			<h2 class="banner mgt20"><strong>游玩人信息</strong> </h2>
+			
+			
+			<div id="personInfos">
+            	<div id="personInfo0">
+					<input type="hidden" name="contacts[0].isMain" value="T" />
+	                <table class="mgt10 contactInfo">
+						
+	                	<tr>
+	                    	<th><i>*</i> 主联系人姓名：</th>
+	                        <td><input type="text" name="contacts[0].name" id="name0" class="wpx184" value="$!orderDO.contacts[0].name"/></td>
+	                    </tr>
+	                    <tr>
+	                    	<th><i>*</i> 主联系人手机：</th>
+	                        <td><input type="text" name="contacts[0].mobile" maxlength=11 id="mobile0" class="wpx184" value="$!orderDO.contacts[0].mobile" /></td>
+	                    </tr>
+	                    <tr>
+	                    	<th><i>*</i> 证件类型：</th>
+	                        <td>
+	                          <select name="contacts[0].certificateType" id="certificateType0" value="" style="width: 184px;">
+	                            <option value="ID">身份证</option>
+	                            <option value="PASSPORT">护照</option>
+	                            <option value="OFFICERPORT">军官证</option>
+								<option value="OTHER">其它</option>
+	                          </select>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                    	<th><i>*</i> 证件号码：</th>
+	                        <td><input type="text" name="contacts[0].certificateNumber" value="$!orderDO.contacts[0].certificateNumber" id="certificateNumber0" class="wpx184" dataType="IdCard" msg="证件号码错误"/></td>
+	                    </tr>
+	                    <tr>
+	                    	<th>E-mail：</th>
+	                        <td><input type="text" name="contacts[0].email" id="email0" class="wpx1843" style="width: 184px;" value="$!orderDO.contacts[0].email"/></td>
+	                    </tr>
+	                    <tr style="display: none;">
+	                    	<th></th>
+	                        <td><input type="text" name="contacts[0].isMain" id="isMain0" value="Y"/></td>
+	                    </tr>
+	                </table>
                 </div>
-                <div class="d_ydxx">
-                	<input name="" type="checkbox" checked />同意度假OK预订协议</p>
-                </div>
+				
             </div>
-            
-            <div class="d_right">
-            	<h3>订单金额总计</h3>
-                <div class="information"> 
-                    <table  cellpadding="0" cellspacing="0">
-                    	<tr><th>市 场 价：</th><td><span id="orderMarketPrice"></span>元</td></tr>
-                    	<tr><th>ok价：</th><td><span id="orderOkPrice"></span>元</td></tr>
-                        <tr><th>保险费用：</th><td><span id="orderInsPrice"></span>元</td></tr>
-                        <tr><th>累计节省：</th><td><span id="orderSavePrice"></span>元</td></tr>
-                    </table>
-                    <p class="Settlement_amount">订单结算金额<br /><b>￥<span id="orderPrice"></span></b></p>
-                </div> 
-            </div>
-        </div>
-   	</div>
+			<a href="javascript:addPersonInfo()" id="addPersonInfo" class="addPersonInfo">+ 添加游玩人</a>
+    		<h2 class="banner mgt20"><strong>订单备注</strong></h2>
+    		<table class="mgt10">
+                <tr>
+					<th></th>
+                    <td>
+						<textarea rows="1" id="memo" name="memo" style="width:500px;height:30px;"></textarea>
+					</td>
+				</tr>
+    			<tr>
+    				<th></th>
+    				<td>
+    					<button class="order">确认下单</button>
+    					<div><input type="checkbox" checked="checked" id="odrProtocol" /><label for="odrProtocol">同意度假OK预订协议</label></div>
+    				</td>
+    			</tr>
+    		</table>
+    	</div>
+    	<div class="R mgt10">
+			<!--
+    		<div class="share">
+    			<div id="ckepop">
+    
+    				<span class="jiathis_txt">分享到：</span>
+    				<a class="jiathis_button_icons_1"></a>
+    				<a class="jiathis_button_icons_2"></a>
+    				<a class="jiathis_button_icons_3"></a>
+    				<a class="jiathis_button_icons_4"></a>
+    			</div>
+    		</div>
+			-->
+    		<div class="moneyTotal">
+    
+    			<h3>订单金额总计</h3>
+    			<table>
+    				<tr><th>市 场 价：</th><td><span id="orderMarketPrice"></span>元</td></tr>
+                	<tr><th>ok价：</th><td><span id="orderOkPrice"></span>元</td></tr>
+                    <tr><th>保险费用：</th><td><span id="orderInsPrice"></span>元</td></tr>
+                    <tr><th>累计节省：</th><td><span id="orderSavePrice"></span>元</td></tr>
+    			</table>
+    			<p>订单结算金额<br><b class="f22">￥<span id="orderPrice"></span></b></p>
+    		</div>
+    	</div>
+    </div>
+    <!-- main结束 -->
+	
+	<input type="hidden" value="$!product.marketPrice" id="marketPrice">
    	<input type="hidden" name="orderId" id="orderId" value="$!orderDO.orderId" />
 	<input type="hidden" name="productId" id="productId" value="$!orderDO.productId" />
 	<input type="hidden" name="productDetailId" id="productDetailId" value="$!orderDO.productDetailId" />
@@ -143,7 +152,8 @@
 	<input type="hidden" name="dayNum" id="dayNum" value="$!product.days">
 	<input type="hidden" name="productType" id="productType" value="SELFDRIVE" />
 </form>	
-#XUI_JS(["core/xui-core-min.js"])
+#XUI_JS(["core/xui-core-min.js","dialog/xui-dialog-min.js","msgbox/xui-msgbox-min.js","tip/xui-tip.js","util/util-min.js","basic-widgets/xui-basic-widgets-min.js"])
+
 <script>
 	
 	var personInfoCount = 1;
@@ -166,20 +176,21 @@
 		var personInfo = document.createElement('div');
 		personInfo.id = 'personInfo' + index;
 		var Contact = [];
-		Contact.push('<table class="d_ywrxx"  cellpadding="0" cellspacing="0">');
-		Contact.push('<tr><th><strong>游玩人信息</strong></th><th><i>*</i> 游玩人姓名：</th>');
+		Contact.push('<div style="border-top:1px solid #ddd;"></div>') ;
+		Contact.push('<table class="mgt10 contactInfo">');
+		Contact.push('<tr><th><i>*</i> 游玩人姓名：</th>');
 		  Contact.push('<td><input type="text" name="contacts['+ index + '].name" id="name' + index + '" class="wpx184"/></td></tr>');
-		Contact.push('<tr><th></th><th><i>*</i> 游玩人手机：</th>');
+		Contact.push('<tr><th><i>*</i> 游玩人手机：</th>');
 		  Contact.push('<td><input type="text" name="contacts[' + index + '].mobile" id="mobile' + index + '" class="wpx184" /></td></tr>');
-		Contact.push('<tr><th></th><th><i>*</i> 证件类型：</th>');
+		Contact.push('<tr><th><i>*</i> 证件类型：</th>');
 		  Contact.push('<td><select name="contacts[' + index + '].certificateType" id="certificateType' + index + '" style="width: 184px;">');
 		  Contact.push('<option value="ID">身份证</option><option value="PASSPORT">护照</option><option value="OFFICERPORT">军官证</option><option value="OTHER">其它</option></select></td></tr>');
-		Contact.push('<tr><th></th><th><i>*</i> 证件号码：</th>');
+		Contact.push('<tr><th><i>*</i> 证件号码：</th>');
 		  Contact.push('<td><input type="text" name="contacts[' + index + '].certificateNumber" id="certificateNumber' + index + '" class="wpx184" /></td></tr>');
-		Contact.push('<tr><th></th><th>E-mail：</th>');
+		Contact.push('<tr><th>E-mail：</th>');
 		  Contact.push('<td><input type="text" name="contacts[' + index + '].email" id="email' + index + '" class="wpx1843" style="width: 184px;"/></td></tr>');
-		Contact.push('<tr><th></th><th><a href="javascript:removePersonInfo(' + index + ')" id="removePersonInfo" class="removePersonInfo">- 删除游玩人</a></th>');
-		  Contact.push('<td align="right"><a href="javascript:addPersonInfo()" id="addPersonInfo" class="addPersonInfo">+ 添加游玩人</a></td></tr>');
+		Contact.push('<tr><th><a href="javascript:removePersonInfo(' + index + ')" id="removePersonInfo" class="removePersonInfo">- 删除游玩人</a></th>');
+		  Contact.push('<td align="right"></td></tr>');
 		Contact.push('</table>');
 		
 		personInfo.innerHTML = Contact.join('');
@@ -278,13 +289,13 @@ Totalorders.prototype = {
 		for (i=0; i<EL.length; i++){
 			if(EL[i].value==""){
 				xui.widgets.Tip.show(EL[i].id,'带*号为必填项,不能为空!请重新输入。');
-				return;
+				return false ;
 			}else if(EL[i] == $("erh_Tel0")&!xui.util.NumberUtil.isNumber(EL[i].value)){
 				xui.widgets.Tip.show(EL[i].id,'手机号码必须为11位数字。');
-				return;
+				return false ;
 			}else if(EL[i] == $("erh_Tel0")&EL[i].value.length!==11){
 				xui.widgets.Tip.show(EL[i].id,'手机号码必须为11位数字。');
-				return;
+				return false ;
 			}
 		}
 		SELF.postData();

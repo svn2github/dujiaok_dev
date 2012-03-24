@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
-import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -23,9 +22,7 @@ import com.ssnn.dujiaok.model.OrderContactDO;
 import com.ssnn.dujiaok.model.OrderDO;
 import com.ssnn.dujiaok.model.ProductDetailDO;
 import com.ssnn.dujiaok.model.SelfDriveDO;
-import com.ssnn.dujiaok.util.DateUtils;
 import com.ssnn.dujiaok.util.enums.ProductEnums;
-import com.ssnn.dujiaok.util.order.OrderUtils;
 import com.ssnn.dujiaok.web.action.BasicAction;
 import com.ssnn.dujiaok.web.context.ContextHolder;
 
@@ -76,12 +73,12 @@ public class OrderAction extends BasicAction  {
 			product = ticketService.getTicketWithDetails(productId) ;
 		}
 		if(product == null){
-			return ProductConstant.NOT_EXIST ;
+			return NOT_EXISTS ;
 		}
 		
 		String[] dateAndDetailArr = StringUtils.split(dateAndDetail,":") ;
 		if(dateAndDetailArr == null || dateAndDetailArr.length != 2){
-			return ProductConstant.NOT_EXIST ;
+			return NOT_EXISTS ;
 		}
 		String detailId = dateAndDetailArr[0] ;
 		Date gmtOrderStart = null ;
@@ -96,12 +93,12 @@ public class OrderAction extends BasicAction  {
 		this.detail = productDetailService.getProductDetail(productId , detailId);
 		
 		if(detail == null){
-			return ProductConstant.NOT_EXIST ;
+			return NOT_EXISTS ;
 		}
 				
 		//gmtStart 有问题
 		if (gmtOrderStart==null || gmtOrderStart.before(detail.getGmtStart()) || gmtOrderStart.after(detail.getGmtEnd())) {
-			return ProductConstant.NOT_EXIST;
+			return NOT_EXISTS ;
 		}
 		//设置自驾时间
 		if(ProductEnums.SELFDRIVE == type){
@@ -141,7 +138,7 @@ public class OrderAction extends BasicAction  {
 		}else if(type == ProductEnums.TICKET){
 			return ProductConstant.TICKET ;
 		}
-		return ProductConstant.NOT_EXIST ;
+		return NOT_EXISTS ;
 	}
 	
 	

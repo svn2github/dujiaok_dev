@@ -1,31 +1,39 @@
-#set($layout="/product/default.vm")
+#set($layout="/front/default_new.vm")
 
 #STATIC("CSS",["/blogcal/blogcalendar.css"])
-<!-- 内容开始 -->
-<div id="wrap">
-    <div class="section urhere">
-    	<p class="F3">您当前的位置： 自驾游  - $!product.name</p>
-    </div>
-    
-    <div id="detail" class="section">
-    	<div class="d_left">
-        	<h2 class="d_title">$!product.name</h2>
-            <div id="Focus">
-                <ul id="Focus_content">
-                    #foreach($!image in $!product.imageList)
-                      <li class="circularPanel">
-                        <img src=$!image width="710" height="250" />
-                        <h2></h2>
-                      </li>
-                    #end
-                </ul>
-	            <ul class="trigger">
-	                #foreach($!image in $!product.imageList)
-	                  <li class="circularTrigger"></li>
-	                #end
-	            </ul>
-            </div>
-            <div class="Calendar">
+#CSS(["detail.css"])
+
+#set ($detail = $product.todayDetail)
+
+<!-- main开始 -->
+<div class="w950 main detail">
+
+	<!-- dtl1开始 -->
+	<div class="L">
+		<div class="crumb">您当前的位置：周边自驾 > $!product.destProvince > $!product.destCity > $!product.destAddr</div>
+		<dl class="txtImgRoll">
+			<dt class="greenTtl">【周边自驾】$!product.name</dt>
+
+			<dd class="bigRoll" id="dtlBigRoll">
+				#foreach($image in $product.imageList)
+					#set ($index = $velocityCount)
+					#if($index < 4)
+					<div class="tabCnt #if($index == 1)current#end"><img alt="" src="$image"><span></span></div>
+					#end
+                #end
+				<ul class="tabTtl">
+					#foreach($image in $product.imageList)
+						#set($index = $velocityCount)
+						#if($index < 4)
+						<li #if($index == 1) class="current" #end ></li>
+						#end
+					#end
+				</ul>
+			</dd>
+		</dl>
+
+		<div class="mgt20">
+			<div class="Calendar">
 				<div id="idCalendarPre">上一月</div>
 				<div id="idCalendarNext">下一月</div>
             
@@ -46,88 +54,82 @@
 					</tbody>
 				</table>
 			</div>
-            <div style="padding-top:10px;">
-            	<div id="frame_content" width="710">
-            		<div id="pro_intro" class="FS12 F2">
-    					<div class="pro_intro_tab clearFix">
-				            <ul>
-				                <li class="cur"><a href="#introduction">产品介绍</a></li>
-				                <li><a href="#jouney">行程</a></li>
-				                <li><a href="#feedesc">费用说明</a></li>
-				            </ul>
-        				</div>
-	        			<h2 id="introduction">产品介绍</h2>
-							<p>$!product.introduction</p>
-						<h2 id="jouney">行程</h2>
-				        <div class="pro_intro_list1">
-				            <p>$!product.schedule</p>
-				        </div>
-				        <h2 id="feedesc">费用说明</h2>
-				        <div class="pro_intro_list2">
-					        <p>$!product.feeDesc</p>
-				        </div>
-	    			</div>
-            	</div>
-            </div>
-        </div>
-        #set ($detail = $product.todayDetail)
-        <div class="d_right">
-        	<div class="information">
-            	<h3><i>特惠价</i> ￥<b><span id='tehui'>$!detail.cheapestPrice</span></b>元/人起</h3>
-                <table>
-                	<tr><th><strong>市场价</strong>：</th><td>$!product.marketPrice元</td></tr>
-                    <tr><th><strong>商品编号</strong>：</th><td>$!product.productId</td></tr>
-                    <tr><th><strong>支付方式</strong>：</th><td>$enumUtils.toPayTypeEnumDescs($!product.payTypes)</td></tr>
-                    <tr><th><strong>产品类别</strong>：</th><td>$!product.productTypes</td></tr>
-                    <tr><th><strong>附加产品</strong>：</th><td>#if($product.addProducts=='') 无 #else $!product.addProducts #end</td></tr>
-                    <tr><th><strong>游玩天数</strong>：</th><td>$!product.days天</td></tr>
-                </table>
-            </div>
-            <div class="order">
-				
+		</div>
+	</div>
+	<div class="R mgt10">
+		<!--
+		<div class="share">
+			<div id="ckepop">
+				<span class="jiathis_txt">分享到：</span>
+
+				<a class="jiathis_button_icons_1"></a>
+				<a class="jiathis_button_icons_2"></a>
+				<a class="jiathis_button_icons_3"></a>
+				<a class="jiathis_button_icons_4"></a>
+			</div>
+		</div>
+		-->
+		
+		
+		<div class="hotelDtl">
+			<div class="hDtl1">
+				<div class="price"><span class="ttl">特惠价</span><span class="num">￥<strong>$detail.cheapestPrice</strong>元起</span></div>
+
+				<table>
+					<tbody><tr><th><strong>市场价：</strong></th><td>$!product.marketPrice 元</td></tr>
+					<tr><th><strong>商品编号：</strong></th><td>$!product.productId</td></tr>
+					<tr><th><strong>支付方式：</strong></th><td>$enumUtils.toPayTypeEnumDescs($!product.payTypes)</td></tr>
+					<tr><th><strong>附加产品</strong>：</th><td>#if($product.addProducts=='') 无 #else $enumUtils.toAddProductEnumDescs($!product.addProducts) #end</td></tr>
+					<tr><th><strong>产品类别：</strong></th><td>$!product.productTypes</td></tr>
+					<tr><th><strong>游玩天数</strong>：</th><td>$!product.days 天</td></tr>
+				</tbody></table>
+			</div>
+			<div class="date">
 				#if($detail)
-					<form id="orderForm" method="get" action="${env.root}/order/book.htm" method="get">
-                    	<ul>
-                        	<li>游玩日期：
-                       	    	<select name="dateAndDetail" id="productDetailId">
-									#foreach($dt in $!product.defaultDetailItems )
-										#set($index = $velocityCount)
-										<option value="${dt.detailId}:$dateUtils.format($dt.date, 'yyyy-MM-dd')"  #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd') $dt.bottomPrice元 </option>
-									#end
-                      	        </select>
-                      	     </li>
-                      	     
-                             <li>
-								  单人：<span id='singlePrice'>$!detail.price</span>元&nbsp;&nbsp;
-    							  双人：<span id='doublePrice'>$!detail.doublePrice</span>元&nbsp;&nbsp; <br />
-    							  儿童：<span id='childPrice'>$!detail.childPrice</span> 元
-							 </li>
-                             <li>
-								  成人数&nbsp;<input type="text" name="count" width="6" id="adultNum" value="1">&nbsp;&nbsp;&nbsp;&nbsp;
-								  儿童数&nbsp;<input type="text" name="secondaryCount" id="childNum" value="0">&nbsp;&nbsp;&nbsp;&nbsp;
-                             </li>
-                        </ul>
-                    	<button type="submit">&nbsp;&nbsp;&nbsp;</button>
-    					<input type="hidden" id="productId" name="productId" value="$!product.productId" />
-    					<input type="hidden" id="productType" name="productType" value="ZJ" />
-                    </form>
+					<form id="orderForm" action="${env.root}/order/book.htm" method="get">
+                	<ul>
+                    	<li>使用日期：
+                   	    	<select name="dateAndDetail" id="productDetailId">
+								#foreach($dt in $!product.defaultDetailItems )
+									#set($index = $velocityCount)
+									<option value="${dt.detailId}:$dateUtils.format($dt.date, 'yyyy-MM-dd')"  #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd') $dt.bottomPrice元 </option>
+								#end
+                  	        </select>
+                  	     </li>
+						<li>
+							  单人：<span id='singlePrice'>$!detail.price</span>元 &nbsp;
+							  双人：<span id='doublePrice'>$!detail.doublePrice</span>元  <br />
+							  儿童：<span id='childPrice'>$!detail.childPrice</span> 元
+						 </li>
+                         <li>
+							  成人数：<input type="text" name="count" id="adultNum" value="1" style="width:20px;">
+							  儿童数：<input type="text" name="secondaryCount" id="childNum" value="0" style="width:20px;">
+                         </li>
+							
+							
+							
+                    </ul>
+                	<button type="submit" class="order">立即订购</button>
+					<input type="hidden" id="productId" name="productId" value="$product.productId" />
+					<input type="hidden" id="productType" name="productType" value="ZJ" />
+                </form>
 				#else
-					今日无价格
+					当日无价格
 				#end
-				
-            	
-                <p class="F3">拨打电话预定 400 666 5599</p>
-            </div>
-        </div>
-    </div>
+				<p class="gray">拨打电话预定 400 666 5599</p>
+			</div>
+
+		</div>
+	</div>
 </div>
+<!-- main结束 -->
+
 
 #JS(["validator.js"])
 #STATIC("JS",["/blogcal/blogcalendar.js"])
-#XUI_JS(["core/xui-core.js","util/util-min.js","slide/slide.js"])
-<script>
+#XUI_JS(["core/xui-core.js","util/util-min.js"])
 
-    var x = new xui.widgets.Slide();
+<script>
     
     //calendar
     //初始化Calendar

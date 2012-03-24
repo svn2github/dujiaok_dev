@@ -39,7 +39,7 @@ public final class OrderUtils {
 		if (order.getProductId().startsWith("ZJ")) {
 			info.append("出行日期：").append(format.format(order.getGmtOrderStart())).append(" 至 ")
 			  .append(format.format(order.getGmtOrderEnd()));
-			info.append("<br/>成人：").append(order.getCount()).append("位");
+			info.append("<br/>成人：").append(order.getCount());
 			if (order.getSecondaryCount() > 0) {
 				info.append("  儿童：").append(order.getSecondaryCount());
 			}

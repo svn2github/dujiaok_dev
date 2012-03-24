@@ -1,45 +1,45 @@
-#set($layout="/product/default.vm")
+#set($layout="/front/default_new.vm")
+	#CSS(["dingdan.css"])
 	
 <form id="orderForm" method="post" action='${env.root}/order/alipayorder.htm'>
 		
 	<input type="hidden" id="orderId" name="orderId" value="$!orderId"/>
-<!-- 内容开始 -->
-    <div id="wrap">
-		<div class="step-box"><div class="step-2"></div>
-		</div>
-        <div class="section urhere">
-            <!--span class="F3">分享到： 新浪微博 </span-->
-        </div>
-        
-        <div id="pay" class="section">
-        		<h2 class="d_title yuding02">$!order.price元</h2>
-                <div class="bank section">
-                	<span>支付平台：</span>
-                    <ul>
-                    	<li><input name="" type="radio" value="" checked /><img src="../images/temp02.gif')"></li>
-                    </ul>
-                </div>
-                <!--div class="bank section">
-                	<span>网上银行：</span>
-                    <ul>
-                    	<li><input name="" type="radio" value="" /><img src="../images/temp03.gif"></li>
-                        <li><input name="" type="radio" value="" /><img src="../images/temp03.gif"></li>
-                        <li><input name="" type="radio" value="" /><img src="../images/temp03.gif"></li>
-                        <li><input name="" type="radio" value="" /><img src="../images/temp03.gif"></li>
-                    </ul>
-                </div-->
-                <div class="d_qrxd">
-                	<button type="submit" id="paydetail">&nbsp;&nbsp;&nbsp;&nbsp;</button>
-                </div>
-                <div class="transfer">
-                	<p class="B">您还可以通过线下银行转账的形式支付：</p>
-                	<p>招行银行&nbsp;&nbsp;&nbsp;&nbsp;张波&nbsp;&nbsp;&nbsp;&nbsp;浙江分行杭州高新支行&nbsp;&nbsp;&nbsp;&nbsp;6225885714741257</p>
-                	<p>农业银行&nbsp;&nbsp;&nbsp;&nbsp;张波&nbsp;&nbsp;&nbsp;&nbsp;浙江分行杭州高新支行&nbsp;&nbsp;&nbsp;&nbsp;6225885714741257</p>
-                	<p>工商银行&nbsp;&nbsp;&nbsp;&nbsp;张波&nbsp;&nbsp;&nbsp;&nbsp;浙江分行杭州高新支行&nbsp;&nbsp;&nbsp;&nbsp;6225885714741257</p>
-                </div>
-            </div>
-        </div>
+
+	<!-- main开始 -->
+    <div class="w950 dingdan dingdan2">
+    	<!-- dtl1开始 -->
+    	<div class="L">
+    		<div class="crumb">您当前的位置：选择支付方式</div>
+    		<div class="odrTtl"><span class="flag">预定</span><span class="redTtl">￥$!order.price 元</span></div>
+    		<table class="mgt10 pay">
+    			<tr>
+    				<td>支付平台：</td><th><input type="radio" name="zfpt" id="zfpt1" checked /><label for="zfpt1"><img src="${env.staticroot}/images/zfb.gif" /></label></th>
+    			</tr>
+    			<tr>
+    				<td>网上银行：</td><th><input type="radio" name="wsyh" id="wsyh1" /><label for="wsyh1"><img src="${env.staticroot}/images/zgyh.gif" /></label></th>
+    			</tr>
+    			<tr class="qrxd"><td></td><th><button class="order" id="paydetail">确认下单</button></th></tr>
+    		</table>
+    		<h3>您还可以通过线下银行转账的形式支付：</h3>
+    		<p>招行银行    张波    浙江分行杭州高新支行    6225885714741257</p>
+    		<p>农业银行    张波    浙江分行杭州高新支行    6225885714741257</p>
+    		<p>工商银行    张波    浙江分行杭州高新支行    6225885714741257</p>
+    	</div>
+    	<div class="R mgt10">
+			<!--
+    		<div class="share">
+    			<div id="ckepop">
+    				<span class="jiathis_txt">分享到：</span>
+    				<a class="jiathis_button_icons_1"></a>
+    				<a class="jiathis_button_icons_2"></a>
+    				<a class="jiathis_button_icons_3"></a>
+    				<a class="jiathis_button_icons_4"></a>
+    			</div>
+    		</div>
+			-->
+    	</div>
     </div>
+    <!-- main结束 -->
 </form>
 
 <script>

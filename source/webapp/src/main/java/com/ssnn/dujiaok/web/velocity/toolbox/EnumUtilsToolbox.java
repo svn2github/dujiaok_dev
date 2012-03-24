@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 
 import com.ssnn.dujiaok.util.ArrayStringUtils;
+import com.ssnn.dujiaok.util.enums.AddProductEnums;
 import com.ssnn.dujiaok.util.enums.OrderStatusEnums;
 import com.ssnn.dujiaok.util.enums.PayStatusEnums;
 import com.ssnn.dujiaok.util.enums.PayTypeEnums;
@@ -44,6 +45,10 @@ public class EnumUtilsToolbox {
 		return ProductEnums.fromValue(name) ;
 	}
 	
+	public AddProductEnums addProduct(String name){
+		return AddProductEnums.fromValue(name);
+	}
+	
 	public String toPayTypeEnumDescs(String nameListString) {
 		List<String> payTypeEnums = ArrayStringUtils.toList(nameListString) ;
 		String desc = "" ;
@@ -52,6 +57,21 @@ public class EnumUtilsToolbox {
 		}
 		for(String name : payTypeEnums){
 			desc += PayTypeEnums.fromValue(name).getDesc() + "," ;
+		}
+		if(desc.length() > 0){
+			desc = StringUtils.removeEnd(desc, ",") ;
+		}
+		return desc ;
+	}
+	
+	public String toAddProductEnumDescs(String nameListString) {
+		List<String> enums = ArrayStringUtils.toList(nameListString) ;
+		String desc = "" ;
+		if(enums==null || enums.isEmpty()){
+			return "" ;
+		}
+		for(String name : enums){
+			desc += AddProductEnums.fromValue(name).getDesc() + "," ;
 		}
 		if(desc.length() > 0){
 			desc = StringUtils.removeEnd(desc, ",") ;

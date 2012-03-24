@@ -1,121 +1,124 @@
-#set($layout="/product/default.vm")
+#set($layout="/front/default_new.vm")
 #STATIC("CSS",["/blogcal/blogcalendar.css"])
-<div id="wrap">
-    <div class="section urhere">
-    	<p class="F3">您当前的位置： 酒店房间 -> $!product.name</p>
-    </div>
-    
-    <div id="detail" class="section">
-    	<div class="d_left">
-        	<h2 class="d_title">$!product.name</h2>
-            <div id="Focus">
-                <ul id="Focus_content">
-                    #foreach($pictureUrl in $product.imageList)
-                      <li class="circularPanel">
-                        <img src=$!pictureUrl width="710" height="250" />
-                        <h2></h2>
-                      </li>
-                    #end
-                </ul>
-                <ul class="trigger">
-                    #foreach($pictureUrl in $product.imageList)
-                      <li class="circularTrigger"></li>
-                    #end
-                </ul>
-            </div>
-            <div class="Calendar">
-				<div id="idCalendarPre">上一月</div>
-				<div id="idCalendarNext">下一月</div>
-            
-				<span id="idCalendarYear"></span>年 <span id="idCalendarMonth"></span>月
-				<table cellspacing="0">
-					<thead>
-						<tr>
-                            <td>日</td>
-                            <td>一</td>
-                            <td>二</td>
-                            <td>三</td>
-                            <td>四</td>
-                            <td>五</td>
-                            <td>六</td>
-						</tr>
-					</thead>
-					<tbody id="idCalendar">
+#CSS(["detail.css"])
+
+#set ($detail = $product.todayDetail)
+<div class="w950 main detail">
+
+	<!-- dtl1开始 -->
+	<div class="L">
+		<div class="crumb">您当前的位置：酒店房间 > $!product.name</div>
+		<dl class="txtImgRoll">
+			<dt class="greenTtl">【酒店房间】$!product.name</dt>
+
+			<dd class="bigRoll" id="dtlBigRoll">
+				#foreach($image in $product.imageList)
+					#set ($index = $velocityCount)
+					#if($index < 4)
+					<div class="tabCnt #if($index == 1)current#end"><img alt="" src="$image"><span></span></div>
+					#end
+                #end
+				<ul class="tabTtl">
+					#foreach($image in $product.imageList)
+						#set($index = $velocityCount)
+						#if($index < 4)
+						<li #if($index == 1) class="current" #end ></li>
+						#end
+					#end
+				</ul>
+			</dd>
+		</dl>
+		<div class="Calendar">
+    		<div class="mgt20">
+    			<div>
+    				<div id="idCalendarPre">上一月</div>
+    				<div id="idCalendarNext">下一月</div>
+    				<span id="idCalendarYear"></span>年 <span id="idCalendarMonth"></span>月
+    				<table cellspacing="0">
+    					<thead>
+    						<tr>
+                                <td>日</td>
+                                <td>一</td>
+                                <td>二</td>
+                                <td>三</td>
+                                <td>四</td>
+                                <td>五</td>
+                                <td>六</td>
+    						</tr>
+    					</thead>
+    					<tbody id="idCalendar"></tbody>
+    				</table>
+    			</div>
+    		</div>
+        </div>
+	</div>
+	<div class="R mgt10">
+		<!--
+		<div class="share">
+			<div id="ckepop">
+				<span class="jiathis_txt">分享到：</span>
+				<a class="jiathis_button_icons_1"></a>
+				<a class="jiathis_button_icons_2"></a>
+				<a class="jiathis_button_icons_3"></a>
+				<a class="jiathis_button_icons_4"></a>
+			</div>
+		</div>
+		-->
+		<div class="hotelDtl">
+			<div class="hDtl1">
+				<div class="price"><span class="ttl">特惠价</span><span class="num">￥<strong>$!detail.cheapestPrice</strong>元起</span></div>
+
+				<table>
+					<tbody>
+                        <tr><th><strong>酒店名称：</strong></th><td><a href="${env.root}/product/detail.htm?productId=$!product.hotelId" target="hotel">$!hotelName</a></td></tr>
+						<tr><th><strong>市场价：</strong></th><td>$!product.marketPrice 元</td></tr>
+    					<tr><th><strong>商品编号：</strong></th><td>$!product.productId</td></tr>
+    					<tr><th><strong>支付方式：</strong></th><td>$enumUtils.toPayTypeEnumDescs($!product.productTypes)</td></tr>
+						<tr><th><strong>支付方式：</strong></th><td><span>$!product.roomArea</span>平米  <span>$!product.bed</span></td></tr>
+    					<tr><th><strong>配套：</strong></th><td>$!product.roomFacilities</td></tr>
 					</tbody>
 				</table>
 			</div>
-            <div style="padding-top:10px;">
-            	<div id="frame_content" width="710">
-            		<div id="pro_intro" class="FS12 F2">
-    					<div class="pro_intro_tab clearFix">
-				            <ul>
-				                <li class="cur"><a href="#introduction">产品介绍</a></li>
-				                <li><a href="#roompicture">房型图片</a></li>
-				            </ul>
-        				</div>
-	        			<h2 id="introduction">产品介绍</h2>
-				        <p>$!product.introduction</p>
-						<h2 id="roompicture">房型图片</h2>
-						<p><img src="$!product.categoryImage" /></p>
-				        <div class="pro_intro_list1">
-				            
-				        </div>
-	    			</div>
-            	</div>
-            </div>
-        </div>
-        #set ($detail = $product.todayDetail)
-        <div class="d_right">
-        	<div class="information">
-            	<h3><i>特惠价</i> ￥<b><span id='tehui'>$!detail.cheapestPrice</span></b>元/人起</h3>
-                <table>
-                	<tr><th><strong>酒店名称</strong>：</th><td><a href="${env.root}/product/detail.htm?productId=$!product.hotelId" target="hotel">$!hotelName</td></tr>
-                	<tr><th><strong>市场价</strong>：</th><td>$!product.marketPrice 元</td></tr>
-                    <tr><th><strong>商品编号</strong>：</th><td>$!product.productId</td></tr>
-                    <tr><th><strong>支付方式</strong>：</th><td>$enumUtils.toPayTypeEnumDescs($!product.productTypes)</td></tr>
-                    <tr><th><strong>房间信息</strong>：</th><td><span>$!product.roomArea</span>平米  <span>$!product.bed</span></td></tr>
-                    <tr><th><strong>配套</strong>:</th><td>$!product.roomFacilities</td></tr>
-                </table>
-            </div>
-            <div class="order">
-				
-				#if($detail)
-					<form id="orderForm" action="${env.root}/order/book.htm" method="get">
-                    	<ul>
-                    		<li><strong>价格</strong>:&nbsp;<span id="price">$!product.cheapestPrice</span>元 </li>
-                        	<li><strong>入住日期</strong>：
-                       	    	 <select name="dateAndDetail" id="checkoutDateOpt">
-                       	    	 	 #foreach($dt in $!product.defaultDetailItems )
-    									#set($index = $velocityCount)
-    									<option value="$dt.detailId:$dateUtils.format($dt.date, 'yyyy-MM-dd')" #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd')</option>
-    								 #end
-                      	         </select>
-                      	     </li>
-                             <li><strong>离店日期：</strong>
-                                 <select name="endDate" id="checkoutDateOpt" onchange="changeCheckoutDate()">
-                       	    	 	 #foreach($dt in $!product.defaultDetailItems )
-    									#set($index = $velocityCount)
-    									<option value="$dateUtils.format($dt.date, 'yyyy-MM-dd')" #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd') </option>
-    								#end
-                      	         </select>
-                      	     </li>
-                             <li><strong>预订间数：</strong>&nbsp;<input type="text" name="count" id="roomCount" value="1"></li>
-                        </ul>
-                    	<button onclick="makeOrder()">&nbsp;&nbsp;&nbsp;</button>
-    					<input type="hidden" id="productId" name="productId" value="$!product.productId" />
-    					<input type="hidden" id="productType" name="productType" value="FJ" />
-                    </form>
-				#end
-                <p class="F3">拨打电话预定 400 666 5599</p>
-            </div>
-        </div>
-    </div>
+			#if($detail)
+			<form id="orderForm" action="${env.root}/order/book.htm" method="get">
+			<div class="date">
+				<ul>
+                    <li><strong>价格:</strong><span id="price">&nbsp;&nbsp;$!product.cheapestPrice</span>元 </li>
+					<li>入住日期：
+						<select name="dateAndDetail" id="checkoutDateOpt">
+               	    	 	 #foreach($dt in $!product.defaultDetailItems )
+    							#set($index = $velocityCount)
+    							<option value="$dt.detailId:$dateUtils.format($dt.date, 'yyyy-MM-dd')" #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd')</option>
+    						 #end
+              	         </select>
+					</li>
+					 <li>离店日期：
+						<select name="endDate" id="checkoutDateOpt" onchange="changeCheckoutDate()">
+               	    	 	 #foreach($dt in $!product.defaultDetailItems )
+								#set($index = $velocityCount)
+								<option value="$dateUtils.format($dt.date, 'yyyy-MM-dd')" #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd') </option>
+							 #end
+              	         </select>
+					 </li>
+					 <!--<li class="total"><strong>共4晚 总金额：￥1234.88元</strong></li>-->
+					 <li>预定间数<input type="text" name="count" id="roomCount" value="1"></li>
+				</ul>
+				<button class="order" onclick="makeOrder()">订购</button>
+				<p class="gray">拨打电话预定 400 666 5599</p>
+			</div>
+			<input type="hidden" id="productId" name="productId" value="$!product.productId" />
+    		<input type="hidden" id="productType" name="productType" value="FJ" />
+            </form>
+			#end
+		</div>
+	</div>
 </div>
+<!-- main结束 -->
+
+
 #STATIC("JS",["/blogcal/blogcalendar.js"])
 #XUI_JS(["core/xui-core.js","util/util-min.js","slide/slide.js"])
-<script>
-
-
+<script type="text/javascript">
 
 //calendar
     //初始化Calendar

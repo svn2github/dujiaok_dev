@@ -22,7 +22,7 @@ public class OrderContactDO {
 	/**
 	 * 是否主联系人
 	 */
-	private String isMain = "N";
+	private String isMain = "F";
 	
 	/**
 	 * 证件类型

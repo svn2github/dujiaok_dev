@@ -1,82 +1,89 @@
-#set($layout="/order/default.vm")
+#set($layout="/front/default_new.vm")
+#CSS(["dingdan.css"])
+
 <form id="orderForm" method="post" action="${env.root}/order/makeorder.htm" onsubmit="javascript:return new Totalorders().checkForm1()" >
-    <input type="hidden" value="$!product.marketPrice" id="marketPrice">
-	<!-- 内容开始 -->
-    <div id="wrap">
-		<div class="step-box"><div class="step-1"></div></div>
-		<!--
-        <div class="section urhere" style="margin:15px 0 13px 0; width:950px;">
-        	<p class="F3">您当前的位置： $!product.destProvince > $!product.destCity > $!province.destArea</p>
-        </div
-		-->
-        <div id="dingdan" class="section">
-        	<div class="d_left">
-        		<h2 class="d_title">
-        			<h2 class="d_title yuding01"><span class="order-nav">【酒店房间】</span>$!product.name</h2>
-        		    <span id="warnInfo" class="warnInfo">$!warnInfo</span>
-        		</h2>
-                <table class="d_dgcp"  cellpadding="0" cellspacing="0">
-                	<tr>
-                    	<th>编号</th>
-                        <th>产品名称</th>
-                        <th>价格</th>
-                        <th>住店日期</th>
-                        <th>房间数</th>
-                    </tr>
-                    <tr>
-                    	<td>$!product.productId</td>
-                        <td>$!product.name</td>
-                        <td>
-                        	￥<span id="price" style="color: red;">$!detail.price</span>
-                        	(市场价：<span style="text-decoration: line-through;">￥<span id="marketPrice">$!product.marketPrice</span></span>)
-                        </td>
-                        <td class="F10">
-                        	$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd')&nbsp;&nbsp至<br />$dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')
-						</td>
-						<td class="F10">
-                        	<input type="text" name="count" id="roomNum" maxlength="6" class="wpx34" value="$!orderDO.count"/>
-						</td>
-                    </tr>
-                </table>
-				<div style="height:20px;">&nbsp;</div>
-				<div>
-					<table>
-						<tr valign="top">
-						    <td><strong>订单备注</strong></td>
-						    <td><textarea rows="1" id="memo" name="memo" style="width:500px; margin:8px 0 5 50px;"></textarea></td>
-						</tr>
-					</table>
-	            </div>
-				<div style="clear:both;"></div>
-                <div class="d_qrxd" >
-                	<button type="submit" id="submit">&nbsp;&nbsp;&nbsp;&nbsp;</button>
-                </div>
-                <div class="d_ydxx">
-                	<input name="" type="checkbox" checked />同意度假OK预订协议</p>
-                </div>
-            </div>
-            
-            <div class="d_right">
-            	<h3>订单金额总计</h3>
-                <div class="information"> 
-                    <table  cellpadding="0" cellspacing="0">
-                    	<tr><th>市 场 价：</th><td><span id="orderMarketPrice"></span>元</td></tr>
-                    	<tr><th>ok价：</th><td><span id="orderOkPrice"></span>元</td></tr>
-                        <tr><th>累计节省：</th><td><span id="orderSavePrice"></span>元</td></tr>
-                    </table>
-                    <p class="Settlement_amount">订单结算金额<br /><b>￥<span id="orderPrice"></span></b></p>
-                </div> 
-            </div>
-        </div>
-   	</div>
-   	<input type="hidden" name="orderId" id="orderId" value="$!orderDO.orderId" />
+	<input type="hidden" name="orderId" id="orderId" value="$!orderDO.orderId" />
 	<input type="hidden" name="productId" id="productId" value="$!orderDO.productId" />
 	<input type="hidden" name="productDetailId" id="productDetailId" value="$!orderDO.productDetailId"/>
 	<input type="hidden" name="gmtOrderStart" id="gmtOrderStart" value="$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd')" />
 	<input type="hidden" name="gmtOrderEnd" id="gmtOrderEnd" value="$dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')" />
-<input type="hidden" name="productType" id="productType" value="HOTELROOM" />
-</form>	
-#XUI_JS(["core/xui-core-min.js","dialog/xui-dialog-min.js","msgbox/xui-msgbox-min.js","tip/xui-tip.js","util/util-min.js","slide/slide.js"])
+	<input type="hidden" name="productType" id="productType" value="HOTELROOM" />
+    <input type="hidden" value="$!product.marketPrice" id="marketPrice">
+		
+	<div class="w950 dingdan">
+    	<!-- dtl1开始 -->
+    	<div class="L">
+    		<div class="crumb">您当前的位置：酒店房间 > $!product.name</div>
+    		<div class="odrTtl"><span class="flag">预定</span><span class="greenTtl">【酒店房间】$product.name</span></div>
+    		<h2 class="banner mgt20"><strong>订购产品</strong></h2>
+    		<table class="mgt10 product">
+    			<thead><tr><td>编号</td><td>产品名称</td><td>价格</td><td>住店日期</td><td>房间数</td></tr></thead>
+    			<tbody><tr>
+    				<td>$!product.productId</td>
+    				<td>$!product.name</td>
+					<td>
+						￥<span id="price" style="color: red;">$!detail.price</span>(市场价：<span style="text-decoration: line-through;">￥<span id="marketPrice">$!product.marketPrice</span></span>)
+					</td>
+    				<td class="F10">$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd') 至 $dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')</td>
+    				<td class="F10">
+						<input type="text" name="count" id="roomNum" maxlength="6"  class="wpx34" value="$!orderDO.count"/>
+					</td>
+    
+    			</tr></tbody>
+    		</table>
+    		<h2 class="banner mgt20"><strong>订单备注</strong></h2>
+    		<table class="mgt10">
+                <tr>
+					<th>
+							
+					</th>
+                    <td>
+						<div>
+						<textarea rows="1" id="memo" name="memo" style="width:500px;height:30px;"></textarea>
+					</td>
+				</tr>
+    			<tr>
+    				<th>
+					</th>
+    				<td>
+    					<a href="#" class="order">确认下单</a>
+    					<div><input type="checkbox" checked="checked" id="odrProtocol" /><label for="odrProtocol">同意度假OK预订协议</label></div>
+						<!--
+    					<textarea></textarea>
+						-->
+    				</td>
+    			</tr>
+    		</table>
+    	</div>
+    	<div class="R mgt10">
+			<!--
+    		<div class="share">
+    			<div id="ckepop">
+    				<span class="jiathis_txt">分享到：</span>
+    				<a class="jiathis_button_icons_1"></a>
+    				<a class="jiathis_button_icons_2"></a>
+    				<a class="jiathis_button_icons_3"></a>
+    				<a class="jiathis_button_icons_4"></a>
+    			</div>
+    		</div>
+			-->
+    		<div class="moneyTotal">
+    
+    			<h3>订单金额总计</h3>
+    			<table>
+    				<tr><th>市 场 价：</th><td><span id="orderMarketPrice">$!product.marketPrice</span> 元</td></tr>
+    				<tr><th>OK 价：</th><td><span id="orderOkPrice"></span> 元</td></tr>
+    				<tr><th>累计节省：</th><td><span id="orderSavePrice"></span> 元</td></tr>
+    			</table>
+    			<p>订单结算金额<br><b class="f22"><b>￥<span id="orderPrice"></span></b></b></p>
+    		</div>
+    	</div>
+    </div>
+	
+	
+	
+	
+#XUI_JS(["core/xui-core-min.js","util/util-min.js"])
 <script>
 	var personInfoCount = 1;
 	

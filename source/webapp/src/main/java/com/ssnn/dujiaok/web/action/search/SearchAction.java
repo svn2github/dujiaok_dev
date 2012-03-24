@@ -32,12 +32,12 @@ public class SearchAction extends BasicAction implements
 	/**
 	 * 产品
 	 */
-	private String product;
+	private String s_product;
 	
 	/**
 	 * 出游天数
 	 */
-	private int days ;
+	private int s_days ;
 
 	/**
 	 * 地方
@@ -59,7 +59,7 @@ public class SearchAction extends BasicAction implements
 			GlobalSearchCondition condition = new GlobalSearchCondition();
 			condition.setName(keyword);
 			condition.setPlace(place);
-			condition.setProduct(product);
+			condition.setProduct(s_product);
 			result = searchService.globalSearch(condition, pagination);
 
 			if (CollectionUtils.isNotEmpty(result.getItems())) {
@@ -87,10 +87,6 @@ public class SearchAction extends BasicAction implements
 		return keyword;
 	}
 
-	public void setProduct(String product) {
-		this.product = product;
-	}
-
 	public QueryResult<SearchDO> getResult() {
 		return result;
 	}
@@ -103,10 +99,7 @@ public class SearchAction extends BasicAction implements
 		this.keyword = keyword;
 	}
 
-	public String getProduct() {
-		return product;
-	}
-
+	
 	public String getPlace() {
 		return place;
 	}
@@ -115,12 +108,22 @@ public class SearchAction extends BasicAction implements
 		this.place = place;
 	}
 
-	public int getDays() {
-		return days;
+	
+
+	public String getS_product() {
+		return s_product;
 	}
 
-	public void setDays(int days) {
-		this.days = days;
+	public void setS_product(String s_product) {
+		this.s_product = s_product;
+	}
+
+	public int getS_days() {
+		return s_days;
+	}
+
+	public void setS_days(int s_days) {
+		this.s_days = s_days;
 	}
 
 	@Override

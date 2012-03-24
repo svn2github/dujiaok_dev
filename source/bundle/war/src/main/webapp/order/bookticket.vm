@@ -1,128 +1,87 @@
-#set($layout="/order/default.vm")
+#set($layout="/front/default_new.vm")
+#CSS(["dingdan.css"])
+
 <form id="orderForm" method="post" action="${env.root}/order/makeorder.htm" onsubmit="javascript:return new Totalorders().checkForm1()" >
     <input type="hidden" value="$!product.marketPrice" id="Adult_mkprice">
-	<!-- 内容开始 -->
-    <div id="wrap">
-		<div class="step-box"><div class="step-1"></div></div>
-        <div class="section urhere" style="margin:15px 0 13px 0; width:950px;">
-        	<p class="F3">您当前的位置： $!product.destProvince > $!product.destCity > $!province.destArea</p>
-        </div>
-        <div id="dingdan" class="section">
-        	<div class="d_left">
-				<h2 class="d_title yuding01"><span class="order-nav">【门票】</span>$!product.name</h2>
-                <table class="d_dgcp"  cellpadding="0" cellspacing="0">
-                	<tr>
-                    	<th>编号</th>
-                        <th>名称</th>
-                        <th>价格</th>
-                        <th>使用日期</th>
-                        <th>数量</th>
-                    </tr>
-                    <tr>
-                    	<td>$!product.productId</td>
-                        <td>$!product.name</td>
-                        <td>
-                        	￥<span id="price" style="color: red;">$!product.details[0].price</span>
-                        	(市场价：<span style="text-decoration: line-through;">￥<span id="marketPrice">$!product.marketPrice</span></span>)
-                        </td>
-                        <td class="F10">$dateUtil.format($!orderDO.gmtOrderStart)</td>
-                        <td class="F10">
-                        	<input type="text" name="count" id="ticketNum" maxlength="3" class="wpx34" value="$!orderDO.count"/>
-						</td>
-                    </tr>
-                </table>
-               <h3 class="dingdanhead">游玩人信息</h3>
-                <div id="personInfos">
-                	<div id="personInfo0">
-		                <table class="d_ywrxx"  cellpadding="0" cellspacing="0">
-		                	<tr>
-		                		<th ><strong>主联系人信息</strong></th>
-		                    	<th><i>*</i> 主联系人姓名：</th>
-		                        <td><input type="text" name="contacts[0].name" id="name0" class="wpx184" value="$!orderDO.contacts[0].name"/></td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<th><i>*</i> 主联系人手机：</th>
-		                        <td><input type="text" name="contacts[0].mobile" maxlength=11 id="mobile0" class="wpx184" value="$!orderDO.contacts.get(0).mobile" /></td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<th><i>*</i> 证件类型：</th>
-		                        <td>
-		                          <select name="contacts[0].certificateType" id="certificateType0" value="" style="width: 184px;">
-		                            <option value="ID">身份证</option>
-		                            <option value="PASSPORT">护照</option>
-		                            <option value="OFFICERPORT">军官证</option>
-									<option value="OTHER">其它</option>
-		                          </select>
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<th><i>*</i> 证件号码：</th>
-		                        <td><input type="text" name="contacts[0].certificateNumber" id="certificateNumber0" class="wpx184" dataType="IdCard" msg="身份证号错误"/></td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<th>E-mail：</th>
-		                        <td><input type="text" name="contacts[0].email" id="email0" class="wpx1843" style="width: 184px;" value="$!orderDO.contacts[0].email"/></td>
-		                    </tr>
-		                    <tr style="display: none;">
-		                    	<th></th>
-		                    	<th></th>
-		                        <td><input type="text" name="contacts[0].isMain" id="isMain0" value="Y"/></td>
-		                    </tr>
-		                    <tr>
-		                    	<th></th>
-		                    	<td></td>
-		                    	<td align="right"><a href="javascript:addPersonInfo()" id="addPersonInfo" class="addPersonInfo">+ 添加游玩人</a></td>
-		                    </tr>
-		                </table>
-	                </div>
-	            </div>
-				<div>
-					<table>
-						<tr valign="top">
-						    <td><strong>订单备注</strong></td>
-						    <td><textarea rows="10" id="memo" name="memo" style="width:500px; margin:8px 0 0 50px;"></textarea></td>
-						</tr>
-					</table>
-	            </div>
-				<div style="clear:both;"></div>
-                <div class="d_qrxd" >
-                	<button type="submit" id="submit">&nbsp;&nbsp;&nbsp;&nbsp;</button>
-                </div>
-                <div class="d_ydxx">
-                	<!--p><input name="" type="checkbox" value="" checked />同意度假OK预订协议</p-->
-                	<textarea name="comment" id="comment" cols="45" rows="5" style="display:none"></textarea>
-                </div>
-          </div>
-            
-            <div class="d_right">
-            	<h3>订单金额总计</h3>
-                <div class="information"> 
-                    <table  cellpadding="0" cellspacing="0">
-                    	<tr><th>市 场 价：￥</th><td><span id="orderMarketPrice">$product.marketPrice</span>元</td></tr>
-                    	<tr><th>ok价：￥</th><td><span id="orderOkPrice"></span>元</td></tr>
-                        <tr><th>累计节省：￥</th><td><span id="orderSavePrice"></span>元</td></tr>
-                    </table>
-                    <p class="Settlement_amount">订单结算金额<br /><b>￥<span id="orderPrice"></span></b></p>
-                </div> 
-            </div>
-
-        </div>
-   </div>    
-        <!-- 内容结束 -->
-    </div>
-</div>
-<input type="hidden" name="orderId" id="orderId" value="$!orderDO.orderId" />
-<input type="hidden" name="productId" id="productId" value="$!orderDO.productId" />
-<input type="hidden" name="productDetailId" id="productDetailId" value="$!orderDO.productDetailId" />
-<input type="hidden" name="gmtOrderStart" id="gmtOrderStart" value="$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd')" />
-<input type="hidden" name="productType" id="productType" value="TICKET" />
-</form>
+	<input type="hidden" name="orderId" id="orderId" value="$!orderDO.orderId" />
+    <input type="hidden" name="productId" id="productId" value="$!orderDO.productId" />
+    <input type="hidden" name="productDetailId" id="productDetailId" value="$!orderDO.productDetailId" />
+    <input type="hidden" name="gmtOrderStart" id="gmtOrderStart" value="$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd')" />
+    <input type="hidden" name="productType" id="productType" value="TICKET" />
 	
-#XUI_JS(["core/xui-core-min.js","dialog/xui-dialog-min.js","msgbox/xui-msgbox-min.js","tip/xui-tip.js","util/util-min.js","slide/slide.js"])	
+	<!-- main开始 -->
+    <div class="w950 dingdan">
+    
+    	<!-- dtl1开始 -->
+    	<div class="L">
+    		<div class="crumb">您当前的位置：门票 > $!product.destProvince > $!product.destCity > $!product.destAddr</div>
+    		<div class="odrTtl"><span class="flag">预定</span><span class="greenTtl">【门票】$!product.name</span></div>
+    
+    		<h2 class="banner mgt20"><strong>订购产品</strong></h2>
+    		<table class="mgt10 product">
+    			<thead><tr><td>编号</td><td>名称</td><td>价格</td><td>使用日期</td><td>数量</td></tr></thead>
+    			<tbody>
+					<tr>
+        				<td>$!product.productId</td>
+        				<td>$!product.name</td>
+                        <td>
+    						￥<span id="price" style="color: red;">$!detail.price</span>
+                            (市场价：<span style="text-decoration: line-through;">￥<span id="marketPrice">$!product.marketPrice</span></span>)
+    					</td>
+        				<td class="F10">$dateUtil.format($!orderDO.gmtOrderStart)</td>
+        				<td class="F10"><input type="text" name="count" id="ticketNum" maxlength="3" class="wpx34" value="$!orderDO.count"/></td>
+        			</tr>
+				</tbody>
+    		</table>
+    		
+    		<h2 class="banner mgt20"><strong>订单备注</strong></h2>
+    		<table class="mgt10">
+                <tr>
+					<th></th>
+                    <td>
+						<textarea rows="1" id="memo" name="memo" style="width:500px;height:30px;"></textarea>
+					</td>
+				</tr>
+    			<tr>
+    				<th></th>
+    				<td>
+    					<button class="order">确认下单</button>
+    					<div><input type="checkbox" checked="checked" id="odrProtocol" /><label for="odrProtocol">同意度假OK预订协议</label></div>
+    				</td>
+    			</tr>
+    		</table>
+    	</div>
+    	<div class="R mgt10">
+			<!--
+    		<div class="share">
+    			<div id="ckepop">
+    
+    				<span class="jiathis_txt">分享到：</span>
+    				<a class="jiathis_button_icons_1"></a>
+    				<a class="jiathis_button_icons_2"></a>
+    				<a class="jiathis_button_icons_3"></a>
+    				<a class="jiathis_button_icons_4"></a>
+    			</div>
+    		</div>
+			-->
+    		<div class="moneyTotal">
+    
+    			<h3>订单金额总计</h3>
+    			<table>
+    				<tr><th>市 场 价：</th><td><span class="through" id="orderMarketPrice">$product.marketPrice</span>元</td></tr>
+    				<tr><th>OK 价：</th><td><span id="orderOkPrice"></span>元</td></tr>
+    				<tr><th>累计节省：</th><td><span id="orderSavePrice"></span>元</td></tr>
+    			</table>
+    			<p>订单结算金额<br><b class="f22">￥<span id="orderPrice"></span></b></p>
+    		</div>
+    	</div>
+    </div>
+    <!-- main结束 -->
+</form>
+		
+	
+#XUI_JS(["core/xui-core-min.js","util/util-min.js"])
+
 <script>
 	var personInfoCount = 1;
 	

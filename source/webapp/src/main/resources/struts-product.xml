@@ -22,7 +22,7 @@
 			<result name="ticket"  type="velocity">/order/bookticket.vm</result>
 			<result name="room"  type="velocity">/order/bookhotelroom.vm</result>
 			<result name="selfdrive"  type="velocity">/order/bookselfdrive.vm</result>
-			<result name="not_exist"  type="velocity">/product/notexist.vm</result>
+			<result name="not_exists"  type="velocity">/product/notexist.vm</result>
 		</action>
 		
 		<action name="makeorder" class="com.ssnn.dujiaok.web.action.order.MakeOrderAction" method="makeOrder">
