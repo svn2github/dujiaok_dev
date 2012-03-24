@@ -12,7 +12,6 @@ import com.ssnn.dujiaok.biz.service.SelfDriveService;
 import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.biz.service.product.ProductDetailService;
 import com.ssnn.dujiaok.model.AbstractProduct;
-import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.model.OrderDO;
 import com.ssnn.dujiaok.model.ProductDetailDO;
 import com.ssnn.dujiaok.model.SelfDriveDO;
@@ -20,7 +19,6 @@ import com.ssnn.dujiaok.util.order.OrderUtils;
 import com.ssnn.dujiaok.util.string.StringUtil;
 import com.ssnn.dujiaok.web.action.BasicAction;
 import com.ssnn.dujiaok.web.context.ContextHolder;
-import com.ssnn.dujiaok.web.context.SessionUtil;
 
 @SuppressWarnings("serial")
 public class MakeOrderAction extends BasicAction implements ModelDriven<OrderDO> {
@@ -56,7 +54,7 @@ public class MakeOrderAction extends BasicAction implements ModelDriven<OrderDO>
 		if (product == null) {
 			return NOT_EXISTS ;
 		}
-		orderDO.setName(product.getName() + "-订单");
+		orderDO.setName(product.getName() + " - 订单");
 		orderDO.setPayType(product.getPayTypes());
 		setOrderGmtStartAndEnd(this.orderDO, product);
 		
