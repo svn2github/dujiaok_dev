@@ -1,3 +1,7 @@
+﻿var $ = function(id){
+	return document.getElementById(id) ;
+}
+
 var ok;
 (function($){
 	ok={
