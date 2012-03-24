@@ -1,0 +1,38 @@
+.dingdan .odrTtl{ overflow:hidden;}
+.dingdan .flag{ float:left;width:64px; height:30px;text-indent:-9999px; background-position:-451px -60px;}
+.dingdan .greenTtl{ float:left;margin:7px;}
+.dingdan .product{ width:100%;}
+.dingdan .product td{padding:5px; line-height:26px; border:1px solid #DCDCDC;}
+.dingdan .product thead td{ font-weight:bold; text-align:center; background:#F3F6F8;}
+.dingdan .product input{width:20px; height:14px; border:1px solid #DCDCDC;}
+.dingdan .attPro label{ margin:0 70px 0 5px;}
+.dingdan .okjia{ margin:0 30px;}
+.dingdan .pink{ margin:0 70px;}
+.dingdan .contactInfo tr{height:30px;}
+.dingdan .contactInfo th{ padding-right:5px;width:100px; text-align:right; font-weight:normal;}
+.dingdan .L{ width:710px; overflow:hidden;}
+.dingdan .R{ width:230px; overflow:hidden;}
+.dingdan .contactInfo i{color:#f00;}
+.dingdan .contactInfo input{border:1px solid #DCDCDC;}
+.dingdan .contactInfo .w184{ width:184px; height:18px;}
+.dingdan .contactInfo .add{ margin-left:50px;color:#06c;}
+.dingdan .order{ display:block; margin:20px 0; width:132px; height:42px; background-position:-150px -60px; overflow:hidden;}
+.dingdan .contactInfo label{ margin-left:5px;}
+.dingdan .contactInfo textarea{ margin-top:10px;width:600px; height:100px;}
+.dingdan .moneyTotal{ width:228px; border:1px solid #249F00;}
+.dingdan .moneyTotal h3{ height:30px; line-height:30px; text-align:center;font-weight:normal; color:#fff; background:#249F00;}
+.dingdan .moneyTotal table{ margin:10px;}
+.dingdan .moneyTotal tr{ height:30px;}
+.dingdan .moneyTotal th{padding-right:5px;width:80px; text-align:right; font-weight:normal;}
+.dingdan .moneyTotal p{ margin:20px 0 20px 30px; line-height:26px; color:#999;}
+.dingdan .redTtl{ float:left; margin:2px 16px; font-size:22px;}
+.dingdan .pay{ clear:left;}
+.dingdan .pay td,.dingdan .pay th{padding-top:20px; vertical-align:top;border-bottom:1px solid #dcdcdc;}
+.dingdan .pay td{width:75px;}
+.dingdan .pay th{width:630px; text-align:left;}
+.dingdan .pay input{float:left;}
+.dingdan .pay label{float:left;padding:0 63px 20px 0;*padding-right:60px;}
+.dingdan .pay img{margin-left:5px; width:123px; height:30px; vertical-align:middle;border:1px solid #dcdcdc;}
+.dingdan .qrxd th,.dingdan .qrxd td{ padding:0; border-bottom:none;}
+.dingdan2 p{ margin-top:20px;}
+.dingdan3 .pgt20 td,.dingdan3 .pgt20 th{padding:20px 0 10px 0;}

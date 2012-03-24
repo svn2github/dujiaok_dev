@@ -1,7 +1,7 @@
 var ok;
 (function($){
 	ok={
-		tab:function(id,event,delay){//tab切换(轮播)
+		tab:function(id,event,delay,effect){//tab谢(植)
 			var i=0;
 			var ttlS=$("#"+id+" .tabTtl li");
 			var cntS=$("#"+id+" .tabCnt");
@@ -11,7 +11,12 @@ var ok;
 				ttlS.removeClass("current");
 				cur.addClass("current");
 				cntS.hide();
-				cntS.eq(j).show();
+				if(effect){
+					cntS.eq(j).hide().fadeIn();	
+				}
+				else{
+					cntS.eq(j).show();	
+				}
 				i++;
 				if(i==N){
 					i=0;
@@ -32,7 +37,7 @@ var ok;
 				var t=setInterval(function(){showCur(i)},delay);
 			};
 		},
-		placeholder:function(id){//输入提示
+		placeholder:function(id){//示
 			var ipt=jQuery("#"+id);
 			var p=ipt.attr("placeholder");
 			ipt.each(function(){
@@ -56,13 +61,13 @@ var ok;
 				};
 			});
 		},
-		checkPage:function(){//检查页码
+		checkPage:function(){//页
 			function check(){
 				var ipt=$("#page input");
 				var v=ipt.val();
 				var re = /^[0-9]*[1-9][0-9]*$/ ;
 				if(!re.test(v)||v.substr(0,1)=="0"){
-					alert("请输入合法的页码！");
+					alert("璇疯緭鍏ユ纭殑椤电爜");
 					ipt.focus();
 				};
 			};	
@@ -75,7 +80,7 @@ var ok;
 				}							  
 			});
 		},
-		selMock:function(){//模拟select
+		selMock:function(){//模select
 			function show(obj){
 				obj.show();
 				obj.find("li").removeClass("over");
@@ -146,7 +151,7 @@ var ok;
 		}
 	};
 })(jQuery);
-//公用JS
+//JS
 $(function(){
 	$("#myOrder").hover(
 		function(){

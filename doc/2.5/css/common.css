@@ -1,5 +1,5 @@
 /* ʽ */
-body,ul,ol,li,p,h1,h2,h3,input,dl,dt,dd,td,th{ margin:0; padding:0; list-style:none; font-family:simsun; font-size:12px;}
+body,ul,ol,li,p,h1,h2,h3,h4,input,dl,dt,dd,td,th{ margin:0; padding:0; list-style:none; font-family:simsun; font-size:12px;}
 body{padding-bottom:100px;background:url(../images/body.png) repeat-x 0 151px;color:#999;}
 table{ border-collapse:collapse;}
 img{vertical-align:top;border:none;}
@@ -16,18 +16,27 @@ em,i{font-style:normal;}
 .pink{color:#E8004C;}
 .gray{color:#ccc;}
 .orange{color:#f60;}
+.al{text-align:left;}
 .ac{text-align:center;}
+.ar{text-align:right;}
 .through{ text-decoration:line-through;}
-.w950{margin:auto; width:950px;}
+.w950{margin:auto; width:950px; overflow:hidden;}
 .mgt10{margin-top:10px;}
 .mgb10{margin-bottom:10px;}
 .mgt20{margin-top:20px;}
 .mgr10{margin-right:10px;}
 .mgl10{margin-left:10px;}
 .pad3{padding:3px; border:1px solid #DCDCDC; }
-.userBar,.mainMenu a.current,.mainMenu a:hover.current,.idx1 .L dt,.idx1M .tabTtl li,.idx1R .tabTtl li,.schL3 .ttl,.box230 .ttl{background:url(../images/repeat.png);}
-.hotPurpose h2.current,.mainMenu a:hover,.idx1R .login,.tableForm a,.schOut .ttl .R a,.schL2 .order,.page button,.hSchR .hSchR2 td a{background:url(../images/other.png) no-repeat;}
-.userBar .myOrder,.userBar .rank,.hotPurpose h3,.hotPurpose h3 span,.hotPurpose .close,.idx1L li,.bottom .L dt,.orderList li i,.tableForm .select input{background:url(../images/icon.gif) no-repeat;}
+.userBar,.mainMenu a.current,.mainMenu a:hover.current,.idx1 .L dt,.idx1M .tabTtl li,.idx1R .tabTtl li,.schL3 .ttl,.box230 .ttl,.leftMenu h3{background:url(../images/repeat.png);}
+.hotPurpose h2.current,.mainMenu a:hover,.idx1R .login,.tableForm a,.schOut .ttl .R a,.order,.page button,.hSchR .hSchR2 td a,.dingdan .flag,.banner strong,.rightMain button{background:url(../images/other.png) no-repeat;}
+.userBar .myOrder,.userBar .rank,.hotPurpose h3,.hotPurpose h3 span,.hotPurpose .close,.idx1L li,.bottom .L dt,.orderList li i,.tableForm .select input,.detail .tabTtl li{background:url(../images/icon.gif) no-repeat;}
+.order{ display:block;width:72px; height:28px; border:0;text-indent:-9999px;background-position:-538px 0;}
+.greenTtl{ margin-bottom:15px; font-size:14px;color:#290;}
+.redTtl{display:block;font-size:14px;color:#E8004C;}
+.banner{width:710px;color:#666;background:#F5F5F5;}
+.banner strong{display:block; padding-left:20px; width:170px; height:32px; line-height:32px; font-size:14px;background-position:0 -132px;}
+.share{ height:30px; overflow:hidden;}
+.f22{font-size:22px;color:#E8004C}
 /* userBar */
 .userBar{height:29px;}
 .userBar .w950{position:relative; text-align:right; line-height:29px;}
@@ -49,7 +58,7 @@ h1 a{text-indent:-9999px;}
 .hotPurpose{float:left;margin-top:3px;width:120px; height:32px;}
 .hotPurpose h2{width:120px;height:31px; text-indent:-9999px;}
 .hotPurpose h2.current{background-position:-408px 0;}
-.hotPurpose ul{display:none;position:absolute;margin-top:1px;border-right:1px solid #639B01;border-left:1px solid #639B01;background:#fff;}
+.hotPurpose ul{display:none;position:absolute; z-index:9999;margin-top:1px;border-right:1px solid #639B01;border-left:1px solid #639B01;background:#fff;}
 .hotPurpose ul.noRbd{border-right:none;}
 .hotPurpose li{height:35px;overflow:hidden;}
 .hotPurpose h3{cursor:default;position:relative;z-index:2;padding-left:30px;width:158px;border-right:none;border-bottom:1px solid #E1F6BF;border-left:none;border-top:none;font-weight:normal;background-position:12px -121px; background-color:#F7FFEA; }
@@ -166,3 +175,15 @@ h1 a{text-indent:-9999px;}
 .page em{margin:0 5px;}
 .page input{margin:5px; width:32px; height:24px;line-height:24px;text-align:center; border:1px solid #dcdcdc;*vertical-align:-5px;}
 .page button{margin-left:5px; width:52px; height:26px;line-height:26px;line-height:28px\9; border:0;color:#666;vertical-align:middle;*vertical-align:-5px;background-position:-686px 0;}
+/* leftMenu */
+.leftMenu{ float:left; margin-right:10px; padding-bottom:30px; width:148px; border:1px solid #44BB00;}
+.leftMenu h2{ height:30px; line-height:30px; text-align:center; color:#fff; background:#44BB00;}
+.leftMenu h3{ padding-left:20px; height:27px; line-height:27px; border-bottom:1px solid #DCDCDC; color:#333; background-position:0 -2px;}
+.leftMenu h4{ position:relative; margin:10px 0 0 8px; padding-left:30px; width:105px; height:30px; line-height:30px; color:#666; border:1px solid #fff; border-left-width:5px; border-right:none; font-weight:normal; background:#fff;}
+.leftMenu h4.current{ margin-right:-1px;width:106px; border-color:#44BB00;}
+.rightMain{ float:left;}
+.rightMain .banner{ width:790px;}
+.rightMain .userInfo{ margin:20px 0 0 30px;}
+.rightMain .userInfo th{ height:40px; text-align:left;}
+.rightMain .userInfo input{ height:20px;}
+.rightMain button{ margin-right:5px;width:66px; height:30px; line-height:30px; color:#333; border:0; background-position:-702px -61px;}

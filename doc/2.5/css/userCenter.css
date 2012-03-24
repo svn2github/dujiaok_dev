@@ -1,0 +1,14 @@
+.rightMain .uiDingdan{ margin:10px 0 20px 20px; width:200px;}
+.rightMain .uiDingdan caption{ text-align:left;}
+.rightMain .uiDingdan td,.rightMain .uiDingdan th{ padding-top:10px; height:auto;}
+.rightMain .uiDingdan td{width:60px;}
+.rightMain .uiDingdan td{width:60px;}
+.rightMain .userOrder{ width:790px;}
+.rightMain .userOrder td,.rightMain .userOrder th{ border:1px solid #dcdcdc;}
+.rightMain .userOrder th{ height:30px; color:#333;}
+.rightMain .userOrder td{ padding:5px; line-height:20px; text-align:center;}
+.rightMain .userOrder td.al{text-align:left;}
+.rightMain .userOrder a{ color:#06c;}
+.rightMain .userOrder a:hover{ color:#f60;}
+.rightMain .userOrder .pink{ font-weight:bold; color:#E8004C;}
+.rightMain .userOrder td.ar{text-align:right;}
