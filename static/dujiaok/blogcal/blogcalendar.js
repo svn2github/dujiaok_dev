@@ -1,4 +1,4 @@
-var $ = function (id) {
+﻿var $element = function (id) {
     return "string" == typeof id ? document.getElementById(id) : id;
 };
 
@@ -21,7 +21,7 @@ var Extend = function(destination, source) {
 var Calendar = Class.create();
 Calendar.prototype = {
   initialize: function(container, options) {
-	this.Container = $(container);//容器(table结构)
+	this.Container = $element(container);//容器(table结构)
 	this.Days = [];//日期对象列表
 	
 	this.SetOptions(options);
