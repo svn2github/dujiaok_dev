@@ -119,8 +119,8 @@
     }
     var toPage = function(page , size){
         var start = (page-1) * size + 1;
-        $('start').value = start ;
-        $('size').value = size ;
+        $element('start').value = start ;
+        $element('size').value = size ;
         document.forms[0].submit() ;
     }
 	
@@ -129,10 +129,10 @@
 	var city = '$!destCity' ;
 	
 	var selectProvince = function (){
-		var select = $('destProvince') ;
+		var select = $element('destProvince') ;
 		var name = select.options[select.selectedIndex].value ;
 		initAddressSelect(url,'destCity','city','',name) ;
-		$('destArea').options.length = 0 ;
+		$element('destArea').options.length = 0 ;
 	}
 	
 	var confirmAndDelProduct = function(val){

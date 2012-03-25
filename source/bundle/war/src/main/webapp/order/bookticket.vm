@@ -87,13 +87,13 @@
 	
 	function submitForm(){
 		var orderForm = document.getElementById('orderForm');
-		orderForm.action = $('webUrl').value + 'trek/order/order/saveorder.htm';
+		orderForm.action = $element('webUrl').value + 'trek/order/order/saveorder.htm';
 		
-		$('amount').value = $('Order_Total').innerHTML;
-		$('adultNumber').value = $('adultNum').value;
-		$('countChild').value = $('childNum').value;
-		if($('Accident_Insurance').checked){
-			$('isNeedRiskInput').value = "y";
+		$element('amount').value = $element('Order_Total').innerHTML;
+		$element('adultNumber').value = $element('adultNum').value;
+		$element('countChild').value = $element('childNum').value;
+		if($element('Accident_Insurance').checked){
+			$element('isNeedRiskInput').value = "y";
 		}
 		
 		orderForm.submit();
@@ -121,14 +121,14 @@
 		Contact.push('</table>');
 		
 		personInfo.innerHTML = Contact.join('');
-		$('personInfos').appendChild(personInfo);
+		$element('personInfos').appendChild(personInfo);
 		personInfoCount++;
 	}
 	
 	function removePersonInfo(index) {
 		var personInfoId = 'personInfo' + index;
-		var personInfo = $(personInfoId);
-		$('personInfos').removeChild(personInfo);
+		var personInfo = $element(personInfoId);
+		$element('personInfos').removeChild(personInfo);
 	}
 
 var EV = xui.util.Event,
@@ -138,14 +138,14 @@ Totalorders.prototype = {
 	bind:function(){
 		var SELF = this;
 		SELF.calculatePrice();
-		EV.on($('ticketNum'),'blur',function(){
+		EV.on($element('ticketNum'),'blur',function(){
 			SELF.calculatePrice();
 			xui.widgets.Tip.clear();
 		})
-		EV.on($('add_person'),'click',function(){
+		EV.on($element('add_person'),'click',function(){
 			SELF.Creat_person();
 		})
-		EV.on($('submit'),'click',function(){
+		EV.on($element('submit'),'click',function(){
 				SELF.checkForm();
 		})
 		EV.on(DOM.getElementsByClassName('wpx184'),'keyup',function(){
@@ -176,19 +176,19 @@ Totalorders.prototype = {
 	*订单金额总计数据
 	*/
 	calculatePrice:function(){
-		var ticketNum = this.defaultValue(parseInt($('ticketNum').value), 0),
-			price = this.defaultValue(Number($('price').innerHTML), 0),
-			marketPrice = this.defaultValue(Number($('marketPrice').innerHTML), 0);
-		$('ticketNum').value = ticketNum;
+		var ticketNum = this.defaultValue(parseInt($element('ticketNum').value), 0),
+			price = this.defaultValue(Number($element('price').innerHTML), 0),
+			marketPrice = this.defaultValue(Number($element('marketPrice').innerHTML), 0);
+		$element('ticketNum').value = ticketNum;
 		var okPrice = ticketNum * price;
 		var marketPrice = ticketNum * marketPrice;
 		this.initOrderPriceInfo(okPrice, marketPrice);
 	},
 	initOrderPriceInfo:function(okPrice, marketPrice){
-		$('orderOkPrice').innerHTML = okPrice;
-		$('orderMarketPrice').innerHTML = marketPrice;
-		$('orderSavePrice').innerHTML = marketPrice - okPrice;
-		$('orderPrice').innerHTML = okPrice;
+		$element('orderOkPrice').innerHTML = okPrice;
+		$element('orderMarketPrice').innerHTML = marketPrice;
+		$element('orderSavePrice').innerHTML = marketPrice - okPrice;
+		$element('orderPrice').innerHTML = okPrice;
 	},
 	defaultValue: function(obj, value) {
 	    if ((obj == null) || (typeof(obj) == 'undefined') || isNaN(obj)) {

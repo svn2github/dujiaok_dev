@@ -172,7 +172,7 @@
 	var lastImagesIndex = $collectionUtils.size($imagesList) ; //上传照片个数
 			
 	var attachDatePicker = function(id){
-		var dateVal = $(id).value ;
+		var dateVal = $element(id).value ;
 		var date ;
 		if(dateVal==null||dateVal==''){
 			date = new Date() ;
@@ -182,7 +182,7 @@
 		
 		var picker = new xui.widgets.simpleDatePicker(id,'YYYY-MM-DD',date);
 		picker.setModel({inconver:true,'selectBefore':function(dates){
-        	$(id).value = dates ;
+        	$element(id).value = dates ;
         }});
 	}		
 	
@@ -192,7 +192,7 @@
 		var divElement = document.createElement('div') ;
 		divElement.id = 'time' + i ;
 		divElement.className = 'line_sep' ;
-		$('times').appendChild(divElement) ;
+		$element('times').appendChild(divElement) ;
 					
 		var innerHTML = '<input type="hidden" name="details['+i+'].id"/>' +
 		'<input type="text" id="gmtStart['+i+']" name="details['+i+'].gmtStart"/>' + 
@@ -202,7 +202,7 @@
 		if(i > 0){
 			innerHTML += '<input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;" />' ;
 		}
-		$('time'+i).innerHTML = innerHTML ;
+		$element('time'+i).innerHTML = innerHTML ;
 		attachDatePicker('gmtStart['+i+']') ;
 		attachDatePicker('gmtEnd['+i+']') ;
 		lastDetailsIndex++ ;
@@ -220,19 +220,19 @@
 	}
 	
 	var queryHotel = function(val , id ){
-		var ele = $(id) ;
+		var ele = $element(id) ;
 		var url = '${env.root}/ajax/queryHotel.htm?hotelId=' + val ;
 		xui.util.Ajax.asyncGET(url , 
     			function(data){
     				try{
     					var result = eval('('+data+')') ;
     					var hotelName = result.hotel.name ;
-						$(id).innerHTML = hotelName ;
-						$(id+'Valid').value = hotelName ;
+						$element(id).innerHTML = hotelName ;
+						$element(id+'Valid').value = hotelName ;
     				}catch(e){
     					//alert('exception :' + e.message) ;
-						$(id).innerHTML = '<span style="color:red;">查询不到酒店</span>' ;
-						$(id+'Valid').value = '' ;
+						$element(id).innerHTML = '<span style="color:red;">查询不到酒店</span>' ;
+						$element(id+'Valid').value = '' ;
     				}
     			} , 
     			function(data){
@@ -249,12 +249,12 @@
 		}
 		var divElement = document.createElement('div') ;
 		divElement.id = 'image' + i ;
-		$('images').appendChild(divElement) ;
+		$element('images').appendChild(divElement) ;
 		var innerHTML = '<input type="text"  name="imagesList" class="input_m"/>' ;
 		if(i > 0){
 			innerHTML += '<input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;" />' ;
 		}
-		$('image'+i).innerHTML = innerHTML ;
+		$element('image'+i).innerHTML = innerHTML ;
 		lastImagesIndex ++ ;
 	}
 	

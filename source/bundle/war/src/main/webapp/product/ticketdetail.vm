@@ -156,8 +156,8 @@
             				var obj = eval('('+data+')') ;
             				var calendar = obj.calendar ;
     						
-    						$("idCalendarYear").innerHTML = cale.Year; 
-							$("idCalendarMonth").innerHTML = cale.Month;
+    						$element("idCalendarYear").innerHTML = cale.Year; 
+							$element("idCalendarMonth").innerHTML = cale.Month;
     						var flag = calendar  ;
                     		// var flag = [{severtime:"2012-01",data:[{id:10,name:"250元"},{id:15,name:"250"},{id:16,name:"250"}]},{severtime:"2012-02",data:[{id:12,name:"250元"},{id:14,name:"250"},{id:16,name:"250"}]}];
                     		for(var i = 0, len = flag.length; i < len; i++){
@@ -184,11 +184,11 @@
     });
 
     
-    $("idCalendarPre").onclick = function(){ cale.PreMonth(); }
-    $("idCalendarNext").onclick = function(){ cale.NextMonth(); }
-    //$("idCalendarPreYear").onclick = function(){ cale.PreYear(); }
-    //$("idCalendarNextYear").onclick = function(){ cale.NextYear(); }
-    //$("idCalendarNow").onclick = function(){ cale.NowMonth(); }
+    $element("idCalendarPre").onclick = function(){ cale.PreMonth(); }
+    $element("idCalendarNext").onclick = function(){ cale.NextMonth(); }
+    //$element("idCalendarPreYear").onclick = function(){ cale.PreYear(); }
+    //$element("idCalendarNextYear").onclick = function(){ cale.NextYear(); }
+    //$element("idCalendarNow").onclick = function(){ cale.NowMonth(); }
 
 
 </script>

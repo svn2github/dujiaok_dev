@@ -46,7 +46,7 @@
     				<th>
 					</th>
     				<td>
-    					<a href="#" class="order">确认下单</a>
+    					<button type="submit" class="order">确认下单</button>
     					<div><input type="checkbox" checked="checked" id="odrProtocol" /><label for="odrProtocol">同意度假OK预订协议</label></div>
 						<!--
     					<textarea></textarea>
@@ -89,13 +89,13 @@
 	
 	function submitForm(){
 		var orderForm = document.getElementById('orderForm');
-		orderForm.action = $('webUrl').value + 'trek/order/order/saveorder.htm';
+		orderForm.action = $element('webUrl').value + 'trek/order/order/saveorder.htm';
 		
-		$('amount').value = $('Order_Total').innerHTML;
-		$('adultNumber').value = $('adultNum').value;
-		$('countChild').value = $('childNum').value;
-		if($('Accident_Insurance').checked){
-			$('isNeedRiskInput').value = "y";
+		$element('amount').value = $element('Order_Total').innerHTML;
+		$element('adultNumber').value = $element('adultNum').value;
+		$element('countChild').value = $element('childNum').value;
+		if($element('Accident_Insurance').checked){
+			$element('isNeedRiskInput').value = "y";
 		}
 		orderForm.submit();
 	}
@@ -122,14 +122,14 @@
 		Contact.push('</table>');
 		
 		personInfo.innerHTML = Contact.join('');
-		$('personInfos').appendChild(personInfo);
+		$element('personInfos').appendChild(personInfo);
 		personInfoCount++;
 	}
 	
 	function removePersonInfo(index) {
 		var personInfoId = 'personInfo' + index;
-		var personInfo = $(personInfoId);
-		$('personInfos').removeChild(personInfo);
+		var personInfo = $element(personInfoId);
+		$element('personInfos').removeChild(personInfo);
 	}
 	
 var EV = xui.util.Event,
@@ -139,11 +139,11 @@ Totalorders.prototype = {
 	bind:function(){
 		var SELF = this;
 		SELF.calculatePrice();
-		EV.on($('roomNum'),'blur',function(){
+		EV.on($element('roomNum'),'blur',function(){
 			SELF.calculatePrice();
 			xui.widgets.Tip.clear();
 		})
-		EV.on($('submit'),'click',function(){
+		EV.on($element('submit'),'click',function(){
 				SELF.checkForm();
 		})
 		EV.on(DOM.getElementsByClassName('wpx184'),'keyup',function(){
@@ -165,20 +165,20 @@ Totalorders.prototype = {
 	*订单金额总计数据
 	*/
 	calculatePrice:function(){
-		var roomNum = this.defaultValue(parseInt($('roomNum').value), 0),
-			price = this.defaultValue(Number($('price').innerHTML), 0),
-			marketPrice = this.defaultValue(Number($('marketPrice').value), 0);
+		var roomNum = this.defaultValue(parseInt($element('roomNum').value), 0),
+			price = this.defaultValue(Number($element('price').innerHTML), 0),
+			marketPrice = this.defaultValue(Number($element('marketPrice').value), 0);
 			insurancePrice = 20;
-		$('roomNum').value = roomNum;
+		$element('roomNum').value = roomNum;
 		var okPrice = roomNum * price;
 		var marketPrice1 = marketPrice * roomNum;
 		this.initOrderPriceInfo(okPrice, marketPrice1);
 	},
 	initOrderPriceInfo:function(okPrice, marketPrice){
-		$('orderOkPrice').innerHTML = okPrice;
-		$('orderMarketPrice').innerHTML = marketPrice;
-		$('orderSavePrice').innerHTML = marketPrice - okPrice;
-		$('orderPrice').innerHTML = okPrice;
+		$element('orderOkPrice').innerHTML = okPrice;
+		$element('orderMarketPrice').innerHTML = marketPrice;
+		$element('orderSavePrice').innerHTML = marketPrice - okPrice;
+		$element('orderPrice').innerHTML = okPrice;
 	},
 	defaultValue: function(obj, value) {
 	    if ((obj == null) || (typeof(obj) == 'undefined') || isNaN(obj)) {
@@ -193,9 +193,9 @@ Totalorders.prototype = {
 		for (i=0; i<EL.length; i++){
 			if(EL[i].value==""){
 				xui.widgets.Tip.show(EL[i].id,'带*号为必填项,不能为空!请重新输入。');
-			}else if(EL[i] == $("erh_Tel0")&!xui.util.NumberUtil.isNumber(EL[i].value)){
+			}else if(EL[i] == $element("erh_Tel0")&!xui.util.NumberUtil.isNumber(EL[i].value)){
 				xui.widgets.Tip.show(EL[i].id,'手机号码必须为11位数字。');
-			}else if(EL[i] == $("erh_Tel0")&EL[i].value.length!==11){
+			}else if(EL[i] == $element("erh_Tel0")&EL[i].value.length!==11){
 				xui.widgets.Tip.show(EL[i].id,'手机号码必须为11位数字。');
 			}
 		}

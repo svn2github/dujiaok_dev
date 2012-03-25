@@ -46,10 +46,10 @@
 function pay(){
 	
 	var orderForm = document.getElementById("orderForm");
-	orderForm.action = $("webUrl").value + "trek/order/order/alipayOrder.htm";
-	//alert($("webUrl").value + "trek/order/order/alipayOrder.htm?orderId="+$("orderId").value)
+	orderForm.action = $element("webUrl").value + "trek/order/order/alipayOrder.htm";
+	//alert($element("webUrl").value + "trek/order/order/alipayOrder.htm?orderId="+$element("orderId").value)
 	orderForm.submit();
-	//location.href = $("webUrl").value + "trek/order/order/alipayOrder.htm?orderId="+$("orderId").value;
+	//location.href = $element("webUrl").value + "trek/order/order/alipayOrder.htm?orderId="+$element("orderId").value;
 }
 </script>
 
@@ -83,7 +83,7 @@ function pay(){
 function pay(){
 	
 	var orderForm = document.getElementById("orderForm");
-	orderForm.action = $("webUrl").value + "trek/order/order/hotelPay.htm";
+	orderForm.action = $element("webUrl").value + "trek/order/order/hotelPay.htm";
 	orderForm.submit();
 }
 </script>

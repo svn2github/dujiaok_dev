@@ -118,8 +118,8 @@ personInfo.prototype={
 	},
 	render:function(){
 		var SELF = this;
-		var EL = $('personInfo').value,
-			EL2 = $('personInfo_view');
+		var EL = $element('personInfo').value,
+			EL2 = $element('personInfo_view');
 		SELF.Show(EL);
 	},
 	Show:function(data){
@@ -146,7 +146,7 @@ personInfo.prototype={
 				b.push('</table></div>');
 			}
 		}
-		$('personInfo_view').innerHTML =  b.join('');
+		$element('personInfo_view').innerHTML =  b.join('');
 	}
 	
 }
@@ -161,7 +161,7 @@ alert(document.getElementById('status').value)
 	document.getElementById('status').value = document.getElementById('changeStatus').value;
 	//var changeStatus = document.getElementById('changeStatus').value;
 	//alert(changeStatus);
-	//location.href = $("webUrl").value + "trek/order/order/changeStatus.htm?orderId="+$("orderId").value+"&status="+changeStatus+"&comment="+$("comment").value;
+	//location.href = $element("webUrl").value + "trek/order/order/changeStatus.htm?orderId="+$element("orderId").value+"&status="+changeStatus+"&comment="+$element("comment").value;
 }
 
 function returnPage(){

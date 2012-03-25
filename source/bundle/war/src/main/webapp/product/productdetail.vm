@@ -207,12 +207,12 @@ function changePrice(){
 }
 
 function changePriceHotel(){
-    var inday = $('indays');
-    var outday = $('outdays');
+    var inday = $element('indays');
+    var outday = $element('outdays');
 	if(outday.value==null || outday.value==undefined || outday.value==''){
-		var url = $('webUrl').value + 'trek/product/product/changePriceHotel.htm?inday=' + inday.options[inday.selectedIndex].text + '&outday=' + outday.options[inday.selectedIndex+1].text + '&productId=' + $('productId').value;
+		var url = $element('webUrl').value + 'trek/product/product/changePriceHotel.htm?inday=' + inday.options[inday.selectedIndex].text + '&outday=' + outday.options[inday.selectedIndex+1].text + '&productId=' + $element('productId').value;
 	} else {
-		var url = $('webUrl').value + 'trek/product/product/changePriceHotel.htm?inday=' + inday.options[inday.selectedIndex].text + '&outday=' + outday.options[outday.selectedIndex].text + '&productId=' + $('productId').value;
+		var url = $element('webUrl').value + 'trek/product/product/changePriceHotel.htm?inday=' + inday.options[inday.selectedIndex].text + '&outday=' + outday.options[outday.selectedIndex].text + '&productId=' + $element('productId').value;
 	}
 	xui.util.Ajax.asyncGET(url,function(s){
 		var myObject = eval('(' + s + ')');
@@ -249,19 +249,19 @@ function makeOrder(){
 	var countPerson = document.getElementById('countPerson');
 	var countChild = document.getElementById('countChild');
 	
-	orderForm.action = 'http://localhost:8080/dujiaok/order/makeorder.htm?id=' + $('productId').value + '&countPerson=' + countPerson.value + '&countChild=' + countChild.value + '&tourId=' + $('days').value;
+	orderForm.action = 'http://localhost:8080/dujiaok/order/makeorder.htm?id=' + $element('productId').value + '&countPerson=' + countPerson.value + '&countChild=' + countChild.value + '&tourId=' + $element('days').value;
 	orderForm.submit();
 }
 function makeOrderCombo(){
 	var orderForm = document.getElementById('orderForm');
 	var countCombo = document.getElementById('countCombo');
 	
-	orderForm.action = $('webUrl').value + 'trek/order/order/makeorderCombo.htm?id=' + $('productId').value + '&countCombo=' + countCombo.value + '&tourId=' + $('days').value;
+	orderForm.action = $element('webUrl').value + 'trek/order/order/makeorderCombo.htm?id=' + $element('productId').value + '&countCombo=' + countCombo.value + '&tourId=' + $element('days').value;
 	orderForm.submit();
 }
 function makeOrderHotel(){
-	var inday = $('indays');
-    var outday = $('outdays');
+	var inday = $element('indays');
+    var outday = $element('outdays');
 	if(inday.value==''||outday.value==''){
 		alert('请选择日期');
 		return;
@@ -281,7 +281,7 @@ function makeOrderHotel(){
 	var countHotel = document.getElementById('countHotel');
 	var hotelPrice = document.getElementById('hotelPrice');;
 	
-	orderForm.action = $('webUrl').value + 'trek/order/order/makeorderHotel.htm?id=' + $('productId').value + '&inday=' + inday.options[inday.selectedIndex].text + '&outday=' + outday.options[outday.selectedIndex].text + '&countHotel=' + countHotel.value + '&hotelPrice=' + hotelPrice.innerHTML;
+	orderForm.action = $element('webUrl').value + 'trek/order/order/makeorderHotel.htm?id=' + $element('productId').value + '&inday=' + inday.options[inday.selectedIndex].text + '&outday=' + outday.options[outday.selectedIndex].text + '&countHotel=' + countHotel.value + '&hotelPrice=' + hotelPrice.innerHTML;
 	orderForm.submit();
 }
 

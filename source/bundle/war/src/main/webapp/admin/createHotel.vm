@@ -111,23 +111,23 @@
         }
         var divElement = document.createElement('div') ;
         divElement.id = 'image' + i ;
-        $('images').appendChild(divElement) ;
+        $element('images').appendChild(divElement) ;
         var innerHTML = '<input type="text"  name="imagesList" />' ;
         if(i > 0){
         	innerHTML += '<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />' ;
         }
-        $('image'+i).innerHTML = innerHTML ;
+        $element('image'+i).innerHTML = innerHTML ;
         lastImagesIndex ++ ;
     }
         // /初始化
     var selectProvince = function (){
-    	var select = $('destProvince') ;
+    	var select = $element('destProvince') ;
     	var name = select.options[select.selectedIndex].value ;
     	initAddressSelect(url,'destCity','city','',name) ;
-    	$('destArea').options.length = 0 ;
+    	$element('destArea').options.length = 0 ;
     }
     var selectCity = function(){
-    	var select = $('destCity') ;
+    	var select = $element('destCity') ;
     	var name = select.options[select.selectedIndex].value ;
     	initAddressSelect(url,'destArea','area','',name) ;
     }

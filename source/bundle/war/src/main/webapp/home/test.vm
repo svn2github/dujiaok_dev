@@ -73,7 +73,7 @@
         
         //f.setModel({tms:'false',closeModel:'true',initvalue:'请选择'});
         f.setModel({closeModel:'true',tms:'false',distime:['1000-10-01','2009-11-16','2011-12-01','9999-12-28'],'selectBefore':function(dates){
-        	///$('xxx').submit();
+        	///$element('xxx').submit();
         }});
         
        
@@ -89,7 +89,7 @@
 	onToday: function(o){ o.className = "onToday"; },
 	onFinish: function(){
 		var self = this;
-		$("idCalendarYear").innerHTML = this.Year; $("idCalendarMonth").innerHTML = this.Month;
+		$element("idCalendarYear").innerHTML = this.Year; $element("idCalendarMonth").innerHTML = this.Month;
 		var flag = [{severtime:"2012-01",data:[{id:10,name:"250元"},{id:15,name:"250"},{id:16,name:"250"}]},{severtime:"2012-02",data:[{id:12,name:"250元"},{id:14,name:"250"},{id:16,name:"250"}]}];
 		for(var i = 0, len = flag.length; i < len; i++){
 			var timer = flag[i].severtime.split("-");
@@ -106,12 +106,12 @@
 	}
 });
 
-$("idCalendarPre").onclick = function(){ cale.PreMonth(); }
-$("idCalendarNext").onclick = function(){ cale.NextMonth(); }
-$("idCalendarPreYear").onclick = function(){ cale.PreYear(); }
-$("idCalendarNextYear").onclick = function(){ cale.NextYear(); }
+$element("idCalendarPre").onclick = function(){ cale.PreMonth(); }
+$element("idCalendarNext").onclick = function(){ cale.NextMonth(); }
+$element("idCalendarPreYear").onclick = function(){ cale.PreYear(); }
+$element("idCalendarNextYear").onclick = function(){ cale.NextYear(); }
 
-$("idCalendarNow").onclick = function(){ cale.NowMonth(); }
+$element("idCalendarNow").onclick = function(){ cale.NowMonth(); }
         </script>
     </body>
 </html>

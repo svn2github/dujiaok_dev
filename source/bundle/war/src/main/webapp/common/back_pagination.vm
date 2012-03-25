@@ -57,7 +57,7 @@
 	#end
 	
 	<span class="page-skip">
-		共 $totalPages 页   到第 <input type="text" size="2" value="$curPage" id="toPages$__index"></input> 页  <input type="button" onclick="toPage($('toPages$__index').value,$size);" value="确定"/>
+		共 $totalPages 页   到第 <input type="text" size="2" value="$curPage" id="toPages$__index"></input> 页  <input type="button" onclick="toPage($element('toPages$__index').value,$size);" value="确定"/>
     </span>
 	
 </div>

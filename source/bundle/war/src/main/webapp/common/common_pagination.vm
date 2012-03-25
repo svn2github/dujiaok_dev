@@ -55,7 +55,7 @@
     #else
     	#set($__index = 1)
 	#end
-	<div class="pOther">共<em>$!totalPages</em>页，到第<input type="text" size="2" value="$curPage" id="toPages$__index"></input>页<button onclick="return toPage($('toPages$__index').value,$size);">确定</button></div>
+	<div class="pOther">共<em>$!totalPages</em>页，到第<input type="text" size="2" value="$curPage" id="toPages$__index"></input>页<button onclick="return toPage($element('toPages$__index').value,$size);">确定</button></div>
 			
 </div>
 

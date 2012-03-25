@@ -137,13 +137,13 @@
     
     var toPage = function(page , size){
         var start = (page-1) * size + 1;
-        $('start').value = start ;
-        $('size').value = size ;
+        $element('start').value = start ;
+        $element('size').value = size ;
         document.forms[0].submit() ;
     }
 	
 	var showModifyStatus = function(id){
-		var div = $(id);
+		var div = $element(id);
 		if(div.style.display == 'none'){
 			div.style.display = 'block' ;
 		}else{
@@ -155,10 +155,10 @@
 		if(!confirm('确定更改订单状态？')){
 			return ;
 		}
-		var div = $('s_' + orderId) ;
-		var statusSelect = $('status_' + orderId);
-		var detailSelect = $('detail_' + orderId) ;
-		var statusText = $('statusText_' + orderId);
+		var div = $element('s_' + orderId) ;
+		var statusSelect = $element('status_' + orderId);
+		var detailSelect = $element('detail_' + orderId) ;
+		var statusText = $element('statusText_' + orderId);
 		var status = statusSelect.options[statusSelect.selectedIndex].value ;
 		var statusMask = statusSelect.options[statusSelect.selectedIndex].innerHTML ;
 		var detail = detailSelect.options[detailSelect.selectedIndex].value ;

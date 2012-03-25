@@ -122,13 +122,13 @@
 <script>
 function submitForm(){
 	var orderForm = document.getElementById('orderForm');
-	orderForm.action = $('webUrl').value + 'trek/order/order/saveorder.htm';
+	orderForm.action = $element('webUrl').value + 'trek/order/order/saveorder.htm';
 	
-	$('amount').value = $('Order_Total').innerHTML;
-	$('adultNumber').value = $('Adult_Num').value;
-	$('countChild').value = $('Child_Num').value;
-	if($('Accident_Insurance').checked){
-		$('isNeedRiskInput').value = "y";
+	$element('amount').value = $element('Order_Total').innerHTML;
+	$element('adultNumber').value = $element('Adult_Num').value;
+	$element('countChild').value = $element('Child_Num').value;
+	if($element('Accident_Insurance').checked){
+		$element('isNeedRiskInput').value = "y";
 	}
 	
 	orderForm.submit();
@@ -141,7 +141,7 @@ var Totalorders = function(){};
 Totalorders.prototype = {
 	Total:function(){
 		var SELF = this;
-		if($('Adult_Num')){
+		if($element('Adult_Num')){
 			SELF.Add_Products();
 		}
 		SELF.Adult_price();
@@ -150,26 +150,26 @@ Totalorders.prototype = {
 		var SELF = this;
 		SELF.Creat_order();
 		SELF.Total();
-		EV.on($('Adult_Num'),'blur',function(){
+		EV.on($element('Adult_Num'),'blur',function(){
 			SELF.Total();
 			SELF.Creat_order();
 			xui.widgets.Tip.clear();
 		})
-		EV.on($('Child_Num'),'blur',function(){
+		EV.on($element('Child_Num'),'blur',function(){
 			SELF.Total();
 		})
-		EV.on($('Accident_Insurance'),'click',function(){
+		EV.on($element('Accident_Insurance'),'click',function(){
 			xui.widgets.Tip.clear();										   
 			SELF.Total();
 			SELF.Creat_order();
 		})
-		EV.on($('Room_rate'),'click',function(){
+		EV.on($element('Room_rate'),'click',function(){
 			SELF.Total();
 		})
-		EV.on($('add_person'),'click',function(){
+		EV.on($element('add_person'),'click',function(){
 			SELF.Creat_person();
 		})
-		EV.on($('submit'),'click',function(){
+		EV.on($element('submit'),'click',function(){
 				SELF.checkForm();
 		})
 		EV.on(DOM.getElementsByClassName('wpx184'),'keyup',function(){
@@ -194,7 +194,7 @@ Totalorders.prototype = {
 		EV.on(EL,'click',function(){
 			for(i=0;i<EL.length;i++){
 				if(EL[i] == this ){
-					$('Creat_order').removeChild(EL2[i]);
+					$element('Creat_order').removeChild(EL2[i]);
 					SELF.bind3();
 				}
 			xui.widgets.Tip.clear();
@@ -211,7 +211,7 @@ Totalorders.prototype = {
 	bind3:function(EL){
 		var EL = DOM.getElementsByClassName('Del_person');
 		if(EL.length == 0){
-			$('Creat_order').innerHTML = "";
+			$element('Creat_order').innerHTML = "";
 		}
 	},
 	bind4:function(){
@@ -227,17 +227,17 @@ Totalorders.prototype = {
 	*订单金额总计数据
 	*/
 	Adult_price:function(){
-		var EL = $('Adult_Num').value,
-			EL2 = $('Child_Num').value,
-			EL3 = $('Adult_price').innerHTML,
-			EL4 = $('Child_price').innerHTML,
-			EL5 = 20;//$('Insurance_mkprice').innerHTML,
-			EL6 = $('Adult_price2').innerHTML,
-			EL7 = 20//$('Insurance_okprice').innerHTML,
+		var EL = $element('Adult_Num').value,
+			EL2 = $element('Child_Num').value,
+			EL3 = $element('Adult_price').innerHTML,
+			EL4 = $element('Child_price').innerHTML,
+			EL5 = 20;//$element('Insurance_mkprice').innerHTML,
+			EL6 = $element('Adult_price2').innerHTML,
+			EL7 = 20//$element('Insurance_okprice').innerHTML,
 			EL9 = Math.floor(EL/2),
-			EL10 = $('Adult_mkprice').value,
-			EL11 = $('Child_mkprice').value;
-			EL12 = $('tourDays').value;
+			EL10 = $element('Adult_mkprice').value,
+			EL11 = $element('Child_mkprice').value;
+			EL12 = $element('tourDays').value;
 		var SELF = this;
 		/**
 		*选择保险
@@ -248,7 +248,7 @@ Totalorders.prototype = {
 		}else if(EL%2==1){
 			EL8 = EL9*EL6+(EL3-0);
 		}
-		if($('Accident_Insurance').checked){
+		if($element('Accident_Insurance').checked){
 			SELF.Adult_price_init(EL10*EL+EL11*EL2+EL5*EL*EL12,EL8+EL4*EL2,EL*EL7*EL12)
 		/**
 		*未选择保险
@@ -258,27 +258,27 @@ Totalorders.prototype = {
 		}
 	},
 	Adult_price_init:function(num1,num2,num3){
-		$('Price').innerHTML = num1;
-		$('difference').innerHTML = num2;
-		$('Total_bx').innerHTML = num3;
-		$('Total_Save').innerHTML = num1-num2-num3;
-		$('Order_Total').innerHTML = num2+num3;
+		$element('Price').innerHTML = num1;
+		$element('difference').innerHTML = num2;
+		$element('Total_bx').innerHTML = num3;
+		$element('Total_Save').innerHTML = num1-num2-num3;
+		$element('Order_Total').innerHTML = num2+num3;
 	},
 	/**
 	*附加产品数据
 	*/
 	Add_Products:function(){
-			$('Insurance_oknum').innerHTML = $('Adult_Num').value-0;
-			$('Insurance_okTotal').innerHTML = $('Insurance_oknum').innerHTML*$('Insurance_okprice').innerHTML*$('tourDays').value;
+			$element('Insurance_oknum').innerHTML = $element('Adult_Num').value-0;
+			$element('Insurance_okTotal').innerHTML = $element('Insurance_oknum').innerHTML*$element('Insurance_okprice').innerHTML*$element('tourDays').value;
 	},
 	Creat_order:function(){
 		var SELF = this;
-		var EL = $('Adult_Num').value,
-			EL2 = $('Creat_order');
-		if($('Accident_Insurance').checked){
-			DOM.addClass($('add_order'),'hid')
+		var EL = $element('Adult_Num').value,
+			EL2 = $element('Creat_order');
+		if($element('Accident_Insurance').checked){
+			DOM.addClass($element('add_order'),'hid')
 			if(EL>=2){
-				DOM.removeClass($('Creat_order'),'hid');
+				DOM.removeClass($element('Creat_order'),'hid');
 				var Contact = [];
 				Contact.push('<h3 class="dingdanhead">游玩人信息</h3>');
 				for(i=1; i<EL;i++){
@@ -292,17 +292,17 @@ Totalorders.prototype = {
 				EL2.innerHTML = Contact.join('');
 				SELF.bind4();
 			}else{
-				$('Creat_order').innerHTML = "";
+				$element('Creat_order').innerHTML = "";
 			}
 		}else{
-			$('Creat_order').innerHTML = "";
-			DOM.removeClass($('add_order'),'hid');
+			$element('Creat_order').innerHTML = "";
+			DOM.removeClass($element('add_order'),'hid');
 		}
 	},
 	Creat_person:function(){
 		var SELF = this;
-		var EL =  $('Creat_order').getElementsByTagName('table');
-			EL2 = $('Creat_order');
+		var EL =  $element('Creat_order').getElementsByTagName('table');
+			EL2 = $element('Creat_order');
 		var Contact = [];
 		Contact.push('<h3 class="dingdanhead">游玩人信息</h3>');
 		for(i=1; i<EL.length+2;i++){
@@ -316,7 +316,7 @@ Totalorders.prototype = {
 			Contact.push('<div style="float:left; padding:0 0 30px 100px;"><a href="javascript:" class="Del_person">- 删除游玩人</a></div></div>')
 		}
 		EL2.innerHTML = Contact.join('');
-		DOM.removeClass($('Creat_order'),'hid');
+		DOM.removeClass($element('Creat_order'),'hid');
 		SELF.bind2();
 	},
 	checkForm:function(){
@@ -326,9 +326,9 @@ Totalorders.prototype = {
 		for (i=0; i<EL.length; i++){
 			if(EL[i].value==""){
 				xui.widgets.Tip.show(EL[i].id,'带*号为必填项,不能为空!请重新输入。');
-			}else if(EL[i] == $("erh_Tel0")&!xui.util.NumberUtil.isNumber(EL[i].value)){
+			}else if(EL[i] == $element("erh_Tel0")&!xui.util.NumberUtil.isNumber(EL[i].value)){
 				xui.widgets.Tip.show(EL[i].id,'手机号码必须为11位数字。');
-			}else if(EL[i] == $("erh_Tel0")&EL[i].value.length!==11){
+			}else if(EL[i] == $element("erh_Tel0")&EL[i].value.length!==11){
 				xui.widgets.Tip.show(EL[i].id,'手机号码必须为11位数字。');
 			}
 		}
@@ -337,7 +337,7 @@ Totalorders.prototype = {
 	checkForm1:function(){
 		var EL = DOM.getElementsByClassName('wpx184');
 		for (i=0; i<EL.length; i++){
-			if(EL[i].value==""||$("erh_Tel0").value.length!==11||!xui.util.NumberUtil.isNumber($("erh_Tel0").value)){
+			if(EL[i].value==""||$element("erh_Tel0").value.length!==11||!xui.util.NumberUtil.isNumber($element("erh_Tel0").value)){
 				return false;
 			}
 		}
@@ -346,25 +346,25 @@ Totalorders.prototype = {
 	postData:function(){
 		var SELF = this;
 		SELF.value = "";
-		var EL = $('Adult_Num').value;
+		var EL = $element('Adult_Num').value;
 		for (i=0;i<EL; i++){
-			if(SELF.value && $('erh_Name'+i) != null){
-				SELF.value = SELF.value+',\{name:\"'+$('erh_Name'+i).value+'\",tel:\"'+$('erh_Tel'+i).value+'\",select:\"'+$('select'+i).value+'\",Certificate:\"'+$('erh_Certificate'+i).value+'\",Email:\"'+$('erh_Email'+i).value+'\"\}';
+			if(SELF.value && $element('erh_Name'+i) != null){
+				SELF.value = SELF.value+',\{name:\"'+$element('erh_Name'+i).value+'\",tel:\"'+$element('erh_Tel'+i).value+'\",select:\"'+$element('select'+i).value+'\",Certificate:\"'+$element('erh_Certificate'+i).value+'\",Email:\"'+$element('erh_Email'+i).value+'\"\}';
 			}else{
-				SELF.value ='[{name:\"'+$('erh_Name0').value+'\",tel:\"'+$('erh_Tel0').value+'\",select:\"'+$('select0').value+'\",Certificate:\"'+$('erh_Certificate0').value+'\",Email:\"'+$('erh_Email0').value+'\"\}';
+				SELF.value ='[{name:\"'+$element('erh_Name0').value+'\",tel:\"'+$element('erh_Tel0').value+'\",select:\"'+$element('select0').value+'\",Certificate:\"'+$element('erh_Certificate0').value+'\",Email:\"'+$element('erh_Email0').value+'\"\}';
 			}			
 		}
 		SELF.value = SELF.value + ']';
 		SELF.setValue(SELF.value);
 	},
 	setValue:function(data){
-		$('isNeedRiskInput').value = "n";
-		$('amount').value = $('Order_Total').innerHTML;
-    	$('adultNumber').value = $('Adult_Num').value;
-    	$('countChild').value = $('Child_Num').value;
-		$('perosonInfo').value = data;
-    	if($('Accident_Insurance').checked){
-    		$('isNeedRiskInput').value = "y";
+		$element('isNeedRiskInput').value = "n";
+		$element('amount').value = $element('Order_Total').innerHTML;
+    	$element('adultNumber').value = $element('Adult_Num').value;
+    	$element('countChild').value = $element('Child_Num').value;
+		$element('perosonInfo').value = data;
+    	if($element('Accident_Insurance').checked){
+    		$element('isNeedRiskInput').value = "y";
     	}
 	}
 };					   

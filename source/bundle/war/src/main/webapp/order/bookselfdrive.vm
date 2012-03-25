@@ -160,13 +160,13 @@
 	
 	function submitForm(){
 		var orderForm = document.getElementById('orderForm');
-		orderForm.action = $('webUrl').value + 'trek/order/order/saveorder.htm';
+		orderForm.action = $element('webUrl').value + 'trek/order/order/saveorder.htm';
 		
-		$('amount').value = $('Order_Total').innerHTML;
-		$('adultNumber').value = $('adultNum').value;
-		$('countChild').value = $('childNum').value;
-		if($('Accident_Insurance').checked){
-			$('isNeedRiskInput').value = "y";
+		$element('amount').value = $element('Order_Total').innerHTML;
+		$element('adultNumber').value = $element('adultNum').value;
+		$element('countChild').value = $element('childNum').value;
+		if($element('Accident_Insurance').checked){
+			$element('isNeedRiskInput').value = "y";
 		}
 		orderForm.submit();
 	}
@@ -194,14 +194,14 @@
 		Contact.push('</table>');
 		
 		personInfo.innerHTML = Contact.join('');
-		$('personInfos').appendChild(personInfo);
+		$element('personInfos').appendChild(personInfo);
 		personInfoCount++;
 	}
 	
 	function removePersonInfo(index) {
 		var personInfoId = 'personInfo' + index;
-		var personInfo = $(personInfoId);
-		$('personInfos').removeChild(personInfo);
+		var personInfo = $element(personInfoId);
+		$element('personInfos').removeChild(personInfo);
 	}
 
 var EV = xui.util.Event,
@@ -217,17 +217,17 @@ Totalorders.prototype = {
 	bind:function(){
 		var SELF = this;
 		SELF.calculatePrice();
-		EV.on($('adultNum'),'blur',function(){
+		EV.on($element('adultNum'),'blur',function(){
 			SELF.calculatePrice();
 			xui.widgets.Tip.clear();
 		})
-		EV.on($('childNum'),'blur',function(){
+		EV.on($element('childNum'),'blur',function(){
 			SELF.calculatePrice();
 		})
-		EV.on($('insureNum'),'blur',function(){								   
+		EV.on($element('insureNum'),'blur',function(){								   
 			SELF.calculatePrice();
 		})
-		EV.on($('submit'),'click',function(){
+		EV.on($element('submit'),'click',function(){
 				SELF.checkForm();
 		})
 		EV.on(DOM.getElementsByClassName('wpx184'),'keyup',function(){
@@ -249,32 +249,32 @@ Totalorders.prototype = {
 	*订单金额总计数据
 	*/
 	calculatePrice:function(){
-	    var childInputObj = $('childNum'),
-	        childPriceObj = $('childPrice');
+	    var childInputObj = $element('childNum'),
+	        childPriceObj = $element('childPrice');
 	    var childNum = this.defaultValue(childInputObj == null ? 0 : parseInt(childInputObj.value), 0),
 			childPrice = this.defaultValue(childPriceObj == null ? 0 : Number(childPriceObj.innerHTML), 0);
 			childInputObj.value = childNum;
-		var adultNum = this.defaultValue(parseInt($('adultNum').value), 0),
-			singlePrice = this.defaultValue(Number($('singlePrice').innerHTML), 0),
-			doublePrice = this.defaultValue(Number($('doublePrice').innerHTML), 0),
-			marketPrice = this.defaultValue(Number($('marketPrice').value), 0),
-			insureNum = this.defaultValue(parseInt($('insureNum').value), 0),
-			dayNum = this.defaultValue(parseInt($('dayNum').value), 0);
+		var adultNum = this.defaultValue(parseInt($element('adultNum').value), 0),
+			singlePrice = this.defaultValue(Number($element('singlePrice').innerHTML), 0),
+			doublePrice = this.defaultValue(Number($element('doublePrice').innerHTML), 0),
+			marketPrice = this.defaultValue(Number($element('marketPrice').value), 0),
+			insureNum = this.defaultValue(parseInt($element('insureNum').value), 0),
+			dayNum = this.defaultValue(parseInt($element('dayNum').value), 0);
 			insurancePrice = 20;
-		$('adultNum').value = adultNum;
-		$('childNum').value = childNum;
-		$('insureNum').value = insureNum;
+		$element('adultNum').value = adultNum;
+		$element('childNum').value = childNum;
+		$element('insureNum').value = insureNum;
 		var insurancePrice = insurancePrice * (insureNum) * dayNum;
 		var okPrice = Math.floor(adultNum/2) * doublePrice + adultNum%2 * singlePrice + childNum * childPrice;
 		var marketPrice = (adultNum + childNum) * marketPrice + insurancePrice;
 		this.initOrderPriceInfo(okPrice, insurancePrice, marketPrice);
 	},
 	initOrderPriceInfo:function(okPrice, insPrice, marketPrice){
-		$('orderOkPrice').innerHTML = okPrice;
-		$('orderMarketPrice').innerHTML = marketPrice;
-		$('orderInsPrice').innerHTML = insPrice;
-		$('orderSavePrice').innerHTML = marketPrice - okPrice;
-		$('orderPrice').innerHTML = insPrice + okPrice;
+		$element('orderOkPrice').innerHTML = okPrice;
+		$element('orderMarketPrice').innerHTML = marketPrice;
+		$element('orderInsPrice').innerHTML = insPrice;
+		$element('orderSavePrice').innerHTML = marketPrice - okPrice;
+		$element('orderPrice').innerHTML = insPrice + okPrice;
 	},
 	defaultValue: function(obj, value) {
 	    if ((obj == null) || (typeof(obj) == 'undefined') || isNaN(obj)) {
@@ -290,10 +290,10 @@ Totalorders.prototype = {
 			if(EL[i].value==""){
 				xui.widgets.Tip.show(EL[i].id,'带*号为必填项,不能为空!请重新输入。');
 				return false ;
-			}else if(EL[i] == $("erh_Tel0")&!xui.util.NumberUtil.isNumber(EL[i].value)){
+			}else if(EL[i] == $element("erh_Tel0")&!xui.util.NumberUtil.isNumber(EL[i].value)){
 				xui.widgets.Tip.show(EL[i].id,'手机号码必须为11位数字。');
 				return false ;
-			}else if(EL[i] == $("erh_Tel0")&EL[i].value.length!==11){
+			}else if(EL[i] == $element("erh_Tel0")&EL[i].value.length!==11){
 				xui.widgets.Tip.show(EL[i].id,'手机号码必须为11位数字。');
 				return false ;
 			}
