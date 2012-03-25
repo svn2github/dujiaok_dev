@@ -6,7 +6,7 @@
 #KISSY_EDITOR_CSS()
 
 ###################################################
-<form id="createHotelRoomForm" name="createHotelRoomForm" method="POST" action="${env.root}/admin/docreateHotelRoom.htm" onsubmit="return Validator.validate(this,'admin');">
+<form id="createHotelRoomForm" name="createHotelRoomForm" method="POST" action="${env.root}/admin/docreateHotelRoom.htm" onsubmit="return validateForm(this);">
     <input name="id"  type="hidden" value="$!id" />
     <input name="productId"  type="hidden" value="$!productId" />
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -156,6 +156,13 @@
 
 #KISSY_EDITOR_JS()
 <script type="text/javascript">
+	var validateForm = function(form){
+		if(!judgeTime()){
+			return false ;
+		}
+		return Validator.validate(form,'admin');
+	}
+
     var bed = '$!room.bed' ;
 	
 

@@ -4,7 +4,7 @@
 #XUI_CSS(["common/reset.css","eshop/simple-date/xui-simple-datepicker.css"])
 #KISSY_EDITOR_CSS()
 ###################################################
-<form id="createSelfDriveForm" name="createSelfDriveForm" method="POST" action="${env.root}/admin/docreateSelfDrive.htm" onsubmit="return Validator.validate(this,'admin');">
+<form id="createSelfDriveForm" name="createSelfDriveForm" method="POST" action="${env.root}/admin/docreateSelfDrive.htm" onsubmit="return validateForm(this);">
     <input name="id"  type="hidden" value="$!id" />
     <input name="productId"  type="hidden" value="$!productId" />
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -174,6 +174,13 @@
 #JS(["jquery-1.6.2.min.js","common.js","validator.js","admin.js"]) 
 #KISSY_EDITOR_JS()
 <script type="text/javascript">
+	var validateForm = function(form){
+		if(!judgeTime()){
+			return false ;
+		}
+		return Validator.validate(form,'admin');
+	}
+
     var lastDetailsIndex = $collectionUtils.size($!selfDrive.details) ; //行程个数
 	var lastImagesIndex = $collectionUtils.size($imagesList) ; //上传照片个数
 			

@@ -4,7 +4,7 @@
 #XUI_CSS(["common/reset.css","eshop/simple-date/xui-simple-datepicker.css"])
 #KISSY_EDITOR_CSS()
 ###################################################
-<form id="createTicketForm" name="createTicketForm" method="POST" action="${env.root}/admin/docreateTicket.htm" onsubmit="return Validator.validate(this,'admin');">
+<form id="createTicketForm" name="createTicketForm" method="POST" action="${env.root}/admin/docreateTicket.htm" onsubmit="return validateForm(this);">
     <input name="id"  type="hidden" value="$!id" />
     <input name="productId"  type="hidden" value="$!productId" />
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -126,9 +126,9 @@
                         #set($count = $velocityCount)
                         #set($count = $count - 1)
                         <div id="image$count">
-                            <input type="text"  name='imagesList' value="$!image"/>
+                            <input type="text"  name='imagesList' value="$!image" class="input_b"/>
                             #if($count > 0)
-                                <input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;"  class="input_b"/>
+                                <input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;" />
                             #end
                         </div>
                     #end
@@ -174,6 +174,13 @@
 #JS(["jquery-1.6.2.min.js","common.js","validator.js","admin.js"]) 
 #KISSY_EDITOR_JS()
 <script type="text/javascript">
+	var validateForm = function(form){
+		if(!judgeTime()){
+			return false ;
+		}
+		return Validator.validate(form,'admin');
+	}
+
     var lastDetailsIndex = $collectionUtils.size($!ticket.details)  ; //行程个数
 	var lastImagesIndex = $collectionUtils.size($imagesList) ; //上传照片个数
 			
@@ -235,9 +242,9 @@
 		var divElement = document.createElement('div') ;
 		divElement.id = 'image' + i ;
 		$('images').appendChild(divElement) ;
-		var innerHTML = '<input type="text"  name="imagesList" />' ;
+		var innerHTML = '<input type="text"  name="imagesList" class="input_b"/> ' ;
 		if(i > 0){
-			innerHTML += '<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />' ;
+			innerHTML += '<input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;" />' ;
 		}
 		$('image'+i).innerHTML = innerHTML ;
 		lastImagesIndex ++ ;
