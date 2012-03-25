@@ -29,7 +29,7 @@ xui.widgets.simpleDatePicker = function(id,tmpl,attr,config){
 	this.obj = {};
 	if(id){
 		this.id = 'xui-dp-'+id;
-		this.user = $(id);
+		this.user = document.getElementById(id);
 		
 		/*
 		* If there is no default template will setting default and  to parse it.
@@ -46,8 +46,8 @@ xui.widgets.simpleDatePicker = function(id,tmpl,attr,config){
 		*/
 		if(attr){
 			this.setAttr(attr);
-		}else if($(id).value){
-			this.setAttr($(id).value);
+		}else if(document.getElementById(id).value){
+			this.setAttr(document.getElementById(id).value);
 		}
 		
 		/*
@@ -132,11 +132,11 @@ xui.widgets.simpleDatePicker.prototype = {
 		this.setInnerHMS();
 	},
 	setInnerYear:function(){
-		this.obj._year = $(this.id+'-year');
+		this.obj._year = document.getElementById(this.id+'-year');
 		this.obj._year.innerHTML = this.getYear(this.DATE);
 	},
 	setInnerMonth:function(){
-		this.obj._month = $(this.id+'-month');
+		this.obj._month = document.getElementById(this.id+'-month');
 		var str = '<div class="xui-dp-md" id="'+this.id+'-md">';
 		for(var i=1; i<=12; i++){
 			if(i==this.DATE.getMonth()+1){
@@ -145,10 +145,10 @@ xui.widgets.simpleDatePicker.prototype = {
 			str += '<a href="javascript:void(0)">'+i+'月</a>';
 		}
 		str += '</div>';
-		$(this.id).innerHTML += str;
+		document.getElementById(this.id).innerHTML += str;
 	},
 	setInnerDay:function(){
-		this.obj._day = $(this.id+'-db');
+		this.obj._day = document.getElementById(this.id+'-db');
 		var str = '<table><tr><th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th></tr>',
 		day = this.DATE.getDate(),
 		year = this.getYear(this.DATE),
@@ -229,9 +229,9 @@ xui.widgets.simpleDatePicker.prototype = {
 		this.initEventDd();
 	},
 	setInnerHMS:function(){
-		this.obj._hour = $(this.id+'-hour');
-		this.obj._minute = $(this.id+'-minute');
-		this.obj._second = $(this.id+'-second');
+		this.obj._hour = document.getElementById(this.id+'-hour');
+		this.obj._minute = document.getElementById(this.id+'-minute');
+		this.obj._second = document.getElementById(this.id+'-second');
 		this.obj._hour.innerHTML = this.DATE.getHours();
 		this.obj._minute.innerHTML = this.DATE.getMinutes();
 		this.obj._second.innerHTML = this.DATE.getSeconds();
@@ -248,13 +248,13 @@ xui.widgets.simpleDatePicker.prototype = {
 		str1 += '</div>';
 		str2 += '</div>';
 		str3 += '</div>';
-		$(this.id).innerHTML += str1+str2+str3;
+		document.getElementById(this.id).innerHTML += str1+str2+str3;
 	},
 	clearDate:function(){
 		var _f = this;
-		$(_f.id+'-value').innerHTML = '';
-		$(_f.id.replace('xui-dp-','')).value = '';
-		$(_f.id).style.display = 'none';
+		document.getElementById(_f.id+'-value').innerHTML = '';
+		document.getElementById(_f.id.replace('xui-dp-','')).value = '';
+		document.getElementById(_f.id).style.display = 'none';
 
 	},
 	init:function(){
@@ -262,29 +262,29 @@ xui.widgets.simpleDatePicker.prototype = {
 		this.setInner();
 		this.initEvent();
 		var _f = this;
-		xui.util.Event.on($(this.id+'-close'),'click',function(){
+		xui.util.Event.on(document.getElementById(this.id+'-close'),'click',function(){
 			_f.clearDate();
 		});
-		xui.util.Event.on($(this.id+'-submit'),'click',function(){
+		xui.util.Event.on(document.getElementById(this.id+'-submit'),'click',function(){
 			_f.select();
-			$(_f.id).style.display = 'none';
+			document.getElementById(_f.id).style.display = 'none';
 			});
 		xui.util.Event.on(document,'click',function(e){
-			if($(_f.id).style.display == 'none')return;
+			if(document.getElementById(_f.id).style.display == 'none')return;
 			var target = YAHOO.util.Event.getTarget(e),f=true; 
 			while(target&&f){
 				if(target.className&&target.className.toLowerCase().indexOf('xui-dp')!=-1){
 					f=false;
 				}
 				for(var i=0; i<_f.documentExitId.length; i++){
-					if($(_f.documentExitId[i])==target){
+					if(document.getElementById(_f.documentExitId[i])==target){
 						f = false;
 					}
 				}
 				target = target.parentNode;
 			}
 			if(f){
-				$(_f.id).style.display = 'none';
+				document.getElementById(_f.id).style.display = 'none';
 			}
 			});
 	},
@@ -303,7 +303,7 @@ xui.widgets.simpleDatePicker.prototype = {
 		}
 	},
 	close:function(){
-		$(this.id).style.display = 'none';
+		document.getElementById(this.id).style.display = 'none';
 	},
 	initEvent:function(){
 		this.initEventCall();
@@ -314,12 +314,12 @@ xui.widgets.simpleDatePicker.prototype = {
 	},
 	initEventCall:function(){
 		var _f = this;
-		xui.util.Event.on([$(this.id+'-call'),$(this.id+'-value')],'click',function(){_f.show();});
+		xui.util.Event.on([document.getElementById(this.id+'-call'),document.getElementById(this.id+'-value')],'click',function(){_f.show();});
 	},
 	show:function(target){
 		var x = xui.util.Dom.getX(this.id+'-box'),
 				y = xui.util.Dom.getY(this.id+'-box'),
-				h = $(this.id+'-box').offsetHeight;
+				h = document.getElementById(this.id+'-box').offsetHeight;
 			if(target&&target.nodeType){
 				x = xui.util.Dom.getX(target);
 				y = xui.util.Dom.getY(target);
@@ -329,23 +329,23 @@ xui.widgets.simpleDatePicker.prototype = {
 			if(x+186>w){
 				x = w-186;
 			}
-			$(this.id).style.left = x+'px';
-			$(this.id).style.top = (y+h)+'px';
-			$(this.id).style.display = 'block';
+			document.getElementById(this.id).style.left = x+'px';
+			document.getElementById(this.id).style.top = (y+h)+'px';
+			document.getElementById(this.id).style.display = 'block';
 			//IE6 must display
-			$(this.id+'-md').style.display = 'none';
+			document.getElementById(this.id+'-md').style.display = 'none';
 	},
 	initEventHmsd:function(){
 		var _f = this;
-		xui.util.Event.on($(this.id+'-hour'),'click',function(){$(_f.id+'-h').style.display = 'block';});
-		xui.util.Event.on($(this.id+'-minute'),'click',function(){$(_f.id+'-m').style.display = 'block';});
-		xui.util.Event.on($(this.id+'-second'),'click',function(){$(_f.id+'-s').style.display = 'block';});
-		xui.util.Event.on($(this.id+'-hour'),'mouseout',function(){_f.obj.closeHhd=true;setTimeout(function(){_f.closeHhd();},2000);});
-		xui.util.Event.on($(this.id+'-minute'),'mouseout',function(){_f.obj.closeMmd=true;setTimeout(function(){_f.closeMmd();},2000);});
-		xui.util.Event.on($(this.id+'-second'),'mouseout',function(){_f.obj.closeSsd=true;setTimeout(function(){_f.closeSsd();},2000);});
-		var hh = $(this.id+'-h').getElementsByTagName('a');
-		var hm = $(this.id+'-m').getElementsByTagName('a');
-		var hs = $(this.id+'-s').getElementsByTagName('a');
+		xui.util.Event.on(document.getElementById(this.id+'-hour'),'click',function(){document.getElementById(_f.id+'-h').style.display = 'block';});
+		xui.util.Event.on(document.getElementById(this.id+'-minute'),'click',function(){document.getElementById(_f.id+'-m').style.display = 'block';});
+		xui.util.Event.on(document.getElementById(this.id+'-second'),'click',function(){document.getElementById(_f.id+'-s').style.display = 'block';});
+		xui.util.Event.on(document.getElementById(this.id+'-hour'),'mouseout',function(){_f.obj.closeHhd=true;setTimeout(function(){_f.closeHhd();},2000);});
+		xui.util.Event.on(document.getElementById(this.id+'-minute'),'mouseout',function(){_f.obj.closeMmd=true;setTimeout(function(){_f.closeMmd();},2000);});
+		xui.util.Event.on(document.getElementById(this.id+'-second'),'mouseout',function(){_f.obj.closeSsd=true;setTimeout(function(){_f.closeSsd();},2000);});
+		var hh = document.getElementById(this.id+'-h').getElementsByTagName('a');
+		var hm = document.getElementById(this.id+'-m').getElementsByTagName('a');
+		var hs = document.getElementById(this.id+'-s').getElementsByTagName('a');
 		xui.util.Event.on(hh,'click',function(){_f.setHours(this.innerHTML);});
 		xui.util.Event.on(hm,'click',function(){_f.setMinutes(this.innerHTML);});
 		xui.util.Event.on(hs,'click',function(){_f.setSeconds(this.innerHTML);});
@@ -358,22 +358,22 @@ xui.widgets.simpleDatePicker.prototype = {
 	},
 	initEventYd:function(){
 		var _f = this;
-		xui.util.Event.on($(this.id+'-pre'),'click',function(){_f.setYear(true);});
-		xui.util.Event.on($(this.id+'-next'),'click',function(){_f.setYear(false);});
+		xui.util.Event.on(document.getElementById(this.id+'-pre'),'click',function(){_f.setYear(true);});
+		xui.util.Event.on(document.getElementById(this.id+'-next'),'click',function(){_f.setYear(false);});
 	},
 	initEventMd:function(){
 		var _f = this;
-		var btn = $(this.id+'-btn-m');
-		xui.util.Event.on(btn,'click',function(){$(_f.id+'-md').style.display = 'block';});
+		var btn = document.getElementById(this.id+'-btn-m');
+		xui.util.Event.on(btn,'click',function(){document.getElementById(_f.id+'-md').style.display = 'block';});
 		xui.util.Event.on(btn,'mouseout',function(){_f.obj.closeMd = true;setTimeout(function(){_f.closeMd();},2000);});
-		var a = $(this.id+'-md').getElementsByTagName('a');
+		var a = document.getElementById(this.id+'-md').getElementsByTagName('a');
 		xui.util.Event.on(a,'click',function(){_f.setMonth(this.innerHTML.replace('月',''));	});
 		xui.util.Event.on(a,'mouseover',function(){_f.obj.closeMd = false;});
 		xui.util.Event.on(a,'mouseout',function(){_f.obj.closeMd = true;});
 	},
 	initEventDd:function(){
 		var _f = this;
-		var _da = $(this.id+'-db').getElementsByTagName('a');
+		var _da = document.getElementById(this.id+'-db').getElementsByTagName('a');
 		xui.util.Event.on(_da,'click',function(){
 											   var cn = this.className;
 											   var num = this.innerHTML.replace(/\s/g,'');
@@ -392,7 +392,7 @@ xui.widgets.simpleDatePicker.prototype = {
 
 												//if(_f.obj.closeModel&&_f.obj.closeModel=='true'){
 													_f.select();
-													$(_f.id).style.display = 'none';
+													document.getElementById(_f.id).style.display = 'none';
 												/*}else{
 													_f.getValue();
 												}*/
@@ -452,7 +452,7 @@ xui.widgets.simpleDatePicker.prototype = {
 	},
 	closeSsd:function(){
 		if(this.obj.closeSsd){
-			$(this.id+'-s').style.display = 'none';
+			document.getElementById(this.id+'-s').style.display = 'none';
 			this.obj.closeSsd = false;
 		}else{
 			var _f = this;
@@ -461,7 +461,7 @@ xui.widgets.simpleDatePicker.prototype = {
 	},
 	closeMmd:function(){
 		if(this.obj.closeMmd){
-			$(this.id+'-m').style.display = 'none';
+			document.getElementById(this.id+'-m').style.display = 'none';
 			this.obj.closeMmd = false;
 		}else{
 			var _f = this;
@@ -470,7 +470,7 @@ xui.widgets.simpleDatePicker.prototype = {
 	},
 	closeHhd:function(){
 		if(this.obj.closeHhd){
-			$(this.id+'-h').style.display = 'none';
+			document.getElementById(this.id+'-h').style.display = 'none';
 			this.obj.closeHhd = false;
 		}else{
 			var _f = this;
@@ -479,7 +479,7 @@ xui.widgets.simpleDatePicker.prototype = {
 	},
 	closeMd:function(){
 		if(this.obj.closeMd){
-			$(this.id+'-md').style.display = 'none';
+			document.getElementById(this.id+'-md').style.display = 'none';
 			this.obj.closeMd = false;
 		}else{
 			var _f = this;
@@ -488,24 +488,24 @@ xui.widgets.simpleDatePicker.prototype = {
 	},
 	setSeconds:function(s){
 		this.DATE.setSeconds(s);
-		$(this.id+'-second').innerHTML = s;
-		$(this.id+'-s').style.display = 'none';
+		document.getElementById(this.id+'-second').innerHTML = s;
+		document.getElementById(this.id+'-s').style.display = 'none';
 	},
 	setMinutes:function(m){
 		this.DATE.setMinutes(m);
-		$(this.id+'-minute').innerHTML = m;
-		$(this.id+'-m').style.display = 'none';
+		document.getElementById(this.id+'-minute').innerHTML = m;
+		document.getElementById(this.id+'-m').style.display = 'none';
 	},
 	setHours:function(h){
 		this.DATE.setHours(h);
-		$(this.id+'-hour').innerHTML = h;
-		$(this.id+'-h').style.display = 'none';
+		document.getElementById(this.id+'-hour').innerHTML = h;
+		document.getElementById(this.id+'-h').style.display = 'none';
 	},
 	setYear:function(t){
 		var y = this.getYear(this.DATE);
 		if(t){y += 1;}else{y -= 1;}
 		this.DATE.setFullYear(y);
-		$(this.id+'-year').innerHTML = y;
+		document.getElementById(this.id+'-year').innerHTML = y;
 		this.setInnerDay();
 	},
 	setDate:function(num){
@@ -527,16 +527,16 @@ xui.widgets.simpleDatePicker.prototype = {
 		if(d>maxs){d=maxs;}
 		this.DATE.setMonth(num-1,maxs);
 		this.setDate(d);
-		$(this.id+'-month').innerHTML = num+'月';
-		$(this.id+'-md').style.display = 'none';
+		document.getElementById(this.id+'-month').innerHTML = num+'月';
+		document.getElementById(this.id+'-md').style.display = 'none';
 	},
 	getValue:function(){
 		var str = this._getStr();
 		if(this.isDisTime()){
 			return;
 		} 
-		$(this.id+'-value').innerHTML = str;
-		$(this.id.replace('xui-dp-','')).value = str;
+		document.getElementById(this.id+'-value').innerHTML = str;
+		document.getElementById(this.id.replace('xui-dp-','')).value = str;
 	},
 	_getStr:function(){
 		var str = this.tmpl;
@@ -595,9 +595,9 @@ xui.widgets.simpleDatePicker.prototype = {
 		if(a.tms){
 			if(a.tms=='false'){
 				this.tms = false;
-				$(this.id+'-tms').style.display = 'none';
+				document.getElementById(this.id+'-tms').style.display = 'none';
 			}else{
-				$(this.id+'-tms').style.display = 'block';
+				document.getElementById(this.id+'-tms').style.display = 'block';
 				this.tms = true;
 			}
 		}
@@ -605,18 +605,18 @@ xui.widgets.simpleDatePicker.prototype = {
 			if(a.closeModel=='true'){
 				this.obj.closeModel='true';
 				//this.setInnerDay();
-				$(this.id+'-close').style.display = 'none';
-				$(this.id+'-submit').style.display = 'none';
+				document.getElementById(this.id+'-close').style.display = 'none';
+				document.getElementById(this.id+'-submit').style.display = 'none';
 				ud = true;
 			}
 		}
 		if(a.initvalue){
-			$(this.id+'-value').innerHTML = a.initvalue;
-			$(this.id.replace('xui-dp-','')).value = a.initvalue;
+			document.getElementById(this.id+'-value').innerHTML = a.initvalue;
+			document.getElementById(this.id.replace('xui-dp-','')).value = a.initvalue;
 		}
 		if(a.clear){
-			$(this.id+'-value').innerHTML = '';
-			$(this.id.replace('xui-dp-','')).value = '';
+			document.getElementById(this.id+'-value').innerHTML = '';
+			document.getElementById(this.id.replace('xui-dp-','')).value = '';
 		}
 		if(a.distime){
 			if(a.distime.length && a.distime.length>0){
@@ -636,15 +636,15 @@ xui.widgets.simpleDatePicker.prototype = {
 
 		if(a.inconver){
 			if(a.inconver=='true'){
-				$(this.id+'-box').style.display = 'none';
+				document.getElementById(this.id+'-box').style.display = 'none';
 				var proid = this.id.replace('xui-dp-','');
-				$(proid).style.display = 'block';
+				document.getElementById(proid).style.display = 'block';
 				var _f = this;
 				xui.util.Event.on(proid,'click',function(){
-					if($(_f.id).style.display != 'block'){
-						_f.show($(proid));
+					if(document.getElementById(_f.id).style.display != 'block'){
+						_f.show(document.getElementById(proid));
 					}else{
-						$(_f.id).style.display = 'none';
+						document.getElementById(_f.id).style.display = 'none';
 					}
 				});
 				this.documentExitId.push(proid);
