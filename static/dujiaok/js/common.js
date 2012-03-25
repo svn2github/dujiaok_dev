@@ -157,6 +157,7 @@ var ok;
 })(jQuery);
 //JS
 $(function(){
+	/**
 	$("#myOrder").hover(
 		function(){
 			$("#orderPop").show();
@@ -201,5 +202,6 @@ $(function(){
 		e.preventDefault();
 		$(this).parent().hide();
 	});
+	**/
 	ok.placeholder("schIpt");
 })
