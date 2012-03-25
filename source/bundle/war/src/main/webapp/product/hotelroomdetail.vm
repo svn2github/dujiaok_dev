@@ -28,6 +28,7 @@
 				</ul>
 			</dd>
 		</dl>
+		
 		<div class="Calendar">
     		<div class="mgt20">
     			<div>
@@ -51,7 +52,23 @@
     			</div>
     		</div>
         </div>
+		
+		<!-- start prointro-->
+		<div>
+        	<div class="pro_intro_tab clearFix">
+                <ul>
+                    <li class="cur"><a href="#introduction">产品介绍</a></li>
+                    <li><a href="#categoryImage">房型图片</a></li>
+                </ul>
+            </div>
+			<h2 class="banner mgt20" id="introduction"><strong>产品介绍</strong> </h2>
+            <p>$!product.introduction</p>
+            <h2 class="banner mgt20" id="categoryImage"><strong>房型图片</strong> </h2>
+			<p>$!product.categoryImage</p>
+        </div>
+		<!-- end prointro -->
 	</div>
+	
 	<div class="R mgt10">
 		<!--
 		<div class="share">

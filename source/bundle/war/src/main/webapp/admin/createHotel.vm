@@ -95,7 +95,7 @@
 
 
 #XUI_JS(["core/xui-core.js","util/util-min.js"])
-#JS(["validator.js","dujiaok.js"])
+#JS(["jquery-1.6.2.min.js","common.js","validator.js","admin.js"]) 
 #KISSY_EDITOR_JS()
 <script type="text/javascript">
     var starRate = '$!hotel.starRate' ;

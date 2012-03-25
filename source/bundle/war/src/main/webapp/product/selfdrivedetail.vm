@@ -55,6 +55,24 @@
 				</table>
 			</div>
 		</div>
+		
+		<!-- start prointro-->
+		<div>
+        	<div class="pro_intro_tab clearFix">
+                <ul>
+                    <li class="cur"><a href="#introduction">产品介绍</a></li>
+                    <li><a href="#schedule">行程</a></li>
+                    <li><a href="#feeDesc">费用说明</a></li>
+                </ul>
+            </div>
+			<h2 class="banner mgt20" id="introduction"><strong>产品介绍</strong> </h2>
+            <p>$!product.introduction</p>
+            <h2 class="banner mgt20" id="schedule"><strong>行程</strong> </h2>
+			<p>$!product.schedule</p>
+			<h2 class="banner mgt20" id="feeDesc"><strong>费用说明</strong> </h2>
+            <p>$!product.feeDesc</p>
+        </div>
+		<!-- end prointro -->
 	</div>
 	<div class="R mgt10">
 		<!--
