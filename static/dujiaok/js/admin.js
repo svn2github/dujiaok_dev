@@ -54,7 +54,7 @@
 	
 var addBlankOption = function(id){
 	var o = new Option('','') ;
-	$(id).options.add( o , 0) ;	
+	document.getElementById(id).options.add( o , 0) ;	
 	//o.selected = true ;
 }
 
@@ -66,7 +66,7 @@ var addBlankOption = function(id){
  * @returns
  */
 var __setupAddressSelect = function(param,result){
-		var select = $(param.id) ;
+		var select = document.getElementById(param.id) ;
 		select.options.length = 0  ;
 		for(var i=0 ;i<result.length;i++){
 			var p = result[i] ;
@@ -92,7 +92,7 @@ var __setupAddressSelect = function(param,result){
  * {id:id,url:url,type:type,parentName:parentName,name:name} 
  */
 var setupAddressSelect = function(p){
-	var select = $(p.id) ;
+	var select = document.getElementById(p.id) ;
 	select.options.length = 0  ;
 	var id = p.id;
 	var url = p.url ;
@@ -138,7 +138,7 @@ var setupSelect = function(id,selectValue){
 	if(typeof(selectValue)=='undefined'){
 		return ;
 	}
-	var select = $(id) ;
+	var select = document.getElementById(id) ;
 	var options = select.options ;
 	for(var i=0 ;i<options.length;i++){
 		if(options[i].value == selectValue){
