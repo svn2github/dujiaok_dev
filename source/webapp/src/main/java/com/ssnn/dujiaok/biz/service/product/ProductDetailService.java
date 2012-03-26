@@ -1,6 +1,5 @@
 package com.ssnn.dujiaok.biz.service.product;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import com.ssnn.dujiaok.model.ProductDetailDO;
@@ -21,10 +20,4 @@ public interface ProductDetailService {
 	 */
 	List<ProductDetailDO> getProductDetails(String productId);
 	
-	/**
-	 * 当天最低价
-	 * @param productId
-	 * @return
-	 */
-	BigDecimal getTodayBottomPrice(String productId) ;
 }

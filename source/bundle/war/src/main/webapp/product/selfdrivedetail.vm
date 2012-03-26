@@ -91,7 +91,7 @@
 		
 		<div class="hotelDtl">
 			<div class="hDtl1">
-				<div class="price"><span class="ttl">特惠价</span><span class="num">￥<strong>$detail.cheapestPrice</strong>元起</span></div>
+				<div class="price"><span class="ttl">特惠价</span><span class="num">￥<strong>$product.bottomPrice</strong>元起</span></div>
 
 				<table>
 					<tbody><tr><th><strong>市场价：</strong></th><td>$!product.marketPrice 元</td></tr>
@@ -103,12 +103,13 @@
 				</tbody></table>
 			</div>
 			<div class="date">
-				#if($detail)
+					#set($detailItems = $!product.defaultDetailItems)
+					#if($detailItems)
 					<form id="orderForm" action="${env.root}/order/book.htm" method="get">
                 	<ul>
                     	<li>使用日期：
-                   	    	<select name="dateAndDetail" id="productDetailId">
-								#foreach($dt in $!product.defaultDetailItems )
+                   	    	<select name="dateAndDetail" id="productDetailId" onchange="detailChange(this);">
+								#foreach($dt in $detailItems )
 									#set($index = $velocityCount)
 									<option value="${dt.detailId}:$dateUtils.format($dt.date, 'yyyy-MM-dd')"  #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd') $dt.bottomPrice元 </option>
 								#end
@@ -127,12 +128,11 @@
 							
 							
                     </ul>
-                	<button type="submit" class="order">立即订购</button>
+                	<button type="submit" class="order" onclick="return checkOrder() ;">立即订购</button>
 					<input type="hidden" id="productId" name="productId" value="$product.productId" />
 					<input type="hidden" id="productType" name="productType" value="ZJ" />
                 </form>
 				#else
-					当日无价格
 				#end
 				<p class="gray">拨打电话预定 400 666 5599</p>
 			</div>
@@ -149,6 +149,49 @@
 
 <script>
     
+	var details = [
+	  #foreach($d in $detailItems) 
+	  	{id: "$!d.detail.id",
+	  	 singlePrice: "$!d.detail.price",
+	  	 doublePrice: "$!d.detail.doublePrice",
+	  	 childPrice: "$!d.detail.childPrice",
+	  	},	
+  	  #end
+	] ;
+	
+	var detailChange = function(select){
+		var index = select.selectedIndex ;
+		var val = select.options[select.selectedIndex].value ;
+		setDetail(index) ;
+	}
+	
+	var setDetail = function(index){
+		$element("singlePrice").innerHTML =  details[index].singlePrice ;
+		$element("doublePrice").innerHTML =  details[index].doublePrice ;
+		$element("childPrice").innerHTML =  details[index].childPrice ;
+	}
+	
+	setDetail(0) ;
+	
+	//订单参数
+	var checkOrder = function() {
+		var adultNum = $element("adultNum").value ;
+		var childNum = $element("childNum").value ;
+		
+		if(adultNum == '' || isNaN(adultNum)){
+			alert('请输入成人数') ;
+			return false ;
+		}
+		if(childNum == '' || isNaN(childNum)){
+			alert('请输入儿童数') ;
+			return false ;
+		}
+		
+		return true ;
+	}
+	
+	
+	
     //calendar
     //初始化Calendar
     var url = '${env.root}/ajax/priceCalendar.htm?productId=$!product.productId' ;

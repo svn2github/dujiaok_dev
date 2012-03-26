@@ -13,18 +13,29 @@ import org.apache.commons.lang.time.DateUtils;
  */
 public class DetailItemDO implements Comparable<DetailItemDO> {
 
-	public DetailItemDO(int detailId, Date date, BigDecimal bottomPrice) {
+	public DetailItemDO(int detailId, Date date, BigDecimal bottomPrice , ProductDetailDO detail) {
 		super();
 		this.detailId = detailId;
 		this.date = date;
 		this.bottomPrice = bottomPrice;
+		this.detail = detail ;
 	}
+	
+	private ProductDetailDO detail ;
 
 	private int detailId;
 
 	private Date date;
 
 	private BigDecimal bottomPrice;
+
+	public ProductDetailDO getDetail() {
+		return detail;
+	}
+
+	public void setDetail(ProductDetailDO detail) {
+		this.detail = detail;
+	}
 
 	public int getDetailId() {
 		return detailId;

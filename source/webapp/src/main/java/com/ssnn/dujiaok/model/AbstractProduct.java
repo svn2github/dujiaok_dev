@@ -1,18 +1,14 @@
 package com.ssnn.dujiaok.model;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-import org.springframework.util.CollectionUtils;
+import org.apache.commons.lang.time.DateUtils;
 
 import com.ssnn.dujiaok.util.ArrayStringUtils;
-import com.ssnn.dujiaok.util.DateUtils;
 import com.ssnn.dujiaok.util.ProductUtils;
 
 /**
@@ -82,6 +78,11 @@ public abstract class AbstractProduct {
 	 * 市场价
 	 */
 	private BigDecimal marketPrice;
+	
+	/**
+	 * 最低价，优惠价
+	 */
+	private BigDecimal bottomPrice ;
 
 	public BigDecimal getMarketPrice() {
 		return marketPrice;
@@ -195,6 +196,14 @@ public abstract class AbstractProduct {
 		this.payTypes = payTypes;
 	}
 
+	public BigDecimal getBottomPrice() {
+		return bottomPrice;
+	}
+
+	public void setBottomPrice(BigDecimal bottomPrice) {
+		this.bottomPrice = bottomPrice;
+	}
+
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this,
@@ -202,12 +211,6 @@ public abstract class AbstractProduct {
 	}
 
 	// ////////////////////////////////
-	/**
-	 * extra functions
-	 */
-	public BigDecimal getCheapestPrice() {
-		return ProductUtils.getTodayBottomPrice(details);
-	}
 	
 	public List<String> getImageList(){
 		return ArrayStringUtils.toList(images) ;
@@ -217,12 +220,10 @@ public abstract class AbstractProduct {
 		return ArrayStringUtils.toList(payTypes) ;
 	}
 	
-	public ProductDetailDO getTodayDetail(){
-		return ProductUtils.getTodayDetail(details) ;
-	}
 	
 	public List<DetailItemDO> getDefaultDetailItems(){
 		Date start = new Date() ;
+		start = DateUtils.addDays(start, 2) ;//
 		Date end = new Date() ;
 		end = org.apache.commons.lang.time.DateUtils.addMonths(end, 1) ;
 		return getDetailItems(start, end) ;

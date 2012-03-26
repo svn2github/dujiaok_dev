@@ -90,7 +90,7 @@
 		-->
 		<div class="hotelDtl">
 			<div class="hDtl1">
-				<div class="price"><span class="ttl">特惠价</span><span class="num">￥<strong>$detail.cheapestPrice</strong>元起</span></div>
+				<div class="price"><span class="ttl">特惠价</span><span class="num">￥<strong>$product.bottomPrice</strong>元起</span></div>
 
 				<table>
 					<tbody><tr><th><strong>市场价：</strong></th><td>$!product.marketPrice 元</td></tr>
@@ -101,7 +101,8 @@
 				</tbody></table>
 			</div>
 			<div class="date">
-				#if($detail)
+				#set($detailItems = $!product.defaultDetailItems)
+				#if($detailItems)
 					<form id="orderForm" action="${env.root}/order/book.htm" method="get">
                 	<ul>
                     	<li>使用日期：
@@ -112,10 +113,10 @@
 								#end
                   	        </select>
                   	     </li>
-                         <li>价 格：<span id='price'>$!detail.price</span>元</li>
+                         <li>价 格：<span id='price'></span>元</li>
                          <li>数 量：&nbsp;<input type="text" name="count" id="count" value="1"></li>
                     </ul>
-                	<button type="submit" class="order">立即订购</button>
+                	<button type="submit" class="order" onclick="return checkOrder() ;">立即订购</button>
 					<input type="hidden" id="productId" name="productId" value="$product.productId" />
 					<input type="hidden" id="productType" name="productType" value="MP" />
                 </form>
@@ -137,6 +138,36 @@
 #XUI_JS(["core/xui-core.js","util/util-min.js"])
 
 <script type="text/javascript">
+
+	var details = [
+	  #foreach($d in $detailItems) 
+	  	{id: "$!d.detail.id",
+	  	 	price: "$!d.detail.price",
+	  	},	
+  	  #end
+	] ;
+	
+	var detailChange = function(select){
+		var index = select.selectedIndex ;
+		var val = select.options[select.selectedIndex].value ;
+		setDetail(index) ;
+	}
+	
+	var setDetail = function(index){
+		$element("price").innerHTML =  details[index].price ;
+	}
+	
+	setDetail(0) ;
+	
+	//订单参数
+	var checkOrder = function() {
+		var count = $element("count").value ;
+		if(count == '' || isNaN(count)){
+			alert('请输入数量') ;
+			return false ;
+		}
+		return true ;
+	}
 
 	//calendar
     //初始化Calendar

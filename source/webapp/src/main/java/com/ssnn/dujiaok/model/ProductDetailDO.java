@@ -106,15 +106,15 @@ public class ProductDetailDO implements Comparable<ProductDetailDO> {
 
 	@Override
 	public int compareTo(ProductDetailDO o) {
-		return this.getCheapestPrice().compareTo(o.getCheapestPrice());
+		return this.getBottomPrice().compareTo(o.getBottomPrice());
 	}
 	
 	/**
 	 * extra functions 
 	 */
 	
-	public BigDecimal getCheapestPrice() {
-		return ProductUtils.getBottomPrice(this) ;
+	public BigDecimal getBottomPrice() {
+		return ProductUtils.calcBottomPrice(this) ;
 	}
 	
 }

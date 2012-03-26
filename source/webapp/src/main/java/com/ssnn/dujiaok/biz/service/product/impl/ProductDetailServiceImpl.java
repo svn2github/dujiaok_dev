@@ -1,12 +1,10 @@
 package com.ssnn.dujiaok.biz.service.product.impl;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import com.ssnn.dujiaok.biz.dal.ProductDetailDAO;
 import com.ssnn.dujiaok.biz.service.product.ProductDetailService;
 import com.ssnn.dujiaok.model.ProductDetailDO;
-import com.ssnn.dujiaok.util.ProductUtils;
 
 public class ProductDetailServiceImpl implements ProductDetailService {
 	
@@ -25,13 +23,4 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 		this.productDetailDAO = productDetailDAO;
 	}
 
-	@Override
-	public BigDecimal getTodayBottomPrice(String productId) {
-		ProductDetailDO detail = productDetailDAO.queryTodayDetailByProduct(productId) ;
-		if(detail == null){
-			return null ;
-		}
-		BigDecimal price = ProductUtils.getBottomPrice(detail) ;
-		return price ;
-	}
 }

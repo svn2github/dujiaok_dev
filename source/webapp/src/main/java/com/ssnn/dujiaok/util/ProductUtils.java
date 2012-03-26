@@ -13,7 +13,6 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.util.CollectionUtils;
 
-import com.ssnn.dujiaok.model.AbstractProduct;
 import com.ssnn.dujiaok.model.DetailItemDO;
 import com.ssnn.dujiaok.model.PriceCalendarDO;
 import com.ssnn.dujiaok.model.PriceCalendarDO.Item;
@@ -73,7 +72,7 @@ public class ProductUtils {
 		
 		for(ProductDetailDO d : details){
 			List<Date> subList = ProductUtils.findDays(d) ;
-			BigDecimal bottomPrice = ProductUtils.getBottomPrice(d) ;
+			BigDecimal bottomPrice = ProductUtils.calcBottomPrice(d) ;
 			if(CollectionUtils.isEmpty(subList)){
 				continue ;
 			}
@@ -85,7 +84,7 @@ public class ProductUtils {
 				}
 			}
 			for(Date date : subList){
-				detailItems.add(new DetailItemDO(d.getId()	, date, bottomPrice)) ;
+				detailItems.add(new DetailItemDO(d.getId()	, date, bottomPrice , d)) ;
 			}
 		}
 		//排序
@@ -117,6 +116,35 @@ public class ProductUtils {
 		return null ;
 	}
 	
+	public static BigDecimal calcBottomPrice(List<ProductDetailDO> details){
+		BigDecimal bottomPrice = null ;
+		if(!CollectionUtils.isEmpty(details)){
+			for(ProductDetailDO d : details){
+				if(d == null){
+					continue ;
+				}
+				BigDecimal bd = calcBottomPrice(d) ;
+				if(bottomPrice == null){
+					bottomPrice = bd ;
+					continue ;
+				}
+				if(bottomPrice.compareTo(bd) == -1){
+					bottomPrice = bd ;
+					continue ;
+				}
+			}
+		}
+		return bottomPrice ;
+	}
+	
+	public static BigDecimal calcBottomPrice(ProductDetailDO detail){
+		if(detail.getDoublePrice() == null){
+			return detail.getPrice() ;
+		}
+		BigDecimal singlePrice = detail.getDoublePrice() ;
+		singlePrice = singlePrice.divide(new BigDecimal(2)) ;
+		return singlePrice.compareTo(detail.getPrice()) < 0 ? singlePrice : detail.getPrice() ;
+	}
 		
 	public static List<Date> findDays(ProductDetailDO detail){
 		if(detail == null){
@@ -133,16 +161,9 @@ public class ProductUtils {
 		return dateList ;
 	}
 	
-	public static BigDecimal getBottomPrice(ProductDetailDO detail){
-		if(detail.getDoublePrice() == null){
-			return detail.getPrice() ;
-		}
-		BigDecimal singlePrice = detail.getDoublePrice() ;
-		singlePrice = singlePrice.divide(new BigDecimal(2)) ;
-		return singlePrice.compareTo(detail.getPrice()) < 0 ? singlePrice : detail.getPrice() ;
-	}
 	
-	public static ProductDetailDO getTodayDetail(List<ProductDetailDO> details){
+	
+	public static ProductDetailDO getFirstDetail(List<ProductDetailDO> details){
 		if(details == null || details.isEmpty()){
 			return null ;
 		}
@@ -163,14 +184,6 @@ public class ProductUtils {
 			}
 		}
 		return null ;
-	}
-
-	public static BigDecimal getTodayBottomPrice(List<ProductDetailDO> details){
-		ProductDetailDO d = getTodayDetail(details) ;
-		if(d == null){
-			return null ;
-		}
-		return getBottomPrice(d) ;
 	}
 	
 	//detail 取3个月内

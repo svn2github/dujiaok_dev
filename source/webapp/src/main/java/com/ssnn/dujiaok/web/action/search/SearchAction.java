@@ -1,7 +1,5 @@
 package com.ssnn.dujiaok.web.action.search;
 
-import java.math.BigDecimal;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -69,9 +67,6 @@ public class SearchAction extends BasicAction implements
 							ProductEnums.HOTEL.getName())) {
 						continue;
 					}
-					BigDecimal price = productDetailService
-							.getTodayBottomPrice(productId);
-					item.setPrice(price);
 				}
 			}
 		}

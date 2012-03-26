@@ -11,6 +11,7 @@ import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.service.SelfDriveService;
 import com.ssnn.dujiaok.model.ProductDetailDO;
 import com.ssnn.dujiaok.model.SelfDriveDO;
+import com.ssnn.dujiaok.util.ProductUtils;
 import com.ssnn.dujiaok.util.UniqueIDUtil;
 import com.ssnn.dujiaok.util.enums.ProductEnums;
 
@@ -55,6 +56,7 @@ public class SelfDriveServiceImpl implements SelfDriveService{
 		if(details!=null){
 			Date gmtExpire = getExpireDate(details) ;
 			selfDrive.setGmtExpire(gmtExpire) ;
+			selfDrive.setBottomPrice(ProductUtils.calcBottomPrice(details)) ;
 			selfDrive.setProductId(UniqueIDUtil.buildUniqueId(ProductEnums.SELFDRIVE)) ;
 			selfDriveDAO.insertSelfDrive(selfDrive) ;
 			for(ProductDetailDO detail : details){
@@ -73,6 +75,7 @@ public class SelfDriveServiceImpl implements SelfDriveService{
 			productDetailDAO.deleteDetails(selfDrive.getProductId()) ;
 			Date gmtExpire = getExpireDate(details) ;
 			selfDrive.setGmtExpire(gmtExpire) ;
+			selfDrive.setBottomPrice(ProductUtils.calcBottomPrice(details)) ;
 			selfDriveDAO.updateSelfDrive(selfDrive) ;
 			for(ProductDetailDO detail : details){
 				detail.setProductId(selfDrive.getProductId()) ;

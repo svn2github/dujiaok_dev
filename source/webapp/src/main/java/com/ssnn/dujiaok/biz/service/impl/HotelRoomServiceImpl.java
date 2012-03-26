@@ -11,6 +11,7 @@ import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.service.HotelRoomService;
 import com.ssnn.dujiaok.model.HotelRoomDO;
 import com.ssnn.dujiaok.model.ProductDetailDO;
+import com.ssnn.dujiaok.util.ProductUtils;
 import com.ssnn.dujiaok.util.UniqueIDUtil;
 import com.ssnn.dujiaok.util.enums.ProductEnums;
 
@@ -50,6 +51,7 @@ public class HotelRoomServiceImpl implements HotelRoomService {
 			Date gmtExpire = getExpireDate(details);
 			room.setGmtExpire(gmtExpire);
 			room.setProductId(UniqueIDUtil.buildUniqueId(ProductEnums.HOTEL_ROOM));
+			room.setBottomPrice(ProductUtils.calcBottomPrice(details)) ;
 			hotelRoomDAO.insertRoom(room);
 			for (ProductDetailDO detail : details) {
 				detail.setProductId(room.getProductId());
@@ -69,6 +71,7 @@ public class HotelRoomServiceImpl implements HotelRoomService {
 			productDetailDAO.deleteDetails(roomId);
 			Date gmtExpire = getExpireDate(details);
 			room.setGmtExpire(gmtExpire);
+			room.setBottomPrice(ProductUtils.calcBottomPrice(details)) ;
 			hotelRoomDAO.updateRoom(room);
 			for (ProductDetailDO detail : details) {
 				detail.setProductId(roomId);

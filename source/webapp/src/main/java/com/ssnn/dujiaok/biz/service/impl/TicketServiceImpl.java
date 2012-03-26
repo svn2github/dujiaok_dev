@@ -11,6 +11,7 @@ import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.model.ProductDetailDO;
 import com.ssnn.dujiaok.model.TicketDO;
+import com.ssnn.dujiaok.util.ProductUtils;
 import com.ssnn.dujiaok.util.UniqueIDUtil;
 import com.ssnn.dujiaok.util.enums.ProductEnums;
 
@@ -50,6 +51,7 @@ public class TicketServiceImpl implements TicketService{
 			Date gmtExpire = getTicketExpireDate(details) ;
 			ticket.setGmtExpire(gmtExpire) ;
 			ticket.setProductId(UniqueIDUtil.buildUniqueId(ProductEnums.TICKET)) ;
+			ticket.setBottomPrice(ProductUtils.calcBottomPrice(details)) ;
 			ticketDAO.insertTicket(ticket) ;
 			for(ProductDetailDO detail : details){
 				detail.setProductId(ticket.getProductId()) ;
@@ -68,6 +70,7 @@ public class TicketServiceImpl implements TicketService{
 			productDetailDAO.deleteDetails(ticket.getProductId()) ;
 			Date gmtExpire = getTicketExpireDate(details) ;
 			ticket.setGmtExpire(gmtExpire) ;
+			ticket.setBottomPrice(ProductUtils.calcBottomPrice(details)) ;
 			ticketDAO.updateTicket(ticket) ;
 			for(ProductDetailDO detail : details){
 				detail.setProductId(ticket.getProductId()) ;

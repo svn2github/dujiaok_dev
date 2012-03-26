@@ -8,6 +8,7 @@
 		<result property="productId" column="PRODUCT_ID" jdbcType="VARCHAR" />
 		<result property="name" column="NAME" jdbcType="VARCHAR"/>
 		<result property="marketPrice" column="MARKET_PRICE" jdbcType="DECIMAL"/>
+		<result property="bottomPrice" column="BOTTOM_PRICE" jdbcType="DECIMAL"/>
 		<result property="destAddr" column="DEST_ADDR" jdbcType="VARCHAR"/>
 		<result property="recommend" column="RECOMMEND" jdbcType="VARCHAR"/>
 		<result property="ticketType" column="TICKET_TYPE" jdbcType="VARCHAR"/>
@@ -30,9 +31,9 @@
 	
 	<insert id="insertTicket">
 		INSERT INTO 
-			DJ_TICKET (ID,PRODUCT_ID,NAME,MARKET_PRICE,RECOMMEND,TICKET_TYPE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,PAY_TYPES,PRODUCT_TYPES,INTRODUCTION,NOTICE,FEE_DESC,MEMO,NOT_DISCOUT,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
+			DJ_TICKET (ID,PRODUCT_ID,NAME,MARKET_PRICE,BOTTOM_PRICE,RECOMMEND,TICKET_TYPE,DEST_ADDR,DEST_PROVINCE,DEST_CITY,DEST_AREA,LOCATION_CODE,IMAGES,PAY_TYPES,PRODUCT_TYPES,INTRODUCTION,NOTICE,FEE_DESC,MEMO,NOT_DISCOUT,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
 		VALUES 
-			(#id#,#productId#,#name#,#marketPrice#,#recommend#,#ticketType#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#payTypes#,#productTypes#,#introduction#,#notice#,#feeDesc#,#memo#,#notDiscout#,now(),now(),#gmtExpire#)
+			(#id#,#productId#,#name#,#marketPrice#,#bottomPrice#,#recommend#,#ticketType#,#destAddr#, #destProvince#, #destCity#,#destArea#,#locationCode#,#images#,#payTypes#,#productTypes#,#introduction#,#notice#,#feeDesc#,#memo#,#notDiscout#,now(),now(),#gmtExpire#)
 		<selectKey resultClass="java.lang.Integer" keyProperty="id">
     		<![CDATA[
 				SELECT LAST_INSERT_ID() AS ID
@@ -44,6 +45,7 @@
 		UPDATE DJ_TICKET SET 
 			NAME = #name# , 
 			MARKET_PRICE = #marketPrice# ,
+			BOTTOM_PRICE = #bottomPrice# ,
 			RECOMMEND = #recommend# ,
 			TICKET_TYPE = #ticketType# ,
 			DEST_ADDR = #destAddr# ,

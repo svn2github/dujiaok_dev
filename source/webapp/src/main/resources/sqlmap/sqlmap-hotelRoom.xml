@@ -11,6 +11,7 @@
 		<result property="roomArea" column="ROOM_AREA" jdbcType="VARCHAR"/>
 		<result property="payTypes" column="PAY_TYPES" jdbcType="VARCHAR"/>
 		<result property="marketPrice" column="MARKET_PRICE" jdbcType="DECIMAL"/>
+		<result property="bottomPrice" column="BOTTOM_PRICE" jdbcType="DECIMAL"/>
 		<result property="bed" column="BED" jdbcType="VARCHAR" />
 		<result property="images" column="IMAGES" jdbcType="VARCHAR" />
 		<result property="roomFacilities" column="ROOM_FACILITIES" jdbcType="VARCHAR" />
@@ -24,9 +25,9 @@
 
 	<insert id="insertRoom">
 		INSERT INTO 
-			DJ_HOTEL_ROOM (ID,HOTEL_ID,NAME,PRODUCT_ID,ROOM_AREA,PAY_TYPES,MARKET_PRICE,BED,IMAGES,ROOM_FACILITIES,INTRODUCTION,CATEGORY_IMAGE,MEMO,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
+			DJ_HOTEL_ROOM (ID,HOTEL_ID,NAME,PRODUCT_ID,ROOM_AREA,PAY_TYPES,MARKET_PRICE, BOTTOM_PRICE ,BED,IMAGES,ROOM_FACILITIES,INTRODUCTION,CATEGORY_IMAGE,MEMO,GMT_CREATE,GMT_MODIFIED,GMT_EXPIRE)
 		VALUES 
-			(#id#,#hotelId#,#name#,#productId#,#roomArea#, #payTypes#, #marketPrice#,#bed#,#images#,#roomFacilities#,#introduction#,#categoryImage#,#memo#,now(),now(),#gmtExpire#)
+			(#id#,#hotelId#,#name#,#productId#,#roomArea#, #payTypes#, #marketPrice#,#bottomPrice#,#bed#,#images#,#roomFacilities#,#introduction#,#categoryImage#,#memo#,now(),now(),#gmtExpire#)
 		<selectKey resultClass="java.lang.Integer" keyProperty="id">
     		<![CDATA[
 				SELECT LAST_INSERT_ID() AS ID
@@ -40,6 +41,7 @@
 			ROOM_AREA = #roomArea# ,
 			PAY_TYPES = #payTypes# ,
 			MARKET_PRICE = #marketPrice# ,
+			BOTTOM_PRICE = #bottomPrice# ,
 			BED = #bed# ,
 			IMAGES = #images#,
 			ROOM_FACILITIES = #roomFacilities# ,

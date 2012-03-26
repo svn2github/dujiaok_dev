@@ -141,25 +141,25 @@
         <tr>
             <td align="right">产品简介：</td>
             <td>
-                <textarea id='introduction' name='introduction' cols="45" rows="8">#ESCAPE_HTML($!selfDrive.introduction)</textarea>
+                <textarea id='introduction' name='introduction' cols="45" rows="8">$!selfDrive.introduction</textarea>
             </td>
         </tr>
         <tr>
             <td align="right">行程：</td>
             <td>
-                <textarea id='schedule' name='schedule' cols="45" rows="8">#ESCAPE_HTML($!selfDrive.schedule)</textarea>
+                <textarea id='schedule' name='schedule' cols="45" rows="8">$!selfDrive.schedule</textarea>
             </td>
         </tr>
         <tr>
             <td align="right">费用说明：</td>
             <td>
-                <textarea id='feeDesc' name='feeDesc' cols="45" rows="8">#ESCAPE_HTML($!selfDrive.feeDesc)</textarea>
+                <textarea id='feeDesc' name='feeDesc' cols="45" rows="8">$!selfDrive.feeDesc</textarea>
             </td>
         </tr>
         <tr>
             <td align="right">备注：</td>
             <td>
-                <textarea id='memo' name='memo' cols="45" rows="8" >#ESCAPE_HTML($!selfDrive.memo)</textarea>
+                <textarea id='memo' name='memo' cols="45" rows="8" >$!selfDrive.memo</textarea>
             </td>
         </tr>
         <tr>

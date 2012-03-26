@@ -83,7 +83,7 @@
 		-->
 		<div class="hotelDtl">
 			<div class="hDtl1">
-				<div class="price"><span class="ttl">特惠价</span><span class="num">￥<strong>$!detail.cheapestPrice</strong>元起</span></div>
+				<div class="price"><span class="ttl">特惠价</span><span class="num">￥<strong>$!product.bottomPrice</strong>元起</span></div>
 
 				<table>
 					<tbody>
@@ -96,11 +96,12 @@
 					</tbody>
 				</table>
 			</div>
-			#if($detail)
+			#set($detailItems = $!product.defaultDetailItems)
+			#if(!$collectionUtils.isEmpty($detailItems))
 			<form id="orderForm" action="${env.root}/order/book.htm" method="get">
 			<div class="date">
 				<ul>
-                    <li><strong>价格:</strong><span id="price">&nbsp;&nbsp;$!product.cheapestPrice</span>元 </li>
+                    <li><strong>价格:</strong><span id="price">&nbsp;&nbsp;$!product.bottomPrice</span>元 </li>
 					<li>入住日期：
 						<select name="dateAndDetail" id="checkoutDateOpt">
                	    	 	 #foreach($dt in $!product.defaultDetailItems )
@@ -120,12 +121,14 @@
 					 <!--<li class="total"><strong>共4晚 总金额：￥1234.88元</strong></li>-->
 					 <li>预定间数<input type="text" name="count" id="roomCount" value="1"></li>
 				</ul>
-				<button class="order" onclick="makeOrder()">订购</button>
+				<button class="order" onclick="return checkOrder()">订购</button>
 				<p class="gray">拨打电话预定 400 666 5599</p>
 			</div>
 			<input type="hidden" id="productId" name="productId" value="$!product.productId" />
     		<input type="hidden" id="productType" name="productType" value="FJ" />
             </form>
+			#else
+			当日无价格
 			#end
 		</div>
 	</div>
@@ -137,6 +140,37 @@
 #XUI_JS(["core/xui-core.js","util/util-min.js","slide/slide.js"])
 <script type="text/javascript">
 
+	var details = [
+	  #foreach($d in $detailItems) 
+	  	{id: "$!d.detail.id",
+	  	 	price: "$!d.detail.price",
+	  	},	
+  	  #end
+	] ;
+	
+	var detailChange = function(select){
+		var index = select.selectedIndex ;
+		var val = select.options[select.selectedIndex].value ;
+		setDetail(index) ;
+	}
+	
+	var setDetail = function(index){
+		$element("price").innerHTML =  details[index].price ;
+	}
+	
+	setDetail(0) ;
+
+	//订单参数
+	var checkOrder = function() {
+		var roomCount = $element("roomCount").value ;
+		if(roomCount == '' || isNaN(roomCount)){
+			alert('请输入预定间数') ;
+			return false ;
+		}
+		return true ;
+	}
+	
+	
 //calendar
     //初始化Calendar
     var url = '${env.root}/ajax/priceCalendar.htm?productId=$!product.productId' ;
