@@ -1,6 +1,7 @@
 #set($layout="/admin/default.vm")
 #set($title="度假OK - 后台 - 发布门票")
 #set($menu_name="发布门票")
+#CSS(["admin.css"])
 #XUI_CSS(["common/reset.css","eshop/simple-date/xui-simple-datepicker.css"])
 #KISSY_EDITOR_CSS()
 ###################################################
@@ -45,6 +46,7 @@
                     #end
                 </div>
                 <input type="button" value="+ 增加" onclick="addTime() ;"/>
+				<input type="button" value="检查时间" onclick="judgeTime() ;"/>
             </td>
         </tr>
         <tr>

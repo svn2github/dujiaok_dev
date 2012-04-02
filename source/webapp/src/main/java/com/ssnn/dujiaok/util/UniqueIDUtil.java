@@ -5,9 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.math.RandomUtils;
-
 import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.util.enums.ProductEnums;
 
@@ -33,10 +30,10 @@ public class UniqueIDUtil {
     public static String buildOrderId(MemberDO member) {
         DateFormat df = new SimpleDateFormat(format);
         String dd = df.format(new Date());
-        long l = Long.valueOf(dd);
-        String time = Long.toString(l, Character.MAX_RADIX);
-        time = StringUtils.upperCase(time);
-        return time + member.getId();
+        //long l = Long.valueOf(dd);
+        //String time = Long.toString(l, Character.MAX_RADIX);
+        //time = StringUtils.upperCase(time);
+        return dd + member.getId();
     }
 
     public static String buildFrontViewId(String prefix) {
