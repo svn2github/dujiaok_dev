@@ -10,11 +10,12 @@ import com.ssnn.dujiaok.biz.dal.OrderDAO;
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.service.OrderService;
-import com.ssnn.dujiaok.constant.AlipayStatus;
 import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.model.OrderContactDO;
 import com.ssnn.dujiaok.model.OrderDO;
 import com.ssnn.dujiaok.util.UniqueIDUtil;
+import com.ssnn.dujiaok.util.enums.AlipayStatusEnums;
+import com.ssnn.dujiaok.util.enums.OrderStatusEnums;
 import com.ssnn.dujiaok.util.enums.PayStatusEnums;
 
 public class OrderServiceImpl implements OrderService {
@@ -89,7 +90,11 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Override
 	public int updateAlipayStatus(String orderId, String alipayId, String alipayStatus) {
-		PayStatusEnums payStatus = AlipayStatus.toPayStatus(alipayStatus) ;
-        return orderDAO.updateAlipayStatus(orderId, alipayId, alipayStatus, payStatus.getName());
+		PayStatusEnums payStatus = AlipayStatusEnums.toPayStatus(alipayStatus) ;
+		if(payStatus == PayStatusEnums.PAID){
+			return orderDAO.updateAlipayStatus(orderId, alipayId, payStatus.getName() , OrderStatusEnums.SUCCESS.getName());
+		}else{
+			return orderDAO.updateAlipayStatus(orderId, alipayId, payStatus.getName() , OrderStatusEnums.CONFIRM.getName());
+		}
     }
 }

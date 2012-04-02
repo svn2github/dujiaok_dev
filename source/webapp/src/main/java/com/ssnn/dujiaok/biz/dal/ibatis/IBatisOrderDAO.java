@@ -91,12 +91,12 @@ public class IBatisOrderDAO extends SqlMapClientDaoSupport implements OrderDAO {
 	
 	@Override
 	public int updateAlipayStatus(String orderId, String alipayId,
-			String alipayStatus, String orderStatus) {
+			String payStatus, String orderStatus) {
 	    Map<String, Object> condition = new HashMap<String, Object>();
         condition.put("orderId", orderId);
         condition.put("alipayId", alipayId);
         condition.put("status", orderStatus);
-        condition.put("alipayStatus", alipayStatus);
+        condition.put("payStatus", payStatus);
         
         return (Integer)getSqlMapClientTemplate().update("order.updateAlipayIdAndStatus", condition);
 	}

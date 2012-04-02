@@ -7,6 +7,7 @@ package com.ssnn.dujiaok.util.enums;
  * 
  */
 public enum PayStatusEnums {
+	
 
 	/**
 	 * 

@@ -91,7 +91,7 @@
                 <td class="F9">￥$!item.price</td>
 				<td>$!item.memberId</td>
 				<td>
-                    <span id="statusText_$!item.orderId">$enumUtils.orderStatus($!item.status).desc  #if($item.statusDetail != "")（$!item.statusDetail）#end</span>
+                    <span id="statusText_$!item.orderId">$enumUtils.orderStatus($!item.status).desc  #if($item.statusDetail && $item.statusDetail != "")（$!item.statusDetail）#end</span>
 					<a href="javascript:void(0);" onclick="showModifyStatus('s_$item.orderId');">修改状态</a>
 					<div>
                     </div>

@@ -35,6 +35,17 @@
 		</property>
 	</group>
 	
+	<group name="alipay">
+		<property name="doucome.alipay.returnUrl" defaultValue="http://www.dujiaok.com/order/paysuccess.htm" />
+		<property name="doucome.alipay.notifyUrl" defaultValue="http://www.dujiaok.com/order/paysuccess.htm" ></property>
+		<property name="doucome.alipay.gateway" defaultValue="https://mapi.alipay.com/gateway.do?" ></property>
+		<property name="doucome.alipay.partner" defaultValue="2088202423833261" ></property>
+		<property name="doucome.alipay.key" defaultValue="6pnu2vrqyf335pe1cuwt3la8azanpjpo" ></property>
+		<property name="doucome.alipay.email" defaultValue="auskoala@hotmail.com" ></property>
+		<property name="doucome.alipay.inputCharset" defaultValue="UTF-8" ></property>
+		<property name="doucome.alipay.signType" defaultValue="MD5" />
+	</group>
+	
 	<script>
 		<generate template="commonConfig.properties.vm" destfile="bean/commonConfig.properties" charset="UTF-8" />
 		<generate template="struts.xml.vm" destfile="struts.xml" charset="UTF-8" />

@@ -1,14 +1,13 @@
 package com.ssnn.dujiaok.biz.service.order.util;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.ssnn.dujiaok.biz.service.order.AlipayConfig;
+import com.ssnn.dujiaok.constant.EnvConstant;
+import com.ssnn.dujiaok.util.EnvPropertiesUtil;
 
 /* *
  *类名：AlipayFunction
@@ -30,7 +29,7 @@ public class AlipayCore {
      */
     public static String buildMysign(Map<String, String> sArray) {
         String prestr = createLinkString(sArray); //把数组所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串
-        prestr = prestr + AlipayConfig.key; //把拼接后的字符串再与安全校验码直接连接起来
+        prestr = prestr + EnvPropertiesUtil.getProperty(EnvConstant.alipay_key); //把拼接后的字符串再与安全校验码直接连接起来
         String mysign = AlipayMd5Encrypt.md5(prestr);
         return mysign;
     }
@@ -86,25 +85,25 @@ public class AlipayCore {
         return prestr;
     }
 
-    /** 
-     * 写日志，方便测试（看网站需求，也可以改成把记录存入数据库）
-     * @param sWord 要写入日志里的文本内容
-     */
-    public static void logResult(String sWord) {
-        FileWriter writer = null;
-        try {
-            writer = new FileWriter(AlipayConfig.log_path);
-            writer.write(sWord);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (writer != null) {
-                try {
-                    writer.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+//    /** 
+//     * 写日志，方便测试（看网站需求，也可以改成把记录存入数据库）
+//     * @param sWord 要写入日志里的文本内容
+//     */
+//    public static void logResult(String sWord) {
+//        FileWriter writer = null;
+//        try {
+//            writer = new FileWriter(AlipayConfig.log_path);
+//            writer.write(sWord);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (writer != null) {
+//                try {
+//                    writer.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    }
 }

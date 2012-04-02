@@ -103,5 +103,5 @@ public interface OrderDAO {
 	 * @return
 	 */
 	 int updateAlipayStatus(String orderId, String alipayId,
-			 String alipayStatus, String orderStatus);
+			 String payStatus, String orderStatus);
 }

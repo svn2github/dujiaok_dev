@@ -83,9 +83,11 @@
     				<th></th>
 					
     				<td>
-						#if("UNPAY"==$!orderDO.status)
+						#if("UNPAID"==$!orderDO.status)
     						<button type="submit" id="submit" class="order">确认下单</button>
-    					#end
+    					#else
+							已经下单
+						#end
     				</td>
     			</tr>
     		</table>

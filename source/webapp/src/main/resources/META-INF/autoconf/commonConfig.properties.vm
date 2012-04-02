@@ -10,3 +10,13 @@ doucome.static.url = ${doucome_static_url}
 doucome.production = ${doucome_production}
 
 doucome.config.insurancePrice = ${doucome_config_insurancePrice}
+
+doucome.alipay.returnUrl = ${doucome_alipay_returnUrl}
+doucome.alipay.notifyUrl = ${doucome_alipay_notifyUrl}
+doucome.alipay.gateway = ${doucome_alipay_gateway}
+doucome.alipay.partner = ${doucome_alipay_partner}
+doucome.alipay.email = ${doucome_alipay_email}
+doucome.alipay.key = ${doucome_alipay_key}
+doucome.alipay.inputCharset = ${doucome_alipay_inputCharset}
+doucome.alipay.signType = ${doucome_alipay_signType}
+doucome.alipay.transport = ${doucome_alipay_transport} 

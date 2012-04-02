@@ -26,4 +26,16 @@
 	
 	<bean id="searchService" class="com.ssnn.dujiaok.biz.service.impl.SearchServiceImpl"></bean>
 	
+	<bean id="alipayService" class="com.ssnn.dujiaok.biz.service.alipay.AlipayServiceImpl">
+		<property name="input_charset" value="${doucome.alipay.inputCharset}"/>
+		<property name="sign_type" value="${doucome.alipay.signType}"/>
+		<property name="transport" value="${doucome.alipay.transport}"/>
+		<property name="gateway" value="${doucome.alipay.gateway}"/>
+		<property name="partner" value="${doucome.alipay.partner}"/>
+		<property name="return_url" value="${doucome.alipay.returnUrl}"/>
+		<property name="notify_url" value="${doucome.alipay.notifyUrl}"/>
+		<property name="seller_email" value="${doucome.alipay.email}"/>
+		<property name="key" value="${doucome.alipay.key}"/>
+		<property name="production" value="${doucome.production}"/>
+	</bean>
 </beans>

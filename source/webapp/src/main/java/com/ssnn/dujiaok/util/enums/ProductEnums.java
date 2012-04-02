@@ -1,5 +1,7 @@
 package com.ssnn.dujiaok.util.enums;
 
+import org.springframework.util.StringUtils;
+
 import com.ssnn.dujiaok.constant.Constant;
 
 /**
@@ -53,6 +55,19 @@ public enum ProductEnums {
 			if(e.getName().equals(name)){
 				return e ;
 			}
+		}
+		return UNKNOWN ;
+	}
+	
+	public static ProductEnums fromProductId(String productId){
+		if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_HOTEL)){
+			return HOTEL ;
+		}else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_HOTELROOM)){
+			return HOTEL_ROOM ;
+		}else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_SELFDRIVE)){
+			return SELFDRIVE ;
+		}else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_TICKET)){
+			return TICKET ;
 		}
 		return UNKNOWN ;
 	}

@@ -11,10 +11,12 @@ import com.ssnn.dujiaok.biz.service.OrderService;
 import com.ssnn.dujiaok.biz.service.SelfDriveService;
 import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.biz.service.product.ProductDetailService;
+import com.ssnn.dujiaok.constant.Constant;
 import com.ssnn.dujiaok.model.AbstractProduct;
 import com.ssnn.dujiaok.model.OrderDO;
 import com.ssnn.dujiaok.model.ProductDetailDO;
 import com.ssnn.dujiaok.model.SelfDriveDO;
+import com.ssnn.dujiaok.util.enums.ProductEnums;
 import com.ssnn.dujiaok.util.order.OrderUtils;
 import com.ssnn.dujiaok.util.string.StringUtil;
 import com.ssnn.dujiaok.web.action.BasicAction;
@@ -66,7 +68,7 @@ public class MakeOrderAction extends BasicAction implements ModelDriven<OrderDO>
 		orderDO.setPrice(getOrderPrice(this.orderDO, detailDO, product));
 		
 		OrderUtils.setOrderDefaultValue(orderDO);
-		
+		orderDO.setProductType(ProductEnums.fromProductId(product.getProductId()).getName()) ;
 		if(StringUtil.isEmpty(orderDO.getOrderId())) {
 			try {
 				this.orderService.insertOrderAndDetailContact(orderDO);
@@ -101,7 +103,7 @@ public class MakeOrderAction extends BasicAction implements ModelDriven<OrderDO>
 	}
 	
 	private BigDecimal getOrderPrice(OrderDO order, ProductDetailDO detailDO, AbstractProduct productDO) {
-		if (order.getProductId().startsWith("ZJ")) {
+		if (order.getProductId().startsWith(Constant.PREFIX_SELFDRIVE)) {
 			int doubleNum = this.orderDO.getCount()/2;
 			int days = ((SelfDriveDO) productDO).getDays();
 			return detailDO.getDoublePrice().multiply(new BigDecimal(doubleNum)).add(

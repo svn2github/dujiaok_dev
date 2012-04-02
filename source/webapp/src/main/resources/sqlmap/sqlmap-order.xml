@@ -189,7 +189,7 @@
 		<![CDATA[
 		UPDATE DJ_ORDER
 		set ALIPAY_ID = #alipayId#,
-			PAY_STATUS = #alipayStatus#,
+			PAY_STATUS = #payStatus#,
 			STATUS = #status#,
 			GMT_MODIFIED = now()
 		where ORDER_ID = #orderId#

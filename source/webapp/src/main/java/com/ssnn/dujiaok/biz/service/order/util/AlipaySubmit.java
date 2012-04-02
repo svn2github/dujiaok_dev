@@ -6,11 +6,12 @@ import java.util.Map;
 
 import org.apache.commons.httpclient.NameValuePair;
 
-import com.ssnn.dujiaok.biz.service.order.AlipayConfig;
 import com.ssnn.dujiaok.biz.service.order.util.httpclient.HttpProtocolHandler;
 import com.ssnn.dujiaok.biz.service.order.util.httpclient.HttpRequest;
 import com.ssnn.dujiaok.biz.service.order.util.httpclient.HttpResponse;
 import com.ssnn.dujiaok.biz.service.order.util.httpclient.HttpResultType;
+import com.ssnn.dujiaok.constant.EnvConstant;
+import com.ssnn.dujiaok.util.EnvPropertiesUtil;
 
 /* *
  *类名：AlipaySubmit
@@ -38,7 +39,7 @@ public class AlipaySubmit {
 
         //签名结果与签名方式加入请求提交参数组中
         sPara.put("sign", mysign);
-        sPara.put("sign_type", AlipayConfig.sign_type);
+        sPara.put("sign_type", EnvPropertiesUtil.getProperty(EnvConstant.alipay_signType));
 
         return sPara;
     }
@@ -60,7 +61,7 @@ public class AlipaySubmit {
         StringBuffer sbHtml = new StringBuffer();
 
         sbHtml.append("<form id=\"alipaysubmit\" name=\"alipaysubmit\" action=\"" + gateway
-                      + "_input_charset=" + AlipayConfig.input_charset + "\" method=\"" + strMethod
+                      + "_input_charset=" + EnvPropertiesUtil.getProperty(EnvConstant.alipay_inputCharset) + "\" method=\"" + strMethod
                       + "\">");
 
         for (int i = 0; i < keys.size(); i++) {
@@ -108,10 +109,10 @@ public class AlipaySubmit {
 
         HttpRequest request = new HttpRequest(HttpResultType.BYTES);
         //设置编码集
-        request.setCharset(AlipayConfig.input_charset);
+        request.setCharset(EnvPropertiesUtil.getProperty(EnvConstant.alipay_inputCharset));
 
         request.setParameters(generatNameValuePair(sPara));
-        request.setUrl(gateway+"_input_charset="+AlipayConfig.input_charset);
+        request.setUrl(gateway+"_input_charset=" + EnvPropertiesUtil.getProperty(EnvConstant.alipay_inputCharset));
 
         HttpResponse response = httpProtocolHandler.execute(request);
         if (response == null) {

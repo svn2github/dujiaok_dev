@@ -5,7 +5,8 @@ import java.security.SignatureException;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-import com.ssnn.dujiaok.biz.service.order.AlipayConfig;
+import com.ssnn.dujiaok.constant.EnvConstant;
+import com.ssnn.dujiaok.util.EnvPropertiesUtil;
 
 /** 
 * 功能：支付宝MD5签名处理核心文件，不需要修改
@@ -28,7 +29,7 @@ public class AlipayMd5Encrypt {
      */
     public static String md5(String text) {
 
-        return DigestUtils.md5Hex(getContentBytes(text, AlipayConfig.input_charset));
+        return DigestUtils.md5Hex(getContentBytes(text, EnvPropertiesUtil.getProperty(EnvConstant.alipay_inputCharset) ));
 
     }
 

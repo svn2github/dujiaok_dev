@@ -4,7 +4,7 @@ import java.io.UnsupportedEncodingException;
 
 import org.apache.commons.httpclient.Header;
 
-import com.ssnn.dujiaok.biz.service.order.AlipayConfig;
+import com.ssnn.dujiaok.util.EnvPropertiesUtil;
 
 /* *
  *类名：HttpResponse
@@ -61,7 +61,7 @@ public class HttpResponse {
             return stringResult;
         }
         if (byteResult != null) {
-            return new String(byteResult, AlipayConfig.input_charset);
+            return new String(byteResult, EnvPropertiesUtil.getProperty("doucome.alipay.inputCharset"));
         }
         return null;
     }
