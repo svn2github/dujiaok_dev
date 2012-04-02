@@ -8,3 +8,5 @@ doucome.port = ${doucome_port}
 doucome.static.url = ${doucome_static_url}
 
 doucome.production = ${doucome_production}
+
+doucome.config.insurancePrice = ${doucome_config_insurancePrice}
