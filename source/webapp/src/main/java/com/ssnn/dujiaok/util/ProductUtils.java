@@ -128,7 +128,7 @@ public class ProductUtils {
 					bottomPrice = bd ;
 					continue ;
 				}
-				if(bottomPrice.compareTo(bd) == -1){
+				if(bottomPrice.compareTo(bd) == 1){
 					bottomPrice = bd ;
 					continue ;
 				}

@@ -90,7 +90,7 @@
 			GMT_EXPIRE <= #gmtExpire#
 			]]>
 		</isNotEmpty>
-		ORDER BY GMT_MODIFIED DESC LIMIT #start# , #size# 
+		ORDER BY GMT_EXPIRE DESC LIMIT #start# , #size# 
 	</select>
 
 

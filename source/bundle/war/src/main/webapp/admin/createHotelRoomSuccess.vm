@@ -18,13 +18,13 @@
         <td>&nbsp;</td>
         <td>您还可以<br />
             <div>
-                <a href="${env.root}/admin/createHotelRoom.htm?productId=${productId}">后台首页</a>
+                <a href="${env.root}/admin/index.htm">后台首页</a>
             </div>
             <div>
                 <a href="${env.root}/admin/createHotelRoom.htm">继续发布</a>
             </div>
             <div>
-                <a href="${env.root}/admin/createHotelRoom.htm?productId=${productId}">查看发布信息</a>
+                <a href="${env.root}/product/detail.htm?productId=${productId}">查看发布信息</a>
             </div>
             <div>
                 <a href="${env.root}/admin/createHotelRoom.htm?productId=${productId}">编辑发布信息</a>

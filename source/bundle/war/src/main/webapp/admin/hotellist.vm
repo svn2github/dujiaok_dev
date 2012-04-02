@@ -88,7 +88,7 @@
                             &nbsp;&nbsp;<a href="${env.root}/product/detail.htm?productId=$!room.productId" target="_product">$!room.name</a> 
                         </td>
                         <td></td>
-                        <td class="F9">#AUTOCHECK_TIME($!room.gmtExpire,'yyyy-MM-dd')</td>
+                        <td class="F9">#OUTPUT_EXP_TIME($!room.gmtExpire,'yyyy-MM-dd')</td>
                         <td>
                 			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createHotelRoom.htm?productId=$!room.productId');">复制链接</a>&nbsp;&nbsp;
                             <a href="${env.root}/admin/createHotelRoom.htm?productId=$!room.productId">修改</a>&nbsp;&nbsp;
@@ -109,7 +109,7 @@
  </form>
  
 #XUI_JS(["core/xui-core.js","util/util-min.js"])
-#JS(["validator.js","dujiaok.js"])
+#JS(["validator.js","dujiaok.js","admin.js"])
 <script type="text/javascript">
     var gmtExpire = '$dateUtils.format($!gmtExpire,"yyyy-MM-dd")' ;
     setupSelect('gmtExpire',gmtExpire) ;

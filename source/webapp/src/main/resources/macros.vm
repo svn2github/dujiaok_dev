@@ -102,6 +102,19 @@
 	#end
 #end
 
+#macro(OUTPUT_EXP_TIME $time $format)
+	#if($time)
+    	
+    	#if($dateUtils.beforeNow($time))
+    		<span style="color:#bbb;">$dateUtils.format($time,$format)</span>
+    	#elseif($dateUtils.afterDays($time , 7))
+			<span >$dateUtils.format($time,$format)</span>
+		#else
+			<span style="color:red;">$dateUtils.format($time,$format)</span>
+		#end
+	#end
+#end
+
 #macro(ESC_HTML $txt)
 	#if($txt)
 	$stringUtils.escapeHtml($txt)

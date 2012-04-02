@@ -43,7 +43,7 @@
                         		<input name="Accident_Insurance" type="checkbox" value="" id="Accident_Insurance" checked /></li>
                     		<li class="Insurance_name">自由行-平安国内短途意外险</li>
                     		<li style="display:none">市场价：<span id="Insurance_mkprice">20</span>元</li>
-                    		<li>ok价：<span id="Insurance_okprice">20</span>元(天/人)</li>
+                    		<li>ok价：<span id="Insurance_okprice">$env.getProp("doucome.config.insurancePrice");</span>元(天/人)</li>
                     		<li><span class="F10" id="Insurance_oknum"></span>份</li>
                     		<li><span class="F9"><span id="Insurance_okTotal">6</span>元</span></p></li>
                         </ul>

@@ -88,11 +88,14 @@
 		</div>
 		-->
 		
-		
+		#set($detailItems = $!product.defaultDetailItems)
 		<div class="hotelDtl">
 			<div class="hDtl1">
+				#if(!$collectionUtils.isEmpty($detailItems))
 				<div class="price"><span class="ttl">特惠价</span><span class="num">￥<strong>$product.bottomPrice</strong>元起</span></div>
-
+				#else
+                    <div class="price"><span class="ttl">特惠价</span><span class="num">暂时无定价</span></div>
+				#end
 				<table>
 					<tbody><tr><th><strong>市场价：</strong></th><td>$!product.marketPrice 元</td></tr>
 					<tr><th><strong>商品编号：</strong></th><td>$!product.productId</td></tr>
@@ -103,8 +106,7 @@
 				</tbody></table>
 			</div>
 			<div class="date">
-					#set($detailItems = $!product.defaultDetailItems)
-					#if($detailItems)
+					#if(!$collectionUtils.isEmpty($detailItems))
 					<form id="orderForm" action="${env.root}/order/book.htm" method="get">
                 	<ul>
                     	<li>使用日期：
@@ -123,16 +125,14 @@
                          <li>
 							  成人数：<input type="text" name="count" id="adultNum" value="1" style="width:20px;">
 							  儿童数：<input type="text" name="secondaryCount" id="childNum" value="0" style="width:20px;">
-                         </li>
-							
-							
-							
+                         </li>		
                     </ul>
                 	<button type="submit" class="order" onclick="return checkOrder() ;">立即订购</button>
 					<input type="hidden" id="productId" name="productId" value="$product.productId" />
 					<input type="hidden" id="productType" name="productType" value="ZJ" />
                 </form>
 				#else
+					该产品暂时无定价
 				#end
 				<p class="gray">拨打电话预定 400 666 5599</p>
 			</div>
@@ -143,9 +143,9 @@
 <!-- main结束 -->
 
 
-#JS(["validator.js"])
+#JS(["validator.js","detail.js"])
 #STATIC("JS",["/blogcal/blogcalendar.js"])
-#XUI_JS(["core/xui-core.js","util/util-min.js"])
+
 
 <script>
     
@@ -203,37 +203,39 @@
     	onToday: function(o){ o.className = "onToday"; },
     	onFinish: function(){
     		var self = this;
-    		
-    		xui.util.Ajax.asyncGET(url , 
-    				function(data){
-            			try{
-            				var obj = eval('('+data+')') ;
-            				var calendar = obj.calendar ;
-    						
-    						$element("idCalendarYear").innerHTML = cale.Year; 
-							$element("idCalendarMonth").innerHTML = cale.Month;
-    						var flag = calendar  ;
-                    		// var flag = [{severtime:"2012-01",data:[{id:10,name:"250元"},{id:15,name:"250"},{id:16,name:"250"}]},{severtime:"2012-02",data:[{id:12,name:"250元"},{id:14,name:"250"},{id:16,name:"250"}]}];
-                    		for(var i = 0, len = flag.length; i < len; i++){
-                    			var timer = flag[i].severtime.split("-");
-                    			var b = self.Year == timer[0] && self.Month == timer[1]?true:false;
-                    			if(b){
-                    				var pricredate = flag[i].data;
-                    				for(var i = 0; i<pricredate.length; i++){
-                    					self.Days[pricredate[i].id].innerHTML = "<a href='javascript:void(0);' onclick=\"alert('日期是:"+self.Year+"/"+self.Month+"/"+pricredate[i].id+"');return false;\">" + pricredate[i].id + "</a><br>"+pricredate[i].name+"";
-                    				}
-                    			}
-                    		}
-    						
-    						
-            			}catch(e){
-            				alert('初始化日历失败！');
-            			}
-            		} , 
-            		function(data){
-            			alert("get data error!") ;
-            		}
-            ) ;
+    		$.ajax({
+                url: url ,
+                type: 'GET',
+                error: function(){
+                    alert("get data error!") ;
+                },
+                success: function(data){
+                    try{
+        				//var obj = eval('('+data+')') ;
+						var obj = data ;
+        				var calendar = obj.calendar ;
+						
+						$element("idCalendarYear").innerHTML = cale.Year; 
+						$element("idCalendarMonth").innerHTML = cale.Month;
+						var flag = calendar  ;
+                		// var flag = [{severtime:"2012-01",data:[{id:10,name:"250元"},{id:15,name:"250"},{id:16,name:"250"}]},{severtime:"2012-02",data:[{id:12,name:"250元"},{id:14,name:"250"},{id:16,name:"250"}]}];
+                		for(var i = 0, len = flag.length; i < len; i++){
+                			var timer = flag[i].severtime.split("-");
+                			var b = self.Year == timer[0] && self.Month == timer[1]?true:false;
+                			if(b){
+                				var pricredate = flag[i].data;
+                				for(var i = 0; i<pricredate.length; i++){
+                					self.Days[pricredate[i].id].innerHTML = "<a href='javascript:void(0);' onclick=\"alert('日期是:"+self.Year+"/"+self.Month+"/"+pricredate[i].id+"');return false;\">" + pricredate[i].id + "</a><br>"+pricredate[i].name+"";
+                				}
+                			}
+                		}
+						
+						
+        			}catch(e){
+        				alert('初始化日历失败！');
+        			}
+                }
+            });
     	}
     });
 

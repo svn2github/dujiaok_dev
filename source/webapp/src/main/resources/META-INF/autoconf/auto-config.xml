@@ -29,6 +29,10 @@
 		<property name="doucome.appserver.port" defaultValue="8080" description="appserver port">
 			<validator name="number"></validator>
 		</property>
+		
+		<property name="doucome.config.insurancePrice" defaultValue="10" description="保险价格">
+			<validator name="number"></validator>
+		</property>
 	</group>
 	
 	<script>

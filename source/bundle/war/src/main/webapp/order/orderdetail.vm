@@ -27,7 +27,7 @@
     		<h2 class="banner mgt20"><strong>附加产品</strong></h2>
 			#if($orderDO.insureNum > 0)
 				<div class="mgt10 attPro">
-					<label>自由行-平安国内短途游意外险</label><span>市场价：￥20 人/天</span> x $product.days 天 x <strong>$!orderDO.insureNum</strong> 份</span>
+					<label>自由行-平安国内短途游意外险</label><span>市场价：￥ $env.getProp("doucome.config.insurancePrice") 人/天</span> x $product.days 天 x <strong>$!orderDO.insureNum</strong> 份</span>
 				</div>
             #end
     		

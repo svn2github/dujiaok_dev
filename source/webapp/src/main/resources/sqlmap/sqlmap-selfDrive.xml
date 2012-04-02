@@ -87,10 +87,10 @@
 		</isNotEmpty>
 		<isNotEmpty property="gmtExpire" prepend="AND">
 			<![CDATA[
-			GMT_EXPIRE > #gmtExpire#
+			GMT_EXPIRE <= #gmtExpire#
 			]]>
 		</isNotEmpty>
-		ORDER BY GMT_MODIFIED DESC LIMIT #start# , #size# 
+		ORDER BY GMT_EXPIRE DESC LIMIT #start# , #size# 
 	</select>
 
 	<select id="countSelfDrives" resultClass="Integer">
@@ -109,7 +109,7 @@
 		</isNotEmpty>
 		<isNotEmpty property="gmtExpire" prepend="AND">
 			<![CDATA[
-			GMT_EXPIRE > #gmtExpire#
+			GMT_EXPIRE <= #gmtExpire#
 			]]>
 		</isNotEmpty>
 	</select>

@@ -132,7 +132,7 @@
  </form>
  
 #XUI_JS(["core/xui-core.js","util/util-min.js"])
-#JS(["validator.js","dujiaok.js"])
+#JS(["validator.js","dujiaok.js","admin.js"])
 <script type="text/javascript">
     
     var toPage = function(page , size){

@@ -4,9 +4,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import com.ssnn.dujiaok.constant.OrderStatus;
-import com.ssnn.dujiaok.constant.PayStatus;
 import com.ssnn.dujiaok.model.OrderDO;
+import com.ssnn.dujiaok.util.enums.OrderStatusEnums;
+import com.ssnn.dujiaok.util.enums.PayStatusEnums;
 
 public final class OrderUtils {
 	
@@ -29,8 +29,8 @@ public final class OrderUtils {
 	}
 	
 	public static void setOrderDefaultValue(OrderDO orderDO) {
-		orderDO.setStatus(OrderStatus.UNPAY.toString());
-		orderDO.setPayStatus(PayStatus.TRADE_UNPAY.toString());
+		orderDO.setStatus(OrderStatusEnums.UNPAID.getName());
+		orderDO.setPayStatus(PayStatusEnums.UNPAID.getName());
 	}
 	
 	public static String getOrderInfoDesc(OrderDO order) {

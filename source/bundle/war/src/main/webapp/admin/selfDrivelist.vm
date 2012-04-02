@@ -69,7 +69,7 @@
                     <a href="${env.root}/product/detail.htm?productId=${selfDrive.productId}" target="_blank">$!selfDrive.name</a> #if(!$stringUtils.isBlank($selfDrive.memo))<img height="14" width="14" title="#ESC_HTML($selfDrive.memo)" src="${env.staticroot}/images/bz_icon.png">#end
                 </td>
                 <td>$!selfDrive.destProvince $!selfDrive.destCity</td>
-                <td class="F9">#AUTOCHECK_TIME($!selfDrive.gmtExpire,'yyyy-MM-dd')</td>
+                <td class="F9">#OUTPUT_EXP_TIME($!selfDrive.gmtExpire,'yyyy-MM-dd')</td>
                 <td>
         			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createTicket.htm?productId=$ticket.productId');">复制链接</a>&nbsp;&nbsp;
                     <a href="${env.root}/admin/createSelfDrive.htm?productId=$selfDrive.productId">修改</a>&nbsp;&nbsp;
@@ -88,7 +88,7 @@
 #parse('common/back_pagination.vm')
  </form>
  
-#XUI_JS(["core/xui-core.js","util/util-min.js"])
+#XUI_JS(["core/xui-core.js","util/util-min.js","admin.js"])
 #JS(["validator.js","dujiaok.js"])
 <script type="text/javascript">
     var gmtExpire = '$dateUtils.format($!gmtExpire,"yyyy-MM-dd")' ;

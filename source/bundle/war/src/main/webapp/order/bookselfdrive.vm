@@ -46,7 +46,7 @@
             		<td>$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd') 至 $dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')</td>
                     <td>平安意外险</td>
 					#set($totalCount = $orderDO.count)
-                    <td>￥<span style="color:red">20</span>人/天 x $product.days 天</td>
+                    <td>￥<span style="color:red">$env.getProp("doucome.config.insurancePrice")</span>人/天 x $product.days 天</td>
                     <td><input type="text" name="insureNum" id="insureNum" maxlength="3" class="wpx34" value="$!orderDO.count" style="width:40px;"/></td>
         		</tr>
 				<tr>
@@ -260,7 +260,7 @@ Totalorders.prototype = {
 			marketPrice = this.defaultValue(Number($element('marketPrice').value), 0),
 			insureNum = this.defaultValue(parseInt($element('insureNum').value), 0),
 			dayNum = this.defaultValue(parseInt($element('dayNum').value), 0);
-			insurancePrice = 20;
+			insurancePrice = insurancePrice = $env.getProp("doucome.config.insurancePrice");
 		$element('adultNum').value = adultNum;
 		$element('childNum').value = childNum;
 		$element('insureNum').value = insureNum;

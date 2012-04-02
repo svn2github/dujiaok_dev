@@ -1,6 +1,5 @@
 package com.ssnn.dujiaok.biz.service.impl;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -11,11 +10,12 @@ import com.ssnn.dujiaok.biz.dal.OrderDAO;
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.service.OrderService;
-import com.ssnn.dujiaok.constant.PayStatus;
+import com.ssnn.dujiaok.constant.AlipayStatus;
 import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.model.OrderContactDO;
 import com.ssnn.dujiaok.model.OrderDO;
 import com.ssnn.dujiaok.util.UniqueIDUtil;
+import com.ssnn.dujiaok.util.enums.PayStatusEnums;
 
 public class OrderServiceImpl implements OrderService {
 
@@ -89,8 +89,7 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Override
 	public int updateAlipayStatus(String orderId, String alipayId, String alipayStatus) {
-		PayStatus payStatus = PayStatus.getStatus(alipayStatus);
-        return orderDAO.updateAlipayStatus(orderId, alipayId,
-        		alipayStatus, payStatus.getOrderStatus().toString());
+		PayStatusEnums payStatus = AlipayStatus.toPayStatus(alipayStatus) ;
+        return orderDAO.updateAlipayStatus(orderId, alipayId, alipayStatus, payStatus.getName());
     }
 }

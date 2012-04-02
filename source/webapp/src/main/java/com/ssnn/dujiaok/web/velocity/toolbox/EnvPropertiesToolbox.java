@@ -38,6 +38,15 @@ public class EnvPropertiesToolbox {
 		return EnvPropertiesUtil.getProperty(key) ;
 	}
 	
+	/**
+	 * getProperty
+	 * @param key
+	 * @return
+	 */
+	public String getProp(String key){
+		return getProperty(key) ;
+	}
+	
 	public String getRoot(){
 		if(rootPath != null){
 			return rootPath ;

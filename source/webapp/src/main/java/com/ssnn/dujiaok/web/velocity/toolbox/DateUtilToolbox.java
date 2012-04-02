@@ -68,4 +68,16 @@ public class DateUtilToolbox {
 			return false ;
 		return t.after(new Date()) ;
 	}
+	
+	public boolean afterDays(Date t , int days){
+		if(t == null){
+			return false ;
+		}
+		Calendar c = Calendar.getInstance() ;
+		c.add(Calendar.DATE, 7) ;
+		if(t.after(c.getTime())){
+			return true ;
+		}
+		return false ;
+	}
 }

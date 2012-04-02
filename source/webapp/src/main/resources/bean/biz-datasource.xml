@@ -10,23 +10,23 @@
 			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
 			default-autowire="byName">
-
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-      destroy-method="close">
-      <property name="driverClass">
-         <value>com.mysql.jdbc.Driver</value>
-      </property>
-      <property name="jdbcUrl">
-         <value><![CDATA[${doucome.database.driver.url}]]></value>
-      </property>
-      <property name="properties">
-         <props>
-            <prop key="user">${doucome.database.driver.username}</prop>
-            <prop key="password">${doucome.database.driver.password}</prop>
-            <prop key="clientEncoding">UTF-8</prop>
-            <prop key="serverEncoding">UTF-8</prop>
-         </props>
-      </property>
-   </bean>
+   
+   <!-- oracle datasource -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+	    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+	    <property name="url" ><value><![CDATA[${doucome.database.driver.url}]]></value></property>
+	    <property name="username"><value>${doucome.database.driver.username}</value></property>
+	    <property name="password"><value>${doucome.database.driver.password}</value></property>
+	    <property name="maxActive"><value>14</value></property>
+	    <property name="initialSize"><value>1</value></property>
+        <property name="maxWait"><value>60000</value></property>
+        <property name="maxIdle"><value>14</value></property> <!-- 可以和maxActive保持一致 -->
+        <property name="minIdle"><value>1</value></property> <!-- 可以和initialSize保持一致 -->
+        <property name="removeAbandoned"><value>true</value></property>
+        <property name="removeAbandonedTimeout"><value>180</value></property>
+	    <property name="timeBetweenEvictionRunsMillis"><value>60000</value></property>
+	    <property name="minEvictableIdleTimeMillis"><value>1800000</value></property>
+	    <property name="connectionProperties"><value>bigStringTryClob=true;clientEncoding=UTF-8;defaultRowPrefetch=50;serverEncoding=UTF-8</value></property>
+	</bean>
 
 </beans>

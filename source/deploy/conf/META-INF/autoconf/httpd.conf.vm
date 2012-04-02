@@ -61,7 +61,7 @@ NameVirtualHost *
     ServerName www.dujiaok.com
     DocumentRoot ${doucome_htdocs_home}
     RewriteEngine on
-        RewriteCond %{HTTP_HOST} ^www.dujiaok.com [NC]
+    RewriteCond %{HTTP_HOST} ^www.dujiaok.com [NC]
     RewriteRule ^\/$ /home/index.htm [L,R]
 </VirtualHost>
 

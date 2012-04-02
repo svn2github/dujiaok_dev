@@ -1,6 +1,5 @@
 package com.ssnn.dujiaok.web.action.order;
 
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
