@@ -44,6 +44,7 @@
 		<property name="doucome.alipay.email" defaultValue="auskoala@hotmail.com" ></property>
 		<property name="doucome.alipay.inputCharset" defaultValue="UTF-8" ></property>
 		<property name="doucome.alipay.signType" defaultValue="MD5" />
+		<property name="doucome.alipay.transport" defaultValue="http"></property>
 	</group>
 	
 	<script>
