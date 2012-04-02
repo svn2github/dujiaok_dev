@@ -1,4 +1,8 @@
-﻿//判断时间是否合理开始--czz
+﻿var $element = function(id){
+	return document.getElementById(id) ;
+}
+
+//判断时间是否合理开始--czz
 	function judgeTime(){
 		var slcS=jQuery(".line_sep");						  
 		var L=slcS.size();
