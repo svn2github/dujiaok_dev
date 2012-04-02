@@ -1,6 +1,7 @@
 package com.ssnn.dujiaok.model;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
 import org.apache.commons.lang.time.DateUtils;
 
 import com.ssnn.dujiaok.util.ArrayStringUtils;
+import com.ssnn.dujiaok.util.DateUtil;
 import com.ssnn.dujiaok.util.ProductUtils;
 
 /**
@@ -223,7 +225,8 @@ public abstract class AbstractProduct {
 	
 	public List<DetailItemDO> getDefaultDetailItems(){
 		Date start = new Date() ;
-		start = DateUtils.addDays(start, 2) ;//
+		com.ssnn.dujiaok.util.DateUtils.setTime(start, 0, 0, 0) ;
+		start = DateUtils.addDays(start, 1) ;//预定一天后
 		Date end = new Date() ;
 		end = org.apache.commons.lang.time.DateUtils.addMonths(end, 1) ;
 		return getDetailItems(start, end) ;
