@@ -1,0 +1,20 @@
+.hotelSumm img{ width:192px; height:192px;}
+.hotelSumm table{ width:720px; height:192px;}
+.hotelSumm thead th{ height:36px;font-size:24px; color:#333; font-family:"微软雅黑";font-weight:bold;text-align:left;vertical-align:top;}
+.hotelSumm tbody th{width:65px; height:26px; line-height:26px;text-align:left; font-weight:normal; color:#999; vertical-align:top;}
+.hotelSumm tbody td{ height:26px;line-height:26px;color:#666;vertical-align:top;}
+.hotelBook dt{ margin-top:10px; padding:15px 0;font-size:14px; font-weight:bold; border-bottom:1px solid #dcdcdc;}
+.hotelBook dd{ padding:20px 0; height:100%; border-bottom:1px dashed #dcdcdc; overflow:hidden;}
+.hotelBook dd.last{border-bottom:none;}
+.hotelBook .order{background-position:-225px -135px;}
+.hotelBook .txt{width:787px;}
+.hotelBook .ttl{ width:480px;font-size:18px;font-family:"微软雅黑";font-weight:bold;color:#249F00;}
+.hotelBook .price{margin-bottom:15px; height:20px;color:#999;}
+.hotelBook .p1{float:left;margin-right:10px;_margin-top:10px;}
+.hotelBook .p2{float:left;margin-top:-10px;_margin-top:0;}
+.hotelBook .p2 strong{margin-right:5px;font-family:Arial; font-size:24px; color:#E8004C;}
+.hotelBook .p2 strong em{font-size:18px;}
+.hotelBook .order{float:left; margin:-5px 0 0 20px;_margin-top:0px;}
+.hBook2{clear:both; height:30px; overflow:hidden;}
+.hBook3{width:700px; white-space:inherit;overflow:hidden;}
+.hBook3 span{display:inline-block;margin:0 10px 10px 0; padding:0 7px; height:20px; line-height:20px; border:1px solid #DCDCDC; background:#F1F1F1; overflow:hidden;}
