@@ -1,6 +1,9 @@
 package com.ssnn.dujiaok.model;
 
 import java.util.Date;
+import java.util.List;
+
+import com.ssnn.dujiaok.util.ArrayStringUtils;
 
 /**
  * 
@@ -52,6 +55,16 @@ public class HotelRoomDO extends AbstractProduct{
 	private Date gmtCreate ;
 	
 	private Date gmtModified ;
+	
+	
+	public List<String> getRoomFacilitieList(){
+		return ArrayStringUtils.toList(this.roomFacilities) ;
+	}
+	
+	/**
+	 * --------------------------------------------------
+	 * @return
+	 */
 	
 	
 	public Date getGmtCreate() {

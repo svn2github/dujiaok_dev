@@ -1,52 +1,79 @@
-#set($layout="/product/default.vm")
+#set($layout="/front/default_new.vm")
+#CSS(["Hotel_area.css"])
 
-<div id="wrap">
-    <div class="section urhere">
-    	<p class="F3">您当前的位置： 酒店  - $!product.name</p>
-    </div>
-    
-    <div id="detail" class="section">
-    	<div class="d_left">
-        	<h2 class="d_title">$!product.name</h2>
-            <div id="Focus">
-                <ul id="Focus_content">
-                    <li class="circularPanel">
-                        <img src=$!product.imageList[0] width="710" height="250" />
-                        <h2></h2>
-                    </li>
-                </ul>
-	            <ul class="trigger">
-	                <li class="circularTrigger"></li>
-	            </ul>
-            </div>
-            <div style="padding-top:10px;">
-            	<div id="frame_content" width="710">
-            		<div id="pro_intro" class="FS12 F2">
-    					<div class="pro_intro_tab clearFix">
-				            <ul>
-				                <li class="cur"><a href="#introduction">产品介绍</a></li>
-				            </ul>
-        				</div>
-	        			<h2 id="introduction">产品介绍</h2>
-					    <p>$!product.introduction&nbsp;&nbsp;&nbsp;&nbsp;产品介绍产品介绍产品介绍产品介绍</p>
-	    			</div>
-            	</div>
-            </div>
-        </div>
-        
-        <div class="d_right">
-        	<div class="information">
-            	<table>
-                    <tr><th><strong>商品编号</strong>：</th><td>$!product.productId</td></tr>
-                    <tr><th><strong>星级</strong>：</th><td>$!product.starRate</td></tr>
-                    <tr><th><strong>地址</strong>：</th><td>$!product.destAddr</td></tr>
-                    <tr><th><strong>房间数量</strong>：</th><td>$!product.roomAmount</td></tr>
-                </table>
-            </div>
-            <div class="order"></div>
-        </div>
-    </div>
+<!-- main开始 -->
+<div class="w950">
+	<div class="L710 mgr10 ">
+		<div class="crumb">度假酒店 > $product.destCity > $product.name </div>
+	</div>
+	<div class="R230 mgt10">
+		
+	</div>
 </div>
+<div class="w950 hotelSumm">
+	<img class="L pad3" alt="" src="$!product.imageList[0]" height="192" width="192">
+	<table class="R">
+		<thead><tr><th colspan="2">$!product.name</th></tr></thead>
+		<tbody>
+			<tr><th>客房数量：</th><td>$!product.roomAmount</td></tr>
+			<tr><th>酒店地址：</th><td>[ $!product.destProvince - $!product.destCity ] $!product.destArea$!product.destAddr</td></tr>
+			<tr><th>酒店简介：</th><td>$!product.introduction</td></tr>
+		</tbody>
+	</table>
+</div>
+<dl class="w950 hotelBook">
+	<dt>客房预定</dt>
+	#foreach($room in $roomList.items)
+	<dd>
+        <a href="${env.root}/product/detail.htm?productId=$!room.productId" target="_blank"><img class="L pad3" alt="" src="$!room.imageList[0]" height="142" width="142"></img></a>
+		<div class="R txt">
+			<div class="hBook1">
+                <a href="${env.root}/product/detail.htm?productId=$!room.productId" target="_blank"><div class="L ttl">$!room.name</div></a>
+				<div class="R price">
+					<span class="p1">门市价：<span class="through">$!room.marketPrice</span>元</span><span class="p2"><strong><em>￥</em>$!room.bottomPrice</strong>起</span><a class="order" href="${env.root}/product/detail.htm?productId=$!room.productId">预定</a>
+				</div>
+			</div>
+			<div class="hBook2">
+				客房面积：$!room.roomArea 平米　　床型：$!room.bed
+			</div>
+			<div class="hBook3">
+				#foreach($facilitie in $room.roomFacilitieList)
+				<span>$facilitie</span>
+				#end
+			</div>
+		</div>
+	</dd>
+	#end
+	#parse("common/common_pagination.vm")
+	
+	<form id="roomForm" action="${env.root}/product/detail.htm" method="get">
+		<input type="hidden" name="productId" value="$!product.productId" />
+		<input type="hidden" id="roomStart" name="start" value="$!start"/>
+		<input type="hidden" id="roomSize" name="size" value="$!size"/>
+	</form>
+</dl>
 
-#STATIC("JS",["/blogcal/blogcalendar.js"])
-#XUI_JS(["core/xui-core.js","util/util-min.js","slide/slide.js"])
+<!-- main结束 -->
+
+
+#JS(["validator.js","detail.js"])
+
+<script>
+	var toPage = function(pages,size){
+		if(isNaN(pages)){
+			alert('请输入数字') ;
+			return false ;
+		}
+		var totalPages = $totalPages ;
+		if(pages > totalPages){
+			pages = totalPages ;
+		}
+		if(pages < 1){
+			pages = 1 ;
+		}
+        var start = (pages-1) * size + 1;
+        document.getElementById('roomStart').value = start ;
+        document.getElementById('roomSize').value = size ;
+        document.getElementById('roomForm').submit() ;
+    }
+</script>

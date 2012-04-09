@@ -1,11 +1,16 @@
 package com.ssnn.dujiaok.web.action.product;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.StringUtils;
 
+import com.opensymphony.xwork2.ModelDriven;
+import com.ssnn.dujiaok.biz.page.Pagination;
+import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.service.HotelRoomService;
 import com.ssnn.dujiaok.biz.service.HotelService;
 import com.ssnn.dujiaok.biz.service.SelfDriveService;
@@ -20,7 +25,7 @@ import com.ssnn.dujiaok.util.ProductUtils;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 @SuppressWarnings("serial")
-public class DetailAction extends BasicAction {
+public class DetailAction extends BasicAction implements ModelDriven<Pagination> {
 
 	private Object product;
 
@@ -38,7 +43,12 @@ public class DetailAction extends BasicAction {
 	
 	private List<String> imageList ;
 
+	private QueryResult<HotelRoomDO> roomList ;
+	
+	private Pagination pagination = new Pagination(1,5);
+	
 	private static final Log  LOGGER = LogFactory.getLog(DetailAction.class);
+	
 	@Override
 	public String execute() throws Exception {
 		
@@ -64,13 +74,14 @@ public class DetailAction extends BasicAction {
 			//自驾
 			product = selfDriveService.getSelfDriveWithDetails(productId);
 			result = ProductConstant.SELF_DRIVE ;
+		}else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_HOTEL)){
+			//JIUDIAN
+			product = hotelService.getHotel(productId);
+			Map<String,Object> condition = new HashMap<String,Object>() ;
+			condition.put("hotelId", productId) ;
+			roomList = hotelRoomService.getRooms(condition, pagination) ;
+			result = ProductConstant.HOTEL ;
 		}
-//		else if(StringUtils.startsWithIgnoreCase(productId, Constant.PREFIX_HOTEL)){
-//			if(product != null){
-//				product = hotelService.getHotel(productId);
-//			}
-//			return ProductConstant.HOTEL ;
-//		}
 		
 		if(product != null && product instanceof AbstractProduct){
 			AbstractProduct aProduct = (AbstractProduct)product ;
@@ -91,6 +102,22 @@ public class DetailAction extends BasicAction {
 	public List<String> getImageList() {
 		return imageList;
 	}
+
+
+	public void setPagination(Pagination pagination) {
+		this.pagination = pagination;
+	}
+
+
+	public Pagination getPagination() {
+		return pagination;
+	}
+
+
+	public QueryResult<HotelRoomDO> getRoomList() {
+		return roomList;
+	}
+
 
 	public String getProductId() {
 		return productId;
@@ -127,6 +154,12 @@ public class DetailAction extends BasicAction {
 
 	public void setHotelService(HotelService hotelService) {
 		this.hotelService = hotelService;
+	}
+
+
+	@Override
+	public Pagination getModel() {
+		return pagination ;
 	}	
 	
 }
