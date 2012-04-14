@@ -102,7 +102,7 @@
         						#if($!frontconfig.isHasLink())
             						<tr class="frontviewTr_$parity">
             							<td>
-            								链接地址：<input type="text" name="frontViews[$index].link" value="#" class="linkInput"/>
+            								链接地址：<input type="text" name="frontViews[$index].link" value="" class="linkInput"/>
             							</td>
                                     </tr>
         						#end
