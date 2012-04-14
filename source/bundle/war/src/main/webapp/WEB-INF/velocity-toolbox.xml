@@ -36,4 +36,10 @@
 		<scope>application</scope>
 		<class>com.ssnn.dujiaok.web.velocity.toolbox.FrontConstants</class>
 	</tool>
+	
+	<tool>
+		<key>decimalUtils</key>
+		<scope>application</scope>
+		<class>com.ssnn.dujiaok.web.velocity.toolbox.DecimalUtilsToolbox</class>
+	</tool>
 </toolbox> 
