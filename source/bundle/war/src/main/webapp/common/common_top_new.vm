@@ -22,6 +22,10 @@
             	<input type="hidden" name="size" id="size" value="$!size"/>
             	<input type="hidden" id="s_product" name="s_product" value="$!s_product"/>
             	<input type="hidden" id="s_days" name="s_days" value="$!s_days"/>
+				<input type="hidden" id="s_sellPrice" name="s_sellPrice" value="$!s_sellPrice"/>
+				<input type="hidden" id="s_order" name="s_order" value="$!s_order"/>
+				<input type="hidden" id="s_orderSeq" name="s_orderSeq" value="$!s_orderSeq"/>
+				<input type="hidden" id="s_sellPrice" name="s_sellPrice" value="$!s_sellPrice"/>
             </form>
 		</div>
 		<div class="serviceTel">400 800 3456</div>
@@ -170,11 +174,10 @@
 		</div>
 		<!-- 热门目的地结束 -->
 		<ul class="mainMenu">
-			<li><a href="#" class="current">首页</a></li>
-			<li><a href="#">周边自驾</a></li>
-			<li><a href="#">长线自助</a></li>
-			<li><a href="#">度假酒店</a></li>
-			<li><a href="#">打折门票</a></li>
+			<li><a href="${env.root}/home/index.htm" class="current">首页</a></li>
+			<li><a href="${env.root}/home/selfDrive.htm">周边自驾</a></li>			
+			<li><a href="${env.root}/home/hotel.htm">度假酒店</a></li>
+			<li><a href="${env.root}/home/ticket.htm">打折门票</a></li>
 		</ul>
 		<p class="subMenu"><a href="#">旅游攻略</a>|<a href="#">景点大全</a>|<a href="#">订购指南</a></p>
 	</div>

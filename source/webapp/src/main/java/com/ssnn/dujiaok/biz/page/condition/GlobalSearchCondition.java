@@ -1,5 +1,7 @@
 package com.ssnn.dujiaok.biz.page.condition;
 
+import java.math.BigDecimal;
+
 public class GlobalSearchCondition {
 
 	private String name ;
@@ -7,6 +9,17 @@ public class GlobalSearchCondition {
 	private String product ;
 	
 	private String place ;
+	
+	private String order ;
+	
+	private String orderSeq ;
+	
+	/**
+	 * 1,200
+	 */
+	private BigDecimal startPrice ;
+	
+	private BigDecimal endPrice ;
 
 	public String getName() {
 		return name;
@@ -31,6 +44,40 @@ public class GlobalSearchCondition {
 	public void setPlace(String place) {
 		this.place = place;
 	}
+
+	public BigDecimal getStartPrice() {
+		return startPrice;
+	}
+
+	public void setStartPrice(BigDecimal startPrice) {
+		this.startPrice = startPrice;
+	}
+
+	public BigDecimal getEndPrice() {
+		return endPrice;
+	}
+
+	public void setEndPrice(BigDecimal endPrice) {
+		this.endPrice = endPrice;
+	}
+
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
+	}
+
+	public String getOrderSeq() {
+		return orderSeq;
+	}
+
+	public void setOrderSeq(String orderSeq) {
+		this.orderSeq = orderSeq;
+	}
+
+	
 	
 	
 }

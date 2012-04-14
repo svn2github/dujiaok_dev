@@ -14,7 +14,7 @@
 			</div>
 			<table class="cnt">
 				<tr>
-					<th>产品类型：</th><td><p><a href="javascript:;" #if($s_product=="")class="current"#end onclick="return _search_p();">全部</a><a href="javascript:;" onclick="return _search_p('MP');" #if($s_product=="MP")class="current"#end>打折门票</a><a href="javascript:;" onclick="return _search_p('ZJ');" #if($s_product=="ZJ")class="current"#end>周边自驾</a><a href="javascript:;" onclick="return _search_p('FJ');" #if($s_product=="FJ")class="current"#end>酒店房间</a></p></td>
+					<th>产品类型：</th><td><p><a href="javascript:;" #if($s_product=="")class="current"#end onclick="return G_search('',#JSNULL($s_days),#JSNULL($s_sellPrice),#JSNULL($order),#JSNULL($orderSeq));">全部</a><a href="javascript:;" onclick="return G_search('MP',#JSNULL($s_days),#JSNULL($s_sellPrice),#JSNULL($order),#JSNULL($orderSeq));" #if($s_product=="MP")class="current"#end>打折门票</a><a href="javascript:;" onclick="return G_search('ZJ',#JSNULL($s_days),#JSNULL($s_sellPrice),#JSNULL($order),#JSNULL($orderSeq));" #if($s_product=="ZJ")class="current"#end>周边自驾</a><a href="javascript:;" onclick="return G_search('FJ',#JSNULL($s_days),#JSNULL($s_sellPrice),#JSNULL($order),#JSNULL($orderSeq));" #if($s_product=="FJ")class="current"#end>酒店房间</a></p></td>
 				</tr>
 				<!--
 				<tr>
@@ -39,7 +39,7 @@
 				很抱歉，没有搜索到与“<span class="orange">$!keyword</span>”相关的产品
 			#else
 			<div class="ttl">
-				<div class="L"><span>排序：</span><a href="#" class="current">推荐</a><a href="#">价格</a><a href="#">人气</a></div>
+				<div class="L"><span>排序：</span><a href="#" class="current">推荐</a><a href="#">价格</a></div>
 				<div class="R">
 					#parse("/common/common_pagination_simple.vm")
 				</div>

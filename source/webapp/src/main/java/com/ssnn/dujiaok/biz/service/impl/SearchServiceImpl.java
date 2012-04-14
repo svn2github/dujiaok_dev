@@ -32,15 +32,27 @@ public class SearchServiceImpl implements SearchService {
 		ProductEnums e = null ;
 		if(StringUtils.isNotBlank(condition.getProduct())){
 			e = ProductEnums.fromValue(condition.getProduct()) ;
+			if(e == ProductEnums.HOTEL){
+				e = null ; //暂时不支持酒店搜索
+			}
 		}
-		if(e == ProductEnums.HOTEL){
-			e = null ; //暂时不支持酒店搜索
-		}
+		
 		ProductEnums[] products = null ;
 		if(e != null){
 			products = new ProductEnums[]{e} ;
 		}else{
 			products = new ProductEnums[]{/*ProductEnums.HOTEL,*/ProductEnums.HOTEL_ROOM , ProductEnums.SELFDRIVE , ProductEnums.TICKET} ;
+		}
+		String order = condition.getOrder() ;
+		String orderSeq = condition.getOrderSeq() ;
+		if(StringUtils.isNotBlank(order)) {
+			map.put("order", order) ;
+			map.put("orderSeq", orderSeq) ;
+ 		}
+		//价格
+		if(condition.getStartPrice()!=null && condition.getEndPrice()!=null){
+			map.put("startPrice", condition.getStartPrice()) ;
+			map.put("endPrice", condition.getEndPrice()) ;
 		}
 		int count = searchDAO.countGlobalSearch(map , products) ;
 		List<SearchDO> list = searchDAO.globalSearch(map, pagination , products);

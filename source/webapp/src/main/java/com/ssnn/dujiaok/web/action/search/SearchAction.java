@@ -1,6 +1,7 @@
 package com.ssnn.dujiaok.web.action.search;
 
-import org.apache.commons.collections.CollectionUtils;
+import java.math.BigDecimal;
+
 import org.apache.commons.lang.StringUtils;
 
 import com.opensymphony.xwork2.ModelDriven;
@@ -10,7 +11,6 @@ import com.ssnn.dujiaok.biz.page.condition.GlobalSearchCondition;
 import com.ssnn.dujiaok.biz.service.SearchService;
 import com.ssnn.dujiaok.biz.service.product.ProductDetailService;
 import com.ssnn.dujiaok.model.SearchDO;
-import com.ssnn.dujiaok.util.enums.ProductEnums;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 /**
@@ -36,11 +36,26 @@ public class SearchAction extends BasicAction implements
 	 * 出游天数
 	 */
 	private int s_days ;
+	
+	/**
+	 * 价格 1,200 表示1-200 ， 
+	 */
+	private String s_sellPrice ;
 
 	/**
 	 * 地方
 	 */
 	private String place;
+	
+	/**
+	 * order字段 ， 价格|null
+	 */
+	private String s_order ;
+	
+	/**
+	 * order 顺序  desc asc
+	 */
+	private String s_orderSeq ;
 
 	private QueryResult<SearchDO> result;
 
@@ -58,6 +73,19 @@ public class SearchAction extends BasicAction implements
 			condition.setName(keyword);
 			condition.setPlace(place);
 			condition.setProduct(s_product);
+			condition.setOrder(s_order) ;
+			condition.setOrderSeq(StringUtils.equals(s_orderSeq, "desc") ?  "desc" : "asc") ;
+			if(StringUtils.isNotBlank(s_sellPrice)){
+				String[] s = StringUtils.split(s_sellPrice , ",") ;
+				if(s.length == 2){
+					String sStartPrice = s[0] ;
+					String sEndPrice = s[1] ;
+					if(StringUtils.isNumeric(sStartPrice) && StringUtils.isNumeric(sEndPrice)){
+						condition.setStartPrice(new BigDecimal(sStartPrice)) ;
+						condition.setEndPrice(new BigDecimal(sEndPrice)) ;
+					}
+				}
+			}
 			result = searchService.globalSearch(condition, pagination);
 
 		}
@@ -96,6 +124,14 @@ public class SearchAction extends BasicAction implements
 
 	
 
+	public String getS_sellPrice() {
+		return s_sellPrice;
+	}
+
+	public void setS_sellPrice(String s_sellPrice) {
+		this.s_sellPrice = s_sellPrice;
+	}
+
 	public String getS_product() {
 		return s_product;
 	}
@@ -124,6 +160,22 @@ public class SearchAction extends BasicAction implements
 	public void setProductDetailService(
 			ProductDetailService productDetailService) {
 		this.productDetailService = productDetailService;
+	}
+
+	public String getS_order() {
+		return s_order;
+	}
+
+	public void setS_order(String s_order) {
+		this.s_order = s_order;
+	}
+
+	public String getS_orderSeq() {
+		return s_orderSeq;
+	}
+
+	public void setS_orderSeq(String s_orderSeq) {
+		this.s_orderSeq = s_orderSeq;
 	}
 
 }

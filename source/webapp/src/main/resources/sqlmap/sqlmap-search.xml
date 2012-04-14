@@ -92,7 +92,26 @@
 					<include refid="search_selfDrive"/>
 				</isPropertyAvailable>
 			</isParameterPresent>
-		 TB1 ORDER BY GMT_MODIFIED DESC LIMIT #start# , #size#
+		 TB1 
+		 <isPropertyAvailable property="startPrice">
+		 <![CDATA[
+		 	BOTTOM_PRICE >= #startPrice# AND BOTTOM_PRICE <= #endPrice#
+		 	]]>
+		 </isPropertyAvailable>
+		 ORDER BY 
+		 <isEqual property="order" compareValue="price">
+		 	BOTTOM_PRICE
+		 </isEqual>
+		 <isNotEqual property="order" compareValue="price">
+		 	GMT_MODIFIED
+		 </isNotEqual>
+		 <isEqual property="orderSeq" compareValue="asc">
+		 	ASC
+		 </isEqual>
+		 <isNotEqual property="orderSeq" compareValue="asc">
+		 	DESC
+		 </isNotEqual>
+		   LIMIT #start# , #size#
 	</select>
 	
 	

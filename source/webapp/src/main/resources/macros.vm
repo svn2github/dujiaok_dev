@@ -139,6 +139,15 @@
 	$str
 #end
 
+#macro(JSNULL $val)
+	#if($val)
+		'$val'
+	#else
+		null
+	#end
+	
+#end
+
 #macro(SEARCH_KWD $keyword)
     <a href="${env.root}/search/global.htm?keyword=$stringUtils.encode($keyword)" >$keyword</a>
 #end
