@@ -140,7 +140,7 @@
         									<span class="gray">$!fv.detail</span>
         								</span>
         								<span class="c122">
-        									<span class="pink">￥$!fv.presentPrice</span>
+        									<span class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</span>
         									<span class="gray">起</span>
         								</span>
         							</a>
@@ -163,8 +163,8 @@
         				<a href="$!fv.link">
         					<img src="$!fv.photoURL" alt="$!fv.title" class="pad3"/>
         					<span class="c21">
-        						<strong class="pink">￥$!fv.presentPrice</strong>
-        						<em>￥$!fv.originalPrice</em>
+        						<strong class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</strong>
+        						<em>￥$!decimalUtils.formatPrice($!fv.originalPrice)</em>
         					</span>
         					<span class="c22">$!fv.title</span>
         				</a>

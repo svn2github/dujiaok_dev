@@ -31,4 +31,9 @@
 		<scope>application</scope>
 		<class>com.ssnn.dujiaok.web.velocity.toolbox.EnumUtilsToolbox</class>
 	</tool>
+	<tool>
+		<key>decimalUtils</key>
+		<scope>application</scope>
+		<class>com.ssnn.dujiaok.web.velocity.toolbox.DecimalUtilsToolbox</class>
+	</tool>
 </toolbox> 
