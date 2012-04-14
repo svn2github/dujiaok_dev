@@ -322,58 +322,6 @@
 		</ul>
 	</div>
 	<!-- idx4结束 -->
-	<!-- idx5开始 -->
-	<div class="mgt20 idx5">
-		<!-- i5L开始 -->
-
-		<div class="L i5L">
-			<div class="L i5L1">
-				#FRONT_EDIT_BUTTON($!indexChannel.getmDujiaokDynamicTop(), $isEdit)
-				<h2>$!frontViewMap.get($!indexChannel.getmDujiaokDynamicTop()).config.moduleName</h2>
-				#if($!frontViewMap.get($!indexChannel.getmDujiaokDynamicTop()).frontViews)
-                    #foreach($fv in $!frontViewMap.get($!indexChannel.getmDujiaokDynamicTop()).frontViews)
-						<a href="$!fv.link" class="itLink">
-        					<img src="$!fv.photoURL" alt="$!fv.title" class="L pad3" />
-        					<span class="R">$!fv.detail<em>阅读更多</em></span>
-        				</a>
-                    #end
-                #end
-				<ul class="mgt10">
-					#FRONT_EDIT_BUTTON($!indexChannel.getmDujiaokDynamic(), $isEdit)
-    				#if($!frontViewMap.get($!indexChannel.getmDujiaokDynamic()).frontViews)
-                		#foreach($fv in $!frontViewMap.get($!indexChannel.getmDujiaokDynamic()).frontViews)
-							<li><a href="$!fv.link">·$!fv.title</a></li>
-                		#end
-                	#end
-				</ul>
-			</div>
-			<div class="L i5L2"></div>
-			<div class="L i5L3">
-				#FRONT_EDIT_BUTTON($!indexChannel.getmTravelMateDynamic(), $isEdit)
-				<h2>$!frontViewMap.get($!indexChannel.getmTravelMateDynamic()).config.moduleName</h2>
-				<ul>
-					#if($!frontViewMap.get($!indexChannel.getmTravelMateDynamic()).frontViews)
-                		#foreach($fv in $!frontViewMap.get($!indexChannel.getmTravelMateDynamic()).frontViews)
-							 <li>
-        						<a href="$!fv.link">
-        							<img src="$!fv.photoURL" alt="$!fv.title" class="L" />
-        							<span class="R">
-        								<span class="ttl"><strong>[$!fv.category]</strong>$!fv.title</span>
-        								<span class="cnt">$!fv.detail</span>
-        							</span>
-        						</a>
-							 </li>
-                		#end
-                	#end
-				</ul>
-			</div>
-
-		</div>
-		<!-- i5L结束 -->
-		<div class="R i5R">
-			<iframe width="230" height="350" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=230&height=350&fansRow=2&ptype=0&speed=0&skin=2&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1751686452&verifier=75dfaa45&dpc=1"></iframe>
-		</div>
-	</div>
-	<!-- idx5结束 -->
+	#parse("/home/commonDynamic.vm")
 </div>
 <!-- main结束 -->

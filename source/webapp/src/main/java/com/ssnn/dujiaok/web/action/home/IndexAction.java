@@ -8,22 +8,23 @@ import com.ssnn.dujiaok.web.action.BasicAction;
 
 public class IndexAction extends BasicAction {
 
-	private FrontViewBO frontViewBO;
-	private Map<String, FrontViewVO> frontViewMap;
-	
-	@Override
-	public String execute() throws Exception {
-		frontViewMap = frontViewBO
-				.getFrontViewsMap(FrontConfigConstants.CHANNEL_INDEX_PAGE);
-		return SUCCESS;
-	}
+    private FrontViewBO              frontViewBO;
+    private Map<String, FrontViewVO> frontViewMap;
 
-	public Map<String, FrontViewVO> getFrontViewMap() {
-		return frontViewMap;
-	}
+    @Override
+    public String execute() throws Exception {
+        frontViewMap = frontViewBO.getFrontViewsMap(FrontConfigConstants.CHANNEL_INDEX_PAGE);
+        Map<String, FrontViewVO> commonViewMap = frontViewBO.getFrontViewsMap(FrontConfigConstants.CHANNEL_COMMON_PAGE);
+        frontViewMap.putAll(commonViewMap);
+        return SUCCESS;
+    }
 
-	public void setFrontViewBO(FrontViewBO frontViewBO) {
-		this.frontViewBO = frontViewBO;
-	}
+    public Map<String, FrontViewVO> getFrontViewMap() {
+        return frontViewMap;
+    }
+
+    public void setFrontViewBO(FrontViewBO frontViewBO) {
+        this.frontViewBO = frontViewBO;
+    }
 
 }

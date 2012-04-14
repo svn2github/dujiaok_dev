@@ -13,6 +13,10 @@ public abstract class FrontConfigConstants {
      */
     public static final String CHANNEL_INDEX_PAGE      = "index.page.channel";
     /**
+     * 首页频道key
+     */
+    public static final String CHANNEL_COMMON_PAGE     = "index.common.channel";
+    /**
      * 自驾游频道key
      */
     public static final String CHANNEL_SELF_DRIVE_PAGE = "self.drive.page.channel";

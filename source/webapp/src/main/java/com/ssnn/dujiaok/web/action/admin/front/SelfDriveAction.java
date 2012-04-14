@@ -1,13 +1,12 @@
 package com.ssnn.dujiaok.web.action.admin.front;
 
 import java.util.Map;
-
 import com.ssnn.dujiaok.biz.BO.FrontViewBO;
 import com.ssnn.dujiaok.constant.FrontConfigConstants;
 import com.ssnn.dujiaok.model.VO.FrontViewVO;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
-public class IndexAction extends BasicAction {
+public class SelfDriveAction extends BasicAction {
 
     private FrontViewBO              frontViewBO;
     private Map<String, FrontViewVO> frontViewMap;
@@ -15,7 +14,7 @@ public class IndexAction extends BasicAction {
 
     @Override
     public String execute() throws Exception {
-        frontViewMap = frontViewBO.getFrontViewsMap(FrontConfigConstants.CHANNEL_INDEX_PAGE);
+        frontViewMap = frontViewBO.getFrontViewsMap(FrontConfigConstants.CHANNEL_SELF_DRIVE_PAGE);
         Map<String, FrontViewVO> commonViewMap = frontViewBO.getFrontViewsMap(FrontConfigConstants.CHANNEL_COMMON_PAGE);
         frontViewMap.putAll(commonViewMap);
         return SUCCESS;
@@ -36,5 +35,4 @@ public class IndexAction extends BasicAction {
     public void setIsEdit(String isEdit) {
         this.isEdit = isEdit;
     }
-
 }

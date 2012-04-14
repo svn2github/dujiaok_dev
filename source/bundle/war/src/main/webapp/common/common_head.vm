@@ -1,6 +1,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>度假OK #if($title) - $title #end</title>
-#CSS(["common.css","search.css","index.css"])
+#CSS(["common.css","search.css","index.css","travel.css"])
 <script type="text/javascript">
 
   var _gaq = _gaq || [];

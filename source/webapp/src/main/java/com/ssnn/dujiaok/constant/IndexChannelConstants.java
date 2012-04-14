@@ -105,19 +105,6 @@ public class IndexChannelConstants {
      */
     public static final String M_LONG_TERM_ATTRACTIONS_RECOMMEND = "index.l-term.attract.recmd.module";
 
-    /**
-     * E1.1度假ok动态top
-     */
-    public static final String M_DUJIAOK_DYNAMIC_TOP             = "index.dujiaok.dynamic.top.module";
-    /**
-     * E1.2度假ok动态
-     */
-    public static final String M_DUJIAOK_DYNAMIC                 = "index.dujiaok.dynamic.module";
-    /**
-     * E2驴友热议
-     */
-    public static final String M_TRAVEL_MATE_DYNAMIC             = "index.travel.mate.module";
-
     public static String getChannelKey() {
         return CHANNEL_KEY;
     }
@@ -204,18 +191,6 @@ public class IndexChannelConstants {
 
     public static String getmLongTermAttractionsRecommend() {
         return M_LONG_TERM_ATTRACTIONS_RECOMMEND;
-    }
-
-    public static String getmDujiaokDynamicTop() {
-        return M_DUJIAOK_DYNAMIC_TOP;
-    }
-
-    public static String getmDujiaokDynamic() {
-        return M_DUJIAOK_DYNAMIC;
-    }
-
-    public static String getmTravelMateDynamic() {
-        return M_TRAVEL_MATE_DYNAMIC;
     }
 
 }

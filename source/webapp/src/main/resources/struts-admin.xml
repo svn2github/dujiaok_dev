@@ -16,6 +16,12 @@
 			<result name="success"  type="velocity">/home/index.vm</result>
 		</action>
 		
+		<action name="editSelfDrive" class="com.ssnn.dujiaok.web.action.admin.front.SelfDriveAction">
+			<interceptor-ref name="basicStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="velocity">/home/selfDrive.vm</result>
+		</action>
+		
 		<action name="editFrontModule" class="com.ssnn.dujiaok.web.action.admin.front.ModuleEditAction">
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="adminAuthInterceptor" />

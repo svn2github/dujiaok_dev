@@ -1,0 +1,181 @@
+#set($layout="/front/default_new.vm")
+#################################################
+
+#set($title = "周边自家")
+
+<!-- main开始 -->
+#set($selfDriveChannel= $fontConstants.selfDriveChannel)
+<div class="w950 index">
+	<!-- travel1开始 -->
+	<div class="mgt20 travel1">
+		<div class="L">
+			#FRONT_EDIT_BUTTON($!selfDriveChannel.getmImageAdsA1(), $isEdit)
+        	#if($!frontViewMap.get($!selfDriveChannel.getmImageAdsA1()).frontViews)
+        		#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmImageAdsA1()).frontViews)
+					<a href="$!fv.link" target="_blank">
+						<img src="$!fv.photoURL" alt="" />
+					</a>
+        		#end
+        	#end
+		</div>
+		<div class="R">
+			#FRONT_EDIT_BUTTON($!selfDriveChannel.getmImageAdsA2(), $isEdit)
+        	#if($!frontViewMap.get($!selfDriveChannel.getmImageAdsA2()).frontViews)
+        		#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmImageAdsA2()).frontViews)
+					<a href="$!fv.link" target="_blank">
+						<img src="$!fv.photoURL" alt="" />
+					</a>
+        		#end
+			#end
+		</div>	
+	</div>
+	<!-- travel1结束 -->
+	<!-- travel2开始 -->
+	<div class="mgt10 travel2">
+		<div class="L">
+			<div class="pad3 imgLink">
+				#FRONT_EDIT_BUTTON($!selfDriveChannel.getmImageAdsA3(), $isEdit)
+            	#if($!frontViewMap.get($!selfDriveChannel.getmImageAdsA3()).frontViews)
+            		#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmImageAdsA3()).frontViews)
+    					<a href="$!fv.link" target="_blank">
+    						<img src="$!fv.photoURL" alt="" />
+    					</a>
+            		#end
+    			#end
+			</div>
+		</div>
+		<div class="R idx1M">
+			<div class="txtLink">
+				<dl>
+					<dt>#FRONT_EDIT_BUTTON($!selfDriveChannel.getmSearchTheme(), $isEdit)
+						$!frontViewMap.get($!selfDriveChannel.getmSearchTheme()).config.moduleName
+					</dt>
+					<dd>
+						#if($!frontViewMap.get($!selfDriveChannel.getmSearchTheme()).frontViews)
+        					#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmSearchTheme()).frontViews)
+                                <a href="$!fv.link">$!fv.title</a>
+        					#end
+						#end
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						#FRONT_EDIT_BUTTON($!selfDriveChannel.getmSearchAttractions(), $isEdit)
+						$!frontViewMap.get($!selfDriveChannel.getmSearchAttractions()).config.moduleName
+					</dt>
+					<dd>
+						#if($!frontViewMap.get($!selfDriveChannel.getmSearchAttractions()).frontViews)
+        					#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmSearchAttractions()).frontViews)
+                                <a href="$!fv.link">$!fv.title</a>
+        					#end
+						#end
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						#FRONT_EDIT_BUTTON($!selfDriveChannel.getmSearchPeriphery(), $isEdit)
+						$!frontViewMap.get($!selfDriveChannel.getmSearchPeriphery()).config.moduleName
+					</dt>
+					<dd>
+						#if($!frontViewMap.get($!selfDriveChannel.getmSearchPeriphery()).frontViews)
+        					#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmSearchPeriphery()).frontViews)
+                                <a href="$!fv.link">$!fv.title</a>
+        					#end
+						#end
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						#FRONT_EDIT_BUTTON($!selfDriveChannel.getmSearchPrice(), $isEdit)
+						$!frontViewMap.get($!selfDriveChannel.getmSearchPrice()).config.moduleName
+					</dt>
+					<dd>
+						#if($!frontViewMap.get($!selfDriveChannel.getmSearchPrice()).frontViews)
+        					#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmSearchPrice()).frontViews)
+                                <a href="$!fv.link">$!fv.title</a>
+        					#end
+						#end
+					</dd>
+				</dl>
+			</div>
+		
+		</div>	
+	</div>
+	<!-- travel2结束 -->
+	<!-- travel3开始 -->
+	<div class="mgt10 travel3">
+		<div class="L">
+			<div class="box230 hSchL2">
+				#FRONT_EDIT_BUTTON($!selfDriveChannel.getmHotTitleB1(), $isEdit)
+				<div class="ttl">
+					<h2>$!frontViewMap.get($!selfDriveChannel.getmHotTitleB1()).config.moduleName</h2>
+				</div>
+				<ol class="orderList">
+					#if($!frontViewMap.get($!selfDriveChannel.getmHotTitleB1()).frontViews)
+        				#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmHotTitleB1()).frontViews)
+							#if($velocityCount <= 3)
+								<li class="li123"><i>$velocityCount</i><a href="$!fv.link">$!fv.title</a></li>
+							#else
+								<li><i>$velocityCount</i><a href="$!fv.link">$!fv.title</a></li>
+							#end
+        				#end
+					#end
+				</ol>
+			</div>
+		</div>
+		<div class="R">
+			<div class="box230 box710">
+				#FRONT_EDIT_BUTTON($!selfDriveChannel.getmHotTextB2(), $isEdit)
+				<div class="ttl">
+					<h2>$!frontViewMap.get($!selfDriveChannel.getmHotTextB2()).config.moduleName</h2>
+				</div>
+				<div class="floor">
+					<ul class="c12">
+						#if($!frontViewMap.get($!selfDriveChannel.getmHotTextB2()).frontViews)
+                        	#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmHotTextB2()).frontViews)
+        						<li>
+        							<a href="$!fv.link">
+        								<span class="c121">
+        									<span class="green">·$!fv.title</span>
+        									<span class="gray">$!fv.detail</span>
+        								</span>
+        								<span class="c122">
+        									<span class="pink">￥$!fv.presentPrice</span>
+        									<span class="gray">起</span>
+        								</span>
+        							</a>
+        						</li>
+                        	#end
+                        #end
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- travel3结束 -->
+	<!-- idx4开始 -->
+	<div class="mgt10 floor idx4">
+		<ul class="cnt2">
+			#FRONT_EDIT_BUTTON($!selfDriveChannel.getmHotImageC1(), $isEdit)
+    		#if($!frontViewMap.get($!selfDriveChannel.getmHotImageC1()).frontViews)
+                #foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmHotImageC1()).frontViews)
+					<li>
+        				<a href="$!fv.link">
+        					<img src="$!fv.photoURL" alt="$!fv.title" class="pad3"/>
+        					<span class="c21">
+        						<strong class="pink">￥$!fv.presentPrice</strong>
+        						<em>￥$!fv.originalPrice</em>
+        					</span>
+        					<span class="c22">$!fv.title</span>
+        				</a>
+        			</li>
+                #end
+            #end
+		</ul>
+	</div>
+	<!-- idx4结束 -->
+	<!-- idx5开始 -->
+	#parse("/home/commonDynamic.vm")
+	<!-- idx5结束 -->
+</div>
+<!-- main结束 -->
