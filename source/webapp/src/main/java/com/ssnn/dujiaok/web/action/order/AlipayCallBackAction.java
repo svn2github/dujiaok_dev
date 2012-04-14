@@ -1,11 +1,15 @@
 package com.ssnn.dujiaok.web.action.order;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import com.ssnn.dujiaok.biz.service.OrderService;
 import com.ssnn.dujiaok.biz.service.order.util.AlipayNotify;
+import com.ssnn.dujiaok.util.StreamUtil;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 @SuppressWarnings("serial")
@@ -19,6 +23,8 @@ public class AlipayCallBackAction extends BasicAction {
 	private String total_fee;
 	
 	private OrderService orderService;
+	
+	private static final Logger LOGGER = Logger.getLogger(AlipayCallBackAction.class);
 	
 	@Override
 	public String execute() {
@@ -41,11 +47,20 @@ public class AlipayCallBackAction extends BasicAction {
 			params.put(name, valueStr);
 		}
 		if (AlipayNotify.verify(params)) {
-//            logger.info("alipayReturn ::: out_trade_no=" + out_trade_no + ", trade_no=" + trade_no + ", trade_status="
-//                        + trade_status + "pensonId=" + this.getLoginUser().getPersonId());
+            LOGGER.info("alipayReturn ::: out_trade_no=" + out_trade_no + ", trade_no=" + trade_no + ", trade_status="
+                        + trade_status);
             orderService.updateAlipayStatus(out_trade_no, trade_no, trade_status);
+            PrintWriter writer = null;
+    		try {
+    			writer = this.getResponse().getWriter();
+    			writer.write("success");
+    		} catch (Throwable e) {
+    			LOGGER.error(e);
+    		} finally {
+    			StreamUtil.close(writer);
+    		}
         } else {
-        	//TODO log
+        	LOGGER.error("Alipay verify failed: " + params);
         }
 		
 		return SUCCESS;
