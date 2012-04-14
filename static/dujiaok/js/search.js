@@ -31,7 +31,7 @@ var G_search = function(product_type , days , sellPrice , order , orderSeq){
 	}
 	
 	if(product_type!=null && product_type!='' && typeof(product_type)!='undefined'){
-		document.getElementById('s_product').value = product ;
+		document.getElementById('s_product').value = product_type ;
 	}else{
 		document.getElementById('s_product').value = '' ;
 	}
