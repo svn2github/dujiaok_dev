@@ -17,50 +17,52 @@ import com.ssnn.dujiaok.model.VO.FrontViewVO;
  */
 public class FrontViewBO {
 
-	private FrontViewService frontViewService;
-	private FrontConfigService frontConfigService;
+    private FrontViewService   frontViewService;
+    private FrontConfigService frontConfigService;
 
-	public Map<String, FrontViewVO> getFrontViewsMap(String channelKey) {
-		List<FrontConfigDO> configs = (List<FrontConfigDO>) frontConfigService
-				.getFrontConfigs(channelKey);
-		if (configs == null) {
-			return null;
-		}
+    public Map<String, FrontViewVO> getFrontViewsMap(String channelKey) {
+        List<FrontConfigDO> configs = (List<FrontConfigDO>) frontConfigService.getFrontConfigs(channelKey);
+        if (configs == null) {
+            return null;
+        }
 
-		Map<String, FrontViewVO> resultMap = new HashMap<String, FrontViewVO>();
-		String moduleKey;
-		// 获取所有的moduleKey
-		for (FrontConfigDO frontConfigDO : configs) {
-			moduleKey = frontConfigDO.getModuleKey();
-			if (moduleKey != null) {
-				List<FrontViewDO> frontViews = (List<FrontViewDO>) frontViewService
-						.getFrontViewDOs(moduleKey, frontConfigDO
-								.getDispalyNum());
-				FrontViewVO viewVO=new FrontViewVO();
-				viewVO.setConfig(frontConfigDO);
-				viewVO.setFrontViews(frontViews);
-				resultMap.put(moduleKey, viewVO);
-			}
-		}
-		return resultMap;
-	}
+        Map<String, FrontViewVO> resultMap = new HashMap<String, FrontViewVO>();
+        String moduleKey;
+        // 获取所有的moduleKey
+        for (FrontConfigDO frontConfigDO : configs) {
+            moduleKey = frontConfigDO.getModuleKey();
+            if (moduleKey != null) {
+                List<FrontViewDO> frontViews = (List<FrontViewDO>) frontViewService.getFrontViewDOs(
+                                                                                                    moduleKey,
+                                                                                                    frontConfigDO.getDispalyNum());
+                FrontViewVO viewVO = new FrontViewVO();
+                viewVO.setConfig(frontConfigDO);
+                viewVO.setFrontViews(frontViews);
+                resultMap.put(moduleKey, viewVO);
+            }
+        }
+        return resultMap;
+    }
 
-	public List<FrontViewDO> getDefaultFrontViewsByModuleKey(String moduleKey) {
-		FrontConfigDO config = frontConfigService.getOneFrontConfig(moduleKey);
-		if (config != null) {
-			return frontViewService.getFrontViewDOs(moduleKey, config
-					.getDispalyNum());
-		}
-		
-		return null;
-	}
+    public FrontViewVO getDefaultFrontViewsByModuleKey(String moduleKey) {
+        FrontConfigDO config = frontConfigService.getOneFrontConfig(moduleKey);
+        if (config != null) {
+            FrontViewVO viewVO = new FrontViewVO();
+            viewVO.setConfig(config);
+            List<FrontViewDO> frontViews = frontViewService.getFrontViewDOs(moduleKey, config.getDispalyNum());
+            viewVO.setFrontViews(frontViews);
+            return viewVO;
+        }
 
-	public void setFrontViewService(FrontViewService frontViewService) {
-		this.frontViewService = frontViewService;
-	}
+        return null;
+    }
 
-	public void setFrontConfigService(FrontConfigService frontConfigService) {
-		this.frontConfigService = frontConfigService;
-	}
+    public void setFrontViewService(FrontViewService frontViewService) {
+        this.frontViewService = frontViewService;
+    }
+
+    public void setFrontConfigService(FrontConfigService frontConfigService) {
+        this.frontConfigService = frontConfigService;
+    }
 
 }

@@ -1,0 +1,34 @@
+<div class="box230 schR1">
+	#set($recommendModuleKey = $fontConstants.indexChannel.getmPeripheryTextRecommend())
+	<div class="ttl"><h2>推荐景点</h2></div>
+	<ol class="orderList">
+		#set($frontVO = $frontViewBO.getDefaultFrontViewsByModuleKey($!recommendModuleKey))
+		#if($!frontVO.frontViews)
+			#foreach($fv in $!frontVO.frontViews)
+    			#if($velocityCount <= 3)
+    				<li class="li123">
+    					<i>$velocityCount</i>
+    					<a href="$!fv.link">
+    						<span class="sp1">$!fv.title</span>
+    						<span class="pink">￥1$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+    						<span class="gray">起</span>
+    					</a>
+    				</li>
+        		#else
+    				<li>
+    					<i>$velocityCount</i>
+    					<a href="$!fv.link">
+    						<span class="sp1">$!fv.title</span>
+    						<span class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+    						<span class="gray">起</span>
+    					</a>
+    				</li>
+        		#end
+           #end
+		#end
+	</ol>
+</div>
+##<div class="mgt10 schR2">
+##	<a href="#"><img src="images/228_98_1.jpg" alt="" /></a>
+##	<a href="#"><img src="images/228_98_2.jpg" alt="" class="sR2Ad" /></a>
+##</div>

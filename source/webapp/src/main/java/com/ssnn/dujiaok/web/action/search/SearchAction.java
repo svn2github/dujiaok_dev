@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.apache.commons.lang.StringUtils;
 
 import com.opensymphony.xwork2.ModelDriven;
+import com.ssnn.dujiaok.biz.BO.FrontViewBO;
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.page.condition.GlobalSearchCondition;
@@ -62,6 +63,8 @@ public class SearchAction extends BasicAction implements
 	private SearchService searchService;
 
 	private ProductDetailService productDetailService;
+	
+	private FrontViewBO              frontViewBO;
 
 	private Pagination pagination = new Pagination(1);
 
@@ -177,5 +180,13 @@ public class SearchAction extends BasicAction implements
 	public void setS_orderSeq(String s_orderSeq) {
 		this.s_orderSeq = s_orderSeq;
 	}
+
+    public void setFrontViewBO(FrontViewBO frontViewBO) {
+        this.frontViewBO = frontViewBO;
+    }
+    
+    public FrontViewBO getFrontViewBO() {
+        return frontViewBO;
+    }
 
 }

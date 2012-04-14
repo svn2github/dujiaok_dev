@@ -19,16 +19,14 @@ public class CacheFrontConfigDAO extends IBatisFrontConfigDAO {
 		return frontConfigDOs;
 	}
 
-	// 获取单个，暂时不缓存
-	// public FrontConfigDO queryOneFrontConfig(String moduleKey) {
-	// FrontConfigDO frontConfigDO = frontConfigCache.getValue(moduleKey);
-	// if (frontConfigDO != null)
-	// return frontConfigDO;
-	//
-	// frontConfigDO = super.queryOneFrontConfig(moduleKey);
-	// frontConfigCache.putValue(moduleKey, frontConfigDO);
-	// return frontConfigDO;
-	// }
+    public FrontConfigDO queryOneFrontConfig(String moduleKey) {
+        FrontConfigDO frontConfigDO = frontConfigCache.getValue(moduleKey);
+        if (frontConfigDO != null) return frontConfigDO;
+
+        frontConfigDO = super.queryOneFrontConfig(moduleKey);
+        frontConfigCache.putValue(moduleKey, frontConfigDO);
+        return frontConfigDO;
+    }
 
 	public void setFrontConfigCache(AbstractCacheSupport frontConfigCache) {
 		this.frontConfigCache = frontConfigCache;

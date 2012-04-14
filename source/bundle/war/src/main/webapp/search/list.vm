@@ -83,25 +83,7 @@
 	<!-- schL结束 -->
 	<!-- searchR开始 -->
 	<div class="R searchR">
-		<div class="box230 schR1">
-			<div class="ttl"><h2>推荐景点</h2></div>
-			<ol class="orderList">
-				<li class="li123"><i>1</i><a href="#"><span class="sp1">苏州天颐温泉成</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
-				<li class="li123"><i>2</i><a href="#"><span class="sp1">南京颐尚温泉门票</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
-				<li class="li123"><i>3</i><a href="#"><span class="sp1">宁海森林温泉门票</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
-				<li><i>4</i><a href="#"><span class="sp1">黄山醉温泉普通</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
-				<li><i>5</i><a href="#"><span class="sp1">苏州天颐温泉成</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
-				<li><i>6</i><a href="#"><span class="sp1">苏州天颐温泉成</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
-				<li><i>7</i><a href="#"><span class="sp1">苏州天颐温泉成</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
-				<li><i>8</i><a href="#"><span class="sp1">黄山醉温泉普通</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
-				<li><i>9</i><a href="#"><span class="sp1">苏州天颐温泉成</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
-				<li><i>10</i><a href="#"><span class="sp1">黄山醉温泉普通</span><span class="pink">￥198</span><span class="gray">起</span></a></li>
-			</ol>
-		</div>
-		<div class="mgt10 schR2">
-			<a href="#"><img src="images/228_98_1.jpg" alt="" /></a>
-			<a href="#"><img src="images/228_98_2.jpg" alt="" class="sR2Ad" /></a>
-		</div>
+		#parse("/search/recommend.vm")
 	</div>
 	<!-- searchR结束 -->
 </div>
