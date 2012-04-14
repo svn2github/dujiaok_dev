@@ -60,15 +60,6 @@ public class SearchAction extends BasicAction implements
 			condition.setProduct(s_product);
 			result = searchService.globalSearch(condition, pagination);
 
-			if (CollectionUtils.isNotEmpty(result.getItems())) {
-				for (SearchDO item : result.getItems()) {
-					String productId = item.getProductId();
-					if (StringUtils.startsWith(productId,
-							ProductEnums.HOTEL.getName())) {
-						continue;
-					}
-				}
-			}
 		}
 
 		return SUCCESS;

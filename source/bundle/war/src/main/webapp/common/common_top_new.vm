@@ -35,8 +35,8 @@
 					<h3><span>当季精选旅游地</span></h3>
 					<div class="outer">
 						<div class="L">
-							<dl><dt>上海1</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
-							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
+							<dl><dt>上海1</dt><dd>#SEARCH_KWD("上海门票")|#SEARCH_KWD("上海自由行")|#SEARCH_KWD("跟团游上海")|#SEARCH_KWD("上海酒店")</dd></dl>
+							<dl><dt>上海</dt><dd>#SEARCH_KWD("上海门票")|#SEARCH_KWD("上海自由行")|#SEARCH_KWD("跟团游上海")|#SEARCH_KWD("上海酒店")</dd></dl>
 							<dl><dt>千岛湖</dt><dd><a href="#">千岛湖门票</a>|<a href="#">千岛湖自由行</a>|<a href="#">跟团游千岛湖</a>|<a href="#">千岛湖酒店</a></dd></dl>
 							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>
 							<dl><dt>上海</dt><dd><a href="#">上海门票</a>|<a href="#">上海自由行</a>|<a href="#">跟团游上海</a>|<a href="#">上海酒店</a></dd></dl>

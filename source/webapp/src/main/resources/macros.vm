@@ -138,3 +138,7 @@
 	#set ($str = $stringUtils.replace($text , $keyword ,$highlightKeyword))
 	$str
 #end
+
+#macro(SEARCH_KWD $keyword)
+    <a href="${env.root}/search/global.htm?keyword=$stringUtils.encode($keyword)" >$keyword</a>
+#end

@@ -14,7 +14,7 @@
 			</div>
 			<table class="cnt">
 				<tr>
-					<th>产品类型：</th><td><p><a href="javascript:;" #if($product=="")class="current"#end onclick="return _search_p();">全部</a><a href="javascript:;" onclick="return _search_p('MP');" #if($product=="MP")class="current"#end>打折门票</a><a href="javascript:;" onclick="return _search_p('ZJ');" #if($product=="ZJ")class="current"#end>周边自驾</a><a href="javascript:;" onclick="return _search_p('FJ');" #if($product=="FJ")class="current"#end>酒店房间</a></p></td>
+					<th>产品类型：</th><td><p><a href="javascript:;" #if($s_product=="")class="current"#end onclick="return _search_p();">全部</a><a href="javascript:;" onclick="return _search_p('MP');" #if($s_product=="MP")class="current"#end>打折门票</a><a href="javascript:;" onclick="return _search_p('ZJ');" #if($s_product=="ZJ")class="current"#end>周边自驾</a><a href="javascript:;" onclick="return _search_p('FJ');" #if($s_product=="FJ")class="current"#end>酒店房间</a></p></td>
 				</tr>
 				<!--
 				<tr>
