@@ -21,6 +21,16 @@
 			<interceptor-ref name="adminAuthInterceptor" />
 			<result name="success"  type="velocity">/home/selfDrive.vm</result>
 		</action>
+		<action name="editHotel" class="com.ssnn.dujiaok.web.action.admin.front.HotelAction">
+			<interceptor-ref name="basicStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="velocity">/home/hotel.vm</result>
+		</action>
+		<action name="editTicket" class="com.ssnn.dujiaok.web.action.admin.front.TicketAction">
+			<interceptor-ref name="basicStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="velocity">/home/ticket.vm</result>
+		</action>
 		
 		<action name="editFrontModule" class="com.ssnn.dujiaok.web.action.admin.front.ModuleEditAction">
 			<interceptor-ref name="defaultStack" />

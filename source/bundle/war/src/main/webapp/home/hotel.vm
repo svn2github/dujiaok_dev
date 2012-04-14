@@ -1,17 +1,17 @@
 #set($layout="/front/default_new.vm")
 #################################################
 
-#set($title = "周边自驾")
+#set($title = "度假酒店")
 
 <!-- main开始 -->
-#set($selfDriveChannel= $fontConstants.selfDriveChannel)
+#set($hotelChannel= $fontConstants.hotelChannel)
 <div class="w950 index">
 	<!-- travel1开始 -->
 	<div class="mgt20 travel1">
 		<div class="L">
-			#FRONT_EDIT_BUTTON($!selfDriveChannel.getmImageAdsA1(), $isEdit)
-        	#if($!frontViewMap.get($!selfDriveChannel.getmImageAdsA1()).frontViews)
-        		#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmImageAdsA1()).frontViews)
+			#FRONT_EDIT_BUTTON($!hotelChannel.getmImageAdsA1(), $isEdit)
+        	#if($!frontViewMap.get($!hotelChannel.getmImageAdsA1()).frontViews)
+        		#foreach($fv in $!frontViewMap.get($!hotelChannel.getmImageAdsA1()).frontViews)
 					<a href="$!fv.link" target="_blank">
 						<img src="$!fv.photoURL" alt="" />
 					</a>
@@ -19,9 +19,9 @@
         	#end
 		</div>
 		<div class="R">
-			#FRONT_EDIT_BUTTON($!selfDriveChannel.getmImageAdsA2(), $isEdit)
-        	#if($!frontViewMap.get($!selfDriveChannel.getmImageAdsA2()).frontViews)
-        		#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmImageAdsA2()).frontViews)
+			#FRONT_EDIT_BUTTON($!hotelChannel.getmImageAdsA2(), $isEdit)
+        	#if($!frontViewMap.get($!hotelChannel.getmImageAdsA2()).frontViews)
+        		#foreach($fv in $!frontViewMap.get($!hotelChannel.getmImageAdsA2()).frontViews)
 					<a href="$!fv.link" target="_blank">
 						<img src="$!fv.photoURL" alt="" />
 					</a>
@@ -34,9 +34,9 @@
 	<div class="mgt10 travel2">
 		<div class="L">
 			<div class="pad3 imgLink">
-				#FRONT_EDIT_BUTTON($!selfDriveChannel.getmImageAdsA3(), $isEdit)
-            	#if($!frontViewMap.get($!selfDriveChannel.getmImageAdsA3()).frontViews)
-            		#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmImageAdsA3()).frontViews)
+				#FRONT_EDIT_BUTTON($!hotelChannel.getmImageAdsA3(), $isEdit)
+            	#if($!frontViewMap.get($!hotelChannel.getmImageAdsA3()).frontViews)
+            		#foreach($fv in $!frontViewMap.get($!hotelChannel.getmImageAdsA3()).frontViews)
     					<a href="$!fv.link" target="_blank">
     						<img src="$!fv.photoURL" alt="" />
     					</a>
@@ -47,12 +47,12 @@
 		<div class="R idx1M">
 			<div class="txtLink">
 				<dl>
-					<dt>#FRONT_EDIT_BUTTON($!selfDriveChannel.getmSearchTheme(), $isEdit)
-						$!frontViewMap.get($!selfDriveChannel.getmSearchTheme()).config.moduleName
+					<dt>#FRONT_EDIT_BUTTON($!hotelChannel.getmSearchTheme(), $isEdit)
+						$!frontViewMap.get($!hotelChannel.getmSearchTheme()).config.moduleName
 					</dt>
 					<dd>
-						#if($!frontViewMap.get($!selfDriveChannel.getmSearchTheme()).frontViews)
-        					#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmSearchTheme()).frontViews)
+						#if($!frontViewMap.get($!hotelChannel.getmSearchTheme()).frontViews)
+        					#foreach($fv in $!frontViewMap.get($!hotelChannel.getmSearchTheme()).frontViews)
                                 <a href="$!fv.link">$!fv.title</a>
         					#end
 						#end
@@ -60,12 +60,12 @@
 				</dl>
 				<dl>
 					<dt>
-						#FRONT_EDIT_BUTTON($!selfDriveChannel.getmSearchAttractions(), $isEdit)
-						$!frontViewMap.get($!selfDriveChannel.getmSearchAttractions()).config.moduleName
+						#FRONT_EDIT_BUTTON($!hotelChannel.getmSearchAttractions(), $isEdit)
+						$!frontViewMap.get($!hotelChannel.getmSearchAttractions()).config.moduleName
 					</dt>
 					<dd>
-						#if($!frontViewMap.get($!selfDriveChannel.getmSearchAttractions()).frontViews)
-        					#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmSearchAttractions()).frontViews)
+						#if($!frontViewMap.get($!hotelChannel.getmSearchAttractions()).frontViews)
+        					#foreach($fv in $!frontViewMap.get($!hotelChannel.getmSearchAttractions()).frontViews)
                                 <a href="$!fv.link">$!fv.title</a>
         					#end
 						#end
@@ -73,12 +73,12 @@
 				</dl>
 				<dl>
 					<dt>
-						#FRONT_EDIT_BUTTON($!selfDriveChannel.getmSearchPeriphery(), $isEdit)
-						$!frontViewMap.get($!selfDriveChannel.getmSearchPeriphery()).config.moduleName
+						#FRONT_EDIT_BUTTON($!hotelChannel.getmSearchPeriphery(), $isEdit)
+						$!frontViewMap.get($!hotelChannel.getmSearchPeriphery()).config.moduleName
 					</dt>
 					<dd>
-						#if($!frontViewMap.get($!selfDriveChannel.getmSearchPeriphery()).frontViews)
-        					#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmSearchPeriphery()).frontViews)
+						#if($!frontViewMap.get($!hotelChannel.getmSearchPeriphery()).frontViews)
+        					#foreach($fv in $!frontViewMap.get($!hotelChannel.getmSearchPeriphery()).frontViews)
                                 <a href="$!fv.link">$!fv.title</a>
         					#end
 						#end
@@ -86,12 +86,12 @@
 				</dl>
 				<dl>
 					<dt>
-						#FRONT_EDIT_BUTTON($!selfDriveChannel.getmSearchPrice(), $isEdit)
-						$!frontViewMap.get($!selfDriveChannel.getmSearchPrice()).config.moduleName
+						#FRONT_EDIT_BUTTON($!hotelChannel.getmSearchPrice(), $isEdit)
+						$!frontViewMap.get($!hotelChannel.getmSearchPrice()).config.moduleName
 					</dt>
 					<dd>
-						#if($!frontViewMap.get($!selfDriveChannel.getmSearchPrice()).frontViews)
-        					#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmSearchPrice()).frontViews)
+						#if($!frontViewMap.get($!hotelChannel.getmSearchPrice()).frontViews)
+        					#foreach($fv in $!frontViewMap.get($!hotelChannel.getmSearchPrice()).frontViews)
                                 <a href="$!fv.link">$!fv.title</a>
         					#end
 						#end
@@ -106,13 +106,13 @@
 	<div class="mgt10 travel3">
 		<div class="L">
 			<div class="box230 hSchL2">
-				#FRONT_EDIT_BUTTON($!selfDriveChannel.getmHotTitleB1(), $isEdit)
+				#FRONT_EDIT_BUTTON($!hotelChannel.getmHotTitleB1(), $isEdit)
 				<div class="ttl">
-					<h2>$!frontViewMap.get($!selfDriveChannel.getmHotTitleB1()).config.moduleName</h2>
+					<h2>$!frontViewMap.get($!hotelChannel.getmHotTitleB1()).config.moduleName</h2>
 				</div>
 				<ol class="orderList">
-					#if($!frontViewMap.get($!selfDriveChannel.getmHotTitleB1()).frontViews)
-        				#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmHotTitleB1()).frontViews)
+					#if($!frontViewMap.get($!hotelChannel.getmHotTitleB1()).frontViews)
+        				#foreach($fv in $!frontViewMap.get($!hotelChannel.getmHotTitleB1()).frontViews)
 							#if($velocityCount <= 3)
 								<li class="li123"><i>$velocityCount</i><a href="$!fv.link">$!fv.title</a></li>
 							#else
@@ -125,14 +125,14 @@
 		</div>
 		<div class="R">
 			<div class="box230 box710">
-				#FRONT_EDIT_BUTTON($!selfDriveChannel.getmHotTextB2(), $isEdit)
+				#FRONT_EDIT_BUTTON($!hotelChannel.getmHotTextB2(), $isEdit)
 				<div class="ttl">
-					<h2>$!frontViewMap.get($!selfDriveChannel.getmHotTextB2()).config.moduleName</h2>
+					<h2>$!frontViewMap.get($!hotelChannel.getmHotTextB2()).config.moduleName</h2>
 				</div>
 				<div class="floor">
 					<ul class="c12">
-						#if($!frontViewMap.get($!selfDriveChannel.getmHotTextB2()).frontViews)
-                        	#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmHotTextB2()).frontViews)
+						#if($!frontViewMap.get($!hotelChannel.getmHotTextB2()).frontViews)
+                        	#foreach($fv in $!frontViewMap.get($!hotelChannel.getmHotTextB2()).frontViews)
         						<li>
         							<a href="$!fv.link">
         								<span class="c121">
@@ -156,9 +156,9 @@
 	<!-- idx4开始 -->
 	<div class="mgt10 floor idx4">
 		<ul class="cnt2">
-			#FRONT_EDIT_BUTTON($!selfDriveChannel.getmHotImageC1(), $isEdit)
-    		#if($!frontViewMap.get($!selfDriveChannel.getmHotImageC1()).frontViews)
-                #foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmHotImageC1()).frontViews)
+			#FRONT_EDIT_BUTTON($!hotelChannel.getmHotImageC1(), $isEdit)
+    		#if($!frontViewMap.get($!hotelChannel.getmHotImageC1()).frontViews)
+                #foreach($fv in $!frontViewMap.get($!hotelChannel.getmHotImageC1()).frontViews)
 					<li>
         				<a href="$!fv.link">
         					<img src="$!fv.photoURL" alt="$!fv.title" class="pad3"/>

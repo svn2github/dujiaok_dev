@@ -19,6 +19,20 @@
 			</interceptor-ref>
 			<result name="success"  type="velocity">/home/selfDrive.vm</result>
 		</action>
+		<action name="hotel" class="com.ssnn.dujiaok.web.action.home.HotelAction">
+			<interceptor-ref name="basicStack" />
+			<interceptor-ref name="memberAuthInterceptor">
+				<param name="auth">false</param>
+			</interceptor-ref>
+			<result name="success"  type="velocity">/home/hotel.vm</result>
+		</action>
+		<action name="ticket" class="com.ssnn.dujiaok.web.action.home.TicketAction">
+			<interceptor-ref name="basicStack" />
+			<interceptor-ref name="memberAuthInterceptor">
+				<param name="auth">false</param>
+			</interceptor-ref>
+			<result name="success"  type="velocity">/home/ticket.vm</result>
+		</action>
 		<action name="test" class="com.ssnn.dujiaok.web.action.home.IndexAction">
 			<interceptor-ref name="basicStack" />
 			<interceptor-ref name="memberAuthInterceptor">
