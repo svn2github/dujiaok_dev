@@ -140,11 +140,7 @@
 #end
 
 #macro(JSNULL $val)
-	#if($val)
-		'$val'
-	#else
-		null
-	#end
+	#if(!$val && $val!='')'$val'#else null #end
 	
 #end
 

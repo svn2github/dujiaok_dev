@@ -119,9 +119,9 @@
 		</div>
 		<div class="R idx1R">
 			<div class="login">
-				<a href="#">注册</a>
+				<a href="${env.root}/member/login.htm">注册</a>
 
-				<a href="#">登录</a>
+				<a href="${env.root}/member/register.htm">登录</a>
 			</div>
 			<div class="mgt10 optionCard" id="optionCard">
 				<ul class="tabTtl"><li class="first current">度假旅游</li><li>国内机票</li><li>酒店</li></ul>
