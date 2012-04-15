@@ -1,9 +1,11 @@
 package com.ssnn.dujiaok.web.action.order;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.util.StringUtils;
 
 import com.opensymphony.xwork2.ModelDriven;
 import com.ssnn.dujiaok.biz.service.HotelRoomService;
@@ -13,6 +15,8 @@ import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.biz.service.product.ProductDetailService;
 import com.ssnn.dujiaok.constant.Constant;
 import com.ssnn.dujiaok.model.AbstractProduct;
+import com.ssnn.dujiaok.model.DetailItemDO;
+import com.ssnn.dujiaok.model.HotelRoomDO;
 import com.ssnn.dujiaok.model.OrderDO;
 import com.ssnn.dujiaok.model.ProductDetailDO;
 import com.ssnn.dujiaok.model.SelfDriveDO;
@@ -65,7 +69,7 @@ public class MakeOrderAction extends BasicAction implements ModelDriven<OrderDO>
 		if (detailDO == null) {			
 			return NOT_EXISTS ;
 		}
-		orderDO.setPrice(getOrderPrice(this.orderDO, detailDO, product));
+		orderDO.setPrice(getOrderPrice(this.orderDO, product, detailDO));
 		
 		OrderUtils.setOrderDefaultValue(orderDO);
 		orderDO.setProductType(ProductEnums.fromProductId(product.getProductId()).getName()) ;
@@ -96,22 +100,30 @@ public class MakeOrderAction extends BasicAction implements ModelDriven<OrderDO>
 	
 	private void setOrderGmtStartAndEnd(OrderDO order, AbstractProduct productDO) {
 		if (productDO.getProductId().startsWith("ZJ")) {
-			OrderUtils.setSelfDriveOrderEndDateWithStart(orderDO, ((SelfDriveDO) productDO).getDays());
+			OrderUtils.setOrderEndDateWithStart(orderDO, ((SelfDriveDO) productDO).getDays());
 		} else if (productDO.getProductId().startsWith("MP")) {
-			OrderUtils.setSelfDriveOrderEndDateWithStart(orderDO, 1);
+			OrderUtils.setOrderEndDateWithStart(orderDO, 1);
 		}
 	}
 	
-	private BigDecimal getOrderPrice(OrderDO order, ProductDetailDO detailDO, AbstractProduct productDO) {
-		if (order.getProductId().startsWith(Constant.PREFIX_SELFDRIVE)) {
+	private BigDecimal getOrderPrice(OrderDO order, AbstractProduct productDO, ProductDetailDO detailDO) {
+		if (StringUtils.startsWithIgnoreCase(order.getProductId(), Constant.PREFIX_SELFDRIVE)) {
 			int doubleNum = this.orderDO.getCount()/2;
 			int days = ((SelfDriveDO) productDO).getDays();
 			return detailDO.getDoublePrice().multiply(new BigDecimal(doubleNum)).add(
 					detailDO.getPrice().multiply(new BigDecimal(this.orderDO.getCount() % 2))).add(
 				    detailDO.getChildPrice().multiply(new BigDecimal(this.orderDO.getSecondaryCount()))).add(
 				    new BigDecimal(order.getInsureNum() * 20 * days));
+		} else if (StringUtils.startsWithIgnoreCase(order.getProductId(), Constant.PREFIX_TICKET)) {
+			return detailDO.getPrice().multiply(new BigDecimal(order.getCount()));
+		} else if (StringUtils.startsWithIgnoreCase(order.getProductId(), Constant.PREFIX_HOTELROOM)){
+			HotelRoomDO roomDO = this.hotelRoomService.getRoomWithDetails(order.getProductId());
+			BigDecimal roomPrice = OrderUtils.getRoomPrice(roomDO.getDefaultDetailItems(),
+					order.getGmtOrderStart(), order.getGmtOrderEnd());
+			return roomPrice.multiply(new BigDecimal(order.getCount()));
+		} else {
+			return null; 
 		}
-		return detailDO.getPrice().multiply(new BigDecimal(order.getCount()));
 	}
 
 	public void setOrderService(OrderService orderService) {

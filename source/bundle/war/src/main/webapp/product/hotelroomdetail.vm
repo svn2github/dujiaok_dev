@@ -103,18 +103,23 @@
 				<ul>
                     <li><strong>价格:</strong><span id="price">&nbsp;&nbsp;$!product.bottomPrice</span>元 </li>
 					<li>入住日期：
-						<select name="dateAndDetail" id="checkoutDateOpt">
+						<select name="dateAndDetail" id="checkinDateOpt" onchange="changeCheckinDate(this)">
+    						 #set($size=$!product.defaultDetailItems.size())
                	    	 	 #foreach($dt in $!product.defaultDetailItems )
     							#set($index = $velocityCount)
+    							#if($index != $size)
     							<option value="$dt.detailId:$dateUtils.format($dt.date, 'yyyy-MM-dd')" #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd')</option>
+    							#end
     						 #end
               	         </select>
 					</li>
 					 <li>离店日期：
-						<select name="endDate" id="checkoutDateOpt" onchange="changeCheckoutDate()">
+						<select name="endDate" id="checkoutDateOpt" onchange="changeCheckoutDate(this)">
                	    	 	 #foreach($dt in $!product.defaultDetailItems )
 								#set($index = $velocityCount)
+								#if ($index != 1)
 								<option value="$dateUtils.format($dt.date, 'yyyy-MM-dd')" #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd') </option>
+								#end
 							 #end
               	         </select>
 					 </li>
@@ -140,25 +145,40 @@
 
 <script type="text/javascript">
 
-	var details = [
+    var details = [
 	  #foreach($d in $detailItems) 
 	  	{id: "$!d.detail.id",
 	  	 	price: "$!d.detail.price",
 	  	},	
   	  #end
-	] ;
+	];
 	
-	var detailChange = function(select){
-		var index = select.selectedIndex ;
-		var val = select.options[select.selectedIndex].value ;
-		setDetail(index) ;
+	var changeCheckinDate = function(select){
+	    setPrice(select.selectedIndex);
+	    
+	    var checkinObj = document.getElementById('checkinDateOpt');
+	    var checkoutObj = document.getElementById('checkoutDateOpt');
+	    
+	    var lastDateOpt = checkoutObj.options[checkoutObj.length - 1];
+	    checkoutObj.innerHTML = "";
+	    for (var i = checkinObj.selectedIndex; i + 1 < checkinObj.length; i++) {
+	        var option = document.createElement("option");
+	        option.text = checkinObj[i + 1].text;
+	        option.value = checkinObj[i + 1].text;
+	        checkoutObj.add(option);
+	    }
+	    checkoutObj.add(lastDateOpt);
 	}
 	
-	var setDetail = function(index){
+	var changeCheckoutDate = function(select) {
+	    
+	}
+	
+	var setPrice = function(index){
 		$element("price").innerHTML =  details[index].price ;
 	}
 	
-	setDetail(0) ;
+	setPrice(0) ;
 
 	//订单参数
 	var checkOrder = function() {

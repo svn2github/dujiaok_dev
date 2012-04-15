@@ -1,0 +1,13 @@
+#set($layout="/order/default.vm") 
+<div class="success">
+	 <div class="status-contentbox">
+		<div class="success_one"></div>
+		<div class="success_content">
+			<h3>支付失败！</h3>
+			<p>支付失败，请联系客服解决！</p>
+		</div>
+	</div>
+</div>
+
+
+

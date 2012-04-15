@@ -23,6 +23,7 @@ import com.ssnn.dujiaok.model.OrderDO;
 import com.ssnn.dujiaok.model.ProductDetailDO;
 import com.ssnn.dujiaok.model.SelfDriveDO;
 import com.ssnn.dujiaok.util.enums.ProductEnums;
+import com.ssnn.dujiaok.util.order.OrderUtils;
 import com.ssnn.dujiaok.web.action.BasicAction;
 import com.ssnn.dujiaok.web.context.ContextHolder;
 
@@ -46,6 +47,8 @@ public class OrderAction extends BasicAction  {
 	private String productType ;
 	
 	private String productId ;
+	
+	private String roomPrice;
 	
 	private OrderDO orderDO = new OrderDO();
 	
@@ -131,6 +134,10 @@ public class OrderAction extends BasicAction  {
 		orderDO.setProductDetailId(detailId) ;
 		orderDO.setProductId(productId) ;
 		
+		if(type == ProductEnums.HOTEL_ROOM) {
+			roomPrice = OrderUtils.getRoomPrice(product.getDefaultDetailItems(),
+					orderDO.getGmtOrderStart(), orderDO.getGmtOrderEnd()).toString();
+		}
 		if(type == ProductEnums.SELFDRIVE){
 			return ProductConstant.SELF_DRIVE ;
 		}else if(type == ProductEnums.HOTEL_ROOM){
@@ -224,6 +231,16 @@ public class OrderAction extends BasicAction  {
 
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
+	}
+
+
+	public String getRoomPrice() {
+		return roomPrice;
+	}
+
+
+	public void setRoomPrice(String roomPrice) {
+		this.roomPrice = roomPrice;
 	}
 
 }

@@ -39,7 +39,7 @@
 					</th>
                     <td>
 						<div>
-						<textarea rows="1" id="memo" name="memo" style="width:500px;height:30px;"></textarea>
+						<textarea rows="1" id="memo" name="memo" style="width:500px;height:120px;"></textarea>
 					</td>
 				</tr>
     			<tr>
@@ -86,6 +86,7 @@
 #XUI_JS(["core/xui-core-min.js","util/util-min.js"])
 <script>
 	var personInfoCount = 1;
+	var roomPrice = $roomPrice;
 	
 	function submitForm(){
 		var orderForm = document.getElementById('orderForm');
@@ -170,7 +171,7 @@ Totalorders.prototype = {
 			marketPrice = this.defaultValue(Number($element('marketPrice').value), 0);
 			insurancePrice = $env.getProp("doucome.config.insurancePrice");
 		$element('roomNum').value = roomNum;
-		var okPrice = roomNum * price;
+		var okPrice = roomPrice * roomNum;
 		var marketPrice1 = marketPrice * roomNum;
 		this.initOrderPriceInfo(okPrice, marketPrice1);
 	},

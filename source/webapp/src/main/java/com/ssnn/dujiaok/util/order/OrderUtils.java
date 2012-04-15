@@ -1,16 +1,23 @@
 package com.ssnn.dujiaok.util.order;
 
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import com.ssnn.dujiaok.model.DetailItemDO;
+import com.ssnn.dujiaok.model.HotelRoomDO;
 import com.ssnn.dujiaok.model.OrderDO;
+import com.ssnn.dujiaok.util.DateUtil;
+import com.ssnn.dujiaok.util.DateUtils;
 import com.ssnn.dujiaok.util.enums.OrderStatusEnums;
 import com.ssnn.dujiaok.util.enums.PayStatusEnums;
 
 public final class OrderUtils {
 	
-	public static void setSelfDriveOrderEndDateWithStart(OrderDO orderDO, int tourDays) {
+	public static void setOrderEndDateWithStart(OrderDO orderDO, int tourDays) {
 		Calendar tempCalendar = Calendar.getInstance();
 		tempCalendar.setTime(orderDO.getGmtOrderStart());
 		tempCalendar.set(Calendar.HOUR, 0);
@@ -51,5 +58,17 @@ public final class OrderUtils {
 			  .append(order.getCount());
 		}
 		return info.toString();
+	}
+	
+	public static BigDecimal getRoomPrice(List<DetailItemDO> itemDOs, Date checkinDate, Date checkoutDate) {
+		checkinDate = DateUtils.setTime(checkinDate, 0, 0, 0);
+		checkoutDate = DateUtils.setTime(checkoutDate, 0, 0, 0);
+		BigDecimal temp = new BigDecimal("0");
+		for (DetailItemDO itemDO : itemDOs) {
+			if (!itemDO.getDate().before(checkinDate) && itemDO.getDate().before(checkoutDate)) {
+				temp = temp.add(itemDO.getBottomPrice());
+			}
+		}
+		return temp;
 	}
 }

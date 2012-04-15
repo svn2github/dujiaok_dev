@@ -1,5 +1,6 @@
 package com.ssnn.dujiaok.web.action.order;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -54,16 +55,17 @@ public class AlipayCallBackAction extends BasicAction {
     		try {
     			writer = this.getResponse().getWriter();
     			writer.write("success");
-    		} catch (Throwable e) {
+    		} catch (IOException e) {
     			LOGGER.error(e);
     		} finally {
     			StreamUtil.close(writer);
     		}
+    		return SUCCESS;
         } else {
         	LOGGER.error("Alipay verify failed: " + params);
+        	return ERROR;
         }
 		
-		return SUCCESS;
 	}
 
 	public String getIs_success() {
