@@ -6,18 +6,17 @@ import com.ssnn.dujiaok.model.FrontConfigDO;
 import com.ssnn.dujiaok.service.impl.AbstractCacheSupport;
 
 public class CacheFrontConfigDAO extends IBatisFrontConfigDAO {
-	private AbstractCacheSupport frontConfigCache;
 
-	public List<FrontConfigDO> queryFrontConfigs(String channelKey) {
-		List<FrontConfigDO> frontConfigDOs = frontConfigCache
-				.getValue(channelKey);
-		if (frontConfigDOs != null)
-			return frontConfigDOs;
+    private AbstractCacheSupport frontConfigCache;
 
-		frontConfigDOs = super.queryFrontConfigs(channelKey);
-		frontConfigCache.putValue(channelKey, frontConfigDOs);
-		return frontConfigDOs;
-	}
+    public List<FrontConfigDO> queryFrontConfigs(String channelKey) {
+        List<FrontConfigDO> frontConfigDOs = frontConfigCache.getValue(channelKey);
+        if (frontConfigDOs != null) return frontConfigDOs;
+
+        frontConfigDOs = super.queryFrontConfigs(channelKey);
+        frontConfigCache.putValue(channelKey, frontConfigDOs);
+        return frontConfigDOs;
+    }
 
     public FrontConfigDO queryOneFrontConfig(String moduleKey) {
         FrontConfigDO frontConfigDO = frontConfigCache.getValue(moduleKey);
@@ -28,8 +27,16 @@ public class CacheFrontConfigDAO extends IBatisFrontConfigDAO {
         return frontConfigDO;
     }
 
-	public void setFrontConfigCache(AbstractCacheSupport frontConfigCache) {
-		this.frontConfigCache = frontConfigCache;
-	}
+    public void updateModuleName(String moduleKey, String moduleName) {
+        super.updateModuleName(moduleKey, moduleName);
+
+        FrontConfigDO frontConfigDO = this.queryOneFrontConfig(moduleKey);
+        frontConfigCache.clearKey(moduleKey);
+        frontConfigCache.clearKey(frontConfigDO.getChannelKey());
+    }
+
+    public void setFrontConfigCache(AbstractCacheSupport frontConfigCache) {
+        this.frontConfigCache = frontConfigCache;
+    }
 
 }

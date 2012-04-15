@@ -14,4 +14,6 @@ public interface FrontConfigDAO {
 	public List<FrontConfigDO> queryFrontConfigs(String channelKey);
 
 	public FrontConfigDO queryOneFrontConfig(String module_key);
+	
+	public void updateModuleName(String moduleKey, String moduleName);
 }

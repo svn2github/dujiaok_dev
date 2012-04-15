@@ -16,6 +16,7 @@ public class ModuleEditAction extends BasicAction {
 
     // 参数name = frontViews[0].frontViewId
     private String             moduleKey;
+    private String             moduleName;
 
     // 返回
     private String             message;
@@ -31,6 +32,7 @@ public class ModuleEditAction extends BasicAction {
 
     public String save() throws Exception {
         if (frontViews != null && moduleKey != null && frontViewService.saveFrontViews(frontViews, moduleKey)) {
+            frontConfigService.updateModuleName(moduleKey, moduleName);
             message = "saveSuccess";
         } else {
             message = "saveFail";
@@ -76,6 +78,14 @@ public class ModuleEditAction extends BasicAction {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getModuleName() {
+        return moduleName;
+    }
+
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
     }
 
 }
