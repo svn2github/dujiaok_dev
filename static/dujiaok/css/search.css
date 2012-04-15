@@ -6,8 +6,8 @@ body,a{color:#666;}
 .schL2 .cnt li{height:100px;}
 .schL2 .txt{width:300px;}
 .schL2 .R{ margin-right:15px;}
-.schL2 .price,.schL2 .order{*float:right;display:block;}
-.schL2 .price{margin-bottom:15px; height:20px;color:#999;}
+.schL2 .price,.schL2 .order{display:block;}
+.schL2 .price{margin-bottom:15px;width:235px;height:20px;color:#999;}
 .schL2 .p1{float:left;margin-right:10px;_margin-top:10px;}
 .schL2 .p2{float:left;margin-top:-10px;_margin-top:0;}
 .schL2 .p2 strong{margin-right:5px;font-family:Arial; font-size:24px; color:#E8004C;}
