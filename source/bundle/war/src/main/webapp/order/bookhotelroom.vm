@@ -18,7 +18,8 @@
     		<h2 class="banner mgt20"><strong>订购产品</strong></h2>
     		<table class="mgt10 product">
     			<thead><tr><td>编号</td><td>产品名称</td><td>价格</td><td>住店日期</td><td>房间数</td></tr></thead>
-    			<tbody><tr>
+    			<tbody>
+    			<tr>
     				<td>$!product.productId</td>
     				<td>$!product.name</td>
 					<td>
@@ -28,9 +29,14 @@
     				<td class="F10">
 						<input type="text" name="count" id="roomNum" maxlength="6"  class="wpx34" value="$!orderDO.count"/>
 					</td>
-    
-    			</tr></tbody>
+    			</tr>
+    			</tbody>
     		</table>
+			#if ($!cantCheckinDate)
+				<ul>
+					<li style="color:red;">重要信息：$!product.namez在$!cantCheckinDate&nbsp;没有可以入住的房间。</li>
+			    </ul>
+		    #end
     		<h2 class="banner mgt20"><strong>订单备注</strong></h2>
     		<table class="mgt10">
                 <tr>

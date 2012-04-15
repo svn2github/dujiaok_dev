@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -52,6 +53,8 @@ public class OrderAction extends BasicAction  {
 	private String roomPrice;
 	
 	private String markeyRoomPrice;
+	
+	private String cantCheckinDate;
 	
 	private OrderDO orderDO = new OrderDO();
 	
@@ -142,7 +145,9 @@ public class OrderAction extends BasicAction  {
 					orderDO.getGmtOrderStart(), orderDO.getGmtOrderEnd());
 			this.roomPrice = roomPrices[0].toString();
 			this.markeyRoomPrice = roomPrices[1].toString();
-			
+			List<String> temps = OrderUtils.getCantCheckInDate(product.getDefaultDetailItems(),
+					orderDO.getGmtOrderStart(), orderDO.getGmtOrderEnd());
+			this.cantCheckinDate = buildCantCheckinInfo(temps);
 		}
 		if(type == ProductEnums.SELFDRIVE){
 			return ProductConstant.SELF_DRIVE ;
@@ -154,6 +159,17 @@ public class OrderAction extends BasicAction  {
 		return NOT_EXISTS ;
 	}
 	
+	
+	private String buildCantCheckinInfo(List<String> cantCheckinDate) {
+		if (cantCheckinDate == null || cantCheckinDate.size() == 0) {
+			return null;
+		}
+		StringBuilder temp = new StringBuilder(cantCheckinDate.get(0));
+		for (int i = 1; i < cantCheckinDate.size(); i++) {
+			temp.append(",").append(cantCheckinDate.get(i));
+		}
+		return temp.toString();
+	}
 	
 	private OrderContactDO getDefaultContactor(MemberDO memberDO) {
 		if(memberDO == null){
@@ -259,4 +275,13 @@ public class OrderAction extends BasicAction  {
 		this.markeyRoomPrice = markeyRoomPrice;
 	}
 
+
+	public String getCantCheckinDate() {
+		return cantCheckinDate;
+	}
+
+
+	public void setCantCheckinDate(String cantCheckinDate) {
+		this.cantCheckinDate = cantCheckinDate;
+	}
 }

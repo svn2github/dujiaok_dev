@@ -2,6 +2,7 @@ package com.ssnn.dujiaok.util;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -36,5 +37,13 @@ public final class DateUtil {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+	
+	public static List<Date> minus(List<Date> dates1, List<Date> dates2) {
+		List<Date> tempDates = new ArrayList<Date>(dates1);
+		for (Date temp : dates2) {
+			tempDates.remove(temp);
+		}
+		return tempDates;
 	}
 }
