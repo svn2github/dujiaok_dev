@@ -165,7 +165,7 @@
 	<!-- idx3开始 -->
 	<div class="mgt20 floor idx3">
 		<div class="ttl">
-			<h2 class="L"><em class="mgr10">1F</em><strong class="green">周边自助</strong></h2>
+			<h2 class="L"><em class="mgr10">1F</em><strong class="green">$!frontViewMap.get($!indexChannel.getmPeripheryAttractionsRecommend()).config.moduleName</strong></h2>
 			#FRONT_EDIT_BUTTON($!indexChannel.getmPeripheryAttractionsRecommend(), $isEdit)
 			<p class="R mgt10">
 				#if($!frontViewMap.get($!indexChannel.getmPeripheryAttractionsRecommend()).frontViews)
@@ -246,7 +246,7 @@
 	<!-- idx4开始 -->
 	<div class="mgt20 floor idx4">
 		<div class="ttl">
-			<h2 class="L"><em class="mgr10">2F</em><strong class="pink">长线自助</strong></h2>
+			<h2 class="L"><em class="mgr10">2F</em><strong class="pink">$!frontViewMap.get($!indexChannel.getmLongTermAttractionsRecommend()).config.moduleName</strong></h2>
 			#FRONT_EDIT_BUTTON($!indexChannel.getmLongTermAttractionsRecommend(), $isEdit)
 			<p class="R mgt10">
 				#if($!frontViewMap.get($!indexChannel.getmLongTermAttractionsRecommend()).frontViews)
