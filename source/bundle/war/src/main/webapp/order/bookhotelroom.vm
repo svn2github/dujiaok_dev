@@ -34,7 +34,7 @@
     		</table>
 			#if ($!cantCheckinDate)
 				<ul>
-					<li style="color:red;">重要信息：$!product.namez在$!cantCheckinDate&nbsp;没有可以入住的房间。</li>
+					<li style="color:red;">重要信息：本产品在$!cantCheckinDate&nbsp;没有可以入住的房间。</li>
 			    </ul>
 		    #end
     		<h2 class="banner mgt20"><strong>订单备注</strong></h2>
