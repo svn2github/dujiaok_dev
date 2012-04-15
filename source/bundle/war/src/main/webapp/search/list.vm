@@ -68,11 +68,11 @@
 								<span class="p1">门市价：<span class="through">$!item.marketPrice</span>元</span>
 								#end
 								#if($item.price)
-								<span class="p2"><strong><em>￥</em>$!item.price</strong>起</span>
+								<span class="p2"><strong><em>￥</em>$decimalUtils.format($!item.price,"#######0")</strong>起</span>
 								#end
     						</span>
 							#if($item.price)
-    						<a href="#" class="order">订购</a>
+    						<a href="${env.root}/product/detail.htm?productId=$!item.productId" class="order">订购</a>
 							#end
     					</div>
     				</li>
