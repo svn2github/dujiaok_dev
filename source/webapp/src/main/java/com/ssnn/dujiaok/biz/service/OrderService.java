@@ -28,7 +28,12 @@ public interface OrderService {
 	 * @param orderId
 	 */
 	void updateOrderStatus(String status , String statusDetail ,String orderId) ;
-	
+	/**
+	 * 
+	 * @param orderId
+	 * @return
+	 */
+	OrderDO getOrder(String orderId);
 	/**
 	 * 
 	 * @param orderId

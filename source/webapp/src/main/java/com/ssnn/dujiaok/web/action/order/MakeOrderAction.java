@@ -1,7 +1,6 @@
 package com.ssnn.dujiaok.web.action.order;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -15,7 +14,6 @@ import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.biz.service.product.ProductDetailService;
 import com.ssnn.dujiaok.constant.Constant;
 import com.ssnn.dujiaok.model.AbstractProduct;
-import com.ssnn.dujiaok.model.DetailItemDO;
 import com.ssnn.dujiaok.model.HotelRoomDO;
 import com.ssnn.dujiaok.model.OrderDO;
 import com.ssnn.dujiaok.model.ProductDetailDO;
@@ -118,8 +116,8 @@ public class MakeOrderAction extends BasicAction implements ModelDriven<OrderDO>
 			return detailDO.getPrice().multiply(new BigDecimal(order.getCount()));
 		} else if (StringUtils.startsWithIgnoreCase(order.getProductId(), Constant.PREFIX_HOTELROOM)){
 			HotelRoomDO roomDO = this.hotelRoomService.getRoomWithDetails(order.getProductId());
-			BigDecimal roomPrice = OrderUtils.getRoomPrice(roomDO.getDefaultDetailItems(),
-					order.getGmtOrderStart(), order.getGmtOrderEnd());
+			BigDecimal roomPrice = OrderUtils.getRoomPrice(roomDO,
+					order.getGmtOrderStart(), order.getGmtOrderEnd())[0];
 			return roomPrice.multiply(new BigDecimal(order.getCount()));
 		} else {
 			return null; 

@@ -24,16 +24,16 @@
     				<td>$!orderDesc</td>
     			</tr></tbody>
     		</table>
-    		<h2 class="banner mgt20"><strong>附加产品</strong></h2>
 			#if($orderDO.insureNum > 0)
-				<div class="mgt10 attPro">
-					<label>自由行-平安国内短途游意外险</label><span>市场价：￥ $env.getProp("doucome.config.insurancePrice") 人/天</span> x $product.days 天 x <strong>$!orderDO.insureNum</strong> 份</span>
-				</div>
+    		<h2 class="banner mgt20"><strong>附加产品</strong></h2>
+			<div class="mgt10 attPro">
+				<label>自由行-平安国内短途游意外险</label><span>市场价：￥ $env.getProp("doucome.config.insurancePrice") 人/天</span> x $product.days 天 x <strong>$!orderDO.insureNum</strong> 份</span>
+			</div>
             #end
     		
+			#if(!$collectionUtils.isEmpty($orderDO.contacts))
     		<h2 class="banner mgt20"><strong>游玩人信息</strong></h2>
 			
-			#if(!$collectionUtils.isEmpty($orderDO.contacts))
             	#foreach ($personInfo in $!orderDO.contacts)
             	  <table class="mgt10 contactInfo" >
 	                	<tr>

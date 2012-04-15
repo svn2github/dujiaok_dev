@@ -87,6 +87,7 @@
 <script>
 	var personInfoCount = 1;
 	var roomPrice = $roomPrice;
+	var markeyRoomPrice = $markeyRoomPrice;
 	
 	function submitForm(){
 		var orderForm = document.getElementById('orderForm');
@@ -172,7 +173,7 @@ Totalorders.prototype = {
 			insurancePrice = $env.getProp("doucome.config.insurancePrice");
 		$element('roomNum').value = roomNum;
 		var okPrice = roomPrice * roomNum;
-		var marketPrice1 = marketPrice * roomNum;
+		var marketPrice1 = markeyRoomPrice * roomNum;
 		this.initOrderPriceInfo(okPrice, marketPrice1);
 	},
 	initOrderPriceInfo:function(okPrice, marketPrice){

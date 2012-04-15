@@ -2,15 +2,13 @@ package com.ssnn.dujiaok.util.order;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import com.ssnn.dujiaok.model.AbstractProduct;
 import com.ssnn.dujiaok.model.DetailItemDO;
-import com.ssnn.dujiaok.model.HotelRoomDO;
 import com.ssnn.dujiaok.model.OrderDO;
-import com.ssnn.dujiaok.util.DateUtil;
 import com.ssnn.dujiaok.util.DateUtils;
 import com.ssnn.dujiaok.util.enums.OrderStatusEnums;
 import com.ssnn.dujiaok.util.enums.PayStatusEnums;
@@ -60,13 +58,15 @@ public final class OrderUtils {
 		return info.toString();
 	}
 	
-	public static BigDecimal getRoomPrice(List<DetailItemDO> itemDOs, Date checkinDate, Date checkoutDate) {
+	public static BigDecimal[] getRoomPrice(AbstractProduct roomDO, Date checkinDate, Date checkoutDate) {
 		checkinDate = DateUtils.setTime(checkinDate, 0, 0, 0);
 		checkoutDate = DateUtils.setTime(checkoutDate, 0, 0, 0);
-		BigDecimal temp = new BigDecimal("0");
-		for (DetailItemDO itemDO : itemDOs) {
+		BigDecimal[] temp = new BigDecimal[] {new BigDecimal("0"), new BigDecimal("0")};
+		
+		for (DetailItemDO itemDO : roomDO.getDefaultDetailItems()) {
 			if (!itemDO.getDate().before(checkinDate) && itemDO.getDate().before(checkoutDate)) {
-				temp = temp.add(itemDO.getBottomPrice());
+				temp[0] = temp[0].add(itemDO.getBottomPrice());
+				temp[1] = temp[1].add(roomDO.getMarketPrice());
 			}
 		}
 		return temp;

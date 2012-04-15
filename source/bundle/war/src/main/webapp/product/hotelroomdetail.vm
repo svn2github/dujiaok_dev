@@ -125,6 +125,7 @@
 					 </li>
 					 <!--<li class="total"><strong>共4晚 总金额：￥1234.88元</strong></li>-->
 					 <li>预定间数<input type="text" name="count" id="roomCount" value="1"></li>
+					 <li id="additionInfo" style="display:none;"></li>
 				</ul>
 				<button class="order" onclick="return checkOrder()">订购</button>
 				<p class="gray">拨打电话预定 400 666 5599</p>

@@ -1,5 +1,6 @@
 package com.ssnn.dujiaok.web.action.order;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -8,10 +9,13 @@ import org.apache.log4j.Logger;
 
 import com.ssnn.dujiaok.biz.service.OrderService;
 import com.ssnn.dujiaok.biz.service.order.util.AlipayNotify;
+import com.ssnn.dujiaok.model.OrderDO;
+import com.ssnn.dujiaok.util.StreamUtil;
+import com.ssnn.dujiaok.util.enums.AlipayStatusEnums;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 @SuppressWarnings("serial")
-public class AlipayCallBackAction extends BasicAction {
+public class AsynAlipayCallBackAction extends BasicAction {
 	private String is_success;
 	private String out_trade_no;
 	private String subject;
@@ -22,7 +26,7 @@ public class AlipayCallBackAction extends BasicAction {
 	
 	private OrderService orderService;
 	
-	private static final Logger LOGGER = Logger.getLogger(AlipayCallBackAction.class);
+	private static final Logger LOGGER = Logger.getLogger(AsynAlipayCallBackAction.class);
 	
 	@Override
 	public String execute() {
@@ -45,13 +49,25 @@ public class AlipayCallBackAction extends BasicAction {
 			params.put(name, valueStr);
 		}
 		if (AlipayNotify.verify(params)) {
+            PrintWriter writer = null;
     		try {
 	            LOGGER.info("alipayReturn ::: out_trade_no=" + out_trade_no + ", trade_no=" + trade_no + ", trade_status="
 	                        + trade_status);
-            	orderService.updateAlipayStatus(out_trade_no, trade_no, trade_status);
+	            if (AlipayStatusEnums.TRADE_FINISHED.equals(trade_status)
+	            		|| AlipayStatusEnums.TRADE_SUCCESS.getValue().equals(trade_status)) {
+	            	OrderDO orderDO = orderService.getOrder(out_trade_no);
+	            	if (!AlipayStatusEnums.TRADE_FINISHED.getValue().equals(orderDO.getPayStatus()) &&
+	            			!AlipayStatusEnums.TRADE_SUCCESS.getValue().equals(orderDO.getPayStatus())) {
+	            		orderService.updateAlipayStatus(out_trade_no, trade_no, trade_status);
+	            	}
+	            }
+    			writer = this.getResponse().getWriter();
+    			writer.println("success");
     		} catch (Exception e) {
-    			LOGGER.error("update trade status failed", e);
-    			return ERROR;
+    			LOGGER.error(e);
+    			writer.println("fail");
+    		} finally {
+    			StreamUtil.close(writer);
     		}
     		return SUCCESS;
         } else {

@@ -1,5 +1,6 @@
 package com.ssnn.dujiaok.web.action.order;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -49,6 +50,8 @@ public class OrderAction extends BasicAction  {
 	private String productId ;
 	
 	private String roomPrice;
+	
+	private String markeyRoomPrice;
 	
 	private OrderDO orderDO = new OrderDO();
 	
@@ -135,8 +138,11 @@ public class OrderAction extends BasicAction  {
 		orderDO.setProductId(productId) ;
 		
 		if(type == ProductEnums.HOTEL_ROOM) {
-			roomPrice = OrderUtils.getRoomPrice(product.getDefaultDetailItems(),
-					orderDO.getGmtOrderStart(), orderDO.getGmtOrderEnd()).toString();
+			BigDecimal[] roomPrices = OrderUtils.getRoomPrice(product,
+					orderDO.getGmtOrderStart(), orderDO.getGmtOrderEnd());
+			this.roomPrice = roomPrices[0].toString();
+			this.markeyRoomPrice = roomPrices[1].toString();
+			
 		}
 		if(type == ProductEnums.SELFDRIVE){
 			return ProductConstant.SELF_DRIVE ;
@@ -241,6 +247,16 @@ public class OrderAction extends BasicAction  {
 
 	public void setRoomPrice(String roomPrice) {
 		this.roomPrice = roomPrice;
+	}
+
+
+	public String getMarkeyRoomPrice() {
+		return markeyRoomPrice;
+	}
+
+
+	public void setMarkeyRoomPrice(String markeyRoomPrice) {
+		this.markeyRoomPrice = markeyRoomPrice;
 	}
 
 }

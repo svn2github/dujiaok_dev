@@ -51,5 +51,8 @@
 			<result name="success"  type="velocity">/order/paysuccess.vm</result>
 			<result name="error"  type="velocity">/order/payfail.vm</result>
 		</action>
+		<action name="paynotify" class="com.ssnn.dujiaok.web.action.order.AsynAlipayCallBackAction">
+			<interceptor-ref name="defaultStack" />
+		</action>
 	</package>
 </struts>

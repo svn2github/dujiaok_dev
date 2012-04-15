@@ -62,6 +62,11 @@ public class OrderServiceImpl implements OrderService {
 	public void updateOrderStatus(String status, String statusDetail, String orderId) {
 		orderDAO.updateOrderStatus(status, statusDetail, orderId) ;
 	}
+	
+	@Override
+	public OrderDO getOrder(String orderId) {
+		return this.orderDAO.queryOrder(orderId);
+	}
 
 	@Override
 	public OrderDO getOrderAndDetailContact(String orderId) {
