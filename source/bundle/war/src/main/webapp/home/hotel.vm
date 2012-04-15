@@ -2,7 +2,7 @@
 #################################################
 
 #set($title = "度假酒店")
-
+#set($_productType = "hotel")
 <!-- main开始 -->
 #set($hotelChannel= $fontConstants.hotelChannel)
 <div class="w950 index">

@@ -2,6 +2,7 @@
 #################################################
 
 #set($title = "周边自驾")
+#set($_productType = "selfDrive")
 
 <!-- main开始 -->
 #set($selfDriveChannel= $fontConstants.selfDriveChannel)

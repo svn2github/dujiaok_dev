@@ -2,7 +2,7 @@
 #################################################
 
 #set($title = "打折门票")
-
+#set($_productType = "ticket")
 <!-- main开始 -->
 #set($ticketChannel= $fontConstants.ticketChannel)
 <div class="w950 index">

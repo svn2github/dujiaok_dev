@@ -174,10 +174,10 @@
 		</div>
 		<!-- 热门目的地结束 -->
 		<ul class="mainMenu">
-			<li><a href="${env.root}/home/index.htm" class="current">首页</a></li>
-			<li><a href="${env.root}/home/selfDrive.htm">周边自驾</a></li>			
-			<li><a href="${env.root}/home/hotel.htm">度假酒店</a></li>
-			<li><a href="${env.root}/home/ticket.htm">打折门票</a></li>
+			<li><a href="${env.root}/home/index.htm" #if($_productType == "index")class="current" #end>首页</a></li>
+			<li><a href="${env.root}/home/selfDrive.htm" #if($_productType == "selfDrive")class="current" #end>周边自驾</a></li>			
+			<li><a href="${env.root}/home/hotel.htm" #if($_productType == "hotel")class="current" #end>度假酒店</a></li>
+			<li><a href="${env.root}/home/ticket.htm" #if($_productType == "ticket")class="current" #end>打折门票</a></li>
 		</ul>
 		<p class="subMenu"><a href="#">旅游攻略</a>|<a href="#">景点大全</a>|<a href="#">订购指南</a></p>
 	</div>

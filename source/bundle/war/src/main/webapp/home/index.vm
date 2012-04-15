@@ -2,6 +2,7 @@
 #################################################
 
 #set($title = "首页")
+#set($_productType = "index")
 <!-- main开始 -->
 #set($indexChannel= $fontConstants.indexChannel)
 <div class="w950 main index">
