@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>度假OK - 后台 - 发布门票 </title>
+              <link  rel="stylesheet" type="text/css" href="http://www.ht.dujiaok.com:801/dujiaok/css/houtai.css?v=" />
+			  <style>
+			  .redBox{ background:#f00;}
+			  </style>
+			  <script src="js/jquery-1.6.2.min.js"></script>
+       </head>
+    <body>
+        <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+
+            <tr>
+                <td width="233">
+					<a href="http://www.dujiaok.com/admin/index.htm">
+						<img src="http://www.ht.dujiaok.com:801/dujiaok/images/logo.jpg"  />
+					</a>
+					<span class="FS24 B"> 发布门票 </span>
+                </td>
+                <td width="360">
+
+                     						<span>
+						欢迎您：admin | <a href="javascript:;">退出</a> |  
+						</span>
+					                     <a href="http://www.dujiaok.com/home/index.htm">进入前台首页</a>
+                     |  
+					<a href="http://www.dujiaok.com/admin/orderlist.htm" target="_blank">订单后台</a>     
+					 | 
+                    <a href="http://www.dujiaok.com/admin/editIndex.htm" target="_blank">编辑前台首页</a>
+
+                </td>
+            </tr>
+        </table>
+        <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+                <td height="10"></td>
+            </tr>
+        </table>
+		<div>
+
+		      <link  rel="stylesheet" type="text/css" href="http://www.ht.dujiaok.com:801/dujiaok/xui/resource/css/common/reset.css?v="/>
+      <link  rel="stylesheet" type="text/css" href="http://www.ht.dujiaok.com:801/dujiaok/xui/resource/css/eshop/simple-date/xui-simple-datepicker.css?v="/>
+   	<link href="http://www.ht.dujiaok.com:801/dujiaok/kissy/1.1.7/editor/base-min.css" rel="stylesheet"/>
+    <!--[if lt IE 8]>
+    <link href="http://www.ht.dujiaok.com:801/dujiaok/kissy/1.1.7/editor/editor-pkg-sprite-min.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if gte IE 8]><!-->
+    <link href="http://www.ht.dujiaok.com:801/dujiaok/kissy/1.1.7/editor/editor-pkg-min-datauri.css" rel="stylesheet"/>
+    <!--<![endif]-->
+<form id="createTicketForm" name="createTicketForm" method="POST" action="http://www.dujiaok.com/admin/docreateTicket.htm" onsubmit="return Validator.validate(this,'admin');">
+    <input name="id"  type="hidden" value="0" />
+
+    <input name="productId"  type="hidden" value="" />
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td height="10"></td>
+        </tr>
+    </table>
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="fabu_mb">
+        <tr>
+            <td width="103" align="right">编号：</td>
+
+            <td width="857"></td>
+        </tr>
+        <tr>
+            <td align="right">名称：</td>
+            <td>
+                <input type="text" id='name' name='name' value="" class="input_m"/>
+                &nbsp;<i class="F9"></i>
+            </td>
+
+        </tr>
+        <tr>
+            <td align="right">出行时间：</td>
+            <td>
+                <div id="times">
+                                    </div>
+                <input type="button" value="+ 增加" onclick="addTime() ;"/>
+				<input type="button" value="判断时间是否合理" onclick="judgeTime() ;"/>
+            </td>
+
+        </tr>
+        <tr>
+            <td align="right">市场价：</td>
+            <td>
+                <input type="text" id='marketPrice' name='marketPrice' value=""  class="input_m" />元
+            </td>
+        </tr>
+        <tr>
+            <td align="right">支付方式：</td>
+
+            <td>
+                <input type="checkbox" name="payTypesList" value="ONLINE"  />
+                    网上支付
+                    <input type="checkbox" name="payTypesList" value="CASH" />
+                        前台现付
+            </td>
+        </tr>
+        <tr>
+            <td align="right">所在地：</td>
+
+            <td>
+                <select id='destProvince'  name='destProvince' onchange="selectProvince();"></select>
+                <select id='destCity' name='destCity' onchange="selectCity();"></select>
+                <select id='destArea' name='destArea' ></select>
+                <input type="text" id='destAddr'  name='destAddr' value="" class="input_b"/>
+                &nbsp;&nbsp;<a href="#">查看地图坐标</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="right">推荐指数：</td>
+            <td>
+                <select id='recommend'  name='recommend'>
+                    <option>5</option>
+                    <option>4.5</option>
+                    <option>4</option>
+
+                    <option>3.5</option>
+                    <option>3</option>
+                    <option>2.5</option>
+                    <option>2</option>
+                    <option>1.5</option>
+                    <option>1</option>
+
+                    <option>0.5</option>
+                    <option>0</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">门票类型：</td>
+
+            <td>
+                <input type="radio" name="ticketType" value="ETICKET_SMS" />
+                    电子票(手机短信)&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="ticketType" value="TICKET_SELF"  />
+                        实物票(景点取)&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="ticketType" value="TICKET_MAIL"  />
+                            实物票(邮寄)
+            </td>
+
+        </tr>
+        <tr>
+            <td align="right">产品类别：</td>
+            <td>
+                <input type="checkbox" name="productTypesList" value="人气"  />
+                    人气
+                    <input type="checkbox" name="productTypesList" value="山水" />
+                        山水
+                        <input type="checkbox" name="productTypesList" value="自然环境" />
+
+                            自然环境
+                            <input type="checkbox" name="productTypesList" value="亲子游" />
+                                亲子游
+                                <input type="checkbox" name="productTypesList" value="情侣游"  />
+                                    情侣游
+                                    <input type="checkbox" name="productTypesList" value="家庭游" />
+                                        家庭游
+            </td>
+        </tr>
+        <tr>
+            <td align="right">上传图片：</td>
+
+            <td>
+                <div id="images">
+                                    </div>
+                <input type="button" value="+ 增加" onclick="addImage() ;"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">产品简介：</td>
+
+            <td>
+                <textarea id='introduction' name='introduction' cols="45" rows="8"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">注意事项：</td>
+            <td>
+                <textarea id='notice' name='notice' cols="45" rows="8"></textarea>
+
+            </td>
+        </tr>
+        <tr>
+            <td align="right">费用说明：</td>
+            <td>
+                <textarea id='feeDesc' name='feeDesc' cols="45" rows="8"></textarea>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="right">备注：</td>
+            <td>
+                <textarea id='memo' name='memo' cols="45" rows="8" ></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">&nbsp;</td>
+
+            <td>
+                <input type="submit" name="button" id="button" value="  发 布  " />
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="notDiscout" id="notDiscout" value="T" />
+                该产品为不打折景点</td>
+        </tr>
+    </table>
+</form>
+		
+                 <script type="text/javascript" src="http://www.ht.dujiaok.com:801/dujiaok/xui/source/core/xui-core.js?v=" charset="GBK"></script>
+
+                        <script type="text/javascript" src="http://www.ht.dujiaok.com:801/dujiaok/xui/source/util/util-min.js?v=" charset="GBK"></script>
+                        <script type="text/javascript" src="http://www.ht.dujiaok.com:801/dujiaok/xui/source/simple-date/xui-simple-datepicker.js?v=" charset="GBK"></script>
+                <script type="text/javascript" src="http://www.ht.dujiaok.com:801/dujiaok/js/validator.js?v="></script>
+      <script type="text/javascript" src="http://www.ht.dujiaok.com:801/dujiaok/js/dujiaok.js?v="></script>
+   	<script src="http://www.ht.dujiaok.com:801/dujiaok/kissy/kissy-min.js"></script>
+    <script src="http://www.ht.dujiaok.com:801/dujiaok/kissy/dd-pkg.js"></script>
+
+    <script src="http://www.ht.dujiaok.com:801/dujiaok/kissy/overlay-pkg.js"></script>
+    <script src="http://www.ht.dujiaok.com:801/dujiaok/kissy/editor-all-pkg.js"></script>
+    <script src="http://www.ht.dujiaok.com:801/dujiaok/kissy/uibase-pkg.js"></script>
+    <script src="http://www.ht.dujiaok.com:801/dujiaok/kissy/ed.js"></script>
+    <script src="http://www.ht.dujiaok.com:801/dujiaok/kissy/editor-plugin-pkg.js"></script>
+	
+<script type="text/javascript">
+    var lastDetailsIndex = 0  ; //行程个数
+	var lastImagesIndex = 0 ; //上传照片个数
+			
+	var attachDatePicker = function(id){
+		var dateVal = $(id).value ;
+		var date ;
+		if(dateVal==null||dateVal==''){
+			date = new Date() ;
+		}else{
+		 	date = new Date(dateVal) ;
+		}
+		
+		var picker = new xui.widgets.simpleDatePicker(id,'YYYY-MM-DD',date);
+		picker.setModel({inconver:true,'selectBefore':function(dates){
+        	$(id).value = dates ;
+        }});
+	}		
+	
+	var addTime = function(){
+		var i = lastDetailsIndex  ;
+		
+		var divElement = document.createElement('div') ;
+		divElement.id = 'time' + i ;
+		divElement.className = 'line_sep' ;
+		$('times').appendChild(divElement) ;
+					
+		var innerHTML = '<input type="hidden" name="details['+i+'].id"/>' +
+		'<input type="text" id="gmtStart['+i+']" name="details['+i+'].gmtStart"/>' + 
+		' 至 ' + 
+		'<input type="text"  id="gmtEnd['+i+']" name="details['+i+'].gmtEnd"/>' +
+		'价格： <input type="text" name="details['+i+'].price" /> '  ;
+		if(i > 0){
+			innerHTML += '<input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;"  />' ;
+		}
+		$('time'+i).innerHTML = innerHTML ;
+		attachDatePicker('gmtStart['+i+']') ;
+		attachDatePicker('gmtEnd['+i+']') ;
+		lastDetailsIndex ++ ;
+		
+	}
+			
+	for(var i=0 ;i<lastDetailsIndex;i++){
+		///////datepicker
+		attachDatePicker('gmtStart['+i+']') ;
+		attachDatePicker('gmtEnd['+i+']') ;
+	}
+
+	var removeElement = function(ele){
+		ele.parentNode.removeChild(ele) ;
+	}
+	
+	
+	
+	var addImage = function(){
+		var i = lastImagesIndex  ;
+		if(i > 3){
+			return ;
+		}
+		var divElement = document.createElement('div') ;
+		divElement.id = 'image' + i ;
+		$('images').appendChild(divElement) ;
+		var innerHTML = '<input type="text"  name="imagesList" />' ;
+		if(i > 0){
+			innerHTML += '<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />' ;
+		}
+		$('image'+i).innerHTML = innerHTML ;
+		lastImagesIndex ++ ;
+	}
+	
+	var selectProvince = function (){
+		var select = $('destProvince') ;
+		var name = select.options[select.selectedIndex].value ;
+		initAddressSelect(url,'destCity','city','',name) ;
+		$('destArea').options.length = 0 ;
+	}
+	
+	var selectCity = function(){
+		var select = $('destCity') ;
+		var name = select.options[select.selectedIndex].value ;
+		initAddressSelect(url,'destArea','area','',name) ;
+	}
+	
+	//省市地区
+	var province = '' ;
+	var city = '' ;
+	var area = '' ;
+	var url = 'http://www.dujiaok.com/ajax/address.htm' ;	
+	
+	///初始化
+	if(lastDetailsIndex <= 0){
+		addTime() ;	
+	}
+	if(lastImagesIndex <= 0){
+		addImage() ;
+	}
+	
+	initAddressSelect(url,'destProvince','province',province) ;
+	initAddressSelect(url,'destCity','city',city,province) ;
+	initAddressSelect(url,'destArea','area',area,city) ;
+	var recommend = '';
+	setupSelect('recommend',recommend) ;
+	
+	//load edtor
+	KISSY.ready(function(S) {
+        S.use('editor', function(S) {
+			window.editor = loadediter("#introduction") ;
+            window.editor = loadediter("#notice") ;
+			window.editor = loadediter("#feeDesc") ;
+			window.editor = loadediter("#memo") ;
+        });
+    });
+	//判断时间是否合理开始--czz
+	function judgeTime(){
+		var slcS=jQuery(".line_sep");						  
+		var L=slcS.size();
+		var today=new Date();
+		today=parseInt(String(today.getFullYear())+String(today.getMonth()+1)+String(today.getDate()));
+		for(var i=0;i<L;i++){
+			var slc=slcS.eq(i).find(".xui-dp-value");
+			var t1=parseInt(slc.eq(0).html().replace(/-/g,""),10);
+			var t2=parseInt(slc.eq(1).html().replace(/-/g,""),10);
+			if(t1>t2){
+				slc.addClass("redBox");
+				alert("结束时间早于开始时间!");
+				return false;
+			}
+			else{
+				slc.removeClass("redBox");
+			}
+			if(t1<today){
+				slc.addClass("redBox");
+				alert("开始时间已过期!");
+				return false;
+			}
+			else{
+				slc.removeClass("redBox");
+			}
+		}
+		for(var i=0;i<L;i++){//判断时间段是否重叠
+			var slc=slcS.eq(i).find(".xui-dp-value");
+			var t1=parseInt(slc.eq(0).html().replace(/-/g,""),10);
+			var t2=parseInt(slc.eq(1).html().replace(/-/g,""),10);
+			for(var j=i+1;j<L;j++){
+				var slcNext=slcS.eq(j).find(".xui-dp-value");
+				var t1Next=parseInt(slcNext.eq(0).html().replace(/-/g,""),10);
+				var t2Next=parseInt(slcNext.eq(1).html().replace(/-/g,""),10);
+				if(t1Next>=t1&&t1Next<=t2){
+					slc.addClass("redBox");
+					slcNext.addClass("redBox");
+					alert("时间段重叠!");
+					return false;
+				}
+				else{
+					slc.removeClass("redBox");
+					slcNext.removeClass("redBox");
+				}
+			}
+		}
+	}
+	//判断时间是否合理结束--czz
+</script>
+
+		</div>
+    </body>
+</html>
