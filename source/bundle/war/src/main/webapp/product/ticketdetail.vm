@@ -1,7 +1,7 @@
 #set($layout="/front/default_new.vm")
 
 #STATIC("CSS",["/blogcal/blogcalendar.css"])
-#CSS(["detail.css"])
+#CSS(["detail.css","pro_intro.css"])
 
 
 #set ($detail = $product.todayDetail)
@@ -90,8 +90,7 @@
 		-->
 		<div class="hotelDtl">
 			<div class="hDtl1">
-				<div class="price"><span class="ttl">特惠价</span><span class="num">￥<strong>$product.bottomPrice</strong>元起</span></div>
-
+				<div class="price"><span class="ttl">最低价</span><span class="num">￥<strong>$product.bottomPrice</strong>起</span><i class="help" id="hDtlHelp"></i><div class="popForHelp"><i></i><div>本起价是指本起价是指本起价是指本起价是指本起价是指本起价是指本起价是指本起价是指</div></div></div>
 				<table>
 					<tbody><tr><th><strong>市场价：</strong></th><td>$!product.marketPrice 元</td></tr>
 					<tr><th><strong>商品编号：</strong></th><td>$!product.productId</td></tr>
@@ -133,7 +132,7 @@
 
 
 
-#JS(["validator.js","detail.js"])
+#JS(["validator.js","detail.js","pro_intro.js"])
 #STATIC("JS",["/blogcal/blogcalendar.js"])
 
 <script type="text/javascript">

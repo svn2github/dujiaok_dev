@@ -1,7 +1,7 @@
 #set($layout="/front/default_new.vm")
 
 #STATIC("CSS",["/blogcal/blogcalendar.css"])
-#CSS(["detail.css"])
+#CSS(["detail.css","pro_intro.css"])
 
 #set ($detail = $product.todayDetail)
 
@@ -57,21 +57,24 @@
 		</div>
 		
 		<!-- start prointro-->
-		<div>
-        	<div class="pro_intro_tab clearFix">
-                <ul>
-                    <li class="cur"><a href="#introduction">产品介绍</a></li>
-                    <li><a href="#schedule">行程</a></li>
-                    <li><a href="#feeDesc">费用说明</a></li>
-                </ul>
-            </div>
-			<h2 class="banner mgt20" id="introduction"><strong>产品介绍</strong> </h2>
-            <p>$!product.introduction</p>
-            <h2 class="banner mgt20" id="schedule"><strong>行程</strong> </h2>
-			<p>$!product.schedule</p>
-			<h2 class="banner mgt20" id="feeDesc"><strong>费用说明</strong> </h2>
-            <p>$!product.feeDesc</p>
-        </div>
+		<div class="L710">
+    		<div class="pro_intro" id="pro_intro">
+    			<ul class="tabTtl"><li class="current">产品介绍</li><li>行程</li><li>费用说明</li></ul>
+    			<div class="tabCnt current">
+    				<h2 class="banner mgt20"><strong>产品介绍</strong></h2>
+    				$!product.introduction
+    			</div>
+    			<div class="tabCnt">
+    				<h2 class="banner mgt20"><strong>行程</strong></h2>
+    				$!product.schedule
+    			</div>
+    			<div class="tabCnt">
+    				<h2 class="banner mgt20"><strong>费用说明</strong></h2>
+    				$!product.feeDesc
+    			</div>
+    		</div>
+    	</div>
+    		
 		<!-- end prointro -->
 	</div>
 	<div class="R mgt10">
@@ -92,7 +95,7 @@
 		<div class="hotelDtl">
 			<div class="hDtl1">
 				#if(!$collectionUtils.isEmpty($detailItems))
-				<div class="price"><span class="ttl">特惠价</span><span class="num">￥<strong>$product.bottomPrice</strong>元起</span></div>
+				<div class="price"><span class="ttl">最低价</span><span class="num">￥<strong>$product.bottomPrice</strong>起</span><i class="help" id="hDtlHelp"></i><div class="popForHelp"><i></i><div>本起价是指本起价是指本起价是指本起价是指本起价是指本起价是指本起价是指本起价是指</div></div></div>
 				#else
                     <div class="price"><span class="ttl">特惠价</span><span class="num">暂时无定价</span></div>
 				#end
@@ -143,7 +146,7 @@
 <!-- main结束 -->
 
 
-#JS(["validator.js","detail.js"])
+#JS(["validator.js","detail.js","pro_intro.js"])
 #STATIC("JS",["/blogcal/blogcalendar.js"])
 
 

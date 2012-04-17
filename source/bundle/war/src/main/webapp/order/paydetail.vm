@@ -13,10 +13,10 @@
     		<div class="odrTtl"><span class="flag">预定</span><span class="redTtl">￥$!order.price 元</span></div>
     		<table class="mgt10 pay">
     			<tr>
-    				<td>支付平台：</td><th><input type="radio" name="zfpt" id="zfpt1" checked /><label for="zfpt1"><img src="${env.staticroot}/images/zfb.gif" /></label></th>
+    				<td>支付平台：</td><th><input type="radio" name="paymethod" id="zfpt1" checked /><label for="zfpt1"><img src="${env.staticroot}/images/zfb.gif" /></label></th>
     			</tr>
     			<tr>
-    				<td>网上银行：</td><th><input type="radio" name="wsyh" id="wsyh1" /><label for="wsyh1"><img src="${env.staticroot}/images/zgyh.gif" /></label></th>
+    				<td>网上银行：</td><th><input type="radio" name="paymethod" id="wsyh1" /><label for="wsyh1"><img src="${env.staticroot}/images/zgyh.gif" /></label></th>
     			</tr>
     			<tr class="qrxd"><td></td><th><button class="order" id="paydetail">确认下单</button></th></tr>
     		</table>
