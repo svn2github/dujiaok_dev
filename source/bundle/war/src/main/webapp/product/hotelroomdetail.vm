@@ -54,18 +54,20 @@
         </div>
 		
 		<!-- start prointro-->
-		<div>
-        	<div class="pro_intro_tab clearFix">
-                <ul>
-                    <li class="cur"><a href="#introduction">产品介绍</a></li>
-                    <li><a href="#categoryImage">房型图片</a></li>
-                </ul>
-            </div>
-			<h2 class="banner mgt20" id="introduction"><strong>产品介绍</strong> </h2>
-            <p>$!product.introduction</p>
-            <h2 class="banner mgt20" id="categoryImage"><strong>房型图片</strong> </h2>
-			<p>$!product.categoryImage</p>
-        </div>
+		<div class="L710">
+    		<div class="pro_intro" id="pro_intro">
+    			<ul class="tabTtl"><li class="current">产品介绍</li><li>房型图片</li></ul>
+    			<div class="tabCnt current">
+    				<h2 class="banner mgt20"><strong>产品介绍</strong></h2>
+    				$!product.introduction
+    			</div>
+    			<div class="tabCnt">
+    				<h2 class="banner mgt20"><strong>行程</strong></h2>
+    				$!product.categoryImage
+    			</div>
+    		</div>
+    	</div>
+		
 		<!-- end prointro -->
 	</div>
 	

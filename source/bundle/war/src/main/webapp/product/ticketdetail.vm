@@ -58,21 +58,23 @@
 		
 		
 		<!-- start prointro-->
-		<div>
-        	<div class="pro_intro_tab clearFix">
-                <ul>
-                    <li class="cur"><a href="#introduction">产品介绍</a></li>
-                    <li><a href="#schedule">注意事项</a></li>
-                    <li><a href="#feeDesc">费用说明</a></li>
-                </ul>
-            </div>
-			<h2 class="banner mgt20" id="introduction"><strong>产品介绍</strong> </h2>
-            <p>$!product.introduction</p>
-            <h2 class="banner mgt20" id="schedule"><strong>注意事项</strong> </h2>
-			<p>$!product.notice</p>
-			<h2 class="banner mgt20" id="feeDesc"><strong>费用说明</strong> </h2>
-            <p>$!product.feeDesc</p>
-        </div>
+		<div class="L710">
+    		<div class="pro_intro" id="pro_intro">
+    			<ul class="tabTtl"><li class="current">产品介绍</li><li>注意事项</li><li>费用说明</li></ul>
+    			<div class="tabCnt current">
+    				<h2 class="banner mgt20"><strong>产品介绍</strong></h2>
+    				$!product.introduction
+    			</div>
+    			<div class="tabCnt">
+    				<h2 class="banner mgt20"><strong>注意事项</strong></h2>
+    				$!product.notice
+    			</div>
+				<div class="tabCnt">
+    				<h2 class="banner mgt20"><strong>费用说明</strong></h2>
+    				$!product.feeDesc
+    			</div>
+    		</div>
+    	</div>
 		<!-- end prointro -->
 	</div>
 	<div class="R mgt10">
