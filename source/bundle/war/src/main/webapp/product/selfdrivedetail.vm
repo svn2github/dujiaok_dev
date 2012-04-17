@@ -95,7 +95,7 @@
 		<div class="hotelDtl">
 			<div class="hDtl1">
 				#if(!$collectionUtils.isEmpty($detailItems))
-				<div class="price"><span class="ttl">最低价</span><span class="num">￥<strong>$product.bottomPrice</strong>起</span><i class="help" id="hDtlHelp"></i><div class="popForHelp"><i></i><div>本起价是指本起价是指本起价是指本起价是指本起价是指本起价是指本起价是指本起价是指</div></div></div>
+				<div class="price"><span class="ttl">最低价</span><span class="num">￥<strong>$product.bottomPrice</strong>起</span><i class="help" id="hDtlHelp"></i><div class="popForHelp"><i></i><div>#parse("/common/price_desc.vm")</div></div></div>
 				#else
                     <div class="price"><span class="ttl">特惠价</span><span class="num">暂时无定价</span></div>
 				#end

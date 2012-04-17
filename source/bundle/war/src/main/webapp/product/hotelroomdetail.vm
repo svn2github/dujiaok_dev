@@ -85,7 +85,7 @@
 		-->
 		<div class="hotelDtl">
 			<div class="hDtl1">
-				<div class="price"><span class="ttl">最低价</span><span class="num">￥<strong>$product.bottomPrice</strong>起</span><i class="help" id="hDtlHelp"></i><div class="popForHelp"><i></i><div>本起价是指本起价是指本起价是指本起价是指本起价是指本起价是指本起价是指本起价是指</div></div></div>
+				<div class="price"><span class="ttl">最低价</span><span class="num">￥<strong>$product.bottomPrice</strong>起</span><i class="help" id="hDtlHelp"></i><div class="popForHelp"><i></i><div>#parse("/common/price_desc.vm")</div></div></div>
 				<table>
 					<tbody>
                         <tr><th><strong>酒店名称：</strong></th><td><a href="${env.root}/product/detail.htm?productId=$!product.hotelId" target="hotel">$!hotelName</a></td></tr>
