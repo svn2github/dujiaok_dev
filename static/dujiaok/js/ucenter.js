@@ -17,7 +17,7 @@
 			var L=arr.length;
 			opts='';
 			for(var i=0;i<L;i++){
-				opts+='<option>'+arr[i]+'</option>';
+				opts+='<option' + arr[i] + '>'+arr[i]+'</option>';
 			}
 			$("#accountType2").html(opts).show();	
 		}
