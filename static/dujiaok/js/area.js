@@ -1,6 +1,7 @@
 ﻿var arrySheng;
 var arryShi;
 var arryXian;
+var defaultOptionVal = "" ;
 var areaSelect = {
 	slt_sheng: $('<select name="mailingProvince"> ', {
 		name: "sheng"
@@ -19,9 +20,9 @@ var areaSelect = {
 		arryShi = this.strShi.split('|');
 		arryXian = this.strXian.split('|');
 
-		$(this.slt_sheng)[0].options.add(new Option("请选择", "-1"));
-		$(this.slt_shi)[0].options.add(new Option("请选择", "-1"));
-		$(this.slt_xian)[0].options.add(new Option("请选择", "-1"));
+		$(this.slt_sheng)[0].options.add(new Option("请选择", defaultOptionVal));
+		$(this.slt_shi)[0].options.add(new Option("请选择", defaultOptionVal));
+		$(this.slt_xian)[0].options.add(new Option("请选择", defaultOptionVal));
 		areaSelect.bindSheng();
 		areaSelect.showSelect(obj);
 	},
@@ -43,13 +44,13 @@ var areaSelect = {
 		var s1 = $(this.slt_sheng).find("option:selected").val();
 		var s2 = $(this.slt_shi).find("option:selected").val();
 		var s3 = $(this.slt_xian).find("option:selected").val();
-		if (s3 != "-1" && s2 != "-1" && s1 != "-1") {
+		if (s3 != defaultOptionVal && s2 != defaultOptionVal && s1 != defaultOptionVal) {
 			$("span[id$='AreaValue']", window.parent.document).html(s1 + "|" + s2 + "|" + s3);
 		}
-		if (s1 != "-1" && s2 != "-1" && s3 == "-1") {
+		if (s1 != defaultOptionVal && s2 != defaultOptionVal && s3 == defaultOptionVal) {
 			$("span[id$='AreaValue']", window.parent.document).html(s1 + "|" + s2);
 		}
-		if (s1 != "-1" && s2 == "-1" && s3 == "-1") {
+		if (s1 != defaultOptionVal && s2 == defaultOptionVal && s3 == defaultOptionVal) {
 			$("span[id$='AreaValue']", window.parent.document).html(s1);
 		}
 	}
@@ -84,13 +85,13 @@ areaSelect.bindSheng = function() //绑定省
 areaSelect.bindShi = function(strSheng) //绑定市
 {
 	$(areaSelect.slt_shi).empty();
-	$(areaSelect.slt_shi)[0].options.add(new Option("请选择", "-1"));
+	$(areaSelect.slt_shi)[0].options.add(new Option("请选择", defaultOptionVal));
 	$(areaSelect.slt_xian).empty();
-	$(areaSelect.slt_xian)[0].options.add(new Option("请选择", "-1"));
+	$(areaSelect.slt_xian)[0].options.add(new Option("请选择", defaultOptionVal));
 	for (var i = 0; i < arryShi.length; i++) {
 		var str = arryShi[i].split(',');
 		if (areaSelect.getCode12(str[1]) == areaSelect.getCode12(strSheng) && areaSelect.getCode56(str[1]) == "00" && areaSelect.getCode36(str[1]) != "0000") {
-			$(areaSelect.slt_shi)[0].options.add(new Option(str[0], str[1]));
+			$(areaSelect.slt_shi)[0].options.add(new Option(str[0], str[0]));
 		}
 	}
 }
@@ -101,7 +102,7 @@ areaSelect.bindXian = function(strShi) //绑定县
 	for (var i = 0; i < arryXian.length; i++) {
 		var str = arryXian[i].split(',');
 		if (areaSelect.getCode14(str[1]) == areaSelect.getCode14(strShi) && areaSelect.getCode56(str[1]) != "00") {
-			$(areaSelect.slt_xian)[0].options.add(new Option(str[0], str[1]));
+			$(areaSelect.slt_xian)[0].options.add(new Option(str[0], str[0]));
 		}
 	}
 }
