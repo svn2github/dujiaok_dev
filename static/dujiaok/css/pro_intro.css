@@ -3,10 +3,11 @@
 .pro_intro .tabTtl li{cursor:default; width:87px; height:30px; line-height:30px; float:left; display:block; margin-right:4px; border:1px solid #dcdcdc; border-bottom:none;color:#666; text-align:center;}
 .pro_intro .tabTtl li.current{ border:1px solid #249f00;color:#fff; background-color:#249f00;}
 .pro_intro p{ line-height:24px; margin:15px 10px;}
+.pro_intro h2{width:689px; height:23px; margin:25px 0 15px 0; padding:9px 0 0 21px; background:url(../images/ucenter_biaoti.gif) no-repeat 0 0; font-size:14px; font-weight:bold;} 
 .pro_intro h3{font-size:14px; font-weight:bold; margin:15px 0;}
-.pro_intro h4{clear:left;font-weight:bold;}
+.pro_intro h4{padding:15px 0;font-weight:bold;}
 .pro_intro .pic{ margin:15px 0; overflow:hidden;}
 .pro_intro .pic li{ float:left; display:block; margin-right:20px;}
 .pro_intro .pic li img{ display:inline-block; padding:2px; width:80px; height:60px; border:1px solid #dfdfdf;}
-.pro_intro .list1 li{ line-height:24px; margin:6px 0; padding-left:20px; background-position:4px -568px; }
+.pro_intro .list1 li{ line-height:24px; margin:6px 0; background:url(../images/icon_01.png) no-repeat 0 6px; }
 .pro_intro .list2 li{line-height:24px; margin:6px 0;}
