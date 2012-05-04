@@ -5,7 +5,7 @@
 	var L=account.length;
 	var opts='';
 	for(var i=0;i<L;i++){
-		opts+='<option>'+account[i].type+'</option>';
+		opts+='<option value=' + account[i].type + '>'+account[i].type+'</option>';
 	}
 	$("#accountType1").html(opts);
 	$("#accountType1").change(function(){
