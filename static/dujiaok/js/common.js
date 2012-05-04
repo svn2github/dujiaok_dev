@@ -1,7 +1,3 @@
-﻿var $element = function(id){
-	return document.getElementById(id) ;
-}
-
 var ok;
 (function($){
 	ok={
@@ -157,7 +153,14 @@ var ok;
 })(jQuery);
 //JS
 $(function(){
-	
+	$("#myOrder").hover(
+		function(){
+			$("#orderPop").show();
+		},
+		function(){
+			$("#orderPop").hide();
+		}
+	);
 	$("#hotPurpose").hover(
 		function(){
 			$("#hotPurpose ul").addClass("noRbd");
@@ -194,17 +197,5 @@ $(function(){
 		e.preventDefault();
 		$(this).parent().hide();
 	});
-	
-	/**
-	$("#myOrder").hover(
-		function(){
-			$("#orderPop").show();
-		},
-		function(){
-			$("#orderPop").hide();
-		}
-	);
-	
-	**/
 	ok.placeholder("schIpt");
 })
