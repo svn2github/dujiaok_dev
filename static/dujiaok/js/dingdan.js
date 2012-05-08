@@ -28,11 +28,11 @@ function calculation(){
 	var orderDays = $("#orderDays").html() ; //订单天数
 	var single = $("#dingdanP1").html() ;
 	var double = $("#dingdanP2").html() ;
-	var marketPrice = $("#marketPrice").html() ;
+	var marketPrice = $("#marketPrice").val() ;
 	
 	var scBxf=$("#dingdanP4").html()*v*orderDays; //市场保险费用
 	var bxf=$("#dingdanP5").html()*v*orderDays;//保险费用
-	var scj=v*marketPrice+cV*marketPrice;//市场价
+	var scj=(v+cV)*marketPrice;//市场价
 	var okj=parseInt(v/2)*$("#dingdanP2").html()+(v%2)*$("#dingdanP1").html()+cV*$("#dingdanP3").html();//OK价
 	var js=(scj-okj)+(scBxf-bxf); //节省
 	var zj=okj+bxf; //总价
