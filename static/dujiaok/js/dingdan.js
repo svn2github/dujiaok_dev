@@ -25,10 +25,10 @@ function ffzsCheck(obj){//儿童可以是非负整数
 function calculation(){
 	var v=$("#ddIpt1").val(); //成人数
 	var cV=$("#ddIpt2").val(); //儿童数
-	var orderDays = $("#orderDays").val() ; //订单天数
-	var single = $("#dingdanP1").val() ;
-	var double = $("#dingdanP2").val() ;
-	var marketPrice = $("#marketPrice").val() ;
+	var orderDays = $("#orderDays").html() ; //订单天数
+	var single = $("#dingdanP1").html() ;
+	var double = $("#dingdanP2").html() ;
+	var marketPrice = $("#marketPrice").html() ;
 	
 	var scBxf=$("#dingdanP4").html()*v*orderDays; //市场保险费用
 	var bxf=$("#dingdanP5").html()*v;//保险费用
