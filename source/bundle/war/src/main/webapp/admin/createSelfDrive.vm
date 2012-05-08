@@ -161,7 +161,7 @@
         <tr>
             <td align="right">备注：</td>
             <td>
-                <textarea id='memo' name='memo' cols="45" rows="8" >$!selfDrive.memo</textarea>
+                <textarea id='memo' name='memo' cols="45" rows="4" >$!selfDrive.memo</textarea>
             </td>
         </tr>
         <tr>
@@ -293,7 +293,6 @@
 			window.editor = loadediter("#introduction") ;
             window.editor = loadediter("#schedule") ;
 			window.editor = loadediter("#feeDesc") ;
-			window.editor = loadediter("#memo") ;
         });
     });
 </script>

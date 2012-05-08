@@ -6,8 +6,6 @@
 .dingdan .product thead td{ font-weight:bold; text-align:center; background:#F3F6F8;}
 .dingdan .product input{width:20px; height:14px; border:1px solid #DCDCDC;}
 .dingdan .attPro label{ margin:0 70px 0 5px;}
-.dingdan .okjia{ margin:0 30px;}
-.dingdan .pink{ margin:0 70px;}
 .dingdan .contactInfo tr{height:30px;}
 .dingdan .contactInfo th{ padding-right:5px;width:100px; text-align:right; font-weight:normal;}
 .dingdan .L{ width:710px; overflow:hidden;}
@@ -15,10 +13,12 @@
 .dingdan .contactInfo i{color:#f00;}
 .dingdan .contactInfo input{border:1px solid #DCDCDC;}
 .dingdan .contactInfo .w184{ width:184px; height:18px;}
-.dingdan .contactInfo .add{ margin-left:50px;color:#06c;}
+.dingdan .subContact{margin-top:10px; height:100%;border-top:1px solid #ccc; overflow:hidden;}
+.dingdan .operateInfo a,.dingdan .subContact a{color:#06c;}
+.dingdan .operateInfo .add{display:block;margin:20px 0 0 20px;color:#06c;}
+.dingdan .operateInfo input{vertical-align:top;vertical-align:baseline\9;}
 .dingdan .order{ display:block; margin:20px 0; width:132px; height:42px; background-position:-150px -60px; overflow:hidden;}
-.dingdan .contactInfo label{ margin-left:5px;}
-.dingdan .contactInfo textarea{ margin-top:10px;width:600px; height:100px;}
+.dingdan .operateInfo label{ margin-left:5px;}
 .dingdan .moneyTotal{ width:228px; border:1px solid #249F00;}
 .dingdan .moneyTotal h3{ height:30px; line-height:30px; text-align:center;font-weight:normal; color:#fff; background:#249F00;}
 .dingdan .moneyTotal table{ margin:10px;}

@@ -6,7 +6,7 @@
 <body>
 
 	#parse("/common/common_top_new.vm")
-	#JS(["jquery-1.6.2.min.js","common.js","index.js","search.js"])
+	#JS(["jquery-1.7.2.min.js","common.js","index.js","search.js"])
 	<!-- main开始 -->
 	 $screen_content
     <!-- main结束 -->

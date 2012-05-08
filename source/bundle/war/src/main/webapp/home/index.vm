@@ -5,40 +5,66 @@
 #set($_productType = "index")
 <!-- main开始 -->
 #set($indexChannel= $fontConstants.indexChannel)
-<div class="w950 main index">
+<div class="w950 index">
+
 
 	<!-- idx1开始 -->
 	<div class="mgt20 idx1">
-		<!-- 旅游团购开始 -->
-		#FRONT_EDIT_BUTTON($!indexChannel.getmTodaySpecials(), $isEdit)
 		<div class="L idx1L">
-			<dl id="idx1Lytg">
-				<dt>
-					<h2 class="L mgl10">
-						$!frontViewMap.get($!indexChannel.getmTodaySpecials()).config.moduleName</h2>
-					<ul class="R tabTtl"><li class="current"></li><li></li><li></li></ul>
-				</dt>
-				#if($!frontViewMap.get($!indexChannel.getmTodaySpecials()).frontViews)
-					<dd class="tabCnt current">
-    					#foreach($fv in $!frontViewMap.get($!indexChannel.getmTodaySpecials()).frontViews)
-							#set($todaySpecialsCount = ($velocityCount - 1) % 3)
-							#if($todaySpecialsCount == 0 && $velocityCount!=1)
-								</dd>
-								<dd class="tabCnt">
-							#end
-							<a href="$!fv.link">
-        						<img src="$!fv.photoURL" alt="$!fv.title" />
-        						<span>
-        							<em class="L">$!fv.title</em>
-        							<strong class="R">￥$!decimalUtils.formatPrice($!fv.presentPrice)</strong>
-        						</span>
-        					</a>
-    					#end
-                    </dd>
-				#end
-			</dl>
+			<div class="optionCard" id="optionCard">
+				<ul class="tabTtl"><li class="first current">度假旅游</li><li>国内机票</li><li>酒店</li></ul>
+				<div class="current tabCnt">
+					<table class="tableForm">
+						<tr><th>出发地</th><td class="select"><input type="text" value="杭州" /><ul><li>杭州</li><li>上海</li><li>北京</li><li>广州</li></ul></td></tr>
+						<tr><th>目的地</th><td><input type="text" /></td></tr>
+						<tr><th></th><td><a href="#">搜索</a></td></tr>
+					</table>
+					<div class="other">
+						您可能会喜欢：<br />
+						·游秦淮河画舫、中华门城堡<br />
+						·游南通狼山风景区<br />
+						·【抢购】云南双飞6日1299元<br />
+						·张家界,天子山卧去动返5日999元<br />
+						·美国东西海岸,大瀑布,黄石公园之旅<br />
+						·（特惠团）斯里兰卡6日7680元<br />
+						·毛里求斯、阿联酋8天浪漫之旅
+					</div>
+				</div>
+				<div class="tabCnt">
+					<table class="tableForm">
+						<tr><th>城市：</th><td><input type="text" class="gray" value="中文/拼音" placeholder="中文/拼音" id="schCity"></td></tr>
+						<tr><th></th><td><a href="#">搜索</a></td></tr>
+					</table>
+					<div class="other cityTab">
+						当季推荐：<br />
+						<a href="#">水乡古镇</a><a href="#">热卖景区</a><a href="#">推荐</a><a href="#">亲子家庭</a><br />
+						<a href="#">水乡古镇</a><a href="#">热卖景区</a><a href="#">推荐</a><a href="#">亲子家庭</a><br />
+						<a href="#">水乡古镇</a><a href="#">热卖景区</a><a href="#">推荐</a><a href="#">亲子家庭</a><br />
+						<a href="#">水乡古镇</a><a href="#">热卖景区</a><a href="#">推荐</a><a href="#">亲子家庭</a><br />
+						<a href="#">水乡古镇</a><a href="#">热卖景区</a><a href="#">推荐</a><a href="#">亲子家庭</a><br />
+						<a href="#">水乡古镇</a><a href="#">热卖景区</a><a href="#">推荐</a><a href="#">亲子家庭</a><br />
+						<a href="#">水乡古镇</a><a href="#">热卖景区</a><a href="#">推荐</a><a href="#">亲子家庭</a><br />
+						<a href="#">水乡古镇</a><a href="#">热卖景区</a><a href="#">推荐</a><a href="#">亲子家庭</a><br />
+					</div>
+				</div>
+				<div class="tabCnt">
+					<table class="tableForm">
+						<tr><th>城市：</th><td class="select"><input type="text" value="杭州" /><ul><li>杭州</li><li>上海</li><li>北京</li><li>广州</li></ul></td></tr>
+						<tr><th>酒店：</th><td><input type="text" /></td></tr>
+						<tr><th>价格：</th><td><input type="text" /></td></tr>
+						<tr><th>星级：</th><td class="select"><input type="text" value="五星" /><ul><li>五星</li><li>四星</li><li>三星</li><li>二星</li><li>一星</li></ul></td></tr>
+						<tr><th></th><td><a href="#">搜索</a></td></tr>
+					</table>
+					<div class="other cityTab hotelTab">
+						热门城市：<br />
+						<a href="#">鸡公山</a><a href="#">黄山</a><a href="#">常州</a><a href="#">昆山</a><a href="#">横店</a><br />
+						<a href="#">鸡公山</a><a href="#">黄山</a><a href="#">常州</a><a href="#">昆山</a><a href="#">横店</a><br />
+						<a href="#">鸡公山</a><a href="#">黄山</a><a href="#">常州</a><a href="#">昆山</a><a href="#">横店</a><br />
+					</div>
+				</div>
+			</div>
 		</div>
-		<!-- 旅游团购结束 -->
+		
 		#FRONT_EDIT_BUTTON($!indexChannel.getmBanner(), $isEdit)
 		<div class="L idx1M">
 			<div class="bigRoll" id="idx1BigRoll">
@@ -117,41 +143,42 @@
 				</dl>
 			</div>
 		</div>
+		
+		<!-- 旅游团购开始 -->
+		#FRONT_EDIT_BUTTON($!indexChannel.getmTodaySpecials(), $isEdit)
 		<div class="R idx1R">
-			<div class="login">
-				<a href="${env.root}/member/register.htm">注册</a>
-
-				<a href="${env.root}/member/login.htm">登录</a>
-			</div>
-			<div class="mgt10 optionCard" id="optionCard">
-				<ul class="tabTtl"><li class="first current">度假旅游</li><li>国内机票</li><li>酒店</li></ul>
-				<div class="current tabCnt">
-					<table class="tableForm">
-						<tr><th>出发地</th><td><input type="text" /></td></tr>
-
-						<tr><th>目的地</th><td><input type="text" /></td></tr>
-						<tr><th></th><td><a href="#">搜索</a></td></tr>
-					</table>
-				</div>
-				<div class="tabCnt">
-					2
-				</div>
-				<div class="tabCnt">
-
-					3
-				</div>
-			</div>
-			#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsA5(), $isEdit)
-			#if($!frontViewMap.get($!indexChannel.getmImageAdsA5()).frontViews)
-				#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsA5()).frontViews)
-					<div class="mgt10 pad3 imgLink">
-        				<a href="$!fv.link"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
-        			</div>
+			<dl>
+				<dt>
+					<h2 class="L mgl10">
+						$!frontViewMap.get($!indexChannel.getmTodaySpecials()).config.moduleName</h2>
+					
+				</dt>
+				#if($!frontViewMap.get($!indexChannel.getmTodaySpecials()).frontViews)
+					<dd class="tabCnt current">
+    					#foreach($fv in $!frontViewMap.get($!indexChannel.getmTodaySpecials()).frontViews)
+							#set($todaySpecialsCount = ($velocityCount - 1) % 3)
+							#if($todaySpecialsCount == 0 && $velocityCount!=1)
+								</dd>
+								<dd class="tabCnt">
+							#end
+							<a href="$!fv.link">
+        						<img src="$!fv.photoURL" alt="$!fv.title" />
+        						<span>
+        							<em class="L">$!fv.title</em>
+        							<strong class="R">￥$!decimalUtils.format($!fv.presentPrice,"0")</strong>
+        						</span>
+        					</a>
+    					#end
+                    </dd>
 				#end
-			#end
+			</dl>
 		</div>
+
+		<!-- 旅游团购结束 -->
 	</div>
 	<!-- idx1结束 -->
+
+	
 	<!-- idx2开始 -->
 	#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsB(), $isEdit)
 	#if($!frontViewMap.get($!indexChannel.getmImageAdsB()).frontViews)
@@ -162,6 +189,8 @@
 		#end
 	#end
 	<!-- idx2结束 -->
+	
+	
 	<!-- idx3开始 -->
 	<div class="mgt20 floor idx3">
 		<div class="ttl">

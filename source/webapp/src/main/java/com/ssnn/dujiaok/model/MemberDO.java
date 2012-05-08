@@ -38,10 +38,142 @@ public class MemberDO {
 	 * email
 	 */
 	private String email ;
+	
+	/**
+	 * 退款账号
+	 */
+	private String refundAccount ;
+	
+	/**
+	 * 退款账号类型
+	 */
+	private String refundAccountType ;
+	
+	/**
+	 * 退款账号类型银行
+	 */
+	private String refundAccountTypeBank ;
+	
+	/**
+	 * 退款账号姓名
+	 */
+	private String refundAccountName ;
+	
+	/**
+	 * 邮寄 省
+	 */
+	private String mailingProvince ;
+	
+	/**
+	 * 邮寄 市
+	 */
+	private String mailingCity ;
+	
+	/**
+	 * 邮寄 区域
+	 */
+	private String mailingArea ;
+	
+	/**
+	 * 邮寄 详细地址
+	 */
+	private String mailingAddr ;
+	
+	/**
+	 * 姓名
+	 */
+	private String mailingName ;
+	
+	/**
+	 * 邮编
+	 */
+	private String mailingZipcode ;
 
 	private Date gmtCreate ;
 	
 	private Date gmtModified ;
+	
+	
+	public String getRefundAccountTypeBank() {
+		return refundAccountTypeBank;
+	}
+
+	public void setRefundAccountTypeBank(String refundAccountTypeBank) {
+		this.refundAccountTypeBank = refundAccountTypeBank;
+	}
+
+	public String getRefundAccount() {
+		return refundAccount;
+	}
+
+	public void setRefundAccount(String refundAccount) {
+		this.refundAccount = refundAccount;
+	}
+
+	public String getMailingName() {
+		return mailingName;
+	}
+
+	public void setMailingName(String mailingName) {
+		this.mailingName = mailingName;
+	}
+
+	public String getMailingZipcode() {
+		return mailingZipcode;
+	}
+
+	public void setMailingZipcode(String mailingZipcode) {
+		this.mailingZipcode = mailingZipcode;
+	}
+
+	public String getRefundAccountType() {
+		return refundAccountType;
+	}
+
+	public void setRefundAccountType(String refundAccountType) {
+		this.refundAccountType = refundAccountType;
+	}
+
+	public String getRefundAccountName() {
+		return refundAccountName;
+	}
+
+	public void setRefundAccountName(String refundAccountName) {
+		this.refundAccountName = refundAccountName;
+	}
+
+	public String getMailingProvince() {
+		return mailingProvince;
+	}
+
+	public void setMailingProvince(String mailingProvince) {
+		this.mailingProvince = mailingProvince;
+	}
+
+	public String getMailingCity() {
+		return mailingCity;
+	}
+
+	public void setMailingCity(String mailingCity) {
+		this.mailingCity = mailingCity;
+	}
+
+	public String getMailingArea() {
+		return mailingArea;
+	}
+
+	public void setMailingArea(String mailingArea) {
+		this.mailingArea = mailingArea;
+	}
+
+	public String getMailingAddr() {
+		return mailingAddr;
+	}
+
+	public void setMailingAddr(String mailingAddr) {
+		this.mailingAddr = mailingAddr;
+	}
+
 	public int getId() {
 		return id;
 	}

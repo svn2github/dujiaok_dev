@@ -1,0 +1,77 @@
+#set($layout="/product/default.vm")
+#set($title="度假OK - 我的订单")
+
+    <!-- 内容开始 -->
+    <div class="ucenter section">
+    	<div class="ucenter_left">
+        	<h3 class="B ">我的度假OK</h3>
+            <ul>
+            	<h4>我的订单</h4>
+            	<li><a href="#">订单中心</a></li>
+            </ul>
+            <ul>
+            	<h4>个人信息</h4>
+            	<li class="cur"><a href="#">个人资料</a></li>
+                <li><a href="#">修改密码</a></li>
+            </ul>
+        </div>
+        <div class="ucenter_right">
+        	<div class="ucenter_profile">
+            	<span class="ucenter_profile_left"><p>欢迎您&nbsp;&nbsp;<b>$!member.nickname</b></p><p>账户余额：<b>￥0.00</b></p></span>
+                <span class="ucenter_profile_right">上次登录：$dateUtils.format($!member.gmtModified, 'yyyy-MM-dd')</span>
+            </div>
+            <h2 class="B FS14">个人资料</h2>
+            <table class="us02" cellpadding="0" cellspacing="0">
+            	<tr>
+                	<th>编号</th>
+                    <th>商品</th>
+                    <th>下单时间</th>
+                    <th>订单金额</th>
+                    <th>订单状态</th>
+                    <th>操作</th>
+                </tr>
+				#set($unpayCount=0)
+				#set($succCount=0)
+				#set($closeCount=0)
+                #if(!$collectionUtils.isEmpty($!orderList))
+	                #foreach($order in $!orderList)
+		                <tr>
+		                	<td class="tb01">$!order.orderId</td>
+		                    <td class="tb02"><p><a></a></p><p>成人（<b>$!order.count</b>）&nbsp;&nbsp;&nbsp;&nbsp;儿童（<b>$!order.secondaryCount</b>）</p></td>
+		                    <td class="tb03">$dateUtils.format($!order.gmtCreate, 'yyyy-MM-dd')</td>
+		                    <td class="tb04">￥$!order.price</td>
+		                    <td class="tb05">
+		                    	<p class="F7">
+		                    		#if($!order.status=='SUCCESS')
+		                    			#set($succCount = $succCount+1)
+		                    			已付款
+		                    		#elseif($!order.status=='CLOSED')
+		                    		    #set($closeCount = $closeCount+1)
+		                    		    已关闭
+		                    		#elseif($!order.status=='UNPAY')
+		                    		    #set($unpayCount = $unpayCount+1)
+		                    		    未付款
+		                    		#elseif($!order.status=='CONFIRM')
+		                    		    已确认
+		                    		#elseif($!order.status=='DRAWBACKING')
+		                    		    退款中
+		                    		#elseif($!order.status=='DRAWBACKED')
+		                    		    已退款
+		                    		#end
+		                    	</p>
+		                    	<p><a href="${env.root}/order/orderdetail.htm?orderId=$!order.orderId" target="_blank">订单详情</a></p></td>
+		                    <td class="tb06">
+		                    	#if ($!order.status=='UNPAY')
+		                    		<a href="${env.root}/order/paydetail.htm?orderId=$!order.orderId" target="_blank"><button>付款</button></a>
+		                    	#end
+		                    	<p><a href="#">关闭</a></p>
+		                    </td>
+		                </tr>
+	                #end
+	            #end
+	            <tr>
+                	<td colspan="6"  class="tb07">等待付款：$unpayCount&nbsp;&nbsp;&nbsp;&nbsp;已完成：$succCount&nbsp;&nbsp;&nbsp;&nbsp;已取消：$closeCount&nbsp;&nbsp;&nbsp;&nbsp;订单总数：$collectionUtils.size($!orderList)</td>
+                </tr>
+            </table>
+        </div>
+    </div>

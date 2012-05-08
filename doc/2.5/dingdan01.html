@@ -172,7 +172,7 @@
 	</div>
 </div>
 <!-- main开始 -->
-<div class="w950 dingdan">
+<div class="w950 dingdan" id="dingdan01">
 	<!-- dtl1开始 -->
 	<div class="L">
 		<div class="crumb">您当前的位置：<a href="#" target="_blank">浙江</a> > <a href="#" target="_blank">嘉兴</a> > 桐乡乌镇</div>
@@ -184,12 +184,14 @@
 				<td>588156237</td>
 				<td>桐乡乌镇一日游 中国最后的枕水人家 似水年华</td>
 				<td class="F10">杭州<br>2011-06-11</td>
-				<td class="F10">成人 <input type="text" class="wpx34" value="3" maxlength="3" id="Adult_Num" name="Adult_Num"><span class="F2">（单人价：<span id="Adult_price">300</span>元&#12288;双人价<span id="Adult_price2">500</span>元）</span><br>儿童 <input type="text" class="wpx34" maxlength="3" id="Child_Num" name="Child_Num"><span class="F2">（儿童价：<span id="Child_price">210</span>元）</span></td>
+				<td class="F10">成人 <input type="text" class="wpx34" value="3" maxlength="3" id="ddIpt1" name="Adult_Num"><span class="F2">（单人价：<span id="dingdanP1">300</span>元&#12288;双人价<span id="dingdanP2">500</span>元）</span><br>儿童 <input type="text" value="1" class="wpx34" maxlength="3" id="ddIpt2" name="Child_Num"><span class="F2">（儿童价：<span id="dingdanP3">210</span>元）</span></td>
 			</tr></tbody>
 		</table>
 		<h2 class="banner mgt20"><strong>附加产品</strong></h2>
 		<div class="mgt10 attPro">
-			<input type="checkbox" id="attPro" /><label for="attPro">自由行-平安国内短途2日游意外险</label><span>市场价：10元</span><span class="okjia">ok价：2元</span><span>3　份</span><span class="pink">6元</span></div>
+			自由行-平安国内短途2日游意外险<span class="mgl30">市场价：<span id="dingdanP4">10</span>元</span><span class="mgl30">ok价：<span id="dingdanP5">2</span>元</span><span class="mgl30"><span class="pink" id="dingdanP6">3</span>份</span><span class="mgl30">共<span class="pink" id="dingdanP7">6</span>元</span>
+            <p class="mgt10 pink">备注：购买儿童票不含保险</p>
+            </div>
 		<h2 class="banner mgt20"><strong>主联系人信息</strong></h2>
 		<table class="mgt10 contactInfo">
 			<tr>
@@ -198,7 +200,7 @@
 			</tr>
 			<tr>
 				<th><i>*</i>主联系人手机：</th>
-				<td><input type="text" class="w184" /></td>
+				<td><input type="text" class="w184" maxlength="11" /></td>
 			</tr>
 			<tr>
 				<th><i>*</i>证件类型：</th>
@@ -218,6 +220,30 @@
 				<th>E-mail：</th>
 				<td><input type="text" class="w184" /></td>
 			</tr>
+          </table>
+            <div id="subCBox">
+                <div class="subContact">
+                    <table class="mgt10 contactInfo">
+                        <tr><th><i>*</i>游玩人姓名：</th><td><input type="text" class="w184" /></td></tr>
+                        <tr><th><i>*</i>游玩人手机：</th><td><input type="text" class="w184" maxlength="11" /></td></tr>
+                        <tr><th><i>*</i>证件类型：</th><td><select id="select" name="select"><option>身份证</option><option>护照</option><option>军官证</option></select></td></tr>
+                        <tr><th><i>*</i>证件号码：</th><td><input type="text" class="w184" /></td></tr>
+                        <tr><th>E-mail：</th><td><input type="text" class="w184" /></td></tr>
+                        <tr><th></th><td><a href="#" class="del">- 删除游玩人</a></td></tr>
+                    </table>
+                </div>
+                 <div class="subContact">
+                    <table class="mgt10 contactInfo">
+                        <tr><th><i>*</i>游玩人姓名：</th><td><input type="text" class="w184" /></td></tr>
+                        <tr><th><i>*</i>游玩人手机：</th><td><input type="text" class="w184" maxlength="11" /></td></tr>
+                        <tr><th><i>*</i>证件类型：</th><td><select id="select" name="select"><option>身份证</option><option>护照</option><option>军官证</option></select></td></tr>
+                        <tr><th><i>*</i>证件号码：</th><td><input type="text" class="w184" /></td></tr>
+                        <tr><th>E-mail：</th><td><input type="text" class="w184" /></td></tr>
+                        <tr><th></th><td><a href="#" class="del">- 删除游玩人</a></td></tr>
+                    </table>
+                </div>
+            </div>
+          <table class="operateInfo" id="operateInfo">
 			<tr>
 				<th></th>
 				<td><a href="#" class="add">+ 添加游玩人</a></td>
@@ -225,9 +251,8 @@
 			<tr>
 				<th></th>
 				<td>
-					<a href="#" class="order">确认下单</a>
-					<div><input type="checkbox" checked="checked" id="odrProtocol" /><label for="odrProtocol">同意度假OK预订协议</label></div>
-					<textarea>协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议</textarea>
+					<input type="submit" value="确认下单" class="order" />
+					<div><input type="checkbox" checked="checked" id="odrProtocol" /><label for="odrProtocol"><a href="#" target="_blank">同意度假OK预订协议</a></label></div>
 				</td>
 			</tr>
 		</table>
@@ -245,12 +270,12 @@
 		<div class="moneyTotal">
 			<h3>订单金额总计</h3>
 			<table>
-				<tr><th>市 场 价：</th><td><span class="through">2167</span>元</td></tr>
-				<tr><th>现 行 价：</th><td><span class="through">352</span>元</td></tr>
-				<tr><th>保险费用：</th><td>6元</td></tr>
-				<tr><th>累计节省：</th><td>1458元</td></tr>
+				<tr><th>市 场 价：</th><td><span class="through pink" id="dingdanP8" single="300">2167</span>元</td></tr>
+				<tr><th>OK 价：</th><td><span id="dingdanP9" class="pink">352</span>元</td></tr>
+				<tr><th>保险费用：</th><td><span id="dingdanP10" class="pink">6</span>元</td></tr>
+				<tr><th>累计节省：</th><td><span id="dingdanP11" class="pink">1458</span>元</td></tr>
 			</table>
-			<p>订单结算金额<br><b class="f22">￥178370</b></p>
+			<p>订单结算金额<br><b class="f22">￥<span id="dingdanP12" class="pink">178370</span></b></p>
 		</div>
 	</div>
 </div>
@@ -277,9 +302,9 @@
 	<p class="btm3">Copyright &copy; 2011 - 2012 度假OK Inc.度假OK 版权所有 浙ICP证080194号</p>
 </div>
 <!-- bottom结束 -->
-<script src="js/jquery-1.6.2.min.js"></script>
+<script src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="http://v2.jiathis.com/code/jia.js" charset="utf-8"></script>
 <script src="js/common.js"></script>
-<script src="js/index.js"></script>
+<script src="js/dingdan.js"></script>
 </body>
 </html>

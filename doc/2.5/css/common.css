@@ -1,6 +1,6 @@
 /* ʽ */
 body,ul,ol,li,p,h1,h2,h3,h4,input,dl,dt,dd,td,th{ margin:0; padding:0; list-style:none; font-family:simsun; font-size:12px;}
-body{padding-bottom:100px;background:url(../images/body.png) repeat-x 0 151px;color:#999;}
+body{padding-bottom:100px;background:url(../images/body.png) repeat-x 0 112px;color:#999;}
 table{ border-collapse:collapse;}
 img{vertical-align:top;border:none;}
 li{vertical-align:middle;}
@@ -24,14 +24,16 @@ em,i{font-style:normal;}
 .through{ text-decoration:line-through;}
 .w950{margin:auto; width:950px; overflow:hidden;}
 .mgt10{margin-top:10px;}
+.mgl30{margin-left:30px;}
 .mgb10{margin-bottom:10px;}
 .mgt20{margin-top:20px;}
 .mgr10{margin-right:10px;}
 .mgl10{margin-left:10px;}
 .pad3{padding:3px; border:1px solid #DCDCDC; }
-.userBar,.mainMenu a.current,.mainMenu a:hover.current,.idx1 .L dt,.idx1M .tabTtl li,.idx1R .tabTtl li,.schL3 .ttl,.box230 .ttl,.leftMenu h3{background:url(../images/repeat.png);}
-.hotPurpose h2.current,.mainMenu a:hover,.idx1R .login,.tableForm a,.schOut .ttl .R a,.order,.page button,.hSchR .hSchR2 td a,.dingdan .flag,.banner strong,.rightMain button{background:url(../images/other.png) no-repeat;}
+.ipt200{width:200px;}
 .userBar .myOrder,.userBar .rank,.hotPurpose h3,.hotPurpose h3 span,.hotPurpose .close,.idx1L li,.bottom .L dt,.orderList li i,.tableForm .select input,.detail .tabTtl li,.pro_intro .list1 li,.jiathis_txt,.help,.popForHelp i{background:url(../images/icon.gif) no-repeat;}
+.hotPurpose h2.current,.mainMenu a:hover,.idx1L .login,.tableForm a,.schOut .ttl .R a,.order,.page button,.hSchR .hSchR2 td a,.dingdan .flag,.banner strong,.rightMain button,.rightMain .button{background:url(../images/other.png) no-repeat;}
+.userBar .myOrder,.userBar .rank,.hotPurpose h3,.hotPurpose h3 span,.hotPurpose .close,.idx1R li,.bottom .L dt,.orderList li i,.tableForm .select input,.detail .tabTtl li,.pro_intro .list1 li,.jiathis_txt{background:url(../images/icon.gif) no-repeat;}
 .order{ display:block;width:72px; height:28px; border:0;text-indent:-9999px;background-position:-538px 0;}
 .greenTtl{ margin-bottom:15px; font-size:14px;color:#290;}
 .redTtl{display:block;font-size:14px;color:#E8004C;}
@@ -49,14 +51,14 @@ em,i{font-style:normal;}
 .pop{ display:none; position:absolute; top:26px; left:764px;}
 .userBar .pop{ width:100px; height:200px; border:1px solid #f00; background:#ccc;}
 /* head */
-.head{height:154px;background:url(../images/head.png) 0 bottom no-repeat;*overflow:hidden;}
-.head .top{padding:30px 0 20px 10px; height:69px;}
-h1,h1 a{float:left;width:218px;height:69px;}
-h1 a{text-indent:-9999px;}
-.schForm{float:left;display:inline;margin-left:134px;width:326px; overflow:hidden;}
-.schForm input{float:left;margin:20px 8px 0 0; width:252px; height:21px; line-height:21px; border:0;}
-.schForm a{float:left;margin-top:16px;width:63px; height:28px;text-indent:-9999px;overflow:hidden;}
-.top .serviceTel{float:left; margin:30px 0 0 153px;font-family:Arial; font-size:15px; font-weight:bold; color:#73B105;}
+.head{height:114px;background:url(../images/head.png) 0 bottom no-repeat;*overflow:hidden;}
+.head .top{padding:18px 0 12px 0;height:49px;}
+h1{float:left;width:327px;height:49px;}
+h1 a{display:block;height:49px;text-indent:-9999px;}
+.schForm{float:left;display:inline;margin-left:96px;width:326px; overflow:hidden;}
+.schForm input{float:left;margin:15px 7px 0 0; width:252px; height:21px; line-height:21px; border:0;}
+.schForm a{float:left;margin-top:10px;width:63px; height:28px;text-indent:-9999px;overflow:hidden;}
+.top .serviceTel{float:left;margin:25px 0 0 93px;font-family:Arial; font-size:15px; font-weight:bold; color:#73B105;}
 /* menu */
 .menu{height:35px;}
 .hotPurpose{float:left;margin-top:3px;width:120px; height:32px;}
@@ -126,9 +128,9 @@ h1 a{text-indent:-9999px;}
 .orderList li i{color:#666;background-position:0 -390px;}
 .orderList li.li123 i{color:#fff;background-position:0 -353px;}
 /* tableForm */
-.tableForm{margin:28px 15px 0 22px;}
+.tableForm{margin:28px 15px 0 18px;}
 .tableForm th,.tableForm td{padding-bottom:24px;}
-.tableForm th{width:47px; text-align:left; font-weight:normal;}
+.tableForm th{width:49px;text-align:left; font-weight:normal;}
 .tableForm td{width:144px; height:26px; vertical-align:middle;}
 .tableForm input{padding-left:3px; width:141px; height:24px; line-height:24px; border:1px solid #ddd;}
 .tableForm .select{position:relative;}
@@ -136,7 +138,7 @@ h1 a{text-indent:-9999px;}
 .tableForm .select ul{display:none;position:absolute;*left:0;*margin-top:27px;width:144px;height:100px;overflow-x:hidden;overflow-y:auto;border-left:1px solid #ddd;border-right:1px solid #ddd;background:#F1F7F9;}
 .tableForm .select li{padding-left:3px;height:24px;line-height:24px;border-bottom:1px solid #ddd;}
 .tableForm .select li.over{color:#06c;background:#f0f0f0;}
-.tableForm a{display:block; margin-top:4px; width:78px; height:30px; line-height:30px; text-align:center; font-weight:bold; color:#fff;background-position:-322px 0;}
+.tableForm a{display:block; margin-top:4px; width:78px; height:30px; line-height:30px; text-align:center;color:#fff;background-position:-322px 0;}
 .tableForm a:hover{text-decoration:none;}
 /* schFactor */
 .schFactor{padding:15px 15px 8px 15px; height:100%;border:1px solid #DCDCDC;overflow:hidden;}
@@ -162,7 +164,7 @@ h1 a{text-indent:-9999px;}
 .schOut .pad3{ float:left; margin-right:15px; width:92px; height:92px;}
 .schOut .txt{float:left;margin-right:15px;}
 .schOut .t1{ display:block; margin-bottom:7px; height:20px; line-height:20px; font-size:14px; color:#06c; white-space:nowrap;overflow:hidden;}
-.schOut .t2{ display:block; height:24px; line-height:24px;white-space:nowrap;overflow:hidden;}
+.schOut .t2{ display:block; height:24px; line-height:24px;white-space:nowrap;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
 /* page */
 .page{margin:20px 0 0 90px;height:100%;}
 .page .pL,.page .pM,.page .pR,.page .pOther{float:left;}
@@ -180,24 +182,14 @@ h1 a{text-indent:-9999px;}
 .page input{margin:5px; width:32px; height:24px;line-height:24px;text-align:center; border:1px solid #dcdcdc;*vertical-align:-5px;}
 .page button{margin-left:5px; width:52px; height:26px;line-height:26px;line-height:28px\9; border:0;color:#666;vertical-align:middle;*vertical-align:-5px;background-position:-686px 0;}
 /* leftMenu */
-.leftMenu{ float:left; margin-right:10px; padding-bottom:30px; width:148px; border:1px solid #44BB00;}
+.leftMenu{ float:left; margin-right:10px; padding-bottom:30px; width:148px; height:600px; border:1px solid #44BB00;}
 .leftMenu h2{ height:30px; line-height:30px; text-align:center; color:#fff; background:#44BB00;}
 .leftMenu h3{ padding-left:20px; height:27px; line-height:27px; border-bottom:1px solid #DCDCDC; color:#333; background-position:0 -2px;}
 .leftMenu h4{ position:relative; margin:10px 0 0 8px; padding-left:30px; width:105px; height:30px; line-height:30px; color:#666; border:1px solid #fff; border-left-width:5px; border-right:none; font-weight:normal; background:#fff;}
 .leftMenu h4.current{ margin-right:-1px;width:106px; border-color:#44BB00;}
 .rightMain{ float:left;}
 .rightMain .banner{ width:790px;}
-.rightMain .userInfo{ margin:20px 0 0 30px;}
+.rightMain .userInfo{ margin:0 0 0 30px;}
 .rightMain .userInfo th{ height:40px; text-align:left;}
-.rightMain .userInfo input{ height:20px;}
-.rightMain button{ margin-right:5px;width:66px; height:30px; line-height:30px; color:#333; border:0; background-position:-702px -61px;}
-/* partsList */
-.partsList .tabTtl li{float:left;padding:0 10px;cursor:pointer;}
-.partsList .tabTtl li.current{ background:#ccc;}
-.partsList .tabCnt{margin:20px;}
-.partsList .tabCnt ul{float:left;width:313px;overflow:hidden;}
-.partsList .tabCnt ul.pLLeft{padding-right:20px; margin-right:20px;border-right:1px solid #ccc;}
-.partsList .tabCnt span{float:left;height:26px; line-height:26px;overflow:hidden;}
-.partsList .pLsp1{ width:50px;}
-.partsList .pLsp2{ width:220px;}
-.partsList .pLsp3{ width:43px;}
+.rightMain input{padding-left:3px; height:20px; line-height:20px;}
+.rightMain button,.rightMain .button{margin-right:5px;padding-left:0;width:66px; height:30px; line-height:30px; color:#333; border:0; background-position:-702px -61px;}

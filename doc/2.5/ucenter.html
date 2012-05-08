@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 <title>ucenter</title>
 <link rel="stylesheet" href="css/common.css" />
+<link rel="stylesheet" href="css/userCenter.css" />
 </head>
 <body>
 <div class="userBar">
@@ -175,12 +176,28 @@
 	</div>
 	<div class="rightMain">
 		<h2 class="banner"><strong>个人资料</strong></h2>
+        <form id="userInfo">
+        <h3 class="infoHead">基本资料</h3>
 		<table class="userInfo">
 			<tr><td>登录名：</td><th class="pink">Lanpand张波</th></tr>
-			<tr><td>手机号：</td><th><input type="text" /></th></tr>
+			<tr><td>昵称：</td><th><input type="text" /></th></tr>
+            <tr><td>手机号：</td><th><input type="text" maxlength="11" /></th></tr>
 			<tr><td>E-mail：</td><th><input type="text" /></th></tr>
-			<tr><td></td><th><button>保存</button><button>取消</button></th></tr>
 		</table>
+         <h3 class="infoHead">退款账号<span>方便您快捷支付和接受退款</span></h3>
+		<table class="userInfo">
+            <tr><td>类型：</td><th><select class="type1" id="accountType1"></select><select class="type2" id="accountType2"></select></th></tr>
+			<tr><td>账户：</td><th><input type="text" /></th></tr>
+            <tr><td>户名：</td><th><input type="text" /></th></tr>
+		</table>
+         <h3 class="infoHead">邮寄地址<span>由于某些订单含有邮寄产品，请填写准确的地址以免错过</span></h3>
+		<table class="userInfo">
+            <tr><td>邮寄地址：</td><th><div><span id="area"></span><input type="text" class="gray ipt200" id="addrDtl" placeholder="详细地址" value="详细地址" /></div></th></tr>
+            <tr><td>邮编：</td><th><input type="text" maxlength="6" /></th></tr>
+             <tr><td>姓名：</td><th><input type="text" /></th></tr>
+			<tr><td></td><th><input type="submit" value="保存" class="button" /><input type="reset" value="取消" class="button" /></th></tr>
+		</table>
+        </form>
 	</div>
 </div>
 <!-- main结束 -->
@@ -206,9 +223,10 @@
 	<p class="btm3">Copyright &copy; 2011 - 2012 度假OK Inc.度假OK 版权所有 浙ICP证080194号</p>
 </div>
 <!-- bottom结束 -->
-<script src="js/jquery-1.6.2.min.js"></script>
+<script src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="http://v2.jiathis.com/code/jia.js" charset="utf-8"></script>
 <script src="js/common.js"></script>
-<script src="js/detail.js"></script>
+<script src="js/area.js"></script>
+<script src="js/ucenter.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-#set($layout="/member/default.vm")
+#set($layout="/front/default_new.vm")
 #set($title="度假OK - 登陆")
 ###############################################################
 
@@ -14,7 +14,7 @@
                 <li><span>密　码</span><input type="password" id='password' name='password'/></li>
                 <!--<li style="padding-left:40px;"><input type="checkbox" class="reg_cheak"/><span>记住用户名</span><input type="checkbox" class="reg_cheak"/><span>自动登录</span></li>-->
                 <input type="hidden" id='Done' name='Done' value="$!Done"/>
-				<li style="padding-left:60px; margin-top:20px; "><button>　登录　</button><span class="errorMsg">$!actionError</span></li>
+				<li style="padding-left:60px; margin-top:20px; "><button type="submit">登陆</button><span class="errorMsg">$!actionError</span></li>
 				
             </ul>
         </form>

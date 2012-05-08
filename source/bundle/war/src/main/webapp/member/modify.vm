@@ -1,64 +1,41 @@
-#set($layout="/front/default.vm")
-#set($title="度假OK - 修改会员信息")
-<!-- 内容开始 -->
-<div class="ucenter section">
-    <div class="ucenter_left">
-        <h3 class="B ">我的度假OK</h3>
-        <ul>
-            <h4>我的订单</h4>
-            <li>
-                <a href="${env.root}/member/orderlist.htm">订单中心</a>
-            </li>
-        </ul>
-        <ul>
-            <h4>个人信息</h4>
-            <li class="cur">
-                <a href="${env.root}/member/modify.htm">个人资料</a>
-            </li>
-            <li>
-                <a href="${env.root}/member/modifyPassword.htm">修改密码</a>
-            </li>
-        </ul>
-    </div>
-    <div class="ucenter_right">
-        <form id="modifyMemberForm" name="modifyMemberForm" method="post" action="${env.root}/member/domodify.htm" onsubmit="return Validator.validate(this,'member');" >
-            <h2 class="B FS14">个人资料</h2>
-            <table class="us01">
-                <tr>
-                    <th>登录名：</th>
-                    <td>
-                        <b>$!member.memberId</b>
-                    </td>
-                </tr>
-                <tr>
-                    <th>昵称：</th>
-                    <td>
-                        <input id='nickname' name='nickname' value='$!member.nickname' />
-                    </td>
-                </tr>
-                <tr>
-                    <th>手机号：</th>
-                    <td>
-                        <input id='mobileNo' name='mobileNo' maxlength="11" value='$!member.mobileNo' />
-                    </td>
-                </tr>
-                <tr>
-                    <th>E-mail：</th>
-                    <td>
-                        <input id='email' name='email' value='$!member.email' />
-                    </td>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td>
-                        <span class="errorMsg">$!actionError</span>
-                        <button type="submit">保存</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </div>
-</div>
-<!-- 内容结束 -->
+#set($layout="/front/default_new.vm")
+#CSS(["userCenter.css"])
+#set($title="度假OK - 修改个人资料")
 
-#JS(["validator.js"])
+<div class="w950 mgt10 ucenter">
+	<div class="leftMenu">
+		<h2>我的度假OK</h2>
+		<h3>我的订单</h3>
+		<h4><a href="${env.root}/member/orderlist.htm">订单中心</a></h4>
+		<h3>我的订单</h3>
+		<h4 class="current"><a href="${env.root}/member/modify.htm">个人资料</a></h4>
+		<h4><a href="${env.root}/member/modifyPassword.htm">修改密码</a></h4>
+	</div>
+	<div class="rightMain">
+		<form id="modifyMemberForm" name="modifyMemberForm" method="post" action="${env.root}/member/domodify.htm" onsubmit="return Validator.validate(this,'member');" id="userInfo">
+		<h2 class="banner"><strong>个人资料</strong></h2>
+        <h3 class="infoHead">基本资料</h3>
+		<table class="userInfo">
+			<tr><td>登录名：</td><th class="pink">$!member.memberId</th></tr>
+			<tr><td>昵称：</td><th><input id='nickname' name='nickname' value='$!member.nickname' /></th></tr>
+            <tr><td>手机号：</td><th><input id='mobileNo' name='mobileNo' maxlength="11" value='$!member.mobileNo' /></th></tr>
+			<tr><td>E-mail：</td><th><input id='email' name='email' value='$!member.email' /></th></tr>
+		</table>
+         <h3 class="infoHead">退款账号<span>方便您快捷支付和接受退款</span></h3>
+		<table class="userInfo">
+            <tr><td>类型：</td><th><select class="type1" id="accountType1" name="refundAccountType" value="$!member.refundAccountType"></select><select class="type2" id="accountType2" name="refundAccountTypeBank" value="$!refundAccountTypeBank"></select></th></tr>
+			<tr><td>账户：</td><th><input type="text" name="refundAccount" value="$!member.refundAccount"/></th></tr>
+            <tr><td>户名：</td><th><input type="text" name="refundAccountName" value="$!member.refundAccountName"/></th></tr>
+		</table>
+         <h3 class="infoHead">邮寄地址<span>由于某些订单含有邮寄产品，请填写准确的地址以免错过</span></h3>
+		<table class="userInfo">
+            <tr><td>邮寄地址：</td><th><div><span id="area"></span><input type="text" class="gray ipt200" id="addrDtl" placeholder="详细地址" name="mailingAddr" value="$!member.mailingAddr" /></div></th></tr>
+            <tr><td>邮编：</td><th><input type="text" maxlength="6" name="mailingZipcode" value="$!member.mailingZipcode"/></th></tr>
+             <tr><td>姓名：</td><th><input type="text" name="mailingName" value="$!member.mailingName"/></th></tr>
+			<tr><td></td><th><input type="submit" value="保存" class="button" /><span class="pink">$!actionError</span></th></tr>
+		</table>
+        </form>
+	</div>
+</div>
+<!-- main结束 -->
+#JS(["area.js","ucenter.js","validator.js"])

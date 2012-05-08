@@ -160,6 +160,11 @@ public class OrderAction extends BasicAction  {
 	}
 	
 	
+	public String getProductType() {
+		return productType;
+	}
+
+
 	private String buildCantCheckinInfo(List<String> cantCheckinDate) {
 		if (cantCheckinDate == null || cantCheckinDate.size() == 0) {
 			return null;

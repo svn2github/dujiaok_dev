@@ -8,7 +8,6 @@
 	<input type="hidden" name="gmtOrderStart" id="gmtOrderStart" value="$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd')" />
 	<input type="hidden" name="gmtOrderEnd" id="gmtOrderEnd" value="$dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')" />
 	<input type="hidden" name="productType" id="productType" value="HOTELROOM" />
-    <input type="hidden" value="$!product.marketPrice" id="marketPrice">
 		
 	<div class="w950 dingdan">
     	<!-- dtl1开始 -->
@@ -37,15 +36,11 @@
 					<li style="color:red;">重要信息：本产品在$!cantCheckinDate&nbsp;没有可以入住的房间。</li>
 			    </ul>
 		    #end
-    		<h2 class="banner mgt20"><strong>订单备注</strong></h2>
     		<table class="mgt10">
                 <tr>
-					<th>
-							
+					<th>	
 					</th>
                     <td>
-						<div>
-						<textarea rows="1" id="memo" name="memo" style="width:500px;height:120px;"></textarea>
 					</td>
 				</tr>
     			<tr>
@@ -89,128 +84,7 @@
 	
 	
 	
-#XUI_JS(["core/xui-core-min.js","util/util-min.js"])
+#JS(["dingdan.js"])
 <script>
-	var personInfoCount = 1;
-	var roomPrice = $roomPrice;
-	var markeyRoomPrice = $markeyRoomPrice;
 	
-	function submitForm(){
-		var orderForm = document.getElementById('orderForm');
-		orderForm.action = $element('webUrl').value + 'trek/order/order/saveorder.htm';
-		
-		$element('amount').value = $element('Order_Total').innerHTML;
-		$element('adultNumber').value = $element('adultNum').value;
-		$element('countChild').value = $element('childNum').value;
-		if($element('Accident_Insurance').checked){
-			$element('isNeedRiskInput').value = "y";
-		}
-		orderForm.submit();
-	}
-	
-	function addPersonInfo(){
-	    var index = personInfoCount;
-		var personInfo = document.createElement('div');
-		personInfo.id = 'personInfo' + index;
-		var Contact = [];
-		Contact.push('<table class="d_ywrxx"  cellpadding="0" cellspacing="0">');
-		Contact.push('<tr><th><strong>游玩人信息</strong></th><th><i>*</i> 游玩人姓名：</th>');
-		  Contact.push('<td><input type="text" name="contacts['+ index + '].name" id="name' + index + '" class="wpx184"/></td></tr>');
-		Contact.push('<tr><th></th><th><i>*</i> 游玩人手机：</th>');
-		  Contact.push('<td><input type="text" name="contacts[' + index + '].mobile" id="mobile' + index + '" class="wpx184" /></td></tr>');
-		Contact.push('<tr><th></th><th><i>*</i> 证件类型：</th>');
-		  Contact.push('<td><select name="contacts[' + index + '].certificateType" id="certificateType' + index + '" style="width: 184px;">');
-		  Contact.push('<option value="ID">身份证</option><option value="PASSPORT">护照</option><option value="OFFICERPORT">军官证</option><option value="OTHER">其它</option></select></td></tr>');
-		Contact.push('<tr><th></th><th><i>*</i> 证件号码：</th>');
-		  Contact.push('<td><input type="text" name="contacts[' + index + '].certificateNumber" id="certificateNumber' + index + '" class="wpx184" /></td></tr>');
-		Contact.push('<tr><th></th><th>E-mail：</th>');
-		  Contact.push('<td><input type="text" name="contacts[' + index + '].email" id="email' + index + '" class="wpx1843" style="width: 184px;"/></td></tr>');
-		Contact.push('<tr><th></th><th><a href="javascript:removePersonInfo(' + index + ')" id="removePersonInfo" class="removePersonInfo">- 删除游玩人</a></th>');
-		  Contact.push('<td align="right"><a href="javascript:addPersonInfo()" id="addPersonInfo" class="addPersonInfo">+ 添加游玩人</a></td></tr>');
-		Contact.push('</table>');
-		
-		personInfo.innerHTML = Contact.join('');
-		$element('personInfos').appendChild(personInfo);
-		personInfoCount++;
-	}
-	
-	function removePersonInfo(index) {
-		var personInfoId = 'personInfo' + index;
-		var personInfo = $element(personInfoId);
-		$element('personInfos').removeChild(personInfo);
-	}
-	
-var EV = xui.util.Event,
-	DOM = xui.util.Dom;
-var Totalorders = function(){};
-Totalorders.prototype = {
-	bind:function(){
-		var SELF = this;
-		SELF.calculatePrice();
-		EV.on($element('roomNum'),'blur',function(){
-			SELF.calculatePrice();
-			xui.widgets.Tip.clear();
-		})
-		EV.on($element('submit'),'click',function(){
-				SELF.checkForm();
-		})
-		EV.on(DOM.getElementsByClassName('wpx184'),'keyup',function(){
-			if(this.value == ""){
-				xui.widgets.Tip.show(this.id,'带*号为必填项,请重新输入。');
-			}else{
-				xui.widgets.Tip._close(this.id+'china');
-			}
-		})
-		EV.on(DOM.getElementsByClassName('wpx184'),'blur',function(){
-			if(this.value == ""){
-				xui.widgets.Tip.show(this.id,'带*号为必填项,请重新输入。');
-			}else{
-				xui.widgets.Tip._close(this.id+'china');
-			}
-		})
-	},
-	/**
-	*订单金额总计数据
-	*/
-	calculatePrice:function(){
-		var roomNum = this.defaultValue(parseInt($element('roomNum').value), 0),
-			price = this.defaultValue(Number($element('price').innerHTML), 0),
-			marketPrice = this.defaultValue(Number($element('marketPrice').value), 0);
-			insurancePrice = $env.getProp("doucome.config.insurancePrice");
-		$element('roomNum').value = roomNum;
-		var okPrice = roomPrice * roomNum;
-		var marketPrice1 = markeyRoomPrice * roomNum;
-		this.initOrderPriceInfo(okPrice, marketPrice1);
-	},
-	initOrderPriceInfo:function(okPrice, marketPrice){
-		$element('orderOkPrice').innerHTML = okPrice;
-		$element('orderMarketPrice').innerHTML = marketPrice;
-		$element('orderSavePrice').innerHTML = marketPrice - okPrice;
-		$element('orderPrice').innerHTML = okPrice;
-	},
-	defaultValue: function(obj, value) {
-	    if ((obj == null) || (typeof(obj) == 'undefined') || isNaN(obj)) {
-	      return value;
-	    }
-	    return obj;
-	},
-	checkForm:function(){
-		var SELF = this;
-		var EL = DOM.getElementsByClassName('wpx184');
-		xui.widgets.Tip.clear();
-		for (i=0; i<EL.length; i++){
-			if(EL[i].value==""){
-				xui.widgets.Tip.show(EL[i].id,'带*号为必填项,不能为空!请重新输入。');
-			}else if(EL[i] == $element("erh_Tel0")&!xui.util.NumberUtil.isNumber(EL[i].value)){
-				xui.widgets.Tip.show(EL[i].id,'手机号码必须为11位数字。');
-			}else if(EL[i] == $element("erh_Tel0")&EL[i].value.length!==11){
-				xui.widgets.Tip.show(EL[i].id,'手机号码必须为11位数字。');
-			}
-		}
-	}
-};					   
-EV.onDOMReady(function(){
-	var b = new Totalorders();
-	b.bind();
-});
 </script>

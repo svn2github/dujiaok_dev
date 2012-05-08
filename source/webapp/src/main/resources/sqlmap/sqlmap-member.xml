@@ -11,6 +11,16 @@
 		<result property="nickname" column="NICKNAME" jdbcType="VARCHAR"/>
 		<result property="mobileNo" column="MOBILE_NO" jdbcType="VARCHAR"/>
 		<result property="email" column="EMAIL" jdbcType="VARCHAR"/>
+		<result property="refundAccount" column="REFUND_ACCOUNT" jdbcType="VARCHAR"/>
+		<result property="refundAccountType" column="REFUND_ACCOUNT_TYPE" jdbcType="VARCHAR"/>
+		<result property="refundAccountTypeBank" column="REFUND_ACCOUNT_TYPE_BANK" jdbcType="VARCHAR"/>
+		<result property="refundAccountName" column="REFUND_ACCOUNT_NAME" jdbcType="VARCHAR"/>
+		<result property="mailingProvince" column="MAILING_PROVINCE" jdbcType="VARCHAR"/>
+		<result property="mailingCity" column="MAILING_CITY" jdbcType="VARCHAR"/>
+		<result property="mailingArea" column="MAILING_AREA" jdbcType="VARCHAR"/>
+		<result property="mailingAddr" column="MAILING_ADDR" jdbcType="VARCHAR"/>
+		<result property="mailingName" column="MAILING_NAME" jdbcType="VARCHAR"/>
+		<result property="mailingZipcode" column="MAILING_ZIPCODE" jdbcType="VARCHAR"/>
 		<result property="gmtCreate" column="GMT_CREATE" jdbcType="TIMESTAMP"/>
 		<result property="gmtModified" column="GMT_MODIFIED" jdbcType="TIMESTAMP"/>
 	</resultMap>
@@ -41,6 +51,16 @@
 			NICKNAME = #nickname# ,
 			MOBILE_NO = #mobileNo# ,
 			EMAIL = #email# ,
+			REFUND_ACCOUNT = #refundAccount# ,
+			REFUND_ACCOUNT_TYPE = #refundAccountType# ,
+			REFUND_ACCOUNT_TYPE_BANK = #refundAccountTypeBank# ,
+			REFUND_ACCOUNT_NAME = #refundAccountName# ,
+			MAILING_PROVINCE = #mailingProvince# ,
+			MAILING_CITY = #mailingCity# ,
+			MAILING_AREA = #mailingArea# ,
+			MAILING_ADDR = #mailingAddr# ,
+			MAILING_NAME = #mailingName# ,
+			MAILING_ZIPCODE = #mailingZipcode# ,
 			GMT_MODIFIED = now() 
 		where
 			MEMBER_ID = #memberId#

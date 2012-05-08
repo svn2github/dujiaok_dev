@@ -10,5 +10,9 @@
 .rightMain .userOrder td.al{text-align:left;}
 .rightMain .userOrder a{ color:#06c;}
 .rightMain .userOrder a:hover{ color:#f60;}
-.rightMain .userOrder .pink{ font-weight:bold; color:#E8004C;}
+.rightMain .userOrder .pink{font-weight:bold; color:#E8004C;}
 .rightMain .userOrder td.ar{text-align:right;}
+.rightMain select{margin-right:5px;}
+.rightMain .infoHead{margin:20px 0 0 30px; color:#333; font-size:16px;}
+.rightMain .infoHead span{margin-left:10px;color:#ccc;font-size:12px; font-weight:normal;}
+.rightMain .type2{display:none;}

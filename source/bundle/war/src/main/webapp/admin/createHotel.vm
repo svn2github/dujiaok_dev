@@ -75,13 +75,13 @@
         <tr>
             <td align="right">产品简介：</td>
             <td>
-				<textarea id='introduction' name='introduction' cols="45" rows="8">#ESCAPE_HTML($!hotel.introduction)</textarea>
+				<textarea id='introduction' name='introduction' cols="45" rows="8">$!hotel.introduction</textarea>
             </td>
         </tr>
         <tr>
             <td align="right">备注：</td>
             <td>
-                <textarea id='memo' name='memo' cols="45" rows="8" >#ESCAPE_HTML($!hotel.memo)</textarea>
+                <textarea id='memo' name='memo' cols="45" rows="4" >$!hotel.memo</textarea>
             </td>
         </tr>
         <tr>
@@ -148,8 +148,7 @@
 	//load edtor
 	KISSY.ready(function(S) {
         S.use('editor', function(S) {
-			window.editor = loadediter("#introduction") ;
-			window.editor = loadediter("#memo") ;
+			//window.editor = loadediter("#introduction") ;
         });
     });
 </script>

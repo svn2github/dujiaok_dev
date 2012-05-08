@@ -128,19 +128,19 @@
         <tr>
             <td align="right">产品简介：</td>
             <td>
-                <textarea id='introduction' name='introduction' cols="45" rows="8">#ESCAPE_HTML($!room.introduction)</textarea>
+                <textarea id='introduction' name='introduction' cols="45" rows="8">$!room.introduction</textarea>
             </td>
         </tr>
         <tr>
             <td align="right">房型图片：</td>
             <td>
-                <textarea name="categoryImage" id="categoryImage" cols="45" rows="8">#ESCAPE_HTML($!room.categoryImage)</textarea>
+                <textarea name="categoryImage" id="categoryImage" cols="45" rows="8">$!room.categoryImage</textarea>
             </td>
         </tr>
         <tr>
             <td align="right">备注：</td>
             <td>
-                <textarea id='memo' name='memo' cols="45" rows="8" >#ESCAPE_HTML($!room.memo)</textarea>
+                <textarea id='memo' name='memo' cols="45" rows="4" >$!room.memo</textarea>
             </td>
         </tr>
         <tr>
@@ -272,7 +272,6 @@
 	KISSY.ready(function(S) {
         S.use('editor', function(S) {
 			window.editor = loadediter("#introduction") ;			
-			window.editor = loadediter("#memo") ;
 			window.editor = loadediter("#categoryImage") ;
         });
     });

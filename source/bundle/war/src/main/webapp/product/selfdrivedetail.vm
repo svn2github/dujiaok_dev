@@ -57,24 +57,28 @@
 		</div>
 		
 		<!-- start prointro-->
-		<div class="L710">
-    		<div class="pro_intro" id="pro_intro">
-    			<ul class="tabTtl"><li class="current">产品介绍</li><li>行程</li><li>费用说明</li></ul>
-    			<div class="tabCnt current">
-    				<h2 class="banner mgt20"><strong>产品介绍</strong></h2>
-    				$!product.introduction
-    			</div>
-    			<div class="tabCnt">
-    				<h2 class="banner mgt20"><strong>行程</strong></h2>
-    				$!product.schedule
-    			</div>
-    			<div class="tabCnt">
-    				<h2 class="banner mgt20"><strong>费用说明</strong></h2>
-    				$!product.feeDesc
-    			</div>
-    		</div>
-    	</div>
-    		
+		<div class="w950 mgt10">
+    		<div class="L710">
+        		<div class="pro_intro" id="pro_intro">
+        			<ul class="tabTtl"><li class="current">产品介绍</li><li>行程</li><li>费用说明</li></ul>
+        			<div class="tabCnt current">
+        				<h2 class="banner mgt20"><strong>产品介绍</strong></h2>
+        				$!product.introduction
+        			</div>
+        			<div class="tabCnt">
+        				<h2 class="banner mgt20"><strong>行程</strong></h2>
+        				$!product.schedule
+        			</div>
+        			<div class="tabCnt">
+        				<h2 class="banner mgt20"><strong>费用说明</strong></h2>
+        				$!product.feeDesc
+        			</div>
+        		</div>
+        	</div>
+        </div>
+		
+		
+		    		
 		<!-- end prointro -->
 	</div>
 	<div class="R mgt10">

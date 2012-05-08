@@ -58,9 +58,9 @@
         <tr>
             <td align="right">支付方式：</td>
             <td>
-                <input type="checkbox" name="payTypesList" value="ONLINE" #if( $collectionUtils.contains($!payTypesList,"ONLINE"))checked#end />
+                <input type="radio" name="payTypesList" value="ONLINE" #if( $collectionUtils.contains($!payTypesList,"ONLINE"))checked#end />
                     网上支付
-                    <input type="checkbox" name="payTypesList" value="CASH" #if( $collectionUtils.contains($!payTypesList,"CASH"))checked#end/>
+                    <input type="radio" name="payTypesList" value="CASH" #if( $collectionUtils.contains($!payTypesList,"CASH"))checked#end/>
                         前台现付
             </td>
         </tr>
@@ -159,7 +159,7 @@
         <tr>
             <td align="right">备注：</td>
             <td>
-                <textarea id='memo' name='memo' cols="45" rows="8" >$!ticket.memo</textarea>
+                <textarea id='memo' name='memo' cols="45" rows="4" >$!ticket.memo</textarea>
             </td>
         </tr>
         <tr>
@@ -291,7 +291,6 @@
 			window.editor = loadediter("#introduction") ;
             window.editor = loadediter("#notice") ;
 			window.editor = loadediter("#feeDesc") ;
-			window.editor = loadediter("#memo") ;
         });
     });
 </script>

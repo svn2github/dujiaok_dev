@@ -1,0 +1,64 @@
+#set($layout="/front/default.vm")
+#set($title="度假OK - 修改会员信息")
+<!-- 内容开始 -->
+<div class="ucenter section">
+    <div class="ucenter_left">
+        <h3 class="B ">我的度假OK</h3>
+        <ul>
+            <h4>我的订单</h4>
+            <li>
+                <a href="${env.root}/member/orderlist.htm">订单中心</a>
+            </li>
+        </ul>
+        <ul>
+            <h4>个人信息</h4>
+            <li class="cur">
+                <a href="${env.root}/member/modify.htm">个人资料</a>
+            </li>
+            <li>
+                <a href="${env.root}/member/modifyPassword.htm">修改密码</a>
+            </li>
+        </ul>
+    </div>
+    <div class="ucenter_right">
+        <form id="modifyMemberForm" name="modifyMemberForm" method="post" action="${env.root}/member/domodify.htm" onsubmit="return Validator.validate(this,'member');" >
+            <h2 class="B FS14">个人资料</h2>
+            <table class="us01">
+                <tr>
+                    <th>登录名：</th>
+                    <td>
+                        <b>$!member.memberId</b>
+                    </td>
+                </tr>
+                <tr>
+                    <th>昵称：</th>
+                    <td>
+                        <input id='nickname' name='nickname' value='$!member.nickname' />
+                    </td>
+                </tr>
+                <tr>
+                    <th>手机号：</th>
+                    <td>
+                        <input id='mobileNo' name='mobileNo' maxlength="11" value='$!member.mobileNo' />
+                    </td>
+                </tr>
+                <tr>
+                    <th>E-mail：</th>
+                    <td>
+                        <input id='email' name='email' value='$!member.email' />
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <span class="errorMsg">$!actionError</span>
+                        <button type="submit">保存</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<!-- 内容结束 -->
+
+#JS(["validator.js"])
