@@ -99,40 +99,43 @@ $("#orderForm :submit").click(function(e){
 		var L=infos.size();
 		for(var i=0;i<L;i++){
 			var info = $(infos[i]);
-			var ipt=info.eq(i).find("input");
-			var sel=info.eq(i).find("select");
-			if(ipt.eq(0).val()==""){
+			var nameIpt = info.find(".name");
+			var mobileIpt = info.find(".mobile");
+			var certificateNumberIpt = info.find(".certificateNumber");
+			var email = info.find(".email"); 
+			var sel=info.find("select");
+			if(nameIpt.val()==""){
 				alert("请填写姓名！")
-				ipt.eq(0).focus()
+				nameIpt.focus()
 				return false
 			}
-			if(ipt.eq(1).val()==""){
+			if(mobileIpt.val()==""){
 				alert("请填写手机号码！")
-				ipt.eq(1).focus()
+				mobileIpt.focus()
 				return false
 			}
 			var r=/^[0-9]*[1-9][0-9]*$/    //正整数正则表达式
-			if(ipt.eq(1).val().length!=11||ipt.eq(1).val().substring(0,1)!="1"||!r.test(ipt.eq(1).val())){
+			if(mobileIpt.val().length!=11||mobileIpt.val().substring(0,1)!="1"||!r.test(mobileIpt.val())){
 				alert("手机号码有误！")
-				ipt.eq(1).select()
+				mobileIpt.select()
 				return false
 			}
 			if(sel.val()=="身份证"){
-				if(ipt.eq(2).val()==""){
+				if(certificateNumberIpt.val()==""){
 					alert("身份证号码不能为空！")
-					ipt.eq(2).focus()
+					certificateNumberIpt.focus()
 					return false
 				}	
-				if(ipt.eq(2).val().length!=15&&ipt.eq(2).val().length!=18){
+				if(certificateNumberIpt.val().length!=15&&certificateNumberIpt.val().length!=18){
 					alert("身份证号码应为15或18位！")
-					ipt.eq(2).select()
+					certificateNumberIpt.select()
 					return false
 				}	
 			}
-			if(ipt.eq(3).val()!=""){
-				if(ipt.eq(3).val().search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) ==-1){
+			if(email.val()!=""){
+				if(email.val().search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) ==-1){
 					alert("E-mail填写有误！")
-					ipt.eq(3).select()
+					email.select()
 					return false
 				}
 			}
