@@ -95,7 +95,7 @@ $("#orderForm .del").live("click",function(e){
 
 $("#orderForm :submit").click(function(e){
 		e.preventDefault();
-		var info=$("#dingdan01 .contactInfo");
+		var info=$("#orderForm .contactInfo");
 		var L=info.size();
 		for(var i=0;i<L;i++){
 			var ipt=info.eq(i).find("input");
