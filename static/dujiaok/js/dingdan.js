@@ -1,4 +1,4 @@
-function zzsCheck(obj){//³ÉÈË±ØĞëÊÇÕıÕûÊı
+ï»¿function zzsCheck(obj){//æˆäººå¿…é¡»æ˜¯æ­£æ•´æ•°
 	var v=obj.val();
 	obj.val(v.replace(/\D/g,''));
 	v=obj.val();
@@ -10,7 +10,7 @@ function zzsCheck(obj){//³ÉÈË±ØĞëÊÇÕıÕûÊı
 		obj.val(1);
 	}
 }
-function ffzsCheck(obj){//¶ùÍ¯¿ÉÒÔÊÇ·Ç¸ºÕûÊı
+function ffzsCheck(obj){//å„¿ç«¥å¯ä»¥æ˜¯éè´Ÿæ•´æ•°
 	var v=obj.val();
 	obj.val(v.replace(/\D/g,''));
 	v=obj.val();
@@ -23,19 +23,19 @@ function ffzsCheck(obj){//¶ùÍ¯¿ÉÒÔÊÇ·Ç¸ºÕûÊı
 	}
 }
 function calculation(){
-	var v=$("#ddIpt1").val(); //³ÉÈËÊı
-	var cV=$("#ddIpt2").val(); //¶ùÍ¯Êı
-	var orderDays = $("#orderDays").html() ; //¶©µ¥ÌìÊı
+	var v=$("#ddIpt1").val(); //æˆäººæ•°
+	var cV=$("#ddIpt2").val(); //å„¿ç«¥æ•°
+	var orderDays = $("#orderDays").html() ; //è®¢å•å¤©æ•°
 	var single = $("#dingdanP1").html() ;
 	var double = $("#dingdanP2").html() ;
 	var marketPrice = $("#marketPrice").val() ;
 	
-	var scBxf=$("#dingdanP4").html()*v*orderDays; //ÊĞ³¡±£ÏÕ·ÑÓÃ
-	var bxf=$("#dingdanP5").html()*v*orderDays;//±£ÏÕ·ÑÓÃ
-	var scj=(v+cV)*marketPrice;//ÊĞ³¡¼Û
-	var okj=parseInt(v/2)*$("#dingdanP2").html()+(v%2)*$("#dingdanP1").html()+cV*$("#dingdanP3").html();//OK¼Û
-	var js=(scj-okj)+(scBxf-bxf); //½ÚÊ¡
-	var zj=okj+bxf; //×Ü¼Û
+	var scBxf=$("#dingdanP4").html()*v*orderDays; //å¸‚åœºä¿é™©è´¹ç”¨
+	var bxf=$("#dingdanP5").html()*v*orderDays;//ä¿é™©è´¹ç”¨
+	var scj=(v+cV)*marketPrice;//å¸‚åœºä»·
+	var okj=parseInt(v/2)*$("#dingdanP2").html()+(v%2)*$("#dingdanP1").html()+cV*$("#dingdanP3").html();//OKä»·
+	var js=(scj-okj)+(scBxf-bxf); //èŠ‚çœ
+	var zj=okj+bxf; //æ€»ä»·
 	$("#dingdanP6").val(v);
 	$("#dingdanP7").html(bxf);
 	$("#dingdanP8").html(scj);
@@ -54,7 +54,7 @@ function calcu(obj){
 	$("#orderSavePrice").html(js);
 	$("#orderPrice").html(okj);
 }
-var contactStr='<div class="subContact"><table class="mgt10 contactInfo"><tr><th><i>*</i>ÓÎÍæÈËĞÕÃû£º</th><td><input type="text" class="w184" /></td></tr><tr><th><i>*</i>ÓÎÍæÈËÊÖ»ú£º</th><td><input type="text" class="w184" maxlength="11" /></td></tr><tr><th><i>*</i>Ö¤¼şÀàĞÍ£º</th><td><select id="select" name="select"><option>Éí·İÖ¤</option><option>»¤ÕÕ</option><option>¾ü¹ÙÖ¤</option></select></td></tr><tr><th><i>*</i>Ö¤¼şºÅÂë£º</th><td><input type="text" class="w184" /></td></tr><tr><th>E-mail£º</th><td><input type="text" class="w184" /></td></tr><tr><th></th><td><a href="#" class="del">- É¾³ıÓÎÍæÈË</a></td></tr></table></div>';
+var contactStr='<div class="subContact"><table class="mgt10 contactInfo"><tr><th><i>*</i>æ¸¸ç©äººå§“åï¼š</th><td><input type="text" class="w184" /></td></tr><tr><th><i>*</i>æ¸¸ç©äººæ‰‹æœºï¼š</th><td><input type="text" class="w184" maxlength="11" /></td></tr><tr><th><i>*</i>è¯ä»¶ç±»å‹ï¼š</th><td><select id="select" name="select"><option>èº«ä»½è¯</option><option>æŠ¤ç…§</option><option>å†›å®˜è¯</option></select></td></tr><tr><th><i>*</i>è¯ä»¶å·ç ï¼š</th><td><input type="text" class="w184" /></td></tr><tr><th>E-mailï¼š</th><td><input type="text" class="w184" /></td></tr><tr><th></th><td><a href="#" class="del">- åˆ é™¤æ¸¸ç©äºº</a></td></tr></table></div>';
 $("#ddIpt1").keyup(function(){
 	zzsCheck($(this));
 	calculation();
@@ -99,40 +99,40 @@ $("#dingdan01 :submit").click(function(e){
 			var ipt=info.eq(i).find("input");
 			var sel=info.eq(i).find("select");
 			if(ipt.eq(0).val()==""){
-				alert("ÇëÌîĞ´ĞÕÃû£¡")
+				alert("è¯·å¡«å†™å§“åï¼")
 				ipt.eq(0).focus()
 				return false
 			}
 			if(ipt.eq(1).val()==""){
-				alert("ÇëÌîĞ´ÊÖ»úºÅÂë£¡")
+				alert("è¯·å¡«å†™æ‰‹æœºå·ç ï¼")
 				ipt.eq(1).focus()
 				return false
 			}
-			var r=/^[0-9]*[1-9][0-9]*$/    //ÕıÕûÊıÕıÔò±í´ïÊ½
+			var r=/^[0-9]*[1-9][0-9]*$/    //æ­£æ•´æ•°æ­£åˆ™è¡¨è¾¾å¼
 			if(ipt.eq(1).val().length!=11||ipt.eq(1).val().substring(0,1)!="1"||!r.test(ipt.eq(1).val())){
-				alert("ÊÖ»úºÅÂëÓĞÎó£¡")
+				alert("æ‰‹æœºå·ç æœ‰è¯¯ï¼")
 				ipt.eq(1).select()
 				return false
 			}
-			if(sel.val()=="Éí·İÖ¤"){
+			if(sel.val()=="èº«ä»½è¯"){
 				if(ipt.eq(2).val()==""){
-					alert("Éí·İÖ¤ºÅÂë²»ÄÜÎª¿Õ£¡")
+					alert("èº«ä»½è¯å·ç ä¸èƒ½ä¸ºç©ºï¼")
 					ipt.eq(2).focus()
 					return false
 				}	
 				if(ipt.eq(2).val().length!=15&&ipt.eq(2).val().length!=18){
-					alert("Éí·İÖ¤ºÅÂëÓ¦Îª15»ò18Î»£¡")
+					alert("èº«ä»½è¯å·ç åº”ä¸º15æˆ–18ä½ï¼")
 					ipt.eq(2).select()
 					return false
 				}	
 			}
 			if(ipt.eq(3).val()!=""){
 				if(ipt.eq(3).val().search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) ==-1){
-					alert("E-mailÌîĞ´ÓĞÎó£¡")
+					alert("E-mailå¡«å†™æœ‰è¯¯ï¼")
 					ipt.eq(3).select()
 					return false
 				}
 			}
 		}
-		//ajaxÏà¹ØÊı¾İ	
+		//ajaxç›¸å…³æ•°æ®	
   })
