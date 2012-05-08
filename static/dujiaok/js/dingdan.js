@@ -31,12 +31,12 @@ function calculation(){
 	var marketPrice = $("#marketPrice").html() ;
 	
 	var scBxf=$("#dingdanP4").html()*v*orderDays; //市场保险费用
-	var bxf=$("#dingdanP5").html()*v;//保险费用
+	var bxf=$("#dingdanP5").html()*v*orderDays;//保险费用
 	var scj=v*marketPrice+cV*marketPrice;//市场价
 	var okj=parseInt(v/2)*$("#dingdanP2").html()+(v%2)*$("#dingdanP1").html()+cV*$("#dingdanP3").html();//OK价
 	var js=(scj-okj)+(scBxf-bxf); //节省
 	var zj=okj+bxf; //总价
-	$("#dingdanP6").html(v);
+	$("#dingdanP6").val(v);
 	$("#dingdanP7").html(bxf);
 	$("#dingdanP8").html(scj);
 	$("#dingdanP9").html(okj);
