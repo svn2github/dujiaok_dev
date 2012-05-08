@@ -95,9 +95,10 @@ $("#orderForm .del").live("click",function(e){
 
 $("#orderForm :submit").click(function(e){
 		e.preventDefault();
-		var info=$("#orderForm .contactInfo");
-		var L=info.size();
+		var infos=$("#orderForm .contactInfo");
+		var L=infos.size();
 		for(var i=0;i<L;i++){
+			var info = infos[i];
 			var ipt=info.eq(i).find("input");
 			var sel=info.eq(i).find("select");
 			if(ipt.eq(0).val()==""){
