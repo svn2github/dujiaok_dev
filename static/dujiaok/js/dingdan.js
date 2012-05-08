@@ -58,16 +58,7 @@ function calcu(obj){
 $("#ddIpt1").keyup(function(){
 	zzsCheck($(this));
 	calculation();
-	var v=$(this).val();
-	$("#subCBox").html("");	
-	if(v>1){
-		s="";
-		for(var i=1;i<v;i++){
-			var contactStr='<div class="subContact"><table class="mgt10 contactInfo"><tr><th><i>*</i>游玩人姓名：</th><td><input type="text" class="w184 name" name="contacts[' + i + '].name"/></td></tr><tr><th><i>*</i>游玩人手机：</th><td><input type="text" class="w184 mobile" maxlength="11" name="contacts[' + i + '].mobile"/></td></tr><tr><th><i>*</i>证件类型：</th><td><select id="select" name="contacts[' + i + '].certificateType"><option value="身份证">身份证</option><option value="护照">护照</option><option value="军官证">军官证</option></select></td></tr><tr><th><i>*</i>证件号码：</th><td><input type="text" class="w184 certificateNumber" name="contacts[' + i + '].certificateNumber"/></td></tr><tr><th>E-mail：</th><td><input type="text" class="w184 email" name="contacts[' + i + '].email"/></td></tr><tr><th></th><td></td></tr></table></div>';
-			s += contactStr;
-		}
-		$("#subCBox").html(s);	
-	}
+	addContacts() ;
 })
 $("#ddIpt2").keyup(function(){
 	ffzsCheck($(this));
@@ -84,9 +75,22 @@ $("#ticketNum").keyup(function(){
 
 //dom ready
 $(function(){
-	ffzsCheck($(this));
 	calculation();
+	addContacts() ;
 })
+
+var addContacts = function (i){
+	var v=$("#ddIpt1").val();
+	$("#subCBox").html("");	
+	if(v>1){
+		s="";
+		for(var i=1;i<v;i++){
+			var contactStr='<div class="subContact"><table class="mgt10 contactInfo"><tr><th><i>*</i>游玩人姓名：</th><td><input type="text" class="w184 name" name="contacts[' + i + '].name"/></td></tr><tr><th><i>*</i>游玩人手机：</th><td><input type="text" class="w184 mobile" maxlength="11" name="contacts[' + i + '].mobile"/></td></tr><tr><th><i>*</i>证件类型：</th><td><select id="select" name="contacts[' + i + '].certificateType"><option value="身份证">身份证</option><option value="护照">护照</option><option value="军官证">军官证</option></select></td></tr><tr><th><i>*</i>证件号码：</th><td><input type="text" class="w184 certificateNumber" name="contacts[' + i + '].certificateNumber"/></td></tr><tr><th>E-mail：</th><td><input type="text" class="w184 email" name="contacts[' + i + '].email"/></td></tr><tr><th></th><td></td></tr></table></div>';
+			s += contactStr;
+		}
+		$("#subCBox").html(s);	
+	}
+}
 /**
 $("#operateInfo .add").click(function(e){
 	e.preventDefault();
