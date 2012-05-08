@@ -6,6 +6,9 @@ function zzsCheck(obj){//成人必须是正整数
 	if(v.substr(0,1)=="0"){
 		obj.val(v.substr(1,L));
 	}
+	if(v==""){
+		obj.val(1);
+	}
 }
 function ffzsCheck(obj){//儿童可以是非负整数
 	var v=obj.val();
@@ -14,6 +17,9 @@ function ffzsCheck(obj){//儿童可以是非负整数
 	var L=v.length;
 	if(v.substr(0,1)=="0"&&L>1){
 		obj.val(v.substr(1,L));
+	}
+	if(v==""){
+		obj.val(0);
 	}
 }
 function calculation(){
@@ -33,19 +39,46 @@ function calculation(){
 	$("#dingdanP11").html(js);
 	$("#dingdanP12").html(zj);
 }
+function calcu(obj){
+	var v=obj.val();	
+	var scj=v*$("#marketPrice").html();
+	var okj=v*$("#price").html();
+	var js=scj-okj;
+	$("#orderMarketPrice").html(scj);
+	$("#orderOkPrice").html(okj);
+	$("#orderSavePrice").html(js);
+	$("#orderPrice").html(okj);
+}
+var contactStr='<div class="subContact"><table class="mgt10 contactInfo"><tr><th><i>*</i>游玩人姓名：</th><td><input type="text" class="w184" /></td></tr><tr><th><i>*</i>游玩人手机：</th><td><input type="text" class="w184" maxlength="11" /></td></tr><tr><th><i>*</i>证件类型：</th><td><select id="select" name="select"><option>身份证</option><option>护照</option><option>军官证</option></select></td></tr><tr><th><i>*</i>证件号码：</th><td><input type="text" class="w184" /></td></tr><tr><th>E-mail：</th><td><input type="text" class="w184" /></td></tr><tr><th></th><td><a href="#" class="del">- 删除游玩人</a></td></tr></table></div>';
 $("#ddIpt1").keyup(function(){
 	zzsCheck($(this));
 	calculation();
+	var v=$(this).val();
+	$("#subCBox").html("");	
+	if(v>1){
+		s="";
+		for(var i=1;i<v;i++){
+			s+=contactStr;
+		}
+		$("#subCBox").html(s);	
+	}
 })
 $("#ddIpt2").keyup(function(){
 	ffzsCheck($(this));
 	calculation();
 })
+$("#roomNum").keyup(function(){
+	zzsCheck($(this));
+	calcu($(this));
+})
+$("#ticketNum").keyup(function(){
+	zzsCheck($(this));
+	calcu($(this));
+})
 
 $("#operateInfo .add").click(function(e){
 	e.preventDefault();
-	var str='<div class="subContact"><table class="mgt10 contactInfo"><tr><th><i>*</i>游玩人姓名：</th><td><input type="text" class="w184" /></td></tr><tr><th><i>*</i>游玩人手机：</th><td><input type="text" class="w184" maxlength="11" /></td></tr><tr><th><i>*</i>证件类型：</th><td><select id="select" name="select"><option>身份证</option><option>护照</option><option>军官证</option></select></td></tr><tr><th><i>*</i>证件号码：</th><td><input type="text" class="w184" /></td></tr><tr><th>E-mail：</th><td><input type="text" class="w184" /></td></tr><tr><th></th><td><a href="#" class="del">- 删除游玩人</a></td></tr></table></div>';
-	$("#operateInfo").before(str);
+	$("#subCBox").append(contactStr);
 })
 $("#dingdan01 .del").live("click",function(e){
 	e.preventDefault();
