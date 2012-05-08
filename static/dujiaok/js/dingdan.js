@@ -81,6 +81,12 @@ $("#ticketNum").keyup(function(){
 	zzsCheck($(this));
 	calcu($(this));
 })
+
+//dom ready
+$(function(){
+	ffzsCheck($(this));
+	calculation();
+})
 /**
 $("#operateInfo .add").click(function(e){
 	e.preventDefault();
