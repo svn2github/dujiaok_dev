@@ -44,8 +44,12 @@ function calculation(){
 	$("#dingdanP11").html(js);
 	$("#dingdanP12").html(zj);
 }
-function calcu(obj){
-	var v=obj.val();	
+
+function calcu(){
+	var v=$("#roomNum").val();
+	if(v == null || v == ''){
+		v = $("#ticketNum").val() ;
+	}
 	var scj=v*$("#marketPrice").html();
 	var okj=v*$("#price").html();
 	var js=scj-okj;
@@ -66,17 +70,18 @@ $("#ddIpt2").keyup(function(){
 })
 $("#roomNum").keyup(function(){
 	zzsCheck($(this));
-	calcu($(this));
+	calcu();
 })
 $("#ticketNum").keyup(function(){
 	zzsCheck($(this));
-	calcu($(this));
+	calcu();
 })
 
 //dom ready
 $(function(){
 	calculation();
 	addContacts() ;
+	calcu();
 })
 
 var addContacts = function (i){
