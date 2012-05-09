@@ -21,36 +21,33 @@ public class OrderDetailAction extends BasicAction {
 	private HotelRoomService hotelRoomService;
 	private TicketService ticketService;
 	
+	private OrderDO orderDO ;
+	
+	private AbstractProduct product ;
+	
+	private String orderDesc ;
+	
 	private static final DujiaokLogger LOGGER = DujiaokLogger.getLogger(OrderDetailAction.class);
 
 	public String orderDetail() {
 		if (StringUtil.isEmpty(this.orderId)) {
 			return notExistError();
 		}
-		String productName = null;
-		OrderDO orderDO = null;
-		try {
-			orderDO = orderService.getOrderAndDetailContact(this.orderId);
-			if (orderDO == null) {
-				return notExistError();
-			}
-			AbstractProduct productDO = this.getProduct(orderDO.getProductId(), orderDO.getProductType());
-			if (productDO == null) {
-				LOGGER.error(StringUtil.concat("orderDetail(orderId:", this.orderId, "): Can't find product"));
-				productName = "产品名称不存在";
-			}
-		} catch (Exception e) {
-			LOGGER.error(e);
-			getHttpSession().setAttribute("message", "系统发生未知异常。");
-			return ERROR;
+	
+		orderDO = orderService.getOrderAndDetailContact(this.orderId);
+		if (orderDO == null) {
+			return notExistError();
 		}
-		getHttpSession().setAttribute("order", orderDO);
-		this.getHttpSession().setAttribute("productName", productName);
-		this.getHttpSession().setAttribute("orderDesc", OrderUtils.getOrderInfoDesc(orderDO));
+		product = this._getProduct(orderDO.getProductId(), orderDO.getProductType());
+		if (product == null) {
+			LOGGER.error(StringUtil.concat("orderDetail(orderId:", this.orderId, "): Can't find product"));
+		}
+		
+		orderDesc = OrderUtils.getOrderInfoDesc(orderDO) ;
 		return SUCCESS;
 	}
 
-	private AbstractProduct getProduct(String productId, String productType) {
+	private AbstractProduct _getProduct(String productId, String productType) {
 		if (productId.startsWith("ZJ")) {
 			return this.selfDriveService.getSelfDrive(productId);
 		} else if (productId.startsWith("MP")) {
@@ -97,4 +94,18 @@ public class OrderDetailAction extends BasicAction {
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
+
+	public OrderDO getOrderDO() {
+		return orderDO;
+	}
+
+	public AbstractProduct getProduct() {
+		return product;
+	}
+
+	public String getOrderDesc() {
+		return orderDesc;
+	}
+	
+	
 }

@@ -12,7 +12,7 @@
     <div class="w950 dingdan dingdan3">
     	<!-- dtl1开始 -->
     	<div class="L">
-    		<div class="crumb">您当前的位置：$!product.destProvince > $!product.destCity > $!product.destAddr </div>
+    		<div class="crumb">您当前的位置：我的订单 >  $orderDO.name </div>
     		<div class="odrTtl"><span class="flag">预定</span><span class="greenTtl"> $!product.name </span></div>
     		<h2 class="banner mgt20"><strong>订购产品</strong></h2>
     		<table class="mgt10 product">

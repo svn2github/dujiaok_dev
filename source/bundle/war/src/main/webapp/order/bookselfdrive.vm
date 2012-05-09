@@ -94,14 +94,7 @@
                 
             </div>
 			
-    		<h2 class="banner mgt20"><strong>订单备注</strong></h2>
     		<table class="mgt10">
-                <tr>
-					<th></th>
-                    <td>
-						<textarea rows="1" id="memo" name="memo" style="width:500px;height:30px;"></textarea>
-					</td>
-				</tr>
     			<tr>
     				<th></th>
     				<td>
