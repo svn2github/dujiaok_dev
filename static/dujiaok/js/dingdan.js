@@ -151,9 +151,10 @@ $("#orderForm :submit").click(function(e){
 				if(email.val().search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) ==-1){
 					alert("E-mail填写有误！")
 					email.select()
-					return false
+					return false ;
 				}
 			}
 		}
+		return true ;
 		//ajax相关数据	
   })
