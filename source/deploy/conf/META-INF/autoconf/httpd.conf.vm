@@ -65,6 +65,15 @@ NameVirtualHost *
     RewriteRule ^\/$ /home/index.htm [L,R]
 </VirtualHost>
 
+<VirtualHost *>
+    ServerAdmin efax
+    ServerName dujiaok.com
+    DocumentRoot ${doucome_htdocs_home}
+    RewriteEngine on
+    RewriteCond %{HTTP_HOST} ^dujiaok.com [NC]
+    RewriteRule ^\/$ /home/index.htm [L,R]
+</VirtualHost>
+
 SetOutputFilter DEFLATE
 <Location />
     AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css

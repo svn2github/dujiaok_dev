@@ -1,10 +1,11 @@
 #set($layout="/front/default_new.vm")
 #set($title="度假OK - 登陆")
 ###############################################################
-#CSS(["login.css"])
-<!-- main开始 -->
-  
-  <div id="content">
+
+#CSS(["login.css","member.css"])
+
+<div class="w950 mgt20 bottom">
+ <div id="content">
     <div class="reg_nav">
       <h2>用户登录</h2>
 	</div>
@@ -12,16 +13,16 @@
       <form id="loginForm" name="loginForm" method="post" action="${env.root}/member/dologin.htm" onSubmit="return Validator.validate(this,'member');">
         <ul>
           <li><span>用户名</span>
-            <input type="text" id='memberId' name='memberId' value=""/>
+            <input type="text" id='memberId' name='memberId' value="$!memberId"/>
           </li>
           <li><span>密　码</span>
             <input type="password" id='password' name='password'/>
           </li>
           <!--<li style="padding-left:40px;"><input type="checkbox" class="reg_cheak"/><span>记住用户名</span><input type="checkbox" class="reg_cheak"/><span>自动登录</span></li>-->
-          <input type="hidden" id='Done' name='Done' value=""/>
+          <input type="hidden" id='Done' name='Done' value="$!Done"/>
           <li style="padding-left:75px\9; margin-top:20px; ">
             <button type="submit">登陆</button>
-            <span class="errorMsg"></span></li>
+            <span class="errorMsg">$!actionError</span></li>
         </ul>
       </form>
       <div class="loginTips">
@@ -31,9 +32,8 @@
        </div>
     </div>
      
-  </div>
-   
-  
-  <!-- main结束 -->
+</div>
+
+</div>
 	
 #JS(["validator.js"])

@@ -103,7 +103,7 @@ var ok;
 				option.removeClass("over");
 				var curLi=option.eq(i);
 				curLi.addClass("over");
-				option.parent().prev().val(curLi.html());
+				option.parent().prev().val(curLi.html()).attr("rel",curLi.attr("rel"));
 			};
 			$(".select input").click(function(e){
 				e.stopPropagation();							  
@@ -136,9 +136,10 @@ var ok;
 			});
 			$(".select li").click(function(){
 				var html=$(this).html();
+				var rel=$(this).attr("rel");
 				var par=$(this).parent();
 				var sel=par.prev();
-				sel.val(html);
+				sel.val(html).attr("rel",rel);
 				par.hide();
 			});
 			$(".select li").mouseover(function(){
