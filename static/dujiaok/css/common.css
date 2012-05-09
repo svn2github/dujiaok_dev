@@ -33,7 +33,7 @@ em,i{font-style:normal;}
 .ipt200{width:200px;}
 .userBar,.mainMenu a.current,.mainMenu a:hover.current,.idx1 .L dt,.idx1M .tabTtl li,.idx1L .tabTtl li,.schL3 .ttl,.box230 .ttl,.leftMenu h3{background:url(../images/repeat.png);}
 .hotPurpose h2.current,.mainMenu a:hover,.idx1L .login,.tableForm a,.schOut .ttl .R a,.order,.page button,.hSchR .hSchR2 td a,.dingdan .flag,.banner strong,.rightMain button,.rightMain .button{background:url(../images/other.png) no-repeat;}
-.userBar .myOrder,.userBar .rank,.hotPurpose h3,.hotPurpose h3 span,.hotPurpose .close,.idx1R li,.bottom .L dt,.orderList li i,.tableForm .select input,.detail .tabTtl li,.pro_intro .list1 li,.jiathis_txt{background:url(../images/icon.gif) no-repeat;}
+.userBar .myOrder,.userBar .rank,.hotPurpose h3,.hotPurpose h3 span,.hotPurpose .close,.idx1R li,.bottom .L dt,.orderList li i,.tableForm .select input,.detail .bigRoll .tabTtl li,.pro_intro .list1 li,.jiathis_txt{background:url(../images/icon.gif) no-repeat;}
 .order{ display:block;width:72px; height:28px; border:0;text-indent:-9999px;background-position:-538px 0;}
 .greenTtl{ margin-bottom:15px; font-size:14px;color:#290;}
 .redTtl{display:block;font-size:14px;color:#E8004C;}

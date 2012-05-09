@@ -3,9 +3,9 @@
 .detail .bigRoll,.detail .bigRoll .tabCnt{height:280px;}
 .detail .bigRoll .tabCnt img{width:710px;height:250px;overflow:hidden;}
 .detail .bigRoll .tabCnt span{display:block;margin-top:10px;width:480px;height:14px; line-height:14px;overflow:hidden;}
-.detail .tabTtl{position:absolute;top:265px;width:100px;right:0;overflow:hidden;}
-.detail .tabTtl li{float:left; display:inline;margin-left:20px;width:9px;height:9px;background-position:0 -518px;overflow:hidden;}
-.detail .tabTtl li.current{width:11px;height:11px;background-position:0 -457px;}
+.detail .bigRoll .tabTtl{position:absolute;top:265px;width:100px;right:0;overflow:hidden;}
+.detail .bigRoll .tabTtl li{float:left; display:inline;margin-left:20px;width:9px;height:9px;background-position:0 -518px;overflow:hidden;}
+.detail .bigRoll .tabTtl li.current{width:11px;height:11px;background-position:0 -457px;}
 .detail .R{ width:230px;}
 .hDtl1{position:relative; padding:15px;border:1px solid #249F00; border-bottom:none; overflow:hidden;}
 .hDtl1 .price{ overflow:hidden;}

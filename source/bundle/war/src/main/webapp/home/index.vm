@@ -12,7 +12,7 @@
 	<div class="mgt20 idx1">
 		<div class="L idx1L">
 			<div class="optionCard" id="optionCard">
-				<ul class="tabTtl"><li class="first current">度假旅游</li><li>国内机票</li><li>酒店</li></ul>
+				<ul class="tabTtl"><li class="first current">周边自驾</li><li>打折门票</li><li>酒店房间</li></ul>
 				<div class="current tabCnt">
 					<table class="tableForm">
 						<tr><th>出发地</th><td class="select"><input type="text" value="杭州" /><ul><li>杭州</li><li>上海</li><li>北京</li><li>广州</li></ul></td></tr>
@@ -183,7 +183,7 @@
 	#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsB(), $isEdit)
 	#if($!frontViewMap.get($!indexChannel.getmImageAdsB()).frontViews)
 		#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsB()).frontViews)
-			<div class="mgt10 idx2">
+			<div class="mgt10 idx2 greenF">
         		<a href="$!fv.link"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
         	</div>
 		#end
@@ -192,7 +192,7 @@
 	
 	
 	<!-- idx3开始 -->
-	<div class="mgt20 floor idx3">
+	<div class="mgt20 floor idx3 greenF">
 		<div class="ttl">
 			<h2 class="L"><em class="mgr10">1F</em><strong class="green">$!frontViewMap.get($!indexChannel.getmPeripheryAttractionsRecommend()).config.moduleName</strong></h2>
 			#FRONT_EDIT_BUTTON($!indexChannel.getmPeripheryAttractionsRecommend(), $isEdit)
@@ -273,7 +273,7 @@
 	</div>
 	<!-- idx3结束 -->
 	<!-- idx4开始 -->
-	<div class="mgt20 floor idx4">
+	<div class="mgt20 floor idx4 greenF">
 		<div class="ttl">
 			<h2 class="L"><em class="mgr10">2F</em><strong class="pink">$!frontViewMap.get($!indexChannel.getmLongTermAttractionsRecommend()).config.moduleName</strong></h2>
 			#FRONT_EDIT_BUTTON($!indexChannel.getmLongTermAttractionsRecommend(), $isEdit)
