@@ -18,7 +18,7 @@
 						<tr><th>城市</th><td class="select"><input type="text" value="杭州" /><ul><li>杭州</li><li>上海</li><li>北京</li><li>广州</li></ul></td></tr>
 						<tr><th>目的地</th><td><input type="text" /></td></tr>
 						<tr><th>景点类型</th><td class="select">
-								<input type="text" value="不限" /><ul><li>不限</li><li>自然风光</li><li>人文景观</li><li>综艺表演</li><li>休闲农庄</li><li>主题公园</li></ul>
+								<input type="text" value="不限" /><ul><li rel="">不限</li><li>自然风光</li><li>人文景观</li><li>综艺表演</li><li>休闲农庄</li><li>主题公园</li></ul>
 						</td></tr>
 						<tr><th>出游类型</th><td class="select">
 								<input type="text" value="不限" /><ul><li>不限</li><li>亲子游</li><li>情侣游</li><li>老人游</li><li>度假住宿</li><li>温泉滑雪</li><li>垂钓采摘</li></ul>

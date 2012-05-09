@@ -1,7 +1,7 @@
 #set($layout="/front/default_new.vm")
 #CSS(["dingdan.css"])
 
-<form id="orderForm" method="post" action="${env.root}/order/makeorder.htm" onsubmit="javascript:return new Totalorders().checkForm1()" >
+<form id="orderForm" method="post" action="${env.root}/order/makeorder.htm" >
     <input type="hidden" value="$!product.marketPrice" id="Adult_mkprice">
 	<input type="hidden" name="orderId" id="orderId" value="$!orderDO.orderId" />
     <input type="hidden" name="productId" id="productId" value="$!orderDO.productId" />
@@ -38,7 +38,7 @@
     			<tr>
     				<th></th>
     				<td>
-    					<button class="order">确认下单</button>
+    					<button class="order" type="submit">确认下单</button>
     					<div><input type="checkbox" checked="checked" id="odrProtocol" /><label for="odrProtocol">同意度假OK预订协议</label></div>
     				</td>
     			</tr>
