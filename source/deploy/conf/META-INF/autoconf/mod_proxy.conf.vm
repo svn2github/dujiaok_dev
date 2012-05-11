@@ -3,6 +3,6 @@
 	ProxyRequests Off
 	ProxyPreserveHost On	
 	
-	ProxyPassMatch ^(/(s|member|admin|product|order|common|home|search|validator)/(.*))$ http://localhost:${app_port} min=5 smax=16 max=64 ttl=600 timeout=30
+	ProxyPassMatch ^(/(s|member|admin|product|ajax|remote|order|common|home|search|validator)/(.*))$ http://localhost:${app_port} min=5 smax=16 max=64 ttl=600 timeout=30
 	
 </IfModule>

@@ -5,6 +5,7 @@ DocumentRoot "${doucome_htdocs_home}"
 ServerName ${doucome_domainName}
 
 
+
 DefaultLanguage cn
 AddDefaultCharset GB2312
 
@@ -58,18 +59,12 @@ DirectoryIndex index.html
 NameVirtualHost *
 
 <VirtualHost *>
-    RewriteEngine on
-    RewriteCond %{HTTP_HOST} ^dujiaok.com [NC,OR]
-	RewriteRule ^(.*)$ http://${doucome_domainName}$1 [L,R=301]
-</VirtualHost>
-
-<VirtualHost *>
     ServerAdmin efax
     ServerName ${doucome_domainName}
     DocumentRoot ${doucome_htdocs_home}
     RewriteEngine on
-    RewriteCond %{HTTP_HOST} ^${doucome_domainName} [NC]
-    RewriteRule ^\/$ /home/index.htm [L,R]
+    RewriteCond %{HTTP_HOST} ${doucome_domainName} [NC]
+    RewriteRule ^\/$ /home/index.htm [L,P]
 </VirtualHost>
 
 SetOutputFilter DEFLATE
