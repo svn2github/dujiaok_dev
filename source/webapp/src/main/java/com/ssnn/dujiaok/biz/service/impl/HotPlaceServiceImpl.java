@@ -36,6 +36,9 @@ public class HotPlaceServiceImpl implements HotPlaceService {
 				String content = post.getResponseBodyAsString() ;
 				if(StringUtils.isNotBlank(content)){
 					synchronized (this) {
+						if(hotPlace == null){
+							hotPlace = new HotPlace() ;
+						}
 						hotPlace.setContent(content);
 						hotPlace.setGmtGet(new Date()) ;
 					}

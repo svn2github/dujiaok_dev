@@ -98,7 +98,7 @@
     			<tr>
     				<th></th>
     				<td>
-    					<button class="order" type="submit">确认下单</button>
+    					<input class="order" type="submit" value="确认下单"/></input>
     					<div><input type="checkbox" checked="checked" id="odrProtocol" /><label for="odrProtocol">同意度假OK预订协议</label></div>
     				</td>
     			</tr>
