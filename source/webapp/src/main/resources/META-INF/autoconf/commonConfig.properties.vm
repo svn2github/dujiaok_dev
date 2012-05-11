@@ -20,3 +20,6 @@ doucome.alipay.key = ${doucome_alipay_key}
 doucome.alipay.inputCharset = ${doucome_alipay_inputCharset}
 doucome.alipay.signType = ${doucome_alipay_signType}
 doucome.alipay.transport = ${doucome_alipay_transport} 
+
+doucome.hotplace.url = ${doucome_hotplace_url}
+doucome.hotplace.refresh.hours = ${doucome_hotplace_refresh_hours}

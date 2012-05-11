@@ -38,4 +38,9 @@
 		<property name="key" value="${doucome.alipay.key}"/>
 		<property name="production" value="${doucome.production}"/>
 	</bean>
+	
+	<bean id="hotPlaceService" class="com.ssnn.dujiaok.biz.service.impl.HotPlaceServiceImpl">
+		<property name="url" value="${doucome.hotplace.url}"/>
+		<property name="refreshHours" value="${doucome.hotplace.refresh.hours}"/>
+	</bean>
 </beans>

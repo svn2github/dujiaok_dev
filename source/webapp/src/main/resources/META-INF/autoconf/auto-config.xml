@@ -47,6 +47,12 @@
 		<property name="doucome.alipay.transport" defaultValue="http"></property>
 	</group>
 	
+	<group name="hotplace">
+		<property name="doucome.hotplace.url" defaultValue="http://dujiaok.com/cms/hot_place.html" description="热门地点请求地址"/>
+		<property name="doucome.hotplace.refresh.hours" defaultValue="1"  description="热门地点几小时更新一次"/>
+		
+	</group>
+	
 	<script>
 		<generate template="commonConfig.properties.vm" destfile="bean/commonConfig.properties" charset="UTF-8" />
 		<generate template="struts.xml.vm" destfile="struts.xml" charset="UTF-8" />

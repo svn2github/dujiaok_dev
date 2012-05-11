@@ -12,57 +12,91 @@
 	<div class="mgt20 idx1">
 		<div class="L idx1L">
 			<div class="optionCard" id="optionCard">
-				<ul class="tabTtl"><li class="first current">周边自驾</li><li>打折门票</li><li>酒店房间</li></ul>
+				<ul class="tabTtl"><li class="first current">周边自驾</li><li>打折门票</li><li>酒店</li></ul>
 				<div class="current tabCnt">
+					<form action="${env.root}/search/global.htm" method="get">
+						<input type="hidden" name="s_product" value="ZJ"/>
 					<table class="tableForm">
-						<tr><th>城市</th><td class="select"><input type="text" value="杭州" /><ul><li>杭州</li><li>上海</li><li>北京</li><li>广州</li></ul></td></tr>
-						<tr><th>目的地</th><td><input type="text" /></td></tr>
-						<tr><th>景点类型</th><td class="select">
-								<input type="text" value="不限" /><ul><li rel="">不限</li><li>自然风光</li><li>人文景观</li><li>综艺表演</li><li>休闲农庄</li><li>主题公园</li></ul>
+						<tr><th style="width:50%">城市:</th><td class="select">
+								<input type="text" name="s_city" />
 						</td></tr>
-						<tr><th>出游类型</th><td class="select">
-								<input type="text" value="不限" /><ul><li>不限</li><li>亲子游</li><li>情侣游</li><li>老人游</li><li>度假住宿</li><li>温泉滑雪</li><li>垂钓采摘</li></ul>
+						<tr><th>景点名称 :</th><td><input type="text" name="keyword" /></td></tr>
+						<tr><th>出游类型:</th><td class="select">
+								<select name="s_productType">
+									<option value="">不限</option>
+									<option value="亲子游">亲子游</option>
+									<option value="情侣游">情侣游</option>
+									<option value="老人游">老人游</option>
+									<option value="度假住宿">度假住宿</option>
+									<option value="温泉滑雪">温泉滑雪</option>
+									<option value="垂钓采摘">垂钓采摘 </option>
+                                </select>
 						</td></tr>
-						<tr><th>出游时间</th><td <input type="text" value="不限" /><ul><li>不限</li><li>亲子游</li><li>情侣游</li><li>老人游</li><li>度假住宿</li><li>温泉滑雪</li><li>垂钓采摘</li></ul>>
-								<input type="text" value="不限" /><ul><li>不限</li><li>亲子游</li><li>情侣游</li><li>老人游</li><li>度假住宿</li><li>温泉滑雪</li><li>垂钓采摘</li></ul>
+						<tr><th>出游时间:</th><td>
+								<select name="s_days">
+									<option value="">不限</option>
+									<option value="1">一日游</option>
+									<option value="2">两日游</option>
+									<option value="3">三日游</option>
+                                </select>
 						</td></tr>
-						<tr><th></th><td><a href="#">搜索</a></td></tr>
+						<tr><th></th><td><button>搜索
+                        </button></a></td></tr>
 					</table>
+                    </form>
 					<div class="other">
-						
 					</div>
 				</div>
 				<div class="tabCnt">
+					<form action="${env.root}/search/global.htm" method="get">
+                    <input type="hidden" name="s_product" value="MP"/>
 					<table class="tableForm">
-						<tr><th>城市：</th><td><input type="text" class="gray" value="中文/拼音" placeholder="中文/拼音" id="schCity"></td></tr>
-						<tr><th></th><td><a href="#">搜索</a></td></tr>
+						<tr><th>城市：</th><td>
+								<input type="text" name="s_city" />
+						</td></tr>
+						<tr><th>景点名称：</th><td>
+								<input type="text" name="keyword" />
+						</td></tr>
+						<tr><th>景点类型：</th><td>
+								<select name="s_productType">
+									<option value="">不限</option>
+									<option value="自然风光">自然风光</option>
+									<option value="人文景观">人文景观</option>
+									<option value="综艺表演">综艺表演</option>
+									<option value="休闲农庄">休闲农庄</option>
+									<option value="主题公园">主题公园</option>
+                                </select>
+						</td></tr>
+						<tr><th></th><td><button>搜索</button></td></tr>
 					</table>
-					<div class="other cityTab">
-						当季推荐：<br />
-						<a href="#">水乡古镇</a><a href="#">热卖景区</a><a href="#">推荐</a><a href="#">亲子家庭</a><br />
-						<a href="#">水乡古镇</a><a href="#">热卖景区</a><a href="#">推荐</a><a href="#">亲子家庭</a><br />
-						<a href="#">水乡古镇</a><a href="#">热卖景区</a><a href="#">推荐</a><a href="#">亲子家庭</a><br />
-						<a href="#">水乡古镇</a><a href="#">热卖景区</a><a href="#">推荐</a><a href="#">亲子家庭</a><br />
-						<a href="#">水乡古镇</a><a href="#">热卖景区</a><a href="#">推荐</a><a href="#">亲子家庭</a><br />
-						<a href="#">水乡古镇</a><a href="#">热卖景区</a><a href="#">推荐</a><a href="#">亲子家庭</a><br />
-						<a href="#">水乡古镇</a><a href="#">热卖景区</a><a href="#">推荐</a><a href="#">亲子家庭</a><br />
-						<a href="#">水乡古镇</a><a href="#">热卖景区</a><a href="#">推荐</a><a href="#">亲子家庭</a><br />
-					</div>
+					</form>
 				</div>
 				<div class="tabCnt">
+					<form action="${env.root}/search/global.htm" method="get">
+						<input type="hidden" name="s_product" value="JD"/>
 					<table class="tableForm">
-						<tr><th>城市：</th><td class="select"><input type="text" value="杭州" /><ul><li>杭州</li><li>上海</li><li>北京</li><li>广州</li></ul></td></tr>
-						<tr><th>酒店：</th><td><input type="text" /></td></tr>
-						<tr><th>价格：</th><td><input type="text" /></td></tr>
-						<tr><th>星级：</th><td class="select"><input type="text" value="五星" /><ul><li>五星</li><li>四星</li><li>三星</li><li>二星</li><li>一星</li></ul></td></tr>
-						<tr><th></th><td><a href="#">搜索</a></td></tr>
+						<tr><th>城市：</th><td>
+								<input type="text" name="s_city" />
+						</td></tr>
+						<tr><th>酒店名称：</th><td>
+								<input type="text" name="keyword" />
+						</td></tr>
+						<tr><th>星级：</th><td class="select">
+								<select id="starRate" name="s_starRate">
+									<option value="">不限</option>
+                                    <option value="1">连锁商务酒店</option>
+                                    <option value="2">经济商务</option>
+                                    <option value="3">三星级</option>
+                                    <option value="4">准三星级</option>
+                                    <option value="5">四星级</option>
+                                    <option value="6">准四星级</option>
+                                    <option value="7">五星级</option>
+                                    <option value="8">准五星级</option>
+                                </select>
+						</td></tr>
+						<tr><th></th><td><button>搜索</button></td></tr>
 					</table>
-					<div class="other cityTab hotelTab">
-						热门城市：<br />
-						<a href="#">鸡公山</a><a href="#">黄山</a><a href="#">常州</a><a href="#">昆山</a><a href="#">横店</a><br />
-						<a href="#">鸡公山</a><a href="#">黄山</a><a href="#">常州</a><a href="#">昆山</a><a href="#">横店</a><br />
-						<a href="#">鸡公山</a><a href="#">黄山</a><a href="#">常州</a><a href="#">昆山</a><a href="#">横店</a><br />
-					</div>
+                    </form>
 				</div>
 			</div>
 		</div>

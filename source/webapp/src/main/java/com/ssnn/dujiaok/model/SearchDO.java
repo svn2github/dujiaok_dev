@@ -8,6 +8,7 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 import com.ssnn.dujiaok.util.ArrayStringUtils;
+import com.ssnn.dujiaok.util.enums.ProductEnums;
 
 /**
  * 搜索
@@ -42,6 +43,10 @@ public class SearchDO {
 	private String intro ;
 	
 	private String images ;
+	
+	public String getTypeName(){
+		return ProductEnums.fromProductId(productId).getDesc() ;
+	}
 	
 	public String getFirstImage(){
 		if(StringUtils.isBlank(images)){

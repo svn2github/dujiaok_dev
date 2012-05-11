@@ -108,18 +108,12 @@
         <tr>
             <td  align="right">产品类别：</td>
             <td>
-                <input type="checkbox" name="productTypesList" value="人气" #if( $collectionUtils.contains($!productTypesList,"人气")) checked #end />
-                    人气
-                    <input type="checkbox" name="productTypesList" value="山水" #if( $collectionUtils.contains($!productTypesList,"山水")) checked #end/>
-                        山水
-                        <input type="checkbox" name="productTypesList" value="自然环境" #if( $collectionUtils.contains($!productTypesList,"自然环境")) checked #end/>
-                            自然环境
-                            <input type="checkbox" name="productTypesList" value="亲子游" #if( $collectionUtils.contains($!productTypesList,"亲子游")) checked #end/>
-                                亲子游
-                                <input type="checkbox" name="productTypesList" value="情侣游" #if( $collectionUtils.contains($!productTypesList,"情侣游")) checked #end />
-                                    情侣游
-                                    <input type="checkbox" name="productTypesList" value="家庭游" #if( $collectionUtils.contains($!productTypesList,"家庭游")) checked #end/>
-                                        家庭游
+                <input type="checkbox" name="productTypesList" value="亲子游" #if( $collectionUtils.contains($!productTypesList,"亲子游")) checked #end/>亲子游
+				<input type="checkbox" name="productTypesList" value="情侣游" #if( $collectionUtils.contains($!productTypesList,"情侣游")) checked #end />情侣游
+				<input type="checkbox" name="productTypesList" value="老人游" #if( $collectionUtils.contains($!productTypesList,"老人游")) checked #end />老人游
+                <input type="checkbox" name="productTypesList" value="度假住宿" #if( $collectionUtils.contains($!productTypesList,"度假住宿")) checked #end/>度假住宿
+                <input type="checkbox" name="productTypesList" value="温泉滑雪" #if( $collectionUtils.contains($!productTypesList,"温泉滑雪")) checked #end/>温泉滑雪
+				<input type="checkbox" name="productTypesList" value="垂钓采摘" #if( $collectionUtils.contains($!productTypesList,"垂钓采摘")) checked #end/>垂钓采摘
             </td>
         </tr>
         <tr>

@@ -1,6 +1,32 @@
 #set($layout="/front/default_new.vm")
 #set($title = $!keyword)
 
+#set($start = $result.pagination.start)
+#set($size = $result.pagination.size)
+#set($totalCount = $result.pagination.totalCount)
+#set($totalPages = $result.pagination.totalPages)
+
+
+
+#macro(SEARCH_URL $newQuery)
+	#set($query = ["s_product:$!s_product","s_productType:$!s_productType","s_sellPrice:$!s_sellPrice","keyword:$!keyword","s_order:$!s_order","s_days:$!s_days","page:$!page","s_orderSeq:$!s_orderSeq","s_starRate:$!s_starRate"])
+	
+	#set($combineQuery = $stringUtils.combineQueryArray($query,$newQuery))
+	#set($url = ${env.root}+"/search/global.htm?") 
+	#foreach($entry in $combineQuery)
+		#set($entry_value = $entry.value)
+		#if(!$entry_value)
+			#set($entry_value  = "")
+		#end
+		#if($velocityCount == 1)
+			#set($url = $url + $!entry.key + "=" + $entry_value)
+		#else
+			#set($url = $url + "&" + $!entry.key + "=" + $entry_value)
+		#end
+	#end
+	$url
+#end
+
 	
 <div class="w950 main search">
 	<div class="crumb">您搜索的关键词是“<span class="orange">$!keyword</span>”，我们为您找到了<span class="orange">$!totalCount</span>个相关的产品！</div>
@@ -16,19 +42,55 @@
 				<tr>
 					<th>产品类型：</th>
 					<td><p>
-							<a href="javascript:;" #if($s_product=="")class="current"#end onclick="return G_search('',#JSNULL($s_days),#JSNULL($s_sellPrice),#JSNULL($s_order),#JSNULL($s_orderSeq));">全部</a>
-								<a href="javascript:;" onclick="return G_search('MP',#JSNULL($s_days),#JSNULL($s_sellPrice),#JSNULL($s_order),#JSNULL($s_orderSeq));" #if($s_product=="MP")class="current"#end>打折门票</a>
-									<a href="javascript:;" onclick="return G_search('ZJ',#JSNULL($s_days),#JSNULL($s_sellPrice),#JSNULL($s_order),#JSNULL($s_orderSeq));" #if($s_product=="ZJ")class="current"#end>周边自驾</a>
-										<a href="javascript:;" onclick="return G_search('FJ',#JSNULL($s_days),#JSNULL($s_sellPrice),#JSNULL($s_order),#JSNULL($s_orderSeq));" #if($s_product=="FJ")class="current"#end>酒店房间</a></p></td>
+							<a href="#SEARCH_URL(['s_product:','page:1','s_productType:','s_starRate:','s_days:'])" #if(!$s_product || $s_product=="")class="current"#end>全部</a>
+							<a href="#SEARCH_URL(['s_product:MP','page:1','s_productType:','s_starRate:','s_days:'])" #if($s_product=="MP")class="current"#end>打折门票</a>
+							<a href="#SEARCH_URL(['s_product:ZJ','page:1','s_productType:','s_starRate:','s_days:'])" #if($s_product=="ZJ")class="current"#end>周边自驾</a>
+							<a href="#SEARCH_URL(['s_product:JD','page:1','s_productType:','s_starRate:','s_days:'])" #if($s_product=="JD")class="current"#end>酒店</a></p></td>
 				</tr>
-				<!--
+				#if($s_product == "ZJ")
 				<tr>
-					<th>起价范围：</th><td><p><a href="#" class="current">全部</a><a href="#">200以下</a><a href="#">200-499</a><a href="#">500-999</a><a href="#">1000-1499</a><a href="#">1500-1999</a><a href="#">2000及以上</a></p></td>
+					<th>出游天数：</th><td><p><a href="#SEARCH_URL(['s_days:','page:1'])" #if(!$s_days || $s_days=="")class="current"#end>全部</a><a href="#SEARCH_URL(['s_days:1','page:1'])" #if($s_days==1)class="current"#end>1天</a><a href="#SEARCH_URL(['s_days:2','page:1'])" #if($s_days==2)class="current"#end>2天</a><a href="#SEARCH_URL(['s_days:3','page:1'])" #if($s_days==3)class="current"#end>3天</a><a href="#SEARCH_URL(['s_days:4','page:1'])" #if($s_days==4)class="current"#end>4天</a><a href="#SEARCH_URL(['s_days:5','page:1'])" #if($s_days==5)class="current"#end>5天</a></p></td>
 				</tr>
-				-->
 				<tr>
-					<th>出游天数：</th><td><p><a href="#" #if($days==0)class="current"#end href="javascript:;" onclick="return _search_d();">全部</a><a href="javascript:;" onclick="return _search_d(1);" #if($days==1)class="current"#end>1天</a><a href="javascript:;" onclick="return _search_d(2);" #if($days==2)class="current"#end>2天</a><a href="javascript:;" onclick="return _search_d(3);" #if($days==3)class="current"#end>3天</a><a href="javascript:;" onclick="return _search_d(4);" #if($days==4)class="current"#end>4天</a><a href="javascript:;" onclick="return _search_d(5);" #if($days==5)class="current"#end>5天以上</a></p></td>
+					<th>出游类型：</th><td><p>
+							<a href="#SEARCH_URL(['s_productType:','page:1'])" #if(!$s_productType || $s_productType=="")class="current"#end >不限</a>
+							<a href="#SEARCH_URL(['s_productType:亲子游','page:1'])" #if($s_productType=="亲子游")class="current"#end>亲子游</a>
+							<a href="#SEARCH_URL(['s_productType:情侣游','page:1'])" #if($s_productType=="情侣游")class="current"#end>情侣游</a>
+							<a href="#SEARCH_URL(['s_productType:老人游','page:1'])" #if($s_productType=="老人游")class="current"#end>老人游</a>
+							<a href="#SEARCH_URL(['s_productType:度假住宿','page:1'])" #if($s_productType=="度假住宿")class="current"#end>度假住宿</a>
+							<a href="#SEARCH_URL(['s_productType:温泉滑雪','page:1'])" #if($s_productType=="温泉滑雪")class="current"#end>温泉滑雪</a>
+							<a href="#SEARCH_URL(['s_productType:垂钓采摘','page:1'])" #if($s_productType=="垂钓采摘")class="current"#end>垂钓采摘</a>
+					</p></td>
 				</tr>
+				#end
+				#if($s_product == "MP")
+				<tr>
+					<th>景点类型：</th><td><p>
+							<a href="#SEARCH_URL(['s_productType:','page:1'])" #if(!$s_productType || $s_productType=="")class="current"#end >不限</a>
+							<a href="#SEARCH_URL(['s_productType:自然风光','page:1'])" #if($s_productType=="自然风光")class="current"#end>自然风光</a>
+							<a href="#SEARCH_URL(['s_productType:人文景观','page:1'])" #if($s_productType=="人文景观")class="current"#end>人文景观</a>
+							<a href="#SEARCH_URL(['s_productType:综艺表演','page:1'])" #if($s_productType=="综艺表演")class="current"#end>综艺表演</a>
+							<a href="#SEARCH_URL(['s_productType:休闲农庄','page:1'])" #if($s_productType=="休闲农庄")class="current"#end>休闲农庄</a>
+							<a href="#SEARCH_URL(['s_productType:主题公园','page:1'])" #if($s_productType=="主题公园")class="current"#end>主题公园</a>
+					</p></td>
+				</tr>
+				#end
+				#if($s_product == "JD")
+				<tr>
+					<th>酒店星级：</th><td><p>
+							<a href="#SEARCH_URL(['s_starRate:','page:1'])" #if(!$s_starRate || $s_starRate=="") class="current" #end >全部</a>
+							<a href="#SEARCH_URL(['s_starRate:1','page:1'])" #if($s_starRate==1) class="current"#end>连锁商务酒店</a>
+							<a href="#SEARCH_URL(['s_starRate:2','page:1'])" #if($s_starRate==2) class="current"#end>经济商务</a>
+							<a href="#SEARCH_URL(['s_starRate:3','page:1'])" #if($s_starRate==3) class="current"#end>三星级</a>
+							<a href="#SEARCH_URL(['s_starRate:4','page:1'])" #if($s_starRate==4) class="current"#end>准三星级</a>
+							<a href="#SEARCH_URL(['s_starRate:5','page:1'])" #if($s_starRate==5) class="current"#end>四星级</a>
+							<a href="#SEARCH_URL(['s_starRate:6','page:1'])" #if($s_starRate==6) class="current"#end>准四星级</a>
+							<a href="#SEARCH_URL(['s_starRate:7','page:1'])" #if($s_starRate==7) class="current"#end>五星级</a>
+							<a href="#SEARCH_URL(['s_starRate:8','page:1'])" #if($s_starRate==8) class="current"#end>准五星级</a>
+					
+					</p></td>
+				</tr>
+				#end
 				<!--
 				<tr>
 					<th>优惠方式：</th><td><p><a href="#" class="current">全部</a><a href="#">可用优惠券</a><a href="#">可返奖金</a><a href="#">可用优惠券</a><a href="#">可返奖金</a><a href="#">可用优惠券</a><a href="#">可返奖金</a><a href="#">可用优惠券</a><a href="#">可返奖金</a></p></td>
@@ -46,7 +108,7 @@
 			<div class="ttl">
 				<div class="L"><span>排序：</span><a href="#" class="current">推荐</a><a href="#">价格</a></div>
 				<div class="R">
-					#parse("/common/common_pagination_simple.vm")
+					#parse("/common/search_pagination_simple.vm")
 				</div>
 			</div>
 			<ul class="cnt">
@@ -56,7 +118,8 @@
     					<div class="L">
     						<a href="${env.root}/product/detail.htm?productId=$!item.productId"><img src="$!item.firstImage" alt="" class="pad3"  onerror="this.src='${env.staticroot}/images/no_img.jpg'"/></a>
     						<span class="txt">
-    							<a href="${env.root}/product/detail.htm?productId=$!item.productId" target="_blank"><strong class="t1">#HIGHRIGHT_OUTPUT($!item.name)</strong></a>
+								
+    							<a href="${env.root}/product/detail.htm?productId=$!item.productId" target="_blank"><strong class="t1">【$!item.typeName】#HIGHRIGHT_OUTPUT($!item.name)</strong></a>
     							<span class="t2">区域：$!item.destProvince$!item.destCity$!item.destArea</span>
     							<span class="t2">地址：$!item.destAddr</span>
     						</span>
@@ -73,13 +136,15 @@
     						</span>
 							#if($item.price)
     						<a href="${env.root}/product/detail.htm?productId=$!item.productId" class="order">订购</a>
+							#else
+							<a href="${env.root}/product/detail.htm?productId=$!item.productId" class="order">查看价格</a>
 							#end
     					</div>
     				</li>
 					#end
 				
 			</ul>
-			#parse("common/common_pagination.vm")
+			#parse("common/search_pagination.vm")
 				
 			#end
 		</div>

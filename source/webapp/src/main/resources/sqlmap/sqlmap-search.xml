@@ -18,34 +18,28 @@
 
 	<sql id="search_ticket">
 		SELECT
-				PRODUCT_ID , NAME , MARKET_PRICE ,BOTTOM_PRICE ,IMAGES , DEST_ADDR , DEST_PROVINCE , DEST_CITY , DEST_AREA ,INTRODUCTION AS INTRO , GMT_CREATE , GMT_MODIFIED , GMT_EXPIRE
+				PRODUCT_ID , NAME , MARKET_PRICE ,BOTTOM_PRICE ,IMAGES , DEST_ADDR , DEST_PROVINCE , DEST_CITY , DEST_AREA ,INTRODUCTION AS INTRO , NULL AS STAR_RATE , PRODUCT_TYPES , NULL AS DAYS, GMT_CREATE , GMT_MODIFIED , GMT_EXPIRE
 			FROM  
 				DJ_TICKET WHERE GMT_EXPIRE > now()
-				<isNotEmpty property="name" prepend="AND">
-				NAME LIKE CONCAT('%', #name#, '%')
-				</isNotEmpty>
-				<isNotEmpty property="place" prepend="AND">
-				DEST_ADDR LIKE CONCAT('%', #place#, '%') OR
-				DEST_PROVINCE = #place# OR
-				DEST_CITY = #place#
-				</isNotEmpty>
+			<isNotEmpty property="productType" prepend="AND">
+				PRODUCT_TYPES LIKE CONCAT('%', #productType#, '%')
+			</isNotEmpty>
 	</sql>
 	
 	<sql id="search_hotel">
 		SELECT 
-				PRODUCT_ID , NAME , NULL AS MARKET_PRICE ,NULL AS BOTTOM_PRICE ,IMAGES , DEST_ADDR , DEST_PROVINCE , DEST_CITY , DEST_AREA , INTRODUCTION AS INTRO, GMT_CREATE , GMT_MODIFIED , NULL AS GMT_EXPIRE
+				PRODUCT_ID , NAME , NULL AS MARKET_PRICE ,NULL AS BOTTOM_PRICE ,IMAGES , DEST_ADDR , DEST_PROVINCE , DEST_CITY , DEST_AREA , INTRODUCTION AS INTRO, STAR_RATE ,NULL AS PRODUCT_TYPES ,NULL AS DAYS,GMT_CREATE , GMT_MODIFIED , NULL AS GMT_EXPIRE
 			FROM 
-				DJ_HOTEL WHERE 1=1 
-				<isNotEmpty property="name" prepend="AND">
-				NAME LIKE CONCAT('%', #name#, '%') 
-				</isNotEmpty>
-				<isNotEmpty property="place" prepend="AND">
-				DEST_ADDR LIKE CONCAT('%', #place#, '%') OR
-				DEST_PROVINCE = #place# OR
-				DEST_CITY = #place#
-				</isNotEmpty>
+				DJ_HOTEL 
+			WHERE 1=1
+			<isNotEmpty property="starRate" prepend="AND">
+			 	<![CDATA[
+			 	STAR_RATE = #starRate#
+			 	]]>
+			</isNotEmpty>
 	</sql>
 	
+	<!-- 
 	<sql id="search_hotelRoom">
 		SELECT 
 				PRODUCT_ID , NAME , MARKET_PRICE , BOTTOM_PRICE ,IMAGES , '' AS DEST_ADDR , '' AS DEST_PROVINCE , '' AS DEST_CITY , '' AS DEST_AREA , INTRODUCTION AS INTRO , GMT_CREATE , GMT_MODIFIED , GMT_EXPIRE
@@ -58,20 +52,20 @@
 				1=2
 				</isNotEmpty>
 	</sql>
-	
+	 -->
+	 
+	 
 	<sql id="search_selfDrive">
 		SELECT 
-				PRODUCT_ID , NAME , MARKET_PRICE , BOTTOM_PRICE ,IMAGES , DEST_ADDR , DEST_PROVINCE , DEST_CITY , DEST_AREA , INTRODUCTION AS INTRO , GMT_CREATE , GMT_MODIFIED , GMT_EXPIRE
+				PRODUCT_ID , NAME , MARKET_PRICE , BOTTOM_PRICE ,IMAGES , DEST_ADDR , DEST_PROVINCE , DEST_CITY , DEST_AREA , INTRODUCTION AS INTRO , NULL AS STAR_RATE ,PRODUCT_TYPES , DAYS,GMT_CREATE , GMT_MODIFIED , GMT_EXPIRE
 			FROM 
 				DJ_SELF_DRIVE WHERE GMT_EXPIRE > now()
-				<isNotEmpty property="name" prepend="AND">
-				NAME LIKE CONCAT('%', #name#, '%')
-				</isNotEmpty>
-				<isNotEmpty property="place" prepend="AND">
-				DEST_ADDR LIKE CONCAT('%', #place#, '%') OR
-				DEST_PROVINCE = #place# OR
-				DEST_CITY = #place#
-				</isNotEmpty>
+			<isNotEmpty property="productType" prepend="AND">
+				PRODUCT_TYPES LIKE CONCAT('%', #productType#, '%')
+			</isNotEmpty>
+			<isNotNull property="days" prepend="AND">
+				DAYS = #days#
+			</isNotNull>
 	</sql>
 
 	
@@ -85,26 +79,21 @@
 				<isPropertyAvailable property="JD" prepend="UNION ALL" >
 					<include refid="search_hotel"/>
 				</isPropertyAvailable>
-				<isPropertyAvailable property="FJ" prepend="UNION ALL" >
-					<include refid="search_hotelRoom"/>
-				</isPropertyAvailable>
 				<isPropertyAvailable property="ZJ" prepend="UNION ALL">
 					<include refid="search_selfDrive"/>
 				</isPropertyAvailable>
 			</isParameterPresent>
 		 TB1 
-		 <isPropertyAvailable property="startPrice">
-		 <![CDATA[
-		 	BOTTOM_PRICE >= #startPrice# AND BOTTOM_PRICE <= #endPrice#
-		 	]]>
-		 </isPropertyAvailable>
-		 ORDER BY 
-		 <isEqual property="order" compareValue="price">
-		 	BOTTOM_PRICE
-		 </isEqual>
-		 <isNotEqual property="order" compareValue="price">
-		 	GMT_MODIFIED
-		 </isNotEqual>
+		 WHERE 1=1
+		<isNotEmpty property="name" prepend="AND">
+			NAME LIKE CONCAT('%', #name#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="place" prepend="AND">
+			DEST_ADDR LIKE CONCAT('%', #place#, '%') OR
+			DEST_PROVINCE = #place# OR
+			DEST_CITY = #place#
+		</isNotEmpty>
+		 ORDER BY GMT_MODIFIED 
 		 <isEqual property="orderSeq" compareValue="asc">
 		 	ASC
 		 </isEqual>
@@ -124,14 +113,26 @@
 				<isPropertyAvailable property="JD" prepend="UNION ALL" >
 					<include refid="search_hotel"/>
 				</isPropertyAvailable>
-				<isPropertyAvailable property="FJ" prepend="UNION ALL">
-					<include refid="search_hotelRoom"/>
-				</isPropertyAvailable>
 				<isPropertyAvailable property="ZJ" prepend="UNION ALL">
 					<include refid="search_selfDrive"/>
 				</isPropertyAvailable>
 			</isParameterPresent>
 	 	TB1 
+	 	WHERE 1=1
+		<isNotEmpty property="name" prepend="AND">
+			NAME LIKE CONCAT('%', #name#, '%')
+		</isNotEmpty>
+		<isNotEmpty property="place" prepend="AND">
+			DEST_ADDR LIKE CONCAT('%', #place#, '%') OR
+			DEST_PROVINCE = #place# OR
+			DEST_CITY = #place#
+		</isNotEmpty>
+		 <isNotEmpty property="startPrice" prepend="AND">
+		 <![CDATA[
+		 	BOTTOM_PRICE >= #startPrice# AND BOTTOM_PRICE <= #endPrice#
+		 	]]>
+		 </isNotEmpty>
+		
 	</select>
 	
 	

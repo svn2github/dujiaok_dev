@@ -56,14 +56,6 @@ DirectoryIndex index.html
 
 
 NameVirtualHost *
-<VirtualHost *>
-    ServerAdmin efax
-    ServerName www.dujiaok.com
-    DocumentRoot ${doucome_htdocs_home}
-    RewriteEngine on
-    RewriteCond %{HTTP_HOST} ^www.dujiaok.com [NC]
-    RewriteRule ^\/$ /home/index.htm [L,R]
-</VirtualHost>
 
 <VirtualHost *>
     ServerAdmin efax

@@ -1,0 +1,72 @@
+
+
+#set($start = $start)
+#set($size = $size)
+#set($totalCount = $totalCount)
+#set($totalPages = $totalPages)
+#set($curPage = (($start+$size-1)/$size))
+#if($curPage<1)
+	#set($curPage = 1) 
+#elseif($curPage>$totalPages)
+	#set($curPage = $totalPages)
+#end
+
+#set($rangeStart = 1)
+#set($rangeEnd = $totalPages)
+
+#set($prePage = $curPage - 1)
+#set($nextPage = $curPage + 1)
+
+
+<div id="page" class="page">
+
+	<div class="pL">
+		
+		#if($curPage == 1)
+			<a class="prev die" href="javascript:void(0);">&lt;&lt; 上一页</a>
+        #else
+			
+			<a class="prev" href='#SEARCH_URL(["page:$prePage"])'>&lt;&lt; 上一页</a>
+        #end
+		#set($toPage = 0 )
+		#foreach($count in [-3..3])
+        	#set($toPage = $curPage + $count)
+        	#if($toPage>=$rangeStart && $toPage<=$rangeEnd) 
+            	#if($toPage == $curPage)
+            		<a class="current" href="javascript:void(0);">$toPage</a>
+            	#else
+                    <a href='#SEARCH_URL(["page:$toPage"])'>$toPage</a>
+        		#end
+        	#end
+        #end
+	</div>
+	#if($toPage < $totalPages)
+	<div class="pM">...</div>
+	#end
+	<div class="pR">
+		#if($curPage == $totalPages)
+		<a class="next die" href="javascript:void(0);">下一页 &gt;&gt;</a>
+        #else
+		<a class="next" href='#SEARCH_URL(["page:$nextPage"])'>下一页 &gt;&gt;</a>
+        #end
+	</div>
+	
+	#if($__index)
+    	#set($__index = $__index + 1)
+    #else
+    	#set($__index = 1)
+	#end
+	<form action="${env.root}/search/global.htm" method="get" name="searchForm" id="searchForm">
+    	<input type="hidden" name="size" id="size" value="$!size"/>
+    	<input type="hidden" id="s_product" name="s_product" value="$!s_product"/>
+    	<input type="hidden" id="s_days" name="s_days" value="$!s_days"/>
+    	<input type="hidden" id="s_order" name="s_order" value="$!s_order"/>
+    	<input type="hidden" id="s_orderSeq" name="s_orderSeq" value="$!s_orderSeq"/>
+    	<input type="hidden" id="s_starRate" name="s_starRate" value="$!s_starRate"/>
+    	<input type="hidden" id="s_productType" name="s_productType" value="$!s_productType"/>
+		<input type="hidden" id="s_keyword" name="keyword" value="$!keyword"/>
+    
+	<div class="pOther">共<em>$!totalPages</em>页，到第<input type="text" size="2" value="$curPage" name="page" id="toPages$__index"></input>页<button onclick="return toPage($element('toPages$__index').value,$size);">确定</button></div>
+	</form>
+</div>
+

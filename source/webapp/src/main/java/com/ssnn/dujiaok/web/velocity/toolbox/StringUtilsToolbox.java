@@ -3,7 +3,12 @@ package com.ssnn.dujiaok.web.velocity.toolbox;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -52,5 +57,40 @@ public class StringUtilsToolbox {
 	
 	public String replace(String text , String searchString , String replacement){
 		return StringUtils.replace(text, searchString, replacement) ;
+	}
+	
+	
+	
+	/**
+	 * 
+	 * @param arr1
+	 * @param arr2
+	 * @return
+	 */
+	public Set<Map.Entry<String,String>> combineQueryArray(List<String> list1 , List<String> list2){
+		Map<String,String> queryMap = new HashMap<String,String>() ;
+		if(!CollectionUtils.isEmpty(list1)){
+			for(String keyval : list1){
+				String[] a = StringUtils.split(keyval,":");
+				if(a != null && a.length == 2){
+					queryMap.put(a[0],a[1]) ;
+				}
+			}
+		}
+		if(!CollectionUtils.isEmpty(list2)){
+			for(String keyval : list2){
+				String[] a = StringUtils.split(keyval,":");
+				if(a!=null){
+					if(a.length == 1){
+						queryMap.put(a[0],"") ;
+					}else if(a.length == 2){
+						queryMap.put(a[0],a[1]) ;
+					}
+					
+				}
+			}
+		}
+		
+		return queryMap.entrySet();
 	}
 }

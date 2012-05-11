@@ -10,7 +10,6 @@ import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.page.condition.GlobalSearchCondition;
 import com.ssnn.dujiaok.biz.service.SearchService;
-import com.ssnn.dujiaok.biz.service.product.ProductDetailService;
 import com.ssnn.dujiaok.model.SearchDO;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
@@ -20,8 +19,7 @@ import com.ssnn.dujiaok.web.action.BasicAction;
  * 
  */
 @SuppressWarnings("serial")
-public class SearchAction extends BasicAction implements
-		ModelDriven<Pagination> {
+public class SearchAction extends BasicAction {
 
 	/**
 	 * 关键字
@@ -36,7 +34,7 @@ public class SearchAction extends BasicAction implements
 	/**
 	 * 出游天数
 	 */
-	private int s_days ;
+	private Integer s_days ;
 	
 	/**
 	 * 价格 1,200 表示1-200 ， 
@@ -46,7 +44,17 @@ public class SearchAction extends BasicAction implements
 	/**
 	 * 地方
 	 */
-	private String place;
+	private String s_city;
+	
+	/**
+	 * 酒店星级
+	 */
+	private Integer s_starRate ;
+	
+	/**
+	 * 
+	 */
+	private String s_productType ;
 	
 	/**
 	 * order字段 ， 价格|null
@@ -62,11 +70,14 @@ public class SearchAction extends BasicAction implements
 
 	private SearchService searchService;
 
-	private ProductDetailService productDetailService;
-	
 	private FrontViewBO              frontViewBO;
-
-	private Pagination pagination = new Pagination(1);
+	
+	private int page = 1;
+	
+	private int size = 20 ;
+	
+	private int start = 1 ;
+	
 
 	@Override
 	public String execute() throws Exception {
@@ -74,12 +85,16 @@ public class SearchAction extends BasicAction implements
 		if (!StringUtils.isBlank(keyword)) {
 			GlobalSearchCondition condition = new GlobalSearchCondition();
 			condition.setName(keyword);
-			condition.setPlace(place);
+			condition.setPlace(s_city);
 			condition.setProduct(s_product);
 			condition.setOrder(s_order) ;
+			condition.setDays(s_days) ;
+			condition.setStarRate(s_starRate) ;
+			condition.setProductType(s_productType) ;
+			
 			condition.setOrderSeq(StringUtils.equals(s_orderSeq, "desc") ?  "desc" : "asc") ;
 			if(StringUtils.isNotBlank(s_sellPrice)){
-				String[] s = StringUtils.split(s_sellPrice , ",") ;
+				String[] s = StringUtils.split(s_sellPrice , "-") ;
 				if(s.length == 2){
 					String sStartPrice = s[0] ;
 					String sEndPrice = s[1] ;
@@ -89,8 +104,12 @@ public class SearchAction extends BasicAction implements
 					}
 				}
 			}
+			
+			Pagination pagination = new Pagination((page-1)*size + 1);
+			
 			result = searchService.globalSearch(condition, pagination);
-
+			
+			
 		}
 
 		return SUCCESS;
@@ -116,16 +135,13 @@ public class SearchAction extends BasicAction implements
 		this.keyword = keyword;
 	}
 
-	
-	public String getPlace() {
-		return place;
+	public String getS_city() {
+		return s_city;
 	}
 
-	public void setPlace(String place) {
-		this.place = place;
+	public void setS_city(String s_city) {
+		this.s_city = s_city;
 	}
-
-	
 
 	public String getS_sellPrice() {
 		return s_sellPrice;
@@ -143,26 +159,12 @@ public class SearchAction extends BasicAction implements
 		this.s_product = s_product;
 	}
 
-	public int getS_days() {
+	public Integer getS_days() {
 		return s_days;
 	}
 
-	public void setS_days(int s_days) {
+	public void setS_days(Integer s_days) {
 		this.s_days = s_days;
-	}
-
-	@Override
-	public Pagination getModel() {
-		return pagination;
-	}
-
-	public void setPagination(Pagination pagination) {
-		this.pagination = pagination;
-	}
-
-	public void setProductDetailService(
-			ProductDetailService productDetailService) {
-		this.productDetailService = productDetailService;
 	}
 
 	public String getS_order() {
@@ -181,12 +183,44 @@ public class SearchAction extends BasicAction implements
 		this.s_orderSeq = s_orderSeq;
 	}
 
-    public void setFrontViewBO(FrontViewBO frontViewBO) {
+    public String getS_productType() {
+		return s_productType;
+	}
+
+	public void setS_productType(String s_productType) {
+		this.s_productType = s_productType;
+	}
+
+	public void setFrontViewBO(FrontViewBO frontViewBO) {
         this.frontViewBO = frontViewBO;
     }
     
     public FrontViewBO getFrontViewBO() {
         return frontViewBO;
     }
+
+	public Integer getS_starRate() {
+		return s_starRate;
+	}
+
+	public void setS_starRate(Integer s_starRate) {
+		this.s_starRate = s_starRate;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
 
 }

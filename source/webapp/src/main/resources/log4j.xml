@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<!--
+  - Log4j配置文件。
+  -
+  - 请使用专用的XML编辑器编辑此文件，以确保其符合log4j.dtd。
+  -
+  - @author Michael Zhou
+ -->
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <!-- ===================================================================== -->
+    <!--  以下是appender的定义                                                 -->
+    <!-- ===================================================================== -->
+    
+        <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		      <param name="Target" value="System.out" />
+		      <param name="Threshold" value="DEBUG" />
+		      <layout class="org.apache.log4j.PatternLayout">
+		         <param name="ConversionPattern" value="%d [%-5p](%C{2},%L) - %m%n" />
+		      </layout>
+	    </appender>
+    
+  
+    <!-- ===================================================================== -->
+    <!--  Root logger的定义                                                    -->
+    <!-- ===================================================================== -->
+    <root>
+        <level value="debug"/>
+           <appender-ref ref="CONSOLE" />
+        <!-- <appender-ref ref="ASYNC" /> -->
+    </root>
+    
+</log4j:configuration>

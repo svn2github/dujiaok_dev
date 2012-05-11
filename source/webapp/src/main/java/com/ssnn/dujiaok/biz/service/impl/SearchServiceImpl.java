@@ -26,34 +26,25 @@ public class SearchServiceImpl implements SearchService {
 	public QueryResult<SearchDO> globalSearch(GlobalSearchCondition condition , Pagination pagination ) {
 		Map<String,Object> map = new HashMap<String,Object>() ;
 		map.put("name", condition.getName()) ;
-		if(StringUtils.isNotBlank(condition.getPlace())){
-			map.put("place", condition.getPlace()) ;
-		}
-		ProductEnums e = null ;
-		if(StringUtils.isNotBlank(condition.getProduct())){
-			e = ProductEnums.fromValue(condition.getProduct()) ;
-			if(e == ProductEnums.HOTEL){
-				e = null ; //暂时不支持酒店搜索
-			}
-		}
+		map.put("place", condition.getPlace()) ;
+		map.put("starRate", condition.getStarRate());
+		map.put("productType", condition.getProductType()) ;
+		map.put("days", condition.getDays()) ;
 		
-		ProductEnums[] products = null ;
-		if(e != null){
+		ProductEnums e = ProductEnums.fromValue(condition.getProduct()) ;
+		ProductEnums[] products = null ; 
+		if(e != ProductEnums.UNKNOWN){
 			products = new ProductEnums[]{e} ;
 		}else{
-			products = new ProductEnums[]{/*ProductEnums.HOTEL,*/ProductEnums.HOTEL_ROOM , ProductEnums.SELFDRIVE , ProductEnums.TICKET} ;
+			products = new ProductEnums[]{/*ProductEnums.HOTEL,*/ProductEnums.HOTEL , ProductEnums.SELFDRIVE , ProductEnums.TICKET} ;
 		}
-		String order = condition.getOrder() ;
-		String orderSeq = condition.getOrderSeq() ;
-		if(StringUtils.isNotBlank(order)) {
-			map.put("order", order) ;
-			map.put("orderSeq", orderSeq) ;
- 		}
+
+		map.put("order", condition.getOrder()) ;
+		map.put("orderSeq", condition.getOrderSeq()) ;
 		//价格
-		if(condition.getStartPrice()!=null && condition.getEndPrice()!=null){
-			map.put("startPrice", condition.getStartPrice()) ;
-			map.put("endPrice", condition.getEndPrice()) ;
-		}
+		map.put("startPrice", condition.getStartPrice()) ;
+		map.put("endPrice", condition.getEndPrice()) ;
+		
 		int count = searchDAO.countGlobalSearch(map , products) ;
 		List<SearchDO> list = searchDAO.globalSearch(map, pagination , products);
 		pagination.setTotalCount(count) ;
@@ -62,3 +53,4 @@ public class SearchServiceImpl implements SearchService {
 
 
 }
+

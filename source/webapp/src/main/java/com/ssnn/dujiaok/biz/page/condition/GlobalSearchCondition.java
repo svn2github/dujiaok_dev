@@ -10,9 +10,13 @@ public class GlobalSearchCondition {
 	
 	private String place ;
 	
+	private Integer starRate ;
+	
 	private String order ;
 	
 	private String orderSeq ;
+	
+	private String productType ;
 	
 	/**
 	 * 1,200
@@ -20,6 +24,16 @@ public class GlobalSearchCondition {
 	private BigDecimal startPrice ;
 	
 	private BigDecimal endPrice ;
+	
+	private Integer days ;
+
+	public Integer getDays() {
+		return days;
+	}
+
+	public void setDays(Integer days) {
+		this.days = days;
+	}
 
 	public String getName() {
 		return name;
@@ -29,8 +43,24 @@ public class GlobalSearchCondition {
 		this.name = name;
 	}
 
+	public Integer getStarRate() {
+		return starRate;
+	}
+
+	public void setStarRate(Integer starRate) {
+		this.starRate = starRate;
+	}
+
 	public String getProduct() {
 		return product;
+	}
+
+	public String getProductType() {
+		return productType;
+	}
+
+	public void setProductType(String productType) {
+		this.productType = productType;
 	}
 
 	public void setProduct(String product) {

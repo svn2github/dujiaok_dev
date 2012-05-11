@@ -15,7 +15,7 @@ public enum ProductEnums {
 	/**
 	 * 门票
 	 */
-	TICKET(Constant.PREFIX_TICKET , "门票") ,
+	TICKET(Constant.PREFIX_TICKET , "打折门票") ,
 	/**
 	 * 酒店
 	 */
@@ -27,7 +27,7 @@ public enum ProductEnums {
 	/**
 	 * 自驾
 	 */
-	SELFDRIVE(Constant.PREFIX_SELFDRIVE , "自驾") ,
+	SELFDRIVE(Constant.PREFIX_SELFDRIVE , "周边自驾") ,
 	
 	
 	
@@ -71,4 +71,5 @@ public enum ProductEnums {
 		}
 		return UNKNOWN ;
 	}
+	
 }

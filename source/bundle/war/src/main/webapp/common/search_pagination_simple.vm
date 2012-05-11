@@ -1,0 +1,35 @@
+
+
+#set($start = $start)
+#set($size = $size)
+#set($totalCount = $totalCount)
+#set($totalPages = $totalPages)
+#set($curPage = (($start+$size-1)/$size))
+#if($curPage < 1)
+	#set($curPage = 1) 
+#elseif($curPage>$totalPages)
+	#set($curPage = $totalPages)
+#end
+
+#set($rangeStart = 1)
+#set($rangeEnd = $totalPages)
+
+#set($prePage = $curPage - 1)
+#set($nextPage = $curPage + 1)
+
+<div>
+	<span>$curPage/$totalPages</span>
+	#if($curPage == 1)
+		<a class="die" href="javascript:void(0);" >上一页</a>
+    #else
+		<a class="" href='#SEARCH_URL(["page:$prePage"])' >上一页</a>
+	#end
+	
+	#if($curPage == $totalPages)
+		<a class="die" href="javascript:void(0);" >下一页</a>
+    #else
+		<a class="" href='#SEARCH_URL(["page:$nextPage"])'>下一页</a>
+    #end
+</div>
+
+

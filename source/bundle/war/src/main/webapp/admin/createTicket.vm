@@ -106,18 +106,11 @@
         <tr>
             <td align="right">产品类别：</td>
             <td>
-                <input type="checkbox" name="productTypesList" value="人气" #if( $collectionUtils.contains($!productTypesList,"人气")) checked #end />
-                    人气
-                    <input type="checkbox" name="productTypesList" value="山水" #if( $collectionUtils.contains($!productTypesList,"山水")) checked #end/>
-                        山水
-                        <input type="checkbox" name="productTypesList" value="自然环境" #if( $collectionUtils.contains($!productTypesList,"自然环境")) checked #end/>
-                            自然环境
-                            <input type="checkbox" name="productTypesList" value="亲子游" #if( $collectionUtils.contains($!productTypesList,"亲子游")) checked #end/>
-                                亲子游
-                                <input type="checkbox" name="productTypesList" value="情侣游" #if( $collectionUtils.contains($!productTypesList,"情侣游")) checked #end />
-                                    情侣游
-                                    <input type="checkbox" name="productTypesList" value="家庭游" #if( $collectionUtils.contains($!productTypesList,"家庭游")) checked #end/>
-                                        家庭游
+                <input type="checkbox" name="productTypesList" value="自然风光" #if( $collectionUtils.contains($!productTypesList,"自然风光")) checked #end />自然风光
+                <input type="checkbox" name="productTypesList" value="人文景观" #if( $collectionUtils.contains($!productTypesList,"人文景观")) checked #end/>人文景观
+				<input type="checkbox" name="productTypesList" value="综艺表演" #if( $collectionUtils.contains($!productTypesList,"综艺表演")) checked #end/>综艺表演
+				<input type="checkbox" name="productTypesList" value="休闲农庄" #if( $collectionUtils.contains($!productTypesList,"休闲农庄")) checked #end/>休闲农庄
+				<input type="checkbox" name="productTypesList" value="主题公园" #if( $collectionUtils.contains($!productTypesList,"主题公园")) checked #end />主题公园
             </td>
         </tr>
         <tr>
