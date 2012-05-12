@@ -33,7 +33,7 @@ em,i{font-style:normal;}
 .ipt200{width:200px;}
 .userBar,.mainMenu a.current,.mainMenu a:hover.current,.idx1 .L dt,.idx1M .tabTtl li,.idx1L .tabTtl li,.schL3 .ttl,.box230 .ttl,.leftMenu h3{background:url(../images/repeat.png);}
 .hotPurpose h2.current,.mainMenu a:hover,.idx1L .login,.tableForm a,.schOut .ttl .R a,.order,.page button,.hSchR .hSchR2 td a,.dingdan .flag,.banner strong,.rightMain button,.rightMain .button{background:url(../images/other.png) no-repeat;}
-.userBar .myOrder,.userBar .rank,.hotPurpose h3,.hotPurpose h3 span,.hotPurpose .close,.idx1R li,.bottom .L dt,.orderList li i,.tableForm .select input,.detail .bigRoll .tabTtl li,.pro_intro .list1 li,.jiathis_txt{background:url(../images/icon.gif) no-repeat;}
+.userBar .myOrder,.userBar .rank,.hotPurpose h3,.hotPurpose h3 span,.hotPurpose .close,.idx1R li,.bottom .L dt,.orderList li i,.tableForm .select input,.detail .tabTtl li,.pro_intro .list1 li,.jiathis_txt{background:url(../images/icon.gif) no-repeat;}
 .order{ display:block;width:72px; height:28px; border:0;text-indent:-9999px;background-position:-538px 0;}
 .greenTtl{ margin-bottom:15px; font-size:14px;color:#290;}
 .redTtl{display:block;font-size:14px;color:#E8004C;}
@@ -113,6 +113,7 @@ h1 a{display:block;height:49px;text-indent:-9999px;}
 .bottom .btm3{margin-top:7px;text-align:center;}
 /* box230 */
 .box230{width:228px;border:1px solid #dcdcdc;}
+.L230{width:230px;}
 .box230 .ttl{padding-left:15px;height:29px; line-height:29px;border-bottom:1px solid #dcdcdc;background-position:0 -67px;}
 .box710{width:708px;}
 /* orderList */
@@ -193,3 +194,14 @@ h1 a{display:block;height:49px;text-indent:-9999px;}
 .rightMain .userInfo th{ height:40px; text-align:left;}
 .rightMain input{padding-left:3px; height:20px; line-height:20px;}
 .rightMain button,.rightMain .button{margin-right:5px;padding-left:0;width:66px; height:30px; line-height:30px; color:#333; border:0; background-position:-702px -61px;}
+
+.optionCard{height:448px;border:1px solid #DCDCDC; overflow:hidden;}
+.optionCard .other{padding:10px;line-height:27px;border-top:1px solid #DCDCDC;overflow:hidden;}
+.optionCard .cityTab{line-height:30px;}
+.optionCard .cityTab a{margin-right:10px;}
+.optionCard .hotelTab a{margin-right:15px;*line-height:25px;}
+.optionCard .tabTtl{margin-left:-1px;width:229px;overflow:hidden;}
+.optionCard .tabTtl li{float:left;width:75px;height:28px; line-height:29px; text-align:center;border-left:1px solid #DCDCDC;border-bottom:1px solid #DCDCDC;color:#333;background-position:0 -34px;cursor:default;}
+.optionCard .tabTtl li.first{width:76px;}
+.optionCard .tabTtl li.current{border-bottom:none;background:#fff;}
+.optionCard select{width:145px;}
