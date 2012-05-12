@@ -155,6 +155,7 @@ $("#orderForm :submit").click(function(e){
 				}
 			}
 		}
+		$(this).closest("form").submit();
 		return true ;
 		//ajax相关数据	
   })
