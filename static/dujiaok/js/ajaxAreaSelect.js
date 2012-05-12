@@ -51,20 +51,22 @@ var setupAddressSelect = function(p){
 	if(type!='province' && parentName==''){
 		return ;
 	}
-	xui.util.Ajax.asyncGET(request, 
-			function(data){
-				
-				try{
-					var result = eval('('+data+')') ;
-					__setupAddressSelect(p,result.result) ;
-				}catch(e){
-					alert('exception :' + e.message) ;
-				}
-			} , 
-			function(data){
-				alert("get data error!") ;
+	$.ajax({
+		url: url ,
+		type : "POST" ,
+		data : { type: type , name: encodeURI(parentName)},
+		success : function(data){
+			try{
+				var result = eval('('+data+')') ;
+				__setupAddressSelect(p,result.result) ;
+			}catch(e){
+				alert('exception :' + e.message) ;
 			}
-	)
+		} ,
+		error : function(data){
+			alert("get data error!") ;
+		}
+	});
 }
 
 /**
