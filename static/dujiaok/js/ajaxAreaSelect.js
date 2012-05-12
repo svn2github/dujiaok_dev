@@ -58,7 +58,7 @@ var setupAddressSelect = function(p){
 	$.ajax({
 		url: url ,
 		type : "POST" ,
-		data : { type: type , name: parentName==null?'':encodeURI(parentName)},
+		data : { type: type , name:parentName},
 		success : function(data){
 			try{
 				
