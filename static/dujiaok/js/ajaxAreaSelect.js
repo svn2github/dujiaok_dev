@@ -1,5 +1,5 @@
 
-var element = function(id){
+var $element = function(id){
 	return document.getElementById(id) ;
 }
 
