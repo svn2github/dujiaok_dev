@@ -127,12 +127,6 @@
 			DEST_PROVINCE = #place# OR
 			DEST_CITY = #place#
 		</isNotEmpty>
-		 <isNotEmpty property="startPrice" prepend="AND">
-		 <![CDATA[
-		 	BOTTOM_PRICE >= #startPrice# AND BOTTOM_PRICE <= #endPrice#
-		 	]]>
-		 </isNotEmpty>
-		
 	</select>
 	
 	

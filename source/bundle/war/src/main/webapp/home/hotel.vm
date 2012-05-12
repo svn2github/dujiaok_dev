@@ -8,15 +8,38 @@
 <div class="w950 index">
 	<!-- travel1开始 -->
 	<div class="mgt20 travel1">
-		<div class="L">
-			#FRONT_EDIT_BUTTON($!hotelChannel.getmImageAdsA1(), $isEdit)
-        	#if($!frontViewMap.get($!hotelChannel.getmImageAdsA1()).frontViews)
-        		#foreach($fv in $!frontViewMap.get($!hotelChannel.getmImageAdsA1()).frontViews)
-					<a href="$!fv.link" target="_blank">
-						<img src="$!fv.photoURL" alt="" />
-					</a>
-        		#end
-        	#end
+		<div class="L L230">
+			<div id="optionCard" class="optionCard">
+				<ul class="tabTtl"><li class="first current">度假酒店</li></ul>
+				<div class="current tabCnt">
+					<form action="${env.root}/search/global.htm" method="get">
+						<input type="hidden" name="s_product" value="MP"/>
+					<table class="tableForm">
+						<tbody>
+							<tr><th style="width:50%">城市</th><td class="select">
+                                <input type="text" name="s_city" /><ul><li>杭州</li><li>上海</li><li>北京</li></ul>
+							</td></tr>
+    						<tr><th>酒店名称 </th><td><input type="text" name="keyword" /></td></tr>
+    						<tr><th>星级</th><td class="select">
+    								<select id="starRate" name="s_starRate">
+    									<option value="">不限</option>
+                                        <option value="1">连锁商务酒店</option>
+                                        <option value="2">经济商务</option>
+                                        <option value="3">三星级</option>
+                                        <option value="4">准三星级</option>
+                                        <option value="5">四星级</option>
+                                        <option value="6">准四星级</option>
+                                        <option value="7">五星级</option>
+                                        <option value="8">准五星级</option>
+                                    </select>
+    						</td></tr>
+    						<tr><th></th><td><button>搜索</button></a></td>
+							</tr>
+						</tbody>
+					</table>
+					</form>
+				</div>
+			</div>
 		</div>
 		<div class="R">
 			#FRONT_EDIT_BUTTON($!hotelChannel.getmImageAdsA2(), $isEdit)

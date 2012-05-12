@@ -9,15 +9,42 @@
 <div class="w950 index">
 	<!-- travel1开始 -->
 	<div class="mgt20 travel1">
-		<div class="L">
-			#FRONT_EDIT_BUTTON($!selfDriveChannel.getmImageAdsA1(), $isEdit)
-        	#if($!frontViewMap.get($!selfDriveChannel.getmImageAdsA1()).frontViews)
-        		#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmImageAdsA1()).frontViews)
-					<a href="$!fv.link" target="_blank">
-						<img src="$!fv.photoURL" alt="" />
-					</a>
-        		#end
-        	#end
+		<div class="L L230">
+			<div id="optionCard" class="optionCard">
+				<ul class="tabTtl"><li class="first current">周边自驾</li></ul>
+				<div class="current tabCnt">
+					<form action="${env.root}/search/global.htm" method="get">
+						<input type="hidden" name="s_product" value="ZJ"/>
+					<table class="tableForm">
+						<tbody>
+							<tr><th style="width:50%">城市</th><td class="select">
+                                <input type="text" name="s_city" /><ul><li>杭州</li><li>上海</li><li>北京</li></ul>
+							</td></tr>
+    						<tr><th>名称 </th><td><input type="text" name="keyword" /></td></tr>
+    						<tr><th>出游类型</th><td class="select">
+    								<select name="s_productType" style="width:80px;">
+    									<option value="">不限</option>
+    									<option value="亲子游">亲子游</option>
+    									<option value="情侣游">情侣游</option>
+    									<option value="老人游">老人游</option>
+    									<option value="度假住宿">度假住宿</option>
+    									<option value="温泉滑雪">温泉滑雪</option>
+    									<option value="垂钓采摘">垂钓采摘 </option>
+                                    </select>
+									<select name="s_days"  style="width:50px;">
+    									<option value="">不限</option>
+    									<option value="1">一日游</option>
+    									<option value="2">两日游</option>
+    									<option value="3">三日游</option>
+                                    </select>
+    						</td></tr>
+    						<tr><th></th><td><button>搜索</button></a></td>
+							</tr>
+						</tbody>
+					</table>
+					</form>
+				</div>
+			</div>
 		</div>
 		<div class="R">
 			#FRONT_EDIT_BUTTON($!selfDriveChannel.getmImageAdsA2(), $isEdit)

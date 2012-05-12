@@ -8,15 +8,35 @@
 <div class="w950 index">
 	<!-- travel1开始 -->
 	<div class="mgt20 travel1">
-		<div class="L">
-			#FRONT_EDIT_BUTTON($!ticketChannel.getmImageAdsA1(), $isEdit)
-        	#if($!frontViewMap.get($!ticketChannel.getmImageAdsA1()).frontViews)
-        		#foreach($fv in $!frontViewMap.get($!ticketChannel.getmImageAdsA1()).frontViews)
-					<a href="$!fv.link" target="_blank">
-						<img src="$!fv.photoURL" alt="" />
-					</a>
-        		#end
-        	#end
+		<div class="L L230">
+			<div id="optionCard" class="optionCard">
+				<ul class="tabTtl"><li class="first current">打折门票</li></ul>
+				<div class="current tabCnt">
+					<form action="${env.root}/search/global.htm" method="get">
+						<input type="hidden" name="s_product" value="MP"/>
+					<table class="tableForm">
+						<tbody>
+							<tr><th style="width:50%">城市</th><td class="select">
+                                <input type="text" name="s_city" /><ul><li>杭州</li><li>上海</li><li>北京</li></ul>
+							</td></tr>
+    						<tr><th>景点名称 </th><td><input type="text" name="keyword" /></td></tr>
+    						<tr><th>景点类型</th><td class="select">
+    								<select name="s_productType">
+    									<option value="">不限</option>
+    									<option value="自然风光">自然风光</option>
+    									<option value="人文景观">人文景观</option>
+    									<option value="综艺表演">综艺表演</option>
+    									<option value="休闲农庄">休闲农庄</option>
+    									<option value="主题公园">主题公园</option>
+                                    </select>
+    						</td></tr>
+    						<tr><th></th><td><button>搜索</button></a></td>
+							</tr>
+						</tbody>
+					</table>
+					</form>
+				</div>
+			</div>
 		</div>
 		<div class="R">
 			#FRONT_EDIT_BUTTON($!ticketChannel.getmImageAdsA2(), $isEdit)

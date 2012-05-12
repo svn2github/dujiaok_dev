@@ -70,12 +70,7 @@
 					<div style="border-top:1px solid #ddd;"></div>
 				#end
 			#end
-			
-			#if($!orderDO.memo != '')
-			<h2 class="banner mgt20"><strong>订单备注</strong></h2>
-			$!orderDO.memo
-			#end
-			 
+						 
     		<h2 class="banner mgt20"><strong>金额总计</strong></h2>
     		<table class="mgt10 contactInfo">
     			<tr><th>订单结算金额：</th><td><b class="f22">￥$!orderDO.price元</b></td></tr>

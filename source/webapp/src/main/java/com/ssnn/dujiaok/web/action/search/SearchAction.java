@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.opensymphony.xwork2.ModelDriven;
 import com.ssnn.dujiaok.biz.BO.FrontViewBO;
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.biz.page.QueryResult;
@@ -81,37 +80,33 @@ public class SearchAction extends BasicAction {
 
 	@Override
 	public String execute() throws Exception {
-
-		if (!StringUtils.isBlank(keyword)) {
-			GlobalSearchCondition condition = new GlobalSearchCondition();
-			condition.setName(keyword);
-			condition.setPlace(s_city);
-			condition.setProduct(s_product);
-			condition.setOrder(s_order) ;
-			condition.setDays(s_days) ;
-			condition.setStarRate(s_starRate) ;
-			condition.setProductType(s_productType) ;
-			
-			condition.setOrderSeq(StringUtils.equals(s_orderSeq, "desc") ?  "desc" : "asc") ;
-			if(StringUtils.isNotBlank(s_sellPrice)){
-				String[] s = StringUtils.split(s_sellPrice , "-") ;
-				if(s.length == 2){
-					String sStartPrice = s[0] ;
-					String sEndPrice = s[1] ;
-					if(StringUtils.isNumeric(sStartPrice) && StringUtils.isNumeric(sEndPrice)){
-						condition.setStartPrice(new BigDecimal(sStartPrice)) ;
-						condition.setEndPrice(new BigDecimal(sEndPrice)) ;
-					}
+		
+		GlobalSearchCondition condition = new GlobalSearchCondition();
+		condition.setName(keyword);
+		condition.setPlace(s_city);
+		condition.setProduct(s_product);
+		condition.setOrder(s_order) ;
+		condition.setDays(s_days) ;
+		condition.setStarRate(s_starRate) ;
+		condition.setProductType(s_productType) ;
+		
+		condition.setOrderSeq(StringUtils.equals(s_orderSeq, "desc") ?  "desc" : "asc") ;
+		if(StringUtils.isNotBlank(s_sellPrice)){
+			String[] s = StringUtils.split(s_sellPrice , "-") ;
+			if(s.length == 2){
+				String sStartPrice = s[0] ;
+				String sEndPrice = s[1] ;
+				if(StringUtils.isNumeric(sStartPrice) && StringUtils.isNumeric(sEndPrice)){
+					condition.setStartPrice(new BigDecimal(sStartPrice)) ;
+					condition.setEndPrice(new BigDecimal(sEndPrice)) ;
 				}
 			}
-			
-			Pagination pagination = new Pagination((page-1)*size + 1);
-			
-			result = searchService.globalSearch(condition, pagination);
-			
-			
 		}
-
+		
+		Pagination pagination = new Pagination((page-1)*size + 1);
+		
+		result = searchService.globalSearch(condition, pagination);
+		
 		return SUCCESS;
 	}
 

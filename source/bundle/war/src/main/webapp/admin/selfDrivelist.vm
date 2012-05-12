@@ -88,8 +88,8 @@
 #parse('common/back_pagination.vm')
  </form>
  
-#XUI_JS(["core/xui-core.js","util/util-min.js","admin.js"])
-#JS(["validator.js","dujiaok.js"])
+#XUI_JS(["core/xui-core.js","util/util-min.js"])
+#JS(["validator.js","dujiaok.js","admin.js"])
 <script type="text/javascript">
     var gmtExpire = '$dateUtils.format($!gmtExpire,"yyyy-MM-dd")' ;
     setupSelect('gmtExpire',gmtExpire) ;
