@@ -1,4 +1,8 @@
 
+var element = function(id){
+	return document.getElementById(id) ;
+}
+
 var addBlankOption = function(id){
 	var o = new Option('','') ;
 	document.getElementById(id).options.add( o , 0) ;	
