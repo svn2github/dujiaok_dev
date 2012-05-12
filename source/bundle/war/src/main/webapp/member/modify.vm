@@ -29,7 +29,13 @@
 		</table>
          <h3 class="infoHead">邮寄地址<span>由于某些订单含有邮寄产品，请填写准确的地址以免错过</span></h3>
 		<table class="userInfo">
-            <tr><td>邮寄地址：</td><th><div><span id="area"></span><input type="text" class="gray ipt200" id="addrDtl" placeholder="详细地址" name="mailingAddr" value="$!member.mailingAddr" /></div></th></tr>
+            <tr><td>邮寄地址：</td><th>
+					<div>
+						<select id='destProvince'  name='mailingProvince' onchange="selectProvince();"></select>
+                        <select id='destCity' name='mailingCity' onchange="selectCity();"></select>
+                        <select id='destArea' name='mailingArea' ></select>
+						<input type="text" class="gray ipt200" id="addrDtl" placeholder="详细地址" name="mailingAddr" value="$!member.mailingAddr" />
+					</div></th></tr>
             <tr><td>邮编：</td><th><input type="text" maxlength="6" name="mailingZipcode" value="$!member.mailingZipcode"/></th></tr>
              <tr><td>姓名：</td><th><input type="text" name="mailingName" value="$!member.mailingName"/></th></tr>
 			<tr><td></td><th><input type="submit" value="保存" class="button" /><span class="pink">$!actionError</span></th></tr>
@@ -38,4 +44,28 @@
 	</div>
 </div>
 <!-- main结束 -->
-#JS(["area.js","ucenter.js","validator.js"])
+#JS(["area.js","ucenter.js","validator.js","ajaxAreaSelect.js"])
+
+<script>
+	var selectProvince = function (){
+		var select = $element('destProvince') ;
+		var name = select.options[select.selectedIndex].value ;
+		initAddressSelect(url,'destCity','city','',name) ;
+		$element('destArea').options.length = 0 ;
+	}
+	
+	var selectCity = function(){
+		var select = $element('destCity') ;
+		var name = select.options[select.selectedIndex].value ;
+		initAddressSelect(url,'destArea','area','',name) ;
+	}
+	
+	//省市地区
+	var province = '$!member.mailingProvince' ;
+	var city = '$!member.mailingCity' ;
+	var area = '$!member.mailingArea' ;
+	var url = '${env.root}/ajax/address.htm' ;	
+	initAddressSelect(url,'destProvince','province',province) ;
+	initAddressSelect(url,'destCity','city',city,province) ;
+	initAddressSelect(url,'destArea','area',area,city) ;
+</script>

@@ -6,7 +6,9 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.ssnn.dujiaok.biz.page.Pagination;
 import com.ssnn.dujiaok.biz.page.QueryResult;
 import com.ssnn.dujiaok.biz.page.condition.OrderCondition;
+import com.ssnn.dujiaok.biz.service.MemberService;
 import com.ssnn.dujiaok.biz.service.OrderService;
+import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.model.OrderDO;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
@@ -28,7 +30,11 @@ public class OrderAction extends BasicAction implements ModelDriven<Pagination>{
 	
 	private OrderService orderService ;
 	
+	private MemberService memberService ;
+	
 	private OrderDO order ;
+	
+	private MemberDO member ;
 	
 	public String list() throws Exception {
 		Map<String,Object> conditionMap = condition.toConditionMap() ; 
@@ -38,6 +44,9 @@ public class OrderAction extends BasicAction implements ModelDriven<Pagination>{
  
 	public String execute() throws Exception {
 		order = orderService.getOrderAndDetailContact(orderId) ;
+		if(order != null){
+			member = memberService.queryMember(order.getMemberId()) ;
+		}
 		return SUCCESS ;
 	}
 	
@@ -81,6 +90,14 @@ public class OrderAction extends BasicAction implements ModelDriven<Pagination>{
 
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
+	}
+
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
+	}
+
+	public MemberDO getMember() {
+		return member;
 	}
 
 	

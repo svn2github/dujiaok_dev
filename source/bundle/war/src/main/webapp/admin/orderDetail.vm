@@ -32,7 +32,11 @@
         </tr>
         <tr>
             <td align="right">会员：</td>
-            <td>$!order.memberId</td>
+            <td>
+                    <div>$!order.memberId , 手机：$!member.mobileNo , email：$!member.email</div>
+                    <div>退款：$!member.refundAccountType ,  $!member.refundAccountTypeBank , $!member.refundAccount , $!member.refundAccountName</div>
+					<div>邮寄：$!member.mailingProvince $!member.mailingCity $!member.mailingArea $!member.mailingAddr , $!member.mailingName 收  , 邮编:$!member.mailingName </div>
+			</td>
         </tr>
         <tr>
             <td align="right">产品编号：</td>
@@ -69,12 +73,6 @@
             <td align="right">付款时间：</td>
             <td>
 				$!dateUtils.format($!order.gmtPaid , "yyyy-MM-dd HH:mm:ss")
-            </td>
-        </tr>
-        <tr>
-            <td align="right">备注：</td>
-            <td>
-                #ESCAPE_HTML($!order.memo)
             </td>
         </tr>
 		#if($order.contacts)
