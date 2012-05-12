@@ -57,6 +57,7 @@ var setupAddressSelect = function(p){
 		data : { type: type , name: parentName==null?'':encodeURI(parentName)},
 		success : function(data){
 			try{
+				alert(data) ;
 				var result = eval('('+data+')') ;
 				__setupAddressSelect(p,result.result) ;
 			}catch(e){
