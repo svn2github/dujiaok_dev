@@ -35,6 +35,7 @@ public class MemberAuthInterceptor extends AbstractInterceptor {
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
+		ContextHolder.getMemberContext().setMember(null) ;
 		String memberId = null;
 		ActionContext context = invocation.getInvocationContext();
 		MemberDO memberDO = (MemberDO) (context.getSession().get(SessionConstant.SESSION_MEMBER));
