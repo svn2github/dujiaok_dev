@@ -105,6 +105,20 @@ public class IndexChannelConstants {
      */
     public static final String M_LONG_TERM_ATTRACTIONS_RECOMMEND = "index.l-term.attract.recmd.module";
 
+    public static final String M_IMAGE_ADS_E1                    = "index.image.ads.E1.module";
+    public static final String M_FLOOR3_TEXT_RECOMMEND           = "index.floor3.text.recmd.module";
+    public static final String M_IMAGE_ADS_E3_1                  = "index.image.ads.E3.1.module";
+    public static final String M_IMAGE_ADS_E3_2                  = "index.image.ads.E3.2.module";
+    public static final String M_FLOOR3_IMAGE_RECOMMEND          = "index.floor3.image.recmd.module";
+    public static final String M_FLOOR3_ATTRACT_RECOMMEND        = "index.floor3.attract.recmd.module";
+
+    public static final String M_IMAGE_ADS_F1                    = "index.image.ads.F1.module";
+    public static final String M_FLOOR4_TEXT_RECOMMEND           = "index.floor4.text.recmd.module";
+    public static final String M_IMAGE_ADS_F3_1                  = "index.image.ads.F3.1.module";
+    public static final String M_IMAGE_ADS_F3_2                  = "index.image.ads.F3.2.module";
+    public static final String M_FLOOR4_IMAGE_RECOMMEND          = "index.floor4.image.recmd.module";
+    public static final String M_FLOOR4_ATTRACT_RECOMMEND        = "index.floor4.attract.recmd.module";
+
     public static String getChannelKey() {
         return CHANNEL_KEY;
     }
@@ -191,6 +205,54 @@ public class IndexChannelConstants {
 
     public static String getmLongTermAttractionsRecommend() {
         return M_LONG_TERM_ATTRACTIONS_RECOMMEND;
+    }
+
+    public static String getmImageAdsE1() {
+        return M_IMAGE_ADS_E1;
+    }
+
+    public static String getmFloor3TextRecommend() {
+        return M_FLOOR3_TEXT_RECOMMEND;
+    }
+
+    public static String getmImageAdsE31() {
+        return M_IMAGE_ADS_E3_1;
+    }
+
+    public static String getmImageAdsE32() {
+        return M_IMAGE_ADS_E3_2;
+    }
+
+    public static String getmFloor3ImageRecommend() {
+        return M_FLOOR3_IMAGE_RECOMMEND;
+    }
+
+    public static String getmFloor3AttractRecommend() {
+        return M_FLOOR3_ATTRACT_RECOMMEND;
+    }
+
+    public static String getmImageAdsF1() {
+        return M_IMAGE_ADS_F1;
+    }
+
+    public static String getmFloor4TextRecommend() {
+        return M_FLOOR4_TEXT_RECOMMEND;
+    }
+
+    public static String getmImageAdsF31() {
+        return M_IMAGE_ADS_F3_1;
+    }
+
+    public static String getmImageAdsF32() {
+        return M_IMAGE_ADS_F3_2;
+    }
+
+    public static String getmFloor4ImageRecommend() {
+        return M_FLOOR4_IMAGE_RECOMMEND;
+    }
+
+    public static String getmFloor4AttractRecommend() {
+        return M_FLOOR4_ATTRACT_RECOMMEND;
     }
 
 }

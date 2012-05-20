@@ -395,6 +395,168 @@
 		</ul>
 	</div>
 	<!-- idx4结束 -->
+	
+	
+	<!-- 三楼开始 -->
+	<div class="mgt20 floor idx4 greenF">
+		<div class="ttl">
+			<h2 class="L"><em class="mgr10">3F</em><strong class="pink">$!frontViewMap.get($!indexChannel.getmFloor3AttractRecommend()).config.moduleName</strong></h2>
+			#FRONT_EDIT_BUTTON($!indexChannel.getmFloor3AttractRecommend(), $isEdit)
+			<p class="R mgt10">
+				#if($!frontViewMap.get($!indexChannel.getmFloor3AttractRecommend()).frontViews)
+            		#foreach($fv in $!frontViewMap.get($!indexChannel.getmFloor3AttractRecommend()).frontViews)
+            			<a href="$!fv.link">$!fv.title</a>
+            		#end
+            	#end
+			</p>
+		</div>
+		<div class="mgt10 cnt1">
+			#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsE1(), $isEdit)
+			#if($!frontViewMap.get($!indexChannel.getmImageAdsE1()).frontViews)
+            	#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsE1()).frontViews)
+					<a href="$!fv.link" class="L mgr10 pad3 c11"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
+            	#end
+            #end
+			<ul class="L c12">
+				#FRONT_EDIT_BUTTON($!indexChannel.getmFloor3TextRecommend(), $isEdit)
+    			#if($!frontViewMap.get($!indexChannel.getmFloor3TextRecommend()).frontViews)
+                	#foreach($fv in $!frontViewMap.get($!indexChannel.getmFloor3TextRecommend()).frontViews)
+						<li>
+							<a href="$!fv.link">
+								<span class="c121">
+									<span class="green">·$!fv.title</span>
+									<span class="gray">$!fv.detail</span>
+								</span>
+								<span class="c122">
+									<span class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+									<span class="gray">起</span>
+								</span>
+							</a>
+						</li>
+                	#end
+                #end
+			</ul>
+			<div class="R c13">
+				<ul>
+					#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsE31(), $isEdit)
+    				#if($!frontViewMap.get($!indexChannel.getmImageAdsE31()).frontViews)
+                		#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsE31()).frontViews)
+							<li>
+								<a href="$!fv.link">
+									<span class="gray">·$!fv.title</span>
+									<span class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+								</a>
+							</li>
+                		#end
+                	#end
+				</ul>
+				#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsE32(), $isEdit)
+    				#if($!frontViewMap.get($!indexChannel.getmImageAdsE32()).frontViews)
+                	#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsE32()).frontViews)
+						<a href="$!fv.link" class="c3Ad"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
+                	#end
+				#end
+			</div>
+		</div>
+		<ul class="mgt10 cnt2">
+			#FRONT_EDIT_BUTTON($!indexChannel.getmFloor3ImageRecommend(), $isEdit)
+    		#if($!frontViewMap.get($!indexChannel.getmFloor3ImageRecommend()).frontViews)
+                #foreach($fv in $!frontViewMap.get($!indexChannel.getmFloor3ImageRecommend()).frontViews)
+					<li>
+        				<a href="$!fv.link">
+        					<img src="$!fv.photoURL" alt="$!fv.title" class="pad3"/>
+        					<span class="c21">
+        						<strong class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</strong>
+        						<em>￥$!decimalUtils.formatPrice($!fv.originalPrice)</em>
+        					</span>
+        					<span class="c22">$!fv.title</span>
+        				</a>
+        			</li>
+                #end
+            #end
+		</ul>
+	</div>
+	<!-- 三楼结束 -->
+	<!-- 四楼开始 -->
+	<div class="mgt20 floor idx4 greenF">
+		<div class="ttl">
+			<h2 class="L"><em class="mgr10">4F</em><strong class="pink">$!frontViewMap.get($!indexChannel.getmFloor4AttractRecommend()).config.moduleName</strong></h2>
+			#FRONT_EDIT_BUTTON($!indexChannel.getmFloor4AttractRecommend(), $isEdit)
+			<p class="R mgt10">
+				#if($!frontViewMap.get($!indexChannel.getmFloor4AttractRecommend()).frontViews)
+            		#foreach($fv in $!frontViewMap.get($!indexChannel.getmFloor4AttractRecommend()).frontViews)
+            			<a href="$!fv.link">$!fv.title</a>
+            		#end
+            	#end
+			</p>
+		</div>
+		<div class="mgt10 cnt1">
+			#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsF1(), $isEdit)
+			#if($!frontViewMap.get($!indexChannel.getmImageAdsF1()).frontViews)
+            	#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsF1()).frontViews)
+					<a href="$!fv.link" class="L mgr10 pad3 c11"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
+            	#end
+            #end
+			<ul class="L c12">
+				#FRONT_EDIT_BUTTON($!indexChannel.getmFloor4TextRecommend(), $isEdit)
+    			#if($!frontViewMap.get($!indexChannel.getmFloor4TextRecommend()).frontViews)
+                	#foreach($fv in $!frontViewMap.get($!indexChannel.getmFloor4TextRecommend()).frontViews)
+						<li>
+							<a href="$!fv.link">
+								<span class="c121">
+									<span class="green">·$!fv.title</span>
+									<span class="gray">$!fv.detail</span>
+								</span>
+								<span class="c122">
+									<span class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+									<span class="gray">起</span>
+								</span>
+							</a>
+						</li>
+                	#end
+                #end
+			</ul>
+			<div class="R c13">
+				<ul>
+					#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsF31(), $isEdit)
+    				#if($!frontViewMap.get($!indexChannel.getmImageAdsF31()).frontViews)
+                		#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsF31()).frontViews)
+							<li>
+								<a href="$!fv.link">
+									<span class="gray">·$!fv.title</span>
+									<span class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+								</a>
+							</li>
+                		#end
+                	#end
+				</ul>
+				#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsF32(), $isEdit)
+    				#if($!frontViewMap.get($!indexChannel.getmImageAdsF32()).frontViews)
+                	#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsF32()).frontViews)
+						<a href="$!fv.link" class="c3Ad"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
+                	#end
+				#end
+			</div>
+		</div>
+		<ul class="mgt10 cnt2">
+			#FRONT_EDIT_BUTTON($!indexChannel.getmFloor4ImageRecommend(), $isEdit)
+    		#if($!frontViewMap.get($!indexChannel.getmFloor4ImageRecommend()).frontViews)
+                #foreach($fv in $!frontViewMap.get($!indexChannel.getmFloor4ImageRecommend()).frontViews)
+					<li>
+        				<a href="$!fv.link">
+        					<img src="$!fv.photoURL" alt="$!fv.title" class="pad3"/>
+        					<span class="c21">
+        						<strong class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</strong>
+        						<em>￥$!decimalUtils.formatPrice($!fv.originalPrice)</em>
+        					</span>
+        					<span class="c22">$!fv.title</span>
+        				</a>
+        			</li>
+                #end
+            #end
+		</ul>
+	</div>
+	<!-- 四楼结束 -->
 	#parse("/home/commonDynamic.vm")
 </div>
 <!-- main结束 -->
