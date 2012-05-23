@@ -1,4 +1,4 @@
-var ok;
+﻿var ok;
 (function($){
 	ok={
 		tab:function(id,event,delay,effect){//tabл(ֲ)
@@ -37,30 +37,30 @@ var ok;
 				var t=setInterval(function(){showCur(i)},delay);
 			};
 		},
-		placeholder:function(id){//ʾ
-			var ipt=jQuery("#"+id);
-			var p=ipt.attr("placeholder");
-			ipt.each(function(){
-				var v=ipt.val();
-				if(v!=p){
-					ipt.removeClass("gray");
-				};
-			});
-			ipt.focus(function(){
-				var v=ipt.val();
-				if(v==p){
-					ipt.val("")	;
-				};
-				ipt.removeClass("gray");
-			});
-			ipt.blur(function(){
-				var v=ipt.val();
-				if(v==""){
-					ipt.val(p);
-					ipt.addClass("gray");
-				};
-			});
-		},
+//		placeholder:function(id){//ʾ
+//			var ipt=jQuery("#"+id);
+//			var p=ipt.attr("placeholder");
+//			ipt.each(function(){
+//				var v=ipt.val();
+//				if(v!=p){
+//					ipt.removeClass("gray");
+//				};
+//			});
+//			ipt.focus(function(){
+//				var v=ipt.val();
+//				if(v==p){
+//					ipt.val("")	;
+//				};
+//				ipt.removeClass("gray");
+//			});
+//			ipt.blur(function(){
+//				var v=ipt.val();
+//				if(v==""){
+//					ipt.val(p);
+//					ipt.addClass("gray");
+//				};
+//			});
+//		},
 		checkPage:function(){//ҳ
 			function check(){
 				var ipt=$("#page input");
@@ -198,5 +198,5 @@ $(function(){
 		e.preventDefault();
 		$(this).parent().hide();
 	});
-	ok.placeholder("schIpt");
+	//ok.placeholder("schIpt");
 })
