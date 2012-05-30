@@ -117,80 +117,71 @@ $("#orderForm :submit").click(function(e){
 			var ipt=info.eq(i).find("input");
 			var sel=info.eq(i).find("select");
 			if(ipt.eq(0).val()==""){
-				hasErr=1;
+				hasErr ++ ;
 				ipt.eq(0).next().html("请填写姓名！");
 			}
 			else{
-				hasErr=0;
 				ipt.eq(0).next().html("");
 			}
 			if(ipt.eq(1).val()==""){
-				hasErr=1;
+				hasErr ++ ;
 				ipt.eq(1).next().html("请填写手机号码！");
 			}
 			else{
-				hasErr=0;
 				ipt.eq(1).next().html("");
 			}
 			
 			var r=/^[0-9]*[1-9][0-9]*$/    //正整数正则表达式
 			if(ipt.eq(1).val()!=""){
 				if(ipt.eq(1).val().length!=11||ipt.eq(1).val().substring(0,1)!="1"||!r.test(ipt.eq(1).val())){
-					hasErr=1;
+					hasErr ++ ;
 					ipt.eq(1).next().html("手机号码有误！");
 				}
 				else{
-					hasErr=0;
 					ipt.eq(1).next().html("");
 				}
 			}
 			if(sel.val()=="身份证"){
 				if(ipt.eq(2).val()==""){
-					hasErr=1;
+					hasErr ++ ;
 					ipt.eq(2).next().html("身份证号码不能为空！");
 				}
 				else{
-					hasErr=0;
 					ipt.eq(2).next().html("");
 				}
 				if(ipt.eq(2).val()!=""){
 					if(ipt.eq(2).val().length!=15&&ipt.eq(2).val().length!=18){
-						hasErr=1;
+						hasErr ++ ;
 						ipt.eq(2).next().html("身份证号码应为15或18位！");
 					}
 					else{
-						hasErr=0;
 						ipt.eq(2).next().html("");
 					}
 				}
 			}
 			else{
 				if(ipt.eq(2).val()==""){
-					hasErr=1;
+					hasErr ++ ;
 					ipt.eq(2).next().html("证件号码不能为空！");
 				}
 				else{
-					hasErr=0;
 					ipt.eq(2).next().html("");
 				}
 			}
 			if(ipt.eq(3).val()!=""){
 				if(ipt.eq(3).val().search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) ==-1){
-					hasErr=1;
+					hasErr ++ ;
 					ipt.eq(3).next().html("E-mail填写有误！");
 				}
 				else{
-					hasErr=0;
 					ipt.eq(3).next().html("");
 				}
-			}
-			else{
-				hasErr=0;
+			} else{
 				ipt.eq(3).next().html("");
 			}
 			
 		}
-		if(hasErr==1){
+		if(hasErr >= 1){
 			return false;
 		}
 		$(this).closest("form").submit();
