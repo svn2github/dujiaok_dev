@@ -90,7 +90,7 @@ var addContacts = function (i){
 	if(v>1){
 		s="";
 		for(var i=1;i<v;i++){
-			var contactStr='<div class="subContact"><table class="mgt10 contactInfo"><tr><th><i>*</i>游玩人姓名：</th><td><input type="text" class="w184 name" name="contacts[' + i + '].name"/></td></tr><tr><th><i>*</i>游玩人手机：</th><td><input type="text" class="w184 mobile" maxlength="11" name="contacts[' + i + '].mobile"/></td></tr><tr><th><i>*</i>证件类型：</th><td><select id="select" name="contacts[' + i + '].certificateType"><option value="身份证">身份证</option><option value="护照">护照</option><option value="军官证">军官证</option></select></td></tr><tr><th><i>*</i>证件号码：</th><td><input type="text" class="w184 certificateNumber" name="contacts[' + i + '].certificateNumber"/></td></tr><tr><th>E-mail：</th><td><input type="text" class="w184 email" name="contacts[' + i + '].email"/></td></tr><tr><th></th><td></td></tr></table></div>';
+			var contactStr='<div class="subContact"><table class="mgt10 contactInfo"><tr><th><i>*</i>游玩人姓名：</th><td><input type="text" class="w184 name" name="contacts[' + i + '].name"/><span class="error"></span></td></tr><tr><th><i>*</i>游玩人手机：</th><td><input type="text" class="w184 mobile" maxlength="11" name="contacts[' + i + '].mobile"/><span class="error"></span></td></tr><tr><th><i>*</i>证件类型：</th><td><select id="select" name="contacts[' + i + '].certificateType"><option value="身份证">身份证</option><option value="护照">护照</option><option value="军官证">军官证</option></select></td></tr><tr><th><i>*</i>证件号码：</th><td><input type="text" class="w184 certificateNumber" name="contacts[' + i + '].certificateNumber"/><span class="error"></span></td></tr><tr><th>E-mail：</th><td><input type="text" class="w184 email" name="contacts[' + i + '].email"/><span class="error"></span></td></tr><tr><th></th><td></td></tr></table></div>';
 			s += contactStr;
 		}
 		$("#subCBox").html(s);	
@@ -110,52 +110,90 @@ $("#orderForm .del").live("click",function(e){
 
 $("#orderForm :submit").click(function(e){
 		e.preventDefault();
-		var infos=$("#orderForm .contactInfo");
-		var L=infos.size();
+		var info=$("#dingdan01 .contactInfo");
+		var L=info.size();
+		var hasErr=0;
 		for(var i=0;i<L;i++){
-			var info = $(infos[i]);
-			var nameIpt = info.find(".name");
-			var mobileIpt = info.find(".mobile");
-			var certificateNumberIpt = info.find(".certificateNumber");
-			var email = info.find(".email"); 
-			var sel=info.find("select");
-			if(nameIpt.val()==""){
-				alert("请填写姓名！")
-				nameIpt.focus()
-				return false
+			var ipt=info.eq(i).find("input");
+			var sel=info.eq(i).find("select");
+			if(ipt.eq(0).val()==""){
+				hasErr=1;
+				ipt.eq(0).next().html("请填写姓名！");
 			}
-			if(mobileIpt.val()==""){
-				alert("请填写手机号码！")
-				mobileIpt.focus()
-				return false
+			else{
+				hasErr=0;
+				ipt.eq(0).next().html("");
 			}
+			if(ipt.eq(1).val()==""){
+				hasErr=1;
+				ipt.eq(1).next().html("请填写手机号码！");
+			}
+			else{
+				hasErr=0;
+				ipt.eq(1).next().html("");
+			}
+			
 			var r=/^[0-9]*[1-9][0-9]*$/    //正整数正则表达式
-			if(mobileIpt.val().length!=11||mobileIpt.val().substring(0,1)!="1"||!r.test(mobileIpt.val())){
-				alert("手机号码有误！")
-				mobileIpt.select()
-				return false
-			}
-			if(sel.val()=="身份证"){
-				if(certificateNumberIpt.val()==""){
-					alert("身份证号码不能为空！")
-					certificateNumberIpt.focus()
-					return false
-				}	
-				if(certificateNumberIpt.val().length!=15&&certificateNumberIpt.val().length!=18){
-					alert("身份证号码应为15或18位！")
-					certificateNumberIpt.select()
-					return false
-				}	
-			}
-			if(email.val()!=""){
-				if(email.val().search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) ==-1){
-					alert("E-mail填写有误！")
-					email.select()
-					return false ;
+			if(ipt.eq(1).val()!=""){
+				if(ipt.eq(1).val().length!=11||ipt.eq(1).val().substring(0,1)!="1"||!r.test(ipt.eq(1).val())){
+					hasErr=1;
+					ipt.eq(1).next().html("手机号码有误！");
+				}
+				else{
+					hasErr=0;
+					ipt.eq(1).next().html("");
 				}
 			}
+			if(sel.val()=="身份证"){
+				if(ipt.eq(2).val()==""){
+					hasErr=1;
+					ipt.eq(2).next().html("身份证号码不能为空！");
+				}
+				else{
+					hasErr=0;
+					ipt.eq(2).next().html("");
+				}
+				if(ipt.eq(2).val()!=""){
+					if(ipt.eq(2).val().length!=15&&ipt.eq(2).val().length!=18){
+						hasErr=1;
+						ipt.eq(2).next().html("身份证号码应为15或18位！");
+					}
+					else{
+						hasErr=0;
+						ipt.eq(2).next().html("");
+					}
+				}
+			}
+			else{
+				if(ipt.eq(2).val()==""){
+					hasErr=1;
+					ipt.eq(2).next().html("证件号码不能为空！");
+				}
+				else{
+					hasErr=0;
+					ipt.eq(2).next().html("");
+				}
+			}
+			if(ipt.eq(3).val()!=""){
+				if(ipt.eq(3).val().search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) ==-1){
+					hasErr=1;
+					ipt.eq(3).next().html("E-mail填写有误！");
+				}
+				else{
+					hasErr=0;
+					ipt.eq(3).next().html("");
+				}
+			}
+			else{
+				hasErr=0;
+				ipt.eq(3).next().html("");
+			}
+			
+		}
+		if(hasErr==1){
+			return false;
 		}
 		$(this).closest("form").submit();
-		return true ;
 		//ajax相关数据	
+		return true ;
   })
