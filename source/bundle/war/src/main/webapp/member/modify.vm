@@ -21,20 +21,42 @@
             <tr><td>手机号：</td><th><input id='mobileNo' name='mobileNo' maxlength="11" value='$!member.mobileNo' /></th></tr>
 			<tr><td>E-mail：</td><th><input id='email' name='email' value='$!member.email' /></th></tr>
 		</table>
-         <h3 class="infoHead">退款账号<span>方便您快捷支付和接受退款</span></h3>
+        <h3 class="infoHead">退款账号<span>方便您快捷支付和接受退款</span></h3>
 		<table class="userInfo">
-            <tr><td>类型：</td><th><select class="type1" id="accountType1" name="refundAccountType" value="$!member.refundAccountType"></select><select class="type2" id="accountType2" name="refundAccountTypeBank" value="$!refundAccountTypeBank"></select></th></tr>
-			<tr><td>账户：</td><th><input type="text" name="refundAccount" value="$!member.refundAccount"/></th></tr>
-            <tr><td>户名：</td><th><input type="text" name="refundAccountName" value="$!member.refundAccountName"/></th></tr>
+            <tr><td>类型：</td><th>
+					<select class="type1" id="accountType1" name="refundAccountType" value="$!member.refundAccountType">
+						<option value="支付宝">支付宝</option>
+						<option value="财付通">财付通</option>
+						<option value="银行卡">银行卡</option>
+					</select>
+									
+					<select class="type2" id="accountType2" name="refundAccountTypeBank" value="$!member.refundAccountTypeBank">
+						<option value="招商银行">招商银行</option>
+						<option value="建设银行">建设银行</option>
+						<option value="交通银行">交通银行</option>
+						<option value="工商银行">工商银行</option>
+					</select>
+					
+			</th></tr>
+			<tr><td>户名：</td><th><input type="text" name="refundAccountName" value="$!member.refundAccountName"/></th></tr>
+			<tr><td>账户：</td><th><input type="text" name="refundAccount" value="$!member.refundAccount" style="width:400px;"/></th></tr>
+			<tr id="bankInfo" style="display:none;"><td>开户地：</td><th>
+				<select id='bankProvince'  name='bankProvince' onchange="selectProvince('bankProvince','bankCity','bankArea');" style="width:80px;"></select>
+                <select id='bankCity' name='bankCity' onchange="selectCity('bankCity','bankArea');" style="width:80px;"></select>
+                <select id='bankArea' name='bankArea' style="width:80px;"></select>
+                
+				开户行：<input type="text" class="ipt200" id="addrDtl" placeholder="请填写开户银行分行" name="bankBranchbank" value="$!member.bankBranchbank" />
+			</th></tr>
+			
 		</table>
          <h3 class="infoHead">邮寄地址<span>由于某些订单含有邮寄产品，请填写准确的地址以免错过</span></h3>
 		<table class="userInfo">
             <tr><td>邮寄地址：</td><th>
 					<div>
-						<select id='destProvince'  name='mailingProvince' onchange="selectProvince();" style="width:80px;"></select>
-                        <select id='destCity' name='mailingCity' onchange="selectCity();" style="width:80px;"></select>
+						<select id='destProvince'  name='mailingProvince' onchange="selectProvince('destProvince','destCity','destArea');" style="width:80px;"></select>
+                        <select id='destCity' name='mailingCity' onchange="selectCity('destCity','destArea');" style="width:80px;"></select>
                         <select id='destArea' name='mailingArea' style="width:80px;"></select>
-						<input type="text" class="gray ipt200" id="addrDtl" placeholder="详细地址" name="mailingAddr" value="$!member.mailingAddr" />
+						<input type="text" class="ipt200" id="addrDtl" placeholder="详细地址" name="mailingAddr" value="$!member.mailingAddr" />
 					</div></th></tr>
             <tr><td>邮编：</td><th><input type="text" maxlength="6" name="mailingZipcode" value="$!member.mailingZipcode"/></th></tr>
              <tr><td>姓名：</td><th><input type="text" name="mailingName" value="$!member.mailingName"/></th></tr>
@@ -47,25 +69,65 @@
 #JS(["area.js","ucenter.js","validator.js","ajaxAreaSelect.js"])
 
 <script>
-	var selectProvince = function (){
-		var select = $element('destProvince') ;
+	var url = '${env.root}/ajax/address.htm' ;	
+	var selectProvince = function (provinceId , cityId , areaId){
+		var select = $element(provinceId) ;
 		var name = select.options[select.selectedIndex].value ;
-		initAddressSelect(url,'destCity','city','',name) ;
-		$element('destArea').options.length = 0 ;
+		initAddressSelect(url,cityId,'city','',name) ;
+		$element(areaId).options.length = 0 ;
 	}
 	
-	var selectCity = function(){
-		var select = $element('destCity') ;
+	var selectCity = function(cityId , areaId){
+		var select = $element(cityId) ;
 		var name = select.options[select.selectedIndex].value ;
-		initAddressSelect(url,'destArea','area','',name) ;
+		initAddressSelect(url,areaId,'area','',name) ;
 	}
 	
 	//省市地区
 	var province = '$!member.mailingProvince' ;
 	var city = '$!member.mailingCity' ;
 	var area = '$!member.mailingArea' ;
-	var url = '${env.root}/ajax/address.htm' ;	
+	
 	initAddressSelect(url,'destProvince','province',province) ;
 	initAddressSelect(url,'destCity','city',city,province) ;
 	initAddressSelect(url,'destArea','area',area,city) ;
+	
+	
+	
+	var bankProvince = '$!member.bankProvince' ;
+	var bankCity = '$!member.bankCity' ;
+	var bankArea = '$!member.bankArea' ;
+	initAddressSelect(url,'bankProvince','province',bankProvince) ;
+	initAddressSelect(url,'bankCity','city',bankCity,bankProvince) ;
+	initAddressSelect(url,'bankArea','area',bankArea,bankCity) ;
+	
+	$("#accountType1").change(function(){
+		if($(this).val() == '银行卡'){
+			$("#accountType2").show();	
+			$('#bankInfo').show();
+		}else{
+			$("#accountType2").hide();		
+			$('#bankInfo').hide();
+		}
+	})
+	
+	var initSelect = function(id , val){
+		var select = document.getElementById(id) ;
+		var len = select.options.length ;
+		for(var i=0;i<len;i++){ 
+			var opVal = select.options[i].value ;
+			if(opVal == val){
+				select.options[i].selected = true ;
+				break ;
+			}
+		}
+	}
+	
+	initSelect('accountType1','$!member.refundAccountType') ;
+	initSelect('accountType2','$!member.refundAccountTypeBank') ;
+	
+	#if($member.refundAccountType == "银行卡")
+		$("#accountType2").show();	
+		$('#bankInfo').show();
+	#end
 </script>

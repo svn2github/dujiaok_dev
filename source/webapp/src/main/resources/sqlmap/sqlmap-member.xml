@@ -15,6 +15,12 @@
 		<result property="refundAccountType" column="REFUND_ACCOUNT_TYPE" jdbcType="VARCHAR"/>
 		<result property="refundAccountTypeBank" column="REFUND_ACCOUNT_TYPE_BANK" jdbcType="VARCHAR"/>
 		<result property="refundAccountName" column="REFUND_ACCOUNT_NAME" jdbcType="VARCHAR"/>
+		
+		<result property="bankProvince" column="BANK_PROVINCE" jdbcType="VARCHAR"/>
+		<result property="bankCity" column="BANK_CITY" jdbcType="VARCHAR"/>
+		<result property="bankArea" column="BANK_AREA" jdbcType="VARCHAR"/>
+		<result property="bankBranchbank" column="BANK_BRANCHBANK" jdbcType="VARCHAR"/>
+		
 		<result property="mailingProvince" column="MAILING_PROVINCE" jdbcType="VARCHAR"/>
 		<result property="mailingCity" column="MAILING_CITY" jdbcType="VARCHAR"/>
 		<result property="mailingArea" column="MAILING_AREA" jdbcType="VARCHAR"/>
@@ -55,6 +61,11 @@
 			REFUND_ACCOUNT_TYPE = #refundAccountType# ,
 			REFUND_ACCOUNT_TYPE_BANK = #refundAccountTypeBank# ,
 			REFUND_ACCOUNT_NAME = #refundAccountName# ,
+			BANK_PROVINCE = #bankProvince# ,
+			BANK_CITY = #bankCity# ,
+			BANK_AREA = #bankArea# ,
+			BANK_BRANCHBANK = #bankBranchbank# ,
+			
 			MAILING_PROVINCE = #mailingProvince# ,
 			MAILING_CITY = #mailingCity# ,
 			MAILING_AREA = #mailingArea# ,

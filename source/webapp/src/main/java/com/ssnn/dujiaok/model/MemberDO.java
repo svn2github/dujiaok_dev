@@ -60,6 +60,26 @@ public class MemberDO {
 	private String refundAccountName ;
 	
 	/**
+	 * 开户行省
+	 */
+	private String bankProvince ;
+	
+	/**
+	 * 开户行省
+	 */
+	private String bankCity ;
+	
+	/**
+	 * 开户行省
+	 */
+	private String bankArea ;
+	
+	/**
+	 * 开户分行
+	 */
+	private String bankBranchbank ;
+	
+	/**
 	 * 邮寄 省
 	 */
 	private String mailingProvince ;
@@ -124,6 +144,38 @@ public class MemberDO {
 
 	public void setMailingZipcode(String mailingZipcode) {
 		this.mailingZipcode = mailingZipcode;
+	}
+
+	public String getBankProvince() {
+		return bankProvince;
+	}
+
+	public void setBankProvince(String bankProvince) {
+		this.bankProvince = bankProvince;
+	}
+
+	public String getBankCity() {
+		return bankCity;
+	}
+
+	public void setBankCity(String bankCity) {
+		this.bankCity = bankCity;
+	}
+
+	public String getBankArea() {
+		return bankArea;
+	}
+
+	public void setBankArea(String bankArea) {
+		this.bankArea = bankArea;
+	}
+
+	public String getBankBranchbank() {
+		return bankBranchbank;
+	}
+
+	public void setBankBranchbank(String bankBranchbank) {
+		this.bankBranchbank = bankBranchbank;
 	}
 
 	public String getRefundAccountType() {
