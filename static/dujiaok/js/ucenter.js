@@ -20,6 +20,7 @@
 				opts+='<option value=' + arr[i] + '>'+arr[i]+'</option>';
 			}
 			$("#accountType2").html(opts).show();	
+			$('#bankInfo').show();
 		}
 		else{
 			$("#accountType2").hide();		
