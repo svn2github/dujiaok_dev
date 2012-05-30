@@ -1,7 +1,6 @@
 package com.ssnn.dujiaok.model;
 
 import java.math.BigDecimal;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +9,6 @@ import org.apache.commons.lang.builder.ToStringStyle;
 import org.apache.commons.lang.time.DateUtils;
 
 import com.ssnn.dujiaok.util.ArrayStringUtils;
-import com.ssnn.dujiaok.util.DateUtil;
 import com.ssnn.dujiaok.util.ProductUtils;
 
 /**

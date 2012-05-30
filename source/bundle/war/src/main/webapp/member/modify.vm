@@ -31,9 +31,9 @@
 		<table class="userInfo">
             <tr><td>邮寄地址：</td><th>
 					<div>
-						<select id='destProvince'  name='mailingProvince' onchange="selectProvince();"></select>
-                        <select id='destCity' name='mailingCity' onchange="selectCity();"></select>
-                        <select id='destArea' name='mailingArea' ></select>
+						<select id='destProvince'  name='mailingProvince' onchange="selectProvince();" style="width:80px;"></select>
+                        <select id='destCity' name='mailingCity' onchange="selectCity();" style="width:80px;"></select>
+                        <select id='destArea' name='mailingArea' style="width:80px;"></select>
 						<input type="text" class="gray ipt200" id="addrDtl" placeholder="详细地址" name="mailingAddr" value="$!member.mailingAddr" />
 					</div></th></tr>
             <tr><td>邮编：</td><th><input type="text" maxlength="6" name="mailingZipcode" value="$!member.mailingZipcode"/></th></tr>

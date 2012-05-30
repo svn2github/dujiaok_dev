@@ -10,7 +10,7 @@
 
 	<!-- dtl1开始 -->
 	<div class="L">
-		<div class="crumb">您当前的位置：周边自驾 > $!product.destProvince > $!product.destCity > $!product.destAddr</div>
+		<div class="crumb">您当前的位置：周边自驾 > $!product.destProvince > $!product.destCity > $!product.destArea > $!product.destAddr</div>
 		<dl class="txtImgRoll">
 			<dt class="greenTtl">【周边自驾】$!product.name</dt>
 
@@ -64,6 +64,10 @@
         			<div class="tabCnt current">
         				<h2 class="banner mgt20"><strong>产品介绍</strong></h2>
         				$!product.introduction
+						<h2 class="banner mgt20"><strong>行程</strong></h2>
+        				$!product.schedule
+						<h2 class="banner mgt20"><strong>费用说明</strong></h2>
+        				$!product.feeDesc
         			</div>
         			<div class="tabCnt">
         				<h2 class="banner mgt20"><strong>行程</strong></h2>
@@ -107,8 +111,6 @@
 					<tbody><tr><th><strong>市场价：</strong></th><td>$!product.marketPrice 元</td></tr>
 					<tr><th><strong>商品编号：</strong></th><td>$!product.productId</td></tr>
 					<tr><th><strong>支付方式：</strong></th><td>$enumUtils.toPayTypeEnumDescs($!product.payTypes)</td></tr>
-					<tr><th><strong>附加产品</strong>：</th><td>#if($product.addProducts=='') 无 #else $enumUtils.toAddProductEnumDescs($!product.addProducts) #end</td></tr>
-					<tr><th><strong>产品类别：</strong></th><td>$!product.productTypes</td></tr>
 					<tr><th><strong>游玩天数</strong>：</th><td>$!product.days 天</td></tr>
 				</tbody></table>
 			</div>
@@ -120,18 +122,19 @@
                    	    	<select name="dateAndDetail" id="productDetailId" onchange="detailChange(this);">
 								#foreach($dt in $detailItems )
 									#set($index = $velocityCount)
-									<option value="${dt.detailId}:$dateUtils.format($dt.date, 'yyyy-MM-dd')"  #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd') $dt.bottomPrice元 </option>
+									<option value="${dt.detailId}:$dateUtils.format($dt.date, 'yyyy-MM-dd')"  #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd') 双人价 &yen;$dt.detail.doublePrice</option>
 								#end
                   	        </select>
                   	     </li>
 						<li>
 							  单人：<span id='singlePrice'>$!detail.price</span>元 &nbsp;
 							  双人：<span id='doublePrice'>$!detail.doublePrice</span>元  <br />
-							  儿童：<span id='childPrice'>$!detail.childPrice</span> 元
+                             <span id="opChildPrice">儿童：<span id='childPrice'>$!detail.childPrice</span> 元</span>
+							 
 						 </li>
                          <li>
-							  成人数：<input type="text" name="count" id="adultNum" value="1" style="width:20px;">
-							  儿童数：<input type="text" name="secondaryCount" id="childNum" value="0" style="width:20px;">
+							  <span>成人数：<input type="text" name="count" id="adultNum" value="1" style="width:20px;"></span>
+							  <span id="opChildNum"> 儿童数：<input type="text" name="secondaryCount" id="childNum" value="0" style="width:20px;"></span>
                          </li>		
                     </ul>
                 	<button type="submit" class="order" onclick="return checkOrder() ;">立即订购</button>
@@ -176,6 +179,13 @@
 		$element("singlePrice").innerHTML =  details[index].singlePrice ;
 		$element("doublePrice").innerHTML =  details[index].doublePrice ;
 		$element("childPrice").innerHTML =  details[index].childPrice ;
+		if(details[index].childPrice <= 0){
+			$element('opChildNum').style.display = 'none' ;
+			$element('opChildPrice').style.display = 'none' ;
+		}else{
+			$element('opChildNum').style.display = 'block' ;
+			$element('opChildPrice').style.display = 'block' ;
+		}
 	}
 	
 	setDetail(0) ;

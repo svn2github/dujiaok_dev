@@ -37,14 +37,13 @@
             <td align="right">星级：</td>
             <td>
                 <select name="starRate" id="starRate">
-                    <option value="1">连锁商务酒店</option>
-                    <option value="2">经济商务</option>
-                    <option value="3">三星级</option>
-                    <option value="4">准三星级</option>
-                    <option value="5">四星级</option>
-                    <option value="6">准四星级</option>
-                    <option value="7">五星级</option>
-                    <option value="8">准五星级</option>
+                    <option value="2">未评级</option>
+                    <option value="3">准三星级</option>
+					<option value="4">三星级</option>
+                    <option value="5">准四星级</option>
+                    <option value="6">四星级</option>
+                    <option value="7">准五星级</option>
+                    <option value="8">五星级</option>
                 </select>
             </td>
         </tr>
@@ -106,13 +105,13 @@
     
     var addImage = function(){
         var i = lastImagesIndex  ;
-        if(i > 3){
-        	return ;
-        }
+        if($('.upImage').length > 3){
+			return ;
+		}
         var divElement = document.createElement('div') ;
         divElement.id = 'image' + i ;
         $element('images').appendChild(divElement) ;
-        var innerHTML = '<input type="text"  name="imagesList" />' ;
+        var innerHTML = '<input type="text"  name="imagesList" class="input_m upImage" />' ;
         if(i > 0){
         	innerHTML += '<input type="button" value="删除" onclick="removeElement(this.parentNode) ;" />' ;
         }

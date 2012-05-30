@@ -25,10 +25,13 @@
     						成人 <input type="text" name="count" id="ddIpt1" maxlength="6" class="wpx34" value="$!orderDO.count" dataType="Integer"/>
                         	<span class="F2">（单人价：￥<span id="dingdanP1" style="color:red">$!detail.price</span>
                         	元　双人价：￥<span id="dingdanP2" style="color:red">$!detail.doublePrice</span>元）</span><br />
-							
+							#if($!detail.childPrice <= 0)
+								<input type="hidden" name="secondaryCount" id="ddIpt2" value="$!orderDO.secondaryCount"/>
+								<input type="hidden" id="dingdanP3" value="$!detail.childPrice"/>
+							#else
 							儿童 <input type="text" name="secondaryCount" id="ddIpt2" maxlength="6" class="wpx34" value="$!orderDO.secondaryCount"/>
 							<span class="F2">（儿童价：￥<span id="dingdanP3"  style="color:red">$!detail.childPrice</span>元）</span>
-							
+							#end
     					</td>
         			</tr>
 				</tbody>
@@ -47,8 +50,8 @@
             		<td>$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd') 至 $dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')</td>
                     <td>平安意外险</td>
 					#set($totalCount = $orderDO.count)
-                    <td><span id="dingdanP4">20</span>人/天</td>
-                    <td>￥<span style="color:red" id="dingdanP5">$env.getProp("doucome.config.insurancePrice")</span>人/天 x <span id="orderDays">$product.days</span> 天</td>
+                    <td><span id="dingdanP4">20元</span>/人天</td>
+                    <td>￥<span style="color:red" id="dingdanP5">$env.getProp("doucome.config.insurancePrice")</span> /人天 x <span id="orderDays">$product.days</span> 天</td>
                     <td><input type="text" name="insureNum" id="dingdanP6" maxlength="3" class="wpx34" value="$!orderDO.count" style="width:40px;border:none;text-align:center;"  readonly="readonly"/></td>
         		</tr>
 				<tr>
@@ -58,18 +61,21 @@
 			
 			<h2 class="banner mgt20"><strong>游玩人信息</strong> </h2>
 			
-			
+			<input type="hidden" name="contacts[0].isMain" value="T" />
 			<table class="mgt10 contactInfo">
     			<tr>
     				<th><i>*</i>主联系人姓名：</th>
     				<td>
-						<input type="hidden" name="contacts[0].isMain" value="T" />
 						<input type="text" name="contacts[0].name" id="name0" class="wpx184 name" value="$!orderDO.contacts[0].name"/>
+						<span class="error"></span>
 					</td>
     			</tr>
     			<tr>
     				<th><i>*</i>主联系人手机：</th>
-    				<td><input type="text" name="contacts[0].mobile" maxlength="11" id="mobile0" class="wpx184 mobile" value="$!orderDO.contacts[0].mobile" /></td>
+    				<td>
+						<input type="text" name="contacts[0].mobile" maxlength="11" id="mobile0" class="wpx184 mobile" value="$!orderDO.contacts[0].mobile" />
+						<span class="error"></span>
+					</td>
     			</tr>
     			<tr>
     				<th><i>*</i>证件类型：</th>
@@ -83,11 +89,17 @@
     			</tr>
     			<tr>
     				<th><i>*</i>证件号码：</th>
-    				<td><input type="text" name="contacts[0].certificateNumber" value="$!orderDO.contacts[0].certificateNumber" id="certificateNumber0" class="wpx184 certificateNumber" dataType="IdCard" msg="证件号码错误"/></td>
+    				<td>
+						<input type="text" name="contacts[0].certificateNumber" value="$!orderDO.contacts[0].certificateNumber" id="certificateNumber0" class="wpx184 certificateNumber" dataType="IdCard" msg="证件号码错误"/>
+						<span class="error"></span>
+					</td>
     			</tr>
     			<tr>
     				<th>E-mail：</th>
-    				<td><input type="text" name="contacts[0].email" id="email0" class="wpx1843 email" value="$!orderDO.contacts[0].email"/></td>
+    				<td>
+						<input type="text" name="contacts[0].email" id="email0" class="wpx1843 email" value="$!orderDO.contacts[0].email"/>
+						<span class="error"></span>
+					</td>
     			</tr>
             </table>
             <div id="subCBox">

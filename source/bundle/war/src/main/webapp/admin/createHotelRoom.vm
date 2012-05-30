@@ -80,31 +80,45 @@
                 <input type="text" id='roomArea' name='roomArea' value="$!room.roomArea" class="input_m"/>
                 &nbsp;&nbsp;&nbsp;&nbsp;床型
                 <select name="bed" id="bed">
-                    <option value="1.5米大床">1.5米大床</option>
-                    <option value="1.8米大床">1.8米大床</option>
                     <option value="1.2米双床">1.2米双床</option>
-                    <option value="1.5米双床">1.5米双床</option>
-                    <option value="其他">其他</option>
+					<option value="1.3米双床">1.3米双床</option>
+					<option value="1.5米双床">1.5米双床</option>
+					<option value="1.5米大床">1.5米大床</option>
+                    <option value="1.8米大床">1.8米大床</option>
+                    <option value="2米大床">2米大床</option>
+                    <option value="2米以上大床">2米以上大床</option>
+                    <option value="特色圆床">特色圆床</option>
+                    <option value="大床加单人床">大床加单人床</option>
+                    <option value="其它床型">其它床型</option>
                 </select>
             </td>
         </tr>
         <tr>
             <td align="right">配套：</td>
             <td>
-                <input type="checkbox" name="roomFacilitiesList" value="大阳台" #if( $collectionUtils.contains($!roomFacilitiesList,"大阳台")) checked #end />
-                    大阳台
-                    <input type="checkbox" name="roomFacilitiesList" value="24小时热水" #if( $collectionUtils.contains($!roomFacilitiesList,"24小时热水")) checked #end/>
-                        24小时热水
-                        <input type="checkbox" name="roomFacilitiesList" value="免费宽带" #if( $collectionUtils.contains($!roomFacilitiesList,"免费宽带")) checked #end/>
-                            免费宽带
-                            <input type="checkbox" name="roomFacilitiesList" value="付费宽带" #if( $collectionUtils.contains($!roomFacilitiesList,"付费宽带")) checked #end/>
-                                付费宽带
-                                <input type="checkbox" name="roomFacilitiesList" value="无线网络" #if( $collectionUtils.contains($!roomFacilitiesList,"无线网络")) checked #end />
-                                    无线网络
-                                    <input type="checkbox" name="roomFacilitiesList" value="吹风机" #if( $collectionUtils.contains($!roomFacilitiesList,"吹风机")) checked #end/>
-                                        吹风机
-                                        <input type="checkbox" name="roomFacilitiesList" value="可加床" #if( $collectionUtils.contains($!roomFacilitiesList,"可加床")) checked #end/>
-                                            可加床
+                <input type="checkbox" name="roomFacilitiesList" value="阳台" #if( $collectionUtils.contains($!roomFacilitiesList,"阳台")) checked #end />阳台
+				<input type="checkbox" name="roomFacilitiesList" value="观景阳台" #if( $collectionUtils.contains($!roomFacilitiesList,"观景阳台")) checked #end />观景阳台
+				<input type="checkbox" name="roomFacilitiesList" value="浴缸" #if( $collectionUtils.contains($!roomFacilitiesList,"浴缸")) checked #end />浴缸
+				<input type="checkbox" name="roomFacilitiesList" value="热水供应" #if( $collectionUtils.contains($!roomFacilitiesList,"热水供应")) checked #end />热水供应
+                <input type="checkbox" name="roomFacilitiesList" value="24小时热水" #if( $collectionUtils.contains($!roomFacilitiesList,"24小时热水")) checked #end/>24小时热水
+                <input type="checkbox" name="roomFacilitiesList" value="免费宽带" #if( $collectionUtils.contains($!roomFacilitiesList,"免费宽带")) checked #end/>免费宽带
+				<input type="checkbox" name="roomFacilitiesList" value="付费宽带" #if( $collectionUtils.contains($!roomFacilitiesList,"付费宽带")) checked #end/>付费宽带
+				<input type="checkbox" name="roomFacilitiesList" value="无线网络" #if( $collectionUtils.contains($!roomFacilitiesList,"无线网络")) checked #end />无线网络
+				<input type="checkbox" name="roomFacilitiesList" value="卫星电视" #if( $collectionUtils.contains($!roomFacilitiesList,"卫星电视")) checked #end />卫星电视
+				<input type="checkbox" name="roomFacilitiesList" value="数字电视" #if( $collectionUtils.contains($!roomFacilitiesList,"数字电视")) checked #end />数字电视
+				<input type="checkbox" name="roomFacilitiesList" value="电脑" #if( $collectionUtils.contains($!roomFacilitiesList,"电脑")) checked #end />电脑
+					<br/>
+				<input type="checkbox" name="roomFacilitiesList" value="液晶电视" #if( $collectionUtils.contains($!roomFacilitiesList,"液晶电视")) checked #end />液晶电视
+				<input type="checkbox" name="roomFacilitiesList" value="书桌" #if( $collectionUtils.contains($!roomFacilitiesList,"书桌")) checked #end />书桌
+				<input type="checkbox" name="roomFacilitiesList" value="冰箱" #if( $collectionUtils.contains($!roomFacilitiesList,"冰箱")) checked #end />冰箱
+				<input type="checkbox" name="roomFacilitiesList" value="保险柜" #if( $collectionUtils.contains($!roomFacilitiesList,"保险柜")) checked #end />保险柜
+				<input type="checkbox" name="roomFacilitiesList" value="小吧台" #if( $collectionUtils.contains($!roomFacilitiesList,"小吧台")) checked #end />小吧台
+				<input type="checkbox" name="roomFacilitiesList" value="地毯" #if( $collectionUtils.contains($!roomFacilitiesList,"地毯")) checked #end />地毯
+				<input type="checkbox" name="roomFacilitiesList" value="饮水机" #if( $collectionUtils.contains($!roomFacilitiesList,"饮水机")) checked #end />饮水机
+				<input type="checkbox" name="roomFacilitiesList" value="吹风机" #if( $collectionUtils.contains($!roomFacilitiesList,"吹风机")) checked #end/>吹风机
+				<input type="checkbox" name="roomFacilitiesList" value="可加床" #if( $collectionUtils.contains($!roomFacilitiesList,"可加床")) checked #end/>可加床
+				<input type="checkbox" name="roomFacilitiesList" value="不可加床" #if( $collectionUtils.contains($!roomFacilitiesList,"不可加床")) checked #end/>不可加床
+				<input type="checkbox" name="roomFacilitiesList" value="无烟房" #if( $collectionUtils.contains($!roomFacilitiesList,"无烟房")) checked #end/>无烟房
             </td>
         </tr>
         <tr>
@@ -115,7 +129,7 @@
                         #set($count = $velocityCount)
                         #set($count = $count - 1)
                         <div id="image$count">
-                            <input type="text"  name='imagesList' value="$!image" class="input_m"/>
+                            <input type="text"  name='imagesList' value="$!image" class="input_m upImage"/>
                             #if($count > 0)
                                 <input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;" />
                             #end
@@ -151,8 +165,10 @@
         </tr>
     </table>
 </form>
-#JS(["jquery-1.6.2.min.js","common.js","validator.js","admin.js"]) 
+ 
 #XUI_JS(["core/xui-core.js","util/util-min.js","simple-date/xui-simple-datepicker.js"])
+
+#JS(["jquery-1.6.2.min.js","common.js","validator.js","admin.js"])
 
 #KISSY_EDITOR_JS()
 <script type="text/javascript">
@@ -244,13 +260,13 @@
 	
 	var addImage = function(){
 		var i = lastImagesIndex  ;
-		if(i > 3){
+		if($('.upImage').length > 3){
 			return ;
 		}
 		var divElement = document.createElement('div') ;
 		divElement.id = 'image' + i ;
 		$element('images').appendChild(divElement) ;
-		var innerHTML = '<input type="text"  name="imagesList" class="input_m"/>' ;
+		var innerHTML = '<input type="text"  name="imagesList" class="input_m upImage"/>' ;
 		if(i > 0){
 			innerHTML += '<input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;" />' ;
 		}

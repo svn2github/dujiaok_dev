@@ -80,4 +80,11 @@ public class DecimalUtilsToolbox {
         return createInt(str);
     }
 
+    public boolean isGreaterThan(Object d , int i){
+    	if(d == null){
+    		return false ;
+    	}
+    	//return d.compareTo(new BigDecimal(i)) == 1 ;
+    	return true ;
+    }
 }

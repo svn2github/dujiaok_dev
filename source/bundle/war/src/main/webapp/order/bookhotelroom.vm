@@ -1,7 +1,7 @@
 #set($layout="/front/default_new.vm")
 #CSS(["dingdan.css"])
 
-<form id="orderForm" method="post" action="${env.root}/order/makeorder.htm" onsubmit="javascript:return new Totalorders().checkForm1()" >
+<form id="orderForm" method="post" action="${env.root}/order/makeorder.htm">
 	<input type="hidden" name="orderId" id="orderId" value="$!orderDO.orderId" />
 	<input type="hidden" name="productId" id="productId" value="$!orderDO.productId" />
 	<input type="hidden" name="productDetailId" id="productDetailId" value="$!orderDO.productDetailId"/>
@@ -35,7 +35,55 @@
 				<ul>
 					<li style="color:red;">重要信息：本产品在$!cantCheckinDate&nbsp;没有可以入住的房间。</li>
 			    </ul>
-		    #end
+			#end
+			
+			<h2 class="banner mgt20"><strong>入住信息</strong> </h2>
+			
+			<input type="hidden" name="contacts[0].isMain" value="T" />
+			<table class="mgt10 contactInfo">
+    			<tr>
+    				<th><i>*</i>联系人姓名：</th>
+    				<td>
+						<input type="text" name="contacts[0].name" id="name0" class="wpx184 name" value="$!orderDO.contacts[0].name"/>
+						<span class="error"></span>
+					</td>
+    			</tr>
+    			<tr>
+    				<th><i>*</i>联系人手机：</th>
+    				<td>
+						<input type="text" name="contacts[0].mobile" maxlength="11" id="mobile0" class="wpx184 mobile" value="$!orderDO.contacts[0].mobile" />
+						<span class="error"></span>
+					</td>
+    			</tr>
+    			<tr>
+    				<th><i>*</i>证件类型：</th>
+    				<td>
+    				  <select name="contacts[0].certificateType" id="certificateType0" value="" style="width: 184px;" class="certificateType">
+    					<option>身份证</option>
+    					<option>护照</option>
+    					<option>军官证</option>
+    				  </select>
+    				</td>
+    			</tr>
+    			<tr>
+    				<th><i>*</i>证件号码：</th>
+    				<td>
+						<input type="text" name="contacts[0].certificateNumber" value="$!orderDO.contacts[0].certificateNumber" id="certificateNumber0" class="wpx184 certificateNumber" dataType="IdCard" msg="证件号码错误"/>
+						<span class="error"></span>
+					</td>
+    			</tr>
+    			<tr>
+    				<th>E-mail：</th>
+    				<td>
+						<input type="text" name="contacts[0].email" id="email0" class="wpx1843 email" value="$!orderDO.contacts[0].email"/>
+						<span class="error"></span>
+					</td>
+    			</tr>
+            </table>
+            <div id="subCBox">
+                
+            </div>
+			
     		<table class="mgt10">
                 <tr>
 					<th>	
@@ -81,7 +129,7 @@
     	</div>
     </div>
 	
-	
+</form>
 	
 	
 #JS(["dingdan.js"])

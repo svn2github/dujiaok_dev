@@ -36,7 +36,6 @@
 		<div class="schFactor schL1">
 			<div class="ttl">
 				<strong class="L">搜索 - “$!keyword”</strong>
-				<a href="#" class="R">重置筛选条件</a>
 			</div>
 			<table class="cnt">
 				<tr>
@@ -79,14 +78,13 @@
 				<tr>
 					<th>酒店星级：</th><td><p>
 							<a href="#SEARCH_URL(['s_starRate:','page:1'])" #if(!$s_starRate || $s_starRate=="") class="current" #end >全部</a>
-							<a href="#SEARCH_URL(['s_starRate:1','page:1'])" #if($s_starRate==1) class="current"#end>连锁商务酒店</a>
-							<a href="#SEARCH_URL(['s_starRate:2','page:1'])" #if($s_starRate==2) class="current"#end>经济商务</a>
-							<a href="#SEARCH_URL(['s_starRate:3','page:1'])" #if($s_starRate==3) class="current"#end>三星级</a>
-							<a href="#SEARCH_URL(['s_starRate:4','page:1'])" #if($s_starRate==4) class="current"#end>准三星级</a>
-							<a href="#SEARCH_URL(['s_starRate:5','page:1'])" #if($s_starRate==5) class="current"#end>四星级</a>
-							<a href="#SEARCH_URL(['s_starRate:6','page:1'])" #if($s_starRate==6) class="current"#end>准四星级</a>
-							<a href="#SEARCH_URL(['s_starRate:7','page:1'])" #if($s_starRate==7) class="current"#end>五星级</a>
-							<a href="#SEARCH_URL(['s_starRate:8','page:1'])" #if($s_starRate==8) class="current"#end>准五星级</a>
+							<a href="#SEARCH_URL(['s_starRate:2','page:1'])" #if($s_starRate==2) class="current"#end>未评级</a>
+							<a href="#SEARCH_URL(['s_starRate:3','page:1'])" #if($s_starRate==3) class="current"#end>准三星级</a>
+							<a href="#SEARCH_URL(['s_starRate:4','page:1'])" #if($s_starRate==4) class="current"#end>三星级</a>
+							<a href="#SEARCH_URL(['s_starRate:5','page:1'])" #if($s_starRate==5) class="current"#end>准四星级</a>
+							<a href="#SEARCH_URL(['s_starRate:6','page:1'])" #if($s_starRate==6) class="current"#end>四星级</a>
+							<a href="#SEARCH_URL(['s_starRate:7','page:1'])" #if($s_starRate==7) class="current"#end>准五星级</a>
+							<a href="#SEARCH_URL(['s_starRate:8','page:1'])" #if($s_starRate==8) class="current"#end>五星级</a>
 					
 					</p></td>
 				</tr>

@@ -71,7 +71,7 @@
                 <td>$!selfDrive.destProvince $!selfDrive.destCity</td>
                 <td class="F9">#OUTPUT_EXP_TIME($!selfDrive.gmtExpire,'yyyy-MM-dd')</td>
                 <td>
-        			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createTicket.htm?productId=$ticket.productId');">复制链接</a>&nbsp;&nbsp;
+        			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/product/detail.htm?productId=$ticket.productId');">复制链接</a>&nbsp;&nbsp;
                     <a href="${env.root}/admin/createSelfDrive.htm?productId=$selfDrive.productId">修改</a>&nbsp;&nbsp;
         			<a href="javascript:void(0);" onclick="confirmAndDelProduct('$!selfDrive.productId')">删除</a>
                 </td>

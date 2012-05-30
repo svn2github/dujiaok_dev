@@ -124,7 +124,7 @@
                         #set($count = $velocityCount)
                         #set($count = $count - 1)
                         <div id="image$count">
-                            <input type="text"  name='imagesList' value="$!image" class="input_m"/>
+                            <input type="text"  name='imagesList' value="$!image" class="input_m upImage"/>
                             #if($count > 0)
                                 <input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;" />
                             #end
@@ -234,13 +234,13 @@
 	
 	var addImage = function(){
 		var i = lastImagesIndex  ;
-		if(i > 3){
+		if($('.upImage').length > 3){
 			return ;
 		}
 		var divElement = document.createElement('div') ;
 		divElement.id = 'image' + i ;
 		$element('images').appendChild(divElement) ;
-		var innerHTML = '<input type="text"  name="imagesList" class="input_m"/>' ;
+		var innerHTML = '<input type="text"  name="imagesList" class="input_m upImage"/>' ;
 		if(i > 0){
 			innerHTML += '<input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;" />' ;
 		}

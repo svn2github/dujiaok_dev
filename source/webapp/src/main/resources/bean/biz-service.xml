@@ -19,6 +19,7 @@
 	<bean id="hotelRoomService" class="com.ssnn.dujiaok.biz.service.impl.HotelRoomServiceImpl"></bean>
 	<bean id="adminService" class="com.ssnn.dujiaok.biz.service.impl.AdminServiceImpl"></bean>
 	<bean id="selfDriveService" class="com.ssnn.dujiaok.biz.service.impl.SelfDriveServiceImpl"></bean>
+	<bean id="productService" class="com.ssnn.dujiaok.biz.service.impl.ProductServiceImpl"></bean>
 	<bean id="orderService" class="com.ssnn.dujiaok.biz.service.impl.OrderServiceImpl"></bean>
 	<bean id="productDetailService" class="com.ssnn.dujiaok.biz.service.product.impl.ProductDetailServiceImpl"></bean>
 	<bean id="frontConfigService" class="com.ssnn.dujiaok.biz.service.impl.FrontConfigServiceImpl"></bean>

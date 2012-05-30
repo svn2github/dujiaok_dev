@@ -1,5 +1,46 @@
 #set($layout="/front/default_new.vm")
 	#CSS(["dingdan.css"])
+
+#if($order.payType=="CASH")
+<form id="orderForm" method="post" action='${env.root}/order/cashpayorder.htm'>	
+	<input type="hidden" id="orderId" name="orderId" value="$!orderId"/>
+        
+	<!-- main开始 -->
+    <div class="w950 dingdan dingdan2">
+    	<!-- dtl1开始 -->
+    	<div class="L">
+    		<div class="crumb">您当前的位置：选择支付方式</div>
+    		<div class="odrTtl"><span class="flag">预定</span><span class="redTtl">￥$!order.price 元</span></div>
+    		<table class="mgt10 pay">
+    			<tr>
+    				<td>支付方式：</td><th><h3>请到酒店前台支付</h3></th>
+    			</tr>
+                <tr class="qrxd"><td></td><th><button class="order" id="paydetail">确认下单</button></th></tr>
+    		</table>
+    	</div>
+    	<div class="R mgt10">
+			<!--
+    		<div class="share">
+    			<div id="ckepop">
+    				<span class="jiathis_txt">分享到：</span>
+    				<a class="jiathis_button_icons_1"></a>
+    				<a class="jiathis_button_icons_2"></a>
+    				<a class="jiathis_button_icons_3"></a>
+    				<a class="jiathis_button_icons_4"></a>
+    			</div>
+    		</div>
+			-->
+    	</div>
+    </div>
+    <!-- main结束 -->
+            <!-- 内容结束 -->
+	
+</form>
+
+<script>
+
+</script>
+#else
 	
 <form id="orderForm" method="post" action='${env.root}/order/alipayorder.htm'>
 		
@@ -53,38 +94,4 @@ function pay(){
 }
 </script>
 
-#if($product.payType=="前台支付")
-<form id="orderForm" method="post">	
-	<input type="hidden" id="orderId" name="orderId" value="$!orderId"/>
-        <div id="wrap">
-            <div class="section urhere">
-            	<p class="F3">您当前的位置：$!post</p>
-                <!--span class="F3">分享到： 新浪微博 </span-->
-            </div>
-            
-            <div id="pay" class="section">
-            		<h2 class="d_title yuding02">$!amount元</h2>
-                    <div class="bank section">
-                    	<span>支付方式：</span>
-                        <ul>
-                        	<li>请到酒店前台支付</li>
-                        </ul>
-                    </div>
-                    <div class="d_qrxd">
-                    	<button onclick="pay()">&nbsp;&nbsp;&nbsp;&nbsp;</button>
-                    </div>
-              </div>
-       </div>    
-            <!-- 内容结束 -->
-	
-	    </form>
-
-<script>
-function pay(){
-	
-	var orderForm = document.getElementById("orderForm");
-	orderForm.action = $element("webUrl").value + "trek/order/order/hotelPay.htm";
-	orderForm.submit();
-}
-</script>
 #end

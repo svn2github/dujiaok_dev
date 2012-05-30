@@ -75,7 +75,7 @@
                 <td class="border_top_line">$!hotel.destProvince $!hotel.destCity</td>
                 <td class="border_top_line"></td>
                 <td class="border_top_line">
-        			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createTicket.htm?productId=$!hotel.productId');">复制链接</a>&nbsp;&nbsp;
+        			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/product/detail.htm?productId=$!hotel.productId');">复制链接</a>&nbsp;&nbsp;
                     <a href="${env.root}/admin/createHotel.htm?productId=$!hotel.productId">修改</a>&nbsp;&nbsp;
         			<a href="javascript:void(0);" onclick="confirmAndDelHotel('$!hotel.productId')">删除</a>
                 </td>
@@ -90,7 +90,7 @@
                         <td></td>
                         <td class="F9">#OUTPUT_EXP_TIME($!room.gmtExpire,'yyyy-MM-dd')</td>
                         <td>
-                			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/admin/createHotelRoom.htm?productId=$!room.productId');">复制链接</a>&nbsp;&nbsp;
+                			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/product/detail.htm?productId=$!room.productId');">复制链接</a>&nbsp;&nbsp;
                             <a href="${env.root}/admin/createHotelRoom.htm?productId=$!room.productId">修改</a>&nbsp;&nbsp;
                 			<a href="javascript:void(0);" onclick="confirmAndDelProduct('$!room.productId')">删除</a>
                         </td>

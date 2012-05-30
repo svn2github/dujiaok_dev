@@ -95,11 +95,11 @@
         <tr>
             <td align="right">门票类型：</td>
             <td>
-                <input type="radio" name="ticketType" value="ETICKET_SMS" #if($ticket.ticketType == "ETICKET_SMS") checked #end/>
+                <input type="radio" name="ticketType" value="电子票(手机短信)" #if($ticket.ticketType == "电子票(手机短信)") checked #end/>
                     电子票(手机短信)&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="ticketType" value="TICKET_SELF" #if($ticket.ticketType == "TICKET_SELF") checked #end />
+                    <input type="radio" name="ticketType" value="实物票(景点取)" #if($ticket.ticketType == "实物票(景点取)") checked #end />
                         实物票(景点取)&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="radio" name="ticketType" value="TICKET_MAIL" #if($ticket.ticketType == "TICKET_MAIL") checked #end />
+                        <input type="radio" name="ticketType" value=" 实物票(邮寄)" #if($ticket.ticketType == " 实物票(邮寄)") checked #end />
                             实物票(邮寄)
             </td>
         </tr>
@@ -121,7 +121,7 @@
                         #set($count = $velocityCount)
                         #set($count = $count - 1)
                         <div id="image$count">
-                            <input type="text"  name='imagesList' value="$!image" class="input_b"/>
+                            <input type="text"  name='imagesList' value="$!image" class="input_b upImage"/>
                             #if($count > 0)
                                 <input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;" />
                             #end
@@ -231,13 +231,13 @@
 	
 	var addImage = function(){
 		var i = lastImagesIndex  ;
-		if(i > 3){
+		if($('.upImage').length > 3){
 			return ;
 		}
 		var divElement = document.createElement('div') ;
 		divElement.id = 'image' + i ;
 		$element('images').appendChild(divElement) ;
-		var innerHTML = '<input type="text"  name="imagesList" class="input_b"/> ' ;
+		var innerHTML = '<input type="text"  name="imagesList" class="input_b upImage"/> ' ;
 		if(i > 0){
 			innerHTML += '<input type="button" value="- 删除" onclick="removeElement(this.parentNode) ;" />' ;
 		}

@@ -14,45 +14,4 @@
 
 		</action>
 	</package>
-	
-	<package name="order" namespace="/order" extends="default">
-		<action name="book" class="com.ssnn.dujiaok.web.action.order.OrderAction" method="book">
-			<interceptor-ref name="defaultStack" />
-			<interceptor-ref name="memberAuthInterceptor" />
-			<result name="ticket"  type="velocity">/order/bookticket.vm</result>
-			<result name="room"  type="velocity">/order/bookhotelroom.vm</result>
-			<result name="selfdrive"  type="velocity">/order/bookselfdrive.vm</result>
-			<result name="not_exists"  type="velocity">/product/notexist.vm</result>
-		</action>
-		
-		<action name="makeorder" class="com.ssnn.dujiaok.web.action.order.MakeOrderAction" method="makeOrder">
-			<interceptor-ref name="defaultStack" />
-			<interceptor-ref name="memberAuthInterceptor" />
-			<result name="error"  type="velocity">/error.vm</result>
-			<result name="not_exists" type="velocity">/product/notexist.vm</result>
-			<result name="success"  type="velocity">/order/orderdetail.vm</result>
-			<result name="input"  type="velocity">/order/book.vm</result>
-		</action>
-		<action name="orderdetail" class="com.ssnn.dujiaok.web.action.order.OrderDetailAction" method="orderDetail">
-			<interceptor-ref name="defaultStack" />
-			<interceptor-ref name="memberAuthInterceptor" />
-			<result name="success"  type="velocity">/order/orderdetail.vm</result>
-		</action>
-		<action name="paydetail" class="com.ssnn.dujiaok.web.action.order.PayDetailAction">
-			<interceptor-ref name="defaultStack" />
-			<result name="success"  type="velocity">/order/paydetail.vm</result>
-		</action>
-		<action name="alipayorder" class="com.ssnn.dujiaok.web.action.order.AlipayOrderAction">
-			<interceptor-ref name="defaultStack" />
-			<result name="success"  type="velocity">/order/alipayorder.vm</result>
-		</action>
-		<action name="paysuccess" class="com.ssnn.dujiaok.web.action.order.AlipayCallBackAction">
-			<interceptor-ref name="defaultStack" />
-			<result name="success"  type="velocity">/order/paysuccess.vm</result>
-			<result name="error"  type="velocity">/order/payfail.vm</result>
-		</action>
-		<action name="paynotify" class="com.ssnn.dujiaok.web.action.order.AsynAlipayCallBackAction">
-			<interceptor-ref name="defaultStack" />
-		</action>
-	</package>
 </struts>

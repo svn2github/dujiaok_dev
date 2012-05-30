@@ -5,7 +5,7 @@ import java.util.Date;
 
 import com.ssnn.dujiaok.util.ProductUtils;
 
-public class ProductDetailDO implements Comparable<ProductDetailDO> {
+public class ProductDetailDO extends AbstractModel implements Comparable<ProductDetailDO> {
 
 	/**
 	 * PK

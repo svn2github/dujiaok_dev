@@ -13,7 +13,6 @@ public enum OrderStatusEnums {
 	UNKNOWN("","") ,
 	
 	
-	
 	/**
 	 * 等待付款
 	 */
@@ -33,6 +32,11 @@ public enum OrderStatusEnums {
 	 * 关闭
 	 */
 	CLOSED("CLOSED","订单关闭") ,
+
+	/**
+	 * 退款中
+	 */
+	DRAWBACKING("DRAWBACKING" , "退款中") ,
 	
 	/**
 	 * 退款

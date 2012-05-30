@@ -60,6 +60,8 @@
     			<div class="tabCnt current">
     				<h2 class="banner mgt20"><strong>产品介绍</strong></h2>
     				$!product.introduction
+					<h2 class="banner mgt20"><strong>行程</strong></h2>
+    				$!product.categoryImage
     			</div>
     			<div class="tabCnt">
     				<h2 class="banner mgt20"><strong>行程</strong></h2>
@@ -91,8 +93,8 @@
                         <tr><th><strong>酒店名称：</strong></th><td><a href="${env.root}/product/detail.htm?productId=$!product.hotelId" target="hotel">$!hotelName</a></td></tr>
 						<tr><th><strong>市场价：</strong></th><td>$!product.marketPrice 元</td></tr>
     					<tr><th><strong>商品编号：</strong></th><td>$!product.productId</td></tr>
-    					<tr><th><strong>支付方式：</strong></th><td>$enumUtils.toPayTypeEnumDescs($!product.productTypes)</td></tr>
-						<tr><th><strong>支付方式：</strong></th><td><span>$!product.roomArea</span>平米  <span>$!product.bed</span></td></tr>
+    					<tr><th><strong>支付方式：</strong></th><td>$enumUtils.toPayTypeEnumDescs($!product.payTypes)</td></tr>
+						<tr><th><strong>面积：</strong></th><td><span>$!product.roomArea</span>平米  <span>$!product.bed</span></td></tr>
     					<tr><th><strong>配套：</strong></th><td>$!product.roomFacilities</td></tr>
 					</tbody>
 				</table>

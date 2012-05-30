@@ -44,5 +44,6 @@
 	<include file="struts-ajax.xml"></include>
 	<include file="struts-search.xml"></include>
 	<include file="struts-product.xml"></include>
+	<include file="struts-order.xml"></include>
 	 
 </struts>

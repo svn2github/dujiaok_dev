@@ -18,10 +18,10 @@
 		<table class="userOrder mgt10">
 			<tr>
 				<th width="95">编号</th>
-				<th width="340">商品</th>
+				<th width="200">商品</th>
 				<th width="90">下单时间</th>
 				<th width="85">订单金额</th>
-				<th width="70">订单状态</th>
+				<th width="160">订单状态</th>
 				<th width="100">操作</th>
 			</tr>
 			
@@ -33,34 +33,48 @@
                 #foreach($order in $!orderList)
 	                <tr>
 	                	<td>$!order.orderId</td>
-	                    <td class="al"><p><a></a></p><p>成人（<b>$!order.count</b>）&nbsp;&nbsp;&nbsp;&nbsp;儿童（<b>$!order.secondaryCount</b>）</p></td>
+	                    <td class="al">
+							<div><a href="${env.root}/order/orderdetail.htm?orderId=$!order.orderId" target="_blank">$!order.name</a><div>
+							<div style="font-size:12px;">成人（$!order.count）&nbsp;&nbsp;&nbsp;&nbsp;儿童（$!order.secondaryCount）</div></td>
 	                    <td>$dateUtils.format($!order.gmtCreate, 'yyyy-MM-dd HH:mm:ss')</td>
-	                    <td class="pink ar">￥$!order.price</td>
+	                    <td class="pink">￥$!order.price</td>
 	                    <td class="tb05">
-	                    	<p class="F7">
-	                    		#if($!order.status=='SUCCESS')
-	                    			#set($succCount = $succCount+1)
-	                    			已付款
-	                    		#elseif($!order.status=='CLOSED')
-	                    		    #set($closeCount = $closeCount+1)
-	                    		    已关闭
-	                    		#elseif($!order.status=='UNPAY')
-	                    		    #set($unpayCount = $unpayCount+1)
-	                    		    未付款
-	                    		#elseif($!order.status=='CONFIRM')
-	                    		    已确认
-	                    		#elseif($!order.status=='DRAWBACKING')
-	                    		    退款中
-	                    		#elseif($!order.status=='DRAWBACKED')
-	                    		    已退款
-	                    		#end
-	                    	</p>
-	                    	<p><a href="${env.root}/order/orderdetail.htm?orderId=$!order.orderId" target="_blank">订单详情</a></p></td>
+                    	
+							#if($order.payType == "CASH")
+								[前台现付]
+							#else
+								[网上支付]
+							#end
+                    		#if($!order.status=='SUCCESS')
+								#set($succCount = $succCount+1)
+                    			已下单，等待工作人员确认
+                    		#elseif($!order.status=='CLOSED')
+								#set($closeCount = $closeCount+1)
+								订单关闭
+                    		#elseif($!order.status=='UNPAID')
+                    		    #set($unpayCount = $unpayCount+1)
+								未付款，请在24小时内付款
+                    		#elseif($!order.status=='CONFIRM')
+                    		          预定成功
+                    		#elseif($!order.status=='DRAWBACKING')
+                    		          退款中
+                    		#elseif($!order.status=='DRAWBACKED')
+                    		           已退款
+                    		#else
+								状态异常<input type="hidden" value="$!order.status"/>
+							#end
+	                    	
+	                    	</td>
 	                    <td class="tb06">
-	                    	#if ($!order.status=='UNPAY')
-	                    		<a href="${env.root}/order/paydetail.htm?orderId=$!order.orderId" target="_blank"><button>付款</button></a>
-	                    	#end
-	                    	<p><a href="#">关闭</a></p>
+	                    	#if ($!order.status=='UNPAID')
+	                    		<a href="${env.root}/order/paydetail.htm?orderId=$!order.orderId" target="_blank">付款</a>
+							#end
+							<!--
+							#if($!order.status == 'UNPAID')
+	                    	<a href="#">关闭</a>
+							#end
+							-->
+							<a href="${env.root}/order/orderdetail.htm?orderId=$!order.orderId" target="_blank">详情</a>
 	                    </td>
 	                </tr>
                 #end

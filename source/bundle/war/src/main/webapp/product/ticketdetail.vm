@@ -10,7 +10,7 @@
 
 	<!-- dtl1开始 -->
 	<div class="L">
-		<div class="crumb">您当前的位置：门票 - $!product.name</div>
+		<div class="crumb">您当前的位置：门票 - $!product.destProvince > $!product.destCity > $!product.destArea</div>
 		<dl class="txtImgRoll">
 			<dt class="greenTtl">【门票】$!product.name</dt>
 
@@ -64,6 +64,10 @@
     			<div class="tabCnt current">
     				<h2 class="banner mgt20"><strong>产品介绍</strong></h2>
     				$!product.introduction
+					<h2 class="banner mgt20"><strong>注意事项</strong></h2>
+    				$!product.notice
+					<h2 class="banner mgt20"><strong>费用说明</strong></h2>
+    				$!product.feeDesc
     			</div>
     			<div class="tabCnt">
     				<h2 class="banner mgt20"><strong>注意事项</strong></h2>
@@ -96,8 +100,8 @@
 				<table>
 					<tbody><tr><th><strong>市场价：</strong></th><td>$!product.marketPrice 元</td></tr>
 					<tr><th><strong>商品编号：</strong></th><td>$!product.productId</td></tr>
-					<tr><th><strong>支付方式：</strong></th><td>$enumUtils.toPayTypeEnumDescs($!product.productTypes)</td></tr>
-					<tr><th><strong>产品类别：</strong></th><td>$!product.productTypes</td></tr>
+					<tr><th><strong>支付方式：</strong></th><td>$enumUtils.toPayTypeEnumDescs($!product.payTypes)</td></tr>
+					<tr><th><strong>门票类型：</strong></th><td>$!product.ticketType</td></tr>
                     <tr><th><strong>景点地址：</strong></th><td>$!product.destAddr</td></tr>
 				</tbody></table>
 			</div>
