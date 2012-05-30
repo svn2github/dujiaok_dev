@@ -110,7 +110,7 @@ $("#orderForm .del").live("click",function(e){
 
 $("#orderForm :submit").click(function(e){
 		e.preventDefault();
-		var info=$("#dingdan01 .contactInfo");
+		var info=$("#orderForm .contactInfo");
 		var L=info.size();
 		var hasErr=0;
 		for(var i=0;i<L;i++){
