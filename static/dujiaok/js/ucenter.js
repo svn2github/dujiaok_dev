@@ -1,7 +1,7 @@
 ﻿$(function(){
-	ok.placeholder("addrDtl");
+	//ok.placeholder("addrDtl");
 	areaSelect.createSelect($("#area")); 
-	var account=[{type:"支付宝"},{type:"财付通"},{type:"信用卡",list:["招商银行","建设银行","交通银行","工商银行"]},{type:"网上银行",list:["中国银行","农业银行"]}];
+	var account=[{type:"支付宝"},{type:"财付通"},{type:"银行卡",list:["招商银行","建设银行","交通银行","工商银行"]}];
 	var L=account.length;
 	var opts='';
 	for(var i=0;i<L;i++){
