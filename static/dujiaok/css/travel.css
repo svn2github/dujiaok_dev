@@ -1,8 +1,8 @@
-/* travel1 */
-.travel1{height:230px;overflow:hidden;}
-.travel2{height:160px;overflow:hidden;}
-.travel2 .txtLink dd{width:615px;}
-.travel2 .idx1M{margin:0;width:710px;}
+﻿/* travel1 */
+.travel1{height:450px;overflow:hidden;}
+.travel1 .txtLink dd{width:615px;}
+.travel1 .idx1M{margin:10px 0 0 0;width:708px;}
+.travel1 .t1Img{width:708px;height:280px;}
 .travel3{height:357px;overflow:hidden;}
 .travel3 .box230{height:355px;overflow:hidden;}
 .travel3 .R{height:357px;overflow:hidden;}

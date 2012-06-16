@@ -1,19 +1,20 @@
-/* search */
+﻿/* search */
 body,a{color:#666;}
 .searchL{width:710px; overflow:hidden;}
 .search .crumb .orange{margin:0 5px;}
 /* schL2 */
 .schL2 .cnt li{height:100px;}
-.schL2 .txt{width:300px;}
-.schL2 .R{ margin-right:15px;}
+.schL2 .txt{width:465px;}
+.schL2 .R{ margin-right:10px;}
 .schL2 .price,.schL2 .order{display:block;}
-.schL2 .price{margin-bottom:15px;width:235px;height:20px;color:#999;}
-.schL2 .p1{float:left;margin-right:10px;_margin-top:10px;}
-.schL2 .p2{float:left;margin-top:-10px;_margin-top:0;}
-.schL2 .p2 strong{margin-right:5px;font-family:Arial; font-size:24px; color:#E8004C;}
-.schL2 .p2 strong em{font-size:18px;}
+.schL2 .price{margin-bottom:15px;width:105px;color:#999;}
+.schL2 .p1{float:right;height:32px; overflow:hidden;}
+.schL2 .p1 strong{margin-right:5px;font-family:Arial; font-size:24px; color:#E8004C; font-family:Arial, Helvetica, sans-serif;}
+.schL2 .p1 strong em{font-size:18px;}
+.schL2 .p2{float:right;margin:-2px 0 9px 0;}
+.schL2 .order{float:right;}
 /* searchR */
 .searchR{width:230px}
 .schR2 img{border:1px solid #DCDCDC;}
 .schR2 img{width:228px; height:98px;}
-.schR2 img.sR2Ad{border-top:1px solid #DCDCDC;}
+.schR2 img.sR2Ad{border-top:none;}

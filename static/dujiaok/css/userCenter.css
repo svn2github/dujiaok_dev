@@ -1,4 +1,4 @@
-.rightMain .uiDingdan{ margin:10px 0 20px 20px; width:200px;}
+﻿.rightMain .uiDingdan{ margin:10px 0 20px 20px; width:200px;}
 .rightMain .uiDingdan caption{ text-align:left;}
 .rightMain .uiDingdan td,.rightMain .uiDingdan th{ padding-top:10px; height:auto;}
 .rightMain .uiDingdan td{width:60px;}
@@ -15,4 +15,5 @@
 .rightMain select{margin-right:5px;}
 .rightMain .infoHead{margin:20px 0 0 30px; color:#333; font-size:16px;}
 .rightMain .infoHead span{margin-left:10px;color:#ccc;font-size:12px; font-weight:normal;}
-.rightMain .type2{display:none;}
+#bank{display:none;}
+.error{font-weight:normal;}

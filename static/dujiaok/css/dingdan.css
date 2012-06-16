@@ -1,10 +1,11 @@
-.dingdan .odrTtl{ overflow:hidden;}
+﻿.dingdan .odrTtl{ overflow:hidden;}
 .dingdan .flag{ float:left;width:64px; height:30px;text-indent:-9999px; background-position:-451px -60px;}
-.dingdan .greenTtl{ float:left;margin:7px;}
+.dingdan .greenTtl{ float:left;margin:2px 7px;}
 .dingdan .product{ width:100%;}
 .dingdan .product td{padding:5px; line-height:26px; border:1px solid #DCDCDC;}
 .dingdan .product thead td{ font-weight:bold; text-align:center; background:#F3F6F8;}
 .dingdan .product input{width:20px; height:14px; border:1px solid #DCDCDC;}
+.dingdan .attPro input{ margin-right:10px; vertical-align:middle;}
 .dingdan .attPro label{ margin:0 70px 0 5px;}
 .dingdan .contactInfo tr{height:30px;}
 .dingdan .contactInfo th{ padding-right:5px;width:100px; text-align:right; font-weight:normal;}

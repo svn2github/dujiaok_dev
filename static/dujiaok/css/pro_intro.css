@@ -1,4 +1,4 @@
-.pro_intro{margin:0 auto;width:710px; }
+﻿.pro_intro{margin:0 auto;width:710px; }
 .pro_intro .tabTtl{ width:710px;border-bottom:1px solid #249f00;overflow:hidden;}
 .pro_intro .tabTtl li{cursor:default; width:87px; height:30px; line-height:30px; float:left; display:block; margin-right:4px; border:1px solid #dcdcdc; border-bottom:none;color:#666; text-align:center;}
 .pro_intro .tabTtl li.current{ border:1px solid #249f00;color:#fff; background-color:#249f00;}

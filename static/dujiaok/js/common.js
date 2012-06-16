@@ -1,10 +1,11 @@
 ﻿var ok;
 (function($){
 	ok={
-		tab:function(id,event,delay,effect){//tabл(ֲ)
-			var i=0;
-			var ttlS=$("#"+id+" .tabTtl li");
-			var cntS=$("#"+id+" .tabCnt");
+		tab:function(id,eve,delay,effect){
+			var i=0,
+            	t=null,
+				ttlS=$("#"+id+" .tabTtl li"),
+				cntS=$("#"+id+" .tabCnt");
 			function showCur(j){
 				var N=ttlS.size();
 				var cur=ttlS.eq(j);
@@ -22,52 +23,52 @@
 					i=0;
 				};
 			};
-			if(!event){
-				event="click";
+			if(!eve){
+				eve="click";
 			};
-			ttlS.bind(event,function(){
+			ttlS.bind(eve,function(){
 				clearInterval(t);
 				i=$(this).index();
 				showCur(i);
 				if(delay){
-					setTimeout(function(){t=setInterval(function(){showCur(i)},delay);},delay);
+					t=setInterval(function(){showCur(i)},delay);
 				};
 			});
 			if(delay){
-				var t=setInterval(function(){showCur(i)},delay);
+				t=setInterval(function(){showCur(i)},delay);
 			};
 		},
-//		placeholder:function(id){//ʾ
-//			var ipt=jQuery("#"+id);
-//			var p=ipt.attr("placeholder");
-//			ipt.each(function(){
-//				var v=ipt.val();
-//				if(v!=p){
-//					ipt.removeClass("gray");
-//				};
-//			});
-//			ipt.focus(function(){
-//				var v=ipt.val();
-//				if(v==p){
-//					ipt.val("")	;
-//				};
-//				ipt.removeClass("gray");
-//			});
-//			ipt.blur(function(){
-//				var v=ipt.val();
-//				if(v==""){
-//					ipt.val(p);
-//					ipt.addClass("gray");
-//				};
-//			});
-//		},
-		checkPage:function(){//ҳ
+		placeholder:function(id){//示
+			var ipt=jQuery("#"+id);
+			var p=ipt.attr("placeholder");
+			ipt.each(function(){
+				var v=ipt.val();
+				if(v!=p){
+					ipt.removeClass("gray");
+				};
+			});
+			ipt.focus(function(){
+				var v=ipt.val();
+				if(v==p){
+					ipt.val("")	;
+				};
+				ipt.removeClass("gray");
+			});
+			ipt.blur(function(){
+				var v=ipt.val();
+				if(v==""){
+					ipt.val(p);
+					ipt.addClass("gray");
+				};
+			});
+		},
+		checkPage:function(){//页
 			function check(){
 				var ipt=$("#page input");
 				var v=ipt.val();
 				var re = /^[0-9]*[1-9][0-9]*$/ ;
 				if(!re.test(v)||v.substr(0,1)=="0"){
-					alert("请输入正确的页码");
+					alert("璇疯緭鍏ユ纭殑椤电爜");
 					ipt.focus();
 				};
 			};	
@@ -80,7 +81,7 @@
 				}							  
 			});
 		},
-		selMock:function(){//ģselect
+		selMock:function(){//模select
 			function show(obj){
 				obj.show();
 				obj.find("li").removeClass("over");
@@ -103,7 +104,7 @@
 				option.removeClass("over");
 				var curLi=option.eq(i);
 				curLi.addClass("over");
-				option.parent().prev().val(curLi.html()).attr("rel",curLi.attr("rel"));
+				option.parent().prev().val(curLi.html());
 			};
 			$(".select input").click(function(e){
 				e.stopPropagation();							  
@@ -136,10 +137,9 @@
 			});
 			$(".select li").click(function(){
 				var html=$(this).html();
-				var rel=$(this).attr("rel");
 				var par=$(this).parent();
 				var sel=par.prev();
-				sel.val(html).attr("rel",rel);
+				sel.val(html);
 				par.hide();
 			});
 			$(".select li").mouseover(function(){
@@ -149,6 +149,59 @@
 			$(document).click(function(){
 				$(".select ul").hide();	
 			})
+		},
+		addFav:function(){
+			var url=location.href;
+			var title=$("title").html();
+			if (document.all) {
+				window.external.addFavorite(url,title);
+			}
+			else if(window.sidebar) {
+				window.sidebar.addPanel(title,url,"");
+			}
+		},
+		float:function(){
+			if($("#w950")[0]){
+				var x=$("#w950").offset().left+950+10,
+					_x=x+120,
+					W=$(document).width(),
+					css={"left":x},
+					f=$("#float");
+				if(_x>W){
+					css={"right":0};
+				}
+				f.css(css);
+				f.find("b").click(function(e){
+					f.remove();
+				})
+				$("#addFav").click(function(e){
+					e.preventDefault();
+					ok.addFav();
+				})
+				$("#backTop").click(function(e){
+					e.preventDefault();
+					function autoscroll(){
+						var t=null,
+							sT=$(window).scrollTop();
+						if(sT>0){
+							$(window).scrollTop(sT-20);
+							t=setTimeout(autoscroll,5);  
+						} 
+						else{
+							clearTimeout(t);	
+						} 
+					}
+					autoscroll();
+				})
+				if($.browser.msie&&$.browser.version==6){
+					$(window).scroll(function(){
+						var t=parseInt($(window).scrollTop(),10)+164;
+						f.css({"top":t});
+					})
+				}
+			}
+			
+			
 		}
 	};
 })(jQuery);
@@ -198,5 +251,6 @@ $(function(){
 		e.preventDefault();
 		$(this).parent().hide();
 	});
-	//ok.placeholder("schIpt");
+	ok.placeholder("schIpt");
+	ok.float();
 })

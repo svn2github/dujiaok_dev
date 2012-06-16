@@ -1,17 +1,8 @@
-/* idx1 */
+﻿/* idx1 */
 .idx1{height:450px;overflow:hidden;}
 .idx1L{width:230px;}
 .idx1L .login{height:40px;background-position:-88px 0;overflow:hidden;}
 .idx1L .login a{float:left; width:115px; height:40px; line-height:42px; text-align:center;color:#f60; font-weight:bold;}
-.idx1L .optionCard{height:278px;border:1px solid #DCDCDC; overflow:hidden;}
-.idx1L .optionCard .other{padding:10px;line-height:27px;border-top:1px solid #DCDCDC;overflow:hidden;}
-.idx1L .optionCard .cityTab{line-height:30px;}
-.idx1L .optionCard .cityTab a{margin-right:10px;}
-.idx1L .optionCard .hotelTab a{margin-right:15px;*line-height:25px;}
-.idx1L .tabTtl{margin-left:-1px;width:229px;overflow:hidden;}
-.idx1L .tabTtl li{float:left;width:75px;height:28px; line-height:29px; text-align:center;border-left:1px solid #DCDCDC;border-bottom:1px solid #DCDCDC;color:#333;background-position:0 -34px;cursor:default;}
-.idx1L .tabTtl li.first{width:76px;}
-.idx1L .tabTtl li.current{border-bottom:none;background:#fff;}
 .idx1L .imgLink img{width:222px; height:152px; }
 .idx1M{margin:0 10px;width:510px;overflow:hidden;}
 .idx1M .bigRoll{height:280px;}
@@ -52,6 +43,7 @@
 .floor .c11,.floor .c11 img{ width:222px;height:262px;}
 .floor .c12{width:466px;height:270px;}
 .floor .c12 li a{display:block;padding-left:6px;height:30px; line-height:30px;overflow:hidden;}
+.floor .c12 li a:hover{text-decoration:none;}
 .floor .c121{ float:left;width:365px;}
 .floor .c121 .c1211{margin-right:10px;}
 .greenF h2 strong,.greenF .c121 .c1211{color:#290;}
@@ -63,8 +55,8 @@
 .resedaF h2 strong,.resedaF .c121 .c1211{color:#8EA03D;}
 .resedaF .c12 li a:hover{background:#8EA03D;}
 
-.floor .c122{ float:right;width:54px;}
-.floor .c122 .pink{float:left; margin-right:5px;width:30px;overflow:hidden;}
+.floor .c122{ float:right;width:64px;}
+.floor .c122 .pink{float:left; margin-right:5px;width:40px;overflow:hidden;}
 .floor .c12 li a:hover .c1211,.floor .c12 li a:hover .gray,.floor .c12 li a:hover .pink{color:#fff;}
 .floor .c13{width:228px;height:268px; border:1px solid #DCDCDC;}
 .floor .c13 ul{margin:5px 0 13px 10px;width:205px;}
@@ -102,4 +94,4 @@
 .idx5 .i5L3 .ttl strong{margin-right:5px;color:#666;}
 .idx5 .i5L3 .cnt{display:block;height:60px;line-height:20px;color:#999;overflow:hidden;}
 .idx5 .i5L3 a:hover .ttl,.idx5 .i5L3 a:hover .cnt{text-decoration:underline;}
-.idx5 .i5R{width:230px; height:350px;}
+.idx5 .i5R{width:230px; height:349px; border-bottom:1px solid #CACACA;}
