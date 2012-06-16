@@ -10,3 +10,14 @@
 .travel3 .floor .c12{ padding:10px 8px 0 8px;width:694px;height:309px;height:307px\9;overflow:hidden;}
 .travel3 .floor li{height:30px; overflow:hidden;}
 .travel3 .tabCnt ul{height:286px;}
+.travel2 {
+    height: 160px;
+    overflow: hidden;
+}
+.travel2 .txtLink dd {
+    width: 615px;
+}
+.travel2 .idx1M {
+    margin: 0;
+    width: 710px;
+}
