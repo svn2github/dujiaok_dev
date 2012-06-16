@@ -125,12 +125,13 @@
     					<div class="R">
 							
     						<span class="price">
-								#if($item.marketPrice)
-								<span class="p1">门市价：<span class="through">$!item.marketPrice</span>元</span>
-								#end
 								#if($item.price)
-								<span class="p2"><strong><em>￥</em>$decimalUtils.format($!item.price,"#######0")</strong>起</span>
+								<span class="p1"><strong><em>￥</em>$decimalUtils.format($!item.price,"0")</strong>起</span>
 								#end
+								#if($item.marketPrice)
+								<span class="p2">门市价：<span class="through">$decimalUtils.format($!item.marketPrice,"0")</span>元</span>
+								#end
+								
     						</span>
 							#if($item.price)
     						<a href="${env.root}/product/detail.htm?productId=$!item.productId" class="order">订购</a>

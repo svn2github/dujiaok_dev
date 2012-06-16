@@ -74,28 +74,21 @@
 	</div>
 	
 	<div class="R mgt10">
-		<!--
-		<div class="share">
-			<div id="ckepop">
-				<span class="jiathis_txt">分享到：</span>
-				<a class="jiathis_button_icons_1"></a>
-				<a class="jiathis_button_icons_2"></a>
-				<a class="jiathis_button_icons_3"></a>
-				<a class="jiathis_button_icons_4"></a>
-			</div>
-		</div>
-		-->
+		
 		<div class="hotelDtl">
 			<div class="hDtl1">
-				<div class="price"><span class="ttl">最低价</span><span class="num">￥<strong>$product.bottomPrice</strong>起</span><i class="help" id="hDtlHelp"></i><div class="popForHelp"><i></i><div>#parse("/common/price_desc.vm")</div></div></div>
+            	<div class="price"><span class="ttl">最低价</span><span class="num">￥<strong>$!product.bottomPrice</strong></span><span class="small">起</span><i id="hDtlHelp" class="help"></i>
+                  <div class="popForHelp" style="display: none;"><i style="left: 139px;"></i>
+                    <div>#parse("/common/price_desc.vm")</div>
+                  </div>
+                </div>
 				<table>
 					<tbody>
-                        <tr><th><strong>酒店名称：</strong></th><td><a href="${env.root}/product/detail.htm?productId=$!product.hotelId" target="hotel">$!hotelName</a></td></tr>
-						<tr><th><strong>市场价：</strong></th><td>$!product.marketPrice 元</td></tr>
-    					<tr><th><strong>商品编号：</strong></th><td>$!product.productId</td></tr>
-    					<tr><th><strong>支付方式：</strong></th><td>$enumUtils.toPayTypeEnumDescs($!product.payTypes)</td></tr>
-						<tr><th><strong>面积：</strong></th><td><span>$!product.roomArea</span>平米  <span>$!product.bed</span></td></tr>
-    					<tr><th><strong>配套：</strong></th><td>$!product.roomFacilities</td></tr>
+    					<tr><th>酒店名称：</th><td><a href="${env.root}/product/detail.htm?productId=$!product.hotelId" target="hotel">$!hotelName</a></td></tr>
+                        <tr><th>市场价：</th><td><span class="through">$!product.marketPrice</span> 元</td></tr>
+    					<tr><th>商品编号：</th><td>$!product.productId</td></tr>
+    					<tr><th>支付方式：</th><td>$enumUtils.toPayTypeEnumDescs($!product.payTypes)</td></tr>
+    					<tr><th>面积：</th><td><span>$!product.roomArea</span>平米  <span>$!product.bed</span></td></tr>
 					</tbody>
 				</table>
 			</div>
@@ -103,9 +96,9 @@
 			#if(!$collectionUtils.isEmpty($detailItems))
 			<form id="orderForm" action="${env.root}/order/book.htm" method="get">
 			<div class="date">
-				<ul>
-                    <li><strong>价格:</strong><span id="price">&nbsp;&nbsp;$!product.bottomPrice</span>元 </li>
-					<li>入住日期：
+				<dl>
+				  <dt>入住日期：</dt>
+				  <dd>
 						<select name="dateAndDetail" id="checkinDateOpt" onchange="changeCheckinDate(this)">
     						 #set($size=$!product.defaultDetailItems.size())
                	    	 	 #foreach($dt in $!product.defaultDetailItems )
@@ -115,8 +108,11 @@
     							#end
     						 #end
               	         </select>
-					</li>
-					 <li>离店日期：
+				  </dd>
+				</dl>
+				<dl>
+					<dt>离店日期：</dt>
+                    <dd>
 						<select name="endDate" id="checkoutDateOpt" onchange="changeCheckoutDate(this)">
                	    	 	 #foreach($dt in $!product.defaultDetailItems )
 								#set($index = $velocityCount)
@@ -124,23 +120,38 @@
 								<option value="$dateUtils.format($dt.date, 'yyyy-MM-dd')" #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd') </option>
 								#end
 							 #end
-              	         </select>
-					 </li>
-					 <!--<li class="total"><strong>共4晚 总金额：￥1234.88元</strong></li>-->
-					 <li>预定间数<input type="text" name="count" id="roomCount" value="1"></li>
-					 <li id="additionInfo" style="display:none;"></li>
-				</ul>
-				<button class="order" onclick="return checkOrder()">订购</button>
-				<p class="gray">拨打电话预定 400 666 5599</p>
+              	        </select>
+					</dd>
+                </dl>
+				<table class="tb1"><tbody><tr><th><span id="price">$!product.bottomPrice</span><p>价格</p></th></tr></tbody></table>
+                <table class="tb2"><tbody><tr><th>预定间数：<input type="text" name="count" id="roomCount" value="1"></th></tr></tbody></table>
+			  <button class="order">立即订购</button>
+				<p class="telTip">拨打电话预定 400 666 5599</p>
 			</div>
+			
 			<input type="hidden" id="productId" name="productId" value="$!product.productId" />
     		<input type="hidden" id="productType" name="productType" value="FJ" />
-            </form>
+			</form>
 			#else
 			当日无价格
 			#end
 		</div>
+		
+		
+		<div class="mgt10 box230">
+    		<div class="ttl"><h2>相关配套</h2></div>
+    			<div class="cnt xgpt">
+				#set($facilities = $stringUtils.stringToList($product.roomFacilities))
+				#foreach($f in $facilities)
+    			<span>$f</span>
+				#end
+    		</div>
+    	</div>
 	</div>
+	
+	
+	
+	
 </div>
 <!-- main结束 -->
 

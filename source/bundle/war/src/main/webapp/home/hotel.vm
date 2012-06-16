@@ -163,7 +163,7 @@
         									<span class="gray">$!fv.detail</span>
         								</span>
         								<span class="c122">
-        									<span class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+        									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,'0')</span>
         									<span class="gray">起</span>
         								</span>
         							</a>

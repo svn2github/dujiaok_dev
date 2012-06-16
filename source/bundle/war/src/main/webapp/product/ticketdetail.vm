@@ -94,44 +94,53 @@
 			</div>
 		</div>
 		-->
+		
 		<div class="hotelDtl">
 			<div class="hDtl1">
-				<div class="price"><span class="ttl">最低价</span><span class="num">￥<strong>$product.bottomPrice</strong>起</span><i class="help" id="hDtlHelp"></i><div class="popForHelp"><i></i><div>#parse("/common/price_desc.vm")</div></div></div>
+            	<div class="price"><span class="ttl">特惠价</span><span class="num">￥<strong>$!product.bottomPrice</strong></span><span class="small">起</span><i id="hDtlHelp" class="help"></i>
+                  <div class="popForHelp" style="display: none;"><i style="left: 139px;"></i>
+                    <div>#parse("/common/price_desc.vm")</div>
+                  </div>
+                </div>
+
+
 				<table>
-					<tbody><tr><th><strong>市场价：</strong></th><td>$!product.marketPrice 元</td></tr>
-					<tr><th><strong>商品编号：</strong></th><td>$!product.productId</td></tr>
-					<tr><th><strong>支付方式：</strong></th><td>$enumUtils.toPayTypeEnumDescs($!product.payTypes)</td></tr>
-					<tr><th><strong>门票类型：</strong></th><td>$!product.ticketType</td></tr>
-                    <tr><th><strong>景点地址：</strong></th><td>$!product.destAddr</td></tr>
+					<tbody><tr><th>市 场 价:</th><td><span class="through">$!product.marketPrice</span>元</td></tr>
+					<tr><th><strong>商品编号:</strong></th><td>$!product.productId</td></tr>
+					<tr><th><strong>支付方式:</strong></th><td>$enumUtils.toPayTypeEnumDescs($!product.payTypes)</td></tr>
+					<tr><th><strong>门票类型:</strong></th><td>$!product.ticketType</td></tr>
+                    <tr><th><strong>景点地址:</strong></th><td>$!product.destAddr</td></tr>
 				</tbody></table>
 			</div>
 			<div class="date">
 				#set($detailItems = $!product.defaultDetailItems)
 				#if($detailItems)
-					<form id="orderForm" action="${env.root}/order/book.htm" method="get">
-                	<ul>
-                    	<li>使用日期：
-                   	    	<select name="dateAndDetail" id="productDetailId" >
-								#foreach($dt in $!product.defaultDetailItems )
-									#set($index = $velocityCount)
-									<option value="${dt.detailId}:$dateUtils.format($dt.date, 'yyyy-MM-dd')" #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd') $dt.bottomPrice元 </option>
-								#end
-                  	        </select>
-                  	     </li>
-                         <li>价 格：<span id='price'></span>元</li>
-                         <li>数 量：&nbsp;<input type="text" name="count" id="count" value="1"></li>
-                    </ul>
-                	<button type="submit" class="order" onclick="return checkOrder() ;">立即订购</button>
-					<input type="hidden" id="productId" name="productId" value="$product.productId" />
-					<input type="hidden" id="productType" name="productType" value="MP" />
-                </form>
-				#else
+				<form id="orderForm" action="${env.root}/order/book.htm" method="get">
+				<dl>
+					<dt>使用日期：</dt>
+				  <dd>
+					<select name="dateAndDetail" id="productDetailId" >
+						#foreach($dt in $!product.defaultDetailItems )
+							#set($index = $velocityCount)
+							<option value="${dt.detailId}:$dateUtils.format($dt.date, 'yyyy-MM-dd')" #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd') $dt.bottomPrice元 </option>
+						#end
+          	        </select>
+				  </dd>
+				</dl>
+				<table class="tb1"><tbody><tr><th><span id='price'></span><p>价格</p></th></tr></tbody></table>
+                <table class="tb2"><tbody><tr><th>数量：<input type="text" name="count" id="count" value="1"></th></tr></tbody></table>
+			    <button class="order" onclick="return checkOrder() ;">立即订购</button>
+				<input type="hidden" id="productId" name="productId" value="$product.productId" />
+				<input type="hidden" id="productType" name="productType" value="MP" />
+				</form>
+			    #else
 					当日无价格
 				#end
-				<p class="gray">拨打电话预定 400 666 5599</p>
+				
+				<p class="telTip">拨打电话预定 400 666 5599</p>
 			</div>
-
 		</div>
+		
 	</div>
 </div>
 <!-- main结束 -->

@@ -261,11 +261,11 @@
 						<li>
 							<a href="$!fv.link">
 								<span class="c121">
-									<span class="green">·$!fv.title</span>
+									<span class="c1211">·$!fv.title</span>
 									<span class="gray">$!fv.detail</span>
 								</span>
 								<span class="c122">
-									<span class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,'0')</span>
 									<span class="gray">起</span>
 								</span>
 							</a>
@@ -316,7 +316,7 @@
 	</div>
 	<!-- idx3结束 -->
 	<!-- idx4开始 -->
-	<div class="mgt20 floor idx4 greenF">
+	<div class="mgt20 floor idx4 pinkF">
 		<div class="ttl">
 			<h2 class="L"><em class="mgr10">2F</em><strong class="pink">$!frontViewMap.get($!indexChannel.getmLongTermAttractionsRecommend()).config.moduleName</strong></h2>
 			#FRONT_EDIT_BUTTON($!indexChannel.getmLongTermAttractionsRecommend(), $isEdit)
@@ -342,11 +342,11 @@
 						<li>
 							<a href="$!fv.link">
 								<span class="c121">
-									<span class="green">·$!fv.title</span>
+									<span class="c1211">·$!fv.title</span>
 									<span class="gray">$!fv.detail</span>
 								</span>
 								<span class="c122">
-									<span class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,'0')</span>
 									<span class="gray">起</span>
 								</span>
 							</a>

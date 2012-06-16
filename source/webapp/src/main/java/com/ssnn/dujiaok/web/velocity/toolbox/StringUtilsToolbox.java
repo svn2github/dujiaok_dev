@@ -12,6 +12,8 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 
+import com.ssnn.dujiaok.util.ArrayStringUtils;
+
 /**
  * 
  * @author shenjia.caosj 2012-1-20
@@ -92,5 +94,10 @@ public class StringUtilsToolbox {
 		}
 		
 		return queryMap.entrySet();
+	}
+	
+	
+	public List<String> stringToList(String listString){
+		return ArrayStringUtils.toList(listString) ;
 	}
 }
