@@ -1,4 +1,4 @@
-﻿.detail .L{width:710px; overflow:hidden;}
+.detail .L{width:710px; overflow:hidden;}
 .detail .bigRoll{position:relative;}
 .detail .bigRoll,.detail .bigRoll .tabCnt{height:280px;}
 .detail .bigRoll .tabCnt img{width:710px;height:250px;overflow:hidden;}
@@ -37,7 +37,7 @@
 .detail .date .telTip{text-align:center;color:#666;}
 
 .detail .xgpt{margin:15px 0 5px 15px;}
-.detail .xgpt span{display:inline-block;margin:0 10px 10px 0; padding:0 7px; height:20px; line-height:20px; border:1px solid #DCDCDC; background:#F1F1F1; overflow:hidden;}
+.detail .xgpt span{display:inline-block;margin:0 5px 5px 0; padding:0 7px; height:20px; line-height:20px; border:1px solid #DCDCDC; background:#F1F1F1; overflow:hidden;}
 
 .detail .map{height:238px;}
 .detail .action{ height:30px; line-height:30px; border-top:1px solid #dcdcdc; text-align:center; background:#f0f0f0;}
