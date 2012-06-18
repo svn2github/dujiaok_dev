@@ -144,7 +144,7 @@
 			</div>
 		</div>
 		<div class="R">
-			<div class="box230 box710">
+			<div class="box230 box710 greenF">
 				#FRONT_EDIT_BUTTON($!ticketChannel.getmHotTextB2(), $isEdit)
 				<div class="ttl">
 					<h2>$!frontViewMap.get($!ticketChannel.getmHotTextB2()).config.moduleName</h2>
@@ -156,7 +156,7 @@
         						<li>
         							<a href="$!fv.link">
         								<span class="c121">
-        									<span class="green">·$!fv.title</span>
+        									<span class="c1211">·$!fv.title</span>
         									<span class="gray">$!fv.detail</span>
         								</span>
         								<span class="c122">
