@@ -398,7 +398,7 @@
 	
 	
 	<!-- 三楼开始 -->
-	<div class="mgt20 floor idx4 greenF">
+	<div class="mgt20 floor idx4 violetF">
 		<div class="ttl">
 			<h2 class="L"><em class="mgr10">3F</em><strong class="pink">$!frontViewMap.get($!indexChannel.getmFloor3AttractRecommend()).config.moduleName</strong></h2>
 			#FRONT_EDIT_BUTTON($!indexChannel.getmFloor3AttractRecommend(), $isEdit)
@@ -424,11 +424,11 @@
 						<li>
 							<a href="$!fv.link">
 								<span class="c121">
-									<span class="green">·$!fv.title</span>
+									<span class="c1211">·$!fv.title</span>
 									<span class="gray">$!fv.detail</span>
 								</span>
 								<span class="c122">
-									<span class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,"0")</span>
 									<span class="gray">起</span>
 								</span>
 							</a>
@@ -478,7 +478,7 @@
 	</div>
 	<!-- 三楼结束 -->
 	<!-- 四楼开始 -->
-	<div class="mgt20 floor idx4 greenF">
+	<div class="mgt20 floor idx4 resedaF">
 		<div class="ttl">
 			<h2 class="L"><em class="mgr10">4F</em><strong class="pink">$!frontViewMap.get($!indexChannel.getmFloor4AttractRecommend()).config.moduleName</strong></h2>
 			#FRONT_EDIT_BUTTON($!indexChannel.getmFloor4AttractRecommend(), $isEdit)
@@ -504,11 +504,11 @@
 						<li>
 							<a href="$!fv.link">
 								<span class="c121">
-									<span class="green">·$!fv.title</span>
+									<span class="c1211">·$!fv.title</span>
 									<span class="gray">$!fv.detail</span>
 								</span>
 								<span class="c122">
-									<span class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,"0")</span>
 									<span class="gray">起</span>
 								</span>
 							</a>
