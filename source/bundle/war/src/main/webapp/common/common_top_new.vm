@@ -20,7 +20,7 @@
     			<input type="text" id="schIpt" name="keyword" placeholder="我想去的地方" value="$!keyword"  class="gray"/><a href="javascript:void(0);" onclick="return _search();">ok</a>
             </form>
 		</div>
-		<div class="serviceTel">400 800 3456</div>
+		<div class="serviceTel">400-999-2788</div>
 	</div>
 	<div class="menu">
 		<!-- 热门目的地开始 -->
