@@ -43,6 +43,7 @@ function calculation(){
 	$("#dingdanP10").html(bxf);
 	$("#dingdanP11").html(js);
 	$("#dingdanP12").html(zj);
+	$("#baoxianzongjia").html(bxf) ;
 }
 
 function calcu(){
