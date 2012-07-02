@@ -8,10 +8,10 @@ var setupAreaSelects = function(provinceId , cityId , areaId){
 	var areaSelect = $(areaId) ;
 	var provinceSelect = $(provinceId) ;
 	$(provinceId).change(function(){
-		var thisSelect = this ;
+		
 		var url = urlRoot ;
-		var name = thisSelect.val() ;
-		var code = thisSelect.find('option:selected').attr("code") ;
+		var name = provinceSelect.val() ;
+		var code = provinceSelect.find('option:selected').attr("code") ;
 		citySelect.empty() ;
 		areaSelect.empty() ;
 		$.ajax({
