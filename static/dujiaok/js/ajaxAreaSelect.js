@@ -47,14 +47,13 @@ var setupAreaSelects = function(provinceId , cityId , areaId){
 	});
 	
 	//初始化省
-	if($(provinceId).length > 0){
-		var thisSelect = $(provinceId) ;
+	if(provinceSelect.length > 0){
 		$.ajax({
 			url: urlRoot ,
 			type : "POST" ,
 			data : { type: "province" },
 			success :function(data){
-				__addAddrSelect(provinceSelect , data.result) ;
+				__addAddrSelect(provinceSelect , data.result , provinceSelect.attr("data")) ;
 			} , 
 			error : function(data){
 				alert("获取数据失败");
@@ -69,13 +68,19 @@ var __newBlankOption = function() {
 	return opStr ;
 }
 
-var __newAddrOption = function(opname , opcode){
-	var opStr = "<option value='" + opname + "' code='" + opcode + "'>" + opname + "</option>" ;
+var __newAddrOption = function(opname , opcode , isSelected){
+	var opStr = "" ;
+	if(isSelected){
+		opStr = "<option value='" + opname + "' code='" + opcode + "' selected >" + opname + "</option>" ;
+	}else{
+		opStr = "<option value='" + opname + "' code='" + opcode + "'>" + opname + "</option>" ;
+	}
+	
 	return opStr ;
 	
 }
 
-var __addAddrSelect = function(thisSelect ,addrAjaxResult){
+var __addAddrSelect = function(thisSelect ,addrAjaxResult , selectedVal){
 	if(addrAjaxResult == null || addrAjaxResult.length == 0){
 		return ;
 	}
@@ -85,6 +90,11 @@ var __addAddrSelect = function(thisSelect ,addrAjaxResult){
 		var opname = addr.name ;
 		var opcode = addr.code ;
 		//var o = new Option(opname,opname) ;
-		thisSelect.append(__newAddrOption(opname , opcode)) ;
+		if(selectedVal == opname){
+			thisSelect.append(__newAddrOption(opname , opcode , true )) ;
+		}else{
+			thisSelect.append(__newAddrOption(opname , opcode )) ;
+		}
+		
 	}
 }
