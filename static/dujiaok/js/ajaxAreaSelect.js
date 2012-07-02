@@ -39,7 +39,7 @@ var setupAreaSelects = function(provinceId , cityId , areaId){
 	if($(provinceId).length > 0){
 		var thisSelect = $(provinceId) ;
 		$.ajax({
-			url: url ,
+			url: urlRoot ,
 			type : "POST" ,
 			data : { type: "province" , parentname : name , parentcode : code},
 			success :function(data){
