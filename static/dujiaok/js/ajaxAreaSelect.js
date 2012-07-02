@@ -1,5 +1,5 @@
 
-var setupAreaSelects(provinceId , cityId , areaId){
+var setupAreaSelects = function(provinceId , cityId , areaId){
 	provinceId = "#" + provinceId ;
 	cityId = "#" + cityId ;
 	areaId = "#" + areaId ;
