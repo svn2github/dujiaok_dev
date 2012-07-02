@@ -65,6 +65,9 @@ var __newAddrOption = function(opname , opcode){
 }
 
 var __addAddrSelect = function(thisSelect ,addrAjaxResult){
+	if(addrAjaxResult == null || addrAjaxResult.length == 0){
+		return ;
+	}
 	__newBlankOption() ;
 	for(var i=0 ;i<addrAjaxResult.length;i++){
 		var addr = addrAjaxResult[i] ;
