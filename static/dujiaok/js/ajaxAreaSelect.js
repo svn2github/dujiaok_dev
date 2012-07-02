@@ -41,7 +41,7 @@ var setupAreaSelects = function(provinceId , cityId , areaId){
 		$.ajax({
 			url: urlRoot ,
 			type : "POST" ,
-			data : { type: "province" , parentname : name , parentcode : code},
+			data : { type: "province" },
 			success :function(data){
 				__addAddrSelect(provinceSelect , data) ;
 			} , 
