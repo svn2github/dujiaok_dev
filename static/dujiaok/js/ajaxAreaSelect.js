@@ -35,6 +35,25 @@ var setupAreaSelects = function(provinceId , cityId , areaId){
 			data : { type: "area" , parentname : name , parentcode : code},
 			success :function(data){
 				__addAddrSelect(areaSelect , data.result) ;
+				
+				//初始化市
+				var name = provinceSelect.val() ;
+				var code = provinceSelect.find('option:selected').attr("code") ;
+				citySelect.empty() ;
+				areaSelect.empty() ;
+				$.ajax({
+					url: urlRoot ,
+					type : "POST" ,
+					data : { type: "city" , parentname : name , parentcode : code},
+					success :function(data){
+						__addAddrSelect(citySelect , data.result , citySelect.attr("data")) ;
+					} , 
+					error : function(data){
+						alert("获取数据失败");
+					}
+				});
+				
+				
 			} , 
 			error : function(data){
 				alert("获取数据失败");
@@ -60,22 +79,7 @@ var setupAreaSelects = function(provinceId , cityId , areaId){
 			}
 		});
 	}
-	
-	//初始化市
-	if(citySelect.length > 0 && provinceSelect.attr("data") != ""){
-		$.ajax({
-			url: urlRoot ,
-			type : "POST" ,
-			data : { type: "city" ,  parentname:citySelect.attr("data")},
-			success :function(data){
-				__addAddrSelect(citySelect , data.result , citySelect.attr("data")) ;
-			} , 
-			error : function(data){
-				alert("获取数据失败");
-			}
-		});
-	}
-	
+		
 }
 
 var __newBlankOption = function() {
