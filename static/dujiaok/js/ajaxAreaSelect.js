@@ -79,7 +79,7 @@ var __addAddrSelect = function(thisSelect ,addrAjaxResult){
 	if(addrAjaxResult == null || addrAjaxResult.length == 0){
 		return ;
 	}
-	__newBlankOption() ;
+	thisSelect.append(__newBlankOption()) ;
 	for(var i=0 ;i<addrAjaxResult.length;i++){
 		var addr = addrAjaxResult[i] ;
 		var opname = addr.name ;
