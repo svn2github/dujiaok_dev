@@ -19,7 +19,7 @@ var setupAreaSelects = function(provinceId , cityId , areaId){
 			type : "POST" ,
 			data : { type: "city" , parentname : name , parentcode : code},
 			success :function(data){
-				__addAddrSelect(citySelect , data) ;
+				__addAddrSelect(citySelect , data.result) ;
 			} , 
 			error : function(data){
 				alert("获取数据失败");
@@ -43,7 +43,7 @@ var setupAreaSelects = function(provinceId , cityId , areaId){
 			type : "POST" ,
 			data : { type: "province" },
 			success :function(data){
-				__addAddrSelect(provinceSelect , data) ;
+				__addAddrSelect(provinceSelect , data.result) ;
 			} , 
 			error : function(data){
 				alert("获取数据失败");
