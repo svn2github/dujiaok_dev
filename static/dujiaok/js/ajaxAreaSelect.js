@@ -65,6 +65,21 @@ var setupAreaSelects = function(provinceId , cityId , areaId){
 					data : { type: "city" , parentname : name , parentcode : code},
 					success :function(data){
 						__addAddrSelect(citySelect , data.result , citySelect.attr("data")) ;
+						//初始化区
+						var name = citySelect.val() ;
+						var code = citySelect.find('option:selected').attr("code") ;
+						areaSelect.empty() ;
+						$.ajax({
+							url: urlRoot ,
+							type : "POST" ,
+							data : { type: "area" , parentname : name , parentcode : code},
+							success :function(data){
+								__addAddrSelect(areaSelect , data.result , areaSelect.attr("data")) ;
+							} , 
+							error : function(data){
+								alert("获取数据失败");
+							}
+						});
 					} , 
 					error : function(data){
 						alert("获取数据失败");
