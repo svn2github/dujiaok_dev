@@ -8,14 +8,12 @@ var setupAreaSelects = function(provinceId , cityId , areaId){
 	var areaSelect = $(areaId) ;
 	var provinceSelect = $(provinceId) ;
 	$(provinceId).change(function(){
-		
-		var url = urlRoot ;
 		var name = provinceSelect.val() ;
 		var code = provinceSelect.find('option:selected').attr("code") ;
 		citySelect.empty() ;
 		areaSelect.empty() ;
 		$.ajax({
-			url: url ,
+			url: urlRoot ,
 			type : "POST" ,
 			data : { type: "city" , parentname : name , parentcode : code},
 			success :function(data){
@@ -28,7 +26,20 @@ var setupAreaSelects = function(provinceId , cityId , areaId){
 	}) ;
 	
 	$(cityId).change(function(){
-		
+		var name = citySelect.val() ;
+		var code = citySelect.find('option:selected').attr("code") ;
+		areaSelect.empty() ;
+		$.ajax({
+			url: urlRoot ,
+			type : "POST" ,
+			data : { type: "area" , parentname : name , parentcode : code},
+			success :function(data){
+				__addAddrSelect(areaSelect , data.result) ;
+			} , 
+			error : function(data){
+				alert("获取数据失败");
+			}
+		});
 	}) ;
 	
 	$(areaId).change(function(){
