@@ -1,104 +1,76 @@
 
-var $element = function(id){
-	return document.getElementById(id) ;
-}
-
-var addBlankOption = function(id){
-	var o = new Option('','') ;
-	document.getElementById(id).options.add( o , 0) ;	
-	//o.selected = true ;
-}
-
-/**
- *
- * @param param 
- * {id:id,url:url,type:type,parentName:parentName,name:name} 
- * @param result 
- * @returns
- */
-var __setupAddressSelect = function(param,result){
-		var select = document.getElementById(param.id) ;
-		select.options.length = 0  ;
-		for(var i=0 ;i<result.length;i++){
-			var p = result[i] ;
-			var o = new Option(p.name,p.name) ;
-    		select.options.add(o) ;
-		}
-		var options = select.options ;
-		addBlankOption(param.id) ;
-		options[0].selected = true ;
-		if(typeof(param.name)!='undefined' && param.name!=''){
-    	for(var i=0 ;i<options.length;i++){
-    		if(options[i].value == param.name){
-    			options[i].selected = true ;
-    			break ;
-    		}
-    	}
+var setupAreaSelects(provinceId , cityId , areaId){
+	provinceId = "#" + provinceId ;
+	cityId = "#" + cityId ;
+	areaId = "#" + areaId ;
+	var urlRoot = $("#urlRoot").val() + "/ajax/address.htm" ;
+	var citySelect = $(cityId);
+	var areaSelect = $(areaId) ;
+	var provinceSelect = $(provinceId) ;
+	$(provinceId).change(function(){
+		var thisSelect = this ;
+		var url = urlRoot ;
+		var name = thisSelect.val() ;
+		var code = thisSelect.find('option:selected').attr("code") ;
+		citySelect.empty() ;
+		areaSelect.empty() ;
+		$.ajax({
+			url: url ,
+			type : "POST" ,
+			data : { type: "city" , parentname : name , parentcode : code},
+			success :function(data){
+				__addAddrSelect(citySelect , data) ;
+			} , 
+			error : function(data){
+				alert("获取数据失败");
+			}
+		});
+	}) ;
+	
+	$(cityId).change(function(){
+		
+	}) ;
+	
+	$(areaId).change(function(){
+		
+	});
+	
+	//初始化省
+	if($(provinceId).length > 0){
+		var thisSelect = $(provinceId) ;
+		$.ajax({
+			url: url ,
+			type : "POST" ,
+			data : { type: "province" , parentname : name , parentcode : code},
+			success :function(data){
+				__addAddrSelect(provinceSelect , data) ;
+			} , 
+			error : function(data){
+				alert("获取数据失败");
+			}
+		});
 	}
 	
 }
 
-/**
- * 
- * {id:id,url:url,type:type,parentName:parentName,name:name} 
- */
-var setupAddressSelect = function(p){
-	var select = document.getElementById(p.id) ;
-	select.options.length = 0  ;
-	var id = p.id;
-	var url = p.url ;
-	var type = p.type ;
-	var parentName = p.parentName ;
-	var name = p.name ;
-	var params = 'type='+type+'&name='+encodeURI(parentName)+'&t='+new Date() ;
-	var request = url + '?' + params ;
-	if(type!='province' && parentName==''){
-		return ;
-	}
-	$.ajax({
-		url: url ,
-		type : "POST" ,
-		data : { type: type , name:parentName},
-		success : function(data){
-			try{
-				
-				//var result = eval('('+data+')') ;
-				__setupAddressSelect(p,data.result) ;
-			}catch(e){
-				alert('exception :' + e.message) ;
-			}
-		} ,
-		error : function(data){
-			alert("get data error!") ;
-		}
-	});
+var __newBlankOption = function() {
+	var opStr = "<option></option>" ;
+	return opStr ;
 }
 
-/**
- * 
- * @param url ${env.root}
- * @param id documentId
- * @param type 'province' | 'city' | 'area'
- * @param name
- * @param parentName
- * @returns
- */
-var initAddressSelect = function(url,id,type,name,parentName){
-	var p = {id:id,url:url,type:type,parentName:parentName,name:name} ;
-	setupAddressSelect(p) ;
+var __newAddrOption = function(opname , opcode){
+	var opStr = "<option value='" + opname + "' code='" + opcode + "'>" + opname + "</option>" ;
+	return opStr ;
+	
 }
 
-var setupSelect = function(id,selectValue){
-	if(typeof(selectValue)=='undefined'){
-		return ;
-	}
-	var select = document.getElementById(id) ;
-	var options = select.options ;
-	for(var i=0 ;i<options.length;i++){
-		if(options[i].value == selectValue){
-			options[i].selected = true ;
-			break ;
-		}
-		
+var __addAddrSelect = function(thisSelect ,addrAjaxResult){
+	__newBlankOption() ;
+	for(var i=0 ;i<addrAjaxResult.length;i++){
+		var addr = addrAjaxResult[i] ;
+		var opname = addr.name ;
+		var opcode = addr.code ;
+		//var o = new Option(opname,opname) ;
+		thisSelect.append(__newAddrOption(opname , opcode)) ;
 	}
 }

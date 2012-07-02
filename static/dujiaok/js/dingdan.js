@@ -143,13 +143,13 @@ $("#orderForm :submit").click(function(e){
 				}
 			}
 			if(sel.val()=="身份证"){
-				if(ipt.eq(2).val()==""){
-					hasErr ++ ;
-					ipt.eq(2).next().html("身份证号码不能为空！");
-				}
-				else{
-					ipt.eq(2).next().html("");
-				}
+//				if(ipt.eq(2).val()==""){
+//					hasErr ++ ;
+//					ipt.eq(2).next().html("身份证号码不能为空！");
+//				}
+//				else{
+//					ipt.eq(2).next().html("");
+//				}
 				if(ipt.eq(2).val()!=""){
 					if(ipt.eq(2).val().length!=15&&ipt.eq(2).val().length!=18){
 						hasErr ++ ;
