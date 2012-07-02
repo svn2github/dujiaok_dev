@@ -1,19 +1,18 @@
 package com.ssnn.dujiaok.util.order;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 import com.ssnn.dujiaok.model.AbstractProduct;
 import com.ssnn.dujiaok.model.DetailItemDO;
 import com.ssnn.dujiaok.model.OrderDO;
-import com.ssnn.dujiaok.util.DateUtil;
 import com.ssnn.dujiaok.util.DateUtils;
-import com.ssnn.dujiaok.util.ProductUtils;
 import com.ssnn.dujiaok.util.enums.OrderStatusEnums;
 import com.ssnn.dujiaok.util.enums.PayStatusEnums;
 
@@ -76,21 +75,32 @@ public final class OrderUtils {
 		return temp;
 	}
 	
-	public static List<String> getCantCheckInDate(List<DetailItemDO> itemDOs, Date checkinDate, Date checkoutDate) {
-		checkinDate = DateUtils.setTime(checkinDate, 0, 0, 0);
-		checkoutDate = DateUtils.setTime(checkoutDate, 0, 0, 0);
-		List<Date> dateList1 = new ArrayList<Date>();
-		DateUtil.fillDays(dateList1, checkinDate, checkoutDate);
-		List<Date> dateList2 = new ArrayList<Date>();
-		for (DetailItemDO itemDO : itemDOs) {
-			dateList2.add(itemDO.getDate());
+	public static List<DetailItemDO> getCanCheckInDate(List<DetailItemDO> itemDOs, Date checkinDate, Date checkoutDate) {
+		
+//		checkinDate = DateUtils.setTime(checkinDate, 0, 0, 0);
+//		checkoutDate = DateUtils.setTime(checkoutDate, 0, 0, 0);
+		Collections.sort(itemDOs) ;
+		boolean start = false ;
+		List<DetailItemDO> list = new ArrayList<DetailItemDO>() ;
+		//找出Start
+		for(int i=0 ;i<itemDOs.size();i++){
+			DetailItemDO d = itemDOs.get(i) ;
+			Date date = d.getDate() ;
+			
+			if(!start){
+				if(org.apache.commons.lang.time.DateUtils.isSameDay(date,checkinDate)){
+					start = true ;
+					list.add(d) ;
+				}
+			}else{
+				if(org.apache.commons.lang.time.DateUtils.isSameDay(date,checkoutDate)){
+					list.add(d) ;
+					break ;
+				}
+				list.add(d) ;
+			}
 		}
-		List<Date> missDates = DateUtil.minus(dateList1, dateList2);
-		List<String> result = new ArrayList<String>();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		for (Date date: missDates) {
-			result.add(dateFormat.format(date));
-		}
-		return result;
+		
+		return list ;
 	}
 }

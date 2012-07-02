@@ -10,7 +10,7 @@
     					<i>$velocityCount</i>
     					<a href="$!fv.link">
     						<span class="sp1">$!fv.title</span>
-    						<span class="pink">￥1$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+    						<span class="pink">￥1$!decimalUtils.format($!fv.presentPrice,"0")</span>
     						<span class="gray">起</span>
     					</a>
     				</li>
@@ -19,7 +19,7 @@
     					<i>$velocityCount</i>
     					<a href="$!fv.link">
     						<span class="sp1">$!fv.title</span>
-    						<span class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+    						<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,"0")</span>
     						<span class="gray">起</span>
     					</a>
     				</li>

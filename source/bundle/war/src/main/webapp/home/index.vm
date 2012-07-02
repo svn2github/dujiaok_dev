@@ -83,14 +83,9 @@
 						<tr><th>星级</th><td class="select">
 								<select id="starRate" name="s_starRate">
 									<option value="">不限</option>
-                                    <option value="1">连锁商务酒店</option>
-                                    <option value="2">经济商务</option>
-                                    <option value="3">三星级</option>
-                                    <option value="4">准三星级</option>
-                                    <option value="5">四星级</option>
-                                    <option value="6">准四星级</option>
-                                    <option value="7">五星级</option>
-                                    <option value="8">准五星级</option>
+									#foreach($e in $enumUtils.startRates())
+                                    <option value="$e.value">$e.desc</option>
+									#end
                                 </select>
 						</td></tr>
 						<tr><th></th><td><button>搜索</button></td></tr>

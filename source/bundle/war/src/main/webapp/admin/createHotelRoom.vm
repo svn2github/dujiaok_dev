@@ -260,7 +260,7 @@
 	
 	var addImage = function(){
 		var i = lastImagesIndex  ;
-		if($('.upImage').length > 3){
+		if($('.upImage').length > 2){
 			return ;
 		}
 		var divElement = document.createElement('div') ;

@@ -8,6 +8,7 @@
 <form id="createSelfDriveForm" name="createSelfDriveForm" method="POST" action="${env.root}/admin/docreateSelfDrive.htm" onsubmit="return validateForm(this);">
     <input name="id"  type="hidden" value="$!id" />
     <input name="productId"  type="hidden" value="$!productId" />
+	<input type="hidden" id="urlRoot" value="${env.root}" />
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
             <td height="10"></td>
@@ -99,9 +100,9 @@
         <tr>
             <td align="right">目的地：</td>
             <td>
-                <select id='destProvince'  name='destProvince' onchange="selectProvince();"></select>
-                <select id='destCity' name='destCity' onchange="selectCity();"></select>
-                <select id='destArea' name='destArea' ></select>
+                <select id='destProvince'  name='destProvince' data="$!selfDrive.destProvince"></select>
+                <select id='destCity' name='destCity' data="$!selfDrive.destCity"></select>
+                <select id='destArea' name='destArea' data="$!selfDrive.destArea"></select>
                 <input type="text" id='destAddr'  name='destAddr' value="$!selfDrive.destAddr" class="input_b"/>
             </td>
         </tr>
@@ -167,7 +168,7 @@
     </table>
 </form>
 #XUI_JS(["core/xui-core.js","util/util-min.js","simple-date/xui-simple-datepicker.js"])
-#JS(["jquery-1.6.2.min.js","common.js","validator.js","admin.js"]) 
+#JS(["jquery-1.6.2.min.js","common.js","validator.js","admin.js","ajaxAreaSelect.js"]) 
 #KISSY_EDITOR_JS()
 <script type="text/javascript">
 	var validateForm = function(form){
@@ -234,7 +235,7 @@
 	
 	var addImage = function(){
 		var i = lastImagesIndex  ;
-		if($('.upImage').length > 3){
+		if($('.upImage').length > 2){
 			return ;
 		}
 		var divElement = document.createElement('div') ;
@@ -248,24 +249,7 @@
 		lastImagesIndex ++ ;
 	}
 	
-	var selectProvince = function (){
-		var select = $element('destProvince') ;
-		var name = select.options[select.selectedIndex].value ;
-		initAddressSelect(url,'destCity','city','',name) ;
-		$element('destArea').options.length = 0 ;
-	}
 	
-	var selectCity = function(){
-		var select = $element('destCity') ;
-		var name = select.options[select.selectedIndex].value ;
-		initAddressSelect(url,'destArea','area','',name) ;
-	}
-	
-	//省市地区
-	var province = '$!selfDrive.destProvince' ;
-	var city = '$!selfDrive.destCity' ;
-	var area = '$!selfDrive.destArea' ;
-	var url = '${env.root}/ajax/address.htm' ;	
 	var recommend = '$!selfDrive.recommend' ;
 	
 	///初始化
@@ -277,9 +261,6 @@
 	}
 	
 	setupSelect('recommend',recommend) ;
-	initAddressSelect(url,'destProvince','province',province) ;
-	initAddressSelect(url,'destCity','city',city,province) ;
-	initAddressSelect(url,'destArea','area',area,city) ;
 	
 	//load edtor
 	KISSY.ready(function(S) {
@@ -289,4 +270,6 @@
 			window.editor = loadediter("#feeDesc") ;
         });
     });
+	
+	setupAreaSelects("destProvince" , "destCity" , "destArea");
 </script>

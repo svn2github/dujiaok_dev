@@ -22,7 +22,7 @@
     				<td>$!product.productId</td>
     				<td>$!product.name</td>
 					<td>
-						￥<span id="price" style="color: red;">$!detail.price</span>(市场价：<span style="text-decoration: line-through;">￥<span id="marketPrice">$!product.marketPrice</span></span>)
+						￥<span id="price" style="color: red;">$!canCheckin.totalUniPrice</span>(市场价：<span style="text-decoration: line-through;">￥<span id="marketPrice">$!product.marketPrice</span></span>)
 					</td>
     				<td class="F10">$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd') 至 $dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')</td>
     				<td class="F10">
@@ -31,11 +31,16 @@
     			</tr>
     			</tbody>
     		</table>
-			#if ($!cantCheckinDate)
-				<ul>
-					<li style="color:red;">重要信息：本产品在$!cantCheckinDate&nbsp;没有可以入住的房间。</li>
-			    </ul>
-			#end
+			
+			<table class="mgt10 product" style="width:200px;">
+    			<thead><tr><td>入住日期</td><td>价格</td></tr></thead>
+    			<tbody>
+    			#foreach ($checkin in $canCheckin.canCheckinList)
+    				<tr><td align="center">$dateUtils.format($checkin.date,"yyyy-MM-dd")</td><td align="center">$checkin.detail.price</td></tr>
+    			#end
+    			</tbody>
+    		</table>
+			
 			
 			<h2 class="banner mgt20"><strong>入住信息</strong> </h2>
 			

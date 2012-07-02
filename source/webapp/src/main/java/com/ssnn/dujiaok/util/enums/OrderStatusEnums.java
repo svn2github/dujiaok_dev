@@ -36,12 +36,12 @@ public enum OrderStatusEnums {
 	/**
 	 * 退款中
 	 */
-	DRAWBACKING("DRAWBACKING" , "退款中") ,
+	DRAWBACKING("DRAWBACKING" , "退款中，订单关闭") ,
 	
 	/**
 	 * 退款
 	 */
-	DRAWBACK("DRAWBACK" ,"已退款") , 
+	DRAWBACK("DRAWBACK" ,"已退款，订单关闭") , 
 	;
 	
 	

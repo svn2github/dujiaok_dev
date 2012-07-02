@@ -24,7 +24,7 @@ public class CashPayOrderAction extends BasicAction {
 			return SUCCESS ;
 		}
 		
-		orderService.updateOrderStatus(OrderStatusEnums.SUCCESS.getName()	, null , orderId) ;
+		orderService.updateOrderStatus(OrderStatusEnums.CONFIRM.getName()	, null , orderId) ;
 		
 		return SUCCESS ;
 	}

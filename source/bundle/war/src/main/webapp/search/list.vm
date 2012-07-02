@@ -117,7 +117,7 @@
     						<a href="${env.root}/product/detail.htm?productId=$!item.productId"><img src="$!item.firstImage" alt="" class="pad3"  onerror="this.src='${env.staticroot}/images/no_img.jpg'"/></a>
     						<span class="txt">
 								
-    							<a href="${env.root}/product/detail.htm?productId=$!item.productId" target="_blank"><strong class="t1">【$!item.typeName】#HIGHRIGHT_OUTPUT($!item.name)</strong></a>
+    							<a href="${env.root}/product/detail.htm?productId=$!item.productId" target="_blank" title="$!item.name"><strong class="t1">【$!item.typeName】#HIGHRIGHT_OUTPUT($!item.name)</strong></a>
     							<span class="t2">区域：$!item.destProvince$!item.destCity$!item.destArea</span>
     							<span class="t2">地址：$!item.destAddr</span>
     						</span>

@@ -97,9 +97,9 @@ public class OrderServiceImpl implements OrderService {
 	public int updateAlipayStatus(String orderId, String alipayId, String alipayStatus) {
 		PayStatusEnums payStatus = AlipayStatusEnums.toPayStatus(alipayStatus) ;
 		if(payStatus == PayStatusEnums.PAID){
-			return orderDAO.updateAlipayStatus(orderId, alipayId, payStatus.getName() , OrderStatusEnums.SUCCESS.getName());
-		}else{
 			return orderDAO.updateAlipayStatus(orderId, alipayId, payStatus.getName() , OrderStatusEnums.CONFIRM.getName());
+		}else{
+			return orderDAO.updateAlipayStatus(orderId, alipayId, payStatus.getName() , OrderStatusEnums.UNPAID.getName());
 		}
     }
 }

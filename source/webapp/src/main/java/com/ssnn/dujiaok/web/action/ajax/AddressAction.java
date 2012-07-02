@@ -17,9 +17,9 @@ public class AddressAction extends BasicAction {
 
 	private List result;
 
-	private String code;
+	private String parentcode;
 
-	private String name;
+	private String parentname ;
 	
 	/**
 	 * province city area
@@ -39,12 +39,14 @@ public class AddressAction extends BasicAction {
 		return result;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	
+
+	public void setParentcode(String parentcode) {
+		this.parentcode = parentcode;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setParentname(String parentname) {
+		this.parentname = parentname;
 	}
 
 	public void setType(String type) {
@@ -55,29 +57,28 @@ public class AddressAction extends BasicAction {
 	public String execute() throws Exception {
 		
 		HttpServletRequest request = getRequest() ;
-		String n = request.getParameter("name") ;
-		
-		if (!StringUtils.equals(type, "province") && (StringUtils.isBlank(code)&&StringUtils.isBlank(name))) {
+				
+		if (!StringUtils.equals(type, "province") && (StringUtils.isBlank(parentcode)&&StringUtils.isBlank(parentname))) {
 			return SUCCESS;
 		}
 		if(StringUtils.equals("province", type)){
 			result = buildResult(addressDAO.queryProvinces()) ;
 		}else if(StringUtils.equals("city", type)){
-			if(StringUtils.isNotBlank(name)){
-				ProvinceDO province = addressDAO.queryProvinceByName(name) ;
+			if(StringUtils.isBlank(parentcode)){
+				ProvinceDO province = addressDAO.queryProvinceByName(parentname) ;
 				if(province != null){
-					code = province.getCode() ;
+					parentcode = province.getCode() ;
 				}
 			}
-			result = buildResult(addressDAO.queryCitys(code)) ;
+			result = buildResult(addressDAO.queryCitys(parentcode)) ;
 		}else if(StringUtils.equals("area", type)){
-			if(StringUtils.isNotBlank(name)){
-				CityDO city = addressDAO.queryCityByName(name) ;
+			if(StringUtils.isBlank(parentcode)){
+				CityDO city = addressDAO.queryCityByName(parentname) ;
 				if(city != null){
-					code = city.getCode() ;
+					parentcode = city.getCode() ;
 				}
 			}
-			result = buildResult(addressDAO.queryAreas(code)) ;
+			result = buildResult(addressDAO.queryAreas(parentcode)) ;
 		}
 		return SUCCESS;
 	}

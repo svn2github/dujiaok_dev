@@ -10,6 +10,7 @@ import com.ssnn.dujiaok.util.enums.OrderStatusEnums;
 import com.ssnn.dujiaok.util.enums.PayStatusEnums;
 import com.ssnn.dujiaok.util.enums.PayTypeEnums;
 import com.ssnn.dujiaok.util.enums.ProductEnums;
+import com.ssnn.dujiaok.util.enums.StarRateEnums;
 
 public class EnumUtilsToolbox {
 
@@ -77,5 +78,13 @@ public class EnumUtilsToolbox {
 			desc = StringUtils.removeEnd(desc, ",") ;
 		}
 		return desc ;
+	}
+	
+	public StarRateEnums toStarRate(int value){
+		return StarRateEnums.fromValue(value) ;
+	}
+	
+	public StarRateEnums[] startRates(){
+		return StarRateEnums.values() ;
 	}
 }

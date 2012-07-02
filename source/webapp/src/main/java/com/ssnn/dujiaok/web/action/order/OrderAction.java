@@ -19,10 +19,12 @@ import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.biz.service.product.ProductDetailService;
 import com.ssnn.dujiaok.constant.ProductConstant;
 import com.ssnn.dujiaok.model.AbstractProduct;
+import com.ssnn.dujiaok.model.DetailItemDO;
 import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.model.OrderContactDO;
 import com.ssnn.dujiaok.model.OrderDO;
 import com.ssnn.dujiaok.model.ProductDetailDO;
+import com.ssnn.dujiaok.model.RoomCheckinDO;
 import com.ssnn.dujiaok.model.SelfDriveDO;
 import com.ssnn.dujiaok.util.enums.ProductEnums;
 import com.ssnn.dujiaok.util.order.OrderUtils;
@@ -53,9 +55,7 @@ public class OrderAction extends BasicAction  {
 	private String roomPrice;
 	
 	private String markeyRoomPrice;
-	
-	private String cantCheckinDate;
-	
+		
 	private OrderDO orderDO = new OrderDO();
 	
 	private AbstractProduct product ;
@@ -68,6 +68,8 @@ public class OrderAction extends BasicAction  {
 	
 	//当前的detail
 	private ProductDetailDO detail ;
+	
+	private RoomCheckinDO canCheckin ;
 	
 	public String book(){
 		AbstractProduct product = null ;
@@ -85,20 +87,16 @@ public class OrderAction extends BasicAction  {
 			return NOT_EXISTS ;
 		}
 		
-		String[] dateAndDetailArr = StringUtils.split(dateAndDetail,":") ;
-		if(dateAndDetailArr == null || dateAndDetailArr.length != 2){
+		Object[] idAndDate = parseIdAndDate(dateAndDetail) ;
+		if(idAndDate == null){
 			return NOT_EXISTS ;
 		}
-		String detailId = dateAndDetailArr[0] ;
-		Date gmtOrderStart = null ;
 		
-		DateFormat df = new SimpleDateFormat(DATEFORMAT) ;
-		try {
-			gmtOrderStart = df.parse(dateAndDetailArr[1]) ;
-		} catch (ParseException e) {
-			log.error(e.getMessage() , e) ;
-		}
 		
+		
+		String detailId = (String)idAndDate[0] ;
+		Date gmtOrderStart = (Date)idAndDate[1] ;
+				
 		this.detail = productDetailService.getProductDetail(productId , detailId);
 		
 		if(detail == null){
@@ -115,13 +113,11 @@ public class OrderAction extends BasicAction  {
 			Date gmtOrderEnd = org.apache.commons.lang.time.DateUtils.addDays(gmtOrderStart, s.getDays()) ;
 			orderDO.setGmtOrderEnd(gmtOrderEnd) ;
 		}
-		if(endDate != null){
-			try {
-				Date gmtOrderEnd = df.parse(endDate) ;
-				orderDO.setGmtOrderEnd(gmtOrderEnd) ;
-			} catch (ParseException e) {
-				log.error(e.getMessage() , e) ;
-			}
+		if(StringUtils.isNotBlank(endDate)){
+			Object[] endIdAndDate = parseIdAndDate(endDate) ;
+			Date gmtOrderEnd = (Date)endIdAndDate[1] ;
+			orderDO.setGmtOrderEnd(gmtOrderEnd) ;
+			
 		}
 		
 		//计算价格
@@ -145,9 +141,8 @@ public class OrderAction extends BasicAction  {
 					orderDO.getGmtOrderStart(), orderDO.getGmtOrderEnd());
 			this.roomPrice = roomPrices[0].toString();
 			this.markeyRoomPrice = roomPrices[1].toString();
-			List<String> temps = OrderUtils.getCantCheckInDate(product.getDefaultDetailItems(),
-					orderDO.getGmtOrderStart(), orderDO.getGmtOrderEnd());
-			this.cantCheckinDate = buildCantCheckinInfo(temps);
+			this.canCheckin = new RoomCheckinDO(OrderUtils.getCanCheckInDate(product.getDefaultDetailItems(),orderDO.getGmtOrderStart(), orderDO.getGmtOrderEnd()));
+			
 		}
 		if(type == ProductEnums.SELFDRIVE){
 			return ProductConstant.SELF_DRIVE ;
@@ -159,11 +154,40 @@ public class OrderAction extends BasicAction  {
 		return NOT_EXISTS ;
 	}
 	
+	/**
+	 * 解析DetailId和Date
+	 * @param str
+	 * @return
+	 */
+	private Object[] parseIdAndDate(String str){
+		String[] dateAndDetailArr = StringUtils.split(str,":") ;
+		if(dateAndDetailArr == null || dateAndDetailArr.length != 2){
+			return null ;
+		}
+		String detailId = dateAndDetailArr[0] ;
+		Date start = null ;
+		
+		DateFormat df = new SimpleDateFormat(DATEFORMAT) ;
+		try {
+			start = df.parse(dateAndDetailArr[1]) ;
+		} catch (ParseException e) {
+			log.error(e.getMessage() , e) ;
+		}
+		if(start == null){
+			return null ;
+		}
+		
+		Object[] result = new Object[2] ;
+		result[0] = detailId ;
+		result[1] = start ;
+		return result ;
+	}
 	
 	public String getProductType() {
 		return productType;
 	}
 
+	
 
 	private String buildCantCheckinInfo(List<String> cantCheckinDate) {
 		if (cantCheckinDate == null || cantCheckinDate.size() == 0) {
@@ -280,13 +304,10 @@ public class OrderAction extends BasicAction  {
 		this.markeyRoomPrice = markeyRoomPrice;
 	}
 
-
-	public String getCantCheckinDate() {
-		return cantCheckinDate;
+	public RoomCheckinDO getCanCheckin() {
+		return canCheckin;
 	}
 
+	
 
-	public void setCantCheckinDate(String cantCheckinDate) {
-		this.cantCheckinDate = cantCheckinDate;
-	}
 }

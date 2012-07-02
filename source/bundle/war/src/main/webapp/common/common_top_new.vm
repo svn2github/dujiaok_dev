@@ -2,7 +2,7 @@
 	<div class="w950">
 		#if(${env.member})
 		<span>欢迎您：$!env.member.nickname</span>　
-		<a href="${env.root}/member/orderlist.htm" id="myOrder">我的订单<div class="pop" id="orderPop"></div></a>　
+		<a href="${env.root}/member/orderlist.htm" id="myOrder">我的订单</a>　
 		<a href="${env.root}/member/modify.htm">修改资料</a>　
 		<a href="${env.root}/member/logout.htm">退出</a> | 
 		<a href="#">帮助</a>

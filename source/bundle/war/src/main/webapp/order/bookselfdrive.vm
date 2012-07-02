@@ -1,6 +1,12 @@
 #set($layout="/front/default_new.vm")
 #CSS(["dingdan.css"])
 
+<style>
+	.dingdan a {
+		color:#0066CC;
+		text-decoration:underline;
+	}
+</style>
 
 <form id="orderForm" method="post" action="${env.root}/order/makeorder.htm" >
     
@@ -16,7 +22,7 @@
     
     		<h2 class="banner mgt20"><strong>订购产品</strong></h2>
     		<table class="mgt10 product">
-    			<thead><tr><td>编号</td><td>路线</td><td>使用日期</td></tr></thead>
+    			<thead><tr><td>编号</td><td>路线</td><td>订单信息</td></tr></thead>
     			<tbody>
 					<tr>
         				<td>$!product.productId</td>
@@ -38,27 +44,31 @@
     		</table>
     		<h2 class="banner mgt20"><strong>附加产品</strong> </h2>
 			
-			<table class="mgt10">
+			<table class="mgt10 product">
+				<thead>
         		<tr>
-            		<th width="160">使用日期</th>
-                	<th width="120">名称</th>
-					<th width="120">原售价</th>
-                    <th width="120">现售价</th>
-                    <th>数量</th>
+            		<td width="160">使用日期</td>
+                	<td width="140">名称</td>
+					<td width="80">原单价</td>
+                    <td width="80">保险单价</td>
+					<td width="60">天数</td>
+                    <td width="60">份数</td>
+					<td width="60">共计</td>
         		</tr>
+                </thead>
         		<tr>
             		<td>$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd') 至 $dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')</td>
-                    <td>平安意外险</td>
+                    <td align="center"><a href="#" >旅游意外险 </a></td>
 					#set($totalCount = $orderDO.count)
-                    <td><span id="dingdanP4">20元</span>/人天</td>
-                    <td>￥<span style="color:red" id="dingdanP5">$env.getProp("doucome.config.insurancePrice")</span> /人天 x <span id="orderDays">$product.days</span> 天</td>
-                    <td><input type="text" name="insureNum" id="dingdanP6" maxlength="3" class="wpx34" value="$!orderDO.count" style="width:40px;border:none;text-align:center;"  readonly="readonly"/></td>
+                    <td align="center"><span id="dingdanP4">20</span>元/人/天</td>
+                    <td align="center"><span style="color:red" id="dingdanP5">$env.getProp("doucome.config.insurancePrice")</span> 元/天/人</td>
+					<td align="center"><span id="orderDays">$product.days</span>天</td>
+                    <td align="center"><input type="text" name="insureNum" id="dingdanP6" maxlength="3" class="wpx34" value="$!orderDO.count" style="width:40px;border:none;text-align:center;"  readonly="readonly"/></td>
+                    <td align="center"><span id="baoxianzongjia"></span>元</td>
         		</tr>
-				<tr>
-					<td colspan="4"><p class="mgt10 pink">备注：购买儿童票不含保险</p></td>
-				</tr>
+				
             </table>
-			
+            <span style="color:red;">*备注：购买儿童票不含保险</span>
 			<h2 class="banner mgt20"><strong>游玩人信息</strong> </h2>
 			
 			<input type="hidden" name="contacts[0].isMain" value="T" />

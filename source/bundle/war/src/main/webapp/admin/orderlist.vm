@@ -102,7 +102,7 @@
                 			#end
                         </select>
 						
-						<select id="detail_$!item.orderId" style="#if($!item.status != "CLOSED") display:none; #end">
+						<select id="detail_$!item.orderId" style='#if($item.status != "CLOSED" && $item.status != "DRAWBACKING" && $item.status != "DRAWBACK") display:none; #end'>
 							<option value=""></option>
                 			<option value="用户关闭" #if($!item.statusDetail == "用户关闭") selected #end >用户关闭</option>
 							<option value="超时未付款" #if($!item.statusDetail == "超时未付款") selected #end >超时未付款</option>
@@ -156,7 +156,7 @@
 	var _orderstatusChange = function(orderId){
 		var statusSelect = $element('status_' + orderId);
 		var detailSelect = $element('detail_' + orderId) ;
-		if(statusSelect.value == 'CLOSED'){
+		if(statusSelect.value == 'CLOSED' || statusSelect.value == 'DRAWBACK' || statusSelect.value == 'DRAWBACKING'){
 			detailSelect.style.display = 'inline-block' ;
 		}else{
 			detailSelect.style.display = 'none' ;
@@ -174,7 +174,7 @@
 		var status = statusSelect.options[statusSelect.selectedIndex].value ;
 		var statusMask = statusSelect.options[statusSelect.selectedIndex].innerHTML ;
 		var detail = '' ;
-		if(status == 'CLOSED'){
+		if(status == 'CLOSED' || status == 'DRAWBACK' || status == 'DRAWBACKING'){
 			detail = detailSelect.options[detailSelect.selectedIndex].value ;
 		}
 		var url = '${env.root}/ajax/modifyOrderStatus.htm?orderId=' + orderId + '&status=' + status + '&statusDetail=' + encodeURI(detail) ;

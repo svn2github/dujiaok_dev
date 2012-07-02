@@ -84,11 +84,11 @@
                 </div>
 				<table>
 					<tbody>
-    					<tr><th>酒店名称：</th><td><a href="${env.root}/product/detail.htm?productId=$!product.hotelId" target="hotel">$!hotelName</a></td></tr>
-                        <tr><th>市场价：</th><td><span class="through">$!product.marketPrice</span> 元</td></tr>
-    					<tr><th>商品编号：</th><td>$!product.productId</td></tr>
-    					<tr><th>支付方式：</th><td>$enumUtils.toPayTypeEnumDescs($!product.payTypes)</td></tr>
-    					<tr><th>面积：</th><td><span>$!product.roomArea</span>平米  <span>$!product.bed</span></td></tr>
+    					<tr><th>酒店名称:</th><td><a href="${env.root}/product/detail.htm?productId=$!product.hotelId" target="hotel">$!hotelName</a></td></tr>
+                        <tr><th>市场价:</th><td><span class="through">$!product.marketPrice</span> 元</td></tr>
+    					<tr><th>商品编号:</th><td>$!product.productId</td></tr>
+    					<tr><th>支付方式:</th><td>$enumUtils.toPayTypeEnumDescs($!product.payTypes)</td></tr>
+    					<tr><th>面积:</th><td><span>$!product.roomArea</span>平米  <span>$!product.bed</span></td></tr>
 					</tbody>
 				</table>
 			</div>
@@ -99,31 +99,16 @@
 				<dl>
 				  <dt>入住日期：</dt>
 				  <dd>
-						<select name="dateAndDetail" id="checkinDateOpt" onchange="changeCheckinDate(this)">
-    						 #set($size=$!product.defaultDetailItems.size())
-               	    	 	 #foreach($dt in $!product.defaultDetailItems )
-    							#set($index = $velocityCount)
-    							#if($index != $size)
-    							<option value="$dt.detailId:$dateUtils.format($dt.date, 'yyyy-MM-dd')" #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd')</option>
-    							#end
-    						 #end
-              	         </select>
+						<select name="dateAndDetail" id="checkinDateOpt"></select>
 				  </dd>
 				</dl>
 				<dl>
 					<dt>离店日期：</dt>
                     <dd>
-						<select name="endDate" id="checkoutDateOpt" onchange="changeCheckoutDate(this)">
-               	    	 	 #foreach($dt in $!product.defaultDetailItems )
-								#set($index = $velocityCount)
-								#if ($index != 1)
-								<option value="$dateUtils.format($dt.date, 'yyyy-MM-dd')" #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd') </option>
-								#end
-							 #end
-              	        </select>
+						<select name="endDate" id="checkoutDateOpt"></select>
 					</dd>
                 </dl>
-				<table class="tb1"><tbody><tr><th><span id="price">$!product.bottomPrice</span><p>价格</p></th></tr></tbody></table>
+				<div style="margin:5px;"><b>价格：</b><span id='price'></span>元</div>
                 <table class="tb2"><tbody><tr><th>预定间数：<input type="text" name="count" id="roomCount" value="1"></th></tr></tbody></table>
 			  <button class="order">立即订购</button>
 				<p class="telTip">拨打电话预定 400-999-2788</p>
@@ -162,38 +147,75 @@
 
     var details = [
 	  #foreach($d in $detailItems) 
-	  	{id: "$!d.detail.id",
+	  	{
+			id: "$!d.detail.id",
 	  	 	price: "$!d.detail.price",
+			date : "$dateUtils.format($d.date, 'yyyy-MM-dd')"
 	  	},	
   	  #end
 	];
 	
-	var changeCheckinDate = function(select){
-	    setPrice(select.selectedIndex);
-	    
-	    var checkinObj = document.getElementById('checkinDateOpt');
-	    var checkoutObj = document.getElementById('checkoutDateOpt');
-	    
-	    var lastDateOpt = checkoutObj.options[checkoutObj.length - 1];
-	    checkoutObj.innerHTML = "";
-	    for (var i = checkinObj.selectedIndex; i + 1 < checkinObj.length; i++) {
-	        var option = document.createElement("option");
-	        option.text = checkinObj[i + 1].text;
-	        option.value = checkinObj[i + 1].text;
-	        checkoutObj.add(option);
-	    }
-	    checkoutObj.add(lastDateOpt);
+	var _calcPrice = function(){
+		var inIndex = $("#checkinDateOpt").find('option:selected').attr("data-index") ;
+		var outIndex = $("#checkoutDateOpt").find('option:selected').attr("data-index") ;
+		inIndex = parseInt(inIndex) ;
+		outIndex = parseInt(outIndex) ;
+		var totalPrice = 0.00 ;
+		
+		for(var i = inIndex ;i<outIndex && i<details.length ;i++){
+			var d = details[i] ;
+			var dPrice = parseFloat(d.price) ;
+			totalPrice += dPrice ;
+		}
+		
+		$("#price").html(totalPrice) ;
+	}
+		
+	var _setupOpStr = function(i){
+		var d = details[i] ;
+		if(d){
+			var opStr = "<option data-index=" + i + " value=" + d.id + ":" + d.date + " data-price=" + d.price + ">" + d.date + "</option>" ;
+		}
+		return opStr ;
 	}
 	
-	var changeCheckoutDate = function(select) {
-	    
+	$("#checkinDateOpt").change(function(){
+	
+		var inIndex = $("#checkinDateOpt").find('option:selected').attr("data-index") ;
+		
+		$("#checkoutDateOpt").empty() ;
+		
+		for(var i = parseInt(inIndex) + 1 ;i < details.length ;i ++){
+			
+			var opStr = _setupOpStr(i) ;
+    		if(i != 0){
+    			$("#checkoutDateOpt").append(opStr) ;
+    		}
+		}
+		
+		_calcPrice() ;
+	});
+	
+	$("#checkoutDateOpt").change(function(){
+		_calcPrice() ;
+	});
+	
+	//初始化
+	for(var i = 0 ;i < details.length ;i++){
+		
+		var opStr = _setupOpStr(i) ;
+		
+		if(i != details.length - 1){
+			$("#checkinDateOpt").append(opStr) ;
+		}
+		if(i != 0){
+			$("#checkoutDateOpt").append(opStr) ;
+		}
 	}
 	
-	var setPrice = function(index){
-		$element("price").innerHTML =  details[index].price ;
-	}
 	
-	setPrice(0) ;
+	_calcPrice() ;
+	
 
 	//订单参数
 	var checkOrder = function() {

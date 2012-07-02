@@ -6,6 +6,7 @@
 <form name="createHotelForm" id="createHotelForm" action="${env.root}/admin/docreateHotel.htm" onsubmit="return Validator.validate(this,'admin');">
 <input name="id"  type="hidden" value="$!id" />
 <input name="productId"  type="hidden" value="$!productId" />
+<input type="hidden" id="urlRoot" value="${env.root}" />
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
             <td height="10"></td>
@@ -26,24 +27,20 @@
         <tr>
             <td align="right">所在地：</td>
             <td>
-                <select id='destProvince'  name='destProvince' onchange="selectProvince();"></select>
-                <select id='destCity' name='destCity' onchange="selectCity();"></select>
-                <select id='destArea' name='destArea' ></select>
+                <select id='destProvince'  name='destProvince' data="$!hotel.destProvince"></select>
+                <select id='destCity' name='destCity' data="$!hotel.destCity"></select>
+                <select id='destArea' name='destArea' data="$!hotel.destArea"></select>
                 <input type="text" id='destAddr'  name='destAddr' value="$!hotel.destAddr"/>
                 &nbsp;&nbsp;<a href="#">查看地图坐标</a>
             </td>
         </tr>
         <tr>
-            <td align="right">星级：</td>
+            <td align="right">酒店类型：</td>
             <td>
                 <select name="starRate" id="starRate">
-                    <option value="2">未评级</option>
-                    <option value="3">准三星级</option>
-					<option value="4">三星级</option>
-                    <option value="5">准四星级</option>
-                    <option value="6">四星级</option>
-                    <option value="7">准五星级</option>
-                    <option value="8">五星级</option>
+					#foreach($e in $enumUtils.startRates())
+                    <option value="$e.value">$e.desc</option>
+					#end
                 </select>
             </td>
         </tr>
@@ -94,7 +91,7 @@
 
 
 #XUI_JS(["core/xui-core.js","util/util-min.js"])
-#JS(["jquery-1.6.2.min.js","common.js","validator.js","admin.js"]) 
+#JS(["jquery-1.6.2.min.js","common.js","validator.js","admin.js","ajaxAreaSelect.js"]) 
 #KISSY_EDITOR_JS()
 <script type="text/javascript">
     var starRate = '$!hotel.starRate' ;
@@ -105,7 +102,7 @@
     
     var addImage = function(){
         var i = lastImagesIndex  ;
-        if($('.upImage').length > 3){
+        if($('.upImage').length > 2){
 			return ;
 		}
         var divElement = document.createElement('div') ;
@@ -118,36 +115,18 @@
         $element('image'+i).innerHTML = innerHTML ;
         lastImagesIndex ++ ;
     }
-        // /初始化
-    var selectProvince = function (){
-    	var select = $element('destProvince') ;
-    	var name = select.options[select.selectedIndex].value ;
-    	initAddressSelect(url,'destCity','city','',name) ;
-    	$element('destArea').options.length = 0 ;
-    }
-    var selectCity = function(){
-    	var select = $element('destCity') ;
-    	var name = select.options[select.selectedIndex].value ;
-    	initAddressSelect(url,'destArea','area','',name) ;
-    }
-    
-    // 省市地区
-    var province = '$!hotel.destProvince' ;
-    var city = '$!hotel.destCity' ;
-    var area = '$!hotel.destArea' ;
-    var url = '${env.root}/ajax/address.htm' ;	
+   
     if(lastImagesIndex <= 0){
         addImage() ;
     }
     setupSelect('starRate',starRate) ;
-    initAddressSelect(url,'destProvince','province',province) ;
-    initAddressSelect(url,'destCity','city',city,province) ;
-    initAddressSelect(url,'destArea','area',area,city) ;
-	
+   
 	//load edtor
 	KISSY.ready(function(S) {
         S.use('editor', function(S) {
 			//window.editor = loadediter("#introduction") ;
         });
     });
+	
+	setupAreaSelects("destProvince" , "destCity" , "destArea");
 </script>

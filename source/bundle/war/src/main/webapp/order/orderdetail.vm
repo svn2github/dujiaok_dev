@@ -13,21 +13,21 @@
     	<!-- dtl1开始 -->
     	<div class="L">
     		<div class="crumb">您当前的位置：我的订单 >  $orderDO.name </div>
-    		<div class="odrTtl"><span class="flag">预定</span><span class="greenTtl"> $!product.name </span></div>
+    		<div class="odrTtl"><span class="flag">预定</span><span class="greenTtl"> $!product.name #if("UNPAID" != $orderDO.status) 【$enumUtils.orderStatus($orderDO.status).desc】 #end</span></div>
     		<h2 class="banner mgt20"><strong>订购产品</strong></h2>
     		<table class="mgt10 product">
-    			<thead><tr><td>编号</td><td>产品名称</td><td>订单信息</td><td>人数</td></tr></thead>
+    			<thead><tr><td>编号</td><td>产品名称</td><td>预定日期</td><td>订单信息</td></tr></thead>
     			<tbody><tr>
     				<td>$!orderDO.orderId</td>
     				<td>$!orderDO.name</td>
-    				<td>$!orderDO.desc  $dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd')</td>
+    				<td>$!orderDO.desc  $dateUtils.format($!orderDO.gmtCreate, 'yyyy-MM-dd')</td>
     				<td>$!orderDesc</td>
     			</tr></tbody>
     		</table>
 			#if($orderDO.insureNum > 0)
     		<h2 class="banner mgt20"><strong>附加产品</strong></h2>
 			<div class="mgt10 attPro">
-				<label>自由行-平安国内短途游意外险</label><span>市场价：￥ $env.getProp("doucome.config.insurancePrice") /人天</span> x $product.days 天 x <strong>$!orderDO.insureNum</strong> 份</span>
+				<label>自由行-旅游意外险</label><span>￥ $env.getProp("doucome.config.insurancePrice") /人天</span> x $product.days 天 x <strong>$!orderDO.insureNum</strong> 份</span>
 			</div>
             #end
     		
@@ -37,11 +37,11 @@
             	#foreach ($personInfo in $!orderDO.contacts)
             	  <table class="mgt10 contactInfo" >
 	                	<tr>
-	                    	<th>联系人姓名#if($personInfo.isMain == "T")(<b>主联系人</b>)#end：</th>
+	                    	<th>姓名#if($personInfo.isMain == "T")(<b>主联系人</b>)#end：</th>
 	                        <td>$personInfo.name</td>
 	                    </tr>
 	                    <tr>
-	                    	<th>联系人手机：</th>
+	                    	<th>手机：</th>
 	                        <td>$personInfo.mobile</td>
 	                    </tr>
 	                    <tr>
@@ -80,9 +80,8 @@
     				<td>
 						#if("UNPAID"==$!orderDO.status)
     						<button type="submit" id="submit" class="order">确认下单</button>
-    					#else
-							已经下单
-						#end
+    					#end
+							
     				</td>
     			</tr>
     		</table>

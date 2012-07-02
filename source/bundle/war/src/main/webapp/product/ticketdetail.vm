@@ -106,20 +106,20 @@
 
 				<table>
 					<tbody><tr><th>市 场 价:</th><td><span class="through">$!product.marketPrice</span>元</td></tr>
-					<tr><th><strong>商品编号:</strong></th><td>$!product.productId</td></tr>
-					<tr><th><strong>支付方式:</strong></th><td>$enumUtils.toPayTypeEnumDescs($!product.payTypes)</td></tr>
-					<tr><th><strong>门票类型:</strong></th><td>$!product.ticketType</td></tr>
-                    <tr><th><strong>景点地址:</strong></th><td>$!product.destAddr</td></tr>
+					<tr><th>商品编号:</th><td>$!product.productId</td></tr>
+					<tr><th>支付方式:</th><td>$enumUtils.toPayTypeEnumDescs($!product.payTypes)</td></tr>
+					<tr><th>门票类型:</th><td>$!product.ticketType</td></tr>
+                    <tr><th>景点地址:</th><td>$!product.destAddr</td></tr>
 				</tbody></table>
 			</div>
 			<div class="date">
 				#set($detailItems = $!product.defaultDetailItems)
-				#if($detailItems)
+				#if(!$collectionUtils.isEmpty($detailItems))
 				<form id="orderForm" action="${env.root}/order/book.htm" method="get">
 				<dl>
 					<dt>使用日期：</dt>
 				  <dd>
-					<select name="dateAndDetail" id="productDetailId" >
+					<select name="dateAndDetail" id="productDetailId" onchange="detailChange(this);">
 						#foreach($dt in $!product.defaultDetailItems )
 							#set($index = $velocityCount)
 							<option value="${dt.detailId}:$dateUtils.format($dt.date, 'yyyy-MM-dd')" #if($index==1)selected="true" #end>$dateUtils.format($dt.date, 'yyyy-MM-dd') $dt.bottomPrice元 </option>
@@ -127,7 +127,7 @@
           	        </select>
 				  </dd>
 				</dl>
-				<table class="tb1"><tbody><tr><th><span id='price'></span><p>价格</p></th></tr></tbody></table>
+                <div style="margin:5px;"><b>价格：</b><span id='price'></span></div>
                 <table class="tb2"><tbody><tr><th>数量：<input type="text" name="count" id="count" value="1"></th></tr></tbody></table>
 			    <button class="order" onclick="return checkOrder() ;">立即订购</button>
 				<input type="hidden" id="productId" name="productId" value="$product.productId" />

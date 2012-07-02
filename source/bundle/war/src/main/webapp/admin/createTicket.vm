@@ -8,6 +8,7 @@
 <form id="createTicketForm" name="createTicketForm" method="POST" action="${env.root}/admin/docreateTicket.htm" onsubmit="return validateForm(this);">
     <input name="id"  type="hidden" value="$!id" />
     <input name="productId"  type="hidden" value="$!productId" />
+	<input type="hidden" id="urlRoot" value="${env.root}" />
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
             <td height="10"></td>
@@ -67,9 +68,9 @@
         <tr>
             <td align="right">所在地：</td>
             <td>
-                <select id='destProvince'  name='destProvince' onchange="selectProvince();"></select>
-                <select id='destCity' name='destCity' onchange="selectCity();"></select>
-                <select id='destArea' name='destArea' ></select>
+                <select id='destProvince'  name='destProvince' data="$!ticket.destProvince"></select>
+                <select id='destCity' name='destCity' data="$!ticket.destCity"></select>
+                <select id='destArea' name='destArea' data="$!ticket.destArea"></select>
                 <input type="text" id='destAddr'  name='destAddr' value="$!ticket.destAddr" class="input_b"/>
                 &nbsp;&nbsp;<a href="#">查看地图坐标</a>
             </td>
@@ -166,7 +167,7 @@
     </table>
 </form>
 #XUI_JS(["core/xui-core.js","util/util-min.js","simple-date/xui-simple-datepicker.js"])
-#JS(["jquery-1.6.2.min.js","common.js","validator.js","admin.js"]) 
+#JS(["jquery-1.6.2.min.js","common.js","validator.js","admin.js" , "ajaxAreaSelect.js"]) 
 #KISSY_EDITOR_JS()
 <script type="text/javascript">
 	var validateForm = function(form){
@@ -231,7 +232,7 @@
 	
 	var addImage = function(){
 		var i = lastImagesIndex  ;
-		if($('.upImage').length > 3){
+		if($('.upImage').length > 2){
 			return ;
 		}
 		var divElement = document.createElement('div') ;
@@ -245,24 +246,7 @@
 		lastImagesIndex ++ ;
 	}
 	
-	var selectProvince = function (){
-		var select = $element('destProvince') ;
-		var name = select.options[select.selectedIndex].value ;
-		initAddressSelect(url,'destCity','city','',name) ;
-		$element('destArea').options.length = 0 ;
-	}
 	
-	var selectCity = function(){
-		var select = $element('destCity') ;
-		var name = select.options[select.selectedIndex].value ;
-		initAddressSelect(url,'destArea','area','',name) ;
-	}
-	
-	//省市地区
-	var province = '$!ticket.destProvince' ;
-	var city = '$!ticket.destCity' ;
-	var area = '$!ticket.destArea' ;
-	var url = '${env.root}/ajax/address.htm' ;	
 	
 	///初始化
 	if(lastDetailsIndex <= 0){
@@ -272,9 +256,7 @@
 		addImage() ;
 	}
 	
-	initAddressSelect(url,'destProvince','province',province) ;
-	initAddressSelect(url,'destCity','city',city,province) ;
-	initAddressSelect(url,'destArea','area',area,city) ;
+	
 	var recommend = '$!ticket.recommend';
 	setupSelect('recommend',recommend) ;
 	
@@ -286,4 +268,6 @@
 			window.editor = loadediter("#feeDesc") ;
         });
     });
+	
+	setupAreaSelects("destProvince" , "destCity" , "destArea");
 </script>

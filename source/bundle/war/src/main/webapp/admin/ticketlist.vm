@@ -94,7 +94,9 @@
     var gmtExpire = '$dateUtils.format($!gmtExpire,"yyyy-MM-dd")' ;
     setupSelect('gmtExpire',gmtExpire) ;
     var copy2clipboard = function(data){
-        setClipboard(data);
+        if(setClipboard(data)){
+			alert("已经复制");
+		}
         return false ;
     }
     var toPage = function(page , size){

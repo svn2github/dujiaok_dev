@@ -4,6 +4,6 @@
 <div class="w950 dingdan dingdan3">
 	<div class="" style="margin:20px;">
 		<h3 style="font-size:28px;color:green;">支付成功！</h3>
-        <p style="font-size:14px;">恭喜你支付成功！ <a href="${env.root}/home/index.htm">返回首页</a></p>
+        <p style="font-size:14px;">恭喜你支付成功，请等待客服人员确认！ <a href="${env.root}/home/index.htm">返回首页</a></p>
 	</div>
 </div>

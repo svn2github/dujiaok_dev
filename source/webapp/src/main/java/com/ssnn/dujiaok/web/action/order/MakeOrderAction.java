@@ -1,6 +1,8 @@
 package com.ssnn.dujiaok.web.action.order;
 
 import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -14,9 +16,11 @@ import com.ssnn.dujiaok.biz.service.TicketService;
 import com.ssnn.dujiaok.biz.service.product.ProductDetailService;
 import com.ssnn.dujiaok.constant.Constant;
 import com.ssnn.dujiaok.model.AbstractProduct;
+import com.ssnn.dujiaok.model.DetailItemDO;
 import com.ssnn.dujiaok.model.HotelRoomDO;
 import com.ssnn.dujiaok.model.OrderDO;
 import com.ssnn.dujiaok.model.ProductDetailDO;
+import com.ssnn.dujiaok.model.RoomCheckinDO;
 import com.ssnn.dujiaok.model.SelfDriveDO;
 import com.ssnn.dujiaok.util.enums.ProductEnums;
 import com.ssnn.dujiaok.util.order.OrderUtils;
@@ -80,6 +84,8 @@ public class MakeOrderAction extends BasicAction implements ModelDriven<OrderDO>
 			}
 		}
 		
+		orderDO.setGmtCreate(new Date()) ;
+		
 		orderDesc = OrderUtils.getOrderInfoDesc(orderDO) ;
 		
 		return SUCCESS;
@@ -91,7 +97,7 @@ public class MakeOrderAction extends BasicAction implements ModelDriven<OrderDO>
 		} else if (productId.startsWith("MP")) {
 			return this.ticketService.getTicket(productId);
 		} else if (productId.startsWith("FJ")) {
-			return this.hotelRoomService.getRoom(productId);
+			return this.hotelRoomService.getRoomWithDetails(productId);
 		} 
 		return null;
 	}
@@ -116,9 +122,11 @@ public class MakeOrderAction extends BasicAction implements ModelDriven<OrderDO>
 			return detailDO.getPrice().multiply(new BigDecimal(order.getCount()));
 		} else if (StringUtils.startsWithIgnoreCase(order.getProductId(), Constant.PREFIX_HOTELROOM)){
 			HotelRoomDO roomDO = this.hotelRoomService.getRoomWithDetails(order.getProductId());
-			BigDecimal roomPrice = OrderUtils.getRoomPrice(roomDO,
-					order.getGmtOrderStart(), order.getGmtOrderEnd())[0];
-			return roomPrice.multiply(new BigDecimal(order.getCount()));
+			List<DetailItemDO> canCheckinList = OrderUtils.getCanCheckInDate(product.getDefaultDetailItems(), order.getGmtOrderStart(), order.getGmtOrderEnd()) ;
+			
+			RoomCheckinDO canCheckin = new RoomCheckinDO(canCheckinList) ;
+			
+			return canCheckin.getTotalUniPrice().multiply(new BigDecimal(order.getCount()));
 		} else {
 			return null; 
 		}

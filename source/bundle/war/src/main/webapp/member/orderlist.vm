@@ -45,16 +45,20 @@
 							#else
 								[网上支付]
 							#end
-                    		#if($!order.status=='SUCCESS')
+                    		#if($!order.status=='CONFIRM')
 								#set($succCount = $succCount+1)
-                    			已下单，等待工作人员确认
+								#if($order.payType == "ONLINE")
+                    			已付款，等待工作人员确认
+								#else
+								已下单，等待工作人员确认
+								#end
                     		#elseif($!order.status=='CLOSED')
 								#set($closeCount = $closeCount+1)
 								订单关闭
                     		#elseif($!order.status=='UNPAID')
                     		    #set($unpayCount = $unpayCount+1)
 								未付款，请在24小时内付款
-                    		#elseif($!order.status=='CONFIRM')
+                    		#elseif($!order.status=='SUCCESS')
                     		          预定成功
                     		#elseif($!order.status=='DRAWBACKING')
                     		          退款中

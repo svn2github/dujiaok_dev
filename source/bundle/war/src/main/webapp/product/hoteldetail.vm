@@ -15,6 +15,7 @@
 	<table class="R">
 		<thead><tr><th colspan="2">$!product.name</th></tr></thead>
 		<tbody>
+            <tr><th>酒店类型：</th><td>$enumUtils.toStarRate($!product.starRate).desc </td></tr>
 			<tr><th>客房数量：</th><td>$!product.roomAmount</td></tr>
 			<tr><th>酒店地址：</th><td>[ $!product.destProvince - $!product.destCity ] $!product.destArea$!product.destAddr</td></tr>
 			<tr><th>酒店简介：</th><td>$!product.introduction</td></tr>
@@ -33,6 +34,9 @@
 					<span class="p1">门市价：<span class="through">$!room.marketPrice</span>元</span><span class="p2"><strong><em>￥</em>$!room.bottomPrice</strong>起</span><a class="order" href="${env.root}/product/detail.htm?productId=$!room.productId">预定</a>
 				</div>
 			</div>
+			<div class="hBook2">
+				支付方式：#if($!room.payTypes == "CASH") 前台现付 #else 网上支付  #end
+            </div>
 			<div class="hBook2">
 				客房面积：$!room.roomArea 平米　　床型：$!room.bed
 			</div>
