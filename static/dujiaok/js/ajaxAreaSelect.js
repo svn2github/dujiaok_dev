@@ -61,6 +61,21 @@ var setupAreaSelects = function(provinceId , cityId , areaId){
 		});
 	}
 	
+	//初始化市
+	if(citySelect.length > 0 && provinceSelect.attr("data") != ""){
+		$.ajax({
+			url: urlRoot ,
+			type : "POST" ,
+			data : { type: "city" ,  parentname:citySelect.attr("data")},
+			success :function(data){
+				__addAddrSelect(citySelect , data.result , citySelect.attr("data")) ;
+			} , 
+			error : function(data){
+				alert("获取数据失败");
+			}
+		});
+	}
+	
 }
 
 var __newBlankOption = function() {
