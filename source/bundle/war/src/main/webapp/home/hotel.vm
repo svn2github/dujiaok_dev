@@ -9,10 +9,10 @@
 	<!-- travel1开始 -->
 	<div class="mgt20 travel1">
 		<div class="L L230">
-			<div id="optionCard" class="optionCard">
-				<ul class="tabTtl"><li class="first current">度假酒店</li></ul>
+			<div id="optionCard" class="optionCard box230" style="height:228px;">
+				<div class="ttl"><h2>度假酒店</h2></div>
 				<div class="current tabCnt">
-					<form action="${env.root}/search/global.htm" method="get">
+					<form action="${env.root}/search/global.htm" method="get" id="jdSearchForm">
 						<input type="hidden" name="s_product" value="MP"/>
 					<table class="tableForm">
 						<tbody>
@@ -28,7 +28,9 @@
     									#end
                                     </select>
     						</td></tr>
-    						<tr><th></th><td><button>搜索</button></a></td>
+    						<tr><th></th><td>
+									<a href="javascript:;" class="btn_normal" data-searchForm="jdSearchForm">搜 索</a>
+							</td>
 							</tr>
 						</tbody>
 					</table>

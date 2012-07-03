@@ -133,11 +133,12 @@
 				<input type="hidden" id="productId" name="productId" value="$product.productId" />
 				<input type="hidden" id="productType" name="productType" value="MP" />
 				</form>
+				<p class="telTip">拨打电话预定 400-999-2788</p>
 			    #else
-					当日无价格
+					该产品已过期，请咨询客服人员！
 				#end
 				
-				<p class="telTip">拨打电话预定 400-999-2788</p>
+				
 			</div>
 		</div>
 		
@@ -154,9 +155,10 @@
 
 	var details = [
 	  #foreach($d in $detailItems) 
-	  	{id: "$!d.detail.id",
-	  	 	price: "$!d.detail.price",
-	  	},	
+	  	{
+			id: "$!d.detail.id",
+	  	 	price: "$!d.detail.price"
+	  	}#if($velocityCount != $detailItems.size()),#end
   	  #end
 	] ;
 	

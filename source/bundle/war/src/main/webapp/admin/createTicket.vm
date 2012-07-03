@@ -59,7 +59,7 @@
         <tr>
             <td align="right">支付方式：</td>
             <td>
-                <input type="radio" name="payTypesList" value="ONLINE" #if( $collectionUtils.contains($!payTypesList,"ONLINE"))checked#end />
+                <input type="radio" name="payTypesList" value="ONLINE" checked #if( $collectionUtils.contains($!payTypesList,"ONLINE"))checked#end />
                     网上支付
                     <input type="radio" name="payTypesList" value="CASH" #if( $collectionUtils.contains($!payTypesList,"CASH"))checked#end/>
                         前台现付
@@ -96,7 +96,8 @@
         <tr>
             <td align="right">门票类型：</td>
             <td>
-                <input type="radio" name="ticketType" value="电子票(手机短信)" #if($ticket.ticketType == "电子票(手机短信)") checked #end/>
+				
+                <input type="radio" name="ticketType" value="电子票(手机短信)" checked #if($ticket.ticketType == "电子票(手机短信)") checked #end/>
                     电子票(手机短信)&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="radio" name="ticketType" value="实物票(景点取)" #if($ticket.ticketType == "实物票(景点取)") checked #end />
                         实物票(景点取)&nbsp;&nbsp;&nbsp;&nbsp;

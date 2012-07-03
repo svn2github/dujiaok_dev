@@ -92,34 +92,36 @@
 					</tbody>
 				</table>
 			</div>
+			<div class="date">
 			#set($detailItems = $!product.defaultDetailItems)
 			#if(!$collectionUtils.isEmpty($detailItems))
-			<form id="orderForm" action="${env.root}/order/book.htm" method="get">
-			<div class="date">
-				<dl>
-				  <dt>入住日期：</dt>
-				  <dd>
-						<select name="dateAndDetail" id="checkinDateOpt"></select>
-				  </dd>
-				</dl>
-				<dl>
-					<dt>离店日期：</dt>
-                    <dd>
-						<select name="endDate" id="checkoutDateOpt"></select>
-					</dd>
-                </dl>
-				<div style="margin:5px;"><b>价格：</b><span id='price'></span>元</div>
-                <table class="tb2"><tbody><tr><th>预定间数：<input type="text" name="count" id="roomCount" value="1"></th></tr></tbody></table>
-			  <button class="order">立即订购</button>
-				<p class="telTip">拨打电话预定 400-999-2788</p>
-			</div>
-			
-			<input type="hidden" id="productId" name="productId" value="$!product.productId" />
-    		<input type="hidden" id="productType" name="productType" value="FJ" />
-			</form>
+    			<form id="orderForm" action="${env.root}/order/book.htm" method="get">
+    			
+    				<dl>
+    				  <dt>入住日期：</dt>
+    				  <dd>
+    						<select name="dateAndDetail" id="checkinDateOpt"></select>
+    				  </dd>
+    				</dl>
+    				<dl>
+    					<dt>离店日期：</dt>
+                        <dd>
+    						<select name="endDate" id="checkoutDateOpt"></select>
+    					</dd>
+                    </dl>
+    				<div style="margin:5px;"><b>价格：</b><span id='price'></span>元</div>
+                    <table class="tb2"><tbody><tr><th>预定间数：<input type="text" name="count" id="roomCount" value="1"></th></tr></tbody></table>
+    			  <button class="order">立即订购</button>
+    			  <p class="telTip">拨打电话预定 400-999-2788</p>
+    			
+    			
+    			<input type="hidden" id="productId" name="productId" value="$!product.productId" />
+        		<input type="hidden" id="productType" name="productType" value="FJ" />
+    			</form>
 			#else
-			当日无价格
+			该产品已过期，请咨询客服人员！
 			#end
+			</div>
 		</div>
 		
 		
@@ -151,7 +153,7 @@
 			id: "$!d.detail.id",
 	  	 	price: "$!d.detail.price",
 			date : "$dateUtils.format($d.date, 'yyyy-MM-dd')"
-	  	},	
+	  	}#if($velocityCount != $detailItems.size()),#end
   	  #end
 	];
 	

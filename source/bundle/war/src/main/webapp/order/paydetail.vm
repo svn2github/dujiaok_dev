@@ -2,7 +2,7 @@
 	#CSS(["dingdan.css"])
 
 #if($order.payType=="CASH")
-<form id="orderForm" method="post" action='${env.root}/order/cashpayorder.htm'>	
+<form id="orderPayForm" method="post" action='${env.root}/order/cashpayorder.htm'>	
 	<input type="hidden" id="orderId" name="orderId" value="$!orderId"/>
         
 	<!-- main开始 -->
@@ -13,9 +13,11 @@
     		<div class="odrTtl"><span class="flag">预定</span><span class="redTtl">￥$!order.price 元</span></div>
     		<table class="mgt10 pay">
     			<tr>
-    				<td>支付方式：</td><th><h3>请到酒店前台支付</h3></th>
+    				<td>支付方式：</td><th><h3 style="font-size:16px;">请到酒店前台支付</h3></th>
     			</tr>
-                <tr class="qrxd"><td></td><th><button class="order" id="paydetail">确认下单</button></th></tr>
+                <tr class="qrxd"><td></td><th>
+						<a href="javascript:;" data-orderForm="orderPayForm" class="btn_buy" style="margin:10px 0;">确认下单</a>
+				</th></tr>
     		</table>
     	</div>
     	<div class="R mgt10">
@@ -42,7 +44,7 @@
 </script>
 #else
 	
-<form id="orderForm" method="post" action='${env.root}/order/alipayorder.htm'>
+<form id="orderPayForm" method="post" action='${env.root}/order/alipayorder.htm'>
 		
 	<input type="hidden" id="orderId" name="orderId" value="$!orderId"/>
 
@@ -59,7 +61,7 @@
     			<tr>
     				<td>网上银行：</td><th><input type="radio" name="paymethod" id="wsyh1" /><label for="wsyh1"><img src="${env.staticroot}/images/zgyh.gif" /></label></th>
     			</tr>
-    			<tr class="qrxd"><td></td><th><button class="order" id="paydetail">确认下单</button></th></tr>
+    			<tr class="qrxd"><td></td><th><a href="javascript:;" data-orderForm="orderPayForm" class="btn_buy" style="margin:10px 0;">确认支付</a></th></tr>
     		</table>
     		<h3>您还可以通过线下银行转账的形式支付：</h3>
     		<p>招行银行    张波    浙江分行杭州高新支行    6225885714741257</p>
@@ -83,15 +85,6 @@
     <!-- main结束 -->
 </form>
 
-<script>
-function pay(){
-	
-	var orderForm = document.getElementById("orderForm");
-	orderForm.action = $element("webUrl").value + "trek/order/order/alipayOrder.htm";
-	//alert($element("webUrl").value + "trek/order/order/alipayOrder.htm?orderId="+$element("orderId").value)
-	orderForm.submit();
-	//location.href = $element("webUrl").value + "trek/order/order/alipayOrder.htm?orderId="+$element("orderId").value;
-}
-</script>
-
 #end
+
+#JS(["dingdan.js"])

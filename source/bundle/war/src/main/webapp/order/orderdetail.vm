@@ -1,7 +1,7 @@
 #set($layout="/front/default_new.vm")
 #CSS(["dingdan.css"])
 
-<form id='changeStatus' action='${env.root}/order/paydetail.htm' method='post'>
+<form id='orderConfirmForm' action='${env.root}/order/paydetail.htm' method='post'>
 	<input type="hidden" id="orderId" name="orderId" value="$!orderDO.orderId" />
 	
 	
@@ -79,7 +79,7 @@
 					
     				<td>
 						#if("UNPAID"==$!orderDO.status)
-    						<button type="submit" id="submit" class="order">确认下单</button>
+							<a href="javascript:;" data-orderForm="orderConfirmForm" class="btn_buy" style="margin:10px 0;">下一步</a>
     					#end
 							
     				</td>
@@ -103,7 +103,9 @@
     <!-- main结束 -->
 	
 </form>
-	
+
+#JS(["dingdan.js"])
+
 <script type="text/javascript">
 var EV = xui.util.Event,
 DOM = xui.util.Dom;
@@ -150,15 +152,6 @@ EV.onDOMReady(function(){
 	var b = new personInfo();
 	b.init();
 });  
-
-
-function changeStatus(){
-alert(document.getElementById('status').value)
-	document.getElementById('status').value = document.getElementById('changeStatus').value;
-	//var changeStatus = document.getElementById('changeStatus').value;
-	//alert(changeStatus);
-	//location.href = $element("webUrl").value + "trek/order/order/changeStatus.htm?orderId="+$element("orderId").value+"&status="+changeStatus+"&comment="+$element("comment").value;
-}
 
 function returnPage(){
 	window.history.go(-1);

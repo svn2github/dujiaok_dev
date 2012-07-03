@@ -141,8 +141,10 @@
 				<input type="hidden" id="productId" name="productId" value="$product.productId" />
 				<input type="hidden" id="productType" name="productType" value="ZJ" />
                 </form>
-				#end
 				<p class="telTip">拨打电话预定 400-999-2788</p>
+				#else
+				该产品已过期，请咨询客服人员！
+				#end
 			</div>
 		</div>
 		
@@ -162,8 +164,8 @@
 	  	{id: "$!d.detail.id",
 	  	 singlePrice: "$!d.detail.price",
 	  	 doublePrice: "$!d.detail.doublePrice",
-	  	 childPrice: "$!d.detail.childPrice",
-	  	},	
+	  	 childPrice: "$!d.detail.childPrice"
+	  	}#if($velocityCount != $detailItems.size()),#end
   	  #end
 	] ;
 	

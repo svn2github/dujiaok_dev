@@ -14,7 +14,7 @@
 			<div class="optionCard" id="optionCard">
 				<ul class="tabTtl"><li class="first current">周边自驾</li><li>打折门票</li><li>酒店</li></ul>
 				<div class="current tabCnt">
-					<form action="${env.root}/search/global.htm" method="get">
+					<form action="${env.root}/search/global.htm" method="get" id="zjSearchForm">
 						<input type="hidden" name="s_product" value="ZJ"/>
 					<table class="tableForm">
 						<tr><th style="width:50%">城市</th><td class="select">
@@ -40,14 +40,16 @@
 									<option value="3">三日游</option>
                                 </select>
 						</td></tr>
-						<tr><th></th><td><button>搜索</button></a></td></tr>
+						<tr><th></th><td>
+								<a href="javascript:;" class="btn_normal" data-searchForm="zjSearchForm">搜 索</a>
+						</a></td></tr>
 					</table>
                     </form>
 					<div class="other">
 					</div>
 				</div>
 				<div class="tabCnt">
-					<form action="${env.root}/search/global.htm" method="get">
+					<form action="${env.root}/search/global.htm" method="get" id="mpSearchForm">
                     <input type="hidden" name="s_product" value="MP"/>
 					<table class="tableForm">
 						<tr><th>城市</th><td class="select">
@@ -66,12 +68,14 @@
 									<option value="主题公园">主题公园</option>
                                 </select>
 						</td></tr>
-						<tr><th></th><td><button>搜索</button></td></tr>
+						<tr><th></th><td>
+								<a href="javascript:;" class="btn_normal" data-searchForm="mpSearchForm">搜 索</a>
+						</td></tr>
 					</table>
 					</form>
 				</div>
 				<div class="tabCnt">
-					<form action="${env.root}/search/global.htm" method="get">
+					<form action="${env.root}/search/global.htm" method="get" id="jdSearchForm">
 						<input type="hidden" name="s_product" value="JD"/>
 					<table class="tableForm">
 						<tr><th>城市</th><td class="select">
@@ -88,7 +92,9 @@
 									#end
                                 </select>
 						</td></tr>
-						<tr><th></th><td><button>搜索</button></td></tr>
+						<tr><th></th><td>
+								<a href="javascript:;" class="btn_normal" data-searchForm="jdSearchForm">搜 索</a>
+						</td></tr>
 					</table>
                     </form>
 				</div>

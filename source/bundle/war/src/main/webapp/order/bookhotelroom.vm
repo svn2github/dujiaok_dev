@@ -22,7 +22,7 @@
     				<td>$!product.productId</td>
     				<td>$!product.name</td>
 					<td>
-						￥<span id="price" style="color: red;">$!canCheckin.totalUniPrice</span>(市场价：<span style="text-decoration: line-through;">￥<span id="marketPrice">$!product.marketPrice</span></span>)
+						￥<span id="price" style="color: red;">$!canCheckin.totalUniPrice</span>(市场价：<span style="text-decoration: line-through;">￥<span id="marketPrice">$decimalUtils.multiply($!product.marketPrice,$canCheckin.canCheckinList.size())</span></span>)
 					</td>
     				<td class="F10">$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd') 至 $dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')</td>
     				<td class="F10">
@@ -33,10 +33,10 @@
     		</table>
 			
 			<table class="mgt10 product" style="width:200px;">
-    			<thead><tr><td>入住日期</td><td>价格</td></tr></thead>
+    			<thead><tr><td>序号</td><td>入住日期</td><td>价格</td></tr></thead>
     			<tbody>
     			#foreach ($checkin in $canCheckin.canCheckinList)
-    				<tr><td align="center">$dateUtils.format($checkin.date,"yyyy-MM-dd")</td><td align="center">$checkin.detail.price</td></tr>
+    				<tr><td align="center">$velocityCount</td><td align="center">$dateUtils.format($checkin.date,"yyyy-MM-dd")</td><td align="center">$checkin.detail.price</td></tr>
     			#end
     			</tbody>
     		</table>
@@ -100,7 +100,9 @@
     				<th>
 					</th>
     				<td>
-    					<button type="submit" class="order">确认下单</button>
+						
+                        <a href="javascript:;" data-orderForm="orderForm" class="btn_buy" style="margin:10px 0;">下一步</a>
+						
     					<div><input type="checkbox" checked="checked" id="odrProtocol" /><label for="odrProtocol">同意度假OK预订协议</label></div>
 						<!--
     					<textarea></textarea>

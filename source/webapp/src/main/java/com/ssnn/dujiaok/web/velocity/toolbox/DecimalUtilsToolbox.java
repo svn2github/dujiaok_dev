@@ -7,6 +7,10 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 
 public class DecimalUtilsToolbox {
+	
+	public BigDecimal multiply(BigDecimal d , int i){
+		return  d.multiply(new BigDecimal(i)) ;
+	}
 
     public String format(BigDecimal decimal, String pattern) {
         if (decimal == null) {

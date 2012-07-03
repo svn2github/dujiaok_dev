@@ -10,10 +10,10 @@
 	<!-- travel1开始 -->
 	<div class="mgt20 travel1">
 		<div class="L L230">
-			<div id="optionCard" class="optionCard">
-				<ul class="tabTtl"><li class="first current">周边自驾</li></ul>
+			<div id="optionCard" class="optionCard box230" style="height:228px;">
+				<div class="ttl"><h2>周边自驾</h2></div>
 				<div class="current tabCnt">
-					<form action="${env.root}/search/global.htm" method="get">
+					<form action="${env.root}/search/global.htm" method="get" id="zjSearchForm">
 						<input type="hidden" name="s_product" value="ZJ"/>
 					<table class="tableForm">
 						<tbody>
@@ -38,7 +38,7 @@
     									<option value="3">三日游</option>
                                     </select>
     						</td></tr>
-    						<tr><th></th><td><button>搜索</button></a></td>
+    						<tr><th></th><td><a href="javascript:;" class="btn_normal" data-searchForm="zjSearchForm">搜 索</a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -168,7 +168,7 @@
         									<span class="gray">$!fv.detail</span>
         								</span>
         								<span class="c122">
-        									<span class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+        									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,"0")</span>
         									<span class="gray">起</span>
         								</span>
         							</a>

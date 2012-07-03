@@ -6,7 +6,11 @@
 #set($totalCount = $result.pagination.totalCount)
 #set($totalPages = $result.pagination.totalPages)
 
-
+<style>
+	._search_btn a , ._search_btn a:active , ._search_btn a:hover {
+		text-decoration:none ;
+	}
+</style>
 
 #macro(SEARCH_URL $newQuery)
 	#set($query = ["s_product:$!s_product","s_productType:$!s_productType","s_sellPrice:$!s_sellPrice","keyword:$!keyword","s_order:$!s_order","s_days:$!s_days","page:$!page","s_orderSeq:$!s_orderSeq","s_starRate:$!s_starRate"])
@@ -122,7 +126,7 @@
     							<span class="t2">地址：$!item.destAddr</span>
     						</span>
     					</div>
-    					<div class="R">
+    					<div class="R _search_btn">
 							
     						<span class="price">
 								#if($item.price)
@@ -134,9 +138,9 @@
 								
     						</span>
 							#if($item.price)
-    						<a href="${env.root}/product/detail.htm?productId=$!item.productId" class="order">订购</a>
+    						<a href="${env.root}/product/detail.htm?productId=$!item.productId" class="btn_main">立即订购</a>
 							#else
-							<a href="${env.root}/product/detail.htm?productId=$!item.productId" class="order">查看价格</a>
+							<a href="${env.root}/product/detail.htm?productId=$!item.productId" class="btn_main">查看价格</a>
 							#end
     					</div>
     				</li>
