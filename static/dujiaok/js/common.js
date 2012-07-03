@@ -251,6 +251,13 @@ $(function(){
 		e.preventDefault();
 		$(this).parent().hide();
 	});
+	
+	//主页和频道页搜索
+	$("[data-searchForm]").click(function(){
+		e.preventDefault();
+		var formId = $(this).attr("data-searchForm") ;
+		$("#"+formId).submit() ;
+	}) ;
 	ok.placeholder("schIpt");
 	ok.float();
 })
