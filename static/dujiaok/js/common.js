@@ -253,7 +253,7 @@ $(function(){
 	});
 	
 	//主页和频道页搜索
-	$("[data-searchForm]").click(function(){
+	$("[data-searchForm]").click(function(e){
 		e.preventDefault();
 		var formId = $(this).attr("data-searchForm") ;
 		$("#"+formId).submit() ;
