@@ -245,8 +245,8 @@ h1 a{display:block;height:49px;text-indent:-9999px;}
 	display:inline-block;
 	color:#ffffff;
 	font-family:arial;
-	font-size:14px;
-	padding:4px 20px;
+	font-size:12px;
+	padding:5px 20px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #be4300;
 }.btn_main:hover {
