@@ -143,7 +143,7 @@ h1 a{display:block;height:49px;text-indent:-9999px;}
 .select ul{display:none;position:absolute;*left:0;*margin-top:27px;width:144px;height:100px;overflow-x:hidden;overflow-y:auto;border-left:1px solid #ddd;border-right:1px solid #ddd;background:#F1F7F9;}
 .select li{padding-left:3px;height:24px;line-height:24px;border-bottom:1px solid #ddd;}
 .select li.over{color:#06c;background:#f0f0f0;}
-.tableForm a{ text-align:center;color:#fff; font-weight:bold;}
+.tableForm a{}
 .tableForm a:hover{text-decoration:none;}
 /* schFactor */
 .schFactor{padding:15px 15px 8px 15px; height:100%;border:1px solid #DCDCDC;overflow:hidden;}
