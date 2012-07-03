@@ -78,6 +78,10 @@ $("#ticketNum").keyup(function(){
 	calcu();
 })
 
+$("[data-orderForm]").click(function(){
+	$("#" + $(this).attr("data-orderForm")).submit() ;
+});
+
 //dom ready
 $(function(){
 	calculation();

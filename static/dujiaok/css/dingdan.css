@@ -1,4 +1,4 @@
-﻿.dingdan .odrTtl{ overflow:hidden;}
+.dingdan .odrTtl{ overflow:hidden;}
 .dingdan .flag{ float:left;width:64px; height:30px;text-indent:-9999px; background-position:-451px -60px;}
 .dingdan .greenTtl{ float:left;margin:2px 7px;}
 .dingdan .product{ width:100%;}
@@ -37,3 +37,6 @@
 .dingdan .qrxd th,.dingdan .qrxd td{ padding:0; border-bottom:none;}
 .dingdan2 p{ margin-top:20px;}
 .dingdan3 .pgt20 td,.dingdan3 .pgt20 th{padding:20px 0 10px 0;}
+.dingdan a , .dingdan a:hover , .dingdan a:active , .dingdan a:visited {
+	text-decoration:none ;
+}
