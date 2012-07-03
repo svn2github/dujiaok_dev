@@ -35,7 +35,7 @@ em,i{font-style:normal;}
 .error{margin-left:5px;color:#f00;vertical-align:1px;}
 select{ margin:0; padding:0; border:1px solid #ddd; height:22px; color:#666;}
 .userBar,.mainMenu a.current,.mainMenu a:hover.current,.idx1 .L dt,.idx1R dt,.idx1M .tabTtl li,.idx1L .tabTtl li,.schL3 .ttl,.box230 .ttl,.leftMenu h3,.float .ttl{background:url(../images/repeat.png);}
-.hotPurpose h2.current,.mainMenu a:hover,.idx1L .login,.tableForm a,.schOut .ttl .R a,.order,.page button,.hSchR .hSchR2 td a,.dingdan .flag,.banner strong,.rightMain button,.rightMain .button,.float .addFav{background:url(../images/other.png) no-repeat;}
+.hotPurpose h2.current,.mainMenu a:hover,.idx1L .login,.schOut .ttl .R a,.order,.page button,.hSchR .hSchR2 td a,.dingdan .flag,.banner strong,.rightMain button,.rightMain .button,.float .addFav{background:url(../images/other.png) no-repeat;}
 .userBar .myOrder,.userBar .rank,.hotPurpose h3,.hotPurpose h3 span,.hotPurpose .close,.idx1R li,.bottom .L dt,.orderList li i,.select input,.detail .bigRoll .tabTtl li,.pro_intro .list1 li,.jiathis_txt,.help,.hDtl1 .popForHelp i,.float b,.float .kf a,.float .backTop a{background:url(../images/icon.gif) no-repeat;}
 .order{ display:block;width:80px; height:30px; border:0;text-indent:-9999px;background-position:-534px 0;}
 .greenTtl{ margin-bottom:15px; font-size:18px;color:#290; font-family:"Microsoft Yahei";}
