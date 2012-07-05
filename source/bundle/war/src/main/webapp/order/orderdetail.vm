@@ -10,6 +10,7 @@
 	
 	<!-- main开始 -->
     <div class="w950 dingdan dingdan3">
+		<img src="${env.staticroot}/images/bookStep_2.png" style="margin-top:20px;"/>
     	<!-- dtl1开始 -->
     	<div class="L">
     		<div class="crumb">您当前的位置：我的订单 >  $orderDO.name </div>

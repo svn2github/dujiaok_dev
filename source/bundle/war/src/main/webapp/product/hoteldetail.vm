@@ -1,6 +1,14 @@
 #set($layout="/front/default_new.vm")
 #CSS(["Hotel_area.css"])
 
+<style>
+	.hotelPrice a , .hotelPrice a:hover {
+		text-decoration:none;
+		margin-top:-10px;
+		margin-left:10px;
+	}
+</style>
+
 <!-- main开始 -->
 <div class="w950">
 	<div class="L710 mgr10 ">
@@ -30,8 +38,8 @@
 		<div class="R txt">
 			<div class="hBook1">
                 <a href="${env.root}/product/detail.htm?productId=$!room.productId" target="_blank"><div class="L ttl">$!room.name</div></a>
-				<div class="R price">
-					<span class="p1">门市价：<span class="through">$!room.marketPrice</span>元</span><span class="p2"><strong><em>￥</em>$!room.bottomPrice</strong>起</span><a class="order" href="${env.root}/product/detail.htm?productId=$!room.productId">预定</a>
+				<div class="R price hotelPrice">
+					<span class="p1">门市价：<span class="through">$!room.marketPrice</span>元</span><span class="p2"><strong><em>￥</em>$!room.bottomPrice</strong>起</span><a class="btn_main" href="${env.root}/product/detail.htm?productId=$!room.productId">预定</a>
 				</div>
 			</div>
 			<div class="hBook2">

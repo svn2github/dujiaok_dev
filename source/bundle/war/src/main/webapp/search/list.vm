@@ -10,6 +10,10 @@
 	._search_btn a , ._search_btn a:active , ._search_btn a:hover {
 		text-decoration:none ;
 	}
+	
+	._search_btn {
+		
+	}
 </style>
 
 #macro(SEARCH_URL $newQuery)
@@ -127,21 +131,22 @@
     						</span>
     					</div>
     					<div class="R _search_btn">
-							
-    						<span class="price">
+							<span class="price">
 								#if($item.price)
 								<span class="p1"><strong><em>￥</em>$decimalUtils.format($!item.price,"0")</strong>起</span>
 								#end
 								#if($item.marketPrice)
-								<span class="p2">门市价：<span class="through">$decimalUtils.format($!item.marketPrice,"0")</span>元</span>
-								#end
-								
+                                <span class="p2">门市价：<span class="through">$decimalUtils.format($!item.marketPrice,"0")</span>元</span>
+    							#end
     						</span>
+							<div style="margin-left:15px;">
 							#if($item.price)
     						<a href="${env.root}/product/detail.htm?productId=$!item.productId" class="btn_main">立即订购</a>
 							#else
 							<a href="${env.root}/product/detail.htm?productId=$!item.productId" class="btn_main">查看价格</a>
 							#end
+							</div>
+                        
     					</div>
     				</li>
 					#end

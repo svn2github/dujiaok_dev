@@ -11,7 +11,7 @@
 	
 	<!-- main开始 -->
     <div class="w950 dingdan">
-    
+		<img src="${env.staticroot}/images/bookStep_1.png" style="margin-top:20px;"/>
     	<!-- dtl1开始 -->
     	<div class="L">
     		<div class="crumb">您当前的位置：门票 > $!product.destProvince > $!product.destCity > $!product.destAddr</div>

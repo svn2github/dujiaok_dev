@@ -7,6 +7,7 @@
         
 	<!-- main开始 -->
     <div class="w950 dingdan dingdan2">
+		<img src="${env.staticroot}/images/bookStep_3.png" style="margin-top:20px;"/> 
     	<!-- dtl1开始 -->
     	<div class="L">
     		<div class="crumb">您当前的位置：选择支付方式</div>
@@ -50,6 +51,7 @@
 
 	<!-- main开始 -->
     <div class="w950 dingdan dingdan2">
+		<img src="${env.staticroot}/images/bookStep_3.png" style="margin-top:20px;"/> 
     	<!-- dtl1开始 -->
     	<div class="L">
     		<div class="crumb">您当前的位置：选择支付方式</div>

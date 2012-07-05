@@ -10,6 +10,7 @@
 	<input type="hidden" name="productType" id="productType" value="HOTELROOM" />
 		
 	<div class="w950 dingdan">
+		<img src="${env.staticroot}/images/bookStep_1.png" style="margin-top:20px;"/>
     	<!-- dtl1开始 -->
     	<div class="L">
     		<div class="crumb">您当前的位置：酒店房间 > $!product.name</div>
