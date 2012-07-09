@@ -7,7 +7,7 @@ import java.util.Date;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.lang.StringUtils;
 
 import com.ssnn.dujiaok.biz.exception.GetHotPlaceException;
@@ -28,7 +28,7 @@ public class HotPlaceServiceImpl implements HotPlaceService {
 		}
 		
 		HttpClient client = new HttpClient() ;
-		PostMethod post = new PostMethod(url) ;
+		GetMethod post = new GetMethod(url) ;
 		
 		try {
 			int code = client.executeMethod(post) ;

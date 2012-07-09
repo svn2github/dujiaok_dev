@@ -22,6 +22,7 @@
 	
 	<group name="web">
 		<property name="doucome.static.url" defaultValue="http://www.ht.dujiaok.com:801/dujiaok" description="static"></property>
+		<property name="doucome.cms.url" defaultValue="http://www.ht.dujiaok.com:801/dujiaok" description="cms"></property>
 		<property name="doucome.domainName" defaultValue="dujiaok.com" description="domain"></property>
 		<property name="doucome.port" defaultValue="80" description="port">
 			<validator name="number"></validator>

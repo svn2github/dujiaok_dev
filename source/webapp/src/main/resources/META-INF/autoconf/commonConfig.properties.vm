@@ -6,6 +6,7 @@ doucome.database.driver.password = ${doucome_database_driver_password}
 doucome.domainName = ${doucome_domainName}
 doucome.port = ${doucome_port}
 doucome.static.url = ${doucome_static_url}
+doucome.cms.url = ${doucome_cms_url}
 
 doucome.production = ${doucome_production}
 

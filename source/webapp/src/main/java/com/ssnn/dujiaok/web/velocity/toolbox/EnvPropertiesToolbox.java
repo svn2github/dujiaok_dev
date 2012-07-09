@@ -20,6 +20,7 @@ public class EnvPropertiesToolbox {
 	private static final String KEY_DUJIAOK_DOMAIN_NAME = "doucome.domainName" ;
 	private static final String KEY_DUJIAOK_PORT = "doucome.port" ;
 	private static final String KEY_DUJIAOK_STATIC_URL = "doucome.static.url" ;
+	private static final String KEY_DUJIAOK_CMS_URL = "doucome.cms.url" ;
 	
 	private static String rootPath = null ;
 	
@@ -76,6 +77,10 @@ public class EnvPropertiesToolbox {
 	
 	public String getStaticroot(){
 		return getProperty(KEY_DUJIAOK_STATIC_URL) ;
+	}
+	
+	public String getCmsroot(){
+		return getProperty(KEY_DUJIAOK_CMS_URL) ;
 	}
 	
 	public String getStaticpath(String relativePath){
