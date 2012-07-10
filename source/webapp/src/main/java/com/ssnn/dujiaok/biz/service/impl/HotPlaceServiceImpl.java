@@ -33,7 +33,9 @@ public class HotPlaceServiceImpl implements HotPlaceService {
 		try {
 			int code = client.executeMethod(post) ;
 			if(code == HttpStatus.SC_OK){
-				String content = post.getResponseBodyAsString() ;
+				byte[] b = post.getResponseBody() ;
+				String responseBody = new String(b , "UTF-8");
+				String content = responseBody ;
 				if(StringUtils.isNotBlank(content)){
 					synchronized (this) {
 						if(hotPlace == null){
