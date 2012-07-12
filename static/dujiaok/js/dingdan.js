@@ -29,17 +29,18 @@ function calculation(){
 	var single = $("#dingdanP1").html() ;
 	var double = $("#dingdanP2").html() ;
 	var marketPrice = $("#marketPrice").val() ;
+	if($("#dingdanP6").val() > v){
+		$("#dingdanP6").val(v) ;
+	}
 	
-	var scBxf=$("#dingdanP4").html()*v*orderDays; //市场保险费用
-	var bxf=$("#dingdanP5").html()*v*orderDays;//保险费用
+	var scBxf=$("#dingdanP4").html()*$("#dingdanP6").val()*orderDays; //市场保险费用
+	var bxf=$("#dingdanP5").html()*$("#dingdanP6").val()*orderDays;//保险费用
 	var scj=(parseInt(v)+parseInt(cV))*marketPrice;//市场价
 	var okj=parseInt(v/2)*$("#dingdanP2").html()+(v%2)*$("#dingdanP1").html()+cV*$("#dingdanP3").html();//OK价
 	var js=(scj-okj)+(scBxf-bxf); //节省
 	var zj=okj+bxf; //总价
 	//$("#dingdanP6").val(v);
-	if($("#dingdanP6").val() > v){
-		$("#dingdanP6").val(v) ;
-	}
+	
 	$("#dingdanP7").html(bxf);
 	$("#dingdanP8").html(scj);
 	$("#dingdanP9").html(okj);
