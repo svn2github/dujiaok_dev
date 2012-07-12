@@ -67,7 +67,7 @@
                     <td align="center"><span id="dingdanP4">20</span>元/人/天</td>
                     <td align="center"><span style="color:red" id="dingdanP5">$env.getProp("doucome.config.insurancePrice")</span> 元/天/人</td>
 					<td align="center"><span id="orderDays">$product.days</span>天</td>
-                    <td align="center"><input type="text" name="insureNum" id="dingdanP6" maxlength="3" class="wpx34" value="$!orderDO.count" style="width:40px;border:none;text-align:center;"  readonly="readonly"/></td>
+                    <td align="center"><input type="text" name="insureNum" id="dingdanP6" maxlength="3" class="wpx34" value="$!orderDO.count" style="width:40px;text-align:center;" /></td>
                     <td align="center"><span id="baoxianzongjia"></span>元</td>
         		</tr>
 				
