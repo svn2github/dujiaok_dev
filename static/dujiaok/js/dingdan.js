@@ -108,7 +108,7 @@ $(function(){
 })
 
 var addContacts = function (i){
-	var v=$("#ddIpt1").val();
+	var v=$("#dingdanP6").val();
 	$("#subCBox").html("");	
 	if(v>1){
 		s="";
