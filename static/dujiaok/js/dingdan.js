@@ -67,12 +67,12 @@ $("#insureCheck").click(function(){
 	}else{
 		$("#dingdanP6").val(0) ;
 	}
-});
+})
 
-$("#dingdanP6").change(function()){
+$("#dingdanP6").change(function(){
 	calculation();
 	addContacts() ;
-}
+})
 
 $("#ddIpt1").keyup(function(){
 	zzsCheck($(this));
