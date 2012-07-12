@@ -37,6 +37,9 @@ function calculation(){
 	var js=(scj-okj)+(scBxf-bxf); //节省
 	var zj=okj+bxf; //总价
 	//$("#dingdanP6").val(v);
+	if($("#dingdanP6").val() > v){
+		$("#dingdanP6").val(v) ;
+	}
 	$("#dingdanP7").html(bxf);
 	$("#dingdanP8").html(scj);
 	$("#dingdanP9").html(okj);
