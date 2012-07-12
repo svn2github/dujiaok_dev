@@ -64,15 +64,6 @@ function calcu(){
 	$("#orderPrice").html(okj);
 }
 
-//保险
-$("#insureCheck").click(function(){
-	if($(this).attr("checked") == "true"){
-		$("#dingdanP6").val($("#ddIpt1").val()) ;
-	}else{
-		$("#dingdanP6").val(0) ;
-	}
-})
-
 $("#dingdanP6").change(function(){
 	calculation();
 	addContacts() ;
