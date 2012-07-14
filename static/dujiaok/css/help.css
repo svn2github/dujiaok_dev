@@ -1,0 +1,30 @@
+﻿.help{ padding-bottom:50px;margin-top:40px;}
+.help a{color:#666;}
+.helpMenu{padding:9px;border:1px solid #DCDCDC;overflow:hidden;}
+.helpMenu h2{padding-bottom:12px; height:18px; line-height:18px; font-size:16px; font-weight:bold; color:#000;border-bottom:1px solid #DCDCDC;}
+.helpMenu h3{cursor:pointer;margin:20px 0 10px 0; padding-left:24px;height:16px;line-height:16px; font-size:14px; font-weight:normal; color:#000;background-position:8px -922px;}
+.helpMenu h3.click{background-position:8px -80px;}
+.helpMenu h4{ display:none;font-weight:normal;}
+.helpMenu h4.show{display:block;}
+.helpMenu h4 a{display:block; padding-left:35px; height:30px; line-height:30px;font-weight:normal;}
+.helpMenu h4 a:hover{ text-decoration:none; background:#F4FAED;}
+.help .mddss{padding:10px 15px;color:#666;}
+.help .mddss ul{margin:20px 12px;}
+.help .mddss li{margin-bottom:10px;padding-left:20px; height:14px; line-height:14px;}
+.help .mddss .tel{background-position:0 -837px;}
+.help .mddss .fax{background-position:0 -868px;}
+.help .mddss .email{background-position:0 -892px;}
+.help .mddss .zxzx{ display:block; margin:0 0 15px 48px; width:81px; height:23px;background-position:-472px -124px; overflow:hidden;}
+.helpSch{padding:15px 55px;border:1px solid #DCDCDC; overflow:hidden;}
+.helpSch input{ float:left;padding:8px 0 8px 10px; width:483px;height:14px;border:1px solid #D9D9D9;border-top:1px solid #C0C0C0;}
+.helpSch a{ float:left; margin-left:12px; width:91px; height:32px; background-position:-571px -126px;}
+.helpMain dl,.helpMain .first ul{float:left;width:300px;}
+.helpMain dl{padding:20px 0 0 24px;}
+.helpMain dl.first{float:none;padding-bottom:15px;width:695px;border-bottom:1px solid #DCDCDC; overflow:hidden;}
+.helpMain dt,.helpDtl dt{margin-bottom:15px;font-size:14px; font-weight:bold; color:#000;}
+.helpMain dd{margin-left:8px;}
+.helpMain .first ul.left{margin-right:67px; }
+.helpMain dd li{padding-left:13px; margin-bottom:15px; height:14px; line-height:14px;background-position:0 -947px;}
+.helpDtl{margin-left:20px;width:690px;color:#666;}
+.helpDtl dt{margin-bottom:20px;}
+.helpDtl dd{ line-height:30px;}

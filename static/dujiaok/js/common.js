@@ -260,4 +260,5 @@ $(function(){
 	}) ;
 	ok.placeholder("schIpt");
 	ok.float();
+	
 })
