@@ -1,4 +1,5 @@
-﻿.help{ padding-bottom:50px;margin-top:40px;}
+﻿.userBar .myOrder,.userBar .rank,.hotPurpose h3,.hotPurpose h3 span,.hotPurpose .close,.idx1R li,.bottom .L dt,.orderList li i,.select input,.detail .bigRoll .tabTtl li,.pro_intro .list1 li,.jiathis_txt,.hDtl1 .price .help,.hDtl1 .popForHelp i,.float b,.float .kf a,.float .backTop a,.helpMenu h3,.help .mddss li,.help dd li{background:url(../images/icon.gif) no-repeat;}
+.help{ padding-bottom:50px;margin-top:40px;}
 .help a{color:#666;}
 .helpMenu{padding:9px;border:1px solid #DCDCDC;overflow:hidden;}
 .helpMenu h2{padding-bottom:12px; height:18px; line-height:18px; font-size:16px; font-weight:bold; color:#000;border-bottom:1px solid #DCDCDC;}
