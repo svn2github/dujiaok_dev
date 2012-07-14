@@ -1,4 +1,15 @@
-﻿.userBar .myOrder,.userBar .rank,.hotPurpose h3,.hotPurpose h3 span,.hotPurpose .close,.idx1R li,.bottom .L dt,.orderList li i,.select input,.detail .bigRoll .tabTtl li,.pro_intro .list1 li,.jiathis_txt,.hDtl1 .price .help,.hDtl1 .popForHelp i,.float b,.float .kf a,.float .backTop a,.helpMenu h3,.help .mddss li,.help dd li{background:url(../images/icon.gif) no-repeat;}
+﻿body,ul,ol,li,p,h1,h2,h3,h4,input,dl,dt,dd,td,th{ margin:0; padding:0; list-style:none; font-family:Tahoma; font-size:12px;}
+
+.w950 {margin: auto; overflow: hidden; width: 950px;}
+.mgt20 {margin-top: 20px;}
+.helpMenu {border: 1px solid #DCDCDC;overflow: hidden;padding: 9px;}
+.L230 {width: 230px;}
+.box230 {border: 1px solid #DCDCDC;width: 228px;}
+.L710, .R710 {overflow: hidden;width: 710px;}
+.R, .R230, .R710 {float: right;}
+.L, .L710, .L230 {float: left;}
+.mgt10 {margin-top: 10px;}
+.help .mddss li,.help dd li{background:url(../images/icon.gif) no-repeat;}
 .help{ padding-bottom:50px;margin-top:40px;}
 .help a{color:#666;}
 .helpMenu{padding:9px;border:1px solid #DCDCDC;overflow:hidden;}
@@ -29,3 +40,11 @@
 .helpDtl{margin-left:20px;width:690px;color:#666;}
 .helpDtl dt{margin-bottom:20px;}
 .helpDtl dd{ line-height:30px;}
+
+li{vertical-align:middle;}
+input{outline:none;}
+a{text-decoration:none;color:#999;cursor:pointer;}
+a.orange{color:#f60;}
+a:hover{ text-decoration:underline;}
+
+.bottom .btm3 {margin: 7px 0;text-align: center;}
