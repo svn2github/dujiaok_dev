@@ -14,7 +14,7 @@
 </div>
 <div class="w950 head">
 	<div class="top">
-		<h1><a href="${env.root}/home/index.htm">度假OK</a></h1>
+		<h1><a href="${env.root}/home/index.htm" id="top_logo">度假OK</a></h1>
 		<div class="schForm">
 			<form action="${env.root}/search/global.htm" method="get" name="searchForm" id="searchForm">
     			<input type="text" id="schIpt" name="keyword" placeholder="我想去的地方" value="$!keyword"  class="gray"/><a href="javascript:void(0);" onclick="return _search();">ok</a>

@@ -19,3 +19,17 @@
 	</p>
 	<p class="btm3">Copyright &copy; 2011 - 2012 度假OK Inc.度假OK 版权所有 浙ICP备12020270</p>
 </div>
+<!--客服-->
+<div class="float" id="float">
+	<div class="ttl">
+    	<h2>欢迎联系我们</h2><b></b>
+    </div>
+    <ul>
+    	<li class="kf"><a href="http://wpa.qq.com/msgrd?V=1＆Uin=2473834517">在线客服</a></li>
+        <li class="tel"><strong class="telTxt">订购电话</strong><strong class="telNum">400-999-2788</strong><span>8:00-24:00</span></li>
+        <li class="btm">
+        	<p class="addFav"><a id="addFav" href="#">加入收藏夹</a></p>
+            <p class="backTop"><a id="backTop" href="#">返回顶部</a></p>
+        </li>
+    </ul>
+</div>
