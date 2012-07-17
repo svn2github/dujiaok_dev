@@ -59,6 +59,12 @@ DirectoryIndex index.html
 NameVirtualHost *
 
 <VirtualHost *>
+	RewriteEngine on
+    RewriteCond %{HTTP_HOST} ^dujiaok.com [NC,OR]
+	RewriteRule ^(.*)$ http://www.dujiaok.com$1 [L,R=301]
+</VirtualHost>
+
+<VirtualHost *>
     ServerAdmin efax
     ServerName ${doucome_domainName}
     DocumentRoot ${doucome_htdocs_home}
