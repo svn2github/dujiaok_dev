@@ -62,7 +62,7 @@
                 </thead>
         		<tr>
             		<td>$dateUtils.format($!orderDO.gmtOrderStart, 'yyyy-MM-dd') 至 $dateUtils.format($!orderDO.gmtOrderEnd, 'yyyy-MM-dd')</td>
-                    <td align="center" class="baoxian"><a href="#" >旅游意外险 </a></td>
+                    <td align="center" class="baoxian"><a href="${env.cmsroot}/cms/help/baoxian.html" target="_blank" >旅游意外险 </a></td>
 					#set($totalCount = $orderDO.count)
                     <td align="center"><span id="dingdanP4">20</span>元/人/天</td>
                     <td align="center"><span style="color:red" id="dingdanP5">$env.getProp("doucome.config.insurancePrice")</span> 元/天/人</td>
@@ -127,7 +127,7 @@
     					
 						<a href="javascript:;" data-orderForm="orderForm" class="btn_buy" style="margin:10px 0;">下一步</a>
 						
-    					<div><input type="checkbox" checked="checked" id="odrProtocol" /><label for="odrProtocol">同意度假OK预订协议</label></div>
+                        <div><input type="checkbox" checked="checked" id="odrProtocol" /><label for="odrProtocol">同意<a href="${env.cmsroot}/cms/help/xieyi.html#zbjj" target="_blank">度假OK预订协议</a></label></div>
     				</td>
     			</tr>
     		</table>

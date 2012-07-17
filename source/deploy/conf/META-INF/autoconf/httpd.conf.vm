@@ -75,8 +75,8 @@ SetOutputFilter DEFLATE
     BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
 </Location>
 
-ErrorDocument 404 http://page.china.alibaba.com/shtml/static/wrongpage.html
-ErrorDocument 509 http://page.china.alibaba.com/shtml/static/error999.html
+##ErrorDocument 404 http://page.china.alibaba.com/shtml/static/wrongpage.html
+##ErrorDocument 509 http://page.china.alibaba.com/shtml/static/error999.html
 
 ##Include mod_jk's specific configuration file-zgl
 ##Include ${doucome_deployhome}/conf/mod_jk.conf
