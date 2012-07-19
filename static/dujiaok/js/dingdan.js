@@ -123,7 +123,7 @@ $("#orderForm .del").live("click",function(e){
 })
 
 $("#orderForm").on("submit",function(e){
-		e.preventDefault();
+		//e.preventDefault();
 		var info=$("#orderForm .contactInfo");
 		var L=info.size();
 		var hasErr=0;
