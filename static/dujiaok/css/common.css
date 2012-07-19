@@ -67,7 +67,7 @@ h1 a{display:block;height:49px;text-indent:-9999px;}
 .hotPurpose{float:left;margin-top:3px;width:120px; height:32px;}
 .hotPurpose h2{width:120px;height:31px; text-indent:-9999px;}
 .hotPurpose h2.current{background-position:-408px 0;}
-.hotPurpose ul{display:none;position:absolute; z-index:9999;margin-top:1px;border:1px solid #639B01;border-bottom:none;background:#fff;}
+.hotPurpose ul{display:none;position:absolute; z-index:9999;margin-top:13px;border:1px solid #639B01;border-bottom:none;background:#fff;}
 .hotPurpose ul.noRbd{border-right:none;}
 .hotPurpose li{height:35px;overflow:hidden;}
 .hotPurpose h3{cursor:default;position:relative;z-index:2;padding-left:30px;width:158px;border-right:none;border-bottom:1px solid #E1F6BF;border-left:none;border-top:none;font-weight:normal;background-position:12px -121px; background-color:#F7FFEA; }
