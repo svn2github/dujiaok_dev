@@ -122,7 +122,7 @@ $("#orderForm .del").live("click",function(e){
 	obj.remove();
 })
 
-$("#orderForm :submit").click(function(e){
+$("#orderForm").on("submit",function(e){
 		e.preventDefault();
 		var info=$("#orderForm .contactInfo");
 		var L=info.size();
