@@ -95,7 +95,7 @@ $("#ticketNum").keyup(function(){
 })
 
 $("[data-orderForm]").click(function(){
-	if($($("#odrProtocol").length > 0 && "#odrProtocol").attr("checked") != 'checked'){
+	if($("#odrProtocol").length > 0 && $("#odrProtocol").attr("checked") != 'checked'){
 		alert("请先同意度假OK协议");
 		return ;
 	}
