@@ -101,6 +101,9 @@ $("#odrProtocol").click(function(e){
 	}else{
 		//没选协议
 		$("#orderNext").unbind("click") ;
+		$("#orderNext").click(function(){
+			alert("请先同意度假OK协议");
+		});
 	}
 });
 
