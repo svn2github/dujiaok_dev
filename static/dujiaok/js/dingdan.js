@@ -22,16 +22,23 @@ function ffzsCheck(obj){//儿童可以是非负整数
 		obj.val(0);
 	}
 }
-function calculation(){
+function calculation(isBaoxian){
 	var v=$("#ddIpt1").val(); //成人数
 	var cV=$("#ddIpt2").val(); //儿童数
 	var orderDays = $("#orderDays").html() ; //订单天数
 	var single = $("#dingdanP1").html() ;
 	var double = $("#dingdanP2").html() ;
 	var marketPrice = $("#marketPrice").val() ;
-	if($("#dingdanP6").val() != v){
-		$("#dingdanP6").val(v) ;
+	if(isBaoxian){
+		if($("#dingdanP6").val() > v){
+			$("#dingdanP6").val(v) ;
+		}
+	}else{
+		if($("#dingdanP6").val() != v){
+			$("#dingdanP6").val(v) ;
+		}
 	}
+	
 	
 	var scBxf=$("#dingdanP4").html()*$("#dingdanP6").val()*orderDays; //市场保险费用
 	var bxf=$("#dingdanP5").html()*$("#dingdanP6").val()*orderDays;//保险费用
@@ -65,7 +72,7 @@ function calcu(){
 }
 
 $("#dingdanP6").change(function(){
-	calculation();
+	calculation(true);
 	addContacts() ;
 })
 
