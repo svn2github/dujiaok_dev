@@ -29,7 +29,7 @@ function calculation(){
 	var single = $("#dingdanP1").html() ;
 	var double = $("#dingdanP2").html() ;
 	var marketPrice = $("#marketPrice").val() ;
-	if($("#dingdanP6").val() > v){
+	if($("#dingdanP6").val() != v){
 		$("#dingdanP6").val(v) ;
 	}
 	
@@ -91,13 +91,16 @@ $("[data-orderForm]").click(function(){
 	$("#" + $(this).attr("data-orderForm")).submit() ;
 });
 
-$("#odrProtocol").click(function(){
-	if($(this).attr("checked") == 'true'){
+$("#odrProtocol").click(function(e){
+	if($(this).attr("checked") == 'checked'){
 		//选中
-		$("#orderNext").show() ;
+		//$("#orderNext").show() ;
+		$("[data-orderForm]").click(function(){
+			$("#" + $(this).attr("data-orderForm")).submit() ;
+		});
 	}else{
 		//没选协议
-		$("#orderNext").hide() ;
+		$("#orderNext").unbind("click") ;
 	}
 });
 
