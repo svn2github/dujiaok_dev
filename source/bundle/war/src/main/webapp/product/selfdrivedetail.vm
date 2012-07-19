@@ -199,6 +199,10 @@
 			alert('请输入成人数') ;
 			return false ;
 		}
+		if(adultNum <= 0){
+			alert('成人数必须大于等于1');
+			return false ;
+		}
 		if(childNum == '' || isNaN(childNum)){
 			alert('请输入儿童数') ;
 			return false ;
@@ -242,7 +246,7 @@
                 			if(b){
                 				var pricredate = flag[i].data;
                 				for(var i = 0; i<pricredate.length; i++){
-                					self.Days[pricredate[i].id].innerHTML = "<a href='javascript:void(0);' onclick=\"alert('日期是:"+self.Year+"/"+self.Month+"/"+pricredate[i].id+"');return false;\">" + pricredate[i].id + "</a><br>"+pricredate[i].name+"";
+                					self.Days[pricredate[i].id].innerHTML = "<a href='javascript:void(0);'>" + pricredate[i].id + "</a><br>"+pricredate[i].name+"";
                 				}
                 			}
                 		}

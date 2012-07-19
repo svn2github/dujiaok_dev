@@ -3,6 +3,7 @@
 #CSS(["detail.css","pro_intro.css"])
 
 #set ($detail = $product.todayDetail)
+<!-- main开始 -->
 <div class="w950 main detail">
 
 	<!-- dtl1开始 -->
@@ -29,27 +30,27 @@
 			</dd>
 		</dl>
 		
-		<div class="Calendar">
-    		<div class="mgt20">
-    			<div>
-    				<div id="idCalendarPre">上一月</div>
-    				<div id="idCalendarNext">下一月</div>
-    				<span id="idCalendarYear"></span>年 <span id="idCalendarMonth"></span>月
-    				<table cellspacing="0">
-    					<thead>
-    						<tr>
-                                <td>日</td>
-                                <td>一</td>
-                                <td>二</td>
-                                <td>三</td>
-                                <td>四</td>
-                                <td>五</td>
-                                <td>六</td>
-    						</tr>
-    					</thead>
-    					<tbody id="idCalendar"></tbody>
-    				</table>
-    			</div>
+		<div class="mgt20">
+			<div class="Calendar">
+				<div id="idCalendarPre">上一月</div>
+				<div id="idCalendarNext">下一月</div>
+				
+				<span id="idCalendarYear"></span>年 <span id="idCalendarMonth"></span>月
+				<table cellspacing="0">
+					<thead>
+						<tr>
+                            <td>日</td>
+                            <td>一</td>
+                            <td>二</td>
+                            <td>三</td>
+                            <td>四</td>
+                            <td>五</td>
+                            <td>六</td>
+						</tr>
+					</thead>
+					<tbody id="idCalendar">
+					</tbody>
+				</table>
     		</div>
         </div>
 		
@@ -97,7 +98,8 @@
 			#set($detailItems = $!product.defaultDetailItems)
 			#if(!$collectionUtils.isEmpty($detailItems))
     			<form id="orderForm" action="${env.root}/order/book.htm" method="get">
-    			
+					<input type="hidden" id="productId" name="productId" value="$!product.productId" />
+					<input type="hidden" id="productType" name="productType" value="FJ" />
     				<dl>
     				  <dt>入住日期：</dt>
     				  <dd>
@@ -116,8 +118,7 @@
     			  <p class="telTip">拨打电话预定 400-999-2788</p>
     			
     			
-    			<input type="hidden" id="productId" name="productId" value="$!product.productId" />
-        		<input type="hidden" id="productType" name="productType" value="FJ" />
+    			
     			</form>
 			#else
 			该产品已过期，请咨询客服人员！
@@ -264,7 +265,7 @@
                 			if(b){
                 				var pricredate = flag[i].data;
                 				for(var i = 0; i<pricredate.length; i++){
-                					self.Days[pricredate[i].id].innerHTML = "<a href='javascript:void(0);' onclick=\"alert('日期是:"+self.Year+"/"+self.Month+"/"+pricredate[i].id+"');return false;\">" + pricredate[i].id + "</a><br>"+pricredate[i].name+"";
+                					self.Days[pricredate[i].id].innerHTML = "<a href='javascript:void(0);'>" + pricredate[i].id + "</a><br>"+pricredate[i].name+"";
                 				}
                 			}
                 		}

@@ -1,8 +1,6 @@
 #set($layout="/front/default_new.vm")
-
 #STATIC("CSS",["/blogcal/blogcalendar.css"])
 #CSS(["detail.css","pro_intro.css"])
-
 
 #set ($detail = $product.todayDetail)
 <!-- main开始 -->
@@ -217,7 +215,7 @@
                 			if(b){
                 				var pricredate = flag[i].data;
                 				for(var i = 0; i<pricredate.length; i++){
-                					self.Days[pricredate[i].id].innerHTML = "<a href='javascript:void(0);' onclick=\"alert('日期是:"+self.Year+"/"+self.Month+"/"+pricredate[i].id+"');return false;\">" + pricredate[i].id + "</a><br>"+pricredate[i].name+"";
+                					self.Days[pricredate[i].id].innerHTML = "<a href='javascript:void(0);'>" + pricredate[i].id + "</a><br>"+pricredate[i].name+"";
                 				}
                 			}
                 		}

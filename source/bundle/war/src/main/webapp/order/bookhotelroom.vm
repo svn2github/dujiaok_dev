@@ -128,7 +128,7 @@
     
     			<h3>订单金额总计</h3>
     			<table>
-    				<tr><th>市 场 价：</th><td><span id="orderMarketPrice">$!product.marketPrice</span> 元</td></tr>
+    				<tr><th>市 场 价：</th><td><span id="orderMarketPrice" class="through pink">$!product.marketPrice</span> 元</td></tr>
     				<tr><th>OK 价：</th><td><span id="orderOkPrice"></span> 元</td></tr>
     				<tr><th>累计节省：</th><td><span id="orderSavePrice"></span> 元</td></tr>
     			</table>
