@@ -88,23 +88,11 @@ $("#ticketNum").keyup(function(){
 })
 
 $("[data-orderForm]").click(function(){
-	$("#" + $(this).attr("data-orderForm")).submit() ;
-});
-
-$("#odrProtocol").click(function(e){
-	if($(this).attr("checked") == 'checked'){
-		//选中
-		//$("#orderNext").show() ;
-		$("[data-orderForm]").click(function(){
-			$("#" + $(this).attr("data-orderForm")).submit() ;
-		});
-	}else{
-		//没选协议
-		$("#orderNext").unbind("click") ;
-		$("#orderNext").click(function(){
-			alert("请先同意度假OK协议");
-		});
+	if($("#odrProtocol").attr("checked") != 'checked'){
+		alert("请先同意度假OK协议");
+		return ;
 	}
+	$("#" + $(this).attr("data-orderForm")).submit() ;
 });
 
 //dom ready
