@@ -91,6 +91,16 @@ $("[data-orderForm]").click(function(){
 	$("#" + $(this).attr("data-orderForm")).submit() ;
 });
 
+$("#odrProtocol").click(function(){
+	if($(this).attr("checked",'true')){
+		//选中
+		$("#orderNext").show() ;
+	}else{
+		//没选协议
+		$("#orderNext").hide() ;
+	}
+});
+
 //dom ready
 $(function(){
 	calculation();
