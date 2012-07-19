@@ -25,7 +25,9 @@
 	<div class="menu">
 		<!-- 热门目的地开始 -->
 		###parse("/common/hotPlace.vm")
+		<div href="#" class="hotPurpose" id="hotPurpose">
 		$!hotPlaceContent
+        </div>
 		<!-- 热门目的地结束 -->
 		<ul class="mainMenu">
 			#if($isEdit)

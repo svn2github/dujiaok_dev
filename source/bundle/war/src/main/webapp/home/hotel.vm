@@ -125,24 +125,26 @@
 	<!-- travel3开始 -->
 	<div class="mgt10 travel3">
 		<div class="L">
+			#FRONT_EDIT_BUTTON($!hotelChannel.getmHotTitleB1(), $isEdit)
+			#if($!frontViewMap.get($!hotelChannel.getmHotTitleB1()).frontViews)
 			<div class="box230 hSchL2">
-				#FRONT_EDIT_BUTTON($!hotelChannel.getmHotTitleB1(), $isEdit)
+				
 				<div class="ttl">
 					<h2>$!frontViewMap.get($!hotelChannel.getmHotTitleB1()).config.moduleName</h2>
 				</div>
 				<ol class="orderList">
-					#if($!frontViewMap.get($!hotelChannel.getmHotTitleB1()).frontViews)
-        				#foreach($fv in $!frontViewMap.get($!hotelChannel.getmHotTitleB1()).frontViews)
-							#if($velocityCount <= 3)
-								<li class="li123"><i>$velocityCount</i><a href="$!fv.link">$!fv.title</a></li>
-							#else
-								<li><i>$velocityCount</i><a href="$!fv.link">$!fv.title</a></li>
-							#end
-        				#end
-					#end
+    				#foreach($fv in $!frontViewMap.get($!hotelChannel.getmHotTitleB1()).frontViews)
+						#if($velocityCount <= 3)
+							<li class="li123"><i>$velocityCount</i><a href="$!fv.link">$!fv.title</a></li>
+						#else
+							<li><i>$velocityCount</i><a href="$!fv.link">$!fv.title</a></li>
+						#end
+    				#end
 				</ol>
 			</div>
+			#end
 		</div>
+		
 		<div class="R">
 			<div class="box230 box710 greenF">
 				#FRONT_EDIT_BUTTON($!hotelChannel.getmHotTextB2(), $isEdit)

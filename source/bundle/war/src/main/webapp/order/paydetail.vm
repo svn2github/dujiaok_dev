@@ -45,7 +45,7 @@
 </script>
 #else
 	
-<form id="orderPayForm" method="post" action='${env.root}/order/alipayorder.htm'>
+<form id="orderPayForm" method="post" action='${env.root}/order/alipayorder.htm' target="_blank">
 		
 	<input type="hidden" id="orderId" name="orderId" value="$!orderId"/>
 
