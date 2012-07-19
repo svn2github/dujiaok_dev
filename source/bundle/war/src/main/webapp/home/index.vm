@@ -84,7 +84,7 @@
 						<tr><th>酒店名称</th><td>
 								<input type="text" name="keyword" />
 						</td></tr>
-						<tr><th>星级</th><td class="select">
+						<tr><th>类型</th><td class="select">
 								<select id="starRate" name="s_starRate">
 									<option value="">不限</option>
 									#foreach($e in $enumUtils.startRates())
@@ -266,7 +266,7 @@
 									<span class="gray">$!fv.detail</span>
 								</span>
 								<span class="c122">
-									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,'0')</span>
+									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,"0")</span>
 									<span class="gray">起</span>
 								</span>
 							</a>
@@ -283,7 +283,7 @@
 							<li>
 								<a href="$!fv.link">
 									<span class="gray">·$!fv.title</span>
-									<span class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,"0")</span>
 								</a>
 							</li>
                 		#end
@@ -347,7 +347,7 @@
 									<span class="gray">$!fv.detail</span>
 								</span>
 								<span class="c122">
-									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,'0')</span>
+									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,"0")</span>
 									<span class="gray">起</span>
 								</span>
 							</a>
@@ -363,7 +363,7 @@
 							<li>
 								<a href="$!fv.link">
 									<span class="gray">·$!fv.title</span>
-									<span class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,"0")</span>
 								</a>
 							</li>
                 		#end
@@ -445,7 +445,7 @@
 							<li>
 								<a href="$!fv.link">
 									<span class="gray">·$!fv.title</span>
-									<span class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,"0")</span>
 								</a>
 							</li>
                 		#end
@@ -525,7 +525,7 @@
 							<li>
 								<a href="$!fv.link">
 									<span class="gray">·$!fv.title</span>
-									<span class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</span>
+									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,"0")</span>
 								</a>
 							</li>
                 		#end

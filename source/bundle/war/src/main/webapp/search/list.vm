@@ -84,16 +84,12 @@
 				#end
 				#if($s_product == "JD")
 				<tr>
-					<th>酒店星级：</th><td><p>
+					<th>酒店类型：</th><td><p>
 							<a href="#SEARCH_URL(['s_starRate:','page:1'])" #if(!$s_starRate || $s_starRate=="") class="current" #end >全部</a>
-							<a href="#SEARCH_URL(['s_starRate:2','page:1'])" #if($s_starRate==2) class="current"#end>未评级</a>
-							<a href="#SEARCH_URL(['s_starRate:3','page:1'])" #if($s_starRate==3) class="current"#end>准三星级</a>
-							<a href="#SEARCH_URL(['s_starRate:4','page:1'])" #if($s_starRate==4) class="current"#end>三星级</a>
-							<a href="#SEARCH_URL(['s_starRate:5','page:1'])" #if($s_starRate==5) class="current"#end>准四星级</a>
-							<a href="#SEARCH_URL(['s_starRate:6','page:1'])" #if($s_starRate==6) class="current"#end>四星级</a>
-							<a href="#SEARCH_URL(['s_starRate:7','page:1'])" #if($s_starRate==7) class="current"#end>准五星级</a>
-							<a href="#SEARCH_URL(['s_starRate:8','page:1'])" #if($s_starRate==8) class="current"#end>五星级</a>
-					
+							#foreach($e in $enumUtils.startRates())
+								#set($t = 's_starRate:'+$e.value)
+                            <a href="#SEARCH_URL([$t,'page:1'])" #if($s_starRate == $e.value) class="current" #end >$e.desc</a>
+							#end					
 					</p></td>
 				</tr>
 				#end
@@ -112,7 +108,7 @@
 				很抱歉，没有搜索到与“<span class="orange">$!keyword</span>”相关的产品
 			#else
 			<div class="ttl">
-				<div class="L"><span>排序：</span><a href="#" class="current">推荐</a><a href="#">价格</a></div>
+				<div class="L"><span>排序：</span><a href="javascript:;" class="current">推荐</a></div>
 				<div class="R">
 					#parse("/common/search_pagination_simple.vm")
 				</div>

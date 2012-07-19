@@ -2,7 +2,7 @@ package com.ssnn.dujiaok.util.enums;
 
 public enum StarRateEnums {
 
-	_4(0 , "名宿/客栈") , 
+	_4(4 , "名宿/客栈") , 
 	_5(5 , "农家乐") , 
 	_6(6, "未评级酒店") , 
 	_7(7,"准三星级酒店") , 

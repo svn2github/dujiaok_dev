@@ -40,6 +40,8 @@
 			<li><a href="${env.root}/home/ticket.htm" #if($_productType == "ticket")class="current" #end>打折门票</a></li>
 			#end
 		</ul>
-		<p class="subMenu"><a href="#">旅游攻略</a>|<a href="#">景点大全</a>|<a href="#">订购指南</a></p>
+		<p class="subMenu">
+			<!--<a href="#">旅游攻略</a>|<a href="#">景点大全</a>|<a href="#">订购指南</a>-->
+		</p>
 	</div>
 </div>
