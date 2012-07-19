@@ -92,7 +92,7 @@ $("[data-orderForm]").click(function(){
 });
 
 $("#odrProtocol").click(function(){
-	if($(this).attr("checked",'true')){
+	if($(this).attr("checked") == 'true'){
 		//选中
 		$("#orderNext").show() ;
 	}else{
