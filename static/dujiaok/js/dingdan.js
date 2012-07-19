@@ -198,7 +198,7 @@ $("#orderForm").on("submit",function(e){
 		if(hasErr >= 1){
 			return false;
 		}
-		$(this).closest("form").submit();
+		//$(this).closest("form").submit();
 		//ajax相关数据	
 		return true ;
   })
