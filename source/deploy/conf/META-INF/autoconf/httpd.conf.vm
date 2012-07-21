@@ -54,12 +54,6 @@ ErrorLog  "${doucome_output}/logs/apache_error.log"
 TypesConfig ${doucome_httpdhome}/conf/mime.types
 DefaultType text/plain
 DirectoryIndex index.html
-
-<VirtualHost *>
-	RewriteEngine on
-        RewriteCond %{HTTP_HOST} ^dujiaok.com [NC,OR]
-RewriteRule ^(.*)$ http://${doucome_domainName}$1 [L,R=301]
-</VirtualHost>
 	 
 <VirtualHost *>
     ServerAdmin efax
