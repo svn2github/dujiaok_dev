@@ -18,7 +18,11 @@
 						<input type="hidden" name="s_product" value="ZJ"/>
 					<table class="tableForm">
 						<tr><th style="width:50%">城市</th><td class="select">
-                                <input type="text" name="s_city" /><ul><li>杭州市</li><li>上海市</li><li>北京市</li></ul>
+                                <select name="s_city">
+									<option>杭州市</option>
+									<option>上海市</option>
+									<option>北京市</option>
+								</select>
 							</td></tr>
 						<tr><th>景点名称 </th><td><input type="text" name="keyword" /></td></tr>
 						<tr><th>出游类型</th><td class="select">
@@ -53,7 +57,11 @@
                     <input type="hidden" name="s_product" value="MP"/>
 					<table class="tableForm">
 						<tr><th>城市</th><td class="select">
-                                <input type="text" name="s_city" /><ul><li>杭州市</li><li>上海市</li><li>北京市</li></ul>
+                                <select name="s_city">
+									<option>杭州市</option>
+									<option>上海市</option>
+									<option>北京市</option>
+								</select>
 							</td></tr>
 						<tr><th>景点名称</th><td>
 								<input type="text" name="keyword" />
@@ -79,7 +87,11 @@
 						<input type="hidden" name="s_product" value="JD"/>
 					<table class="tableForm">
 						<tr><th>城市</th><td class="select">
-                                <input type="text" name="s_city" /><ul><li>杭州市</li><li>上海市</li><li>北京市</li></ul>
+                                <select name="s_city">
+									<option>杭州市</option>
+									<option>上海市</option>
+									<option>北京市</option>
+								</select>
 							</td></tr>
 						<tr><th>酒店名称</th><td>
 								<input type="text" name="keyword" />

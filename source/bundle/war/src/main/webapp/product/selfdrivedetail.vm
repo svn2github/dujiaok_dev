@@ -227,7 +227,7 @@
     		$.ajax({
                 url: url ,
                 type: 'GET',
-                error: function(){
+                error: function(e){
                     alert("get data error!") ;
                 },
                 success: function(data){
