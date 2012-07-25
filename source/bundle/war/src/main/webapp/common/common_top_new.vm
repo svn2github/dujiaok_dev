@@ -12,7 +12,7 @@
 		#end
 	</div>
 </div>
-<div class="w950 head">
+<div class="w950 head" id="w950">
 	<div class="top">
 		<h1><a href="${env.root}/home/index.htm" id="top_logo">度假OK</a></h1>
 		<div class="schForm">

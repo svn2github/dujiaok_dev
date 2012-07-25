@@ -1,24 +1,55 @@
+
+
+
+
+
 <!-- bottom开始 -->
 <div class="w950 mgt20 bottom">
 	<div class="btm1">
-		<dl class="L">
-			<dt>订购热线(免长途费)</dt>
-			<dd>400-999-2788</dd>
-		</dl>
-		<ul class="R">
-			<li><dl><dt>新手上路</dt><dd><a href="#">·正品保证</a><a href="#">·会员注册</a><a href="#">·常见问题</a><a href="#">·防骗提示</a></dd></dl></li>
-			<li><dl><dt>购物流程</dt><dd><a href="#">·购物流程</a><a href="#">·购物保障</a><a href="#">·优惠券使用</a><a href="#">·发票说明</a></dd></dl></li>
-			<li><dl><dt>如何付款</dt><dd><a href="#">·购物流程</a><a href="#">·购物保障</a><a href="#">·优惠券使用</a><a href="#">·发票说明</a></dd></dl></li>
-			<li><dl><dt>配送说明</dt><dd><a href="#">·运费说明</a><a href="#">·配送方式</a><a href="#">·配送范围</a></dd></dl></li>
-			<li><dl><dt>售后服务</dt><dd><a href="#">·售后说明</a><a href="#">·退换货政策</a><a href="#">·退换货流程</a><a href="#">·投诉建议</a></dd></dl></li>
-			<li><dl><dt>会员服务</dt><dd><a href="#">·会员说明</a><a href="#">·积分查询</a><a href="#">·积分兑换</a></dd></dl></li>
+		<ul>
+			<li><dl><dt>订购流程</dt><dd>
+				<a href="${env.cmsroot}/cms/help/help_101.html" target="_blank">·如何网上订购产品？</a>
+                <a href="${env.cmsroot}/cms/help/help_102.html" target="_blank">·订购产品的方法？</a>
+                <a href="${env.cmsroot}/cms/help/help_103.html" target="_blank">·可以预订多长时间的门票或产品？</a>
+                <a href="${env.cmsroot}/cms/help/help_104.html" target="_blank">·预订的订单多长时间内付款有效？</a>
+                <a href="${env.cmsroot}/cms/help/help_105.html" target="_blank">·是否付款成功就代表了预订成功了？</a></dd></dl></li>
+			<li><dl><dt>注册与登陆</dt><dd>
+				<a href="${env.cmsroot}/cms/help/help_201.html" target="_blank">·如何才能成为度假OK网的会员？</a>
+                <a href="${env.cmsroot}/cms/help/help_202.html" target="_blank">·在哪里登陆会员帐号？</a>
+                <a href="${env.cmsroot}/cms/help/help_203.html" target="_blank">·如何修改我的会员密码？</a>
+                <a href="${env.cmsroot}/cms/help/help_204.html" target="_blank">·忘记用户名或密码怎么办？</a>
+                <a href="${env.cmsroot}/cms/help/help_205.html" target="_blank">·用户名可以用中文或手机号码注册吗？</a></dd></dl></li>
+			<li><dl><dt>付款方式</dt><dd>
+				<a href="${env.cmsroot}/cms/help/help_301.html" target="_blank">·可以选择的付款方式</a>
+                <a href="${env.cmsroot}/cms/help/help_302.html" target="_blank">·使用网上支付安全吗？</a>
+                <a href="${env.cmsroot}/cms/help/help_303.html" target="_blank">·网上支付不能成功的可能原因有哪些？</a>
+                <a href="${env.cmsroot}/cms/help/help_304.html" target="_blank">·如果网上支付未能成功该怎么办？</a>
+                <a href="${env.cmsroot}/cms/help/help_305.html" target="_blank">·因为预订确认不成功或其它原因需要退款怎么处理？</a></dd></dl></li>
+			<li><dl><dt>取票与沟通</dt><dd>
+				<a href="${env.cmsroot}/cms/help/help_401.html" target="_blank">·如何验票入园？</a>
+                <a href="${env.cmsroot}/cms/help/help_402.html" target="_blank">·没有短信可以入园吗？</a>
+                <a href="${env.cmsroot}/cms/help/help_403.html" target="_blank">·怎样咨询门票或预订问题？</a>
+                <a href="${env.cmsroot}/cms/help/help_404.html" target="_blank">·我对服务不满意怎么投诉？</a>
+                <a href="${env.cmsroot}/cms/help/help_405.html" target="_blank">·我是酒店或景点负责人，如何联系度假OK网合作？</a></dd></dl></li>
 		</ul>
 	</div>
 	<p class="btm2">
-		<a href="#">了解度假OK</a>|<a href="#">联系度假OK</a>|<a href="#">媒体报道</a>|<a href="#">版权声明</a>|<a href="#">友情链接</a>|<a href="#">加入度假OK</a>|<a href="#">网站联盟</a>|<a href="#">商务合作</a>|<a href="#">分类大全</a>|<a href="#">问题大全</a>
+		<a href="help_b01.html">关于度假OK</a>|<a href="help_b02.html">关于团队</a>|<a href="#">媒体报道</a>|<a href="#">版权声明</a>|<a href="#">友情链接</a>|<a href="#">加入度假OK</a>
 	</p>
-	<p class="btm3">Copyright &copy; 2011 - 2012 度假OK Inc.度假OK 版权所有 浙ICP备12020270</p>
+	<p class="btm3">Copyright &copy; 2011 - 2012 DujiaOK.com Inc. 度假OK 版权所有 浙ICP备12020270</p>
 </div>
+<!-- bottom结束 -->
+
+
+
+
+
+
+
+
+
+
+
 <!--客服-->
 	
 <div class="w950">
