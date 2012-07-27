@@ -65,7 +65,7 @@ h1 a{display:block;height:49px;text-indent:-9999px;}
 .top .serviceTel{float:left;margin:25px 0 0 93px;font-family:Arial; font-size:15px; font-weight:bold; color:#73B105;}
 /* menu */
 .menu{height:35px;}
-.hotPurpose{float:left;margin-top:13px;width:120px; height:32px;}
+.hotPurpose{float:left;margin-top:13px;width:120px; height:32px;line-height:20px;}
 .hotPurpose h2{width:120px;height:31px; text-indent:-9999px;}
 .hotPurpose h2.current{background-position:-408px 0;}
 .hotPurpose ul{display:none;position:absolute; z-index:9999;margin-top:1px;border:1px solid #639B01;border-bottom:none;background:#fff;}
