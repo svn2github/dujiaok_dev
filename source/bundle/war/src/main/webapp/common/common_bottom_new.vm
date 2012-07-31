@@ -34,12 +34,25 @@
 		</ul>
 	</div>
 	<p class="btm2">
-		<a href="help_b01.html">关于度假OK</a>|<a href="help_b02.html">关于团队</a>|<a href="#">媒体报道</a>|<a href="#">版权声明</a>|<a href="#">友情链接</a>|<a href="#">加入度假OK</a>
+		<!--<a href="help_b01.html">关于度假OK</a>|<a href="help_b02.html">关于团队</a>|<a href="#">媒体报道</a>|<a href="#">版权声明</a>|<a href="#">友情链接</a>|<a href="#">加入度假OK</a>-->
 	</p>
+	
+	
 	<p class="btm3">Copyright &copy; 2011 - 2012 DujiaOK.com Inc. 度假OK 版权所有 浙ICP备12020270</p>
 </div>
 <!-- bottom结束 -->
 
+<!-- 底部link开始 -->
+<div class="w950">
+		<ul class="flink">
+        	<li><a target="_blank" href="https://www.alipay.com/index.html"><img src="${env.staticroot}/images/flink_alipay.png" /></a></li>
+        	<li><a target="_blank" href="http://net.china.com.cn/index.htm"><img src="${env.staticroot}/images/flink_blxx.png" /></a></li>
+        	<li><a target="_blank" href="http://www.miibeian.gov.cn/state/outPortal/loginPortal.action"><img src="${env.staticroot}/images/flink_jywz.png" /></a></li>
+        	<li><a target="_blank" href="http://www.12312.gov.cn/"><img src="${env.staticroot}/images/flink_ljxx.png" /></a></li>
+        </ul>
+
+</div>
+<!-- 底部link结束 -->
 
 
 
