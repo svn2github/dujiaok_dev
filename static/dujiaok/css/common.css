@@ -227,3 +227,7 @@ h1 a{display:block;height:49px;text-indent:-9999px;}
 .float .backTop{display:block;height:34px;overflow:hidden;}
 .float .backTop a{display:block; margin:7px 0 0 27px; padding-left:14px; width:62px; height:14px; line-height:14px; color:#999;background-position:0 -807px;overflow:hidden;}
 input:-moz-placeholder{color:#ccc;}
+
+
+.flink{width:640px; margin:15px auto}
+.flink li{width:150px; height:60px; margin-right:10px;float:left}
