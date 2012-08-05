@@ -75,6 +75,12 @@
 				$!dateUtils.format($!order.gmtPaid , "yyyy-MM-dd HH:mm:ss")
             </td>
         </tr>
+		<tr>
+            <td align="right">保险份数：</td>
+            <td>
+				$!order.insureNum 
+            </td>
+        </tr>
 		#if($order.contacts)
         <tr>
             <td align="right">游玩人信息</td>

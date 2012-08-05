@@ -77,7 +77,7 @@
             <tr>
                 <td>$!item.orderId</td>
                 <td>
-                    <a href="${env.root}/admin/product/detail.htm?productId=${$!item.productId}">[$enumUtils.product($!item.productType).desc] $!item.name</a> #if(!$stringUtils.isBlank($item.memo))<img height="14" width="14" title="#ESC_HTML($item.memo)" src="${env.staticroot}/images/bz_icon.png">#end
+                    <a target="_blank" href="${env.root}/product/detail.htm?productId=$!item.productId">[$enumUtils.product($!item.productType).desc] $!item.name</a> #if(!$stringUtils.isBlank($item.memo))<img height="14" width="14" title="#ESC_HTML($item.memo)" src="${env.staticroot}/images/bz_icon.png">#end
 					<br/>
 					#if("FJ" == $!item.productType)
 						$!item.count 晚酒店
@@ -117,7 +117,7 @@
 					</div>
 				</td>
                 <td> 
-                    <a href="${env.root}/admin/orderdetail.htm?orderId=$!item.orderId" target="_order">详情</a>
+                    <a href="${env.root}/admin/orderdetail.htm?orderId=$!item.orderId" target="_blank">详情</a>
 					
 				</td>
             </tr>

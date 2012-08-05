@@ -41,6 +41,16 @@
 						<option value="广发银行">广发银行</option>
 						<option value="深圳发展银行">深圳发展银行</option>
 						<option value="华夏银行">华夏银行</option>
+						<option value="上海浦东发展银行">上海浦东发展银行</option>
+						<option value="中国民生银行">中国民生银行</option>
+						<option value="光大银行">光大银行</option>
+						<option value="兴业银行">兴业银行</option>
+						<option value="深圳发展银行">深圳发展银行</option>
+						<option value="邮政储蓄银行">邮政储蓄银行</option>
+						<option value="宁波银行">宁波银行</option>
+						<option value="杭州银行">杭州银行</option>
+						<option value="浙江商业银行">浙江商业银行</option>
+						<option value="杭州联合银行">杭州联合银行</option>
 					</select>
 					
 			</th></tr>
@@ -78,7 +88,11 @@
 	
 	setupAreaSelects("bankProvince" , "bankCity" , "bankArea");
 	setupAreaSelects("mailingProvince" , "mailingCity" , "mailingArea");
-
+	
+	if($("#accountType1").val() != "银行卡"){
+		$("#accountType2").hide();		
+		$('#bankInfo').hide();
+	}
 		
 	$("#accountType1").change(function(){
 		if($(this).val() == '银行卡'){

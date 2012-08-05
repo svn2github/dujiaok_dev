@@ -21,6 +21,7 @@
 		<result column="PAY_STATUS" property="payStatus" jdbcType="VARCHAR" />
 		<result column="ALIPAY_ID" property="alipayId" jdbcType="VARCHAR"/>
 		<result column="MEMO" property="memo" jdbcType="VARCHAR" />
+		<result column="INSURE_NUM" property="insureNum"/>
 		<result column="GMT_CREATE" property="gmtCreate" jdbcType="TIMESTAMP" />
 		<result column="GMT_MODIFIED" property="gmtModified" jdbcType="TIMESTAMP" />
 		<result column="GMT_ORDER_START" property="gmtOrderStart" jdbcType="TIMESTAMP" />
@@ -53,10 +54,10 @@
 	
 	<insert id="insertOrder">
 		INSERT INTO DJ_ORDER (ID,ORDER_ID,MEMBER_ID,PRODUCT_ID,NAME,PRODUCT_TYPE,PRICE,COUNT,SECONDARY_COUNT,
-			STATUS,STATUS_DETAIL,PAY_TYPE,PAY_STATUS,ALIPAY_ID,MEMO,GMT_CREATE,GMT_MODIFIED,GMT_ORDER_START,GMT_ORDER_END,GMT_PAID)
+			STATUS,STATUS_DETAIL,PAY_TYPE,PAY_STATUS,ALIPAY_ID,MEMO,INSURE_NUM,GMT_CREATE,GMT_MODIFIED,GMT_ORDER_START,GMT_ORDER_END,GMT_PAID)
 		VALUES
 			(#id#,#orderId#,#memberId#,#productId#,#name#,#productType#,#price#,#count#,#secondaryCount#,
-				#status#,#statusDetail#,#payType#,#payStatus#,#alipayId#,#memo#,now(),now(),#gmtOrderStart#,#gmtOrderEnd#,#gmtPaid#)
+				#status#,#statusDetail#,#payType#,#payStatus#,#alipayId#,#memo#,#insureNum#,now(),now(),#gmtOrderStart#,#gmtOrderEnd#,#gmtPaid#)
 	</insert>
 	
 	<update id="updateOrder">

@@ -57,11 +57,17 @@ DirectoryIndex index.html
 	 
 <VirtualHost *>
     ServerAdmin efax
-    ServerName ${doucome_domainName}
+    #ServerName ${doucome_domainName}
     DocumentRoot ${doucome_htdocs_home}
     RewriteEngine on
-    RewriteCond %{HTTP_HOST} ${doucome_domainName} [NC]
-    RewriteRule ^\/$ /home/index.htm [L,P]
+    RewriteCond %{HTTP_HOST} ^www.dujiaok.com$ [NC]
+    RewriteRule ^\/$ /home/index.htm [L,R]
+</VirtualHost>
+
+<VirtualHost *>
+    RewriteEngine on
+    RewriteCond %{HTTP_HOST} ^dujiaok.com$ [NC]
+    RewriteRule ^(.*) http://www.dujiaok.com/home/index.htm [L,R]
 </VirtualHost>
 
 SetOutputFilter DEFLATE

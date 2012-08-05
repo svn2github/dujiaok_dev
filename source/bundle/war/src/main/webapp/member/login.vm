@@ -4,7 +4,7 @@
 
 #CSS(["login.css","member.css"])
 
-<div class="w950 mgt20 bottom">
+<div class="w950 mgt20">
  <div id="content">
     <div class="reg_nav">
       <h2>用户登录</h2>
