@@ -148,12 +148,15 @@ $("#orderForm").on("submit",function(e){
 			else{
 				ipt.eq(0).next().html("");
 			}
-			if(ipt.eq(1).val()==""){
-				hasErr ++ ;
-				ipt.eq(1).next().html("请填写手机号码！");
-			}
-			else{
-				ipt.eq(1).next().html("");
+			
+			if(i == 0){
+				if(ipt.eq(1).val()==""){
+					hasErr ++ ;
+					ipt.eq(1).next().html("请填写手机号码！");
+				}
+				else{
+					ipt.eq(1).next().html("");
+				}
 			}
 			
 			var r=/^[0-9]*[1-9][0-9]*$/    //正整数正则表达式
@@ -167,13 +170,13 @@ $("#orderForm").on("submit",function(e){
 				}
 			}
 			if(sel.val()=="身份证"){
-//				if(ipt.eq(2).val()==""){
-//					hasErr ++ ;
-//					ipt.eq(2).next().html("身份证号码不能为空！");
-//				}
-//				else{
-//					ipt.eq(2).next().html("");
-//				}
+				if(ipt.eq(2).val()==""){
+					hasErr ++ ;
+					ipt.eq(2).next().html("身份证号码不能为空！");
+				}
+				else{
+					ipt.eq(2).next().html("");
+				}
 				if(ipt.eq(2).val()!=""){
 					if(ipt.eq(2).val().length!=15&&ipt.eq(2).val().length!=18){
 						hasErr ++ ;
