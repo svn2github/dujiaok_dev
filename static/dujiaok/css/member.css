@@ -24,7 +24,7 @@ body{ margin:0; padding:0;}
 #content .reg_content ul li:after{content:"\0020"; display:block; height:0; clear:both}
 #content .reg_content ul li span{width:60px;}
 #content .reg_content ul li span,#content .reg_content ul li input{ float:left; font-size:14px; height:22px ; line-height:24px;}
-#content .reg_content ul li input{width:210px; border:2px #dcdcdc solid; margin-left:15px; }
+#content .reg_content ul li input{width:200px; border:2px #dcdcdc solid; margin-left:5px; }
 #content .reg_content ul li button{ padding:0 15px; height:40px; background:url(../images/reg_03.png) #ffa024 left repeat-x; color:#FFF; *margin:0; *padding:0;}
 #content .reg_content ul li button span{ float:none; font-size:14px; font-weight:bold;margin:0; padding:0; }
 #content .reg_content ul li button span.reg_agree{ font-size:12px; padding-right:10px;font-weight:normal;}
