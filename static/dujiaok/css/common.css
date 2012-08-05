@@ -1,4 +1,4 @@
-﻿/* 式 */
+/* ʽ */
 body,ul,ol,li,p,h1,h2,h3,h4,input,dl,dt,dd,td,th{ margin:0; padding:0; list-style:none; font-family:Tahoma; font-size:12px;}
 body{padding-bottom:100px;background:url(../images/body.png) repeat-x 0 111px;color:#999;}
 table{ border-collapse:collapse;}
@@ -37,7 +37,7 @@ em,i{font-style:normal;}
 .error{margin-left:5px;color:#f00;vertical-align:1px;}
 select{ margin:0; padding:0; border:1px solid #ddd; height:22px; color:#666;}
 .userBar,.mainMenu a.current,.mainMenu a:hover.current,.idx1 .L dt,.idx1R dt,.idx1M .tabTtl li,.idx1L .tabTtl li,.schL3 .ttl,.box230 .ttl,.leftMenu h3,.float .ttl{background:url(../images/repeat.png);}
-.hotPurpose h2.current,.mainMenu a:hover,.idx1L .login,.tableForm a,.schOut .ttl .R a,.order,.page button,.hSchR .hSchR2 td a,.banner strong,.rightMain button,.rightMain .button,.float .addFav,.help .mddss .zxzx,.helpSch a{background:url(../images/other.png) no-repeat;}
+.hotPurpose h2.current,.mainMenu a:hover,.idx1L .login,.schOut .ttl .R a,.order,.page button,.hSchR .hSchR2 td a,.banner strong,.rightMain button,.rightMain .button,.float .addFav,.help .mddss .zxzx,.helpSch a{background:url(../images/other.png) no-repeat;}
 .userBar .myOrder,.userBar .rank,.hotPurpose h3,.hotPurpose h3 span,.hotPurpose .close,.idx1R li,.bottom .L dt,.orderList li i,.select input,.detail .bigRoll .tabTtl li,.pro_intro .list1 li,.jiathis_txt,.hDtl1 .price .help,.hDtl1 .popForHelp i,.float b,.float .kf a,.float .backTop a,.helpMenu h3,.help .mddss li,.help dd li{background:url(../images/icon.gif) no-repeat;}
 .order{ display:block;width:80px; height:30px; border:0;text-indent:-9999px;background-position:-534px 0;}
 .greenTtl{ margin-bottom:15px; font-size:18px;color:#290; font-family:"Microsoft Yahei";}
@@ -141,7 +141,7 @@ h1 a{display:block;height:49px;text-indent:-9999px;}
 .select ul{display:none;position:absolute;*left:0;*margin-top:27px;width:144px;height:100px;overflow-x:hidden;overflow-y:auto;border-left:1px solid #ddd;border-right:1px solid #ddd;background:#F1F7F9;}
 .select li{padding-left:3px;height:24px;line-height:24px;border-bottom:1px solid #ddd;}
 .select li.over{color:#06c;background:#f0f0f0;}
-.tableForm a{display:block; margin-top:-5px; width:78px; height:30px; line-height:30px; text-align:center;color:#fff; font-weight:bold; font-size:14px;background-position:-322px 0;}
+
 .tableForm a:hover{text-decoration:none;}
 /* schFactor */
 .schFactor{padding:15px 15px 8px 15px; height:100%;border:1px solid #DCDCDC;overflow:hidden;}
