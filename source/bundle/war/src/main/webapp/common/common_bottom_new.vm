@@ -34,7 +34,7 @@
 		</ul>
 	</div>
 	<p class="btm2">
-		<a href="${env.cmsroot}/cms/aboutus.html">关于度假OK</a>|<a href="javascript:;">关于团队</a>|<a href="javascript:;">媒体报道</a>|<a href="javascript:;">版权声明</a>|<a href="javascript:;">友情链接</a>|<a href="javascript:;">加入度假OK</a>-->
+		<a href="${env.cmsroot}/cms/aboutus.html">关于度假OK</a>|<a href="${env.cmsroot}/cms/aboutteam.html">关于团队</a>|<a href="javascript:;">媒体报道</a>|<a href="javascript:;">版权声明</a>|<a href="javascript:;">友情链接</a>|<a href="javascript:;">加入度假OK</a>-->
 	</p>
 	
 	
