@@ -1,4 +1,4 @@
-﻿body,ul,ol,li,p,h1,h2,h3,h4,input,dl,dt,dd,td,th{ margin:0; padding:0; list-style:none; font-family:Tahoma; font-size:12px;}
+body,ul,ol,li,p,h1,h2,h3,h4,input,dl,dt,dd,td,th{ margin:0; padding:0; list-style:none; font-family:Tahoma; font-size:12px;}
 
 .w950 {margin: auto; overflow: hidden; width: 950px;}
 .mgt20 {margin-top: 20px;}
@@ -18,7 +18,7 @@
 .helpMenu h3.click{background-position:8px -80px;}
 .helpMenu h4{ display:none;font-weight:normal;}
 .helpMenu h4.show{display:block;}
-.helpMenu h4 a{display:block; padding-left:35px; height:30px; line-height:30px;font-weight:normal;}
+.helpMenu h4 a{display:block; padding-left:35px; height:30px; line-height:30px;font-weight:normal;overflow: hidden;text-overflow:ellipsis;}
 .helpMenu h4 a:hover{ text-decoration:none; background:#F4FAED;}
 .help .mddss{padding:10px 15px;color:#666;}
 .help .mddss ul{margin:20px 12px;}
