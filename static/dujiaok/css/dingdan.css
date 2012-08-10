@@ -40,3 +40,8 @@
 .dingdan a , .dingdan a:hover , .dingdan a:active , .dingdan a:visited {
 	text-decoration:none ;
 }
+
+.dingdan .orderProtocol a {
+	color: #0066CC;
+    text-decoration: underline;
+}
