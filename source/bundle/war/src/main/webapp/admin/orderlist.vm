@@ -107,7 +107,7 @@
                 			<option value="用户关闭" #if($!item.statusDetail == "用户关闭") selected #end >用户关闭</option>
 							<option value="超时未付款" #if($!item.statusDetail == "超时未付款") selected #end >超时未付款</option>
 							<option value="预定不成功" #if($!item.statusDetail == "预定不成功") selected #end >预定不成功</option>
-							<option value="客户需退款" #if($!item.statusDetail == "客户需退款") selected #end >客户需退款</option>
+							<option value="客户申请退款" #if($!item.statusDetail == "客户申请退款") selected #end >客户申请退款</option>
                         </select>
 						
 						<div style="line-height:3px;">&nbsp;</div>

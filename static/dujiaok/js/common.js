@@ -258,7 +258,28 @@ $(function(){
 		var formId = $(this).attr("data-searchForm") ;
 		$("#"+formId).submit() ;
 	}) ;
-	ok.placeholder("schIpt");
+	//ok.placeholder("schIpt");
 	ok.float();
 	
+	
+	$("[placeholder]").each(function(){
+		var text = $(this).attr("placeholder");
+		if(text != ''){
+			$(this).val(text) ;
+			$(this).addClass("placeholder") ;
+		}
+		$(this).on('focus',function(){
+			if($(this).val() == text){
+				$(this).removeClass("placeholder") ;
+				$(this).val("");
+			}
+		});
+
+		$(this).on('blur',function(){
+			if($(this).val() === ""){
+				$(this).val(text);
+				$(this).addClass("placeholder") ;
+			}
+		});
+	});
 })

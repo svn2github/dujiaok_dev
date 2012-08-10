@@ -1,9 +1,18 @@
 #set($layout="/front/default_new.vm") 
 
 #CSS(["dingdan.css"])
+
+<style>
+	.paysuccess a {
+		color: #0066CC;
+	}
+</style>
+
 <div class="w950 dingdan dingdan3">
 	<div class="" style="margin:20px;">
 		<h3 style="font-size:28px;color:green;">支付成功！</h3>
-        <p style="font-size:14px;">恭喜您支付成功，请等待工作人员确认，我们会及时短信或电话通知您确认结果！[ <a href="${env.root}/home/index.htm">返回首页</a>]</p>
+        <p style="font-size:14px;">恭喜您支付成功，请等待工作人员确认，我们会及时短信或电话通知您确认结果！
+            <div class="paysuccess">[ <a href="${env.root}/home/index.htm">返回首页</a>] &nbsp;您也可以[<a href="${env.root}/member/orderlist.htm">查看我的订单</a>]</div>
+		</p>
 	</div>
 </div>

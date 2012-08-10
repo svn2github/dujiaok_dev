@@ -127,7 +127,7 @@
     					
 						<a href="javascript:;" data-orderForm="orderForm" class="btn_buy" style="margin:10px 0;" id="orderNext">下一步</a>
 						
-                        <div><input type="checkbox" checked="checked" id="odrProtocol" /><label for="odrProtocol">同意<a href="${env.cmsroot}/cms/help/xieyi.html#zbjj" target="_blank">度假OK预订协议</a></label></div>
+                        <div class="orderProtocol"><input type="checkbox" checked="checked" id="odrProtocol" /><label for="odrProtocol">&nbsp;同意<a href="${env.cmsroot}/cms/help/xieyi.html#zbjj" target="_blank">度假OK预订协议</a></label></div>
     				</td>
     			</tr>
     		</table>

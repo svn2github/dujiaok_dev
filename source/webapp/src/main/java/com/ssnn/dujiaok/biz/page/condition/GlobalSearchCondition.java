@@ -2,6 +2,8 @@ package com.ssnn.dujiaok.biz.page.condition;
 
 import java.math.BigDecimal;
 
+import org.apache.commons.lang.StringUtils;
+
 public class GlobalSearchCondition {
 
 	private String name ;
@@ -36,7 +38,7 @@ public class GlobalSearchCondition {
 	}
 
 	public String getName() {
-		return name;
+		return StringUtils.trim(name);
 	}
 
 	public void setName(String name) {
