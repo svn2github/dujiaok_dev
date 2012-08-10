@@ -38,6 +38,9 @@ public class GlobalSearchCondition {
 	}
 
 	public String getName() {
+		if(StringUtils.equals("我想去的地方", name)){
+			name = "" ;
+		}
 		return StringUtils.trim(name);
 	}
 
