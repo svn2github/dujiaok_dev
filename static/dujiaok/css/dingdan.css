@@ -45,7 +45,9 @@
 	color: #0066CC;
     text-decoration: underline;
 }
-
+.dingdan .bank-list {
+	float:left;
+}
 .bankicon{
     background-image: url(../images/bankicon.png);
     display:inline-block;
