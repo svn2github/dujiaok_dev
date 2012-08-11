@@ -4,10 +4,10 @@ var _search = function(){
 		return false ;
 	}
 	var t = e.value ; 
-	if(t == '' || typeof(t)=='undefined'){
-		alert('ÇëÊäÈëËÑË÷¹Ø¼ü×Ö');
-		return false ;
-	}
+//	if(t == '' || typeof(t)=='undefined'){
+//		alert('ÇëÊäÈëËÑË÷¹Ø¼ü×Ö');
+//		return false ;
+//	}
 	document.getElementById("searchForm").submit() ;
 }
 
@@ -25,10 +25,10 @@ var G_search = function(product_type , days , sellPrice , order , orderSeq){
 		return false ;
 	}
 	var t = e.value ; 
-	if(t == '' || typeof(t)=='undefined'){
-		alert('ÇëÊäÈëËÑË÷¹Ø¼ü×Ö');
-		return false ;
-	}
+//	if(t == '' || typeof(t)=='undefined'){
+//		alert('ÇëÊäÈëËÑË÷¹Ø¼ü×Ö');
+//		return false ;
+//	}
 	
 	if(product_type!=null && product_type!='' && typeof(product_type)!='undefined'){
 		document.getElementById('s_product').value = product_type ;
