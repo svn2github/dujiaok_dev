@@ -9,6 +9,7 @@ import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.util.WhitelistUtils;
 import com.ssnn.dujiaok.web.action.BasicAction;
 import com.ssnn.dujiaok.web.constant.SessionConstant;
+import com.ssnn.dujiaok.web.context.ContextHolder;
 import com.ssnn.dujiaok.web.session.SessionManager;
 
 /**
@@ -89,6 +90,7 @@ public class LoginAction extends BasicAction implements ValidationAware {
 
 	public String logout() throws Exception {
 		getSession().clear();
+		ContextHolder.getMemberContext().setMember(null) ;
 		return SUCCESS;
 	}
 

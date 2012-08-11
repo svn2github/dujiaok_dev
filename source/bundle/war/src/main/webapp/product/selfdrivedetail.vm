@@ -50,7 +50,7 @@
                             <td>六</td>
 						</tr>
 					</thead>
-					<tbody id="idCalendar">
+					<tbody id="idCalendar" data-url="${env.root}/ajax/priceCalendar.htm?productId=$!product.productId">
 					</tbody>
 				</table>
 			</div>
@@ -213,59 +213,6 @@
 	
 	
 	
-    //calendar
-    //初始化Calendar
-    var url = '${env.root}/ajax/priceCalendar.htm?productId=$!product.productId' ;
-    
-    var cale = new Calendar("idCalendar", {
-		
-    	SelectDay: new Date().setDate(10),
-    	onSelectDay: function(o){ o.className = "onSelect"; },
-    	onToday: function(o){ o.className = "onToday"; },
-    	onFinish: function(){
-    		var self = this;
-    		$.ajax({
-                url: url ,
-                type: 'GET',
-                error: function(e){
-                    alert("get data error!") ;
-                },
-                success: function(data){
-                    try{
-        				//var obj = eval('('+data+')') ;
-						var obj = data ;
-        				var calendar = obj.calendar ;
-						
-						$element("idCalendarYear").innerHTML = cale.Year; 
-						$element("idCalendarMonth").innerHTML = cale.Month;
-						var flag = calendar  ;
-                		// var flag = [{severtime:"2012-01",data:[{id:10,name:"250元"},{id:15,name:"250"},{id:16,name:"250"}]},{severtime:"2012-02",data:[{id:12,name:"250元"},{id:14,name:"250"},{id:16,name:"250"}]}];
-                		for(var i = 0, len = flag.length; i < len; i++){
-                			var timer = flag[i].severtime.split("-");
-                			var b = self.Year == timer[0] && self.Month == timer[1]?true:false;
-                			if(b){
-                				var pricredate = flag[i].data;
-                				for(var i = 0; i<pricredate.length; i++){
-                					self.Days[pricredate[i].id].innerHTML = "<a href='javascript:void(0);'>" + pricredate[i].id + "</a><br>"+pricredate[i].name+"";
-                				}
-                			}
-                		}
-						
-						
-        			}catch(e){
-        				alert('初始化日历失败！');
-        			}
-                }
-            });
-    	}
-    });
-
-    
-    $element("idCalendarPre").onclick = function(){ cale.PreMonth(); }
-    $element("idCalendarNext").onclick = function(){ cale.NextMonth(); }
-    //$element("idCalendarPreYear").onclick = function(){ cale.PreYear(); }
-    //$element("idCalendarNextYear").onclick = function(){ cale.NextYear(); }
-    //$element("idCalendarNow").onclick = function(){ cale.NowMonth(); }
-
+ 
 </script>
 

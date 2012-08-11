@@ -53,7 +53,7 @@
 					</td>
     			</tr>
     			<tr>
-    				<th><i>*</i>证件类型：</th>
+    				<th><i></i>证件类型：</th>
     				<td>
     				  <select name="contacts[0].certificateType" id="certificateType0" value="" style="width: 184px;" class="certificateType">
     					<option>身份证</option>
@@ -63,7 +63,7 @@
     				</td>
     			</tr>
     			<tr>
-    				<th><i>*</i>证件号码：</th>
+    				<th><i></i>证件号码：</th>
     				<td>
 						<input type="text" name="contacts[0].certificateNumber" value="$!orderDO.contacts[0].certificateNumber" id="certificateNumber0" class="wpx184 certificateNumber" dataType="IdCard" msg="证件号码错误"/>
 						<span class="error"></span>

@@ -65,6 +65,7 @@ public class MemberAuthInterceptor extends AbstractInterceptor {
 		}
 
 		String result = invocation.invoke();
+		
 		return result;
 	}
 

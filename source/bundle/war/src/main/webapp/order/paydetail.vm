@@ -58,10 +58,33 @@
     		<div class="odrTtl"><span class="flag">预定</span><span class="redTtl">￥$!order.price 元</span></div>
     		<table class="mgt10 pay">
     			<tr>
-    				<td>支付平台：</td><th><input type="radio" name="paymethod" id="zfpt1" checked /><label for="zfpt1"><img src="${env.staticroot}/images/zfb.gif" /></label></th>
+    				<td>支付平台：</td><th><input type="radio" name="payBank" id="zfpt1" checked value=""/><label for="zfpt1"><img src="${env.staticroot}/images/zfb.gif" /></label></th>
     			</tr>
     			<tr>
-    				<td>网上银行：</td><th><input type="radio" name="paymethod" id="wsyh1" /><label for="wsyh1"><img src="${env.staticroot}/images/zgyh.gif" /></label></th>
+    				<td>网上银行：</td><th>
+						
+						<ul class="bank-list">
+                            <li><input type="radio" name="payBank" value="ICBCB2C"/><span class="bankicon ICBC"></span></li>
+                            <li><input type="radio" name="payBank" value="CMB"/><span class="bankicon CMB"></span></li>
+                            <li><input type="radio" name="payBank" value="CCB"/><span class="bankicon CCB"></span></li>
+                            <li><input type="radio" name="payBank" value="BOCB2C"><span class="bankicon BOC"></span></li>
+                            <li><input type="radio" name="payBank" value="ABC"/><span class="bankicon ABC"></span></li>
+                            <li><input type="radio" name="payBank" value="COMM"/><span class="bankicon COMM"></span></li>
+                            <li><input type="radio" name="payBank" value="PSBC-DEBIT"/><span class="bankicon PSBC"></span></li>
+                            <li><input type="radio" name="payBank" value="CEBBANK"/><span class="bankicon CEB"></span></li>
+                            <li><input type="radio" name="payBank" value="SPDB"/><span class="bankicon SPDB"></span></li>
+                            <li><input type="radio" name="payBank" value="GDB"><span class="bankicon GDB"></span></li>
+                            <li><input type="radio" name="payBank" value="CITIC"/><span class="bankicon CITIC"></span></li>
+                            <li><input type="radio" name="payBank" value="CIB"/><span class="bankicon CIB"></span></li>
+                            <li><input type="radio" name="payBank" value="SDB"><span class="bankicon SDB"></span></li>
+                            <li><input type="radio" name="payBank" value="CMBC"/><span class="bankicon CMBC"></span></li>
+                            <li><input type="radio" name="payBank" value="BJBANK"/><span class="bankicon BJBANK"></span></li>
+                            <li><input type="radio" name="payBank" value="HZCBB2C"/><span class="bankicon HZCB"></span></li>
+                            <li><input type="radio" name="payBank" value="SHBANK"/><span class="bankicon SHBANK"></span></li>
+                        </ul>
+					
+					
+					</th>
     			</tr>
     			<tr class="qrxd"><td></td><th><a href="javascript:;" data-orderForm="orderPayForm" class="btn_buy" style="margin:10px 0;">确认支付</a></th></tr>
     		</table>

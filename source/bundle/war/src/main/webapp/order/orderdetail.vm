@@ -17,7 +17,7 @@
     		<div class="odrTtl"><span class="flag">预定</span><span class="greenTtl"> $!product.name #if("UNPAID" != $orderDO.status) 【$enumUtils.orderStatus($orderDO.status).desc】 &nbsp; $!orderDO.statusDetail #end</span></div>
     		<h2 class="banner mgt20"><strong>订购产品</strong></h2>
     		<table class="mgt10 product">
-    			<thead><tr><td>编号</td><td>产品名称</td><td>预定日期</td><td>订单信息</td></tr></thead>
+    			<thead><tr><td>编号</td><td width="160">产品名称</td><td>预定日期</td><td>订单信息</td></tr></thead>
     			<tbody><tr>
     				<td>$!orderDO.orderId</td>
     				<td>$!orderDO.name</td>
@@ -47,17 +47,7 @@
 	                    </tr>
 	                    <tr>
 	                    	<th>证件类型：</th>
-	                        <td>
-	                        	#if($personInfo.certificateType=='ID')
-	                        	  身份证
-	                            #elseif($personInfo.certificateType=='PASSPORT')
-								护照
-	                            #elseif($personInfo.certificateType=='OFFICERPORT')
-								军官证
-	                            #else
-								其他
-	                            #end
-	                        </td>
+	                        <td>$personInfo.certificateType</td>
 	                    </tr>
 	                    <tr>
 	                    	<th>证件号码：</th>
