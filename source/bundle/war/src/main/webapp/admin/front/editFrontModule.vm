@@ -2,7 +2,9 @@
 #set($layout="/admin/default.vm")
 #set($title="度假OK - 后台 - 前台资料编辑")
 #set($menu_name = "编辑前台")
+<div style="margin:20px 0 10px 250px;">
 <a href="${env.cmsroot}/cms/image_size.html" target="_blank" >图片尺寸说明</a>
+</div>
 <form name="editModuleForm" id="editModuleForm" method="post" action="${env.root}/admin/saveFrontModule.htm">
     <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>

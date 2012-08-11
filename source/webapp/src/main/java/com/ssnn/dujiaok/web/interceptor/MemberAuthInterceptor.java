@@ -12,6 +12,7 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+import com.opensymphony.xwork2.interceptor.PreResultListener;
 import com.ssnn.dujiaok.constant.Constant;
 import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.web.constant.SessionConstant;
@@ -35,7 +36,7 @@ public class MemberAuthInterceptor extends AbstractInterceptor {
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
-		ContextHolder.getMemberContext().setMember(null) ;
+		
 		String memberId = null;
 		ActionContext context = invocation.getInvocationContext();
 		MemberDO memberDO = (MemberDO) (context.getSession().get(SessionConstant.SESSION_MEMBER));
@@ -64,9 +65,13 @@ public class MemberAuthInterceptor extends AbstractInterceptor {
 			}
 		}
 
-		String result = invocation.invoke();
+		try {
+			String result = invocation.invoke();
+			return result;
+		} finally {
+			ContextHolder.getMemberContext().setMember(null) ;
+		}
 		
-		return result;
 	}
 
 }

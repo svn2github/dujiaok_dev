@@ -89,8 +89,7 @@ public class LoginAction extends BasicAction implements ValidationAware {
 	}
 
 	public String logout() throws Exception {
-		getSession().clear();
-		ContextHolder.getMemberContext().setMember(null) ;
+		getSession().clear();	
 		return SUCCESS;
 	}
 
