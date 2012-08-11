@@ -45,3 +45,78 @@
 	color: #0066CC;
     text-decoration: underline;
 }
+
+.bankicon{
+    background-image: url(../images/bankicon.png);
+    display:inline-block;
+    height: 30px;
+    width:120px;
+    background-repeat: no-repeat;
+}
+.ICBC{    
+    background-position: 0 -40px;
+}
+.CMB {
+    background-position: 0 -80px;
+}
+.CCB{
+    background-position: 0 -320px;
+}
+.BOC{
+    background-position: 0 -520px;
+}
+.ABC{
+    background-position: 0 -480px;
+}
+.COMM{
+    background-position: 0 -600px;
+}
+.PSBC {
+    background-position: 0 -400px;
+}
+.CEB {
+    background-position: 0 -440px;
+}
+.SPDB {
+    background-position: 0 -360px;
+}
+.GDB {
+    background-position: 0 -280px;
+}
+.CITIC {
+    background-position: 0 -200px;
+}
+.CIB {
+    background-position: 0 -3365px;
+}
+.SDB {
+    background-position: 0 -240px;
+}
+.CMBC {
+    background-position: 0 -120px;
+}
+.HZCB {
+    background-position: 0 -760px;
+}
+.SHBANK {
+    background-position: 0 -840px;
+}
+.BJRCB {
+    background-position: 0 -2640px;
+}
+.SPABANK {
+    background-position: 0 -1880px;
+}
+.FDB {
+    background-position: 0 -1320px;
+}
+.NBBANK {
+    background-position: 0 -1240px;
+}
+.BJBANK {
+    background-position: 0 -3240px;
+}
+.WZCB {
+    background-position: 0 -1720px;
+}
+
