@@ -46,8 +46,14 @@
     text-decoration: underline;
 }
 .dingdan .bank-list {
-	float:left;
+	
 }
+
+.dingdan .bank-list li {
+	float:left;
+	width:60px;
+}
+
 .bankicon{
     background-image: url(../images/bankicon.png);
     display:inline-block;
