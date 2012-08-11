@@ -170,7 +170,7 @@ $("#orderForm").on("submit",function(e){
 				}
 			}
 			
-			if(parseInt($("#ddIpt1").val()) > 0){ //保险不为空 
+			if(parseInt($("#dingdanP6").val()) > 0){ //保险不为空 
 				if(ipt.eq(2).val()==""){
 					hasErr ++ ;
 					ipt.eq(2).next().html("购买保险请填写证件号码！");
