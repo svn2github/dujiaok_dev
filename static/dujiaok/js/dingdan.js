@@ -169,14 +169,18 @@ $("#orderForm").on("submit",function(e){
 					ipt.eq(1).next().html("");
 				}
 			}
-			if(sel.val()=="身份证"){
+			
+			if(parseInt($("#ddIpt1").val()) > 0){ //保险不为空 
 				if(ipt.eq(2).val()==""){
 					hasErr ++ ;
-					ipt.eq(2).next().html("身份证号码不能为空！");
+					ipt.eq(2).next().html("购买保险请填写证件号码！");
 				}
 				else{
 					ipt.eq(2).next().html("");
 				}
+			}
+			
+			if(sel.val()=="身份证"){
 				if(ipt.eq(2).val()!=""){
 					if(ipt.eq(2).val().length!=15&&ipt.eq(2).val().length!=18){
 						hasErr ++ ;
@@ -186,16 +190,10 @@ $("#orderForm").on("submit",function(e){
 						ipt.eq(2).next().html("");
 					}
 				}
+			}else{
+				
 			}
-			else{
-				if(ipt.eq(2).val()==""){
-					hasErr ++ ;
-					ipt.eq(2).next().html("证件号码不能为空！");
-				}
-				else{
-					ipt.eq(2).next().html("");
-				}
-			}
+			
 			if(ipt.eq(3).val()!=""){
 				if(ipt.eq(3).val().search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) ==-1){
 					hasErr ++ ;
