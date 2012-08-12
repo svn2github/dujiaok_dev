@@ -64,14 +64,14 @@ public class HotPlaceServiceImpl implements HotPlaceService {
 		if(gmtGet == null){
 			return true ;
 		}
-		Calendar c = Calendar.getInstance();
-		c.add(Calendar.HOUR, refreshHours) ;
-		Calendar calNow = Calendar.getInstance() ;
-		if(c.after(calNow)){
-			return false ;
-		}
-		return true ;
 		
+		long time = gmtGet.getTime() ;
+		long now = System.currentTimeMillis() ;
+		if(now - time > 60 * 1000){
+			return true ;
+		}
+		
+		return false ;
 	}
 
 	public String getUrl() {
