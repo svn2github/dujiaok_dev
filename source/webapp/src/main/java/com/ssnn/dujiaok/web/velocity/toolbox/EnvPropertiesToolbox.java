@@ -2,12 +2,13 @@ package com.ssnn.dujiaok.web.velocity.toolbox;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.ssnn.dujiaok.constant.Constant;
 import com.ssnn.dujiaok.model.AdminDO;
 import com.ssnn.dujiaok.model.MemberDO;
 import com.ssnn.dujiaok.util.EnvPropertiesUtil;
+import com.ssnn.dujiaok.web.constant.SessionConstant;
 import com.ssnn.dujiaok.web.context.AdminContextHolder;
-import com.ssnn.dujiaok.web.context.ContextHolder;
 
 
 /**
@@ -89,10 +90,13 @@ public class EnvPropertiesToolbox {
 	}
 	
 	public MemberDO getMember(){
-		if( ContextHolder.getMemberContext() == null ){
-			return null ;
-		}
-		return ContextHolder.getMemberContext().getMember() ;
+//		if( ContextHolder.getMemberContext() == null ){
+//			return null ;
+//		}
+//		return ContextHolder.getMemberContext().getMember() ;
+		MemberDO memberDO = (MemberDO) (ActionContext.getContext().getSession().get(SessionConstant.SESSION_MEMBER));
+		return memberDO ;
+
 	}
 	
 	public AdminDO getAdmin(){

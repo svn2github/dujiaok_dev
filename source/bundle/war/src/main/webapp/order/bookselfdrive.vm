@@ -21,8 +21,8 @@
 		<img src="${env.staticroot}/images/bookStep_1.png" style="margin-top:20px;"/>
     	<!-- dtl1开始 -->
     	<div class="L">
-    		<div class="crumb">您当前的位置：周边自驾  > $!product.destProvince > $!product.destCity > $!product.destAddr</div>
-    		<div class="odrTtl"><span class="flag">预定</span><span class="greenTtl">【周边自驾】$!product.name</span></div>
+    		<div class="crumb">您当前的位置：周边度假  > $!product.destProvince > $!product.destCity > $!product.destAddr</div>
+    		<div class="odrTtl"><span class="flag">预定</span><span class="greenTtl">【周边度假】$!product.name</span></div>
     
     		<h2 class="banner mgt20"><strong>订购产品</strong></h2>
     		<table class="mgt10 product">

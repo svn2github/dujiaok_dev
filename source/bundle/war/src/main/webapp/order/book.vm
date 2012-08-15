@@ -12,7 +12,7 @@
     
     	<!-- dtl1开始 -->
     	<div class="L">
-			#if($productType == "ZJ") #set($typeName = "周边自驾") #elseif($productType == "MP") #set($typeName = "打折门票")  #elseif($productType == "FJ") #set($typeName = "酒店房间")  #end
+			#if($productType == "ZJ") #set($typeName = "周边度假") #elseif($productType == "MP") #set($typeName = "打折门票")  #elseif($productType == "FJ") #set($typeName = "酒店房间")  #end
     		<div class="crumb">您当前的位置：$!typeName  #if($productType != "FJ")> $!product.destProvince > $!product.destCity > $!product.destAddr#end</div>
     		<div class="odrTtl"><span class="flag">预定</span><span class="greenTtl">【$!typeName】$!product.name</span></div>
     

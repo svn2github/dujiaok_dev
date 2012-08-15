@@ -32,12 +32,12 @@
 		<ul class="mainMenu">
 			#if($isEdit)
 			<li><a href="${env.root}/admin/editIndex.htm" #if($_productType == "index")class="current" #end>首页</a></li>
-			<li><a href="${env.root}/admin/editSelfDrive.htm" #if($_productType == "selfDrive")class="current" #end>周边自驾</a></li>			
+			<li><a href="${env.root}/admin/editSelfDrive.htm" #if($_productType == "selfDrive")class="current" #end>周边度假</a></li>			
 			<li><a href="${env.root}/admin/editHotel.htm" #if($_productType == "hotel")class="current" #end>度假酒店</a></li>
 			<li><a href="${env.root}/admin/editTicket.htm" #if($_productType == "ticket")class="current" #end>打折门票</a></li>
 			#else
 			<li><a href="${env.root}/home/index.htm" #if($_productType == "index")class="current" #end>首页</a></li>
-			<li><a href="${env.root}/home/selfDrive.htm" #if($_productType == "selfDrive")class="current" #end>周边自驾</a></li>			
+			<li><a href="${env.root}/home/selfDrive.htm" #if($_productType == "selfDrive")class="current" #end>周边度假</a></li>			
 			<li><a href="${env.root}/home/hotel.htm" #if($_productType == "hotel")class="current" #end>度假酒店</a></li>
 			<li><a href="${env.root}/home/ticket.htm" #if($_productType == "ticket")class="current" #end>打折门票</a></li>
 			#end

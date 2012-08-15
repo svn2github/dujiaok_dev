@@ -15,7 +15,7 @@
                             <a href="${env.root}/trek/user/user/dazhe.htm">打折门票</a>
                         </li>
                         <li #if($navigation=="selfdrive")class="cur"#end>
-                            <a href="${env.root}/trek/user/user/zijia.htm">周边自驾</a>
+                            <a href="${env.root}/trek/user/user/zijia.htm">周边度假</a>
                         </li>
                         <li #if($navigation=="hotel")class="cur"#end>
                             <a href="${env.root}/trek/user/user/dujia.htm">度假酒店</a>

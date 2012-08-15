@@ -40,7 +40,7 @@
                                     <div class="menu_item"><a href="${env.root}/admin/createHotel.htm">发布酒店</a></div>
     								<div class="menu_item"><a href="${env.root}/admin/createHotelRoom.htm">发布酒店房间</a></div>
     								<div class="menu_item"><a href="${env.root}/admin/createTicket.htm">发布打折门票</a></div>
-    								<div class="menu_item"><a href="${env.root}/admin/createSelfDrive.htm">发布周边自驾</a></div>
+    								<div class="menu_item"><a href="${env.root}/admin/createSelfDrive.htm">发布周边度假</a></div>
     								<div class="menu_item"><a href="${env.root}/admin/ticketlist.htm">门票</a></div>
 							</td>
     						<td>$screen_content</td>

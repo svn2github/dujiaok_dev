@@ -1,7 +1,7 @@
 #set($layout="/front/default_new.vm")
 #################################################
 
-#set($title = "周边自驾")
+#set($title = "周边度假")
 #set($_productType = "selfDrive")
 
 <!-- main开始 -->
@@ -11,7 +11,7 @@
 	<div class="mgt20 travel1">
 		<div class="L L230">
 			<div id="optionCard" class="optionCard box230" style="height:228px;">
-				<div class="ttl"><h2>周边自驾</h2></div>
+				<div class="ttl"><h2>周边度假</h2></div>
 				<div class="current tabCnt">
 					<form action="${env.root}/search/global.htm" method="get" id="zjSearchForm">
 						<input type="hidden" name="s_product" value="ZJ"/>

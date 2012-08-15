@@ -51,7 +51,7 @@
 					<td><p>
 							<a href="#SEARCH_URL(['s_product:','page:1','s_productType:','s_starRate:','s_days:'])" #if(!$s_product || $s_product=="")class="current"#end>全部</a>
 							<a href="#SEARCH_URL(['s_product:MP','page:1','s_productType:','s_starRate:','s_days:'])" #if($s_product=="MP")class="current"#end>打折门票</a>
-							<a href="#SEARCH_URL(['s_product:ZJ','page:1','s_productType:','s_starRate:','s_days:'])" #if($s_product=="ZJ")class="current"#end>周边自驾</a>
+							<a href="#SEARCH_URL(['s_product:ZJ','page:1','s_productType:','s_starRate:','s_days:'])" #if($s_product=="ZJ")class="current"#end>周边度假</a>
 							<a href="#SEARCH_URL(['s_product:JD','page:1','s_productType:','s_starRate:','s_days:'])" #if($s_product=="JD")class="current"#end>酒店</a></p></td>
 				</tr>
 				#if($s_product == "ZJ")

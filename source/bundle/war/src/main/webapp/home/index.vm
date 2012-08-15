@@ -12,7 +12,7 @@
 	<div class="mgt20 idx1">
 		<div class="L idx1L">
 			<div class="optionCard" id="optionCard">
-				<ul class="tabTtl"><li class="first current">周边自驾</li><li>打折门票</li><li>酒店</li></ul>
+				<ul class="tabTtl"><li class="first current">周边度假</li><li>打折门票</li><li>酒店</li></ul>
 				<div class="current tabCnt">
 					<form action="${env.root}/search/global.htm" method="get" id="zjSearchForm">
 						<input type="hidden" name="s_product" value="ZJ"/>

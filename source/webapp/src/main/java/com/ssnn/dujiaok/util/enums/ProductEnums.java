@@ -27,7 +27,7 @@ public enum ProductEnums {
 	/**
 	 * 自驾
 	 */
-	SELFDRIVE(Constant.PREFIX_SELFDRIVE , "周边自驾") ,
+	SELFDRIVE(Constant.PREFIX_SELFDRIVE , "周边度假") ,
 	
 	
 	

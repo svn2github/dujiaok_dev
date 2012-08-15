@@ -10,9 +10,9 @@
 
 	<!-- dtl1开始 -->
 	<div class="L">
-		<div class="crumb">您当前的位置：周边自驾 > $!product.destProvince > $!product.destCity > $!product.destArea > $!product.destAddr</div>
+		<div class="crumb">您当前的位置：周边度假 > $!product.destProvince > $!product.destCity > $!product.destArea > $!product.destAddr</div>
 		<dl class="txtImgRoll">
-			<dt class="greenTtl">【周边自驾】$!product.name</dt>
+			<dt class="greenTtl">【周边度假】$!product.name</dt>
 
 			<dd class="bigRoll" id="dtlBigRoll">
 				#foreach($image in $product.imageList)
