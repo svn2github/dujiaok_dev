@@ -2,7 +2,8 @@ body,ul,ol,li,p,h1,h2,h3,h4,input,dl,dt,dd,td,th{ margin:0; padding:0; list-styl
 
 .w950 {margin: auto; overflow: hidden; width: 950px;}
 .mgt20 {margin-top: 20px;}
-.helpMenu {border: 1px solid #DCDCDC;overflow: hidden;padding: 9px;}
+.helpMenu {	background:#f5f5f5; border:1px solid #ccc;
+	-webkit-border-radius:4px;	overflow: hidden;padding: 9px;}
 .L230 {width: 230px;}
 .box230 {border: 1px solid #DCDCDC;width: 228px;}
 .L710, .R710 {overflow: hidden;width: 710px;}
@@ -13,8 +14,8 @@ body,ul,ol,li,p,h1,h2,h3,h4,input,dl,dt,dd,td,th{ margin:0; padding:0; list-styl
 .help{ padding-bottom:50px;margin-top:40px;}
 .help a{color:#666;}
 .helpMenu{padding:9px;border:1px solid #DCDCDC;overflow:hidden;}
-.helpMenu h2{padding-bottom:12px; height:18px; line-height:18px; font-size:16px; font-weight:bold; color:#000;border-bottom:1px solid #DCDCDC;}
-.helpMenu h3{cursor:pointer;margin:20px 0 10px 0; padding-left:24px;height:16px;line-height:16px; font-size:14px; font-weight:normal; color:#000;background-position:8px -922px;}
+.helpMenu h2{padding-bottom:12px; height:18px; line-height:18px; font-size:14px; font-weight:bold; color:#000;border-bottom:1px solid #DCDCDC;}
+.helpMenu h3{cursor:pointer;margin:20px 0 10px 0; padding-left:24px;height:16px;line-height:14px; font-size:14px; font-weight:normal; color:#000;background-position:8px -922px;}
 .helpMenu h3.click{background-position:8px -80px;}
 .helpMenu h4{ display:none;font-weight:normal;}
 .helpMenu h4.show{display:block;}
