@@ -146,6 +146,10 @@
 				该产品已过期，请咨询客服人员！
 				#end
 			</div>
+			#if($product.locationCode)
+			<div class="map mgt10" style="border:1px solid gray;height:180px;width:228px;" id="locationMap" data-location-code="$product.locationCode">
+            </div>
+			#end
 		</div>
 		
 	</div>
@@ -216,3 +220,19 @@
  
 </script>
 
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.3"></script>
+<script type="text/javascript">
+	!(function($){
+		var locCode = $("#locationMap").attr('data-location-code') ;
+		var map = new BMap.Map("locationMap");
+		if(locCode != ''){
+    		var codeArr = locCode.split(",");
+    		//初始化map
+    		$("#locationMap").show() ;
+			var point = new BMap.Point(codeArr[0],codeArr[1]) ;
+            map.centerAndZoom(point, 16);
+			map.addOverlay(new BMap.Marker(point));
+    	}
+	})(jQuery);
+	
+</script>
