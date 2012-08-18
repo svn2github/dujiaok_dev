@@ -10,6 +10,7 @@ body,ul,ol,li,p,h1,h2,h3,h4,input,dl,dt,dd,td,th{ margin:0; padding:0; list-styl
 .R, .R230, .R710 {float: right;}
 .L, .L710, .L230 {float: left;}
 .mgt10 {margin-top: 10px;}
+.float b, .float .kf a, .float .backTop a, .helpMenu h3, .help .mddss li, .help dd li, .mainMenu a.current, .mainMenu a.current:hover, .idx1 .L dt, .idx1R dt, .idx1M .tabT {background: url("../images/icon.gif") no-repeat scroll 0 0 transparent;}
 .help .mddss li,.help dd li{background:url(../images/icon.gif) no-repeat;}
 .help{ padding-bottom:50px;margin-top:40px;}
 .help a{color:#666;}
