@@ -17,7 +17,7 @@ body,ul,ol,li,p,h1,h2,h3,h4,input,dl,dt,dd,td,th{ margin:0; padding:0; list-styl
 .helpMenu{padding:9px;border:1px solid #DCDCDC;overflow:hidden;}
 .helpMenu h2{padding-bottom:12px; height:18px; line-height:18px; font-size:14px; font-weight:bold; color:#000;border-bottom:1px solid #DCDCDC;}
 .helpMenu h3{cursor:pointer;margin:20px 0 10px 0; padding-left:24px;height:16px;line-height:14px; font-size:14px; font-weight:normal; color:#000;background-position:8px -922px;}
-.helpMenu h3.click{background-position:8px -80px;}
+.helpMenu h3.click{background-position:8px -80px;} 
 .helpMenu h4{ display:none;font-weight:normal;}
 .helpMenu h4.show{display:block;}
 .helpMenu h4 a{display:block; padding-left:35px; height:30px; line-height:30px;font-weight:normal;overflow: hidden;text-overflow:ellipsis;}
