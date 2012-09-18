@@ -81,6 +81,12 @@
 				$!order.insureNum 
             </td>
         </tr>
+		<tr>
+            <td align="right">下单时间：</td>
+            <td>
+				$!dateUtils.format($!order.gmtCreate , "yyyy-MM-dd HH:mm:ss")
+            </td>
+        </tr>
 		#if($order.contacts)
         <tr>
             <td align="right">游玩人信息</td>
