@@ -46,7 +46,7 @@
 				type : "POST" ,
 				data : { orderId: orderId , memo : encodeURI(content) },
 				success : function(data){
-					var isSuccess = data.isSuccess ;
+					var isSuccess = data.success ;
 					if(isSuccess == true) { 
 						msgSelector.html("备注更新成功！") ;
 						$("#add-memo-dialog").delay(500).addClass("dd-hide") ;			
