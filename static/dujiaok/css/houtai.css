@@ -206,8 +206,7 @@ table.fabu_mb tr td {
 }
 
 .w_close_color,.w_close_color:hover {
-	background: url("../images/layer_tip_newico.png") no-repeat scroll 0
-		-38px transparent;
+	background: url("../images/layer_tip_newico.png") no-repeat scroll 0 -38px transparent;
 	display: inline-block;
 	height: 7px;
 	overflow: hidden;

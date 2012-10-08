@@ -26,7 +26,7 @@
 		}) ;
 		
 		//点击关闭
-		$("#add-memo-dialog .W_close_color").click(function(){
+		$("#add-memo-dialog .w_close_color").click(function(){
 			$("#add-memo-dialog").addClass("dd-hide") ;
 		});
 		
