@@ -88,6 +88,22 @@ overflow: hidden;
 width: 7px;
 }
 
+.angle-top {
+background-position: 0 0;
+height: 13px;
+position: absolute;
+width: 15px;
+z-index: 1;
+right: -7px;
+}
+.angle-top {
+background-image: url(../images/angle_top.png);
+display: inline-block;
+background-repeat: no-repeat;
+overflow: hidden;
+background-color: transparent;
+}
+
 .memo-icon {
 	background: url(../images/flags.png);
 	display: inline-block;
