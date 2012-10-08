@@ -97,6 +97,14 @@
             </td>
         </tr>
 		#end
+		#if($order.memo)
+		<tr>
+            <td align="right">备注</td>
+			<td>
+				$order.memo
+            </td>
+        </tr>
+		#end
     </table>
 </form>
 

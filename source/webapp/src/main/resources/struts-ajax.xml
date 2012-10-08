@@ -43,6 +43,11 @@
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="json"></result>
 		</action>
+		
+		<action name="add_admin_order_memo_ajax" class="com.ssnn.dujiaok.web.action.admin.AddOrderMemoAjaxAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="json"></result>
+		</action>
 	</package> 
 	
 	

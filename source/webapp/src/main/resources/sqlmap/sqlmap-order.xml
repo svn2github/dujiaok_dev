@@ -93,6 +93,16 @@
 			ORDER_ID = #orderId#
 	</update>
 	
+	<update id="updateMemoByOrderId">
+		UPDATE 
+			DJ_ORDER
+		SET
+			MEMO = #memo# , 
+			GMT_MODIFIED = now()
+		WHERE
+			ORDER_ID = #orderId#
+	</update>
+	
 	<update id="updateAlipayStatus">
 		UPDATE DJ_ORDER SET 
 			ALIPAY_ID = #alipayId#, 

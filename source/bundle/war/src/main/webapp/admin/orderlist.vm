@@ -4,6 +4,8 @@
 #set($tab = $__productType)
 ###################################################
 
+<input type="hidden" id="adminPage" value="orderlist"/>
+<input type="hidden" id="envRoot" value="${env.root}"/>
 
 #parse('common/back_tab.vm')
 
@@ -43,7 +45,7 @@
         </tr>
     </table>
     #parse('common/back_pagination.vm')
-    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="list_sy">
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="list_sy" id="orderlistTable">
         <tr>
             <td width="100" align="center">
                 <strong>订单编号</strong>
@@ -118,7 +120,8 @@
 				</td>
                 <td> 
                     <a href="${env.root}/admin/orderdetail.htm?orderId=$!item.orderId" target="_blank">详情</a>
-					
+					&nbsp;|&nbsp;
+					<span class="memo-icon L #if($item.memo) memo-icon-active #end add-memo-click" data-memo="$!item.memo" data-order-id="$item.orderId" style="margin:2px 0 0 8px;"></span>
 				</td>
             </tr>
     		#end
@@ -133,8 +136,28 @@
 #parse('common/back_pagination.vm')
  </form>
  
+<div id="memo-tips-container" class="select-tips dd-hide">
+	<div class="content">memo</div>
+	<div class="angle-top" style="top: -7px;left:20px;"></div>
+</div>
+
+<div id="add-memo-dialog" class="memo-dialog dd-hide" data-settle-id="">
+    <div class="memo-dialog-head">
+		<a class="w_close_color layer_tips_close" href="javascript:;"></a>
+		<span>备注</span>
+	</div>
+    <div><textarea class="content"></textarea></div>
+	<div>
+        <span class="msg">请输入内容</span>
+		<a href="javascript:;" class="submit">提交</a>
+	</div>
+	<div class="angle-top"></div>
+</div> 
+ 
+ 
 #XUI_JS(["core/xui-core.js","util/util-min.js"])
 #JS(["validator.js","dujiaok.js","admin.js"])
+#JS(["jquery-1.7.2.min.js","admin-jquery.js"])
 <script type="text/javascript">
     
     var toPage = function(page , size){

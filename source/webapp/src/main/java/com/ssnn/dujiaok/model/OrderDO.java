@@ -84,6 +84,9 @@ public class OrderDO {
 	 */
 	private String alipayId;
 
+	/**
+	 * 备注
+	 */
 	private String memo;
 
 	private Date gmtCreate;

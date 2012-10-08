@@ -63,4 +63,12 @@ public interface OrderService {
 	 * @return
 	 */
 	int updateAlipayStatus(String orderId, String alipayId, String alipayStatus);
+	
+	/**
+	  * 更新订单备注
+	  * @param orderId
+	  * @param memo
+	  * @return
+	  */
+	 int updateMemoByOrderId(String orderId , String memo) ;
 }

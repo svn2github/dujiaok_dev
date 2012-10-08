@@ -102,4 +102,9 @@ public class OrderServiceImpl implements OrderService {
 			return orderDAO.updateAlipayStatus(orderId, alipayId, payStatus.getName() , OrderStatusEnums.UNPAID.getName());
 		}
     }
+
+	@Override
+	public int updateMemoByOrderId(String orderId, String memo) {
+		return orderDAO.updateMemoByOrderId(orderId, memo) ;
+	}
 }
