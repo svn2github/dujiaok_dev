@@ -1,5 +1,5 @@
 $(function(){
-	
+	var envRoot = $("#envRoot").val() ;
 	if($("#adminPage").val() == 'orderlist'){
 		////备注开始
 	    
@@ -32,9 +32,9 @@ $(function(){
 		
 		//提交备注
 		$("#add-memo-dialog .submit").click(function(){
-			var url = ddzBopsRoot + "/bops/zhe/remote/add_settle_memo_ajax.htm";
+			var url = envRoot + "/ajax/add_admin_order_memo_ajax.htm";
 			var msgSelector = $("#add-memo-dialog").find(".msg") ;
-			var settleId = $("#add-memo-dialog").attr("data-settle-id") ;
+			var orderId = $("#add-memo-dialog").attr("data-order-id") ;
 			var content = $("#add-memo-dialog").find(".content").val() ;
 			if(content == undefined || content == ''){
 				msgSelector.html("请输入备注内容") ;
@@ -44,16 +44,12 @@ $(function(){
 			$.ajax({
 				url : url ,
 				type : "POST" ,
-				data : { id: settleId , memo : encodeURI(content) },
+				data : { orderId: orderId , memo : encodeURI(content) },
 				success : function(data){
-					var json = data.json ;
-					var code = json.code ;
-					var data = json.data ;
-					var detail = json.detail ;
-					if(code == 'success') { 
+					var isSuccess = data.isSuccess ;
+					if(isSuccess == true) { 
 						msgSelector.html("备注更新成功！") ;
 						$("#add-memo-dialog").delay(500).addClass("dd-hide") ;			
-						
 					} else {
 						msgSelector.html("更新备注失败！" + detail) ;
 					}
