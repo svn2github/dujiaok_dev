@@ -17,8 +17,8 @@
 		
 		//点击【添加备注】，显示备注输入
 		$(".add-memo-click").click(function(){
-			var settleId = $(this).attr("data-settle-id") ;
-			$("#add-memo-dialog").attr("data-settle-id" , settleId) ;
+			var orderId = $(this).attr("data-order-id") ;
+			$("#add-memo-dialog").attr("data-order-id" , orderId) ;
 			$("#add-memo-dialog").css({left:$(this).offset().left - 150,top:$(this).offset().top + 19}) ;
 			$("#add-memo-dialog").find(".content").val($(this).attr("data-memo"));
 			$("#add-memo-dialog").find(".msg").html("") ;
