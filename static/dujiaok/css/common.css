@@ -361,3 +361,90 @@ input:-moz-placeholder{color:#ccc;}
 	position:relative;
 	top:1px;
 }
+
+.w_close_color, .w_close_color:hover {
+background: url("../images/layer_tip_newico.png") no-repeat scroll 0 -38px
+ transparent;
+display: inline-block;
+height: 7px;
+overflow: hidden;
+width: 7px;
+}
+
+.memo-icon {
+	background: url(../images/flags.png);
+	display: inline-block;
+}
+
+.memo-icon {
+	cursor: pointer;
+	background-position: -350px -350px;
+	width: 14px;
+	height: 14px;
+}
+
+.memo-icon-active {
+	background-position: 0 0;
+}
+
+
+.memo-dialog {
+	border: 1px solid #eeee99;
+	width: 180px;
+	font-size: 12px;
+	position: absolute;
+	background-color: #fefecc;
+}
+
+.memo-dialog-head {
+	background-color: #fefecc;
+	color: #444;
+	text-align: right;
+	padding: 4px 0 0 0;
+}
+
+.memo-dialog-head span {
+	
+}
+
+.memo-dialog textarea {
+	width: 175px;
+	height: 50px;
+	margin: 5px 0 0 3px;
+	font-size: 12px;
+}
+
+.memo-dialog div {
+	clear: both;
+	width: 170px;
+}
+
+.memo-dialog .submit {
+	background-color: #eee;
+	color: #000;
+	text-decoration: none;
+	padding: 3px 5px;
+	margin: 5px;
+	float: right;
+	border-radius: 3px;
+}
+
+.memo-dialog .submit:hover {
+	color: #000;
+}
+
+.memo-dialog .angle-top {
+	left: 150px;
+	top: -7px;
+}
+
+.memo-dialog .msg {
+	float:left;
+	margin: 5px 0 0 10px;
+	color:#d95b6d;
+}
+
+.memo-dialog .w_close_color {
+	margin:3px 0 0 10px ;
+	float: left;
+}
