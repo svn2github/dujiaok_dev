@@ -1,9 +1,9 @@
-$(function(){
+ï»¿$(function(){
 	var envRoot = $("#envRoot").val() ;
 	if($("#adminPage").val() == 'orderlist'){
-		////±¸×¢¿ªÊ¼
+		////å¤‡æ³¨å¼€å§‹
 	    
-	    //ÏÔÊ¾±¸×¢
+	    //æ˜¾ç¤ºå¤‡æ³¨
 	    $("#orderlistTable .memo-icon").hover(function(){
 	    	var memo = $(this).attr("data-memo") ;
 	    	if(memo != ''){
@@ -15,7 +15,7 @@ $(function(){
 	    	$("#memo-tips-container").delay(300).addClass("dd-hide") ;
 	    }) ;
 		
-		//µã»÷¡¾Ìí¼Ó±¸×¢¡¿£¬ÏÔÊ¾±¸×¢ÊäÈë
+		//ç‚¹å‡»ã€æ·»åŠ å¤‡æ³¨ã€‘ï¼Œæ˜¾ç¤ºå¤‡æ³¨è¾“å…¥
 		$(".add-memo-click").click(function(){
 			var settleId = $(this).attr("data-settle-id") ;
 			$("#add-memo-dialog").attr("data-settle-id" , settleId) ;
@@ -25,22 +25,22 @@ $(function(){
 			$("#add-memo-dialog").removeClass("dd-hide") ;
 		}) ;
 		
-		//µã»÷¹Ø±Õ
+		//ç‚¹å‡»å…³é—­
 		$("#add-memo-dialog .W_close_color").click(function(){
 			$("#add-memo-dialog").addClass("dd-hide") ;
 		});
 		
-		//Ìá½»±¸×¢
+		//æäº¤å¤‡æ³¨
 		$("#add-memo-dialog .submit").click(function(){
 			var url = envRoot + "/ajax/add_admin_order_memo_ajax.htm";
 			var msgSelector = $("#add-memo-dialog").find(".msg") ;
 			var orderId = $("#add-memo-dialog").attr("data-order-id") ;
 			var content = $("#add-memo-dialog").find(".content").val() ;
 			if(content == undefined || content == ''){
-				msgSelector.html("ÇëÊäÈë±¸×¢ÄÚÈİ") ;
+				msgSelector.html("è¯·è¾“å…¥å¤‡æ³¨å†…å®¹") ;
 				return ;
 			}
-			//Ìá½»±¸×¢
+			//æäº¤å¤‡æ³¨
 			$.ajax({
 				url : url ,
 				type : "POST" ,
@@ -48,18 +48,18 @@ $(function(){
 				success : function(data){
 					var isSuccess = data.isSuccess ;
 					if(isSuccess == true) { 
-						msgSelector.html("±¸×¢¸üĞÂ³É¹¦£¡") ;
+						msgSelector.html("å¤‡æ³¨æ›´æ–°æˆåŠŸï¼") ;
 						$("#add-memo-dialog").delay(500).addClass("dd-hide") ;			
 					} else {
-						msgSelector.html("¸üĞÂ±¸×¢Ê§°Ü£¡" + detail) ;
+						msgSelector.html("æ›´æ–°å¤‡æ³¨å¤±è´¥ï¼" + detail) ;
 					}
 				} ,
 				error : function(data) {
-					msgSelector.html("¸üĞÂ±¸×¢Ê§°Ü£¡" + data) ;
+					msgSelector.html("æ›´æ–°å¤‡æ³¨å¤±è´¥ï¼" + data) ;
 				}
 			}) ;
 		}) ;
 		
-		////±¸×¢½áÊø
+		////å¤‡æ³¨ç»“æŸ
 	}
 });
