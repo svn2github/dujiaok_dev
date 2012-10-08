@@ -88,6 +88,20 @@ overflow: hidden;
 width: 7px;
 }
 
+.select-tips {
+	background-color: #FEFECC;
+	border: 1px solid #EEEE99;
+	border-radius: 3px 3px 3px 3px;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+	font-family: Arial;
+	padding: 4px 8px;
+	position: absolute;
+	width: 220px;
+	z-index: 99;
+	font: 12px/1.5 tahoma, arial, ËÎÌו;
+	color: #4D4D4D;
+}
+
 .angle-top {
 background-position: 0 0;
 height: 13px;
