@@ -1,5 +1,7 @@
 package com.ssnn.dujiaok.web.action.admin;
 
+import java.net.URLDecoder;
+
 import org.apache.commons.lang.StringUtils;
 
 import com.ssnn.dujiaok.biz.service.OrderService;
@@ -22,7 +24,7 @@ public class AddOrderMemoAjaxAction extends BasicAction {
 			return SUCCESS ;
 		}
 		
-		int effectCount = orderService.updateMemoByOrderId(orderId, memo) ;
+		int effectCount = orderService.updateMemoByOrderId(orderId, URLDecoder.decode(memo,"UTF-8")) ;
 		success = true ;
 		
 		return SUCCESS ;
