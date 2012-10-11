@@ -87,6 +87,16 @@
 				$!dateUtils.format($!order.gmtCreate , "yyyy-MM-dd HH:mm:ss")
             </td>
         </tr>
+		<tr>
+            <td align="right">游玩（入住）时间：</td>
+            <td>
+				$!dateUtils.format($!order.gmtOrderStart , "yyyy-MM-dd")
+				#if($order.gmtOrderEnd)
+					&nbsp;至&nbsp;
+				$!dateUtils.format($!order.gmtOrderEnd , "yyyy-MM-dd")
+				#end
+            </td>
+        </tr>
 		#if($order.contacts)
         <tr>
             <td align="right">游玩人信息</td>
