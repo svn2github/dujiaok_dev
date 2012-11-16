@@ -42,7 +42,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="R">
+		<div class="R product-a2">
 			#FRONT_EDIT_BUTTON($!ticketChannel.getmImageAdsA2(), $isEdit)
         	#if($!frontViewMap.get($!ticketChannel.getmImageAdsA2()).frontViews)
         		#foreach($fv in $!frontViewMap.get($!ticketChannel.getmImageAdsA2()).frontViews)

@@ -50,7 +50,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="R">
+		<div class="R product-a2" >
 			#FRONT_EDIT_BUTTON($!selfDriveChannel.getmImageAdsA2(), $isEdit)
         	#if($!frontViewMap.get($!selfDriveChannel.getmImageAdsA2()).frontViews)
         		#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmImageAdsA2()).frontViews)
