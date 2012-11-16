@@ -1,4 +1,4 @@
-﻿/* idx1 */
+/* idx1 */
 .idx1{height:450px;overflow:hidden;}
 .idx1L{width:230px;}
 .idx1L .login{height:40px;background-position:-88px 0;overflow:hidden;}
@@ -95,3 +95,7 @@
 .idx5 .i5L3 .cnt{display:block;height:60px;line-height:20px;color:#999;overflow:hidden;}
 .idx5 .i5L3 a:hover .ttl,.idx5 .i5L3 a:hover .cnt{text-decoration:underline;}
 .idx5 .i5R{width:230px; height:349px; border-bottom:1px solid #CACACA;}
+
+.product-a2 {
+	width:710px;overflow:hidden;
+}
