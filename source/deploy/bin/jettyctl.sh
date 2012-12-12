@@ -71,13 +71,13 @@ JETTY_BASE="$JETTY_SERVER_HOME"
 LOGDIR="$OUTPUT_HOME/logs"
 
 if [ ! -d "$LOGDIR" ] ; then
-	mkdirhier "$LOGDIR"
+	mkdir -p "$LOGDIR"
 fi
 
 TMPDIR="$JETTY_BASE/tmp"
 
 if [ ! -d "$TMPDIR" ] ; then
-	mkdirhier "$TMPDIR"
+	mkdir -p "$TMPDIR"
 fi
 
 JETTY_START=$JETTY_HOME/start.jar
