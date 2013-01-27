@@ -9,7 +9,7 @@
 				<h2>$!frontViewMap.get($!commonChannel.getmDujiaokDynamicTop()).config.moduleName</h2>
 				#if($!frontViewMap.get($!commonChannel.getmDujiaokDynamicTop()).frontViews)
                     #foreach($fv in $!frontViewMap.get($!commonChannel.getmDujiaokDynamicTop()).frontViews)
-						<a href="$!fv.link" class="itLink">
+						<a href="$!fv.link" class="itLink" target="_blank">
         					<img src="$!fv.photoURL" alt="$!fv.title" class="L pad3" />
         					<span class="R">$!fv.detail<em>阅读更多</em></span>
         				</a>
@@ -19,7 +19,7 @@
 					#FRONT_EDIT_BUTTON($!commonChannel.getmDujiaokDynamic(), $isEdit)
     				#if($!frontViewMap.get($!commonChannel.getmDujiaokDynamic()).frontViews)
                 		#foreach($fv in $!frontViewMap.get($!commonChannel.getmDujiaokDynamic()).frontViews)
-							<li><a href="$!fv.link">·$!fv.title</a></li>
+							<li><a href="$!fv.link" target="_blank">·$!fv.title</a></li>
                 		#end
                 	#end
 				</ul>
@@ -32,7 +32,7 @@
 					#if($!frontViewMap.get($!commonChannel.getmTravelMateDynamic()).frontViews)
                 		#foreach($fv in $!frontViewMap.get($!commonChannel.getmTravelMateDynamic()).frontViews)
 							 <li>
-        						<a href="$!fv.link">
+        						<a href="$!fv.link" target="_blank">
         							<img src="$!fv.photoURL" alt="$!fv.title" class="L" />
         							<span class="R">
         								<span class="ttl"><strong>[$!fv.category]</strong>$!fv.title</span>

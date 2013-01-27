@@ -60,11 +60,11 @@
     			<div class="tabCnt current">
     				<h2 class="banner mgt20"><strong>产品介绍</strong></h2>
     				$!product.introduction
-					<h2 class="banner mgt20"><strong>行程</strong></h2>
+					<h2 class="banner mgt20"><strong>房型图片</strong></h2>
     				$!product.categoryImage
     			</div>
     			<div class="tabCnt">
-    				<h2 class="banner mgt20"><strong>行程</strong></h2>
+    				<h2 class="banner mgt20"><strong>房型图片</strong></h2>
     				$!product.categoryImage
     			</div>
     		</div>

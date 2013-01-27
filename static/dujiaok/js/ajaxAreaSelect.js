@@ -7,6 +7,8 @@ var setupAreaSelects = function(provinceId , cityId , areaId){
 	var citySelect = $(cityId);
 	var areaSelect = $(areaId) ;
 	var provinceSelect = $(provinceId) ;
+
+	
 	$(provinceId).change(function(){
 		var name = provinceSelect.val() ;
 		var code = provinceSelect.find('option:selected').attr("code") ;

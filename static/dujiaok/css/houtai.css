@@ -320,3 +320,7 @@ table.fabu_mb tr td {
 	margin: 3px 0 0 10px;
 	float: left;
 }
+
+.search_sx select {
+	width: 100px;
+}

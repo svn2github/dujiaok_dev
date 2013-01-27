@@ -13,6 +13,7 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.util.CollectionUtils;
 
+import com.ssnn.dujiaok.constant.Constant;
 import com.ssnn.dujiaok.model.DetailItemDO;
 import com.ssnn.dujiaok.model.PriceCalendarDO;
 import com.ssnn.dujiaok.model.PriceCalendarDO.Item;
@@ -38,7 +39,7 @@ public class ProductUtils {
 		
 		Date start = new Date() ;
 		Date end = new Date() ;
-		end = org.apache.commons.lang.time.DateUtils.addMonths(end, 1) ;
+		end = org.apache.commons.lang.time.DateUtils.addMonths(end, Constant.FRONT_DISPLAY_MONTHS) ;
 		
 		List<DetailItemDO> itemList = getDetailItems(details,start , end) ;
 		if(CollectionUtils.isEmpty(itemList)){

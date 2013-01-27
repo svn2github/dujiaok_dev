@@ -17,8 +17,8 @@
     			编号：<input type="text" name="productId" value="$!productId"/>&nbsp;&nbsp;
     			名称：<input type="text" name="name" value="$!name"/>&nbsp;&nbsp;
     			目的地：
-				<select id='destProvince'  name='destProvince' onchange="selectProvince();"></select>
-                <select id='destCity' name='destCity' ></select>
+				<select id='destProvince'  name='destProvince' data="$!destProvince"></select>
+                <select id='destCity' name='destCity' data="$!destCity"></select>
 				&nbsp;&nbsp;
     			状态：
                 <select name="gmtExpire" id="gmtExpire">
@@ -87,11 +87,12 @@
 
 #parse('common/back_pagination.vm')
  </form>
+
+#JS(["jquery-1.7.2.min.js","validator.js","dujiaok.js","admin.js"])
+#JS(["ajaxAreaSelect.js"])
  
-#XUI_JS(["core/xui-core.js","util/util-min.js"])
-#JS(["validator.js","dujiaok.js","admin.js"])
 <script type="text/javascript">
-    var gmtExpire = '$dateUtils.format($!gmtExpire,"yyyy-MM-dd")' ;
+    var gmtExpire = '$!dateUtils.format($!gmtExpire,"yyyy-MM-dd")' ;
     setupSelect('gmtExpire',gmtExpire) ;
     var copy2clipboard = function(data){
         if(setClipboard(data)){
@@ -106,17 +107,6 @@
         document.forms[0].submit() ;
     }
 	
-	var url = '${env.root}/ajax/address.htm' ;	
-	var province = '$!destProvince' ;
-	var city = '$!destCity' ;
-	
-	var selectProvince = function (){
-		var select = $element('destProvince') ;
-		var name = select.options[select.selectedIndex].value ;
-		initAddressSelect(url,'destCity','city','',name) ;
-		$element('destArea').options.length = 0 ;
-	}
-	
 	var confirmAndDelProduct = function(val){
 		if(!confirm('确定删除编号为[' + val + ']的门票记录？')){
 			return ;
@@ -124,6 +114,6 @@
 		delProduct(val , '${env.root}') ;
 	}
 	
-	initAddressSelect(url,'destProvince','province',province) ;
-	initAddressSelect(url,'destCity','city',city,province) ;
+	setupAreaSelects('destProvince','destCity','destArea') ;
+	//initAddressSelect(url,'destCity','city',city,province) ;
 </script>

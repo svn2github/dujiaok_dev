@@ -50,7 +50,7 @@
                         </button>
                     </li>
                     <li class="reg_xy" style="padding-left:40px">
-                        <a href="#" target="_blank">《度假OK的服务协议》</a>
+                        <a href="${env.cmsroot}/cms/help/xieyi.html" target="_blank">《度假OK的服务协议》</a>
                     </li>
                 </ul>
             </form>

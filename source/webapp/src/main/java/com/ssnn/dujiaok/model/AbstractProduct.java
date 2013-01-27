@@ -8,6 +8,7 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.apache.commons.lang.time.DateUtils;
 
+import com.ssnn.dujiaok.constant.Constant;
 import com.ssnn.dujiaok.util.ArrayStringUtils;
 import com.ssnn.dujiaok.util.ProductUtils;
 
@@ -226,7 +227,7 @@ public abstract class AbstractProduct {
 		com.ssnn.dujiaok.util.DateUtils.setTime(start, 0, 0, 0) ;
 		start = DateUtils.addDays(start, 1) ;//预定一天后
 		Date end = new Date() ;
-		end = org.apache.commons.lang.time.DateUtils.addMonths(end, 1) ;
+		end = org.apache.commons.lang.time.DateUtils.addMonths(end, Constant.FRONT_DISPLAY_MONTHS) ;
 		return getDetailItems(start, end) ;
 	}
 	

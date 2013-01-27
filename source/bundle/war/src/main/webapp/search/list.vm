@@ -137,9 +137,9 @@
     						</span>
 							<div style="margin-left:15px;">
 							#if($item.price)
-    						<a href="${env.root}/product/detail.htm?productId=$!item.productId" class="btn_main">立即订购</a>
+    						<a href="${env.root}/product/detail.htm?productId=$!item.productId" class="btn_main" target="_blank">立即订购</a>
 							#else
-							<a href="${env.root}/product/detail.htm?productId=$!item.productId" class="btn_main">查看价格</a>
+							<a href="${env.root}/product/detail.htm?productId=$!item.productId" class="btn_main" target="_blank">查看价格</a>
 							#end
 							</div>
                         

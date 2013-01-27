@@ -85,7 +85,7 @@
 					<dd>
 						#if($!frontViewMap.get($!selfDriveChannel.getmSearchTheme()).frontViews)
         					#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmSearchTheme()).frontViews)
-                                <a href="$!fv.link">$!fv.title</a>
+                                <a href="$!fv.link" target="_blank">$!fv.title</a>
         					#end
 						#end
 					</dd>
@@ -98,7 +98,7 @@
 					<dd>
 						#if($!frontViewMap.get($!selfDriveChannel.getmSearchAttractions()).frontViews)
         					#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmSearchAttractions()).frontViews)
-                                <a href="$!fv.link">$!fv.title</a>
+                                <a href="$!fv.link" target="_blank">$!fv.title</a>
         					#end
 						#end
 					</dd>
@@ -111,7 +111,7 @@
 					<dd>
 						#if($!frontViewMap.get($!selfDriveChannel.getmSearchPeriphery()).frontViews)
         					#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmSearchPeriphery()).frontViews)
-                                <a href="$!fv.link">$!fv.title</a>
+                                <a href="$!fv.link" target="_blank">$!fv.title</a>
         					#end
 						#end
 					</dd>
@@ -124,7 +124,7 @@
 					<dd>
 						#if($!frontViewMap.get($!selfDriveChannel.getmSearchPrice()).frontViews)
         					#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmSearchPrice()).frontViews)
-                                <a href="$!fv.link">$!fv.title</a>
+                                <a href="$!fv.link" target="_blank">$!fv.title</a>
         					#end
 						#end
 					</dd>
@@ -146,7 +146,7 @@
 					#if($!frontViewMap.get($!selfDriveChannel.getmHotTitleB1()).frontViews)
         				#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmHotTitleB1()).frontViews)
 							#if($velocityCount <= 3)
-								<li class="li123"><i>$velocityCount</i><a href="$!fv.link">$!fv.title</a></li>
+								<li class="li123"><i>$velocityCount</i><a href="$!fv.link" target="_blank">$!fv.title</a></li>
 							#else
 								<li><i>$velocityCount</i><a href="$!fv.link">$!fv.title</a></li>
 							#end
@@ -166,7 +166,7 @@
 						#if($!frontViewMap.get($!selfDriveChannel.getmHotTextB2()).frontViews)
                         	#foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmHotTextB2()).frontViews)
         						<li>
-        							<a href="$!fv.link">
+        							<a href="$!fv.link" target="_blank">
         								<span class="c121">
         									<span class="c1211">·$!fv.title</span>
         									<span class="gray">$!fv.detail</span>
@@ -192,7 +192,7 @@
     		#if($!frontViewMap.get($!selfDriveChannel.getmHotImageC1()).frontViews)
                 #foreach($fv in $!frontViewMap.get($!selfDriveChannel.getmHotImageC1()).frontViews)
 					<li>
-        				<a href="$!fv.link">
+        				<a href="$!fv.link" target="_blank">
         					<img src="$!fv.photoURL" alt="$!fv.title" class="pad3"/>
         					<span class="c21">
         						<strong class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</strong>

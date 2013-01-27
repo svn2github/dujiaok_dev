@@ -23,5 +23,10 @@ public class Constant {
 	public static final String PREFIX_HOTELROOM = "FJ" ;
 	public static final String PREFIX_TICKET = "MP" ;
 	
+	/**
+	 * 
+	 */
+	public static final int FRONT_DISPLAY_MONTHS = 4 ;
+	
 	
 }

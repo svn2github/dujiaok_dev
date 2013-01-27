@@ -115,7 +115,7 @@
     		<div class="idx1L mgt10">
     		#if($!frontViewMap.get($!indexChannel.getmImageAdsA5()).frontViews)
     			#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsA5()).frontViews)
-        			<a href="$!fv.link"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
+        			<a href="$!fv.link"><img src="$!fv.photoURL" alt="$!fv.title" target="_blank"/></a>
     			#end
     		#end
             </div>
@@ -127,9 +127,9 @@
 				#if($!frontViewMap.get($!indexChannel.getmBanner()).frontViews)
 					#foreach($fv in $!frontViewMap.get($!indexChannel.getmBanner()).frontViews)
 						#if($velocityCount == 1)
-							<div class="tabCnt current"><a href="$!fv.link"><img src="$!fv.photoURL" alt="$!fv.title" /></a></div>
+							<div class="tabCnt current"><a href="$!fv.link" target="_blank"><img src="$!fv.photoURL" alt="$!fv.title" /></a></div>
 						#else
-							<div class="tabCnt"><a href="$!fv.link"><img src="$!fv.photoURL" alt="$!fv.title" /></a></div>
+							<div class="tabCnt"><a href="$!fv.link" target="_blank"><img src="$!fv.photoURL" alt="$!fv.title" /></a></div>
 						#end
 					#end
 				#end	
@@ -153,7 +153,7 @@
 					<dd>
 						#if($!frontViewMap.get($!indexChannel.getmSearchTheme()).frontViews)
         					#foreach($fv in $!frontViewMap.get($!indexChannel.getmSearchTheme()).frontViews)
-                                <a href="$!fv.link">$!fv.title</a>
+                                <a href="$!fv.link" target="_blank">$!fv.title</a>
         					#end
 						#end
 					</dd>
@@ -166,7 +166,7 @@
 					<dd>
 						#if($!frontViewMap.get($!indexChannel.getmSearchAttractions()).frontViews)
         					#foreach($fv in $!frontViewMap.get($!indexChannel.getmSearchAttractions()).frontViews)
-                                <a href="$!fv.link">$!fv.title</a>
+                                <a href="$!fv.link" target="_blank">$!fv.title</a>
         					#end
 						#end
 					</dd>
@@ -179,7 +179,7 @@
 					<dd>
 						#if($!frontViewMap.get($!indexChannel.getmSearchPeriphery()).frontViews)
         					#foreach($fv in $!frontViewMap.get($!indexChannel.getmSearchPeriphery()).frontViews)
-                                <a href="$!fv.link">$!fv.title</a>
+                                <a href="$!fv.link" target="_blank">$!fv.title</a>
         					#end
 						#end
 					</dd>
@@ -192,7 +192,7 @@
 					<dd>
 						#if($!frontViewMap.get($!indexChannel.getmSearchPrice()).frontViews)
         					#foreach($fv in $!frontViewMap.get($!indexChannel.getmSearchPrice()).frontViews)
-                                <a href="$!fv.link">$!fv.title</a>
+                                <a href="$!fv.link" target="_blank">$!fv.title</a>
         					#end
 						#end
 					</dd>
@@ -217,7 +217,7 @@
 								</dd>
 								<dd class="tabCnt">
 							#end
-							<a href="$!fv.link">
+							<a href="$!fv.link" target="_blank">
         						<img src="$!fv.photoURL" alt="$!fv.title" />
         						<span>
         							<em class="L">$!fv.title</em>
@@ -240,7 +240,7 @@
 	#if($!frontViewMap.get($!indexChannel.getmImageAdsB()).frontViews)
 		#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsB()).frontViews)
 			<div class="mgt10 idx2 greenF">
-        		<a href="$!fv.link"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
+        		<a href="$!fv.link" target="_blank"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
         	</div>
 		#end
 	#end
@@ -255,7 +255,7 @@
 			<p class="R mgt10">
 				#if($!frontViewMap.get($!indexChannel.getmPeripheryAttractionsRecommend()).frontViews)
             		#foreach($fv in $!frontViewMap.get($!indexChannel.getmPeripheryAttractionsRecommend()).frontViews)
-            			<a href="$!fv.link">$!fv.title</a>
+            			<a href="$!fv.link" target="_blank">$!fv.title</a>
             		#end
             	#end
 			</p>
@@ -264,7 +264,7 @@
 			#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsC1(), $isEdit)
 			#if($!frontViewMap.get($!indexChannel.getmImageAdsC1()).frontViews)
             	#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsC1()).frontViews)
-					<a href="$!fv.link" class="L mgr10 pad3 c11"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
+					<a href="$!fv.link" class="L mgr10 pad3 c11" target="_blank"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
             	#end
             #end
 			<ul class="L c12">
@@ -272,7 +272,7 @@
     			#if($!frontViewMap.get($!indexChannel.getmPeripheryTextRecommend()).frontViews)
                 	#foreach($fv in $!frontViewMap.get($!indexChannel.getmPeripheryTextRecommend()).frontViews)
 						<li>
-							<a href="$!fv.link">
+							<a href="$!fv.link" target="_blank">
 								<span class="c121">
 									<span class="c1211">·$!fv.title</span>
 									<span class="gray">$!fv.detail</span>
@@ -293,7 +293,7 @@
     				#if($!frontViewMap.get($!indexChannel.getmImageAdsC31()).frontViews)
                 		#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsC31()).frontViews)
 							<li>
-								<a href="$!fv.link">
+								<a href="$!fv.link" target="_blank">
 									<span class="gray">·$!fv.title</span>
 									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,"0")</span>
 								</a>
@@ -304,7 +304,7 @@
 				#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsC32(), $isEdit)
     				#if($!frontViewMap.get($!indexChannel.getmImageAdsC32()).frontViews)
                 	#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsC32()).frontViews)
-						<a href="$!fv.link" class="c3Ad"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
+						<a href="$!fv.link" class="c3Ad" target="_blank"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
                 	#end
 				#end
 			</div>
@@ -314,7 +314,7 @@
     		#if($!frontViewMap.get($!indexChannel.getmPeripheryImageRecommend()).frontViews)
                 #foreach($fv in $!frontViewMap.get($!indexChannel.getmPeripheryImageRecommend()).frontViews)
 					<li>
-        				<a href="$!fv.link">
+        				<a href="$!fv.link" target="_blank">
         					<img src="$!fv.photoURL" alt="$!fv.title" class="pad3"/>
         					<span class="c21">
         						<strong class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</strong>
@@ -336,7 +336,7 @@
 			<p class="R mgt10">
 				#if($!frontViewMap.get($!indexChannel.getmLongTermAttractionsRecommend()).frontViews)
             		#foreach($fv in $!frontViewMap.get($!indexChannel.getmLongTermAttractionsRecommend()).frontViews)
-            			<a href="$!fv.link">$!fv.title</a>
+            			<a href="$!fv.link" target="_blank">$!fv.title</a>
             		#end
             	#end
 			</p>
@@ -345,7 +345,7 @@
 			#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsD1(), $isEdit)
 			#if($!frontViewMap.get($!indexChannel.getmImageAdsD1()).frontViews)
             	#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsD1()).frontViews)
-					<a href="$!fv.link" class="L mgr10 pad3 c11"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
+					<a href="$!fv.link" class="L mgr10 pad3 c11" target="_blank"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
             	#end
             #end
 			<ul class="L c12">
@@ -353,7 +353,7 @@
     			#if($!frontViewMap.get($!indexChannel.getmLongTermTextRecommend()).frontViews)
                 	#foreach($fv in $!frontViewMap.get($!indexChannel.getmLongTermTextRecommend()).frontViews)
 						<li>
-							<a href="$!fv.link">
+							<a href="$!fv.link" target="_blank">
 								<span class="c121">
 									<span class="c1211">·$!fv.title</span>
 									<span class="gray">$!fv.detail</span>
@@ -373,7 +373,7 @@
     				#if($!frontViewMap.get($!indexChannel.getmImageAdsD31()).frontViews)
                 		#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsD31()).frontViews)
 							<li>
-								<a href="$!fv.link">
+								<a href="$!fv.link" target="_blank">
 									<span class="gray">·$!fv.title</span>
 									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,"0")</span>
 								</a>
@@ -384,7 +384,7 @@
 				#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsD32(), $isEdit)
     				#if($!frontViewMap.get($!indexChannel.getmImageAdsD32()).frontViews)
                 	#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsD32()).frontViews)
-						<a href="$!fv.link" class="c3Ad"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
+						<a href="$!fv.link" class="c3Ad" target="_blank"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
                 	#end
 				#end
 			</div>
@@ -394,7 +394,7 @@
     		#if($!frontViewMap.get($!indexChannel.getmLongTermImageRecommend()).frontViews)
                 #foreach($fv in $!frontViewMap.get($!indexChannel.getmLongTermImageRecommend()).frontViews)
 					<li>
-        				<a href="$!fv.link">
+        				<a href="$!fv.link" target="_blank">
         					<img src="$!fv.photoURL" alt="$!fv.title" class="pad3"/>
         					<span class="c21">
         						<strong class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</strong>
@@ -418,7 +418,7 @@
 			<p class="R mgt10">
 				#if($!frontViewMap.get($!indexChannel.getmFloor3AttractRecommend()).frontViews)
             		#foreach($fv in $!frontViewMap.get($!indexChannel.getmFloor3AttractRecommend()).frontViews)
-            			<a href="$!fv.link">$!fv.title</a>
+            			<a href="$!fv.link" target="_blank">$!fv.title</a>
             		#end
             	#end
 			</p>
@@ -427,7 +427,7 @@
 			#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsE1(), $isEdit)
 			#if($!frontViewMap.get($!indexChannel.getmImageAdsE1()).frontViews)
             	#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsE1()).frontViews)
-					<a href="$!fv.link" class="L mgr10 pad3 c11"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
+					<a href="$!fv.link" class="L mgr10 pad3 c11" target="_blank"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
             	#end
             #end
 			<ul class="L c12">
@@ -435,7 +435,7 @@
     			#if($!frontViewMap.get($!indexChannel.getmFloor3TextRecommend()).frontViews)
                 	#foreach($fv in $!frontViewMap.get($!indexChannel.getmFloor3TextRecommend()).frontViews)
 						<li>
-							<a href="$!fv.link">
+							<a href="$!fv.link" target="_blank">
 								<span class="c121">
 									<span class="c1211">·$!fv.title</span>
 									<span class="gray">$!fv.detail</span>
@@ -455,7 +455,7 @@
     				#if($!frontViewMap.get($!indexChannel.getmImageAdsE31()).frontViews)
                 		#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsE31()).frontViews)
 							<li>
-								<a href="$!fv.link">
+								<a href="$!fv.link" target="_blank">
 									<span class="gray">·$!fv.title</span>
 									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,"0")</span>
 								</a>
@@ -466,7 +466,7 @@
 				#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsE32(), $isEdit)
     				#if($!frontViewMap.get($!indexChannel.getmImageAdsE32()).frontViews)
                 	#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsE32()).frontViews)
-						<a href="$!fv.link" class="c3Ad"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
+						<a href="$!fv.link" class="c3Ad" target="_blank"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
                 	#end
 				#end
 			</div>
@@ -476,7 +476,7 @@
     		#if($!frontViewMap.get($!indexChannel.getmFloor3ImageRecommend()).frontViews)
                 #foreach($fv in $!frontViewMap.get($!indexChannel.getmFloor3ImageRecommend()).frontViews)
 					<li>
-        				<a href="$!fv.link">
+        				<a href="$!fv.link" target="_blank">
         					<img src="$!fv.photoURL" alt="$!fv.title" class="pad3"/>
         					<span class="c21">
         						<strong class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</strong>
@@ -498,7 +498,7 @@
 			<p class="R mgt10">
 				#if($!frontViewMap.get($!indexChannel.getmFloor4AttractRecommend()).frontViews)
             		#foreach($fv in $!frontViewMap.get($!indexChannel.getmFloor4AttractRecommend()).frontViews)
-            			<a href="$!fv.link">$!fv.title</a>
+            			<a href="$!fv.link" target="_blank">$!fv.title</a>
             		#end
             	#end
 			</p>
@@ -507,7 +507,7 @@
 			#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsF1(), $isEdit)
 			#if($!frontViewMap.get($!indexChannel.getmImageAdsF1()).frontViews)
             	#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsF1()).frontViews)
-					<a href="$!fv.link" class="L mgr10 pad3 c11"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
+					<a href="$!fv.link" class="L mgr10 pad3 c11" target="_blank"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
             	#end
             #end
 			<ul class="L c12">
@@ -515,7 +515,7 @@
     			#if($!frontViewMap.get($!indexChannel.getmFloor4TextRecommend()).frontViews)
                 	#foreach($fv in $!frontViewMap.get($!indexChannel.getmFloor4TextRecommend()).frontViews)
 						<li>
-							<a href="$!fv.link">
+							<a href="$!fv.link" target="_blank">
 								<span class="c121">
 									<span class="c1211">·$!fv.title</span>
 									<span class="gray">$!fv.detail</span>
@@ -535,7 +535,7 @@
     				#if($!frontViewMap.get($!indexChannel.getmImageAdsF31()).frontViews)
                 		#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsF31()).frontViews)
 							<li>
-								<a href="$!fv.link">
+								<a href="$!fv.link" target="_blank">
 									<span class="gray">·$!fv.title</span>
 									<span class="pink">￥$!decimalUtils.format($!fv.presentPrice,"0")</span>
 								</a>
@@ -546,7 +546,7 @@
 				#FRONT_EDIT_BUTTON($!indexChannel.getmImageAdsF32(), $isEdit)
     				#if($!frontViewMap.get($!indexChannel.getmImageAdsF32()).frontViews)
                 	#foreach($fv in $!frontViewMap.get($!indexChannel.getmImageAdsF32()).frontViews)
-						<a href="$!fv.link" class="c3Ad"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
+						<a href="$!fv.link" class="c3Ad" target="_blank"><img src="$!fv.photoURL" alt="$!fv.title" /></a>
                 	#end
 				#end
 			</div>
@@ -556,7 +556,7 @@
     		#if($!frontViewMap.get($!indexChannel.getmFloor4ImageRecommend()).frontViews)
                 #foreach($fv in $!frontViewMap.get($!indexChannel.getmFloor4ImageRecommend()).frontViews)
 					<li>
-        				<a href="$!fv.link">
+        				<a href="$!fv.link" target="_blank">
         					<img src="$!fv.photoURL" alt="$!fv.title" class="pad3"/>
         					<span class="c21">
         						<strong class="pink">￥$!decimalUtils.formatPrice($!fv.presentPrice)</strong>
