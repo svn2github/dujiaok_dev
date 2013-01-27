@@ -208,7 +208,7 @@ h1 a{display:block;height:49px;text-indent:-9999px;}
 .optionCard .tabTtl li.first{width:76px;}
 .optionCard .tabTtl li.current{border-bottom:none;background:#fff;}
 .optionCard select{width:145px;}
-.optionCard .btn_nomal{position: absolute;right:40px;bottom:5px;}
+.optionCard .btn_normal{position: absolute;right:40px;bottom:5px;}
 
 .float{position:fixed;_position:absolute;top:164px;right:0;width:120px;border:1px solid #DCDCDC; background:#fff; overflow:hidden;}
 .float .ttl{height:28px;background-position:0 -34px; overflow:hidden;}
