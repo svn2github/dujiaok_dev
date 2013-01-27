@@ -145,12 +145,12 @@ h1 a{display:block;height:49px;text-indent:-9999px;}
 
 .tableForm a:hover{text-decoration:none;}
 /* schFactor */
-.schFactor{padding:15px 15px 8px 15px; height:100%;border:1px solid #DCDCDC;overflow:hidden;}
+.schFactor{padding:15px 15px 15px 15px; height:100%;border:1px solid #DCDCDC;overflow:hidden;}
 .schFactor .ttl{margin-bottom:20px; height:100%; overflow:hidden;}
 .schFactor .ttl .L{ font-size:14px;}
 .schFactor .cnt th,.schFactor .cnt td{padding-bottom:10px;height:18px;}
 .schFactor .cnt th{padding-right:10px;text-align:left;font-weight:normal;color:#999;}
-.schFactor .cnt td p{width:608px;height:18px;overflow:hidden;}
+.schFactor .cnt td p{width:608px;height:18px;line-height: 18px;}
 .schFactor .cnt a{display:inline-block;margin-right:4px;padding:0 9px 5px 9px;padding:3px 9px\9;}
 .schFactor .cnt a.current{color:#fff;background:#75B405;}
 .schFactor .cnt a:hover.current{text-decoration:none;}
