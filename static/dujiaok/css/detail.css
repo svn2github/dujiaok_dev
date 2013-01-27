@@ -1,7 +1,16 @@
 .detail .L{width:710px; overflow:hidden;}
 .detail .bigRoll{position:relative;}
 .detail .bigRoll,.detail .bigRoll .tabCnt{height:280px;}
-.detail .bigRoll .tabCnt img{width:710px;height:250px;overflow:hidden;}
+
+.detail .bigRoll .tabCnt {
+	width:550px;
+	height: 250px;
+	overflow: hidden ;	
+}
+
+.detail .bigRoll .tabCnt img{
+	width:550px;
+}
 .detail .bigRoll .tabCnt span{display:block;margin-top:10px;width:480px;height:14px; line-height:14px;overflow:hidden;}
 .detail .bigRoll .tabTtl{position:absolute;top:265px;width:100px;right:0;overflow:hidden;}
 .detail .bigRoll .tabTtl li{float:left; display:inline;margin-left:20px;width:9px;height:9px;background-position:0 -284px;overflow:hidden;}
