@@ -25,7 +25,7 @@
 					#foreach($image in $product.imageList)
 						#set($index = $velocityCount)
 						#if($index < 4)
-						<li #if($index == 1) class="current" #end ></li>
+						<li #if($index == 1) class="current" #end ><img alt="" src="$image"></li>
 						#end
 					#end
 				</ul>

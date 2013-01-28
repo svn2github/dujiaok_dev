@@ -61,4 +61,9 @@ public class HotelServiceImpl implements HotelService {
 		hotelRoomService.deleteHotelRooms(hotelId);
 	}
 
+	@Override
+	public List<HotelDO> getHotelsByProductIds(List<String> productIdList) {
+		return hotelDAO.queryHotelsByProductIds(productIdList) ;
+	}
+
 }

@@ -1,5 +1,6 @@
 package com.ssnn.dujiaok.biz.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.ssnn.dujiaok.biz.page.Pagination;
@@ -39,6 +40,13 @@ public interface HotelService {
 	 * @return
 	 */
 	QueryResult<HotelDO> getHotels(Map<String,Object> condition , Pagination pagination) ;
+	
+	/**
+	 * 
+	 * @param productIdList
+	 * @return
+	 */
+	List<HotelDO> getHotelsByProductIds(List<String> productIdList) ;
 	
 	/**
 	 * 

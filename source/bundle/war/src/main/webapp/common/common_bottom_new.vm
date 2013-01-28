@@ -34,7 +34,12 @@
 		</ul>
 	</div>
 	<p class="btm2">
-		<a href="${env.cmsroot}/cms/help/help_b01.html" target="_blank">关于度假OK</a>|<a href="${env.cmsroot}/cms/help/help_b02.html" target="_blank">关于团队</a>|<a href="javascript:;">媒体报道</a>|<a href="javascript:;">版权声明</a>|<a href="javascript:;">友情链接</a>|<a href="javascript:;">加入度假OK</a>-->
+		<a href="${env.cmsroot}/cms/help/help_b01.html" target="_blank">关于度假OK</a>|
+		<a href="${env.cmsroot}/cms/help/help_b02.html" target="_blank">关于团队</a>|
+		<a href="http://cms.dujiaok.com/cms/help/business.html" target="_blank">商务合作</a>|
+		<a href="http://cms.dujiaok.com/cms/help/help_101.html" target="_blank">帮助中心</a>|
+		<a href="http://qing.weibo.com/dujiaok" target="_blank">旅游攻略</a>|
+		<a href="http://cms.dujiaok.com/cms/help/join.html" target="_blank">加入度假OK</a>
 	</p>
 	
 	

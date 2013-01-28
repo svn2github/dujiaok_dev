@@ -1,5 +1,6 @@
 package com.ssnn.dujiaok.biz.dal.ibatis;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,6 +49,14 @@ public class IBatisHotelDAO extends SqlMapClientDaoSupport implements HotelDAO {
 	@Override
 	public void deleteHotel(String hotelId) {
 		getSqlMapClientTemplate().delete("hotel.deleteHotel",hotelId) ;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<HotelDO> queryHotelsByProductIds(List<String> productIdList) {
+		Map<String,Object> map = new HashMap<String,Object>() ;
+		map.put("productIdList", productIdList) ;
+		return getSqlMapClientTemplate().queryForList("hotel.queryHotelsByProductIds" , map) ;
 	}
 
 }

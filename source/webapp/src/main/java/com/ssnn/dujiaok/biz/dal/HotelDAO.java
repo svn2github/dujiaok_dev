@@ -47,6 +47,13 @@ public interface HotelDAO {
 	int countHotels(Map<String,Object> condition) ;
 	
 	/**
+	 * 根据ID查询
+	 * @param productIdList
+	 * @return
+	 */
+	List<HotelDO> queryHotelsByProductIds(List<String> productIdList) ;
+	
+	/**
 	 * 
 	 * @param hotelId
 	 */

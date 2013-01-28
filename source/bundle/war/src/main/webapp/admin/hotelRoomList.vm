@@ -1,0 +1,115 @@
+#set($__productType = "hotelRoom")
+#set($layout = "/admin/default.vm")
+#set($title = "度假OK - 后台 - 酒店房间")
+#set($tab = $__productType)
+###################################################
+
+
+#parse('common/back_tab.vm')
+
+<form id="hotelRoomForm" name="hotelRoomForm" method="GET" action="${env.root}/admin/hotel_room_list.htm" onsubmit="return Validator.validate(this,'admin');">
+	<input type="hidden" name="type" value="hotelRoom"/>
+	<input type="hidden" name="start" id="start" value="1"/>
+	<input type="hidden" name="size" id="size" value="$size"/>
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="search_sx">
+    			编号：<input type="text" name="productId" value="$!productId"/>&nbsp;&nbsp;
+    			名称：<input type="text" name="name" value="$!name"/>&nbsp;&nbsp;
+    			状态：
+                <select name="gmtExpire" id="gmtExpire">
+        			<option value=''>全部</option>
+        			<option value='$dateUtils.addDays($dateUtils.now(),0,"yyyy-MM-dd")'>已过期</option>
+        			<option value='$dateUtils.addDays($dateUtils.now(),7,"yyyy-MM-dd")'>一周内过期</option>
+        			<option value='$dateUtils.addDays($dateUtils.now(),30,"yyyy-MM-dd")'>一月内过期</option>
+                </select>
+                &nbsp;&nbsp;
+    			<input name="查询" type="submit" value="查询" />
+               
+            </td>
+        </tr>
+    </table>
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td height="10"></td>
+        </tr>
+    </table>
+    #parse('common/back_pagination.vm')
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="list_sy">
+        <tr>
+            <td width="129" align="center">
+                <strong>编号</strong>
+            </td>
+			<td width="129" align="center">
+                <strong>酒店名称</strong>
+            </td>
+            <td width="447" align="center">
+                <strong>名称</strong>
+            </td>
+            <td width="100" align="center">
+                <strong>到期时间</strong>
+            </td>
+            <td width="151" align="center">
+                <strong>操作</strong>
+            </td>
+        </tr>
+		#if($collectionUtils.size($result.items) == 0)
+			<tr>
+                <td colspan="5" ><span style="color:red;margin:0 auto;">没有查询到符合条件的记录</span></td>
+            </tr>
+		#else
+        	#foreach($item in $result.items)
+            <tr>
+                <td>$!item.productId</td>
+				<td>
+					#set($hotelName = $hotelMap[$item.hotelId].name)
+                    <a href="${env.root}/product/detail.htm?productId=$item.hotelId" target="_blank">$!hotelName</a>
+				</td>
+                <td>
+                    <a href="${env.root}/product/detail.htm?productId=${item.productId}" target="_blank">$!item.name</a> #if(!$stringUtils.isBlank($item.memo))<img height="14" width="14" title="#ESC_HTML($selfDrive.memo)" src="${env.staticroot}/images/bz_icon.png">#end
+                </td>
+                <td class="F9">#OUTPUT_EXP_TIME($!item.gmtExpire,'yyyy-MM-dd')</td>
+                <td>
+        			<a href="javascript:void(0);" onclick="copy2clipboard('${env.root}/product/detail.htm?productId=$item.productId');">复制链接</a>&nbsp;&nbsp;
+                    <a href="${env.root}/admin/createHotelRoom.htm?productId=$item.productId">修改</a>&nbsp;&nbsp;
+        			<a href="javascript:void(0);" onclick="confirmAndDelProduct('$!item.productId')">删除</a>
+                </td>
+            </tr>
+    		#end
+		#end
+    </table>
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td height="10"></td>
+        </tr>
+    </table>
+
+#parse('common/back_pagination.vm')
+ </form>
+#JS(["jquery-1.7.2.min.js","validator.js","dujiaok.js","admin.js"])
+#JS(["ajaxAreaSelect.js"])
+
+<script type="text/javascript">
+    var gmtExpire = '$!dateUtils.format($!gmtExpire,"yyyy-MM-dd")' ;
+    setupSelect('gmtExpire',gmtExpire) ;
+    var copy2clipboard = function(data){
+        if(setClipboard(data)){
+			alert("已经复制");
+		}
+        return false ;
+    }
+    var toPage = function(page , size){
+        var start = (page-1) * size + 1;
+        $element('start').value = start ;
+        $element('size').value = size ;
+        document.forms[0].submit() ;
+    }
+	
+	var confirmAndDelProduct = function(val){
+		if(!confirm('确定删除编号为[' + val + ']的自驾记录？')){
+			return ;
+		}
+		delProduct(val , '${env.root}') ;
+	}
+	
+</script>

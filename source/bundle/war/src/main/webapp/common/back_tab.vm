@@ -30,11 +30,14 @@
                 <li #if($tab=="selfDrive") class="cur" #end>
                     <a href="${env.root}/admin/selfDrivelist.htm">自驾</a>
                 </li>
+				<li #if($tab=="ticket") class="cur" #end>
+                    <a href="${env.root}/admin/ticketlist.htm">门票</a>
+                </li>
                 <li #if($tab=="hotel") class="cur" #end>
                     <a href="${env.root}/admin/hotellist.htm">酒店</a>
                 </li>
-                <li #if($tab=="ticket") class="cur" #end>
-                    <a href="${env.root}/admin/ticketlist.htm">门票</a>
+                <li #if($tab=="hotelRoom") class="cur" #end>
+                    <a href="${env.root}/admin/hotel_room_list.htm">酒店房间</a>
                 </li>
 				<!--
 				<li #if($tab=="order") class="cur" #end>

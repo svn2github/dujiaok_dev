@@ -87,6 +87,18 @@
 			DEST_CITY = #destCity#
 		</isNotEmpty>
 	</select>
+	
+	<select id="queryHotelsByProductIds" resultMap="RM-Hotel">
+		SELECT 
+			*
+		FROM 
+			DJ_HOTEL
+		WHERE
+			PRODUCT_ID IN 
+		<iterate property="productIdList" open="(" close=")" conjunction=",">
+			#productIdList[]#
+		</iterate>
+	</select>
 
 	<delete id="deleteHotel">
 		DELETE FROM DJ_HOTEL WHERE PRODUCT_ID = #productId#

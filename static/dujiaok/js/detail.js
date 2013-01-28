@@ -1,5 +1,5 @@
 ﻿$(function(){
-	ok.tab("dtlBigRoll","mouseover",3000,1);
+	ok.tab("dtlBigRoll","mouseover",3000,0);
 	$("#hDtlHelp").hover(
 		function(){
 			var _x=parseInt($(this).position().left,10)-5;
@@ -9,6 +9,8 @@
 			$(this).next().hide();	
 		}
 	);
+	
+	ok.tab("pro_intro","mouseover",0);
 	
 	if($("#map").html()!=null){
 		var mapC=$("#map"),

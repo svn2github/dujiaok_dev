@@ -153,6 +153,13 @@
 			<param name="type">selfDrive</param>
 		</action>
 		
+		<action name="hotel_room_list" class="com.ssnn.dujiaok.web.action.admin.ProductListAction">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<param name="type">hotelRoom</param>
+			<result name="success"  type="velocity">/admin/hotelRoomList.vm</result>
+		</action>
+		
 		<action name="hotellist" class="com.ssnn.dujiaok.web.action.admin.ProductListAction" method="hotel">
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="adminAuthInterceptor" />
@@ -160,6 +167,8 @@
 			<param name="size">5</param>
 			<result name="success"  type="velocity">/admin/hotellist.vm</result>
 		</action>
+		
+		
 		
 		<action name="orderlist" class="com.ssnn.dujiaok.web.action.admin.OrderAction" method="list">
 			<interceptor-ref name="defaultStack" />

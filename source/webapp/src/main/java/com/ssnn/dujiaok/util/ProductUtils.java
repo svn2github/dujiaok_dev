@@ -7,13 +7,16 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.util.CollectionUtils;
 
 import com.ssnn.dujiaok.constant.Constant;
+import com.ssnn.dujiaok.model.AbstractProduct;
 import com.ssnn.dujiaok.model.DetailItemDO;
 import com.ssnn.dujiaok.model.PriceCalendarDO;
 import com.ssnn.dujiaok.model.PriceCalendarDO.Item;
@@ -207,5 +210,29 @@ public class ProductUtils {
 		}
 	}
 
+	public static List<String> getProductIdList(List<AbstractProduct> list){
+		if(CollectionUtils.isEmpty(list)){
+			return new ArrayList<String>() ;
+		}
+		List<String> idList = new ArrayList<String>() ;
+		for(AbstractProduct ap : list){
+			idList.add(ap.getProductId()) ;
+		}
+		return idList ;
+	}
+	
+	public static Map<String,AbstractProduct> convert2Map(List<AbstractProduct> list){
+		Map<String , AbstractProduct> map = new HashMap<String,AbstractProduct>() ;
+		
+		if(CollectionUtils.isEmpty(list)){
+			return map ;
+		}
+		
+		for(AbstractProduct p : list){
+			map.put(p.getProductId(), p) ;
+		}
+		
+		return map ;
+	}
 }
 

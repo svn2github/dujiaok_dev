@@ -1,7 +1,9 @@
 package com.ssnn.dujiaok.web.action.admin;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -14,7 +16,10 @@ import com.ssnn.dujiaok.biz.service.HotelRoomService;
 import com.ssnn.dujiaok.biz.service.HotelService;
 import com.ssnn.dujiaok.biz.service.SelfDriveService;
 import com.ssnn.dujiaok.biz.service.TicketService;
+import com.ssnn.dujiaok.model.AbstractProduct;
 import com.ssnn.dujiaok.model.HotelDO;
+import com.ssnn.dujiaok.model.HotelRoomDO;
+import com.ssnn.dujiaok.util.ProductUtils;
 import com.ssnn.dujiaok.web.action.BasicAction;
 
 /**
@@ -41,6 +46,8 @@ public class ProductListAction extends BasicAction implements ModelDriven<Pagina
 	
 	@SuppressWarnings("rawtypes")
 	private QueryResult result ;
+	
+	private Map<String,AbstractProduct> hotelMap ;
 	
 	private TicketService ticketService ;
 	
@@ -113,8 +120,29 @@ public class ProductListAction extends BasicAction implements ModelDriven<Pagina
 			result = hotelService.getHotels(condition, pagination) ;
 		}else if(StringUtils.equals(type, "selfDrive")){
 			result = selfDriveService.getSelfDrives(condition, pagination) ;
+		}else if(StringUtils.equals(type, "hotelRoom")) {
+			result = hotelRoomService.getRooms(condition, pagination) ;
+			if(CollectionUtils.isNotEmpty(result.getItems())){
+				List<HotelRoomDO> hrList = result.getItems() ;
+				List<String> hotelIDList = getHotelIdList(hrList) ;
+				List hotelList = hotelService.getHotelsByProductIds(hotelIDList) ;
+				hotelMap = ProductUtils.convert2Map(hotelList) ;
+			}
 		}
 		return SUCCESS ;
+	}
+	
+	private List<String> getHotelIdList(List<HotelRoomDO> hrList){
+		List<String> hotelIDList = new ArrayList<String>() ;
+		if(CollectionUtils.isNotEmpty(hrList)){
+			for(HotelRoomDO hr : hrList){
+				String hotelId = hr.getHotelId() ;
+				if(StringUtils.isNotBlank(hotelId)){
+					hotelIDList.add(hotelId) ;
+				}
+			}
+		}
+		return hotelIDList ;
 	}
 	
 	
@@ -211,6 +239,10 @@ public class ProductListAction extends BasicAction implements ModelDriven<Pagina
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public Map<String, AbstractProduct> getHotelMap() {
+		return hotelMap;
 	}
 
 	
