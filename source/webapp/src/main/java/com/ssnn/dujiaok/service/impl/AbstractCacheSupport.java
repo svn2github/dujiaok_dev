@@ -3,9 +3,11 @@ package com.ssnn.dujiaok.service.impl;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 
+import com.ssnn.dujiaok.model.AbstractModel;
 import com.ssnn.dujiaok.service.cache.CacheClient;
 
 /**
@@ -29,8 +31,7 @@ public abstract class AbstractCacheSupport implements InitializingBean {
     private CacheClient cacheClient;
 
 	public <T> boolean putValue(String key, T value) {
-		InternalStoreItem item = new InternalStoreItem();
-		item.setItem(value);
+		InternalStoreItem item = new InternalStoreItem(value);
 		return cacheClient.put(buildCacheKey(key), item);
 	}
 
@@ -71,26 +72,49 @@ public abstract class AbstractCacheSupport implements InitializingBean {
 			throw new IllegalStateException("regionName is Blank !");
 		}
 	}
+	
+	protected String buildCachekeyWithArgs(Object... args){
+		String regionName = getRegionName() ;
+		StringBuilder key = new StringBuilder(regionName) ;
+		if(!ArrayUtils.isEmpty(args)) {
+			for(Object a : args){
+				if(a != null){
+					key.append("_").append(a) ;
+				}
+			}
+		}
+		return key.toString() ;
+	}
+	
+	public String getRegionName() {
+		return regionName;
+	}
 
 	/**
+	 * 缓存对象
+	 * 
+	 * @author shenjia.caosj 2011-4-12
+	 * 
 	 * @param <T>
 	 */
-	private static class InternalStoreItem<T> implements Serializable {
-
+	public static class InternalStoreItem<T> extends AbstractModel implements Serializable {
+		
+		public InternalStoreItem (T item){
+			this.item = item ;
+			this.gmtCreate = new Date() ;
+		}
+		
 		private static final long serialVersionUID = 1L;
-		private Date modifyTime; //
-		private T item; //
+		private Date gmtCreate; // 缓存修改时间
+		private T item; // 缓存数据item
+		private int version = 0 ;
 
-		public InternalStoreItem() {
-			this.modifyTime = new Date();
+		public Date getGmtCreate() {
+			return gmtCreate;
 		}
 
-		public Date getModifyTime() {
-			return modifyTime;
-		}
-
-		public void setModifyTime(Date modifyTime) {
-			this.modifyTime = modifyTime;
+		public void setGmtCreate(Date gmtCreate) {
+			this.gmtCreate = gmtCreate;
 		}
 
 		public T getItem() {
@@ -100,5 +124,14 @@ public abstract class AbstractCacheSupport implements InitializingBean {
 		public void setItem(T item) {
 			this.item = item;
 		}
+
+		public int getVersion() {
+			return version;
+		}
+
+		public void setVersion(int version) {
+			this.version = version;
+		}
+		
 	}
 }

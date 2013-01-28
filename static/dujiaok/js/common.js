@@ -261,4 +261,39 @@ $(function(){
 	ok.placeholder("schIpt");
 	ok.float();
 	
+	if($("[data-hot-city-select]").size() > 0){
+	
+		$.ajax({
+			url:"http://dev.dujiaok.com/ajax/hot_city_ajax.htm" ,
+			type: 'GET',
+			success:function(data){
+				var code = data.json.code ;
+				var data = data.json.data ;
+				if(code == 'success'){
+					
+					$("[data-hot-city-select]").each(function(){
+						var _this = $(this) ;
+						if(!_this.is('select')){
+							return ;
+						}
+						
+						_this.empty() ;
+						_this.append('<option value="">全部</option>')
+						for(var i = 0 ; i< data.length ; i++){
+							var hotCity = data[i] ;
+							var op = '<option value=' + hotCity.cityName + '>' + hotCity.cityName + '</option>'
+							_this.append(op) ;
+						}
+						
+					}) ;
+					
+				}
+			} ,
+			error:function(){
+				alert('初始化热门到达地失败！');
+			}
+		});
+		
+		
+	}
 })

@@ -14,6 +14,22 @@
     </package>
 	
 	<package name="ajax" namespace="/ajax" extends="struts-json">
+	
+		<action name="add_hot_city_ajax" class="com.ssnn.dujiaok.web.action.ajax.HotCityOperateAjaxAction" method="add">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success"  type="json"></result>
+		</action>
+		
+		<action name="delete_hot_city_ajax" class="com.ssnn.dujiaok.web.action.ajax.HotCityOperateAjaxAction" method="delete">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success"  type="json"></result>
+		</action>
+	
+		<action name="hot_city_ajax" class="com.ssnn.dujiaok.web.action.ajax.HotCityAjaxAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success"  type="json"></result>
+		</action>
+	
 		<action name="address" class="com.ssnn.dujiaok.web.action.ajax.AddressAction">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success"  type="json"></result>
@@ -48,6 +64,9 @@
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="json"></result>
 		</action>
+		
+		
+		
 	</package> 
 	
 	

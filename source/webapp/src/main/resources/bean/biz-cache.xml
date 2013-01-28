@@ -21,4 +21,8 @@
 	<bean id="frontViewCache" class="com.ssnn.dujiaok.service.impl.PlainCacheTemplate">
 		<property name="regionName" value="FRONT_VIEW" />
 	</bean>
+	
+	<bean id="hotCityCache" class="com.ssnn.dujiaok.biz.service.cache.HotCityCacheImpl">
+		<property name="regionName" value="hot_city"></property>
+	</bean>
 </beans>

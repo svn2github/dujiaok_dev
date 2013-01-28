@@ -184,5 +184,11 @@
 		</action>
 		
 		
+		<action name="hot_city_list" class="com.ssnn.dujiaok.web.action.admin.HotCityListAction">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminAuthInterceptor" />
+			<result name="success"  type="velocity">/admin/hotCityList.vm</result>
+		</action>
+		
 	</package>
 </struts>

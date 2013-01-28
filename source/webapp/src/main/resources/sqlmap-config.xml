@@ -25,4 +25,6 @@
   	<sqlMap resource="sqlmap/sqlmap-frontView.xml" />
   	<sqlMap resource="sqlmap/sqlmap-admin.xml" />
   	<sqlMap resource="sqlmap/sqlmap-order.xml" />
+  	
+  	<sqlMap resource="sqlmap/sqlmap-hotCity.xml" />
 </sqlMapConfig>

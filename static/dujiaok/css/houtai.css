@@ -324,3 +324,34 @@ table.fabu_mb tr td {
 .search_sx select {
 	width: 100px;
 }
+
+.city-tag {
+	display: inline-block;
+	margin: 0 5px 5px 0;
+	padding: 0 7px;
+	height: 20px;
+	line-height: 20px;
+	border: 1px solid #DCDCDC;
+	background: #F1F1F1;
+	overflow: hidden;
+}
+
+.add-hot-city-container {
+	border-top: 1px solid #999;
+	padding: 5px 10px;
+}
+
+.hot-city-content {
+	font-size: 12px;
+	text-align: left ;
+	width: 600px;
+	margin: 0 auto;
+	margin-left: 250px;
+}
+
+.add-hot-city-dialog {
+	border:1px solid #222 ;
+	background-color: #aaa;
+	width: 200px;
+	padding:5px;
+}

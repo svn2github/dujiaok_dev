@@ -8,6 +8,7 @@
 			<a href="${env.root}/admin/createHotelRoom.htm" >  发布房间   </a>
             &nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="${env.root}/admin/createHotel.htm" >  发布酒店   </a>
+			
         </td>
     </tr>
 </table>
@@ -38,6 +39,9 @@
                 </li>
                 <li #if($tab=="hotelRoom") class="cur" #end>
                     <a href="${env.root}/admin/hotel_room_list.htm">酒店房间</a>
+                </li>
+				<li #if($tab=="hotCityList") class="cur" #end>
+                    <a href="${env.root}/admin/hot_city_list.htm">热门城市</a>
                 </li>
 				<!--
 				<li #if($tab=="order") class="cur" #end>

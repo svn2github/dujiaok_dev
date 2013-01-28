@@ -1,5 +1,6 @@
 ﻿$(function(){
 	var envRoot = $("#envRoot").val() ;
+	
 	if($("#adminPage").val() == 'orderlist'){
 		////备注开始
 	    
@@ -62,4 +63,75 @@
 		
 		////备注结束
 	}
+	
+	
+	//
+	//删除hot_city
+	$(".hot-city-content .w_close_color").click(function(){
+		var cityName = $(this).attr('data-city-name') ;
+		var cityId = $(this).attr('data-id') ;
+		if(confirm('删除热门城市[' + cityName + '] ？')){
+			$.ajax({
+				url:envRoot + "/ajax/delete_hot_city_ajax.htm" ,
+				type:"POST" , 
+				data:{cityId:cityId} ,
+				success:function(data){
+					var code = data.json.code ;
+					if(code == 'success') {
+						alert('操作成功！');
+						window.location.reload() ;
+					} else if(code == 'ill_args'){
+						var detail = data.json.detail ;
+						if(detail == 'dujiaok.hotCity.name.duplicate') {
+							alert('该城市已经存在！');
+						} else {
+							alert('操作失败！');
+						}
+					} else {
+						alert('操作失败！');
+					}
+				} , 
+				error:function(data){
+					alert('操作失败，请重试！');
+				}
+			}) ;
+		}
+	}) ;
+	
+	$(".hot-city-content .add-hot-city").click(function(){
+		$(".hot-city-content .add-hot-city-dialog").removeClass('dd-hide') ;
+		$(".hot-city-content .add-hot-city-dialog").find('input').val('') ;
+	}) ;
+	
+	$(".hot-city-content .add-hot-city-dialog").find('.submit').click(function(){
+		var cityName = $(".hot-city-content .add-hot-city-dialog").find('.city-name').val() ;
+		if(cityName == ''){
+			alert('请填写城市名称！') ;
+			return ;
+		}
+		$.ajax({
+			url:envRoot + "/ajax/add_hot_city_ajax.htm" ,
+			type:"POST" , 
+			data:{cityName:encodeURI(cityName)} ,
+			success:function(data){
+				var code = data.json.code ;
+				if(code == 'success') {
+					alert('操作成功！');
+					window.location.reload() ;
+				} else if(code == 'ill_args'){
+					var detail = data.json.detail ;
+					if(detail == 'dujiaok.hotCity.name.duplicate') {
+						alert('该城市已经存在！');
+					} else {
+						alert('操作失败！');
+					}
+				} else {
+					alert('操作失败！');
+				}
+			} , 
+			error:function(data){
+				alert('操作失败，请重试！');
+			}
+		}) ;
+	}) ;
 });

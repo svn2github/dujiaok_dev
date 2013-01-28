@@ -1,0 +1,33 @@
+#set($__productType = "hotCityList")
+#set($layout = "/admin/default.vm")
+#set($title = "度假OK - 后台 - 热门城市")
+#set($tab = $__productType)
+###################################################
+
+#parse('common/back_tab.vm')
+
+<div class="hot-city-content">
+
+#foreach($hotCity in $hotCityList)
+	<span class="city-tag">
+		<span>$hotCity.cityName</span>
+		<a class="w_close_color layer_tips_close" href="javascript:;" data-id="$hotCity.id" data-city-name="$!hotCity.cityName"></a>
+	</span>
+#end
+
+<div>
+	<div class="add-hot-city-container">
+		<a href="javascript:;" class="add-hot-city">添加热门城市</a>
+    </div>
+    <div class="add-hot-city-dialog dd-hide">
+		城市名称：<input type="text" class="city-name" name="hotCityName"/>
+		<a href="javascript:;" class="submit">确定</a>
+	</div>
+</div>
+
+</div>
+ 
+#JS(["jquery-1.7.2.min.js","admin.js","admin-jquery.js"])
+<script type="text/javascript">
+    
+</script>

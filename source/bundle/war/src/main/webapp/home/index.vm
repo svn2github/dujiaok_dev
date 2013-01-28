@@ -17,8 +17,8 @@
 					<form action="${env.root}/search/global.htm" method="get" id="zjSearchForm">
 						<input type="hidden" name="s_product" value="ZJ"/>
 					<table class="tableForm">
-						<tr><th style="width:50%">城市</th><td class="select">
-                                <select name="s_city">
+						<tr><th style="width:50%">热门城市</th><td class="select">
+                                <select name="s_city" data-hot-city-select="">
 									<option>杭州市</option>
 									<option>上海市</option>
 									<option>北京市</option>
@@ -56,8 +56,8 @@
 					<form action="${env.root}/search/global.htm" method="get" id="mpSearchForm">
                     <input type="hidden" name="s_product" value="MP"/>
 					<table class="tableForm">
-						<tr><th>城市</th><td class="select">
-                                <select name="s_city">
+						<tr><th>热门城市</th><td class="select">
+                                <select name="s_city" data-hot-city-select="">
 									<option>杭州市</option>
 									<option>上海市</option>
 									<option>北京市</option>
@@ -86,8 +86,8 @@
 					<form action="${env.root}/search/global.htm" method="get" id="jdSearchForm">
 						<input type="hidden" name="s_product" value="JD"/>
 					<table class="tableForm">
-						<tr><th>城市</th><td class="select">
-                                <select name="s_city">
+						<tr><th>热门城市</th><td class="select">
+                                <select name="s_city" data-hot-city-select="">
 									<option>杭州市</option>
 									<option>上海市</option>
 									<option>北京市</option>

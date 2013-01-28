@@ -44,4 +44,6 @@
 		<property name="url" value="${doucome.hotplace.url}"/>
 		<property name="refreshHours" value="${doucome.hotplace.refresh.hours}"/>
 	</bean>
+	
+	<bean id="hotCityService" class="com.ssnn.dujiaok.biz.service.impl.HotCityServiceImpl"></bean>
 </beans>

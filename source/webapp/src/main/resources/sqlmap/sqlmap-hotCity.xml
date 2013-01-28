@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="hotCity">
+	
+	<typeAlias alias="TA-hotCity" type="com.ssnn.dujiaok.model.HotCityDO"/>
+	
+	<resultMap id="RM-hotCity" class="TA-hotCity" >
+		<result property="id" column="ID" />
+		<result property="cityName" column="CITY_NAME" />
+		<result property="gmtCreate" column="GMT_CREATE"/>
+	</resultMap>
+
+	<select id="queryHotCitys" resultMap="RM-hotCity">
+		SELECT 
+			*
+		FROM
+			DJ_HOT_CITY
+	</select>
+	
+	<delete id="deleteHotCityById">
+		DELETE FROM
+			DJ_HOT_CITY
+		WHERE
+			ID = #id#
+	</delete>
+	
+	<insert id="insertHotCity">
+		INSERT INTO
+			DJ_HOT_CITY(ID,CITY_NAME,GMT_CREATE)
+		VALUES
+			(#id#,#cityName#,now())
+			<selectKey resultClass="java.lang.Long" keyProperty="id">
+			<![CDATA[
+				SELECT LAST_INSERT_ID() AS ID
+			]]>
+		</selectKey>
+	</insert>
+</sqlMap>

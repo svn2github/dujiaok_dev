@@ -30,4 +30,6 @@
 	<bean id="frontViewDAO" class="com.ssnn.dujiaok.biz.dal.cache.CacheFrontViewDAO"></bean>
 	
 	<bean id="searchDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisSearchDAO"></bean>
+	
+	<bean id="hotCityDAO" class="com.ssnn.dujiaok.biz.dal.ibatis.IBatisHotCityDAO"></bean>
 </beans>
