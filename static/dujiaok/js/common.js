@@ -262,9 +262,9 @@ $(function(){
 	ok.float();
 	
 	if($("[data-hot-city-select]").size() > 0){
-	
+		var url = $("#envRoot").val() + '/ajax/hot_city_ajax.htm' ;
 		$.ajax({
-			url:"http://dev.dujiaok.com/ajax/hot_city_ajax.htm" ,
+			url : url,
 			type: 'GET',
 			success:function(data){
 				var code = data.json.code ;

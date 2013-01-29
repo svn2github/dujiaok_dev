@@ -4,7 +4,7 @@
 	#parse("/common/common_head.vm")
 </head>
 <body>
-
+	<input type="hidden" id="envRoot" value="${env.root}"/>
 	#parse("/common/common_top_new.vm")
 	#JS(["jquery-1.7.2.min.js","common.js","index.js","search.js"])
 	<!-- main开始 -->
