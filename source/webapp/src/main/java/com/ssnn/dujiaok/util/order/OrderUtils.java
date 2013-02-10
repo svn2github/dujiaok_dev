@@ -61,9 +61,18 @@ public final class OrderUtils {
 		return info.toString();
 	}
 	
+	private static Date adjustCheckoutDate(Date checkoutDate){
+		Calendar c = Calendar.getInstance() ;
+		c.setTime(checkoutDate) ;
+		c.add(Calendar.DATE, -1) ;
+		Date date = c.getTime() ;
+		return DateUtils.setTime(date, 23, 59, 59) ;
+		
+	}
+	
 	public static BigDecimal[] getRoomPrice(AbstractProduct roomDO, Date checkinDate, Date checkoutDate) {
-		checkinDate = DateUtils.setTime(checkinDate, 0, 0, 0);
-		checkoutDate = DateUtils.setTime(checkoutDate, 0, 0, 0);
+		checkinDate = DateUtils.setTime(checkinDate, 0, 0, 0) ;
+		checkoutDate =  DateUtils.setTime(checkoutDate , 0, 0, 0) ;
 		BigDecimal[] temp = new BigDecimal[] {new BigDecimal("0"), new BigDecimal("0")};
 		
 		for (DetailItemDO itemDO : roomDO.getDefaultDetailItems()) {
@@ -79,6 +88,8 @@ public final class OrderUtils {
 		
 //		checkinDate = DateUtils.setTime(checkinDate, 0, 0, 0);
 //		checkoutDate = DateUtils.setTime(checkoutDate, 0, 0, 0);
+		
+		
 		Collections.sort(itemDOs) ;
 		boolean start = false ;
 		List<DetailItemDO> list = new ArrayList<DetailItemDO>() ;
@@ -94,7 +105,7 @@ public final class OrderUtils {
 				}
 			}else{
 				if(org.apache.commons.lang.time.DateUtils.isSameDay(date,checkoutDate)){
-					list.add(d) ;
+					//list.add(d) ;
 					break ;
 				}
 				list.add(d) ;
