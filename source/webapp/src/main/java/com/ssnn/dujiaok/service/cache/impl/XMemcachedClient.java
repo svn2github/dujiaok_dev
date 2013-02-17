@@ -22,7 +22,7 @@ import com.ssnn.dujiaok.service.cache.CacheClient;
 
 /**
  * XMemcached实现
- * @author shenjia.caosj 
+ * @author langben 
  * @date 2010-11-11 下午04:21:20
  *
  */

@@ -9,7 +9,7 @@ import com.ssnn.dujiaok.util.enums.ProductEnums;
 
 /**
  * 搜索
- * @author shenjia.caosj 2012-2-29
+ * @author langben 2012-2-29
  *
  */
 public interface SearchDAO {

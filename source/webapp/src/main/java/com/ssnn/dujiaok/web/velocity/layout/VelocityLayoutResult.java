@@ -26,7 +26,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
 
 /**
  * 由于struts2中VelocityResult 不支持layout，这里参照VelocityLayoutServlet重写该Result
- * @author shenjia.caosj 2011-12-23
+ * @author langben 2011-12-23
  *
  */
 public class VelocityLayoutResult extends VelocityResult {

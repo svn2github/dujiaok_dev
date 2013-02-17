@@ -8,7 +8,7 @@ import com.ssnn.dujiaok.model.SelfDriveDO;
 
 /**
  * 自驾DAO
- * @author shenjia.caosj 2012-1-18
+ * @author langben 2012-1-18
  *
  */
 public interface SelfDriveDAO {

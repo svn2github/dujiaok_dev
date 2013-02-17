@@ -3,7 +3,7 @@ package com.ssnn.dujiaok.util.enums;
 /**
  * 付款状态
  * 
- * @author shenjia.caosj 2012-2-2
+ * @author langben 2012-2-2
  * 
  */
 public enum PayStatusEnums {

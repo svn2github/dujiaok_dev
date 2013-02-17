@@ -4,7 +4,7 @@ import java.util.Collection;
 
 /**
  * 
- * @author shenjia.caosj 2012-1-13
+ * @author langben 2012-1-13
  *
  */
 public class CollectionUtilsToolbox {

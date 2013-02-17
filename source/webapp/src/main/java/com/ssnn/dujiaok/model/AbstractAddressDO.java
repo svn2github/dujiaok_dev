@@ -5,7 +5,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  * 
- * @author shenjia.caosj 2012-1-19
+ * @author langben 2012-1-19
  *
  */
 public abstract class AbstractAddressDO {

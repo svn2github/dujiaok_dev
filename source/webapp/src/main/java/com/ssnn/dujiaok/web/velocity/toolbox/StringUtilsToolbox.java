@@ -16,7 +16,7 @@ import com.ssnn.dujiaok.util.ArrayStringUtils;
 
 /**
  * 
- * @author shenjia.caosj 2012-1-20
+ * @author langben 2012-1-20
  *
  */
 public class StringUtilsToolbox {

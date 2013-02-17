@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 订单联系人信息
- * @author shenjia.caosj 2012-2-4
+ * @author langben 2012-2-4
  *
  */
 public class OrderContactDO {

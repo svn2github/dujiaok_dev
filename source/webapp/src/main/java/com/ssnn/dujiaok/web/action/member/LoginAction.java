@@ -15,7 +15,7 @@ import com.ssnn.dujiaok.web.session.SessionManager;
 /**
  * 会员登录
  * 
- * @author shenjia.caosj 2012-1-10
+ * @author langben 2012-1-10
  * 
  */
 @SuppressWarnings("serial")

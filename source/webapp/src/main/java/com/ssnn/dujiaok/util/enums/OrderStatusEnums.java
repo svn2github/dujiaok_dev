@@ -2,7 +2,7 @@ package com.ssnn.dujiaok.util.enums;
 
 /**
  * 订单状态
- * @author shenjia.caosj 2012-2-2
+ * @author langben 2012-2-2
  *
  */
 public enum OrderStatusEnums {

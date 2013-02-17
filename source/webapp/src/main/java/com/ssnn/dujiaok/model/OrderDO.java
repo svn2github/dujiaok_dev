@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 订单
  * 
- * @author shenjia.caosj 2012-2-2
+ * @author langben 2012-2-2
  * 
  */
 public class OrderDO {

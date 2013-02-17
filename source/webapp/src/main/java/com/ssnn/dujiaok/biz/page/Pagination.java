@@ -5,7 +5,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  * 分页Bean
- * @author shenjia.caosj 2012-1-12
+ * @author langben 2012-1-12
  *
  */
 public class Pagination {

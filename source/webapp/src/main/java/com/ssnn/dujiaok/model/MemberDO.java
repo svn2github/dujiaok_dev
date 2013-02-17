@@ -7,7 +7,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  * 
- * @author shenjia.caosj 2011-12-27
+ * @author langben 2011-12-27
  *
  */
 public class MemberDO {

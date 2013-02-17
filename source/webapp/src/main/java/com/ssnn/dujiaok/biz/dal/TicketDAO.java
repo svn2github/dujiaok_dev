@@ -8,7 +8,7 @@ import com.ssnn.dujiaok.model.TicketDO;
 
 /**
  * 门票
- * @author shenjia.caosj 2012-1-9
+ * @author langben 2012-1-9
  *
  */
 public interface TicketDAO {

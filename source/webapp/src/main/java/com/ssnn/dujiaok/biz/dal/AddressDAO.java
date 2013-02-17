@@ -8,7 +8,7 @@ import com.ssnn.dujiaok.model.ProvinceDO;
 
 /**
  * 
- * @author shenjia.caosj 2012-1-19
+ * @author langben 2012-1-19
  *
  */
 public interface AddressDAO {

@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 
- * @author shenjia.caosj 2012-2-8
+ * @author langben 2012-2-8
  *
  */
 public class OrderCondition extends AbstractCondition {

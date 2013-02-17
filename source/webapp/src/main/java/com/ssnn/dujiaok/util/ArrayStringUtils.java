@@ -8,7 +8,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * String 和 List 转换
- * @author shenjia.caosj 2012-1-13
+ * @author langben 2012-1-13
  * 
  */
 public class ArrayStringUtils {

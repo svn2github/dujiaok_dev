@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * 酒店HOTEL主表
- * @author shenjia.caosj 2012-1-17
+ * @author langben 2012-1-17
  *
  */
 public class HotelDO extends AbstractProduct {

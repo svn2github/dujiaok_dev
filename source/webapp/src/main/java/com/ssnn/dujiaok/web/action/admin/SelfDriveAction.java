@@ -12,7 +12,7 @@ import com.ssnn.dujiaok.web.action.BasicAction;
 
 /**
  * 自驾
- * @author shenjia.caosj 2012-1-20
+ * @author langben 2012-1-20
  *
  */
 

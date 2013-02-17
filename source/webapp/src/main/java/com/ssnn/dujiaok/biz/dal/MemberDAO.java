@@ -4,7 +4,7 @@ import com.ssnn.dujiaok.model.MemberDO;
 
 /**
  * 
- * @author shenjia.caosj 2011-12-27
+ * @author langben 2011-12-27
  *
  */
 public interface MemberDAO {

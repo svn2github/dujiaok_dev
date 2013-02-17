@@ -4,7 +4,7 @@ import com.ssnn.dujiaok.model.AbstractProduct;
 
 /**
  * 产品Service
- * @author shenjia.caosj 2012-5-30
+ * @author langben 2012-5-30
  *
  */
 public interface ProductService {

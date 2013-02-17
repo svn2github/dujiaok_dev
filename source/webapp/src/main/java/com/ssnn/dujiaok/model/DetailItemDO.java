@@ -8,7 +8,7 @@ import org.apache.commons.lang.time.DateUtils;
 /**
  * ProductDetailItem
  * 
- * @author shenjia.caosj 2012-3-22
+ * @author langben 2012-3-22
  * 
  */
 public class DetailItemDO implements Comparable<DetailItemDO> {

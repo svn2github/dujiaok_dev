@@ -5,7 +5,7 @@
   -
   - 请使用专用的XML编辑器编辑此文件，以确保其符合log4j.dtd。
   -
-  - @author Michael Zhou
+  - @author 
  -->
 
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">

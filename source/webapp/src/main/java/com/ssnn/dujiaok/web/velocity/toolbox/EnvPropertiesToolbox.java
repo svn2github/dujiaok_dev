@@ -13,7 +13,7 @@ import com.ssnn.dujiaok.web.context.AdminContextHolder;
 
 /**
  * EnvPropertiesToolbox velocity toolbox
- * @author shenjia.caosj 2011-12-23
+ * @author langben 2011-12-23
  *
  */
 public class EnvPropertiesToolbox {

@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * 
- * @author shenjia.caosj 2012-2-7
+ * @author langben 2012-2-7
  *
  */
 public class OrderDetailDO {

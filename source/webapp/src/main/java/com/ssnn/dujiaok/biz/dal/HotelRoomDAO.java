@@ -8,7 +8,7 @@ import com.ssnn.dujiaok.model.HotelRoomDO;
 
 /**
  * 酒店房间DAO
- * @author shenjia.caosj 2012-1-17
+ * @author langben 2012-1-17
  *
  */
 public interface HotelRoomDAO {

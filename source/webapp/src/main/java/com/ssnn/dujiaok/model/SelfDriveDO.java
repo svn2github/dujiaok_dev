@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 自驾
- * @author shenjia.caosj 2012-1-18
+ * @author langben 2012-1-18
  *
  */
 public class SelfDriveDO extends AbstractProduct {

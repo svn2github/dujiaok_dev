@@ -9,7 +9,7 @@ import com.ssnn.dujiaok.model.OrderDO;
 
 /**
  * 订单
- * @author shenjia.caosj 2012-2-2
+ * @author langben 2012-2-2
  *
  */
 public interface OrderService {

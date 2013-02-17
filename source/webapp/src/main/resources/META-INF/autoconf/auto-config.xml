@@ -2,7 +2,7 @@
 <!--
 	- 自动配置描述文件
 	-
-	- @author Michael Zhou
+	- @author 
 -->
 <config description="自动配置">
 	<group name="common config">

@@ -25,7 +25,7 @@ import com.ssnn.dujiaok.model.ProductDetailDO;
 
 /**
  * ProductUtils
- * @author shenjia.caosj 2012-2-11
+ * @author langben 2012-2-11
  *
  */
 public class ProductUtils {

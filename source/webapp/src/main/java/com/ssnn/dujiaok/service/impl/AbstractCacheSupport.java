@@ -11,7 +11,7 @@ import com.ssnn.dujiaok.model.AbstractModel;
 import com.ssnn.dujiaok.service.cache.CacheClient;
 
 /**
- * @author shenjia.caosj
+ * @author langben
  */
 public abstract class AbstractCacheSupport implements InitializingBean {
 
@@ -93,7 +93,7 @@ public abstract class AbstractCacheSupport implements InitializingBean {
 	/**
 	 * 缓存对象
 	 * 
-	 * @author shenjia.caosj 2011-4-12
+	 * @author langben 2011-4-12
 	 * 
 	 * @param <T>
 	 */

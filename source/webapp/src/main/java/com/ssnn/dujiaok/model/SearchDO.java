@@ -12,7 +12,7 @@ import com.ssnn.dujiaok.util.enums.ProductEnums;
 
 /**
  * 搜索
- * @author shenjia.caosj 2012-2-28
+ * @author langben 2012-2-28
  *
  */
 public class SearchDO {

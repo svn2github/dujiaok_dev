@@ -13,7 +13,7 @@ import com.ssnn.dujiaok.util.IntegerUtils;
 
 /**
  * 
- * @author shenjia.caosj 2012-1-17
+ * @author langben 2012-1-17
  *
  */
 public class IBatisHotelDAO extends SqlMapClientDaoSupport implements HotelDAO {

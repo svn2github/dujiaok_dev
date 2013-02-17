@@ -7,7 +7,7 @@ import java.util.concurrent.Future;
 
 /**
  * 
- * @author shenjia.caosj 2012-2-11
+ * @author langben 2012-2-11
  *
  */
 public interface CacheClient {

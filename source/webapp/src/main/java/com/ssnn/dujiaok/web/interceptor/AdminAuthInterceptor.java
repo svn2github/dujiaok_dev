@@ -21,7 +21,7 @@ import com.ssnn.dujiaok.web.context.ContextHolder;
 
 /**
  * 管理员interceptor
- * @author shenjia.caosj 2012-1-10
+ * @author langben 2012-1-10
  *
  */
 public class AdminAuthInterceptor  extends AbstractInterceptor {

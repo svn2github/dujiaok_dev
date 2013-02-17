@@ -6,7 +6,7 @@ import com.ssnn.dujiaok.model.HotCityDO;
 
 /**
  * 
- * @author shenjia.caosj 2013-1-28
+ * @author langben 2013-1-28
  *
  */
 public interface HotCityDAO {

@@ -12,7 +12,7 @@ import com.ssnn.dujiaok.web.action.BasicAction;
 
 /**
  * 
- * @author shenjia.caosj 2012-1-17
+ * @author langben 2012-1-17
  *
  */
 @SuppressWarnings("serial")

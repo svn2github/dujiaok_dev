@@ -7,7 +7,7 @@ import com.ssnn.dujiaok.util.ArrayStringUtils;
 
 /**
  * 
- * @author shenjia.caosj 2012-1-18
+ * @author langben 2012-1-18
  *
  */
 public class HotelRoomDO extends AbstractProduct{

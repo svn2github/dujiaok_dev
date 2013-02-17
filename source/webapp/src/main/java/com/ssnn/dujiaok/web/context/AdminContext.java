@@ -4,7 +4,7 @@ import com.ssnn.dujiaok.model.AdminDO;
 
 /**
  * Admin Context
- * @author shenjia.caosj 2012-1-10
+ * @author langben 2012-1-10
  *
  */
 public class AdminContext {

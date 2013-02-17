@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * 查询结果
- * @author shenjia.caosj 2012-1-12
+ * @author langben 2012-1-12
  *
  */
 public class QueryResult<T> {

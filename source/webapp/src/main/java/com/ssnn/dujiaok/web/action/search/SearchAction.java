@@ -14,7 +14,7 @@ import com.ssnn.dujiaok.web.action.BasicAction;
 
 /**
  * 
- * @author shenjia.caosj 2012-2-29
+ * @author langben 2012-2-29
  * 
  */
 @SuppressWarnings("serial")

@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Ticket 门票主表
  * 
- * @author shenjia.caosj 2012-1-9
+ * @author langben 2012-1-9
  * 
  */
 public class TicketDO extends AbstractProduct {

@@ -12,7 +12,7 @@ import com.ssnn.dujiaok.util.IntegerUtils;
 
 /**
  * SelfDriveDAO
- * @author shenjia.caosj 2012-1-18
+ * @author langben 2012-1-18
  *
  */
 public class IBatisSelfDriveDAO extends SqlMapClientDaoSupport implements SelfDriveDAO{

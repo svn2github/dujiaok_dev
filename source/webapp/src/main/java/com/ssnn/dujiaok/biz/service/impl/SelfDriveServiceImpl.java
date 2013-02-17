@@ -17,7 +17,7 @@ import com.ssnn.dujiaok.util.enums.ProductEnums;
 
 /**
  * 
- * @author shenjia.caosj 2012-1-19
+ * @author langben 2012-1-19
  *
  */
 public class SelfDriveServiceImpl implements SelfDriveService{

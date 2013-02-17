@@ -14,7 +14,7 @@ import com.ssnn.dujiaok.web.action.BasicAction;
 
 /**
  * 删除产品
- * @author shenjia.caosj 2012-2-3
+ * @author langben 2012-2-3
  *
  */
 @SuppressWarnings("serial")

@@ -2,7 +2,7 @@ package com.ssnn.dujiaok.web.context;
 
 /**
  * 
- * @author shenjia.caosj 2012-1-10
+ * @author langben 2012-1-10
  *
  */
 public class AdminContextHolder {

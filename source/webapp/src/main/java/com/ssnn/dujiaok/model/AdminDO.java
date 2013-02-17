@@ -7,7 +7,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  * 管理员
- * @author shenjia.caosj 2012-1-10
+ * @author langben 2012-1-10
  *
  */
 public class AdminDO {

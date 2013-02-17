@@ -6,7 +6,7 @@ import com.ssnn.dujiaok.model.MemberDO;
 
 /**
  * MemberService
- * @author shenjia.caosj 2011-12-28
+ * @author langben 2011-12-28
  *
  */
 public interface MemberService {

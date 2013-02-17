@@ -9,7 +9,7 @@ import com.ssnn.dujiaok.model.HotelRoomDO;
 
 /**
  * 
- * @author shenjia.caosj 2012-1-18
+ * @author langben 2012-1-18
  *
  */
 public interface HotelRoomService {

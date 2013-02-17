@@ -21,7 +21,7 @@ import com.ssnn.dujiaok.web.context.ContextHolder;
 /**
  * 判断会员有没登陆
  * 
- * @author shenjia.caosj 2011-12-27
+ * @author langben 2011-12-27
  * 
  */
 public class MemberAuthInterceptor extends AbstractInterceptor {

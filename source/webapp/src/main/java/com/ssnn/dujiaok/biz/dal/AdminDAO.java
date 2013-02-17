@@ -4,7 +4,7 @@ import com.ssnn.dujiaok.model.AdminDO;
 
 /**
  * ADMIN DAO
- * @author shenjia.caosj 2012-1-10
+ * @author langben 2012-1-10
  *
  */
 public interface AdminDAO {

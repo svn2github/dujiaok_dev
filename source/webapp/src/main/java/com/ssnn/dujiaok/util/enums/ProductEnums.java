@@ -6,7 +6,7 @@ import com.ssnn.dujiaok.constant.Constant;
 
 /**
  * 产品Enum
- * @author shenjia.caosj 2012-1-17
+ * @author langben 2012-1-17
  *
  */
 public enum ProductEnums {

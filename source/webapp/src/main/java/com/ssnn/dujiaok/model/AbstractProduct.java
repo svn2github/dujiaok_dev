@@ -14,7 +14,7 @@ import com.ssnn.dujiaok.util.ProductUtils;
 
 /**
  * 
- * @author shenjia.caosj 2012-1-17
+ * @author langben 2012-1-17
  * 
  */
 public abstract class AbstractProduct {
